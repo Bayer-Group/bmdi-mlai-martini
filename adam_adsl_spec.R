@@ -1,0 +1,290 @@
+
+#' ads spec
+#' 
+#' @param file the file 
+#' @param id name of id column to keep
+#' @param trt name of trt column to keep
+#' @param keep columns to be kept (overrides blacklist)
+#' @param drop superseded columns to be dropped (overrides whitelist)
+#' @param filter character vector of filter criteria to be evaluated
+
+# test area####
+if(FALSE){
+  # 'real_world_data/adsl/99999/adsl.sas7bdat'
+  study <- c(99999, 99999, 99999)[3]
+  file  <- paste0('real_world_data/adsl/', study, '/adsl.sas7bdat')
+  
+  id = 'SUBJID'
+  trt = NULL
+  keep = NULL
+  drop = NULL
+  filter = c("FASFL == 'Y'", "AGE < 80", "GENDER == 'female'")
+  
+  spec <- adam_adsl_spec(file = file, id = id, filter = filter)
+  
+}
+
+
+
+# adam_adsl_spec() ####
+
+adam_adsl_spec <- function(
+  file, 
+  id = 'SUBJID',
+  trt = NULL,
+  keep = NULL, 
+  drop = NULL,
+  filter = NULL,
+  ...
+  
+){
+  
+  # packages  ####
+  #if (!require("pacman")) install.packages("pacman")  
+  #pacman::p_load(labelled,   # setting and extracting column labels
+  #               tidymodels  # modeling framework
+  #)    
+  
+  require(tidyverse)
+  require(haven)
+  require(labelled)
+
+  #  read adsl ####
+  #'adsl.sas7bdat' %in% list.files(path)
+  adsl <- haven::read_sas(paste0(path, 'adsl.sas7bdat'))
+  
+  # create column dict (name <-> label)  
+  dict <- var_label(adsl) %>% 
+    enframe(name ='param', value = 'label') %>%  
+    mutate(label = map_chr(label, ~ .x[[1]])) %>% 
+    mutate(source = 'adsl'
+           # , comment = ''
+           )
+  
+  clmns <- dict$param
+  labs  <- dict$label
+  
+  
+  # define black and whitelist ####
+  ## black and white list 
+  black_list <- c(
+    'RANDNO',
+    'ADSNAME', 'STUDYID', # covered in constant
+    "SITEID" ,  "SITENAM" , 
+    "INVID"  ,  "INVNAM" ,
+    # "TRT01P" ,  "TRT01PN"
+    'AGEGREU'     # e.g. 99999: two agegroups, agegreu only for agegr01 -> discard
+  )
+  
+  #white_list <- c()
+  
+  #discard$black_list <- black_list
+  
+  # identify date columns ####
+  
+  date_auto <- map_lgl(adsl, assertive.types::is_date) %>%  which() %>%  names
+  date_lab  <- map_lgl(
+    var_label(adsl), 
+    ~ str_detect(str_to_lower(.x), 'year|month|day|date|time')) %>% 
+    which()
+  all_dates <- c(date_auto, names(date_lab))
+  
+  
+  # identify pairs of categorical/numerical columns ####
+  
+  # for flags ####
+  # naming convention   xxxFL -> xxxFN
+  all_FL <-  c( #intersect( 
+    clmns %>%  str_subset('FL$' ),  
+    clmns[labs %>%  str_detect(' Flag$')] ) %>% 
+    unique
+  
+  # flags without FL suffix in column name (e.g. SUBNY02=Subset 02 Analysis Flag in 99999)
+  
+  # flags_N  <- all_FL %>% 
+  #   str_replace( 'FL$', 'FN' ) %>% 
+  #  { . %in% clmns} %>% 
+  #   all_FL[.] %>% 
+  #   str_replace( 'FL$', 'FN' ) 
+  
+  
+  flags <- c( all_FL , 
+              str_replace( all_FL,'FL$', 'FN' )  ) %>%  unique()
+  
+  
+  
+  
+  ### categoricals with numeric code
+  
+  
+  # identify columns to keep... ####
+  # columns with additional numeric code
+  clmn_mod <- paste0(clmns, 'N')
+  # clmn indices to order ()
+  clmn_ind_lab  <- clmn_mod %in% clmns
+  # columns to be kept
+  clmn_cat  <- clmns[clmn_ind_lab]
+  # columns to be used for level order, then dropped
+  clmn_num  <- clmn_mod[clmn_ind_lab]
+  
+  lab_mod <- paste(labs, '(N)')
+  lab_ind <- lab_mod %in% labs
+  lab_cat <- labs[lab_mod %in% labs]
+  lab_num <- lab_mod[lab_mod %in% labs]
+  
+  # mapping of columns to keep (labels) and columns to use for level order
+  all_lab_lev <- bind_rows(
+    tibble(lab = clmn_cat,  
+           lev = clmn_num),
+    tibble(lab = dict %>%  filter(label %in% lab_cat) %>%  pull(param) ,  
+           lev = dict %>%  filter(label %in% lab_num) %>%  pull(param)  )
+  ) %>% 
+    distinct() 
+  
+  # keep list of all num codes to setdiff with all numeric columns
+  all_num_codes <- all_lab_lev$lev
+  
+  # reduce to pairs for which level order needs to be extracted
+  lab_lev <- all_lab_lev  %>% 
+    filter(!lab %in% flags) %>% 
+    dplyr::filter(lab != id) %>% 
+    dplyr::filter(lev != id)
+  
+  
+  
+  # num_codes <- c(clmn_cat, 
+  #                dict %>%  filter(label %in% lab_cat) %>%  pull(column)) %>% 
+  #   unique()
+  # 
+  # discard$num_codes <- lab_lev %>%  pull(lev)
+  
+  # identify combined columns ####
+  
+  # create list of factor levels ####
+  lev_list <- list()
+  for(r in 1:nrow(lab_lev)){
+    lev <-  sym(lab_lev [r,] %>% pull(lev))
+    lab <-  sym(lab_lev [r,] %>% pull(lab))
+    
+    levs <-  adsl %>% 
+      select(lab_lev [r,] %>%  as.character()) %>% 
+      distinct() %>% 
+      arrange(!!lev) %>% 
+      pull(!!lab)
+    lev_list[[lab]] <- levs
+    #adsl <-  adsl %>% 
+    #    mutate(!! lab := factor(!!lab , levels = levs))
+  }
+  
+  # identify combined columns ####
+  
+  all_slash <- labs %>%  str_subset('/' )
+  ind  <- all_slash %>%  
+    str_split('/') %>% 
+    map_lgl( ~ { all(.x %in% labs)})
+  all_comb_columns <- all_slash[ind]
+  
+  
+  # identify redundants for id and trt ####
+  
+  ## ...ids ####
+  
+  suppressWarnings({
+    cors <- adsl %>%
+      mutate_all( ~ as.factor(.x) %>%  fct_inorder %>% as.numeric) %>% 
+      janitor::remove_constant(na.rm = TRUE) %>% 
+      cor(method = "spearman", use = 'pairwise.complete.obs')
+  })
+  
+  redundant_id <-  cors[, id] %>% 
+    enframe() %>% 
+    filter(near(value, 1)) %>% 
+    pull(name) %>% 
+    setdiff(id)
+  
+  
+  
+  ## ...trt ####
+  
+  trt_adam <- intersect(
+    c("TRT01A", "ARMCD", "ARM", "ACTARM", "ACTARMCD", "TRT01P"),
+    colnames(adsl)
+  )
+  
+  if (is.null(trt) && !is.null(trt_adam)){
+    trt <- trt_adam[1]
+  }
+  redundant_trt <- setdiff(trt_adam, trt)
+  
+  # numerics without categorical pendant ####
+  all_numerics <- adsl %>% 
+    select_if(is.numeric) %>% 
+    colnames() 
+  
+  # empty columns 
+  empties <- setdiff( 
+    adsl %>%  colnames(),
+    adsl %>%  janitor::remove_empty('cols') %>%  colnames()
+    )
+  
+  # drop list ####
+  drop_list <- c(
+    drop,
+    all_dates,
+    all_num_codes,
+    all_comb_columns,
+    redundant_id,
+    redundant_trt,
+    empties
+  ) %>% 
+    setdiff(keep) %>% 
+    unique()
+  
+  # selected columns ####
+  select_list <- c(
+    id,
+    trt,
+    names(lev_list),
+    all_numerics,
+    keep
+  ) %>% 
+    setdiff(drop_list)
+  
+  # check filter ####
+
+  keep_filter <- map_lgl(filter, function(x){
+    try_it <- try(
+      {adsl %>% dplyr::filter(!! rlang::parse_expr(x))},
+      silent = TRUE
+    )
+    is_error <- "try-error" %in% class(try_it)
+    is_norow <- FALSE
+    if (!is_error) is_norow <- nrow(try_it) == 0
+    !(is_error || is_norow)
+    
+  })
+  
+  actual_filter <- filter[keep_filter]
+  
+
+  dict <- dict %>%  
+    mutate(selected = ifelse(
+      param %in% select_list, TRUE, FALSE
+    ) )
+  
+  
+  # output ####
+  out <- list(
+    file = file,
+    type = "adsl",
+    filter = actual_filter,
+    select = select_list,
+    factor_levels = lev_list[intersect(select_list, names(lev_list))],
+    dict = dict,
+    drop_notes = NULL,
+    id = id
+  )
+  # character string of columns to keep
+  # list of factor level orders
+  
+}
