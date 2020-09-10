@@ -7,9 +7,15 @@
 #' @param keep columns to be kept (overrides blacklist)
 #' @param drop superseded columns to be dropped (overrides whitelist)
 #' @param filter character vector of filter criteria to be evaluated
+#' @param prepare boolean. prepare the data or just provide the spec for later preparation in xxx
 
 # test area####
 if(FALSE){
+  
+  require(tidyverse)
+  require(haven)
+  require(labelled)
+  
   # 'real_world_data/adsl/99999/adsl.sas7bdat'
   study <- c(99999, 99999, 99999)[3]
   file  <- paste0('real_world_data/adsl/', study, '/adsl.sas7bdat')
@@ -45,21 +51,15 @@ adam_adsl_spec <- function(
   #               tidymodels  # modeling framework
   #)    
   
-  require(tidyverse)
-  require(haven)
-  require(labelled)
-
   #  read adsl ####
   #'adsl.sas7bdat' %in% list.files(path)
   adsl <- haven::read_sas(paste0(path, 'adsl.sas7bdat'))
   
   # create column dict (name <-> label)  
-  dict <- var_label(adsl) %>% 
-    enframe(name ='param', value = 'label') %>%  
-    mutate(label = map_chr(label, ~ .x[[1]])) %>% 
-    mutate(source = 'adsl'
-           # , comment = ''
-           )
+  dict <- labelled::var_label(adsl) %>% 
+    tibble::enframe(name ='param', value = 'label') %>%  
+    dplyr::mutate(label = map_chr(label, ~ .x[[1]])) %>% 
+    dplyr::mutate(source = 'adsl')
   
   clmns <- dict$param
   labs  <- dict$label
@@ -82,10 +82,10 @@ adam_adsl_spec <- function(
   
   # identify date columns ####
   
-  date_auto <- map_lgl(adsl, assertive.types::is_date) %>%  which() %>%  names
-  date_lab  <- map_lgl(
-    var_label(adsl), 
-    ~ str_detect(str_to_lower(.x), 'year|month|day|date|time')) %>% 
+  date_auto <- purrr::map_lgl(adsl, assertive.types::is_date) %>%  which() %>%  names
+  date_lab  <- purrr::map_lgl(
+    labelled::var_label(adsl), 
+    ~ stringr::str_detect(str_to_lower(.x), 'year|month|day|date|time')) %>% 
     which()
   all_dates <- c(date_auto, names(date_lab))
   
@@ -95,8 +95,8 @@ adam_adsl_spec <- function(
   # for flags ####
   # naming convention   xxxFL -> xxxFN
   all_FL <-  c( #intersect( 
-    clmns %>%  str_subset('FL$' ),  
-    clmns[labs %>%  str_detect(' Flag$')] ) %>% 
+    clmns %>% stringr::str_subset('FL$' ),  
+    clmns[labs %>% stringr::str_detect(' Flag$')] ) %>% 
     unique
   
   # flags without FL suffix in column name (e.g. SUBNY02=Subset 02 Analysis Flag in 99999)
@@ -109,7 +109,7 @@ adam_adsl_spec <- function(
   
   
   flags <- c( all_FL , 
-              str_replace( all_FL,'FL$', 'FN' )  ) %>%  unique()
+              stringr::str_replace( all_FL,'FL$', 'FN' )  ) %>%  unique()
   
   
   
@@ -133,20 +133,20 @@ adam_adsl_spec <- function(
   lab_num <- lab_mod[lab_mod %in% labs]
   
   # mapping of columns to keep (labels) and columns to use for level order
-  all_lab_lev <- bind_rows(
-    tibble(lab = clmn_cat,  
-           lev = clmn_num),
-    tibble(lab = dict %>%  filter(label %in% lab_cat) %>%  pull(param) ,  
-           lev = dict %>%  filter(label %in% lab_num) %>%  pull(param)  )
+  all_lab_lev <- dplyr::bind_rows(
+    tibble::tibble(lab = clmn_cat,  
+                   lev = clmn_num),
+    tibble::tibble(lab = dict %>%  filter(label %in% lab_cat) %>%  pull(param) ,  
+                   lev = dict %>%  filter(label %in% lab_num) %>%  pull(param)  )
   ) %>% 
-    distinct() 
+    dplyr::distinct() 
   
   # keep list of all num codes to setdiff with all numeric columns
   all_num_codes <- all_lab_lev$lev
   
   # reduce to pairs for which level order needs to be extracted
   lab_lev <- all_lab_lev  %>% 
-    filter(!lab %in% flags) %>% 
+    dplyr::filter(!lab %in% flags) %>% 
     dplyr::filter(lab != id) %>% 
     dplyr::filter(lev != id)
   
@@ -163,14 +163,14 @@ adam_adsl_spec <- function(
   # create list of factor levels ####
   lev_list <- list()
   for(r in 1:nrow(lab_lev)){
-    lev <-  sym(lab_lev [r,] %>% pull(lev))
-    lab <-  sym(lab_lev [r,] %>% pull(lab))
+    lev <-  rlang::sym(lab_lev [r,] %>% dplyr::pull(lev))
+    lab <-  rlang::sym(lab_lev [r,] %>% dplyr::pull(lab))
     
     levs <-  adsl %>% 
-      select(lab_lev [r,] %>%  as.character()) %>% 
-      distinct() %>% 
-      arrange(!!lev) %>% 
-      pull(!!lab)
+      dplyr::select(lab_lev [r,] %>%  as.character()) %>% 
+      dplyr::distinct() %>% 
+      dplyr::arrange(!!lev) %>% 
+      dplyr::pull(!!lab)
     lev_list[[lab]] <- levs
     #adsl <-  adsl %>% 
     #    mutate(!! lab := factor(!!lab , levels = levs))
@@ -178,10 +178,10 @@ adam_adsl_spec <- function(
   
   # identify combined columns ####
   
-  all_slash <- labs %>%  str_subset('/' )
+  all_slash <- labs %>% stringr::str_subset('/' )
   ind  <- all_slash %>%  
-    str_split('/') %>% 
-    map_lgl( ~ { all(.x %in% labs)})
+    stringr::str_split('/') %>% 
+    purrr::map_lgl( ~ { all(.x %in% labs)})
   all_comb_columns <- all_slash[ind]
   
   
@@ -191,15 +191,15 @@ adam_adsl_spec <- function(
   
   suppressWarnings({
     cors <- adsl %>%
-      mutate_all( ~ as.factor(.x) %>%  fct_inorder %>% as.numeric) %>% 
+      dplyr::mutate_all( ~ as.factor(.x) %>% forcats::fct_inorder %>% as.numeric) %>% 
       janitor::remove_constant(na.rm = TRUE) %>% 
-      cor(method = "spearman", use = 'pairwise.complete.obs')
+      stats::cor(method = "spearman", use = 'pairwise.complete.obs')
   })
   
   redundant_id <-  cors[, id] %>% 
-    enframe() %>% 
-    filter(near(value, 1)) %>% 
-    pull(name) %>% 
+    tibble::enframe() %>% 
+    dplyr::filter(near(value, 1)) %>% 
+    dplyr::pull(name) %>% 
     setdiff(id)
   
   
@@ -218,14 +218,14 @@ adam_adsl_spec <- function(
   
   # numerics without categorical pendant ####
   all_numerics <- adsl %>% 
-    select_if(is.numeric) %>% 
+    dplyr::select_if(is.numeric) %>% 
     colnames() 
   
   # empty columns 
   empties <- setdiff( 
     adsl %>%  colnames(),
     adsl %>%  janitor::remove_empty('cols') %>%  colnames()
-    )
+  )
   
   # drop list ####
   drop_list <- c(
@@ -268,7 +268,7 @@ adam_adsl_spec <- function(
   
 
   dict <- dict %>%  
-    mutate(selected = ifelse(
+    dplyr::mutate(selected = ifelse(
       param %in% select_list, TRUE, FALSE
     ) )
   
@@ -282,9 +282,16 @@ adam_adsl_spec <- function(
     factor_levels = lev_list[intersect(select_list, names(lev_list))],
     dict = dict,
     drop_notes = NULL,
-    id = id
+    id = id,
+    data = NULL
   )
-  # character string of columns to keep
-  # list of factor level orders
+
+  if (prepare){
+    prep <- adam_adsl_prep(spec = out, data = adsl)
+    out$data <- prep$data
+    out$dict <- prep$dict
+  }
+  
+  out
   
 }
