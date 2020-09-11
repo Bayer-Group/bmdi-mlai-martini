@@ -1,5 +1,5 @@
 
-#' ads spec
+#' spec adsl
 #' 
 #' @param file the file 
 #' @param id name of id column to keep
@@ -7,7 +7,7 @@
 #' @param keep columns to be kept (overrides blacklist)
 #' @param drop superseded. columns to be dropped (overrides whitelist)
 #' @param filter character vector of filter criteria to be evaluated
-#' @param prepare boolean. prepare the data or just provide the spec for later preparation in adam_adsl_prep()
+#' @param attach_data boolean. attach the imported raw data
 
 # test area####
 if(FALSE){
@@ -25,23 +25,24 @@ if(FALSE){
   keep = NULL
   drop = NULL
   filter = c("FASFL == 'Y'", "AGE < 80", "GENDER == 'female'")
+  attach_data = TRUE
   
-  spec <- adam_adsl_spec(file = file, id = id, filter = filter)
+  spec <- adam_spec_adsl(file = file, id = id, filter = filter, attach_data = attach_data)
   
 }
 
 
 
-# adam_adsl_spec() ####
+# adam_spec_adsl() ####
 
-adam_adsl_spec <- function(
+adam_spec_adsl <- function(
   file, 
   id = 'SUBJID',
   trt = NULL,
   keep = NULL, 
   drop = NULL,
   filter = NULL,
-  prepare = FALSE,
+  attach_data = FALSE,
   ...
   
 ){
@@ -277,20 +278,18 @@ adam_adsl_spec <- function(
   # output ####
   out <- list(
     file = file,
+    data = NULL,
     type = "adsl",
     filter = actual_filter,
     select = select_list,
     factor_levels = lev_list[intersect(select_list, names(lev_list))],
     dict = dict,
     drop_notes = NULL,
-    id = id,
-    data = NULL
+    id = id
   )
 
-  if(prepare){
-    prep     <- adam_adsl_prep(spec = out, data = adsl)
-    out$data <- prep$data
-    out$dict <- prep$dict
+  if(attach_data){
+    out$data <- adsl
   }
   
   out

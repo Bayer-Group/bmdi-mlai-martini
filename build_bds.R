@@ -1,16 +1,16 @@
 
-#' bds prep
+#' build bds
 #' 
-#' Extract and reshape data from a single bds-type data set according to the given specification as created by \code{adam_bds_spec()}.
+#' Extract and reshape data from a single bds-type data set according to the given specification as created by \code{adam_spec_bds()}.
 #' 
-#' @param spec result of \code{adam_bds_spec()}
+#' @param spec result of \code{adam_spec_bds()}
 #' 
 #' @return 
 #' A list with two elements \code{data} and \code{dict}, where 
 #' \code{data} a tibble in wide format which one row per \code{id} 
 #' \code{dict} a tibble listing the distinct combinations of columns \code{param}, \code{label}, \code{unit}, \code{time}, \code{column}, \code{source} (if provided). 
 
-#' @description Note that the output dictionary differs from the dictionary created by \code{adam_*_spec}, as multiple features may be derived from a single parameter at different time points.  
+#' @description Note that the output dictionary differs from the dictionary created by \code{adam_spec_*}, as multiple features may be derived from a single parameter at different time points.  
 
 
 
@@ -29,7 +29,7 @@ if(FALSE){
   time   = NULL 
   value  = NULL #c(AVAL, CHG)
   filter = NULL
-  spec <- adam_bds_spec(file = file, id = id, filter = filter,
+  spec <- adam_spec_bds(file = file, id = id, filter = filter,
                    param = param, unit = unit, time = time)
   spec
   
@@ -39,24 +39,28 @@ if(FALSE){
 
 # bds_prep() ####
 
-adam_bds_prep <- function(
-  spec = adam_bds_spec,
+build_bds <- function(
+  spec,
   ...
   
 ){
   
-  # read data   ####
-  file_name <- spec$file 
-  file_ext <- str_split( file_name, '/|\\\\')[[1]] %>%  
-    tail(1) %>%  
-    str_split(., '[.]') %>% 
-    .[[1]] %>%  
-    tail(1) 
-  if(file_ext == 'sas7bdat'){
-    bds_full <- read_sas(file_name)
-  }else return(NULL)
   
-  
+  if(is.null(spec$data)){
+    # read data   ####
+    file_name <- spec$file 
+    file_ext <- str_split( file_name, '/|\\\\')[[1]] %>%  
+      tail(1) %>%  
+      str_split(., '[.]') %>% 
+      .[[1]] %>%  
+      tail(1) 
+    if(file_ext == 'sas7bdat'){
+      bds_full <- read_sas(file_name)
+    }else return(NULL)
+  } else {
+    bds_full <- spec$data
+  }
+
   col_select <- spec[c("param",  "time" ,  "value",  "unit",   "label" )] %>% 
     unlist() %>%  na.omit() %>%  as.character()
   
@@ -84,9 +88,7 @@ adam_bds_prep <- function(
     bds <- bds %>% 
       mutate( '.key' = !! sym(spec$param))
   }
-  
- 
-  
+
   # pivot 
   
   bds_wide <- pivot_wider(
@@ -98,27 +100,22 @@ adam_bds_prep <- function(
   )
   
   # dictionary ####
-  # create if not already provided in input spec
+  # overwrite dictionary from spec
     
-    source <- str_split( file, '/|\\\\') [[1]] %>%  
-      tail(1) %>% str_remove('.sas7bdat')
+  source <- str_split( file, '/|\\\\') [[1]] %>%  
+    tail(1) %>% str_remove('.sas7bdat')
     
-    dict <- bds %>% 
-      select( any_of(c(spec$param, spec$label, spec$unit, spec$time, '.key') %>%  na.omit)) %>% 
-      distinct() %>% 
-      rename( 'column' = '.key') %>% 
-      mutate(source = source) 
+  dict <- bds %>% 
+    select( any_of(c(spec$param, spec$label, spec$unit, spec$time, '.key') %>%  na.omit)) %>% 
+    distinct() %>% 
+    rename( 'column' = '.key') %>% 
+    mutate(source = source) 
     
-    
-    spec$dict <- dict
-    
-  
-  
   
   # output ####
   list(
     data = bds_wide,
-    dict = spec$dict
+    dict = dict
   )
   
   

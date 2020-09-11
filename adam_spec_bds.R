@@ -1,5 +1,5 @@
 
-#' bds spec (basic data structure)
+#' spec bds (basic data structure)
 #' 
 #' @param file the sas file 
 #' @param id name of id column to be kept and used for merge of data sets
@@ -10,7 +10,7 @@
 #' @param value Defaults to NULL, will be guessed if not set (see Details).
 #' @param filter character vector of filters to be applied to the bds data set. 
 #' Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL. 
-#' @param prepare defaults to FALSE.
+#' @param attach_data boolean. attach the imported raw data
 #' 
 #' @description 
 #' Values for arguments param, label, unit, time, value will be guessed if not provided. 
@@ -26,8 +26,8 @@
 #' A parameter dictionary will be created: A tibble with unique combinations of param, label, unit (or the provided subset)
 
 
-# function adam_bds_spec() ####
-adam_bds_spec <- function(
+# function adam_spec_bds() ####
+adam_spec_bds <- function(
   file,
   id = 'SUBJID', 
   param  = NULL , # 'PARAMCD',
@@ -36,13 +36,18 @@ adam_bds_spec <- function(
   time   = NULL, 
   value  = NULL, #c(AVAL, CHG)
   filter = NULL,
-  prepare = FALSE,
+  attach_data = FALSE,
   ...
 ){
   
   
   # test area  ####
   if(FALSE){
+    
+    require(tidyverse)
+    require(haven)
+    require(labelled)
+    
     file = 'real_world_data/bds/99999/adqseq5d.sas7bdat'
     id = 'SUBJID'
     param  =  NULL
@@ -53,11 +58,6 @@ adam_bds_spec <- function(
     filter = NULL
     
   }
-  
-  
-  require(tidyverse)
-  require(haven)
-  require(labelled)
   
   #  read bds ####
   #'adsl.sas7bdat' %in% list.files(path)
@@ -160,6 +160,7 @@ adam_bds_spec <- function(
  
   out <- list(
     file = file,
+    data = NULL,
     type = "bds",
     id = id,
     filter = actual_filter,
@@ -167,14 +168,11 @@ adam_bds_spec <- function(
   ) %>% 
     append(
       col_select %>% as.list()
-    ) %>% 
-    append(data = NULL)
+    )
 
   
-  if(prepare){
-    prep <- adam_bds_prep(spec = out, data = bds)
-    out$data <- prep$data
-    out$dict <- prep$dict
+  if(attach_data){
+    out$data <- bds
   }
   
   out
