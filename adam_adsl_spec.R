@@ -5,9 +5,9 @@
 #' @param id name of id column to keep
 #' @param trt name of trt column to keep
 #' @param keep columns to be kept (overrides blacklist)
-#' @param drop superseded columns to be dropped (overrides whitelist)
+#' @param drop superseded. columns to be dropped (overrides whitelist)
 #' @param filter character vector of filter criteria to be evaluated
-#' @param prepare boolean. prepare the data or just provide the spec for later preparation in xxx
+#' @param prepare boolean. prepare the data or just provide the spec for later preparation in adam_adsl_prep()
 
 # test area####
 if(FALSE){
@@ -41,6 +41,7 @@ adam_adsl_spec <- function(
   keep = NULL, 
   drop = NULL,
   filter = NULL,
+  prepare = FALSE,
   ...
   
 ){
@@ -286,8 +287,8 @@ adam_adsl_spec <- function(
     data = NULL
   )
 
-  if (prepare){
-    prep <- adam_adsl_prep(spec = out, data = adsl)
+  if(prepare){
+    prep     <- adam_adsl_prep(spec = out, data = adsl)
     out$data <- prep$data
     out$dict <- prep$dict
   }

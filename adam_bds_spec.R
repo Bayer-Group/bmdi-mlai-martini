@@ -2,12 +2,28 @@
 #' bds spec (basic data structure)
 #' 
 #' @param file the sas file 
-#' @param id name of id column to keep
-#' @param filter_subj
-#' @param 
-
-
-
+#' @param id name of id column to be kept and used for merge of data sets
+#' @param param name of the column that identifies the parameter. Defaults to NULL, will be guessed if not set (see Details).
+#' @param label name of the column that gives column labels. Defaults to NULL.
+#' @param unit Defaults to NULL, will be guessed if not set (see Details).
+#' @param time Defaults to NULL, will be guessed if not set (see Details).
+#' @param value Defaults to NULL, will be guessed if not set (see Details).
+#' @param filter character vector of filters to be applied to the bds data set. 
+#' Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL. 
+#' @param prepare defaults to FALSE.
+#' 
+#' @description 
+#' Values for arguments param, label, unit, time, value will be guessed if not provided. 
+#' Guess will be the first of the following options that matches a column name (exact match).
+#' \itemize{
+#'      \item[param] 'PARAMCD', paste0(dom,'TESTCD')
+#'      \item[label] substring of param with the last two characters removed
+#'      \item[time]  'AVISIT', 'VISIT'
+#'      \item[value] 'AVAL',   paste0(dom, c("STRESN", "ORRES")
+#'      \item[unit]  'AVALU',  paste0(dom, c("STRESU", "ORRESU") 
+#' }
+#' Function will escape if one of param or value are neither provided nor can be guessed.
+#' A parameter dictionary will be created: A tibble with unique combinations of param, label, unit (or the provided subset)
 
 
 # function adam_bds_spec() ####
@@ -19,7 +35,9 @@ adam_bds_spec <- function(
   unit   = NULL, # AVALU, xxSTRESU, ORESSU
   time   = NULL, 
   value  = NULL, #c(AVAL, CHG)
-  filter = NULL
+  filter = NULL,
+  prepare = FALSE,
+  ...
 ){
   
   
@@ -124,12 +142,12 @@ adam_bds_spec <- function(
   actual_filter <- filter[keep_filter]
 
  
-
   # dictionary
   source <- str_split( file, '/|\\\\') [[1]] %>%  
     tail(1) %>% str_remove('.sas7bdat')
   
-  dict <- bds %>% 
+  # use unfiltered data 
+  dict  <- bds %>% 
     select( any_of(c(col_select['param'], col_select['label'], col_select['unit']) %>%  na.omit)) %>% 
     distinct() %>%
     mutate(source = source)
@@ -149,10 +167,16 @@ adam_bds_spec <- function(
   ) %>% 
     append(
       col_select %>% as.list()
-    )
+    ) %>% 
+    append(data = NULL)
 
   
+  if(prepare){
+    prep <- adam_bds_prep(spec = out, data = bds)
+    out$data <- prep$data
+    out$dict <- prep$dict
+  }
+  
   out
- 
   
 }
