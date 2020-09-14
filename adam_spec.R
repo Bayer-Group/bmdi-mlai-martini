@@ -26,6 +26,9 @@
 #' @seealso \code{\link{adam_spec_adsl()}}, \code{\link{adam_spec_bds()}}
 #'
 #' @usage 
+#' 
+
+library(crayon)
 
 adam_spec <- function(
   path, 
@@ -101,10 +104,10 @@ adam_spec <- function(
   
   
   if(length(files_ignored) >0 ){
-    usethis::ui_info(paste0(
-    'The following files were not processed as they are currently not in the library: \n', 
-    paste(names(files_ignored), collapse=', '),
-    '\nYou can use the adam_spec_*() functions as appropriate.')
+    usethis::ui_info( paste0(
+      crayon::silver('The following files were not processed as they are currently not in the library: \n\t'), 
+      crayon::blue(paste(names(files_ignored), collapse=', ')),
+    crayon::silver( '\nYou can use the adam_spec_*() functions as appropriate.'))
     )
   }
   
