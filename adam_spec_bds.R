@@ -148,7 +148,7 @@ adam_spec_bds <- function(
   
   # use unfiltered data 
   dict  <- bds %>% 
-    select( any_of(c(col_select['param'], col_select['label'], col_select['unit']) %>%  na.omit)) %>% 
+    select( any_of(c("param" = col_select['param'], "label" = col_select['label'], "unit" = col_select['unit']) %>%  na.omit)) %>% 
     distinct() %>%
     mutate(source = source)
  

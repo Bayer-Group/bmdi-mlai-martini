@@ -45,14 +45,15 @@ adam_spec <- function(
   type_adsl <- c("adsl") %>% 
     paste0(".sas7bdat$") %>% 
     paste(collapse = "|")
-  type_bds <- c(   
-    paste0 (c("adlb",  "advs",   "adxb", "adxl") , ".sas7bdat$"),
-    "adqs.*[.]sas7bdat$" )%>% 
+  type_bds <- c(
+      paste0(c("adlb",  "advs",   "adxb", "adxl") , ".sas7bdat$"),
+      "adqs.*[.]sas7bdat$"
+    ) %>% 
     paste(collapse = "|")
   
   # list all files in given directory ####
- all_files <- list.files(path, pattern = ".sas7bdat", full.names = TRUE)
- doms      <- str_split( all_files, '/|\\\\')  %>%  
+  all_files <- list.files(path, pattern = ".sas7bdat", full.names = TRUE)
+  doms      <- str_split( all_files, '/|\\\\')  %>%  
     map( ~ .[length(.)]) %>% 
     unlist() %>%
     str_remove('.sas7bdat')
@@ -67,9 +68,6 @@ adam_spec <- function(
     import_files <- all_files[ names(all_files)[ !names(all_files) %in% drop]]
     }
   } 
-  
-  
-  
   
   spec <- list()
   

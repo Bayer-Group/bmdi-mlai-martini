@@ -55,7 +55,7 @@ adam_spec_adsl <- function(
   
   #  read adsl ####
   #'adsl.sas7bdat' %in% list.files(path)
-  adsl <- haven::read_sas(paste0(path, 'adsl.sas7bdat'))
+  adsl <- haven::read_sas(file)
   
   # create column dict (name <-> label)  
   dict <- labelled::var_label(adsl) %>% 
@@ -193,7 +193,7 @@ adam_spec_adsl <- function(
   
   suppressWarnings({
     cors <- adsl %>%
-      dplyr::mutate_all( ~ as.factor(.x) %>% forcats::fct_inorder %>% as.numeric) %>% 
+      dplyr::mutate_all( ~{factor(.) %>% forcats::fct_inorder(.) %>% as.numeric(.)}) %>% 
       janitor::remove_constant(na.rm = TRUE) %>% 
       stats::cor(method = "spearman", use = 'pairwise.complete.obs')
   })
@@ -209,7 +209,7 @@ adam_spec_adsl <- function(
   ## ...trt ####
   
   trt_adam <- intersect(
-    c("TRT01A", "ARMCD", "ARM", "ACTARM", "ACTARMCD", "TRT01P"),
+    c("TRT01A", "ARMCD", "ARM", "ACTARM", "ACTARMCD", "TRT01P", "TR01PG1", "TR02PG1", "TR01AG1", "TR02AG1"),
     colnames(adsl)
   )
   

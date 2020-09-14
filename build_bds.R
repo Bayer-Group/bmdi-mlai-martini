@@ -55,7 +55,7 @@ build_bds <- function(
       .[[1]] %>%  
       tail(1) 
     if(file_ext == 'sas7bdat'){
-      bds_full <- read_sas(file_name)
+      bds_full <- haven::read_sas(file_name)
     }else return(NULL)
   } else {
     bds_full <- spec$data
@@ -91,26 +91,25 @@ build_bds <- function(
 
   # pivot 
   
-  bds_wide <- pivot_wider(
-    bds %>%  
-      select( all_of(c(spec$value, '.key', '.id'))), 
-    names_from  = '.key', 
-    values_from = spec$value,
-    values_fn   = mean
-  )
+  bds_wide <- bds %>% 
+    select(all_of(c(spec$value, '.key', '.id'))) %>% 
+    filter(.key != "") %>% 
+    pivot_wider(
+      names_from  = '.key', 
+      values_from = spec$value,
+      values_fn   = mean
+    )
   
   # dictionary ####
   # overwrite dictionary from spec
-    
-  source <- str_split( file, '/|\\\\') [[1]] %>%  
+  source <- str_split(spec$file, '/|\\\\')[[1]] %>%  
     tail(1) %>% str_remove('.sas7bdat')
     
   dict <- bds %>% 
-    select( any_of(c(spec$param, spec$label, spec$unit, spec$time, '.key') %>%  na.omit)) %>% 
+    select(any_of(c("param" = spec$param, "label" = spec$label, "unit" = spec$unit, "time" = spec$time, '.key') %>% na.omit)) %>% 
     distinct() %>% 
     rename( 'column' = '.key') %>% 
     mutate(source = source) 
-    
   
   # output ####
   list(

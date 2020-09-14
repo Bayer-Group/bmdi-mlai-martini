@@ -41,7 +41,8 @@ build_adsl <- function(
       .[[1]] %>%  
       tail(1) 
     if(file_ext == 'sas7bdat'){
-      adsl_full <- read_sas(file_name)
+      adsl_full <- haven::read_sas(file_name) %>% 
+        dplyr::mutate_if(is.character, ~dplyr::na_if(., ""))
     }else return(NULL)
     
   } else {
@@ -77,10 +78,13 @@ build_adsl <- function(
   }
   
   # update dictionary
-  dict <- spec$dict %>% 
-    mutate(column = param) %>% 
-    filter(selected) %>% 
-    select(-selected)
+  dict <- NULL
+  if (!is.null(spec$dict)){
+    dict <- spec$dict %>% 
+      mutate(column = param) %>% 
+      filter(selected) %>% 
+      select(-selected)
+  }
   
   # output   ####
   list(
