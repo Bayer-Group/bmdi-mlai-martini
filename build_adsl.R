@@ -78,13 +78,38 @@ build_adsl <- function(
   }
   
   # update dictionary
-  dict <- NULL
   if (!is.null(spec$dict)){
     dict <- spec$dict %>% 
       mutate(column = param) %>% 
       filter(selected) %>% 
       select(-selected)
+  }else{
+    
+    if(!is.null(spec$spec_id)){
+      if(spec$spec_id == ''){ 
+        spec$spec_id <- ifelse(is.null(spec$file), 'user', spec$file)
+      }
+    } else {
+      spec$spec_id <- 'user'
+    }
+    
+    lab_list  <- adsl %>% labelled::var_label() 
+    labs      <- map_chr(lab_list, ~{ifelse(is.null(.x), NA, .x)})
+
+    dict      <- tibble(
+      column = colnames(adsl),
+      param  = column ) %>%  
+      mutate(
+        label = case_when(
+            !is.na(labs) ~ labs,
+            TRUE ~ param),
+        source = spec$spec_id 
+      )  
+    
   }
+  
+  
+  
   
   # output   ####
   list(

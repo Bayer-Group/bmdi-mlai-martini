@@ -102,14 +102,19 @@ build_bds <- function(
   
   # dictionary ####
   # overwrite dictionary from spec
-  source <- str_split(spec$file, '/|\\\\')[[1]] %>%  
-    tail(1) %>% str_remove('.sas7bdat')
+  if(!is.null(spec$spec_id)){
+    if(spec$spec_id == ''){ 
+      spec$spec_id <- ifelse(is.null(spec$file), 'user', spec$file)
+    }
+  } else {
+    spec$spec_id <- 'user'
+  }
     
   dict <- bds %>% 
     select(any_of(c("param" = spec$param, "label" = spec$label, "unit" = spec$unit, "time" = spec$time, '.key') %>% na.omit)) %>% 
     distinct() %>% 
     rename( 'column' = '.key') %>% 
-    mutate(source = source) 
+    mutate(source = spec$spec_id) 
   
   # output ####
   list(

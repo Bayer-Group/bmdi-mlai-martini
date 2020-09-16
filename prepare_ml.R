@@ -5,7 +5,7 @@
 #'
 
 
-prepare_ml_data <- function(
+prepare_ml <- function(
    feature,
    outcome,
    outcome_name = NULL,
@@ -33,12 +33,12 @@ prepare_ml_data <- function(
     # create variable sets (none, dummies, one_hots, ordinals)
     
     # First merge preds and (selected) outcome by .id -> d_raw
-    d_raw <- inner_join( feature, 
-                         outcome %>%  select(all_of('.id'),
-                                             .out = all_of(outcome_name))) %>% 
-             {if(outcome_mode == "classification"){
-                mutate(., .out = factor(.out))
-             }else{.}
+    d_raw <- outcome %>%
+      select(all_of('.id'), .out = all_of(outcome_name)) %>% 
+      inner_join( feature, by = ".id") %>% 
+      {if(outcome_mode == "classification"){
+        mutate(., .out = factor(.out))
+      }else{.}
              } #%>% 
             # recode factors to numeric if should be used as ordinal
             #mutate_at( any_of(ordinals, 
@@ -116,8 +116,10 @@ prepare_ml_data <- function(
         name = '.out', 
         mode = outcome_mode
       ),
-     # dict = dict, # get elsewhere
-      prep_recipe = rcp_prep
+      
+      prep_recipe = rcp_prep,
+      
+      dict = attr(feature, "dict")
       
     )
     

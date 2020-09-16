@@ -164,7 +164,8 @@ adam_spec_bds <- function(
     type = "bds",
     id = id,
     filter = actual_filter,
-    dict = dict
+    dict = dict,
+    spec_id = source
   ) %>% 
     append(
       col_select %>% as.list()

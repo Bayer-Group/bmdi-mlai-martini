@@ -285,7 +285,8 @@ adam_spec_adsl <- function(
     factor_levels = lev_list[intersect(select_list, names(lev_list))],
     dict = dict,
     drop_notes = NULL,
-    id = id
+    id = id,
+    spec_id = 'adsl'
   )
 
   if(attach_data){

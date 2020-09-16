@@ -69,7 +69,7 @@ build <- function(
   from_path <- ! from_spec
   
   # create sets  
-  if (! from_spec ){
+  if (from_path ){
     
      # list all files in given directory ####
      all_files <- list.files(path, pattern = ".sas7bdat", full.names = TRUE)
@@ -142,12 +142,20 @@ build <- function(
       }
       
       #spec
-  }else{ # spec is provided 
+  }else{ # from_spec; spec is provided 
+    # no names at all (names(spec) is null)
+    if( is.null(names(spec)) )  names(spec) <- rep('', length(spec))
+    
+    for (i in 1:length(spec)){
+      spec[[i]]$"spec_id" <- names(spec)[i]
+    }
     
     interim <- map(spec, 
             ~  { do.call( paste0('build_',   .x[['type']]), list(.x)) }
         )
   }
+  
+ 
   
   
   # create output object
@@ -164,10 +172,14 @@ build <- function(
     prepped_dict <-   map(interim, ~.[['dict']]) %>% 
       reduce(bind_rows)
     
-    out <- list(
-      data = prepped_join,
-      dict = prepped_dict
-    )
+    # out <- list(
+    #   data = prepped_join,
+    #   dict = prepped_dict
+    # )
+    
+    out <- prepped_join
+    attr(out, "dict") <- prepped_dict
+    
   }
   
   out
