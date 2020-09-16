@@ -71,7 +71,7 @@ prepare_ml <- function(
     d_raw <- outcome %>%
       select(all_of('.id'), .out = all_of(outcome_name)) %>% 
       inner_join( feature %>%  
-                    mutate_if(is.factor, ~ fct_relabel(., janitor::make_clean_names) ), by = ".id") %>% 
+                    mutate_if(is.factor, ~ fct_relabel(., make.names) ), by = ".id") %>% 
       {if(outcome_mode == "classification"){
         mutate(., .out = factor(.out))
       }else{.}
