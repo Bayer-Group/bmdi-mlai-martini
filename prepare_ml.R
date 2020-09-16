@@ -1,5 +1,19 @@
 #'
 #'
+#' @param feature feature matrix in wide format, e.g. output object of \code{build()}, i.e. containing \code{.id} column and predictors 
+#' @param outcome tibble containing \code{.id} column and the outcome of interest
+#' @param outcome_name ,
+#' @param prep_recipe  = NULL,
+#' @param seed         = NULL,
+#' @param prep_step_normalize = TRUE,
+#' @param prep_step_knnimpute = TRUE,
+#' @param prep_step_log       = TRUE,
+#' @param prep_step_corr      = TRUE,
+#' @param prep_step_dummy FALSE converted  variables to be 
+#' @param thres_log           = 2,
+#' @param thres_cor           = .9,
+#' @param vars_ordinalscore  = NULL, 
+#' @param one_hot = TRUE
 #'
 #'
 #'
@@ -10,36 +24,59 @@ prepare_ml <- function(
    outcome,
    outcome_name = NULL,
    prep_recipe  = NULL,
-   seed         = NULL
+   seed         = NULL,
+   prep_step_normalize = TRUE,
+   prep_step_knnimpute = TRUE,
+   prep_step_log       = TRUE,
+   prep_step_corr      = TRUE,
+   prep_step_dummy     = TRUE,
+   thres_log           = 2,
+   thres_cor           = .9,
+   
+   # encoding control
+   vars_ordinalscore  = NULL, 
+   one_hot            = TRUE
+   
 ){
-   # todo check if outcome name is valid  
   
+    # OUTCOME ####
   
     # guess outcome column, if outcome has more than 2 columns use first that's not '.id'
+  
    if(is.null(outcome_name)){
-    outcome_name <- setdiff(colnames(outcome), '.id')[1]
-    # Note what was selected
-    needs_guessing <- length(setdiff(colnames(outcome), '.id')) > 1
-    if(needs_guessing){
-      usethis::ui_info( paste0(
-        crayon::silver('The outcome object you provided has multiple options. MARTINI chose: \n'), 
-        '\t' , crayon::magenta( outcome_name)        )
-      )
-    }  
-   }
+    outcome_options <- setdiff(colnames(outcome), '.id')
+    needs_guessing  <- length(outcome_options) > 1
+    outcome_name    <- outcome_options[1]
+      
+      if(needs_guessing){
+          cat('\n')        
+          usethis::ui_info( paste0(
+          crayon::silver('The outcome object you provided has multiple options. MARTINI chose: \n'), 
+          '\t' , crayon::magenta( outcome_name)        )
+        )
+      } 
+      
+   } else { # outcome name is provided
+     if(! outcome_name %in% colnames(outcome) ){ 
+       usethis::ui_stop( paste0('The column ', outcome_name, ' is not present in the outcome data set. Please correct input of column_name or let MARTINI choose from existing columns.'))
+     } 
+   } 
+  
     outcome_mode <- ifelse(is.numeric(outcome[, outcome_name, drop = TRUE]), "regression", "classification")
     
-    # todo 
-    # create variable sets (none, dummies, one_hots, ordinals)
+    
+    # MERGE  ####
     
     # First merge preds and (selected) outcome by .id -> d_raw
     d_raw <- outcome %>%
       select(all_of('.id'), .out = all_of(outcome_name)) %>% 
-      inner_join( feature, by = ".id") %>% 
+      inner_join( feature %>%  
+                    mutate_if(is.factor, ~ fct_relabel(., janitor::make_clean_names) ), by = ".id") %>% 
       {if(outcome_mode == "classification"){
         mutate(., .out = factor(.out))
       }else{.}
-             } #%>% 
+      }    
+       #%>% 
             # recode factors to numeric if should be used as ordinal
             #mutate_at( any_of(ordinals, 
             #         ~  as.numeric(factor(.x)) )
@@ -48,7 +85,7 @@ prepare_ml <- function(
     
     
     strata <- NULL
-    if(outcome_mode == "classification")strata <- '.out'
+    if(outcome_mode == "classification") strata <- '.out'
     
       d_split <- d_raw  %>% 
         rsample::initial_split(strata = all_of(strata))
@@ -64,31 +101,44 @@ prepare_ml <- function(
       mutate(MINAVAL = min(AVAL)) %>% 
       filter(MINAVAL > 0) %>% 
       summarise(skew = e1071::skewness(AVAL, na.rm = TRUE), .groups = "drop") %>% 
-      filter(skew > 2) %>% 
+      filter(skew > thres_log ) %>% 
       pull(PARAMCD)
     
     if (is.null(prep_recipe)){
       rcp <- as.formula(".out ~ .") %>%  
-        recipe(data = d_train_raw   # %>%
-               # janitor::remove_constant(na.rm=TRUE)
-               ) %>% 
+        recipe(data = d_train_raw  ) %>% 
         update_role(.id, new_role = "ID") %>% 
         step_naomit(all_outcomes()) %>% 
         step_zv(all_predictors())   %>% 
-        step_knnimpute(all_predictors())   %>% 
-        {if(length(prms_logtr)>0){
-           step_log(., any_of(prms_logtr))}else{.}
-        }  %>%
-        step_normalize(all_numeric(), -all_outcomes(), -has_role("ID")) %>% 
+        {if(prep_step_knnimpute){
+           step_knnimpute(., all_predictors()) }else{.}
+        } %>% 
         
-        # to be implemented: encoding based on user selection (nones, dummies, one_hots, ordinals)
-        # might be different for each categorical variable 
-        #     -> create separate step_dummy for variable groups
-        #  step_dummy(all_of(dummies), one_hot = FALSE) 
-        #  step_dummy(all_of(one_hots), one_hot = TRUE) 
+        {if(prep_step_log && length(prms_logtr)>0){
+           step_log(., any_of(prms_logtr)) }else{.}
+        }  %>%
+        {if(prep_step_normalize){
+          step_normalize(., all_numeric(), -all_outcomes(), -has_role("ID")) }else{.}
+        }  %>% 
+        
+      
+        {if(prep_step_corr){
+          suppressMessages(
+            step_corr(., all_numeric(), -all_outcomes(), threshold = thres_cor)
+          ) 
+        }else{.} %>%  
+            
+        # factor handling
+        {if(! is.null(vars_ordinalscore)){
+          step_ordinalscore(.,  any_of(!! vars_ordinalscore ) )}else{.}
+        } %>%  
+      
         #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
-        step_dummy(all_nominal(), -all_outcomes(), -has_role("ID")  , one_hot = FALSE) 
-             # There are new levels in a factor: NA    
+        {if(prep_step_dummy){
+          step_dummy(., all_nominal(), -all_outcomes(), -has_role("ID")  , one_hot = one_hot) }else{.} 
+        }
+          
+       }   
     } else {
       rcp <- prep_recipe
     }

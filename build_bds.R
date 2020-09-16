@@ -72,6 +72,7 @@ build_bds <- function(
       
         dplyr::filter(., !! rlang::parse_expr(filter_txt))
       }else{.}} %>% 
+    filter( ! is.na(!! sym(spec$value )) ) %>% 
     select( any_of( c(spec$id, col_select  ))) %>% 
     rename( `.id` = spec$id ) 
  

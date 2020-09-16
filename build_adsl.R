@@ -9,7 +9,7 @@
 if(FALSE){
   # 'real_world_data/adsl/99999/adsl.sas7bdat'
   study <- c(99999, 99999, 99999)[3]
-  file  <- paste0('real_world_data/adsl/', study, '/adsl.sas7bdat')
+  file  <- paste0('real_world_data/', study, '/adsl.sas7bdat')
   
   id = 'SUBJID'
   trt = NULL
@@ -42,7 +42,7 @@ build_adsl <- function(
       tail(1) 
     if(file_ext == 'sas7bdat'){
       adsl_full <- haven::read_sas(file_name) %>% 
-        dplyr::mutate_if(is.character, ~dplyr::na_if(., ""))
+        dplyr::mutate_if(is.character, ~dplyr::na_if(., "")) 
     }else return(NULL)
     
   } else {
@@ -50,6 +50,8 @@ build_adsl <- function(
     adsl_full <- spec$data
     
   }
+  
+  
   
   filter_txt <-paste( '(',
                       paste(  spec$filter, collapse= ') & (' ),
@@ -61,7 +63,10 @@ build_adsl <- function(
     }else{.}
     } %>% 
     select( any_of(spec$select )) %>% 
-    rename( `.id` = spec$id ) 
+    rename( `.id` = spec$id ) %>% 
+    # remove constant columns after filtering
+    janitor::remove_constant(na.rm=TRUE)
+    
   # mutate_at(vars( .id),
   #  ~ 'a')
   # ~ as_label(enquo(.x))
@@ -77,12 +82,15 @@ build_adsl <- function(
       factor( levels = levs)
   }
   
-  # update dictionary
+  
+  
+  # update dictionary   ####
   if (!is.null(spec$dict)){
     dict <- spec$dict %>% 
       mutate(column = param) %>% 
-      filter(selected) %>% 
-      select(-selected)
+      filter(column %in% colnames(adsl)) %>% 
+      select(-selected)   
+      
   }else{
     
     if(!is.null(spec$spec_id)){
@@ -92,6 +100,7 @@ build_adsl <- function(
     } else {
       spec$spec_id <- 'user'
     }
+    
     
     lab_list  <- adsl %>% labelled::var_label() 
     labs      <- map_chr(lab_list, ~{ifelse(is.null(.x), NA, .x)})

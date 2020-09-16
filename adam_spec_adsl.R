@@ -98,7 +98,8 @@ adam_spec_adsl <- function(
   # naming convention   xxxFL -> xxxFN
   all_FL <-  c( #intersect( 
     clmns %>% stringr::str_subset('FL$' ),  
-    clmns[labs %>% stringr::str_detect(' Flag$')] ) %>% 
+    clmns[str_to_upper(labs %>% stringr::str_detect('\\bFLAG\\b'))] )  %>% 
+    
     unique
   
   # flags without FL suffix in column name (e.g. SUBNY02=Subset 02 Analysis Flag in 99999)
