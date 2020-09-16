@@ -49,16 +49,16 @@ prepare_ml <- function(
     outcome_name    <- outcome_options[1]
       
       if(needs_guessing){
-          cat('\n')        
           usethis::ui_info( paste0(
-          crayon::silver('The outcome object you provided has multiple options. MARTINI chose: \n'), 
-          '\t' , crayon::magenta( outcome_name)        )
+          crayon::silver('The outcome object you provided has multiple options. The following option was chosen: \n'), # MARTINI chose: \n'), 
+          '\t' , crayon::magenta( outcome_name)     , '\n'   )
         )
       } 
       
    } else { # outcome name is provided
      if(! outcome_name %in% colnames(outcome) ){ 
-       usethis::ui_stop( paste0('The column ', outcome_name, ' is not present in the outcome data set. Please correct input of column_name or let MARTINI choose from existing columns.'))
+       usethis::ui_stop( paste0('The column ', outcome_name, 
+                                ' is not present in the outcome data set. Please correct input of column_name or let the function choose from existing columns.\n'))
      } 
    } 
   
