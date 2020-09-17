@@ -48,7 +48,7 @@ adam_spec_bds <- function(
     require(haven)
     require(labelled)
     
-    file = 'real_world_data/bds/99999/adqseq5d.sas7bdat'
+    file = 'real_world_data/99999/adegf.sas7bdat'
     id = 'SUBJID'
     param  =  NULL
     label  = NULL
@@ -68,13 +68,13 @@ adam_spec_bds <- function(
   
   
   # ... guess domain ####
-  dom <- str_split( file, '/|\\\\') [[1]] %>%  
+  dom <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
     tail(1) %>% 
-    str_sub(3,4) %>%  # rm trailing 'ad'
+    stringr::str_sub(3,4) %>%  # rm trailing 'ad'
     # str_split('[:punct:]') %>% 
     # .[[1]] %>% 
     # .[1] %>%  
-    str_to_upper()
+    stringr::str_to_upper()
   
   guesses <- list(
     # ... guess param ####
@@ -84,30 +84,34 @@ adam_spec_bds <- function(
     time = c('AVISIT', 'VISIT'),
     
     # ... guess value  ####
-    value = c('AVAL',   paste0(dom, "STRESN" ),  paste0(dom, "ORRES")),
+    value = c(ifelse(stringr::str_split( file, '/|\\\\')[[1]] %>% 
+                       tail(1) %>% 
+                       stringr::str_remove('.sas7bdat$') %>%  {. %in%  c('adegf')}, 
+                     'AVALC', 'AVAL'),  
+              paste0(dom, "STRESN" ), paste0(dom, "ORRES")),
     
     # ... guess unit ####
-    unit = c('AVALU',  paste0(dom, 'STRESU'), paste0(dom,'ORRESU'))
+    unit = c('AVALU',  paste0(dom, 'STRESU'),  paste0(dom,'ORRESU'))
     
   )
   
-  guesses$label <- str_sub(guesses$param, 1, -3)
+  guesses$label <- stringr::str_sub(guesses$param, 1, -3)
   
   col_select <- c(
     "value" = value,
     "param" = param,
-    "time" = time,
-    "unit" = unit,
+    "time"  = time,
+    "unit"  = unit,
     "label" = label
   )
   
   col_required <- c('value', 'param')
   
-  coln_bds <- colnames(bds)
+  coln_bds     <- colnames(bds)
 
   for (i in 1:length(guesses)){ # i=4
     
-    col_i <- col_select[i]
+    col_i      <- col_select[i]
     name_col_i <- names(guesses)[i]
     
     if (is.null(col_i) || !(col_i %in% coln_bds)){
@@ -127,7 +131,7 @@ adam_spec_bds <- function(
   
   # filter check ####
   
-  keep_filter <- map_lgl(filter, function(x){
+  keep_filter <- purrr::map_lgl(filter, function(x){
     try_it <- try(
       {bds %>% dplyr::filter(!! rlang::parse_expr(x))},
       silent = TRUE
@@ -143,14 +147,17 @@ adam_spec_bds <- function(
 
  
   # dictionary
-  source <- str_split( file, '/|\\\\') [[1]] %>%  
-    tail(1) %>% str_remove('.sas7bdat')
+  source <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
+    tail(1) %>% stringr::str_remove('.sas7bdat')
   
   # use unfiltered data 
   dict  <- bds %>% 
-    select( any_of(c("param" = col_select['param'], "label" = col_select['label'], "unit" = col_select['unit']) %>%  na.omit)) %>% 
+    dplyr::select( tidyselect::any_of(
+      c("param" = col_select[['param']], 
+        "label" = col_select[['label']], 
+        "unit"  = col_select[['unit']]) %>%  na.omit)) %>% 
     distinct() %>%
-    mutate(source = source)
+    dplyr::mutate(source = source)
  
  
  

@@ -29,9 +29,15 @@ if(FALSE){
   time   = NULL 
   value  = NULL #c(AVAL, CHG)
   filter = NULL
-  spec <- adam_spec_bds(file = file, id = id, filter = filter,
+  spec_0 <- adam_spec_bds(file = file, id = id, filter = filter,
                    param = param, unit = unit, time = time)
-  spec
+  spec_0
+  
+  spec_  <- spec_0
+  spec_c <- spec_
+  spec_c$value <- 'AVALC'
+ 
+  spec <- spec_c
   
 }
 
@@ -49,9 +55,9 @@ build_bds <- function(
   if(is.null(spec$data)){
     # read data   ####
     file_name <- spec$file 
-    file_ext <- str_split( file_name, '/|\\\\')[[1]] %>%  
+    file_ext  <- stringr::str_split( file_name, '/|\\\\')[[1]] %>%  
       tail(1) %>%  
-      str_split(., '[.]') %>% 
+      stringr::str_split(., '[.]') %>% 
       .[[1]] %>%  
       tail(1) 
     if(file_ext == 'sas7bdat'){
@@ -72,34 +78,35 @@ build_bds <- function(
       
         dplyr::filter(., !! rlang::parse_expr(filter_txt))
       }else{.}} %>% 
-    filter( ! is.na(!! sym(spec$value )) ) %>% 
-    select( any_of( c(spec$id, col_select  ))) %>% 
-    rename( `.id` = spec$id ) 
+    dplyr::filter( ! is.na(!! rlang::sym(spec$value )) ) %>% 
+    dplyr::select( tidyselect::any_of( c(spec$id, col_select  ))) %>% 
+    dplyr::rename( `.id` = spec$id ) 
  
   # prior to pivoting,  create key column (PARAM or PARAM/TIME)
   # check if multiple time points are present after subsetting
   n_time <- ifelse(! is.na(spec$time),
-                   bds %>%  pull(spec$time) %>%  n_distinct() ,
+                   bds %>%  pull(spec$time) %>%  dplyr::n_distinct() ,
                    1)
   if(n_time > 1){
     bds <- bds %>% 
-      unite(.key, spec$param, spec$time, remove = FALSE, sep='_') %>% 
-      mutate(.key = str_replace_all(.key, '[:punct:]', '_'))
+      tidyr::unite(.key, spec$param, spec$time, remove = FALSE, sep='_') %>% 
+      dplyr::mutate(.key = str_replace_all(.key, '[:punct:]', '_'))
   }else{
     bds <- bds %>% 
-      mutate( '.key' = !! sym(spec$param))
+      dplyr::mutate( '.key' = !! rlang::sym(spec$param))
   }
 
   # pivot 
   
   bds_wide <- bds %>% 
-    select(all_of(c(spec$value, '.key', '.id'))) %>% 
-    filter(.key != "") %>% 
-    pivot_wider(
+    dplyr::select(tidyselect::all_of(c(spec$value, '.key', '.id'))) %>% 
+    dplyr::filter(.key != "") %>% 
+    tidyr::pivot_wider(
       names_from  = '.key', 
       values_from = spec$value,
-      values_fn   = mean
+      values_fn   = function(x) {ifelse(all(is.numeric(x)), mean(x), x[1])}
     )
+
   
   # dictionary ####
   # overwrite dictionary from spec
@@ -112,10 +119,15 @@ build_bds <- function(
   }
     
   dict <- bds %>% 
-    select(any_of(c("param" = spec$param, "label" = spec$label, "unit" = spec$unit, "time" = spec$time, '.key') %>% na.omit)) %>% 
-    distinct() %>% 
-    rename( 'column' = '.key') %>% 
-    mutate(source = spec$spec_id) 
+    dplyr::select(any_of(
+      c("param" = spec$param, 
+        "label" = spec$label,
+        "unit"  = spec$unit, 
+        "time"  = spec$time, 
+        '.key') %>% na.omit)) %>% 
+    dplyr::distinct() %>% 
+    dplyr::rename('column' = '.key') %>% 
+    dplyr::mutate(source = spec$spec_id) 
   
   # output ####
   list(
@@ -127,3 +139,9 @@ build_bds <- function(
   
   
 }
+
+
+# specksi <-  build_bds(speck)
+
+
+

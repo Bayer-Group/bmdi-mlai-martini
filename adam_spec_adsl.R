@@ -17,8 +17,9 @@ if(FALSE){
   require(labelled)
   
   # 'real_world_data/adsl/99999/adsl.sas7bdat'
-  study <- c(99999, 99999, 99999)[3]
-  file  <- paste0('real_world_data/adsl/', study, '/adsl.sas7bdat')
+  study <- c(99999)[1]#  , 99999, 99999)[3]
+ # file  <- paste0('real_world_data/adsl/', study, '/adsl.sas7bdat')
+  file <-  paste0('data/', study, '/ads/adsl.sas7bdat')
   
   id = 'SUBJID'
   trt = NULL
@@ -60,7 +61,7 @@ adam_spec_adsl <- function(
   # create column dict (name <-> label)  
   dict <- labelled::var_label(adsl) %>% 
     tibble::enframe(name ='param', value = 'label') %>%  
-    dplyr::mutate(label = map_chr(label, ~ .x[[1]])) %>% 
+    dplyr::mutate(label = purrr::map_chr(label, ~ .x[[1]])) %>% 
     dplyr::mutate(source = 'adsl')
   
   clmns <- dict$param
@@ -87,7 +88,7 @@ adam_spec_adsl <- function(
   date_auto <- purrr::map_lgl(adsl, assertive.types::is_date) %>%  which() %>%  names
   date_lab  <- purrr::map_lgl(
     labelled::var_label(adsl), 
-    ~ stringr::str_detect(str_to_lower(.x), 'year|month|day|date|time')) %>% 
+    ~ stringr::str_detect(stringr::str_to_lower(.x), 'year|month|day|date|time')) %>% 
     which()
   all_dates <- c(date_auto, names(date_lab))
   
@@ -98,7 +99,7 @@ adam_spec_adsl <- function(
   # naming convention   xxxFL -> xxxFN
   all_FL <-  c( #intersect( 
     clmns %>% stringr::str_subset('FL$' ),  
-    clmns[str_to_upper(labs %>% stringr::str_detect('\\bFLAG\\b'))] )  %>% 
+    clmns[stringr::str_to_upper(labs %>% stringr::str_detect('\\bFLAG\\b'))] )  %>% 
     
     unique
   
@@ -112,7 +113,8 @@ adam_spec_adsl <- function(
   
   
   flags <- c( all_FL , 
-              stringr::str_replace( all_FL,'FL$', 'FN' )  ) %>%  unique()
+              stringr::str_replace( all_FL,'FL$', 'FN' )  ) %>% 
+    unique()
   
   
   
@@ -132,15 +134,20 @@ adam_spec_adsl <- function(
   
   lab_mod <- paste(labs, '(N)')
   lab_ind <- lab_mod %in% labs
-  lab_cat <- labs[lab_mod %in% labs]
-  lab_num <- lab_mod[lab_mod %in% labs]
+  lab_cat <- labs[lab_ind]
+  lab_num <- lab_mod[lab_ind]
   
   # mapping of columns to keep (labels) and columns to use for level order
   all_lab_lev <- dplyr::bind_rows(
     tibble::tibble(lab = clmn_cat,  
                    lev = clmn_num),
-    tibble::tibble(lab = dict %>%  filter(label %in% lab_cat) %>%  pull(param) ,  
-                   lev = dict %>%  filter(label %in% lab_num) %>%  pull(param)  )
+    tibble::tibble(lab = dict %>%  
+                           slice(match(lab_cat, dict %>%  pull(label) )) %>%  
+                           pull(param),
+                    lev = dict %>%  
+                            slice(match(lab_num, dict %>%  pull(label) )) %>%  
+                            pull(param)
+                   )
   ) %>% 
     dplyr::distinct() 
   
@@ -172,8 +179,8 @@ adam_spec_adsl <- function(
     levs <-  adsl %>% 
       dplyr::select(lab_lev [r,] %>%  as.character()) %>% 
       dplyr::distinct() %>% 
-      dplyr::arrange(!!lev) %>% 
-      dplyr::pull(!!lab)
+      dplyr::arrange(!! lev) %>% 
+      dplyr::pull(!! lab)
     lev_list[[lab]] <- levs
     #adsl <-  adsl %>% 
     #    mutate(!! lab := factor(!!lab , levels = levs))
@@ -194,7 +201,9 @@ adam_spec_adsl <- function(
   
   suppressWarnings({
     cors <- adsl %>%
-      dplyr::mutate_all( ~{factor(.) %>% forcats::fct_inorder(.) %>% as.numeric(.)}) %>% 
+      dplyr::mutate_all( ~{ factor(.) %>% 
+          forcats::fct_inorder(.) %>% 
+          as.numeric(.)}) %>% 
       janitor::remove_constant(na.rm = TRUE) %>% 
       stats::cor(method = "spearman", use = 'pairwise.complete.obs')
   })
@@ -255,7 +264,7 @@ adam_spec_adsl <- function(
   
   # check filter ####
 
-  keep_filter <- map_lgl(filter, function(x){
+  keep_filter <- purrr::map_lgl(filter, function(x){
     try_it <- try(
       {adsl %>% dplyr::filter(!! rlang::parse_expr(x))},
       silent = TRUE

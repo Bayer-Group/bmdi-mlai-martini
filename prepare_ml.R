@@ -32,6 +32,7 @@ prepare_ml <- function(
    prep_step_dummy     = TRUE,
    thres_log           = 2,
    thres_cor           = .9,
+   thres_lump          = 0.05,
    
    # encoding control
    vars_ordinalscore  = NULL, 
@@ -67,13 +68,23 @@ prepare_ml <- function(
     
     # MERGE  ####
     
+    clean_char <- c('<' = 'l', '<=' = 'leq', '>'= 'g', '>=' = 'geq' )
+    
     # First merge preds and (selected) outcome by .id -> d_raw
     d_raw <- outcome %>%
-      select(all_of('.id'), .out = all_of(outcome_name)) %>% 
-      inner_join( feature %>%  
-                    mutate_if(is.factor, ~ fct_relabel(., make.names) ), by = ".id") %>% 
+      dplyr::select(all_of('.id'), .out = tidyselect::all_of(outcome_name)) %>% 
+      dplyr::inner_join( feature %>%  
+                              dplyr::mutate_if(is.factor, ~  forcats::fct_relabel(., make.names) ), by = ".id") %>% 
+                # stringr::str_replace_all(x, clean_char) %>%
+                #    stringr::str_trim() %>%  
+                #    stringr::str_to_lower() } )
+                #  dplyr::mutate_if(is.character,  stringr::str_to_lower)  %>% 
+                #dplyr::mutate_if(is.factor,  forcats::fct_relabel, stringr::str_to_lower)  %>% 
+                #stringr::str_trim ) %>%  
+                #dplyr::mutate_if(is.character, ~  str_replace_all(.x, clean_char)) %>% 
+                
       {if(outcome_mode == "classification"){
-        mutate(., .out = factor(.out))
+        dplyr::mutate(., .out = factor(.out))
       }else{.}
       }    
        #%>% 
@@ -87,55 +98,64 @@ prepare_ml <- function(
     strata <- NULL
     if(outcome_mode == "classification") strata <- '.out'
     
-      d_split <- d_raw  %>% 
-        rsample::initial_split(strata = all_of(strata))
+    d_split <- d_raw  %>% 
+        rsample::initial_split(strata = tidyselect::all_of(strata))
     
     d_train_raw <- training(d_split)
     d_valid_raw <- testing( d_split)
     
     # identify skewed parameters -> logtrafo
     prms_logtr <- d_train_raw %>% 
-      select_if(is.numeric) %>% 
-      pivot_longer(-any_of(c(".id", ".out")), names_to = "PARAMCD", values_to = "AVAL") %>% 
-      group_by(PARAMCD) %>% 
-      mutate(MINAVAL = min(AVAL)) %>% 
-      filter(MINAVAL > 0) %>% 
-      summarise(skew = e1071::skewness(AVAL, na.rm = TRUE), .groups = "drop") %>% 
-      filter(skew > thres_log ) %>% 
-      pull(PARAMCD)
+      dplyr::select_if(is.numeric) %>% 
+      tidyr::pivot_longer(-any_of(c(".id", ".out")), 
+                          names_to = "PARAMCD", values_to = "AVAL") %>% 
+      dplyr::group_by(PARAMCD) %>% 
+      dplyr::mutate(MINAVAL = min(AVAL)) %>% 
+      dplyr::filter(MINAVAL > 0) %>% 
+      dplyr::summarise(skew = e1071::skewness(AVAL, na.rm = TRUE), .groups = "drop") %>% 
+      dplyr::filter(skew > thres_log ) %>% 
+      dplyr::pull(PARAMCD)
     
     if (is.null(prep_recipe)){
+      # Note that order is important when building the recipe, e.g. nzv and log before normalize, corr before 
       rcp <- as.formula(".out ~ .") %>%  
-        recipe(data = d_train_raw  ) %>% 
-        update_role(.id, new_role = "ID") %>% 
-        step_naomit(all_outcomes()) %>% 
-        step_zv(all_predictors())   %>% 
+        recipes::recipe(data = d_train_raw  ) %>% 
+        recipes::update_role(.id, new_role = "ID") %>% 
+        recipes::step_naomit(recipes::all_outcomes()) %>% 
+        recipes::step_nzv(recipes::all_predictors())   %>% 
         {if(prep_step_knnimpute){
-           step_knnimpute(., all_predictors()) }else{.}
+          recipes::step_knnimpute(., recipes::all_predictors()) }else{.}
         } %>% 
         
         {if(prep_step_log && length(prms_logtr)>0){
-           step_log(., any_of(prms_logtr)) }else{.}
+          recipes::step_log(., tidyselect::any_of(prms_logtr)) }else{.}
         }  %>%
+        
         {if(prep_step_normalize){
-          step_normalize(., all_numeric(), -all_outcomes(), -has_role("ID")) }else{.}
+          recipes::step_normalize(., recipes::all_numeric(), -recipes::all_outcomes(), - recipes::has_role("ID")) }else{.}
         }  %>% 
         
-      
+        
         {if(prep_step_corr){
           suppressMessages(
-            step_corr(., all_numeric(), -all_outcomes(), threshold = thres_cor)
+            recipes::step_corr(., recipes::all_numeric(), -recipes::all_outcomes(), 
+                               threshold = thres_cor)
           ) 
         }else{.} %>%  
             
+      
+            recipes::step_other(., recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
+                   threshold = thres_lump) %>%  
+            
         # factor handling
         {if(! is.null(vars_ordinalscore)){
-          step_ordinalscore(.,  any_of(!! vars_ordinalscore ) )}else{.}
+          recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )}else{.}
         } %>%  
       
         #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
         {if(prep_step_dummy){
-          step_dummy(., all_nominal(), -all_outcomes(), -has_role("ID")  , one_hot = one_hot) }else{.} 
+          recipes::step_dummy(.,  recipes::all_nominal(), - recipes::all_outcomes(), - recipes::has_role("ID")  , 
+                              one_hot = one_hot) }else{.} 
         }
           
        }   
@@ -145,10 +165,10 @@ prepare_ml <- function(
 
     
     rcp_prep <- rcp %>% 
-      prep(strings_as_factors = FALSE)
+      recipes::prep(strings_as_factors = FALSE)
     
-    d_train <- rcp_prep %>% juice()
-    d_valid <- rcp_prep %>% bake( d_valid_raw)
+    d_train <- rcp_prep %>%  recipes::juice()
+    d_valid <- rcp_prep %>%  recipes::bake(d_valid_raw)
     
     prep_output <- list(
       data_raw = list(

@@ -49,17 +49,19 @@ adam_spec <- function(
     paste0(".sas7bdat$") %>% 
     paste(collapse = "|")
   type_bds <- c(
-      paste0(c("adlb",  "advs",   "adxb", "adxl") , ".sas7bdat$"),
+      paste0(c( # "adegf" , "adpc",
+        "adlb",  "advs",   "adxb", "adxl"),
+               ".sas7bdat$"),
       "adqs.*[.]sas7bdat$"
     ) %>% 
     paste(collapse = "|")
   
   # list all files in given directory ####
   all_files <- list.files(path, pattern = ".sas7bdat", full.names = TRUE)
-  doms      <- str_split( all_files, '/|\\\\')  %>%  
-    map( ~ .[length(.)]) %>% 
+  doms      <- stringr::str_split( all_files, '/|\\\\')  %>%  
+    purrr::map( ~ .[length(.)]) %>% 
     unlist() %>%
-    str_remove('.sas7bdat')
+    stringr::str_remove('.sas7bdat')
   names(all_files) <- doms
     
   # subset according to user selection ####
@@ -76,13 +78,13 @@ adam_spec <- function(
   
   # adsl spec ####
   
-  if ( any(str_detect(import_files, type_adsl)) ){
+  if ( any(stringr::str_detect(import_files, type_adsl)) ){
     
-    files_adsl <- import_files[ str_detect(import_files, type_adsl) ]
+    files_adsl <- import_files[ stringr::str_detect(import_files, type_adsl) ]
     
     spec <- spec %>% 
       append(
-        map(files_adsl, ~adam_spec_adsl(file = .x, filter = filter, attach_data = attach_data))
+        purrr::map(files_adsl, ~ adam_spec_adsl(file = .x, filter = filter, attach_data = attach_data))
       )
     
   }
@@ -91,11 +93,11 @@ adam_spec <- function(
   
   if (any(str_detect(import_files, type_bds))){
     
-    files_bds <- import_files[ str_detect(import_files, type_bds) ] 
+    files_bds <- import_files[ stringr::str_detect(import_files, type_bds) ] 
     
     spec <- spec %>% 
       append(
-        map(files_bds, ~adam_spec_bds(file = .x, filter = filter, attach_data = attach_data))
+        purrr::map(files_bds, ~ adam_spec_bds(file = .x, filter = filter, attach_data = attach_data))
       )
     
   }

@@ -31,18 +31,20 @@ build_adsl <- function(
   
 ){
   
-  if(is.null(spec$data)){
-    
+ 
+  if(is.null( spec$data )){
+
     # read data   ####
     file_name <- spec$file 
-    file_ext <- str_split( file_name, '/|\\\\')[[1]] %>%  
+    file_ext  <- stringr::str_split( file_name, '/|\\\\')[[1]] %>%  
       tail(1) %>%  
-      str_split(., '[.]') %>% 
+      stringr::str_split(., '[.]') %>% 
       .[[1]] %>%  
       tail(1) 
     if(file_ext == 'sas7bdat'){
-      adsl_full <- haven::read_sas(file_name) %>% 
-        dplyr::mutate_if(is.character, ~dplyr::na_if(., "")) 
+      adsl_full <- haven::read_sas(file_name)
+    
+      
     }else return(NULL)
     
   } else {
@@ -52,18 +54,39 @@ build_adsl <- function(
   }
   
   
-  
-  filter_txt <-paste( '(',
+  filter_txt <- paste( '(',
                       paste(  spec$filter, collapse= ') & (' ),
                       ')') 
+  
+  
+  
+  # reorder factor levels  ####
+  clmns <- names(spec$factor_levels)
+  for(c in 1:length(clmns)){ # c=1
+    clmn <- clmns[c]
+    levs <- spec$factor_levels[[c]]
+    
+    adsl[, clmn, drop = TRUE]  <-  adsl[, clmn, drop = TRUE] %>%  
+      factor(levels = levs)
+    # shift to prepare_ml:   map(levs, ~ (str_to_lower(.x) %>%  str_replace_all( clean_char) )))
+  }
+  
+  
   
   adsl <- adsl_full %>% 
     {if(!is.null(spec$filter)){ 
       dplyr::filter(., !! rlang::parse_expr(filter_txt))
     }else{.}
-    } %>% 
-    select( any_of(spec$select )) %>% 
-    rename( `.id` = spec$id ) %>% 
+    } %>%  
+  
+    # basic character clean up
+  # adsl <- adsl %>% 
+         dplyr::mutate_if(is.character,  ~ dplyr::na_if(., "")) %>% 
+         # }) %>% 
+          
+ # adsl <- adsl %>% 
+    dplyr::select(any_of(spec$select )) %>% 
+    dplyr::rename( `.id` = spec$id ) %>% 
     # remove constant columns after filtering
     janitor::remove_constant(na.rm=TRUE)
     
@@ -73,23 +96,14 @@ build_adsl <- function(
   # ~ rlang::as_name(quo(.x))
   #         ) 
   
-  # reorder factor levels  ####
-  clmns <- names(spec$factor_levels)
-  for(c in 1:length(clmns)){ # c=1
-    clmn <- clmns[c]
-    levs <- spec$factor_levels[[c]]
-    adsl[, clmn, drop = TRUE]  <-  adsl[, clmn, drop = TRUE] %>%  
-      factor( levels = levs)
-  }
-  
   
   
   # update dictionary   ####
   if (!is.null(spec$dict)){
     dict <- spec$dict %>% 
-      mutate(column = param) %>% 
-      filter(column %in% colnames(adsl)) %>% 
-      select(-selected)   
+      dplyr::mutate(column = param) %>% 
+      dplyr::filter(column %in% colnames(adsl)) %>% 
+      dplyr::select(-selected)   
       
   }else{
     
@@ -103,13 +117,13 @@ build_adsl <- function(
     
     
     lab_list  <- adsl %>% labelled::var_label() 
-    labs      <- map_chr(lab_list, ~{ifelse(is.null(.x), NA, .x)})
+    labs      <- purrr::map_chr(lab_list, ~ {ifelse(is.null(.x), NA, .x)})
 
-    dict      <- tibble(
+    dict      <- tibble::tibble(
       column = colnames(adsl),
       param  = column ) %>%  
       mutate(
-        label = case_when(
+        label = dplyr::case_when(
             !is.na(labs) ~ labs,
             TRUE ~ param),
         source = spec$spec_id 

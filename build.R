@@ -41,17 +41,18 @@ build <- function(
   attach_data = FALSE){
   
   if(FALSE){
-    # path = 'real_world_data/99999/'
-   path = '//by-xa221/Statdb/Ginger/Studies/BAY106-7197_Neladenosone_99999_PANTHEON/Data/Original/ads/'
+     path = 'real_world_data/99999/'
+   # path   = '//by-xa221/Statdb/Ginger/Studies/BAY106-7197_Neladenosone_99999_PANTHEON/Data/Original/ads/'
     filter = c("SEX == 'F'", "AVISIT == 'BASELINE'")
     
   }
   
   # initial check
-  if (is.null(spec) && is.null(path)) usethis::ui_oops("Either 'spec' or 'path' needs to be provided!")
+  if ( is.null(spec) && is.null(path)) usethis::ui_oops("Either 'spec' or 'path' needs to be provided!")
   if (!is.null(spec) && spec_only) {
     spec_only <- FALSE
-    usethis::ui_info("spec_only is ignored since spec is already provided.")
+    cat('\n')
+    usethis::ui_info("`spec_only = TRUE` is ignored since spec is already provided.\n")
   }
   
   
@@ -60,8 +61,9 @@ build <- function(
     paste0(".sas7bdat$") %>% 
     paste(collapse = "|")
   type_bds <- c(   
-    paste0 (c("adlb",  "advs",   "adxb", "adxl") , ".sas7bdat$"),
-    "adqs.*[.]sas7bdat$" )%>% 
+    paste0( c(  #"adegf", "adpc",
+      "adlb",  "advs",  "adxb", "adxl") , ".sas7bdat$"),
+    "adqs.*[.]sas7bdat$" ) %>% 
     paste(collapse = "|")
   
   
@@ -73,10 +75,10 @@ build <- function(
     
      # list all files in given directory ####
      all_files <- list.files(path, pattern = ".sas7bdat", full.names = TRUE)
-     doms      <- str_split( all_files, '/|\\\\')  %>%  
+     doms      <- stringr::str_split( all_files, '/|\\\\')  %>%  
         map( ~ .[length(.)]) %>% 
         unlist() %>%
-        str_remove('.sas7bdat')
+        stringr::str_remove('.sas7bdat')
       names(all_files) <- doms
         
       # subset according to user selection ####
@@ -95,13 +97,13 @@ build <- function(
       
       # adsl spec ####
       
-      if ( any(str_detect(import_files, type_adsl)) ){
+      if ( any(stringr::str_detect(import_files, type_adsl)) ){
         
-        files_adsl <- import_files[ str_detect(import_files, type_adsl) ]
+        files_adsl <- import_files[ stringr::str_detect(import_files, type_adsl) ]
         
         interim <- interim %>% 
           append(
-            map(files_adsl,
+            purrr::map(files_adsl,
                 ~ adam_spec_adsl(file = .x, filter = filter, attach_data = attach_data) %>% 
                   {if(! spec_only){
                     build_adsl(.)
@@ -109,17 +111,19 @@ build <- function(
                 )
           )
         
+      }else{
+        files_adsl <- NULL
       }
       
       # bds spec ####
       
-      if (any(str_detect(import_files, type_bds))){
+      if (any(stringr::str_detect(import_files, type_bds))){
         
-        files_bds <- import_files[ str_detect(import_files, type_bds) ] 
+        files_bds <- import_files[ stringr::str_detect(import_files, type_bds) ] 
         
         interim <- interim %>% 
           append(
-            map(files_bds, 
+            purrr::map(files_bds, 
                 ~adam_spec_bds(file = .x, filter = filter, attach_data = attach_data)%>% 
                   {if(! spec_only){
                     build_bds(.)
@@ -127,6 +131,8 @@ build <- function(
                 )
           )
         
+      }else{
+        files_bds <- NULL
       }
       
       files_ignored <- import_files [ ! names(import_files)  %in%  names(c(files_adsl, files_bds))  ]
@@ -147,10 +153,10 @@ build <- function(
     if( is.null(names(spec)) )  names(spec) <- rep('', length(spec))
     
     for (i in 1:length(spec)){
-      spec[[i]]$"spec_id" <- names(spec)[i]
+      if(is.null(spec[[i]]$"spec_id"))   spec[[i]]$"spec_id" <- names(spec)[i]
     }
     
-    interim <- map(spec, 
+    interim <- purrr::map(spec, 
             ~  { do.call( paste0('build_',   .x[['type']]), list(.x)) }
         )
   }
@@ -166,11 +172,11 @@ build <- function(
     
   }else{
     
-    prepped_join <-   map(interim, ~.[['data']]) %>% 
-      reduce(inner_join, by='.id')
+    prepped_join <-   purrr::map(interim, ~.[['data']]) %>% 
+      purrr::reduce(dplyr::inner_join, by='.id')
     
-    prepped_dict <-   map(interim, ~.[['dict']]) %>% 
-      reduce(bind_rows)
+    prepped_dict <-   purrr::map(interim, ~.[['dict']]) %>% 
+      purrr::reduce(dplyr::bind_rows)
     
     # out <- list(
     #   data = prepped_join,
