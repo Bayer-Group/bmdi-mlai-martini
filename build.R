@@ -57,6 +57,7 @@ build <- function(
   
   
   # library of data sets to be processed automatically
+  # KEEP CONSISTENT with adsl_spec
   type_adsl <- c("adsl") %>% 
     paste0(".sas7bdat$") %>% 
     paste(collapse = "|")

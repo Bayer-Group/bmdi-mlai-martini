@@ -87,6 +87,8 @@ adam_spec <- function(
         purrr::map(files_adsl, ~ adam_spec_adsl(file = .x, filter = filter, attach_data = attach_data))
       )
     
+  }else{
+    files_adsl <- NULL
   }
   
   # bds spec ####
@@ -100,6 +102,8 @@ adam_spec <- function(
         purrr::map(files_bds, ~ adam_spec_bds(file = .x, filter = filter, attach_data = attach_data))
       )
     
+  }else{
+    files_bds <- NULL
   }
   
   files_ignored <- import_files [ ! names(import_files)  %in%  names(c(files_adsl, files_bds))  ]
