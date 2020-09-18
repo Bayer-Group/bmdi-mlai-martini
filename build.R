@@ -61,7 +61,7 @@ build <- function(
     paste0(".sas7bdat$") %>% 
     paste(collapse = "|")
   type_bds <- c(   
-    paste0( c(  #"adegf", "adpc",
+    paste0( c(  "adegf",   "adpc",
       "adlb",  "advs",  "adxb", "adxl") , ".sas7bdat$"),
     "adqs.*[.]sas7bdat$" ) %>% 
     paste(collapse = "|")
