@@ -66,7 +66,7 @@ build_adsl <- function(
     clmn <- clmns[c]
     levs <- spec$factor_levels[[c]]
     
-    adsl[, clmn, drop = TRUE]  <-  adsl[, clmn, drop = TRUE] %>%  
+    adsl_full[, clmn, drop = TRUE]  <-  adsl_full[, clmn, drop = TRUE] %>%  
       factor(levels = levs)
     # shift to prepare_ml:   map(levs, ~ (str_to_lower(.x) %>%  str_replace_all( clean_char) )))
   }
