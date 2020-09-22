@@ -189,7 +189,15 @@ prepare_ml <- function(
       
       prep_recipe = rcp_prep,
       
-      dict = attr(feature, "dict")
+      dict = attr(feature, "dict") %>% 
+        dplyr::bind_rows(
+          tibble::tibble(
+            param  = outcome_name,
+            column = ".out",
+            source = "user_outcome"
+          ) %>%
+            mutate(label = labelled::var_label(outcome)[[outcome_name]])
+        )
       
     )
     
