@@ -20,18 +20,20 @@ if(FALSE){
   # 'real_world_data/adsl/99999/adsl.sas7bdat'
   #study <- c(99999, 99999, 99999)[3]
   
-  file = paste0('real_world_data/99999/',
-                c('adqseq5d', 'advs')[1],'.sas7bdat')
+  #file = paste0('real_world_data/99999/',
+  #              c('adqseq5d', 'advs', 'adegf')[3],'.sas7bdat')
+  
+  file =  '../adegf.sas7bdat'
   id = 'SUBJID'
   param  =  NULL
   label  = NULL
   unit   = NULL # AVALU, xxSTRESU, xxORESSU
   time   = NULL 
   value  = NULL #c(AVAL, CHG)
-  filter = NULL
+  filter = 'VISIT == SCREENING'
   spec_0 <- adam_spec_bds(file = file, id = id, filter = filter,
                    param = param, unit = unit, time = time)
-  spec_0
+  spec <- spec_0
   
   spec_  <- spec_0
   spec_c <- spec_
@@ -70,6 +72,7 @@ build_bds <- function(
   col_select <- spec[c("param",  "time" ,  "value",  "unit",   "label" )] %>% 
     unlist() %>%  na.omit() %>%  as.character()
   
+
   bds <- bds_full %>% 
     {if(!is.null(spec$filter)){ 
        filter_txt <-  paste( '(',
@@ -80,7 +83,8 @@ build_bds <- function(
       }else{.}} %>% 
     dplyr::filter( ! is.na(!! rlang::sym(spec$value )) ) %>% 
     dplyr::select( tidyselect::any_of( c(spec$id, col_select  ))) %>% 
-    dplyr::rename( `.id` = spec$id ) 
+    dplyr::rename( `.id` = spec$id ) # 
+  
  
   # prior to pivoting,  create key column (PARAM or PARAM/TIME)
   # check if multiple time points are present after subsetting
@@ -96,7 +100,8 @@ build_bds <- function(
       dplyr::mutate( '.key' = str_replace_all( !! rlang::sym(spec$param), '[:punct:]|[:space:]', '_'))
   }
 
-  # pivot 
+  # pivot   ####
+ 
   
   bds_wide <- bds %>% 
     dplyr::select(tidyselect::all_of(c(spec$value, '.key', '.id'))) %>% 
@@ -105,7 +110,17 @@ build_bds <- function(
       names_from  = '.key', 
       values_from = spec$value,
       values_fn   = function(x) {ifelse(all(is.numeric(x)), mean(x), x[1])}
-    )
+    ) 
+  
+  # transform all character columns to factors except for .id, which is kept as-is
+  char2fct <-   bds_wide %>% 
+    select_if(is.character) %>% 
+    colnames() %>% 
+    setdiff('.id' )
+  
+  bds_wide <- bds_wide  %>% 
+    mutate_at(char2fct, factor)
+    
 
   
   # dictionary ####
