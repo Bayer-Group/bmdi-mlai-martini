@@ -90,10 +90,10 @@ build_bds <- function(
   if(n_time > 1){
     bds <- bds %>% 
       tidyr::unite(.key, spec$param, spec$time, remove = FALSE, sep='_') %>% 
-      dplyr::mutate(.key = str_replace_all(.key, '[:punct:]', '_'))
+      dplyr::mutate(.key = str_replace_all(.key, '[:punct:]|[:space:]', '_'))
   }else{
     bds <- bds %>% 
-      dplyr::mutate( '.key' = !! rlang::sym(spec$param))
+      dplyr::mutate( '.key' = str_replace_all( !! rlang::sym(spec$param), '[:punct:]|[:space:]', '_'))
   }
 
   # pivot 
