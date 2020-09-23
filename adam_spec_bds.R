@@ -84,10 +84,11 @@ adam_spec_bds <- function(
     time = c('AVISIT', 'VISIT'),
     
     # ... guess value  ####
-    value = c(ifelse(stringr::str_split( file, '/|\\\\')[[1]] %>% 
+    value = c(ifelse(# for adegf choose AVALC over AVAL
+                       stringr::str_split( file, '/|\\\\')[[1]] %>% 
                        tail(1) %>% 
                        stringr::str_remove('.sas7bdat$') %>%  {. %in%  c('adegf')}, 
-                     'AVALC', 'AVAL'),  
+                      'AVALC', 'AVAL'),  
               paste0(dom, "STRESN" ), paste0(dom, "ORRES")),
     
     # ... guess unit ####
