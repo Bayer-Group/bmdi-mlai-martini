@@ -142,11 +142,11 @@ prepare_ml <- function(
           suppressMessages(
             recipes::step_corr(., recipes::all_numeric(), -recipes::all_outcomes(), 
                                threshold = thres_cor)
-          ) 
-        }else{.} %>%  
+          )     }else{.}
+        } %>%  
             
       
-            recipes::step_other(., recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
+         recipes::step_other(., recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
                    threshold = thres_lump) %>%  
             
         # factor handling
@@ -160,7 +160,7 @@ prepare_ml <- function(
                               one_hot = one_hot) }else{.} 
         }
           
-       }   
+          
     } else {
       rcp <- prep_recipe
     }
