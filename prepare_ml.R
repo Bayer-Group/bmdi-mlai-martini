@@ -68,14 +68,29 @@ prepare_ml <- function(
     
     # MERGE  ####
     
-    clean_char <- c('<' = 'l', '<=' = 'leq', '>'= 'g', '>=' = 'geq' )
+   # clean_char <- c('<' = 'l', '<=' = 'leq', '>'= 'g', '>=' = 'geq' )
+    
+    
+    
+    renaming <- c('<= '  ='less_than_', '<='  ='less_than_', '> ' = 'over_','< '  ='under_',
+                  ' - ' = '_to_',  
+                  '>= ' = 'at_least_', '>=' = 'at_least_',
+                  '<'  ='under_' ,'>'  = 'over_',
+                  '-'  = '_to_',
+                  ' years'='_y', 'years'='_y',
+                  '%' = 'pct', 
+                  #' '='_',
+                  '[[:punct:]]|[[:space:]]' = '_')
+    
+    
     
     # First merge preds and (selected) outcome by .id -> d_raw
     d_raw <- outcome %>%
       dplyr::select(all_of('.id'), .out = tidyselect::all_of(outcome_name)) %>% 
       dplyr::inner_join( feature %>%  
                           # stringr::str_replace_all(x, clean_char)
-                              dplyr::mutate_if(is.factor, ~  forcats::fct_relabel(., make.names) )
+                              dplyr::mutate_if(is.factor,
+                                               ~  forcats::fct_relabel(., ~str_replace_all(., renaming) )) 
                          , by = ".id") %>% 
                 # stringr::str_replace_all(x, clean_char) %>%
                 #    stringr::str_trim() %>%  
