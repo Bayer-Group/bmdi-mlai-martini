@@ -119,7 +119,13 @@ build_bds <- function(
     setdiff('.id' )
   
   bds_wide <- bds_wide  %>% 
-    mutate_at(char2fct, factor)
+    mutate_at(char2fct, factor) %>%  
+    {if(spec$spec_id == 'adegf'){
+      mutate_at(., char2fct, fct_explicit_na(., na_level = 'missing') )
+    }else{.}
+    }
+  
+  
     
 
   
