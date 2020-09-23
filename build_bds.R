@@ -30,7 +30,7 @@ if(FALSE){
   unit   = NULL # AVALU, xxSTRESU, xxORESSU
   time   = NULL 
   value  = NULL #c(AVAL, CHG)
-  filter = 'VISIT == SCREENING'
+  filter = 'AVISIT == Screening'
   spec_0 <- adam_spec_bds(file = file, id = id, filter = filter,
                    param = param, unit = unit, time = time)
   spec <- spec_0
@@ -121,7 +121,7 @@ build_bds <- function(
   bds_wide <- bds_wide  %>% 
     mutate_at(char2fct, factor) %>%  
     {if(spec$spec_id == 'adegf'){
-      mutate_at(., char2fct, fct_explicit_na(., na_level = 'missing') )
+      mutate_at(., char2fct, ~ fct_explicit_na(., na_level = 'missing') )
     }else{.}
     }
   
