@@ -123,21 +123,29 @@ prepare_ml <- function(
       rcp <- as.formula(".out ~ .") %>%  
         recipes::recipe(data = d_train_raw  ) %>% 
         recipes::update_role(.id, new_role = "ID") %>% 
+        
+        # omit observations with missing endpoint
         recipes::step_naomit(recipes::all_outcomes()) %>% 
+        
+        # near zero variance
         recipes::step_nzv(recipes::all_predictors())   %>% 
+        
+        # imputation
         {if(prep_step_knnimpute){
           recipes::step_knnimpute(., recipes::all_predictors()) }else{.}
         } %>% 
         
+        # log transformation
         {if(prep_step_log && length(prms_logtr)>0){
           recipes::step_log(., tidyselect::any_of(prms_logtr)) }else{.}
         }  %>%
         
+        # normalization
         {if(prep_step_normalize){
           recipes::step_normalize(., recipes::all_numeric(), -recipes::all_outcomes(), - recipes::has_role("ID")) }else{.}
         }  %>% 
         
-        
+        # remove highly correlated variables
         {if(prep_step_corr){
           suppressMessages(
             recipes::step_corr(., recipes::all_numeric(), -recipes::all_outcomes(), 
@@ -145,8 +153,8 @@ prepare_ml <- function(
           )     }else{.}
         } %>%  
             
-      
-         recipes::step_other(., recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
+        # lump factors
+        recipes::step_other(., recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
                    threshold = thres_lump) %>%  
             
         # factor handling
