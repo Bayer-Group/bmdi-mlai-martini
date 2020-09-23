@@ -118,8 +118,18 @@ build_bds <- function(
     colnames() %>% 
     setdiff('.id' )
   
+  
+  renaming <- c('<= '  ='less_than_', '<='  ='less_than_', '> ' = 'over_','< '  ='under_',
+                ' - ' = '_to_',  
+                '>= ' = 'at_least_', '>=' = 'at_least_',
+                '<'  ='under_' ,'>'  = 'over_',
+                '-'  = '_to_',
+                ' years'='_y', 'years'='_y',
+                '%' = 'pct', 
+                ' '='_')
+  
   bds_wide <- bds_wide  %>% 
-    mutate_at(char2fct, factor) %>%  
+    mutate_at(char2fct, ~ factor(str_replace_all(., renaming))) %>%  
     {if(spec$spec_id == 'adegf'){
       mutate_at(., char2fct, ~ fct_explicit_na(., na_level = 'missing') )
     }else{.}
