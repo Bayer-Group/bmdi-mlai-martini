@@ -74,7 +74,9 @@ prepare_ml <- function(
     d_raw <- outcome %>%
       dplyr::select(all_of('.id'), .out = tidyselect::all_of(outcome_name)) %>% 
       dplyr::inner_join( feature %>%  
-                              dplyr::mutate_if(is.factor, ~  forcats::fct_relabel(., make.names) ), by = ".id") %>% 
+                          # stringr::str_replace_all(x, clean_char)
+                              dplyr::mutate_if(is.factor, ~  forcats::fct_relabel(., make.names) )
+                         , by = ".id") %>% 
                 # stringr::str_replace_all(x, clean_char) %>%
                 #    stringr::str_trim() %>%  
                 #    stringr::str_to_lower() } )
