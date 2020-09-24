@@ -155,7 +155,7 @@ adam_spec_adsl <- function(
   all_num_codes <- c(
     all_lab_lev$lev,
     dict %>% filter(str_detect(label, "(N)$")) %>% pull(param)
-  )
+  ) %>% unique()
   
   # reduce to pairs for which level order needs to be extracted
   lab_lev <- all_lab_lev  %>% 
