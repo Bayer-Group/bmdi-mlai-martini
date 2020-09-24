@@ -154,7 +154,7 @@ adam_spec_adsl <- function(
   # keep list of all num codes to setdiff with all numeric columns
   all_num_codes <- c(
     all_lab_lev$lev,
-    dict %>% filter(str_detect(label, "(N)$")) %>% pull(param)
+    dict %>% filter(str_detect(label, "\\(N\\)$")) %>% pull(param)
   ) %>% unique()
   
   # reduce to pairs for which level order needs to be extracted
@@ -195,7 +195,8 @@ adam_spec_adsl <- function(
   ind  <- all_slash %>%  
     stringr::str_split('/') %>% 
     purrr::map_lgl( ~ { all(.x %in% labs)})
-  all_comb_columns <- all_slash[ind]
+  all_comb <- all_slash[ind]
+  all_comb_columns <- dict %>% filter(labs %in% all_comb) %>% pull(param)
   
   
   # identify redundants for id and trt ####
