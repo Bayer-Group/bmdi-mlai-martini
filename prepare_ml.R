@@ -71,16 +71,22 @@ prepare_ml <- function(
    # clean_char <- c('<' = 'l', '<=' = 'leq', '>'= 'g', '>=' = 'geq' )
     
     
-    
-    renaming <- c('<= '  ='less_than_', '<='  ='less_than_', '> ' = 'over_','< '  ='under_',
+    # ORDER MATTERS
+    renaming <- c('<= |<=' = 'less_than_',  
+                  '> '  = 'over_',
+                  '< '  = 'under_',
                   ' - ' = '_to_',  
-                  '>= ' = 'at_least_', '>=' = 'at_least_',
-                  '<'  ='under_' ,'>'  = 'over_',
-                  '-'  = '_to_',
-                  ' years'='_y', 'years'='_y',
-                  '%' = 'pct', 
-                  #' '='_',
-                  '[[:punct:]]|[[:space:]]' = '_')
+                  '>= |>=' = 'at_least_', 
+                  '<'   = 'under_' ,
+                  '>'   = 'over_',
+                  '-'   = '_to_',
+                  ' years|years' = '_y',
+                  '%'   = 'pct', 
+                  #' '  ='_',
+                  '[[:punct:]]|[[:space:]]' = '_',
+                  '__'  = '_',
+                  '_$' = ''
+                  )
     
     
     
