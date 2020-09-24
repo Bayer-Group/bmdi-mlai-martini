@@ -42,14 +42,16 @@ build_adsl <- function(
       .[[1]] %>%  
       tail(1) 
     if(file_ext == 'sas7bdat'){
-      adsl_full <- haven::read_sas(file_name)
+      adsl_full <- haven::read_sas(file_name) %>% 
+        dplyr::mutate_if(is.character,  ~ dplyr::na_if(., ""))
     
       
     }else return(NULL)
     
   } else {
     
-    adsl_full <- spec$data
+    adsl_full <- spec$data %>% 
+      dplyr::mutate_if(is.character,  ~ dplyr::na_if(., ""))
     
   }
   
@@ -78,11 +80,6 @@ build_adsl <- function(
       dplyr::filter(., !! rlang::parse_expr(filter_txt))
     }else{.}
     } %>%  
-  
-    # basic character clean up
-  # adsl <- adsl %>% 
-         dplyr::mutate_if(is.character,  ~ dplyr::na_if(., "")) %>% 
-         # }) %>% 
           
  # adsl <- adsl %>% 
     dplyr::select(any_of(spec$select )) %>% 
