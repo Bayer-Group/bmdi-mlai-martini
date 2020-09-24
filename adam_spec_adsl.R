@@ -152,7 +152,10 @@ adam_spec_adsl <- function(
     dplyr::distinct() 
   
   # keep list of all num codes to setdiff with all numeric columns
-  all_num_codes <- all_lab_lev$lev
+  all_num_codes <- c(
+    all_lab_lev$lev,
+    dict %>% filter(str_detect(label, "(N)$")) %>% pull(param)
+  )
   
   # reduce to pairs for which level order needs to be extracted
   lab_lev <- all_lab_lev  %>% 
