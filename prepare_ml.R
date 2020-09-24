@@ -195,6 +195,15 @@ prepare_ml <- function(
     d_train <- rcp_prep %>%  recipes::juice()
     d_valid <- rcp_prep %>%  recipes::bake(d_valid_raw)
     
+    for (i in 1:ncol(d_train)){
+      attr(d_train[[i]], "format.sas") <- NULL
+      attr(d_valid[[i]], "format.sas") <- NULL
+      attr(d_train[[i]], "label") <- NULL
+      attr(d_valid[[i]], "label") <- NULL
+    }
+    attr(d_train, "label") <- NULL
+    attr(d_valid, "label") <- NULL
+    
     prep_output <- list(
       data_raw = list(
         train = d_train_raw,
