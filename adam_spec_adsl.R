@@ -56,7 +56,8 @@ adam_spec_adsl <- function(
   
   #  read adsl ####
   #'adsl.sas7bdat' %in% list.files(path)
-  adsl <- haven::read_sas(file)
+  adsl <- haven::read_sas(file) %>% 
+    dplyr::mutate_if(is.character,  ~ dplyr::na_if(., ""))
   
   # create column dict (name <-> label)  
   dict <- labelled::var_label(adsl) %>% 
