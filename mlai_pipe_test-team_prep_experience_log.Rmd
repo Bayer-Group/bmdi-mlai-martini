@@ -45,7 +45,7 @@ subtitle: "Team Prepare Test Run"
 
 <hr>
 <div style='font-weight:600;font-size:1.25em;margin-bottom:5px;'>
-Experience Log of the test run of the BMDI MLAI prepare functions on the ads dev data of the FIDELIO study (BAY94-8862 / 16244)
+Experience log of the test run of the BMDI MLAI prepare functions on the ads dev data of the FIDELIO study (BAY94-8862 / 16244)
 </div>
 
 
@@ -89,29 +89,29 @@ Breakdown of consumed time
 time_breakdown <- list(
   list(
     Task        = "Set up the analysis environment",
-    Description = "On HPC RStudio: Set up project and folder structure, transfer ads data from SWAN to Project folder on HPC home in a reproducible and documented way (i.e. per code)",
+    Description = "On HPC RStudio: Set up project and folder structure, transfer ads data from SWAN to project folder on HPC home in a reproducible and documented way (i.e. per code)",
     Duration    = hours(0) + minutes(30),
-    Comment     = "Transfer-code from FIDELIO study work could be used (with some adapations)",
+    Comment     = "Transfer-code from FIDELIO study work could be used (with some adaptations)",
     EAD         = "="
   ),
   list(
     Task        = "Inspecting the data",
-    Description = "Inspect the data in order to be able to set the right filters for the particular problem (visit names, analysis flags in case of duplettes etc.) and identify potential stumbling blocks",
+    Description = "Inspect the data in order to be able to set the right filters for the particular problem (visit names, analysis flags in case of duplicates etc.) and identify potential stumbling blocks",
     Duration    = hours(0) + minutes(0),
     Comment     = "As I was very familiar with the data and we had a quite simple scenario (baseline only), I did not need to spend any time on this.",
     EAD         = ">"
   ),
   list(
     Task        = "Prepare outcome variables",
-    Description = "Preparation of the outcome variables that to be predicted in the test run (3 scenarios: 2-class classification, 3-class classification and regression).",
-    Duration    = hours(4) + minutes (0),
-    Comment     = "All parameters had to be derrived and required some 'brain power'",
+    Description = "Definition and derivation of the outcome variables to be predicted in the test run (3 scenarios: 2-class/3-class classification and regression).",
+    Duration    = hours(3) + minutes (30),
+    Comment     = "Meaningful and ML appropriate outcome variables had to be identified and implemented (none of them were readily available in the data but had to be derived)",
     EAD         = "<"
   ),
   list(
-    Task        = "Write the test RMD",
+    Task        = "Write the test rmd",
     Description = "Writing the code for the ads data preparation of test scenarios",
-    Duration    = hours(1) + minutes (30),
+    Duration    = hours(2) + minutes (0),
     Comment     = "I incorporated both possible ways to prepare ads data with our module and of course also added code for benchmarking and documentation that would not necessarily have to be included in a real world application. Writing just the minimal code would have been much quicker.",
     EAD         = "<"
   ),
@@ -162,12 +162,18 @@ time_breakdown %>%
 
 ## Summary
 
-The fact that I was very familiar with this particular study probably had a very large effect on the total duration needed for this test run. I did not have to inspect the data, as I knew right away which filters I needed to set for the scenario at hand. I was familiar with the names of the visits, the names of the analysis sets, I knew that I did not have to take care of repeated measurements as the included algorithm would suffice for this particular data set and I knew which domains I needed to exclude because they only contain a small subset of the population (*adxb*, *adxl* and *adpc*). With less or without any prior knowledge of the study, task 2 would probably be the most time consuming one. In this case, task 5 and task 6 might also have to be repeated several times and the identification of potential problems (task 5) might take a lot longer. I would expect the average total duration needed for an unknown study to be higher.
+The fact that I was very familiar with this particular study had a major impact on the total duration needed for this test run. This knowledge was especially advantageous when defining the appropriate filters: There was no need for further inspection of the data, as I knew right away which filters I needed to set for the scenario at hand. Relevant knowledge includes:
 
-The test run on the FIDELIO data also revealed several bugs (or immaturities) that were not visible on the test data sets that we used in the development process. Some of them were fixed during the test run, some of them afterwards. All of these issues could be considered *minor* and most of them even *cosmetic* (*regex*, *labels*, *factor levels*,  etc.). None of them led to any crashes of the preparation functions, but materialized in the appearance of the output object. The time spent dealing with this issues was not counted in the time breakdown of the test run.
+ * names of the visits,
+ * names of the analysis sets,     
+ * handling of repeated measurements (I knew the included algorithm would suffice for this particular data set),  
+ * domains to exclude (*adxb*, *adxl* and *adpc*; as they only contain a small subset of the population). 
+
+With less or without any prior knowledge of the study, task 2 would probably be the most time consuming one. In this case, task 5 and task 6 might also have to be repeated several times and the identification of potential problems (task 5) might take a lot longer. I would expect the average total duration needed for an unknown study to be higher.
+
+The test run on the FIDELIO data also revealed several bugs (or immaturities) that were not apparent on the test data sets that we used in the development process. Some of the issues were fixed during the test run, some of them afterwards. All of them could be considered *minor* and most of them even *cosmetic* (*regex*, *labels*, *factor levels*,  etc.). None of them led to any crashes of the preparation functions, but materialized in the appearance of the output object. The time spent dealing with these issues was not counted in the time breakdown of the test run.
 
 
-***
 
 <!-- # {.toc-ignore .unnumbered} -->
 
