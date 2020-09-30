@@ -1,0 +1,179 @@
+---
+output:
+  html_document:
+    highlight: tango
+    number_sections: false
+    theme: spacelab
+    toc: true
+    toc_depth: 5
+    toc_float: true
+    # code_folding: hide
+    # code_download: false
+    includes:
+      in_header: _style/_header.html
+      before_body: _style/_before_body.html
+      after_body: _style/_after_body.html
+    css: _style/style.css
+    self_contained: true
+
+title: "BMDI MLAI Pipeline"
+subtitle: "Team Prepare Test Run"
+---
+
+<!-- author information -->
+<div class="report-author">
+  <!-- <a href="mailto:maike.ahrens.ext@bayer.com"> -->
+  <!-- Maike Ahrens (Ext.) -->
+  <!-- </a>,  -->
+  <a href="mailto:sebastian.voss.ext@bayer.com">
+  Sebastian Voss (Ext.)
+  </a>
+</div>
+<div class="report-author">
+
+</div>
+<!-- Affiliation (if applicable) -->
+<div class="report-author-aff">
+  <a href="https://www.chrestos.de/leistungen/contract-research-organization-cro/pharmazeutische-industrie/" target="_blank">
+  <!-- company -->
+  Chrestos Concept GmbH & Co. KG
+  </a><br>
+  on behalf of Bayer AG, <a href="mailto:karl.koechert@bayer.com">Biomarker & Data Insights</a>
+</div>
+
+<!-- maybe a brief analysis summary here (abstract) -->
+
+<hr>
+<div style='font-weight:600;font-size:1.25em;margin-bottom:5px;'>
+Experience Log of the test run of the BMDI MLAI prepare functions on the ads dev data of the FIDELIO study (BAY94-8862 / 16244)
+</div>
+
+
+<div class="report-date">
+(Report generated on `r Sys.time()`)
+</div>
+
+<hr class="ltbold"/>
+
+```{r knitsetup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE,
+                      out.width = "100%")
+options(knitr.kable.NA = "")
+```
+
+
+```{r packages, include=FALSE}
+library(kableExtra)
+library(tidyverse)
+library(lubridate)
+```
+
+
+```{r options, include=FALSE}
+theme_set(theme_light() +
+    theme(
+        strip.background = element_rect(fill = "#00617F"),
+        strip.text = element_text(colour = "#FFFFFF")
+    )
+)
+```
+
+## Time log
+
+Breakdown of consumed time
+
+```{r}
+
+time_breakdown <- list(
+  list(
+    Task        = "Set up the analysis environment",
+    Description = "On HPC RStudio: Set up project and folder structure, transfer ads data from SWAN to Project folder on HPC home in a reproducible and documented way (i.e. per code)",
+    Duration    = hours(0) + minutes(30),
+    Comment     = "Transfer-code from FIDELIO study work could be used (with some adapations)",
+    EAD         = "="
+  ),
+  list(
+    Task        = "Inspecting the data",
+    Description = "Inspect the data in order to be able to set the right filters for the particular problem (visit names, analysis flags in case of duplettes etc.) and identify potential stumbling blocks",
+    Duration    = hours(0) + minutes(0),
+    Comment     = "As I was very familiar with the data and we had a quite simple scenario (baseline only), I did not need to spend any time on this.",
+    EAD         = ">"
+  ),
+  list(
+    Task        = "Prepare outcome variables",
+    Description = "Preparation of the outcome variables that to be predicted in the test run (3 scenarios: 2-class classification, 3-class classification and regression).",
+    Duration    = hours(4) + minutes (0),
+    Comment     = "All parameters had to be derrived and required some 'brain power'",
+    EAD         = "<"
+  ),
+  list(
+    Task        = "Write the test RMD",
+    Description = "Writing the code for the ads data preparation of test scenarios",
+    Duration    = hours(1) + minutes (30),
+    Comment     = "I incorporated both possible ways to prepare ads data with our module and of course also added code for benchmarking and documentation that would not necessarily have to be included in a real world application. Writing just the minimal code would have been much quicker.",
+    EAD         = "<"
+  ),
+  list(
+    Task        = "Run the code",
+    Description = "Running the code per batch job on one HPC node (16 CPUs)",
+    Duration    = hours(0) + minutes (30),
+    Comment     = "Data import and building a wide data set took about 25 minutes (6 ads domains, including the three largest domains (by far), for a total of about 8GB). Performing the ML preparation (including data imputation) took about one minute for each of the three outcomes",
+    EAD         = "="
+  ),
+  list(
+    Task        = "Inspect the output",
+    Description = "Inspection of the output revealed visit names in some of the column names that should not be there, as the scenario was restricted to the baseline time point",
+    Duration    = hours(0) + minutes (15),
+    Comment     = "This problem could be fixed very quickly, in part because of familarity with the data. For one of the imported domains (adegf) no baseline visit was derived. Therefore, the filter provided by the user did not work for this particular domain and needed to be adjusted.",
+    EAD         = ">"
+  ),
+  list(
+    Task        = "Run the code again",
+    Description = "Running the adapted code per batch job on one HPC node (16 CPUs)",
+    Duration    = hours(0) + minutes (30),
+    Comment     = "",
+    EAD         = "="
+  ),
+  list(
+    Task        = "Inspect the output again",
+    Description = "Inspection of the new output did not reveal any major issues.",
+    Duration    = hours(0) + minutes (15),
+    Comment     = "",
+    EAD         = "="
+  )
+) %>% 
+  enframe() %>% 
+  unnest_wider(value) %>% 
+  mutate(Duration = as.numeric(Duration)/60) %>% 
+  rename("Duration (min.)" = Duration, "EAD*" = EAD, "Task number" = name)
+
+
+time_breakdown %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("responsive", "hover"), font_size = 12) %>% 
+  footnote(general = "*) EAD = Expected average duration in comparison to the time the task took in the test run")
+```
+
+**Total duration:** `r sum(time_breakdown$"Duration (min.)")/60` hours
+
+***
+
+## Summary
+
+The fact that I was very familiar with this particular study probably had a very large effect on the total duration needed for this test run. I did not have to inspect the data, as I knew right away which filters I needed to set for the scenario at hand. I was familiar with the names of the visits, the names of the analysis sets, I knew that I did not have to take care of repeated measurements as the included algorithm would suffice for this particular data set and I knew which domains I needed to exclude because they only contain a small subset of the population (*adxb*, *adxl* and *adpc*). With less or without any prior knowledge of the study, task 2 would probably be the most time consuming one. In this case, task 5 and task 6 might also have to be repeated several times and the identification of potential problems (task 5) might take a lot longer. I would expect the average total duration needed for an unknown study to be higher.
+
+The test run on the FIDELIO data also revealed several bugs (or immaturities) that were not visible on the test data sets that we used in the development process. Some of them were fixed during the test run, some of them afterwards. All of these issues could be considered *minor* and most of them even *cosmetic* (*regex*, *labels*, *factor levels*,  etc.). None of them led to any crashes of the preparation functions, but materialized in the appearance of the output object. The time spent dealing with this issues was not counted in the time breakdown of the test run.
+
+
+***
+
+<!-- # {.toc-ignore .unnumbered} -->
+
+<!-- Session info -->
+<!-- ```{r session, echo=FALSE, comment=""} -->
+<!-- Hmisc::markupSpecs$html$session() -->
+<!-- ``` -->
+
+<!-- Program: ``r knitr::current_input()`` -->
