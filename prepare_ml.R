@@ -12,6 +12,10 @@
 #' @param prep_step_dummy FALSE converted  variables to be 
 #' @param thres_log           = 2,
 #' @param thres_cor           = .9,
+#' @param thres_lump
+#' @param thres_imp
+#' @param vars_imp_ignore
+#' @param vars_fct_expl_na
 #' @param vars_ordinalscore  = NULL, 
 #' @param one_hot = TRUE
 #'
@@ -25,18 +29,23 @@ prepare_ml <- function(
    outcome_name = NULL,
    prep_recipe  = NULL,
    seed         = NULL,
+   
    prep_step_normalize = TRUE,
    prep_step_knnimpute = TRUE,
    prep_step_log       = TRUE,
    prep_step_corr      = TRUE,
    prep_step_dummy     = TRUE,
-   thres_log           = 2,
-   thres_cor           = .9,
-   thres_lump          = 0.05,
    
-   # encoding control
-   vars_ordinalscore  = NULL, 
-   one_hot            = TRUE
+   thres_log           = 2,
+   thres_cor           = 0.9,
+   thres_lump          = 0.05,
+   thres_imp           = 0.8,
+   
+   vars_imp_ignore     = NULL,
+   vars_fct_expl_na    = NULL,
+   vars_ordinalscore   = NULL,
+   
+   one_hot             = TRUE
    
 ){
   
@@ -66,6 +75,8 @@ prepare_ml <- function(
     outcome_mode <- ifelse(is.numeric(outcome[, outcome_name, drop = TRUE]), "regression", "classification")
     
     
+    
+    
     # MERGE  ####
     
    # clean_char <- c('<' = 'l', '<=' = 'leq', '>'= 'g', '>=' = 'geq' )
@@ -89,7 +100,15 @@ prepare_ml <- function(
                   )
     
     
-    
+    if (!is.null(vars_fct_expl_na)){
+      vars_fct_expl_na <- feature %>% 
+        select_if(is.factor) %>% 
+        colnames() %>% 
+        intersect(vars_fct_expl_na)
+      # catch special case 'no factors in feature'
+      if (length(vars_fct_expl_na) == 0) vars_fct_expl_na <- NULL
+    }
+
     # First merge preds and (selected) outcome by .id -> d_raw
     d_raw <- outcome %>%
       dplyr::select(all_of('.id'), .out = tidyselect::all_of(outcome_name)) %>% 
@@ -109,11 +128,18 @@ prepare_ml <- function(
       {if(outcome_mode == "classification"){
         dplyr::mutate(., .out = factor(.out))
       }else{.}
-      }    
+      } %>% 
+      # add explicit NAs to selected factor variables (optional)
+      {if(!is.null(vars_fct_expl_na)){
+        dplyr::mutate_at(., vars_fct_expl_na, ~forcats::fct_explicit_na(., na_level = "missing"))
+      }else{.}
+      }
        #%>% 
             # recode factors to numeric if should be used as ordinal
             #mutate_at( any_of(ordinals, 
             #         ~  as.numeric(factor(.x)) )
+    
+
     
     if(!is.null(seed))  set.seed(seed)
     
@@ -127,8 +153,9 @@ prepare_ml <- function(
     d_train_raw <- training(d_split)
     d_valid_raw <- testing( d_split)
     
-    # identify skewed parameters -> logtrafo
-    prms_logtr <- d_train_raw %>% 
+    # derive variable lists for steps ####
+    # ...identify skewed parameters -> logtrafo   ####
+    vars_logtr <- d_train_raw %>% 
       dplyr::select_if(is.numeric) %>% 
       tidyr::pivot_longer(-any_of(c(".id", ".out")), 
                           names_to = "PARAMCD", values_to = "AVAL") %>% 
@@ -139,26 +166,57 @@ prepare_ml <- function(
       dplyr::filter(skew > thres_log ) %>% 
       dplyr::pull(PARAMCD)
     
+    # ...calculate proportion of missing values per column ####
+    prop_available <- d_train_raw %>% 
+      purrr::map_dbl(~mean(!is.na(.))) %>% 
+      tibble::enframe()
+    
+    
+    # variables to impute: predictors with sufficient information, i.e. meeting thres_imp
+    # variables are dropped if they a) don't meet the threshold OR b) shall not be imputed explicitly (vars_imp_ignore) 
+    vars_imp <- prop_available %>% 
+      dplyr::filter(value >= thres_imp) %>% 
+      dplyr::pull(name) %>% 
+      setdiff(vars_imp_ignore) %>% 
+      setdiff((c(".out", ".id")))
+    
+    vars_exclude <- c(
+      
+      d_train_raw %>% 
+        dplyr::select_if(~any(is.na(.))) %>% 
+        colnames() %>% 
+        intersect(vars_imp_ignore),
+      
+      prop_available %>% 
+        dplyr::filter(value < thres_imp) %>% 
+        dplyr::pull(name)
+      
+    ) %>% unique()
+    
+    d_train_raw <- d_train_raw %>% dplyr::select(-tidyselect::any_of(vars_exclude))
+    d_valid_raw <- d_valid_raw %>% dplyr::select(-tidyselect::any_of(vars_exclude))
+    
+    # recipe ...####
     if (is.null(prep_recipe)){
       # Note that order is important when building the recipe, e.g. nzv and log before normalize, corr before 
       rcp <- as.formula(".out ~ .") %>%  
         recipes::recipe(data = d_train_raw  ) %>% 
         recipes::update_role(.id, new_role = "ID") %>% 
         
-        # omit observations with missing endpoint
+        # ...omit observations with missing endpoint ####
         recipes::step_naomit(recipes::all_outcomes()) %>% 
         
-        # near zero variance
-        recipes::step_nzv(recipes::all_predictors())   %>% 
-        
-        # imputation
+        # ...imputation ####
         {if(prep_step_knnimpute){
-          recipes::step_knnimpute(., recipes::all_predictors()) }else{.}
+          recipes::step_knnimpute(., tidyselect::any_of(vars_imp)) }else{.}
         } %>% 
+
+        # ...near zero variance ####
+        recipes::step_nzv(recipes::all_predictors()) %>% 
         
-        # log transformation
-        {if(prep_step_log && length(prms_logtr)>0){
-          recipes::step_log(., tidyselect::any_of(prms_logtr)) }else{.}
+        # ...log transformation ####
+        {if(prep_step_log && length(vars_logtr)>0){
+          recipes::step_log(., tidyselect::any_of(vars_logtr)) }else{.}
         }  %>%
         
         # normalization
@@ -193,7 +251,6 @@ prepare_ml <- function(
     } else {
       rcp <- prep_recipe
     }
-
     
     rcp_prep <- rcp %>% 
       recipes::prep(strings_as_factors = FALSE)
