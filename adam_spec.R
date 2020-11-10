@@ -5,7 +5,7 @@
 #' The resulting list can be passed to \code{build()}, where the data sets are combined into a single wide format data set.
 #'
 #' @param path the path to the ads files
-#' @param recursive should files in sub directories of the specified path be included?
+#' @param include_sub should files in sub directories of the specified path be included?
 #' @param filter a character vector of conditions to be passed to \code{dplyr::filter()}, e.g. regarding visits, treatment arms or parameters. Defaults to NULL.
 #' @param keep character vector defining the subset of data sets in the given `path` to create the specification for (e.g. \code{c('adsl', 'advs'))}).
 #'  If both \code{keep} and \code{drop} are specified, \code{keep} overrides \code{drop}. Defaults to NULL.
@@ -33,7 +33,7 @@ library(crayon)
 
 adam_spec <- function(
   path, 
-  recursive   = FALSE,
+  include_sub = FALSE,
   filter      = NULL,
   keep        = NULL,
   drop        = NULL ,
@@ -59,7 +59,7 @@ adam_spec <- function(
     paste(collapse = "|")
   
   # list all files in given directory ####
-  all_files <- list.files(path, pattern = ".sas7bdat", full.names = TRUE, recursive = recursive)
+  all_files <- list.files(path, pattern = ".sas7bdat", full.names = TRUE, recursive = include_sub)
   doms      <- stringr::str_split( all_files, '/|\\\\')  %>%  
     purrr::map( ~ .[length(.)]) %>% 
     unlist() %>%
