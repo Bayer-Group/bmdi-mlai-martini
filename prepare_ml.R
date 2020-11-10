@@ -3,6 +3,7 @@
 #' @param feature feature matrix in wide format, e.g. output object of \code{build()}, i.e. containing \code{.id} column and predictors 
 #' @param outcome tibble containing \code{.id} column and the outcome of interest
 #' @param outcome_name ,
+#' @param outcome_order = NULL (only used for classification)
 #' @param prep_recipe  = NULL,
 #' @param seed         = NULL,
 #' @param prep_step_normalize = TRUE,
@@ -110,6 +111,16 @@ prepare_ml <- function(
     }
 
     # First merge preds and (selected) outcome by .id -> d_raw
+    if (outcome_mode == "classification"){
+      level_order <- intersect(level_order, outcome[[outcome_name]])
+      if (length(level_order) > 0){
+        outcome <- outcome %>% 
+          mutate_at(outcome_name, ~fct_relevel(., level_order))
+      }
+    }
+
+    
+    
     d_raw <- outcome %>%
       dplyr::select(all_of('.id'), .out = tidyselect::all_of(outcome_name)) %>% 
       dplyr::inner_join( feature %>%  
