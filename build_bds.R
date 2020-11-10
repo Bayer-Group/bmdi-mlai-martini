@@ -74,7 +74,7 @@ build_bds <- function(
   
 
   bds <- bds_full %>% 
-    {if(!is.null(spec$filter)){ 
+    {if(length(spec$filter) > 0){ 
        filter_txt <-  paste( '(',
                             paste(  spec$filter, collapse= ') & (' ),
                             ')') 

@@ -76,7 +76,7 @@ build_adsl <- function(
   
   
   adsl <- adsl_full %>% 
-    {if(!is.null(spec$filter)){ 
+    {if(length(spec$filter) > 0){ 
       dplyr::filter(., !! rlang::parse_expr(filter_txt))
     }else{.}
     } %>%  
