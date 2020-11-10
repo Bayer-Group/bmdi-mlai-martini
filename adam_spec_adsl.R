@@ -91,8 +91,15 @@ adam_spec_adsl <- function(
     labelled::var_label(adsl), 
     ~ stringr::str_detect(stringr::str_to_lower(.x), 'year|month|day|date|time')) %>% 
     which()
+  
   all_dates <- c(date_auto, names(date_lab))
   
+  all_times <- purrr::map_lgl(
+    adsl, ~{any(class(.) %in% c("difftime", "hms", "Period", "POSIXct", "POSIXt", "Date"))}
+  ) %>% which() %>% names()
+  
+  adsl <- adsl %>% 
+    mutate_at(unique(c(all_dates, all_times)), as.character)
   
   # identify pairs of categorical/numerical columns ####
   
@@ -245,17 +252,21 @@ adam_spec_adsl <- function(
   )
   
   # drop list ####
-  drop_list <- c(
-    drop,
-    all_dates,
-    all_num_codes,
-    all_comb_columns,
-    redundant_id,
-    redundant_trt,
-    empties
+  drop_list <- list(
+    "drop" = drop,
+    "datetimes" = c(
+      all_dates,
+      all_times
+    ) %>% unique,
+    "numcodes" = all_num_codes,
+    "combinations" = all_comb_columns,
+    "redundancies" = c(
+      redundant_id,
+      redundant_trt
+    ) %>% unique,
+    "empty" = empties
   ) %>% 
-    setdiff(keep) %>% 
-    unique()
+    purrr::map(~setdiff(., keep))
   
   # selected columns ####
   select_list <- c(
@@ -265,7 +276,7 @@ adam_spec_adsl <- function(
     all_numerics,
     keep
   ) %>% 
-    setdiff(drop_list)
+    setdiff(drop_list %>% unlist %>% unique)
   
   # check filter ####
 
@@ -300,6 +311,7 @@ adam_spec_adsl <- function(
     factor_levels = lev_list[intersect(select_list, names(lev_list))],
     dict = dict,
     drop_notes = NULL,
+    drop_list = drop_list,
     id = id,
     spec_id = 'adsl'
   )
