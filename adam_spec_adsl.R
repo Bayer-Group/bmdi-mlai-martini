@@ -313,6 +313,7 @@ adam_spec_adsl <- function(
     drop_notes = NULL,
     drop_list = drop_list,
     id = id,
+    trt = trt,
     spec_id = 'adsl'
   )
 

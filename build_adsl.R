@@ -80,10 +80,12 @@ build_adsl <- function(
       dplyr::filter(., !! rlang::parse_expr(filter_txt))
     }else{.}
     } %>%  
-          
- # adsl <- adsl %>% 
     dplyr::select(any_of(spec$select )) %>% 
-    dplyr::rename( `.id` = spec$id ) %>% 
+    dplyr::rename(".id" = spec$id) %>% 
+    {if(!is.null(spec$trt)){
+      dplyr::rename(".trt"= spec$trt)
+    }else{.}
+    } %>%  
     # remove constant columns after filtering
     janitor::remove_constant(na.rm=TRUE)
     
