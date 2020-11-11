@@ -91,12 +91,11 @@ prepare_ml <- function(
                   '>= |>=' = 'at_least_', 
                   '<'   = 'under_' ,
                   '>'   = 'over_',
-                  '-'   = '_to_',
                   ' years|years' = '_y',
                   '%'   = 'pct', 
                   #' '  ='_',
                   '[[:punct:]]|[[:space:]]' = '_',
-                  '__'  = '_',
+                  '_+'  = '_',
                   '_$' = ''
                   )
     
