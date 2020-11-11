@@ -46,7 +46,10 @@ prepare_ml <- function(
    vars_fct_expl_na    = NULL,
    vars_ordinalscore   = NULL,
    
-   one_hot             = TRUE
+   one_hot             = TRUE,
+   
+   outlier_remove      = FALSE,
+   outlier_ctrl        = list(coef = 3)
    
 ){
   
@@ -75,8 +78,8 @@ prepare_ml <- function(
   
     outcome_mode <- ifelse(is.numeric(outcome[, outcome_name, drop = TRUE]), "regression", "classification")
     
-    
-    
+    outcome <- outcome %>% 
+      dplyr::select(all_of('.id'), .out = tidyselect::all_of(outcome_name)) %>% 
     
     # MERGE  ####
     
@@ -111,17 +114,33 @@ prepare_ml <- function(
 
     # First merge preds and (selected) outcome by .id -> d_raw
     if (outcome_mode == "classification"){
-      level_order <- intersect(level_order, outcome[[outcome_name]])
+      level_order <- intersect(level_order, outcome[[".out"]])
       if (length(level_order) > 0){
         outcome <- outcome %>% 
-          mutate_at(outcome_name, ~fct_relevel(., level_order))
+          mutate_at(".out", ~fct_relevel(., level_order))
       }
     }
 
-    
+    if(outcome_mode == "regression" && outlier_remove){
+      
+      q <- quantile(outcome$.out, probs = c(0.25, 0.75), names = FALSE, na.rm = TRUE)
+      loq <- q + c(-1,1) * abs(outlier_ctrl$coef[1]) * diff(q)
+      
+      is_outlier <- !between(.out, loq[1], loq[2])
+      
+      outcome <- outcome %>% dplyr::filter(is.na(.out) | !!is_outlier)
+      
+      if (any(is_outlier)){
+        usethis::ui_info(paste0(
+          "Based on the outcome distribution, ", sum(is_outlier),
+          ifelse(sum(is_outlier)>1, " observations were "," observation was "),
+          "identified as outlier and removed from the input data prior to data splitting and preprocessing.\n"
+        ))
+      }
+      
+    }
     
     d_raw <- outcome %>%
-      dplyr::select(all_of('.id'), .out = tidyselect::all_of(outcome_name)) %>% 
       dplyr::inner_join( feature %>%  
                           # stringr::str_replace_all(x, clean_char)
                               dplyr::mutate_if(is.factor,
