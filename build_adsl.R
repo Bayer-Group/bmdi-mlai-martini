@@ -83,7 +83,7 @@ build_adsl <- function(
     dplyr::select(any_of(spec$select )) %>% 
     dplyr::rename(".id" = spec$id) %>% 
     {if(!is.null(spec$trt)){
-      dplyr::rename(".trt"= spec$trt)
+      dplyr::rename(., ".trt"= spec$trt)
     }else{.}
     } %>%  
     # remove constant columns after filtering

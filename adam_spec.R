@@ -46,77 +46,34 @@ adam_spec <- function(
     
   }
   
-  # library of data sets to be processed automatically
-  type_adsl <- c("adsl") %>% 
-    paste0(".sas7bdat$") %>% 
-    paste(collapse = "|")
-  type_bds <- c(
-      paste0(c(  "adegf" , "adpc",
-        "adlb",  "advs",   "adxb", "adxl"),
-               ".sas7bdat$"),
-      "adqs.*[.]sas7bdat$"
-    ) %>% 
-    paste(collapse = "|")
-  
-  # list all files in given directory ####
-  all_files <- list.files(path, pattern = ".sas7bdat", full.names = TRUE, recursive = include_sub)
-  doms      <- stringr::str_split( all_files, '/|\\\\')  %>%  
-    purrr::map( ~ .[length(.)]) %>% 
-    unlist() %>%
-    stringr::str_remove('.sas7bdat')
-  names(all_files) <- doms
-    
-  # subset according to user selection ####
-  import_files <- all_files
-  if(!is.null(keep)){
-    import_files <- all_files[ intersect(keep, names(all_files))]
-  }else{ 
-    if (!is.null(drop)){
-    import_files <- all_files[ names(all_files)[ !names(all_files) %in% drop]]
-    }
-  } 
+  file_info <- adam_domain_type(path, keep, drop)
   
   spec <- list()
   
   # adsl spec ####
   
-  if ( any(stringr::str_detect(import_files, type_adsl)) ){
+  if ( any(file_info$type == "adsl") ){
     
-    files_adsl <- import_files[ stringr::str_detect(import_files, type_adsl) ]
+    files_adsl <- file_info %>% dplyr::filter(type == "adsl") %>% dplyr::pull(file)
     
     spec <- spec %>% 
       append(
         purrr::map(files_adsl, ~ adam_spec_adsl(file = .x, filter = filter, attach_data = attach_data))
       )
     
-  }else{
-    files_adsl <- NULL
   }
   
   # bds spec ####
   
-  if (any(str_detect(import_files, type_bds))){
+  if ( any(file_info$type == "bds") ){
     
-    files_bds <- import_files[ stringr::str_detect(import_files, type_bds) ] 
+    files_bds <- file_info %>% dplyr::filter(type == "bds") %>% dplyr::pull(file)
     
     spec <- spec %>% 
       append(
         purrr::map(files_bds, ~ adam_spec_bds(file = .x, filter = filter, attach_data = attach_data))
       )
     
-  }else{
-    files_bds <- NULL
-  }
-  
-  files_ignored <- import_files [ ! names(import_files)  %in%  names(c(files_adsl, files_bds))  ]
-  
-  
-  if(length(files_ignored) >0 ){
-    usethis::ui_info( paste0(
-      crayon::silver('The following files were not processed as they are currently not in the library: \n\t'), 
-      crayon::blue(paste(names(files_ignored), collapse=', ')),
-    crayon::silver( '\nYou can use the adam_spec_*() functions as appropriate.'))
-    )
   }
   
   spec
