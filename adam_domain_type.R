@@ -16,7 +16,7 @@ adam_domain_type <- function(path, keep, deop){
     "adqs.*[.]sas7bdat$" ) %>% 
     paste(collapse = "|")
   
-  file_name  <- stringr::str_split(file, '/|\\\\')  %>%  
+  file_name  <- stringr::str_split(all_files, '/|\\\\')  %>%  
     purrr::map( ~ .[length(.)]) %>% 
     unlist()
   

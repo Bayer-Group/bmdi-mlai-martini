@@ -54,7 +54,10 @@ adam_spec <- function(
   
   if ( any(file_info$type == "adsl") ){
     
-    files_adsl <- file_info %>% dplyr::filter(type == "adsl") %>% dplyr::pull(file)
+    files_adsl <- file_info %>% 
+      dplyr::filter(type == "adsl") %>% 
+      dplyr::select(dom, file) %>% 
+      tibble::deframe()
     
     spec <- spec %>% 
       append(
@@ -67,7 +70,10 @@ adam_spec <- function(
   
   if ( any(file_info$type == "bds") ){
     
-    files_bds <- file_info %>% dplyr::filter(type == "bds") %>% dplyr::pull(file)
+    files_bds <- file_info %>% 
+      dplyr::filter(type == "bds") %>% 
+      dplyr::select(dom, file) %>% 
+      tibble::deframe()
     
     spec <- spec %>% 
       append(

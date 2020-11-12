@@ -28,6 +28,7 @@ prepare_ml <- function(
    feature,
    outcome,
    outcome_name = NULL,
+   level_order  = NULL,
    prep_recipe  = NULL,
    seed         = NULL,
    
@@ -57,52 +58,31 @@ prepare_ml <- function(
   
     # guess outcome column, if outcome has more than 2 columns use first that's not '.id'
   
-   if(is.null(outcome_name)){
-    outcome_options <- setdiff(colnames(outcome), '.id')
-    needs_guessing  <- length(outcome_options) > 1
-    outcome_name    <- outcome_options[1]
+    if(is.null(outcome_name)){
       
+      outcome_options <- setdiff(colnames(outcome), '.id')
+      needs_guessing  <- length(outcome_options) > 1
+      outcome_name    <- outcome_options[1]
+        
       if(needs_guessing){
-          usethis::ui_info( paste0(
+        usethis::ui_info( paste0(
           crayon::silver('The outcome object you provided has multiple options. The following option was chosen: \n'), # MARTINI chose: \n'), 
-          '\t' , crayon::magenta( outcome_name)     , '\n'   )
-        )
+          '\t' , crayon::magenta( outcome_name)     , '\n'
+        ))
       } 
-      
-   } else { # outcome name is provided
-     if(! outcome_name %in% colnames(outcome) ){ 
-       usethis::ui_stop( paste0('The column ', outcome_name, 
-                                ' is not present in the outcome data set. Please correct input of column_name or let the function choose from existing columns.\n'))
-     } 
-   } 
+        
+    } else { # outcome name is provided
+      if(! outcome_name %in% colnames(outcome) ){ 
+         usethis::ui_stop( paste0('The column ', outcome_name, 
+                                  ' is not present in the outcome data set. Please correct input of column_name or let the function choose from existing columns.\n'))
+      } 
+    } 
   
     outcome_mode <- ifelse(is.numeric(outcome[, outcome_name, drop = TRUE]), "regression", "classification")
     
     outcome <- outcome %>% 
-      dplyr::select(all_of('.id'), .out = tidyselect::all_of(outcome_name)) %>% 
-    
-    # MERGE  ####
-    
-   # clean_char <- c('<' = 'l', '<=' = 'leq', '>'= 'g', '>=' = 'geq' )
-    
-    
-    # ORDER MATTERS
-    renaming <- c('<= |<=' = 'less_than_',  
-                  '> '  = 'over_',
-                  '< '  = 'under_',
-                  ' - ' = '_to_',  
-                  '>= |>=' = 'at_least_', 
-                  '<'   = 'under_' ,
-                  '>'   = 'over_',
-                  ' years|years' = '_y',
-                  '%'   = 'pct', 
-                  #' '  ='_',
-                  '[[:punct:]]|[[:space:]]' = '_',
-                  '_+'  = '_',
-                  '_$' = ''
-                  )
-    
-    
+      dplyr::select(all_of('.id'), .out = tidyselect::all_of(outcome_name))
+
     if (!is.null(vars_fct_expl_na)){
       vars_fct_expl_na <- feature %>% 
         select_if(is.factor) %>% 
@@ -112,13 +92,19 @@ prepare_ml <- function(
       if (length(vars_fct_expl_na) == 0) vars_fct_expl_na <- NULL
     }
 
-    # First merge preds and (selected) outcome by .id -> d_raw
     if (outcome_mode == "classification"){
-      level_order <- intersect(level_order, outcome[[".out"]])
-      if (length(level_order) > 0){
-        outcome <- outcome %>% 
-          mutate_at(".out", ~fct_relevel(., level_order))
+      
+      outcome <- outcome %>% dplyr::mutate_at(".out", factor)
+      outcome_level <- outcome[[".out"]] %>% levels()
+      
+      if (!is.null(level_order)){
+        level_order <- intersect(level_order, outcome_level)
+        if (length(level_order) > 0){
+          outcome <- outcome %>% 
+            mutate_at(".out", ~fct_relevel(., level_order))
+        }
       }
+      
     }
 
     if(outcome_mode == "regression" && outlier_remove){
@@ -140,47 +126,63 @@ prepare_ml <- function(
       
     }
     
+    # RENAMING VECTOR ####
+    # order matters!
+    renaming <- c('<= |<=' = 'less_than_',  
+                  '> '  = 'over_',
+                  '< '  = 'under_',
+                  ' - ' = '_to_',  
+                  '>= |>=' = 'at_least_', 
+                  '<'   = 'under_' ,
+                  '>'   = 'over_',
+                  ' years|years' = '_y',
+                  '%'   = 'pct', 
+                  #' '  ='_',
+                  '[[:punct:]]|[[:space:]]' = '_',
+                  '_+'  = '_',
+                  '_$' = ''
+    )
+    
+    # FEATURE ####
+    
+    # transform all character columns into factors
+    feature <- feature %>% 
+      dplyr::mutate_if(is.character, factor) %>% 
+      dplyr::mutate_if(is.factor, ~ forcats::fct_relabel(., ~stringr::str_replace_all(., renaming) ))
+    
+    # identify columns with 'Other' level
+    vars_with_other <- feature %>% 
+      purrr::map_lgl(~{any(. == "Other")}) %>% 
+      which() %>% 
+      names()
+    
+    if(length(vars_with_other) > 0){
+      feature <- feature %>% dplyr::mutate_at(vars_with_other, ~forcats::fct_recode(., "other" = "Other"))
+    }
+    
+    # MERGE  ####
+    
     d_raw <- outcome %>%
-      dplyr::inner_join( feature %>%  
-                          # stringr::str_replace_all(x, clean_char)
-                              dplyr::mutate_if(is.factor,
-                                               ~  forcats::fct_relabel(., ~str_replace_all(., renaming) )) 
-                         , by = ".id") %>% 
-                # stringr::str_replace_all(x, clean_char) %>%
-                #    stringr::str_trim() %>%  
-                #    stringr::str_to_lower() } )
-                #  dplyr::mutate_if(is.character,  stringr::str_to_lower)  %>% 
-                #dplyr::mutate_if(is.factor,  forcats::fct_relabel, stringr::str_to_lower)  %>% 
-                #stringr::str_trim ) %>%  
-                #dplyr::mutate_if(is.character, ~  str_replace_all(.x, clean_char)) %>% 
-                
-      {if(outcome_mode == "classification"){
-        dplyr::mutate(., .out = factor(.out))
-      }else{.}
-      } %>% 
+      dplyr::inner_join(feature, by = ".id") %>% 
       # add explicit NAs to selected factor variables (optional)
       {if(!is.null(vars_fct_expl_na)){
-        dplyr::mutate_at(., vars_fct_expl_na, ~forcats::fct_explicit_na(., na_level = "missing"))
+        dplyr::mutate_at(., vars_fct_expl_na, ~forcats::fct_explicit_na(.x, na_level = "missing"))
       }else{.}
       }
-       #%>% 
-            # recode factors to numeric if should be used as ordinal
-            #mutate_at( any_of(ordinals, 
-            #         ~  as.numeric(factor(.x)) )
-    
-
+  
+    # DATA SPLIT ####
     
     if(!is.null(seed))  set.seed(seed)
-    
     
     strata <- NULL
     if(outcome_mode == "classification") strata <- '.out'
     
-    d_split <- d_raw  %>% 
-        rsample::initial_split(strata = tidyselect::all_of(strata))
+    d_split <- d_raw %>% rsample::initial_split(strata = tidyselect::all_of(strata))
     
     d_train_raw <- training(d_split)
     d_valid_raw <- testing( d_split)
+    
+    # PREPROCESSING PREP ####
     
     # derive variable lists for steps ####
     # ...identify skewed parameters -> logtrafo   ####
@@ -225,7 +227,8 @@ prepare_ml <- function(
     d_train_raw <- d_train_raw %>% dplyr::select(-tidyselect::any_of(vars_exclude))
     d_valid_raw <- d_valid_raw %>% dplyr::select(-tidyselect::any_of(vars_exclude))
     
-    # recipe ...####
+    # RECIPE ####
+    
     if (is.null(prep_recipe)){
       # Note that order is important when building the recipe, e.g. nzv and log before normalize, corr before 
       rcp <- as.formula(".out ~ .") %>%  
@@ -263,7 +266,7 @@ prepare_ml <- function(
             
         # lump factors
         recipes::step_other(., recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
-                   threshold = thres_lump) %>%  
+                   threshold = thres_lump, other = "other") %>%  
             
         # factor handling
         {if(! is.null(vars_ordinalscore)){
@@ -286,6 +289,8 @@ prepare_ml <- function(
     
     d_train <- rcp_prep %>%  recipes::juice()
     d_valid <- rcp_prep %>%  recipes::bake(d_valid_raw)
+    
+    # CLEAN UP ####
     
     for (i in 1:ncol(d_train)){
       attr(d_train[[i]], "format.sas") <- NULL
