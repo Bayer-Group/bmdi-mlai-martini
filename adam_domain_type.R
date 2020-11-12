@@ -2,7 +2,7 @@
 #' @param path ads path 
 #'
 
-adam_domain_type <- function(path, keep, deop){
+adam_domain_type <- function(path, keep, drop){
   
   all_files <- list.files(path, pattern = ".sas7bdat", full.names = TRUE)
   
