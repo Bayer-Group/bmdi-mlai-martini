@@ -2,9 +2,12 @@
 #' @param path ads path 
 #'
 
-adam_domain_type <- function(path, keep, deop){
+adam_domain_type <- function(path, keep = NULL, drop = NULL){
   
   all_files <- list.files(path, pattern = ".sas7bdat", full.names = TRUE)
+  
+  # if length == 0, 'path' might be a single file
+  if (length(all_files) == 0) all_files <- path
   
   # library of data sets to be processed automatically
   type_adsl <- c("adsl") %>% 
@@ -14,6 +17,9 @@ adam_domain_type <- function(path, keep, deop){
     paste0( c(  "adegf",   "adpc",
                 "adlb",  "advs",  "adxb", "adxl") , ".sas7bdat$"),
     "adqs.*[.]sas7bdat$" ) %>% 
+    paste(collapse = "|")
+  type_occds <- c("admh") %>% 
+    paste0(".sas7bdat$") %>% 
     paste(collapse = "|")
   
   file_name  <- stringr::str_split(all_files, '/|\\\\')  %>%  
@@ -25,6 +31,8 @@ adam_domain_type <- function(path, keep, deop){
       "adsl"
     } else if (stringr::str_detect(., type_bds)){
       "bds"
+    } else if (stringr::str_detect(., type_occds)){
+      "occds"
     } else {
       "none"
     }
