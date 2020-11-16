@@ -83,15 +83,6 @@ prepare_ml <- function(
     outcome <- outcome %>% 
       dplyr::select(all_of('.id'), .out = tidyselect::all_of(outcome_name))
 
-    if (!is.null(vars_fct_expl_na)){
-      vars_fct_expl_na <- feature %>% 
-        select_if(is.factor) %>% 
-        colnames() %>% 
-        intersect(vars_fct_expl_na)
-      # catch special case 'no factors in feature'
-      if (length(vars_fct_expl_na) == 0) vars_fct_expl_na <- NULL
-    }
-
     if (outcome_mode == "classification"){
       
       outcome <- outcome %>% dplyr::mutate_at(".out", factor)
@@ -145,30 +136,45 @@ prepare_ml <- function(
     
     # FEATURE ####
     
+    if (!is.null(vars_fct_expl_na)){
+      vars_fct_expl_na <- feature %>% 
+        select_if(is.factor) %>% 
+        colnames() %>% 
+        intersect(vars_fct_expl_na)
+      # catch special case 'no factors in feature'
+      if (length(vars_fct_expl_na) == 0) vars_fct_expl_na <- NULL
+    }
+    
     # transform all character columns into factors
     feature <- feature %>% 
       dplyr::mutate_if(is.character, factor) %>% 
-      dplyr::mutate_if(is.factor, ~ forcats::fct_relabel(., ~stringr::str_replace_all(., renaming) ))
-    
-    # identify columns with 'Other' level
-    vars_with_other <- feature %>% 
-      purrr::map_lgl(~{any(. == "Other")}) %>% 
-      which() %>% 
-      names()
-    
-    if(length(vars_with_other) > 0){
-      feature <- feature %>% dplyr::mutate_at(vars_with_other, ~forcats::fct_recode(., "other" = "Other"))
-    }
-    
-    # MERGE  ####
-    
-    d_raw <- outcome %>%
-      dplyr::inner_join(feature, by = ".id") %>% 
+      dplyr::mutate_if(is.factor, ~ forcats::fct_relabel(., ~stringr::str_replace_all(., renaming) )) %>% 
       # add explicit NAs to selected factor variables (optional)
       {if(!is.null(vars_fct_expl_na)){
         dplyr::mutate_at(., vars_fct_expl_na, ~forcats::fct_explicit_na(.x, na_level = "missing"))
       }else{.}
       }
+    
+    # identify columns with 'Other' level
+    level_other <- "other"
+    
+    vars_with_other <- feature %>% 
+      purrr::map_lgl(~{any(stringr::str_to_lower(.) == stringr::str_to_lower(level_other))}) %>% 
+      which() %>% 
+      names()
+    
+    if(length(vars_with_other) > 0){
+      feature <- feature %>% 
+        dplyr::mutate_at(vars_with_other, ~{
+          if (any(. == stringr::str_to_title(level_other))) forcats::fct_recode(., !!sym(level_other) := stringr::str_to_title(level_other))
+          if (any(. == stringr::str_to_upper(level_other))) forcats::fct_recode(., !!sym(level_other) := stringr::str_to_upper(level_other))
+        })
+    }
+    
+    # MERGE  ####
+    
+    d_raw <- outcome %>%
+      dplyr::inner_join(feature, by = ".id")
   
     # DATA SPLIT ####
     
@@ -266,7 +272,7 @@ prepare_ml <- function(
             
         # lump factors
         recipes::step_other(., recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
-                   threshold = thres_lump, other = "other") %>%  
+                   threshold = thres_lump, other = level_other) %>%  
             
         # factor handling
         {if(! is.null(vars_ordinalscore)){
