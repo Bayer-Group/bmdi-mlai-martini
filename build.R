@@ -107,6 +107,25 @@ build <- function(
         
       }
       
+      # occds spec ####
+      if ( any(file_info$type == "occds") ){
+        
+        files_occds <- file_info %>% 
+          dplyr::filter(type == "occds") %>% 
+          dplyr::select(dom, file) %>% 
+          tibble::deframe()
+        
+        interim <- interim %>% 
+          append(
+            purrr::map(files_occds, 
+                       ~adam_spec_occds(file = .x, filter = filter, attach_data = attach_data)%>% 
+                         {if(! spec_only){
+                           build_occds(.)
+                         } else {.} }
+            )
+          )
+        
+      }
       
       #spec
   }else{ # from_spec; spec is provided 
@@ -123,7 +142,7 @@ build <- function(
   }
   
  
-  
+  # TODO add explicit NAs to all occds columns
   
   # create output object
   
@@ -133,11 +152,26 @@ build <- function(
     
   }else{
     
-    prepped_join <-   purrr::map(interim, ~.[['data']]) %>% 
-      purrr::reduce(dplyr::inner_join, by='.id')
-    
     prepped_dict <-   purrr::map(interim, ~.[['dict']]) %>% 
       purrr::reduce(dplyr::bind_rows)
+    
+    # extract all occds columns for explicit factor na
+    vars_fct_expl_na <- prepped_dict %>% 
+      dplyr::filter(type == 'occds') %>% 
+      dplyr::pull(column)
+    
+    prepped_join <-   purrr::map(interim, ~.[['data']]) %>% 
+      purrr::reduce(dplyr::inner_join, by = '.id') %>% 
+      dplyr::mutate_at(vars_fct_expl_na, ~{
+        if(is.numeric(.x)){
+          tidyr::replace_na(.x, replace = 0L )
+        }else{
+          forcats::fct_explicit_na(.x, na_level= 'none') %>% 
+            forcats::fct_shift(n = -1)
+        }  
+      })
+    
+    
     
     # out <- list(
     #   data = prepped_join,

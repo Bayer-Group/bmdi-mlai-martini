@@ -125,7 +125,8 @@ build_adsl <- function(
         label = dplyr::case_when(
             !is.na(labs) ~ labs,
             TRUE ~ param),
-        source = spec$spec_id 
+        source = spec$spec_id ,
+        type   = 'adsl'
       )  
     
   }

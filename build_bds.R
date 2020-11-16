@@ -148,7 +148,8 @@ build_bds <- function(
         '.key') %>% na.omit)) %>% 
     dplyr::distinct() %>% 
     dplyr::rename('column' = '.key') %>% 
-    dplyr::mutate(source = spec$spec_id) 
+    dplyr::mutate(source = spec$spec_id) %>% 
+    dplyr::mutate(type   = 'bds') 
   
   # output ####
   list(

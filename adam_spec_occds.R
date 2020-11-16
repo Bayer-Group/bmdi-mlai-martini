@@ -3,7 +3,7 @@
 #' 
 #' @param file the sas file 
 #' @param id name of id column to be kept and used for merge of data sets
-#' @param param name of the column that identifies the parameter. Defaults to NULL, will be guessed if not set (see Details).
+#' @param label name of the column that identifies the occurrence labels. Defaults to NULL, will be guessed if not set (see Details). 
 #' @param time name of the column that is used for time filtering. Defaults to NULL, will be guessed if not set (see Details).
 #' @param value optional value column (e.g. AE severity). Defaults to NULL, which leads to an Y/N coding of the event
 #' @param filter character vector of filters to be applied to the bds data set. 
@@ -12,9 +12,9 @@
 #' 
 #' @description 
 #' For file names 'adae.sas7bdat', 'adcm.sas7bdat' and 'admh.sas7bdat', values for
-#' arguments \code{param} and \code{time} will be guessed if not provided. 
+#' arguments \code{label} and \code{time} will be guessed if not provided. 
 #' Guesses will be the first of the following options that matches a column name (exact match).
-#' @section \code{param}
+#' @section \code{label}
 #' \itemize{
 #'      \item[adae] ...
 #'      \item[adcm] ...
@@ -26,13 +26,14 @@
 #'      \item[adcm] ...
 #'      \item[admh] ...
 #' }
-#' Function will escape if one of param or value are neither provided nor can be guessed.
+#' Function will escape if one of label or value are neither provided nor can be guessed.
+#' Note that the original values in the labels column will end up being the parameter labels, not the parameters in the ML feature matrix. These will be derived later using \code{make_names()} or the like.
 
 # function adam_spec_occds() ####
-adam_spec_occ <- function(
+adam_spec_occds <- function(
   file,
   id          = 'SUBJID', 
-  param       = NULL,
+  label       = NULL,
   time        = NULL,
   value       = NULL,
   filter      = NULL,
@@ -51,7 +52,7 @@ adam_spec_occ <- function(
     
     file   = '../admh.sas7bdat'
     id     = 'SUBJID'
-    param  = NULL
+    label  = NULL
     time   = NULL 
     value  = NULL 
     filter = NULL
@@ -62,15 +63,15 @@ adam_spec_occ <- function(
   # READ occds ####
   occds <- haven::read_sas(file)
   
-  # GUESS param ####
-  if (is.null(param)){
-    guess_options <- adam_guess(file)$param
-    param <- guess_options %>% 
+  # GUESS label ####
+  if (is.null(label)){
+    guess_options <- adam_guess(file)$label
+    label <- guess_options %>% 
       intersect(colnames(occds)) %>% 
       head(1)
-    if (length(param) == 0){
+    if (length(label) == 0){
       usethis::ui_stop(
-        paste0("Parameter '", "param", "' needs to be provided.\n")
+        paste0("Parameter '", "label", "' needs to be provided.\n")
       )
     }
   }
@@ -122,13 +123,13 @@ adam_spec_occ <- function(
    
   # use unfiltered data 
   dict  <- occds %>% 
-    dplyr::select( label = param ) %>% 
+    dplyr::select( label = label ) %>% 
     distinct() %>%
     dplyr::mutate(source = source)
   
   
   
-  col_select <- c('label' = param)
+  col_select <- c('label' = label)
   if(!is.null(value)) col_select <- c(col_select, value = value)
   
   # output ####
