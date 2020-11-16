@@ -64,8 +64,7 @@ adam_spec_occ <- function(
   
   # GUESS param ####
   if (!is.null(param)){
-    key <- "param"
-    guess_options <- adam_guess(file, key)
+    guess_options <- adam_guess(file, key)$param
     param <- guess_options %>% 
       intersect(colnames(occds)) %>% 
       head(1)
