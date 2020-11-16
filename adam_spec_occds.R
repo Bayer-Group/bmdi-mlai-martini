@@ -4,7 +4,8 @@
 #' @param file the sas file 
 #' @param id name of id column to be kept and used for merge of data sets
 #' @param param name of the column that identifies the parameter. Defaults to NULL, will be guessed if not set (see Details).
-#' @param time Defaults to NULL, will be guessed if not set (see Details).
+#' @param time name of the column that is used for time filtering. Defaults to NULL, will be guessed if not set (see Details).
+#' @param value optional value column (e.g. AE severity). Defaults to NULL, which leads to an Y/N coding of the event
 #' @param filter character vector of filters to be applied to the bds data set. 
 #' Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL. 
 #' @param attach_data boolean. attach the imported raw data
@@ -30,11 +31,12 @@
 # function adam_spec_occds() ####
 adam_spec_occ <- function(
   file,
-  id     = 'SUBJID', 
-  param  = NULL,
-  time   = NULL,
-  filter = NULL,
-  pre    = FALSE,
+  id          = 'SUBJID', 
+  param       = NULL,
+  time        = NULL,
+  value       = NULL,
+  filter      = NULL,
+  pre_study   = FALSE,
   attach_data = FALSE,
   ...
 ){
@@ -47,13 +49,11 @@ adam_spec_occ <- function(
     require(haven)
     require(labelled)
     
-    file = 'real_world_data/99999/admh.sas7bdat'
-    id = 'SUBJID'
-    param  =  NULL
-    label  = NULL
-    unit   = NULL # AVALU, xxSTRESU, ORESSU
+    file   = '../admh.sas7bdat'
+    id     = 'SUBJID'
+    param  = NULL
     time   = NULL 
-    value  = NULL #c(AVAL, CHG)
+    value  = NULL 
     filter = NULL
     
   }
@@ -63,21 +63,95 @@ adam_spec_occ <- function(
   occds <- haven::read_sas(file)
   
   # GUESS param ####
-  if (!is.null(param)){
+  if (is.null(param)){
     guess_options <- adam_guess(file)$param
     param <- guess_options %>% 
       intersect(colnames(occds)) %>% 
       head(1)
     if (length(param) == 0){
       usethis::ui_stop(
-        paste0("Parameter '", key, "' needs to be provided.\n")
+        paste0("Parameter '", "param", "' needs to be provided.\n")
       )
     }
   }
   
+  # GUESS time ####
+  if (is.null(time) && pre_study){
+    guess_options <- adam_guess(file)$time
+    time <- guess_options %>% 
+      intersect(colnames(occds)) %>% 
+      head(1)
+    if (length(time) == 0){
+      usethis::ui_stop(
+        paste0("Parameter '", "time", "' needs to be provided.\n")
+      )
+    }
+  }
   
+  # if requested, build and add pre-study filter
+  if(pre_study){
+    if(!time %in% colnames(occds)) usethis::ui_stop('pre_study filter could not be built.')
+    filter_time <- paste0( time , ' < 0 | is.na(', time, ')')
+    filter      <- filter %>%  append(filter_time)
+  }      
+  
+  
+  
+  
+  # filter check ####
+  
+  keep_filter <- purrr::map_lgl(filter, function(x){
+    try_it <- try(
+      {occds %>% dplyr::filter(!! rlang::parse_expr(x))},
+      silent = TRUE
+    )
+    is_error <- "try-error" %in% class(try_it)
+    is_norow <- FALSE
+    if (!is_error) is_norow <- nrow(try_it) == 0
+    !(is_error || is_norow)
+    
+  })
+  
+  actual_filter <- filter[keep_filter]
 
   
+  
+  # dictionary   ####
+  source <- adam_domain_type(file)$dom
+  
+   
+  # use unfiltered data 
+  dict  <- occds %>% 
+    dplyr::select( label = param ) %>% 
+    distinct() %>%
+    dplyr::mutate(source = source)
+  
+  
+  
+  col_select <- c('label' = param)
+  if(!is.null(value)) col_select <- c(col_select, value = value)
+  
+  # output ####
+  
+  out <- list(
+    file    = file,
+    data    = NULL,
+    type    = "occds",
+    id      = id,
+    filter  = actual_filter,
+    dict    = dict,
+    spec_id = source
+  ) %>% 
+    append(
+      col_select %>% as.list()
+    )
+  
+  
+  if(attach_data){
+    out$data <- occds
+  }
+  
+  out
   
   
 

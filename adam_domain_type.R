@@ -18,7 +18,7 @@ adam_domain_type <- function(path, keep = NULL, drop = NULL){
                 "adlb",  "advs",  "adxb", "adxl") , ".sas7bdat$"),
     "adqs.*[.]sas7bdat$" ) %>% 
     paste(collapse = "|")
-  type_occds <- c("admh") %>% 
+  type_occds <- c("adae", "adcm", "admh") %>% 
     paste0(".sas7bdat$") %>% 
     paste(collapse = "|")
   

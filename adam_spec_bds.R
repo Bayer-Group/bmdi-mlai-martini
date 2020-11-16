@@ -147,7 +147,7 @@ adam_spec_bds <- function(
   actual_filter <- filter[keep_filter]
 
  
-  # dictionary
+  # dictionary  ####
   source <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
     tail(1) %>% stringr::str_remove('.sas7bdat')
   
