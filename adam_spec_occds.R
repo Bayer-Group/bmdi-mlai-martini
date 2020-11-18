@@ -55,7 +55,8 @@ adam_spec_occds <- function(
     label  = NULL
     time   = NULL 
     value  = NULL 
-    filter = NULL
+    filter = NULL#
+    pre_study = TRUE
     
   }
   
