@@ -166,8 +166,9 @@ prepare_ml <- function(
     if(length(vars_with_other) > 0){
       feature <- feature %>% 
         dplyr::mutate_at(vars_with_other, ~{
-          if (any(. == stringr::str_to_title(level_other))) forcats::fct_recode(., !!sym(level_other) := stringr::str_to_title(level_other))
-          if (any(. == stringr::str_to_upper(level_other))) forcats::fct_recode(., !!sym(level_other) := stringr::str_to_upper(level_other))
+          if (stringr::str_to_title(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_title(level_other))
+          if (stringr::str_to_upper(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_upper(level_other))
+          if (stringr::str_to_lower(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_lower(level_other))
         })
     }
     
