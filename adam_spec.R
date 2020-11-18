@@ -34,8 +34,9 @@ adam_spec <- function(
   path, 
   filter      = NULL,
   keep        = NULL,
-  drop        = NULL ,
-  attach_data = FALSE){
+  drop        = NULL,
+  attach_data = FALSE,
+  ...){
   
   if(FALSE){
     # path = 'real_world_data/99999/'
@@ -91,7 +92,7 @@ adam_spec <- function(
     
     spec <- spec %>% 
       append(
-        purrr::map(files_occds, ~ adam_spec_occds(file = .x, filter = filter, attach_data = attach_data))
+        purrr::map(files_occds, ~ adam_spec_occds(file = .x, filter = filter, attach_data = attach_data, ...))
       )
     
   }

@@ -162,7 +162,7 @@ build <- function(
     
     prepped_join <-   purrr::map(interim, ~.[['data']]) %>% 
       purrr::reduce(dplyr::inner_join, by = '.id') %>% 
-      dplyr::mutate_at(vars_fct_expl_na, ~{
+      dplyr::mutate_at(vars(tidyselect::any_of(vars_fct_expl_na)), ~{
         if(is.numeric(.x)){
           tidyr::replace_na(.x, replace = 0L )
         }else{

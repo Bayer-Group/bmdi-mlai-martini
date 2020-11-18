@@ -78,7 +78,7 @@ build_occds <- function(
       dplyr::mutate(., value = !!rlang::sym(spec$value))
     }} %>% 
     dplyr::distinct() %>% 
-    dplyr::filter(spec$label != "") %>% 
+    dplyr::filter(!spec$label %in% c("", " ")) %>% 
     dplyr::mutate(param = make.names(label) %>% stringr::str_replace_all("[.]", "_"))
   
   
