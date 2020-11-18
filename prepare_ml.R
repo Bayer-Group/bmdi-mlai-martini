@@ -12,7 +12,7 @@
 #' @param prep_step_corr      = TRUE,
 #' @param prep_step_dummy FALSE converted  variables to be 
 #' @param thres_log           = 2,
-#' @param thres_cor           = .9,
+#' @param thres_corr           = .9,
 #' @param thres_lump
 #' @param thres_imp
 #' @param vars_imp_ignore
@@ -39,7 +39,7 @@ prepare_ml <- function(
    prep_step_dummy     = TRUE,
    
    thres_log           = 2,
-   thres_cor           = 0.9,
+   thres_corr          = 0.9,
    thres_lump          = 0.05,
    thres_imp           = 0.8,
    
@@ -100,12 +100,12 @@ prepare_ml <- function(
 
     if(outcome_mode == "regression" && outlier_remove){
       
-      q <- quantile(outcome$.out, probs = c(0.25, 0.75), names = FALSE, na.rm = TRUE)
+      # with c=outlier_ctrl$coef, exclude observations outside [q25 - c*iqr;  q75 + c*iqr]
+      q   <- quantile(outcome$.out, probs = c(0.25, 0.75), names = FALSE, na.rm = TRUE)
       loq <- q + c(-1,1) * abs(outlier_ctrl$coef[1]) * diff(q)
-      
       is_outlier <- !between(.out, loq[1], loq[2])
       
-      outcome <- outcome %>% dplyr::filter(is.na(.out) | !!is_outlier)
+      outcome    <- outcome %>% dplyr::filter(is.na(.out) | !!is_outlier)
       
       if (any(is_outlier)){
         usethis::ui_info(paste0(
@@ -266,7 +266,7 @@ prepare_ml <- function(
         {if(prep_step_corr){
           suppressMessages(
             recipes::step_corr(., recipes::all_numeric(), -recipes::all_outcomes(), 
-                               threshold = thres_cor)
+                               threshold = thres_corr)
           )     }else{.}
         } %>%  
             
@@ -307,6 +307,68 @@ prepare_ml <- function(
     attr(d_train, "label") <- NULL
     attr(d_valid, "label") <- NULL
     
+    
+# document preparation parameter setting ####
+# NOTE TEMP text slots will be removed once documentation is fully available
+# TODO  documentation of preprocessing parameters    
+    prep_params <- list(
+      
+      # log trafo
+      thres_log  = list(
+        value = ifelse(prep_step_log,  thres_log, NA),
+        text  = ifelse(prep_step_log,
+                       paste0('Variables were logtransformed if e1071::skewness() >',  thres_log,'.'),
+                       'No variables were logtransformed.')
+      ),
+      
+      # correlated variables
+      thres_corr  = list(
+        value = ifelse(prep_step_corr, thres_corr, NA),
+        text  = ifelse(prep_step_corr,
+                       paste0('The applied cutoff for removal of variables due to high correlations was ',  thres_corr,'.'),
+                       'No variables were removed for reasons of high correlation.')
+      ),  
+        
+        # lump factor levels (always applied)
+        thres_lump = list(
+          value = thres_lump,
+          text  = paste0('Low frequency factor levels were lumped using recipes::step_other(threshold = ', thres_lump, '). ')  
+        ),
+        
+        # imputation/dropping of variables based on available probability
+        imp_ignore = list(
+          value = ifelse(prep_step_knnimpute, thres_imp,       NA),
+          text  = ifelse(prep_step_knnimpute,
+                         paste0('Variables were dropped if the proportion of available data was less than ', 
+                               thres_imp*100, '% or if they were specified in vars_imp_ignore.')  ,
+                         'No imputation was done on the feature matrix.')
+          ),
+          
+          # nzv 
+          nzv = list(
+            value = c(freq_cut = 95/5, unique_cut = 10),
+            text  = paste('Highly sparse and unbalanced variables were dropped using recipes::step_nzv(options = list(freq_cut = 95/5, unique_cut = 10).'
+            )
+          )
+          
+    )    
+    
+     if(outcome_mode == 'regression' ){
+            prep_params <- append(prep_params, 
+                                  outlier = list(
+                                    value = ifelse(outlier_remove, unlist(outlier_ctrl), NA ),
+                                    text  = paste0("Based on the outcome distribution, observations outside the interval ",
+                                                   '[q25 - ', outlier_ctrl$coef, '*iqr; ',  
+                         'q75 + ', outlier_ctrl$coef, '*iqr] were removed prior to data splitting and preprocessing.'))
+            )
+          } 
+          
+          
+          
+          
+          
+   # OUTPUT #### 
+    
     prep_output <- list(
       data_raw = list(
         train = d_train_raw,
@@ -334,7 +396,9 @@ prepare_ml <- function(
             source = "user_outcome"
           ) %>%
             mutate(label = labelled::var_label(outcome)[[outcome_name]])
-        )
+        ),
+      
+      prep_params = prep_params
       
     )
     
@@ -342,4 +406,36 @@ prepare_ml <- function(
     
     prep_output
     
+}
+
+
+
+# dev
+if(FALSE){
+ # feature 
+ #  outcome 
+  outcome_name = NULL 
+  level_order  = NULL 
+  prep_recipe  = NULL 
+  seed         = NULL 
+  
+  prep_step_normalize = TRUE 
+  prep_step_knnimpute = TRUE 
+  prep_step_log       = TRUE 
+  prep_step_corr      = TRUE 
+  prep_step_dummy     = TRUE 
+  
+  thres_log           = 2 
+  thres_corr          = 0.9 
+  thres_lump          = 0.05 
+  thres_imp           = 0.8 
+  
+  vars_imp_ignore     = NULL 
+  vars_fct_expl_na    = NULL 
+  vars_ordinalscore   = NULL 
+  
+  one_hot             = TRUE 
+  
+  outlier_remove      = FALSE 
+  outlier_ctrl        = list(coef = 3)
 }
