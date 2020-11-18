@@ -80,5 +80,21 @@ adam_spec <- function(
     
   }
   
+  # occds spec ####
+  
+  if ( any(file_info$type == "occds") ){
+    
+    files_occds <- file_info %>% 
+      dplyr::filter(type == "occds") %>% 
+      dplyr::select(dom, file) %>% 
+      tibble::deframe()
+    
+    spec <- spec %>% 
+      append(
+        purrr::map(files_occds, ~ adam_spec_occds(file = .x, filter = filter, attach_data = attach_data))
+      )
+    
+  }
+  
   spec
 }
