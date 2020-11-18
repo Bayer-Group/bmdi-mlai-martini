@@ -123,7 +123,7 @@ adam_spec_occds <- function(
    
   # use unfiltered data 
   dict  <- occds %>% 
-    dplyr::select( label = label ) %>% 
+    dplyr::select( label = !!rlang::sym(label) ) %>% 
     distinct() %>%
     dplyr::mutate(source = source)
   
