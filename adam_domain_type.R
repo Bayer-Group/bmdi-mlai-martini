@@ -4,7 +4,7 @@
 
 adam_domain_type <- function(path, keep = NULL, drop = NULL){
   
-  all_files <- list.files(path, pattern = ".sas7bdat", full.names = TRUE)
+  all_files <- list.files(path, pattern = ".sas7bdat", full.names = TRUE, recursive = TRUE)
   
   # if length == 0, 'path' might be a single file
   if (length(all_files) == 0) all_files <- path
