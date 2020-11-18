@@ -38,8 +38,7 @@ adam_spec_occds <- function(
   value       = NULL,
   filter      = NULL,
   pre_study   = FALSE,
-  attach_data = FALSE,
-  ...
+  attach_data = FALSE
 ){
   
   
