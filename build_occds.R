@@ -58,7 +58,7 @@ build_occds <- function(
     occds_full <- spec$data
   }
   
-  col_select <- spec[c("label", "value")] %>% 
+  col_select <- spec[c("label", "value", "valuen")] %>% 
     unlist() %>%  na.omit() %>% as.character()
   
   
@@ -73,28 +73,42 @@ build_occds <- function(
     dplyr::select( tidyselect::any_of( c(spec$id, col_select  ))) %>% 
     dplyr::rename( c(`.id` = spec$id , label =  spec$label)) %>% 
     {if(is.null(spec$value)){
-      dplyr::mutate(., value = "yes")
+      dplyr::mutate(., value = factor("yes"))
     } else {
-      dplyr::mutate(., value = !!rlang::sym(spec$value))
+      {if (is.null(spec$valuen)){
+        dplyr::mutate(., value = factor(!!rlang::sym(spec$value)))
+      }else{
+        dplyr::mutate(., value = forcats::fct_reorder(!!rlang::sym(spec$value), !!rlang::sym(spec$valuen))) %>% 
+          select(- any_of( spec$valuen))
+      }}
     }} %>% 
-    dplyr::distinct() %>% 
+    # dplyr::distinct() %>% 
     dplyr::filter(!spec$label %in% c("", " ")) %>% 
-    dplyr::mutate(param = make.names(label) %>% stringr::str_replace_all("[.]", "_"))
+    dplyr::mutate(param = make.names(label) %>% 
+                    stringr::str_replace_all("[.]", "_") %>%
+                    stringr::str_to_lower()) 
+  
+  
   
   
   # TODO for pivoting: add parameter values_fn, currently maximum is chosen 
-  values_fn <- base::max
+  values_fn <- function(x) base::max(as.numeric(x))
   # pivot   ####
   
   
   occds_wide <- occds %>% 
-    dplyr::select(tidyselect::all_of(c('value', 'param', '.id'))) %>% 
-    tidyr::pivot_wider(
-      names_from  = param, 
-      values_from = value,
-      values_fn   = values_fn
-    ) 
-  
+      dplyr::select(tidyselect::all_of(c('value', 'param', '.id'))) %>% 
+      { if(! spec$count){
+         dplyr::count(., .id, param, name = 'value' )  
+      } else {.}
+      }  %>%   
+      tidyr::pivot_wider(
+        names_from  = param, 
+        values_from = value,
+        values_fn   = values_fn
+      ) 
+    
+      
   # transform all character columns to factors except for .id, which is kept as-is
   char2fct <- occds_wide %>% 
     select_if(is.character) %>% 
