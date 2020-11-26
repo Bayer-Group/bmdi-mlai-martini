@@ -231,15 +231,13 @@ prepare_ml <- function(
       
     ) %>% unique()
     
-    d_train_raw <- d_train_raw %>% dplyr::select(-tidyselect::any_of(vars_exclude))
-    d_valid_raw <- d_valid_raw %>% dplyr::select(-tidyselect::any_of(vars_exclude))
-    
     # RECIPE ####
     
     if (is.null(prep_recipe)){
-      # Note that order is important when building the recipe, e.g. nzv and log before normalize, corr before 
+      # Note that order is important when building the recipe, e.g. nzv and log before normalize 
       rcp <- as.formula(".out ~ .") %>%  
         recipes::recipe(data = d_train_raw  ) %>% 
+        recipes::step_rm(tidyselect::any_of(vars_exclude)) %>% 
         recipes::update_role(.id, new_role = "ID") %>% 
         
         # ...omit observations with missing endpoint ####
@@ -265,11 +263,10 @@ prepare_ml <- function(
         
         # remove highly correlated variables
         {if(prep_step_corr){
-          suppressMessages(
             recipes::step_corr(., recipes::all_numeric(), -recipes::all_outcomes(), 
-                               threshold = thres_corr)
-          )     }else{.}
-        } %>%  
+                               threshold = thres_corr, method = "pearson",
+                               use = "pairwise.complete.obs")
+        }else{.}} %>%  
             
         # lump factors
         recipes::step_other(., recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
@@ -291,8 +288,9 @@ prepare_ml <- function(
       rcp <- prep_recipe
     }
     
-    rcp_prep <- rcp %>% 
-      recipes::prep(strings_as_factors = FALSE)
+    rcp_prep <- suppressWarnings(
+      rcp %>% recipes::prep(strings_as_factors = FALSE)
+    )
     
     d_train <- rcp_prep %>%  recipes::juice()
     d_valid <- rcp_prep %>%  recipes::bake(d_valid_raw)
