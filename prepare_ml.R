@@ -288,12 +288,15 @@ prepare_ml <- function(
       rcp <- prep_recipe
     }
     
-    rcp_prep <- suppressWarnings(
-      rcp %>% recipes::prep(strings_as_factors = FALSE)
-    )
+    rcp_prep <- rcp %>% 
+      {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE)} %>% 
+      pluck("result")
     
     d_train <- rcp_prep %>%  recipes::juice()
-    d_valid <- rcp_prep %>%  recipes::bake(d_valid_raw)
+    
+    d_valid <- rcp_prep %>% 
+      {purrr::quietly(recipes::bake)(., d_valid_raw)} %>% 
+      pluck("result")
     
     # CLEAN UP ####
     
