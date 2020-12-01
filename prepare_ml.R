@@ -3,7 +3,7 @@
 #' @param feature feature matrix in wide format, e.g. output object of \code{build()}, i.e. containing \code{.id} column and predictors 
 #' @param outcome tibble containing \code{.id} column and the outcome of interest
 #' @param outcome_name ,
-#' @param outcome_order = NULL (only used for classification)
+#' @param level_order  = NULL (only used for classification)
 #' @param prep_recipe  = NULL,
 #' @param seed         = NULL,
 #' @param prep_step_normalize = TRUE,
@@ -307,9 +307,9 @@ prepare_ml <- function(
     attr(d_valid, "label") <- NULL
     
     
-# document preparation parameter setting ####
-# NOTE TEMP text slots will be removed once documentation is fully available
-# TODO  documentation of preprocessing parameters    
+    # document preparation parameter setting ####
+    # NOTE TEMP text slots will be removed once documentation is fully available
+    # TODO  documentation of pre-processing parameters    
     prep_params <- list(
       
       # log trafo
