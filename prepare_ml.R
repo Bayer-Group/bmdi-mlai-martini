@@ -55,7 +55,7 @@ prepare_ml <- function(
 ){
   
     # OUTCOME ####
-  
+    
     # guess outcome column, if outcome has more than 2 columns use first that's not '.id'
   
     if(is.null(outcome_name)){
@@ -77,6 +77,10 @@ prepare_ml <- function(
                                   ' is not present in the outcome data set. Please correct input of column_name or let the function choose from existing columns.\n'))
       } 
     } 
+   
+    # extract label of outcome before potentially mutating to factor (classification)
+    outcome_label <- labelled::var_label(outcome)[[outcome_name]]
+    if(is.null(outcome_label)) outcome_label <- outcome_name
   
     outcome_mode <- ifelse(is.numeric(outcome[, outcome_name, drop = TRUE]), "regression", "classification")
     
@@ -85,7 +89,7 @@ prepare_ml <- function(
 
     if (outcome_mode == "classification"){
       
-      outcome <- outcome %>% dplyr::mutate_at(".out", factor)
+      outcome <- outcome %>% dplyr::mutate_at(".out", factor) # strips labels
       outcome_level <- outcome[[".out"]] %>% levels()
       
       if (!is.null(level_order)){
@@ -117,6 +121,10 @@ prepare_ml <- function(
       
     }
     
+   
+    
+    # FEATURE ####
+    
     # RENAMING VECTOR ####
     # order matters!
     renaming <- c('<= |<=' = 'less_than_',  
@@ -134,7 +142,7 @@ prepare_ml <- function(
                   '_$' = ''
     )
     
-    # FEATURE ####
+    
     
     if (!is.null(vars_fct_expl_na)){
       vars_fct_expl_na <- feature %>% 
@@ -145,7 +153,7 @@ prepare_ml <- function(
       if (length(vars_fct_expl_na) == 0) vars_fct_expl_na <- NULL
     }
     
-    # transform all character columns into factors
+    # transform all character columns into factors (strips labels)
     feature <- feature %>% 
       dplyr::mutate_if(is.character, factor) %>% 
       dplyr::mutate_if(is.factor, ~ forcats::fct_relabel(., ~stringr::str_replace_all(., renaming) )) %>% 
