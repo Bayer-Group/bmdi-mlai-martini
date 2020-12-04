@@ -189,7 +189,8 @@ prepare_ml <- function(
     d_train_raw <- training(d_split)
     d_valid_raw <- testing( d_split)
     
-    # PREPROCESSING PREP ####
+    
+    #  PREPROCESSING PREP    ####
     
     # derive variable lists for steps ####
     # ...identify skewed parameters -> logtrafo   ####
@@ -209,7 +210,14 @@ prepare_ml <- function(
       purrr::map_dbl(~mean(!is.na(.))) %>% 
       tibble::enframe()
     
-    
+    # ...factors to skip from step_other ####
+    # if a single class falls below the threshold thres_lump, the class would be renamed to 'other'
+    vars_nolump <- d_train_raw %>% 
+      dplyr::select_if(is_factor) %>% 
+      map( ~ { freqs <- table(.x)/ length(.x); sum(freqs < thres_lump) == 1  } )  %>% 
+      which(.) %>% 
+      names()
+      
     # variables to impute: predictors with sufficient information, i.e. meeting thres_imp
     # variables are dropped if they a) don't meet the threshold OR b) shall not be imputed explicitly (vars_imp_ignore) 
     vars_imp <- prop_available %>% 
@@ -269,8 +277,10 @@ prepare_ml <- function(
         }else{.}} %>%  
             
         # lump factors
-        recipes::step_other(., recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
-                   threshold = thres_lump, other = level_other) %>%  
+        recipes::step_other(., 
+             recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
+             -any_of(vars_nolump),
+             threshold = thres_lump, other = level_other) %>%  
             
         # factor handling
         {if(! is.null(vars_ordinalscore)){
