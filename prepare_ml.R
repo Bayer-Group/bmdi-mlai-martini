@@ -15,7 +15,8 @@
 #' @param thres_corr           = .9,
 #' @param thres_lump
 #' @param thres_imp
-#' @param control_nzv          
+#' @param thres_nzv_freq
+#' @param thres_nzv_unique
 #' @param vars_imp_ignore
 #' @param vars_fct_expl_na
 #' @param vars_ordinalscore  = NULL, 
@@ -43,7 +44,8 @@ prepare_ml <- function(
    thres_corr          = 0.9,
    thres_lump          = 0.05,
    thres_imp           = 0.8,
-   nzv_control         = list(freq_cut = 95/5, unique_cut = 10),
+   thres_nzv_freq      = 95/5, 
+   thres_nzv_unique    = 10,
    
    vars_imp_ignore     = NULL,
    vars_fct_expl_na    = NULL,
@@ -267,7 +269,9 @@ prepare_ml <- function(
         } %>% 
 
         # ...near zero variance ####
-        recipes::step_nzv(recipes::all_predictors(), options = nzv_control) %>% 
+        recipes::step_nzv(recipes::all_predictors(),
+                          freq_cut = thres_nzv_freq, unique_cut = thres_nzv_unique,
+                          ) %>% 
         
         # ...log transformation ####
         {if(prep_step_log && length(vars_logtr)>0){
@@ -368,8 +372,10 @@ prepare_ml <- function(
           
           # nzv 
           nzv = list(
-            value = c(freq_cut = 95/5, unique_cut = 10),
-            text  = paste('Highly sparse and unbalanced variables were dropped using recipes::step_nzv(options = list(freq_cut = 95/5, unique_cut = 10).'
+            value = list(freq_cut = thres_nzv_freq, unique_cut = thres_nzv_unique),
+            text  = paste0('Highly sparse and unbalanced variables were dropped using ',  
+                          'recipes::step_nzv(freq_cut = ', round(thres_nzv_freq) ,
+                          ', unique_cut = ', thres_nzv_unique, ').'
             )
           )
           
