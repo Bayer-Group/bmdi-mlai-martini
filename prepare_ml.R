@@ -221,7 +221,7 @@ prepare_ml <- function(
     # ...factors to skip from step_other ####
     # if a single class falls below the threshold thres_lump, the class would be renamed to 'other'
     vars_nolump <- d_train_raw %>% 
-      dplyr::select_if(is_factor) %>% 
+      dplyr::select_if(is.factor) %>% 
       map( ~ { freqs <- table(.x)/ length(.x); sum(freqs < thres_lump) == 1  } )  %>% 
       which(.) %>% 
       names()
