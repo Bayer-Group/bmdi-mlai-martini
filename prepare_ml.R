@@ -3,7 +3,7 @@
 #' @param feature feature matrix in wide format, e.g. output object of \code{build()}, i.e. containing \code{.id} column and predictors 
 #' @param outcome tibble containing \code{.id} column and the outcome of interest
 #' @param outcome_name ,
-#' @param outcome_order = NULL (only used for classification)
+#' @param level_order  = NULL (only used for classification)
 #' @param prep_recipe  = NULL,
 #' @param seed         = NULL,
 #' @param prep_step_normalize = TRUE,
@@ -231,15 +231,13 @@ prepare_ml <- function(
       
     ) %>% unique()
     
-    d_train_raw <- d_train_raw %>% dplyr::select(-tidyselect::any_of(vars_exclude))
-    d_valid_raw <- d_valid_raw %>% dplyr::select(-tidyselect::any_of(vars_exclude))
-    
     # RECIPE ####
     
     if (is.null(prep_recipe)){
-      # Note that order is important when building the recipe, e.g. nzv and log before normalize, corr before 
+      # Note that order is important when building the recipe, e.g. nzv and log before normalize 
       rcp <- as.formula(".out ~ .") %>%  
         recipes::recipe(data = d_train_raw  ) %>% 
+        recipes::step_rm(tidyselect::any_of(vars_exclude)) %>% 
         recipes::update_role(.id, new_role = "ID") %>% 
         
         # ...omit observations with missing endpoint ####
@@ -265,11 +263,10 @@ prepare_ml <- function(
         
         # remove highly correlated variables
         {if(prep_step_corr){
-          suppressMessages(
             recipes::step_corr(., recipes::all_numeric(), -recipes::all_outcomes(), 
-                               threshold = thres_corr)
-          )     }else{.}
-        } %>%  
+                               threshold = thres_corr, method = "pearson",
+                               use = "pairwise.complete.obs")
+        }else{.}} %>%  
             
         # lump factors
         recipes::step_other(., recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
@@ -292,10 +289,14 @@ prepare_ml <- function(
     }
     
     rcp_prep <- rcp %>% 
-      recipes::prep(strings_as_factors = FALSE)
+      {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE)} %>% 
+      pluck("result")
     
     d_train <- rcp_prep %>%  recipes::juice()
-    d_valid <- rcp_prep %>%  recipes::bake(d_valid_raw)
+    
+    d_valid <- rcp_prep %>% 
+      {purrr::quietly(recipes::bake)(., d_valid_raw)} %>% 
+      pluck("result")
     
     # CLEAN UP ####
     
@@ -309,9 +310,9 @@ prepare_ml <- function(
     attr(d_valid, "label") <- NULL
     
     
-# document preparation parameter setting ####
-# NOTE TEMP text slots will be removed once documentation is fully available
-# TODO  documentation of preprocessing parameters    
+    # document preparation parameter setting ####
+    # NOTE TEMP text slots will be removed once documentation is fully available
+    # TODO  documentation of pre-processing parameters    
     prep_params <- list(
       
       # log trafo
