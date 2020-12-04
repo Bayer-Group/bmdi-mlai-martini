@@ -37,6 +37,7 @@ adam_spec_occds <- function(
   time        = NULL,
   value       = NULL,
   filter      = NULL,
+  count       = FALSE, # NOTE: add further options (weights, scoring matrix, ...)
   pre_study   = FALSE,
   attach_data = FALSE
 ){
@@ -54,10 +55,9 @@ adam_spec_occds <- function(
     label  = NULL
     time   = NULL 
     value  = NULL 
-    filter = NULL#
+    filter = NULL
     pre_study = TRUE
-    
-  }
+    count  = TRUE    }
   
 
   # READ occds ####
@@ -130,7 +130,17 @@ adam_spec_occds <- function(
   
   
   col_select <- c('label' = label)
-  if(!is.null(value)) col_select <- c(col_select, value = value)
+  if(!is.null(value)) {
+    if (value %in% colnames(occds)){
+      col_select <- c(col_select, value = value)
+      if (paste0(value, "N") %in% colnames(occds) ||
+          paste0(labelled::var_label(occds)$value, " (N)") %in% labelled::var_label(occds) ){
+        col_select <- c(col_select, valuen = paste0(value, "N"))
+      }
+    } else {
+      usethis::ui_info(paste0("'", value, "' not found in data set and ignored.\n"))
+    }
+  }
   
   # output ####
   
@@ -140,6 +150,7 @@ adam_spec_occds <- function(
     type    = "occds",
     id      = id,
     filter  = actual_filter,
+    count   = count,
     dict    = dict,
     spec_id = source
   ) %>% 
