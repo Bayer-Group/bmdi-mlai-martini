@@ -270,7 +270,7 @@ prepare_ml <- function(
 
         # ...near zero variance ####
         recipes::step_nzv(recipes::all_predictors(),
-                          freq_cut = thres_nzv_freq, unique_cut = thres_nzv_unique,
+                          freq_cut = thres_nzv_freq, unique_cut = thres_nzv_unique
                           ) %>% 
         
         # ...log transformation ####
