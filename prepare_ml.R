@@ -275,7 +275,8 @@ prepare_ml <- function(
         
         # ...log transformation ####
         {if(prep_step_log && length(vars_logtr)>0){
-          recipes::step_log(., tidyselect::any_of(vars_logtr)) }else{.}
+          recipes::step_log(., tidyselect::any_of(vars_logtr)) 
+          }else{.}
         }  %>%
         
         # normalization
