@@ -189,9 +189,8 @@ prepare_ml <- function(
     d_train_raw <- training(d_split)
     d_valid_raw <- testing( d_split)
     
-    # # # # # # # # # # # # # # #
+    
     #  PREPROCESSING PREP    ####
-    # # # # # # # # # # # # # # #
     
     # derive variable lists for steps ####
     # ...identify skewed parameters -> logtrafo   ####
