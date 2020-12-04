@@ -415,7 +415,7 @@ prepare_ml <- function(
             column = ".out",
             source = "user_outcome"
           ) %>%
-            mutate(label = labelled::var_label(outcome)[[outcome_name]])
+            mutate(label = outcome_label)
         ),
       
       prep_params = prep_params
