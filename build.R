@@ -13,6 +13,7 @@
 #' @param keep character vector defining the subset of data sets in the given `path` to create the specification for (e.g. \code{c('adsl', 'advs'))}).
 #'  If both \code{keep} and \code{drop} are specified, \code{keep} overrides \code{drop}. Defaults to NULL.
 #' @param drop character vector defining a subset of data sets in the given `path` to be excluded from the list of specifications (e.g. \code{'adqseq5d')}). Defaults to NULL.
+#' @param join either function to join data sets (e.g. \code{dplyr::full_join} or a character (vector) giving the names of the data sets containing the .ids to keep (e.g. \code{join= c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}
 #' @param attach_data boolean. attach the imported raw data
 #' 
 #' @description  \code{adam_spec()} matches file names in the given path against an internal library to decide on which \code{adam_*_spec()} function to use for which data set.
@@ -38,12 +39,21 @@ build <- function(
   filter = NULL,
   keep   = NULL,
   drop   = NULL ,
+  join   = dplyr::inner_join,
   attach_data = FALSE){
   
   if(FALSE){
+    
      path = 'real_world_data/99999/'
    # path   = '//by-xa221/Statdb/Ginger/Studies/BAY106-7197_Neladenosone_99999_PANTHEON/Data/Original/ads/'
     filter = c("SEX == 'F'", "AVISIT == 'BASELINE'")
+    
+    spec = ads_spec 
+    spec_only = FALSE
+    filter = NULL
+    keep   = NULL
+    drop   = NULL 
+    attach_data = FALSE
     
   }
   
@@ -128,7 +138,9 @@ build <- function(
       }
       
       #spec
-  }else{ # from_spec; spec is provided 
+   # end if(from_path)   
+  }else{  # from_spec; spec is provided 
+    
     # no names at all (names(spec) is null)
     if( is.null(names(spec)) )  names(spec) <- rep('', length(spec))
     
@@ -160,8 +172,30 @@ build <- function(
       dplyr::filter(type == 'occds') %>% 
       dplyr::pull(column)
     
+    
+    # identify subjects from selected data sets to filter prepped_join
+    # (if join is not a fct)
+    if(! is.function(join)){
+      if(any(join %in% names(interim) )) {
+        join_ids <- purrr::map(interim[join %>%  intersect(names(interim))], ~.[['data']]) %>% 
+          purrr::reduce(., dplyr::full_join, by = '.id') %>% 
+          pull(.id)
+        join_filter <- ' .id %in% join_ids'
+      }else{
+        join_filter <- 'TRUE'
+        usethis::ui_info("The domain(s) specified for 'join' are not available in the given spec. dplyr::full_join was used without additional filters.\n")
+      }  
+    }
+    
     prepped_join <-   purrr::map(interim, ~.[['data']]) %>% 
-      purrr::reduce(dplyr::inner_join, by = '.id') %>% 
+      { if(is.function(join)){
+        purrr::reduce(., join, by = '.id') 
+      }else{
+        purrr::reduce(., dplyr::full_join, by = '.id') %>% 
+        dplyr::filter(., !! rlang::parse_expr(join_filter))  
+      }
+      } %>% 
+      
       dplyr::mutate_at(vars(tidyselect::any_of(vars_fct_expl_na)), ~{
         if(is.numeric(.x)){
           tidyr::replace_na(.x, replace = 0L )
