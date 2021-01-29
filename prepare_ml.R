@@ -290,27 +290,21 @@ prepare_ml <- function(
     which(.) %>% 
     names()
   
-  # variables to impute: predictors with sufficient information, i.e. meeting thres_imp
-  # variables are dropped if they a) don't meet the threshold OR b) shall not be imputed explicitly (vars_imp_ignore) 
+  # var %in% 'vars_imp_ignore' : rows with missing values are dropped
+  # else if thres_imp is not met vars are dropped
+  
   vars_imp <- prop_available %>% 
     dplyr::filter(value >= thres_imp) %>% 
     dplyr::pull(name) %>% 
     setdiff(vars_imp_ignore) %>% 
     setdiff((c(".out", ".id", ".status", ".time")))
   
-  vars_exclude <- c(
+  vars_exclude <- prop_available %>% 
+    dplyr::filter(value < thres_imp) %>% 
+    dplyr::pull(name) %>% 
+    setdiff((c(".out", ".id", ".status", ".time")))
     
-    d_train_raw %>% 
-      dplyr::select_if(~any(is.na(.))) %>% 
-      colnames() %>% 
-      intersect(vars_imp_ignore),
     
-    prop_available %>% 
-      dplyr::filter(value < thres_imp) %>% 
-      dplyr::pull(name)
-    
-  ) %>% unique()
-  
   
   # RECIPE ####
   
@@ -325,7 +319,8 @@ prepare_ml <- function(
     }  
    
      
-    # Note that order is important when building the recipe, e.g. nzv and log before normalize 
+    # Note that order is important when building the recipe,
+    # e.g. exclude variable before imputation, nzv and log before normalize 
     rcp <- recipes::recipe(the_formula, data = d_train_raw) %>% 
       recipes::step_rm(tidyselect::any_of(vars_exclude)) %>% 
       recipes::update_role(.id, new_role = "ID") %>% 
@@ -334,20 +329,23 @@ prepare_ml <- function(
       recipes::step_naomit(recipes::all_outcomes()) %>% 
       
       # ...imputation ####
-    {if(prep_step_knnimpute){
-      recipes::step_knnimpute(., tidyselect::any_of(vars_imp)) }else{.}
-    } %>% 
+      {if(prep_step_knnimpute){
+        recipes::step_knnimpute(., tidyselect::any_of(vars_imp)) }else{.}
+      } %>% 
+      
+      # ...omit observations with missing data in variables ignored in imputation ####
+      recipes::step_naomit(recipes::all_predictors()) %>% 
       
       # ...near zero variance ####
-    recipes::step_nzv(recipes::all_predictors(),
-                      freq_cut = thres_nzv_freq, unique_cut = thres_nzv_unique
-    ) %>% 
+      recipes::step_nzv(recipes::all_predictors(),
+                        freq_cut = thres_nzv_freq, unique_cut = thres_nzv_unique
+      ) %>% 
       
       # ...log transformation ####
-    {if(prep_step_log && length(vars_logtr)>0){
-      recipes::step_log(., tidyselect::any_of(vars_logtr)) 
-    }else{.}
-    }  %>%
+      {if(prep_step_log && length(vars_logtr)>0){
+        recipes::step_log(., tidyselect::any_of(vars_logtr)) 
+      }else{.}
+      }  %>%
       
       # ..normalization ####
       {if(prep_step_normalize){
@@ -405,6 +403,22 @@ prepare_ml <- function(
   attr(d_valid, "label") <- NULL
   
   
+  # excluded rows and columns
+  # COMBAK TODO document detailed exclusion of rows and columns
+  # na_outcome <- d_train_raw %>% 
+  #   dplyr::select(tidyselect::any_of(outcome_name)) %>% # c(1, NA) %>% 
+  #   na.omit() %>% 
+  #   attr("na.action")
+  # 
+  # na_predictor <- d_train_raw %>% # not tested yet
+  #   dplyr::select(.id) %>% 
+  #   {if (!is.null(na_outcome)){
+  #     dplyr::slice(.,-na_outcome)
+  #   }else{.}} %>% 
+  #   anti_join(d_train %>% dplyr::select(.id), by = ".id") %>% 
+  #   dplyr::pull(.id)
+
+  
   # document preparation parameter setting ####
   # NOTE TEMP text slots will be removed once documentation is fully available
   # TODO  documentation of pre-processing parameters    
@@ -432,15 +446,16 @@ prepare_ml <- function(
       text  = paste0('Low frequency factor levels were lumped using recipes::step_other(threshold = ', thres_lump, '). ')  
     ),
     
-    # imputation/dropping of variables based on available probability
+    # imputation/missing values
+    ## imputation/dropping of variables based on available probability
     imp_ignore = list(
       value = ifelse(prep_step_knnimpute, thres_imp, NA),
       text  = ifelse(prep_step_knnimpute,
                      paste0('Variables were dropped if the proportion of available data was less than ', 
-                            thres_imp*100, '% or if they were specified in vars_imp_ignore.')  ,
+                            thres_imp*100, '%.')  ,
                      'No imputation was done on the feature matrix.')
     ),
-    
+
     # nzv 
     nzv = list(
       value = list(freq_cut = thres_nzv_freq, unique_cut = thres_nzv_unique),
