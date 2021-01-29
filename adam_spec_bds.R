@@ -158,7 +158,8 @@ adam_spec_bds <- function(
         "label" = col_select[['label']], 
         "unit"  = col_select[['unit']]) %>%  na.omit)) %>% 
     distinct() %>%
-    dplyr::mutate(source = source)
+    dplyr::mutate(source = source) %>% 
+    dplyr::mutate(type   = 'bds') 
  
  
  

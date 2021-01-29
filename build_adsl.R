@@ -8,8 +8,10 @@
 # test area####
 if(FALSE){
   # 'real_world_data/adsl/99999/adsl.sas7bdat'
-  study <- c(99999, 99999, 99999)[3]
-  file  <- paste0('real_world_data/', study, '/adsl.sas7bdat')
+  #study <- c(99999, 99999, 99999)[1]
+  #file  <- paste0('real_world_data/', study, '/adsl.sas7bdat')
+  
+  file  <- here::here('data', '99999', 'ads','adsl.sas7bdat')
   
   id = 'SUBJID'
   trt = NULL
