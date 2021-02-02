@@ -149,16 +149,19 @@ prepare_ml <- function(
   
   
   # ... outcome data ####
+  
+  # ... ... standardize outcome name ####
   outcome <- outcome %>% 
     dplyr::select(all_of('.id'), tidyselect::all_of(outcome_name)) %>% 
     # standardize column names
     {if(outcome_mode %in% c('classification', 'regression')){
-      dplyr::rename(., .out = outcome_name)
+      dplyr::rename(., .out = all_of(outcome_name))
     }else{.}} # names time and status are mandatory for input
-    #  dplyr::rename(., '.time' = 'time', '.status' = 'status')
-    #}
-    #}
+    #   dplyr::rename(., '.time' = 'time', '.status' = 'status')
+    # }}
   
+  
+  # ... ... classification -> factor(), fct_relevel() ####
   if (outcome_mode == "classification"){
     
     outcome <- outcome %>% dplyr::mutate_at(".out", factor) # strips labels
@@ -174,14 +177,16 @@ prepare_ml <- function(
     
   }
   
+  # ... ... regression -> outlier_removal
+  id_outlier <- NULL
   if(outcome_mode == "regression" && outlier_remove){
     
     # with c = outlier_ctrl$coef, exclude observations outside [q25 - c*iqr;  q75 + c*iqr]
     q   <- quantile(outcome$.out, probs = c(0.25, 0.75), names = FALSE, na.rm = TRUE)
     loq <- q + c(-1,1) * abs(outlier_ctrl$coef[1]) * diff(q)
-    is_outlier <- !between(.out, loq[1], loq[2])
+    is_outlier <- !between(outcome$.out, loq[1], loq[2])
     
-    outcome    <- outcome %>% dplyr::filter(is.na(.out) | !!is_outlier)
+    outcome    <- outcome %>% dplyr::filter( ! is_outlier) # !is.na(.out) NAs will be removed and tracked in the recipe
     
     if (any(is_outlier)){
       usethis::ui_info(paste0(
@@ -190,6 +195,8 @@ prepare_ml <- function(
         "identified as outlier and removed from the input data prior to data splitting and preprocessing.\n"
       ))
     }
+    
+    id_outlier <- outcome$.id[is_outlier]
     
   }
   
@@ -411,21 +418,65 @@ prepare_ml <- function(
   attr(d_valid, "label") <- NULL
   
   
-  # excluded rows and columns
-  # COMBAK TODO document detailed exclusion of rows and columns
+  # excluded rows and columns ####
+  
+  ## ...rows #### 
   # na_outcome <- d_train_raw %>% 
-  #   dplyr::select(tidyselect::any_of(outcome_name)) %>% # c(1, NA) %>% 
-  #   na.omit() %>% 
-  #   attr("na.action")
-  # 
-  # na_predictor <- d_train_raw %>% # not tested yet
+  #   dplyr::filter(
+  #     !{d_train_raw %>% 
+  #         dplyr::select(tidyselect::all_of(outcome_name)) %>% 
+  #         stats::complete.cases()}
+  #   ) %>% 
+  #   dplyr::pull(.id)
+  
+  na_outcome <- d_train_raw %>% 
+    dplyr::select(tidyselect::any_of(c(".id", ".out", ".status", ".time"))) %>% 
+    mutate_all(is.na) %>%  
+    dplyr::rowwise() %>% 
+    dplyr::mutate(ANYNA  = dplyr::c_across() %>% any()) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::filter(ANYNA) %>% 
+    dplyr::pull(.id)
+
+  attributes(na_outcome) <- NULL
+  if (length(na_outcome) == 0) na_outcome <- NULL
+  
+  # na_feature <- d_train_raw %>% 
   #   dplyr::select(.id) %>% 
   #   {if (!is.null(na_outcome)){
-  #     dplyr::slice(.,-na_outcome)
+  #     dplyr::filter(., !.id %in% na_outcome)
   #   }else{.}} %>% 
   #   anti_join(d_train %>% dplyr::select(.id), by = ".id") %>% 
   #   dplyr::pull(.id)
+  
+  na_feature <- d_train_raw$.id %>% 
+    setdiff(na_outcome) %>% 
+    setdiff(d_train$.id)
+  
+  # attributes(na_feature) <- NULL
+  if (length(na_feature) == 0) na_feature <- NULL
 
+  ## ...columns ####
+  
+  # extract prep step information
+  prep_steps <- rcp_prep$steps
+  
+  # set names
+  names(prep_steps) <- prep_steps %>% 
+    purrr::map_chr(~{
+      attr(.x, "class")[[1]][1] %>% 
+        stringr::str_remove("^step_") %>% 
+        # keep naming consistent with prep_params object
+        stringr::str_replace("^rm$", "imp_ignore")
+    })
+  
+  # create list of removed columns per step for output object
+  removed_columns <- prep_steps %>% 
+    purrr::map(~{.x$removal}) %>% 
+    # keep all steps with a 'removal' slot
+    purrr::keep(~{!is.null(.x)}) %>% 
+    # set empty 'removal' slots (=vector of length 0) to NULL
+    purrr::map(~{if(length(.x) > 0) .x})
   
   # document preparation parameter setting ####
   # NOTE TEMP text slots will be removed once documentation is fully available
@@ -477,11 +528,15 @@ prepare_ml <- function(
   
   if(outcome_mode == 'regression' ){
     prep_params <- append(prep_params, 
-                          outlier = list(
-                            value = ifelse(outlier_remove, unlist(outlier_ctrl), NA ),
-                            text  = paste0("Based on the outcome distribution, observations outside the interval ",
+                         list(
+                            value = ifelse(outlier_remove,
+                                           unlist(outlier_ctrl), NA ),
+                            text  = ifelse(outlier_remove,
+                                           paste0("Based on the outcome distribution, observations outside the interval ",
                                            '[q25 - ', outlier_ctrl$coef, '*iqr; ',  
-                                            'q75 + ', outlier_ctrl$coef, '*iqr] were removed prior to data splitting and preprocessing.'))
+                                            'q75 + ', outlier_ctrl$coef, '*iqr] were removed prior to data splitting and preprocessing.'),
+                                           NA)
+                          )
     )
   } 
   
@@ -518,7 +573,16 @@ prepare_ml <- function(
       attr(feature, "dict")  
       ),
     
-    prep_params = prep_params
+    prep_params = prep_params,
+    
+    removed = list(
+      rows = list(
+        outlier_outcome = id_outlier,
+        na_outcome      = na_outcome,
+        na_feature      = na_feature
+      ),
+      cols = removed_columns
+    )
     
   )
   
