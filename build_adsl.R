@@ -102,10 +102,16 @@ build_adsl <- function(
   # update dictionary   ####
   if (!is.null(spec$dict)){
     dict <- spec$dict %>% 
+      # treatment variable was renamed to standard name
+      dplyr::filter(param %in% c(spec$trt, colnames(adsl))) %>% 
+      {if (!is.null(spec$trt)){
+        dplyr::mutate(., param = dplyr::case_when(
+          param == spec$trt ~ ".trt",
+          TRUE              ~ param
+        ))
+      } else {.}}
       dplyr::mutate(column = param) %>% 
-      dplyr::filter(column %in% c(spec$trt, colnames(adsl))) %>% 
       dplyr::select(-selected)
-      
     
   }else{
     
