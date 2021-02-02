@@ -106,7 +106,6 @@ build_adsl <- function(
       dplyr::filter(column %in% c(spec$trt, colnames(adsl))) %>% 
       dplyr::select(-selected)
       
-    }
     
   }else{
     

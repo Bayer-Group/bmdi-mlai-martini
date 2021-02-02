@@ -120,7 +120,7 @@ prepare_ml <- function(
   outcome_label <- outcome_name 
   walk(outcome_name, ~ {
     the_label <- labelled::var_label(outcome)[.x] %>%  unlist()
-    outcome_label[.x] <<- the_label
+    outcome_label[names(.x)] <<- the_label
   } )
   
   
@@ -154,9 +154,10 @@ prepare_ml <- function(
     # standardize column names
     {if(outcome_mode %in% c('classification', 'regression')){
       dplyr::rename(., .out = outcome_name)
-    }else{ # names time and status are mandatory for input
-      dplyr::rename(., '.time' = 'time', '.status' = 'status')
-    }}
+    }else{.}} # names time and status are mandatory for input
+    #  dplyr::rename(., '.time' = 'time', '.status' = 'status')
+    #}
+    #}
   
   if (outcome_mode == "classification"){
     
