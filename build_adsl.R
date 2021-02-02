@@ -109,7 +109,7 @@ build_adsl <- function(
           param == spec$trt ~ ".trt",
           TRUE              ~ param
         ))
-      } else {.}}
+      } else {.}} %>% 
       dplyr::mutate(column = param) %>% 
       dplyr::select(-selected)
     
