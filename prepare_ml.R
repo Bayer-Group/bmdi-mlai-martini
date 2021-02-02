@@ -4,7 +4,7 @@
 #' @param outcome tibble containing \code{.id} column and the outcome of interest
 #' @param outcome_name if NULL (default), the first column that's not .id is chosen for outcome_name and the outcome_type is guessed to be either classification or regression.
 #' One may also provide a single character giving the name of the outcome column OR a vector of length two giving the column names for the 'time' and 'status' data in survival analysis,
-#' where time is numeric and status is binary with 0 coding for censored, and 1 coding for event. Currently, only right-censoring is supported. Please note, that survival will never be guessed
+#' where .time is numeric and .status is binary with 0 coding for censored, and 1 coding for event. Currently, only right-censoring is supported. Please note, that survival will never be guessed
 #' @param level_order  = NULL (only used for classification)
 #' @param prep_recipe  = NULL,
 #' @param seed         = NULL,
@@ -93,24 +93,31 @@ prepare_ml <- function(
     }else if( length(outcome_name) == 2 ){
       # check column names and types for survival  
       
-      names_valid  <- {sort(names(outcome_name)) == c('status', 'time')} %>%  all()
-      if(!names_valid)  usethis::ui_stop('For survival analysis, please provide vector with names status and time for outcome_name.')
+      names_valid  <- {sort(names(outcome_name)) == c('.status', '.time')} %>%  all()
+      if(!names_valid)  usethis::ui_stop('For survival analysis, please provide vector with names .status and .time for outcome_name.')
       
-      status_valid <- outcome[, outcome_name['status']] %>% pull() %>%  { . %in% c(0,1) } %>%  all() 
+      status_valid <- outcome[, outcome_name['.status']] %>% pull() %>%  { . %in% c(0,1) } %>%  all() 
       if(!status_valid) usethis::ui_stop('status may only contain values 0 and 1.')
       # stops if NAs are present
       
-      time_valid   <- outcome[, outcome_name['time'  ]] %>% pull() %>%  is.numeric()
+      time_valid   <- outcome[, outcome_name['.time'  ]] %>% pull() %>%  is.numeric()
       if(!time_valid)   usethis::ui_stop('Please check type of time column.')
       
+      # sort by name
+      outcome_name <- outcome_name[ c('.time', '.status')]
     }  
   } # -> outcome_name is set, either of length one or two
+  
+  # for consistency, add name if mode != survival
+  if(outcome_mode != 'survival'){
+    names(outcome_name) <- '.out'
+  }
   
   
   # ... outcome_label ####
   # extract label(s) of outcome before potentially mutating to factor (classification)
   # for consistency, outcome label is a named vector.
-  outcome_label <- outcome_name %>%  set_names()
+  outcome_label <- outcome_name 
   walk(outcome_name, ~ {
     the_label <- labelled::var_label(outcome)[.x] %>%  unlist()
     outcome_label[.x] <<- the_label
@@ -122,8 +129,8 @@ prepare_ml <- function(
     outcome_mode <- 'survival'
   }else{ 
     outcome_mode <- ifelse(
-      is.numeric(outcome[, outcome_name, drop = TRUE]), 
-      # & n_distinct(outcome[, outcome_name, drop = TRUE])>5  # IDEA # QUESTION
+      is.numeric(outcome[[outcome_name]])
+      && n_distinct(outcome[[outcome_name]]) > 5,
       "regression", 
       "classification"
     )
@@ -133,12 +140,12 @@ prepare_ml <- function(
   
   # ... outcome dict ####
   outcome_dict <- tibble::tibble(
-    param  = outcome_name,
-    column = list('regression'     = '.out', 
-                  'classification' = '.out', 
-                  'survival'       = c('.time', '.status'))[[outcome_mode]],
-    source = "user_outcome",
-    label  = outcome_label)
+    param  = names(outcome_name)) %>% 
+    mutate(
+      column = param,
+      source = "user_outcome",
+      label  = outcome_label[param]
+    )
   
   
   # ... outcome data ####
@@ -347,7 +354,7 @@ prepare_ml <- function(
       }else{.}
       }  %>%
       
-      # ..normalization ####
+      # ...normalization ####
       {if(prep_step_normalize){
         recipes::step_normalize(., recipes::all_numeric(), -recipes::all_outcomes(), - recipes::has_role("ID")) }else{.}
       }  %>% 

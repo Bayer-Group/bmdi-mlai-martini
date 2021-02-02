@@ -76,7 +76,7 @@ build_adsl <- function(
   }
   
   
-  
+  # apply spec: filter, select and standardize column names ####
   adsl <- adsl_full %>% 
     {if(length(spec$filter) > 0){ 
       dplyr::filter(., !! rlang::parse_expr(filter_txt))
@@ -87,35 +87,28 @@ build_adsl <- function(
     {if(!is.null(spec$trt)){
       dplyr::rename(., ".trt"= spec$trt)
     }else{.}
-    } %>%  
-    # remove constant columns after filtering
-    janitor::remove_constant(na.rm=TRUE)
+    }
     
-  # mutate_at(vars( .id),
-  #  ~ 'a')
-  # ~ as_label(enquo(.x))
-  # ~ rlang::as_name(quo(.x))
-  #         ) 
-  
-  
+  # set 'spec_id' if missing (required for dictionary)
+  # this is e.g. the case, if spec was not created with 'adam_spec_adsl'
+  if(!is.null(spec$spec_id)){
+    if(spec$spec_id == ''){ 
+      spec$spec_id <- ifelse(is.null(spec$file), 'user', spec$file)
+    }
+  } else {
+    spec$spec_id <- 'user'
+  }
   
   # update dictionary   ####
   if (!is.null(spec$dict)){
     dict <- spec$dict %>% 
       dplyr::mutate(column = param) %>% 
-      dplyr::filter(column %in% colnames(adsl)) %>% 
-      dplyr::select(-selected)   
+      dplyr::filter(column %in% c(spec$trt, colnames(adsl))) %>% 
+      dplyr::select(-selected)
       
-  }else{
-    
-    if(!is.null(spec$spec_id)){
-      if(spec$spec_id == ''){ 
-        spec$spec_id <- ifelse(is.null(spec$file), 'user', spec$file)
-      }
-    } else {
-      spec$spec_id <- 'user'
     }
     
+  }else{
     
     lab_list  <- adsl %>% labelled::var_label() 
     labs      <- purrr::map_chr(lab_list, ~ {ifelse(is.null(.x), NA, .x)})

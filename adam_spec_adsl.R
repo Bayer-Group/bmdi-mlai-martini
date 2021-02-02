@@ -249,8 +249,15 @@ adam_spec_adsl <- function(
   # empty columns 
   empties <- setdiff( 
     adsl %>%  colnames(),
-    adsl %>%  janitor::remove_empty('cols') %>%  colnames()
+    adsl %>%  janitor::remove_empty(which = 'cols') %>%  colnames()
   )
+  
+  # constant columns
+  constants <- setdiff( 
+    adsl %>%  colnames(),
+    adsl %>%  janitor::remove_constant(na.rm = TRUE) %>% colnames()
+  ) %>% 
+    setdiff(empties)
   
   # drop list ####
   drop_list <- list(
@@ -265,7 +272,8 @@ adam_spec_adsl <- function(
       redundant_id,
       redundant_trt
     ) %>% unique,
-    "empty" = empties
+    "empty" = empties,
+    "constant" = constants
   ) %>% 
     purrr::map(~setdiff(., keep))
   
