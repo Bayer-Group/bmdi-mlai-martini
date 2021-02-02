@@ -108,10 +108,6 @@ prepare_ml <- function(
     }  
   } # -> outcome_name is set, either of length one or two
   
-  # for consistency, add name if mode != survival
-  if(outcome_mode != 'survival'){
-    names(outcome_name) <- '.out'
-  }
   
   
   # ... outcome_label ####
@@ -137,6 +133,10 @@ prepare_ml <- function(
   }  
   
   
+  # for consistency, add name if mode != survival
+  if(outcome_mode != 'survival'){
+    names(outcome_name) <- '.out'
+  }
   
   # ... outcome dict ####
   outcome_dict <- tibble::tibble(
