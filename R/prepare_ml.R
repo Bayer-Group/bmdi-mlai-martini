@@ -14,13 +14,13 @@
 #' @param prep_step_corr      = TRUE,
 #' @param prep_step_dummy FALSE converted  variables to be 
 #' @param thres_log           = 2,
-#' @param thres_corr           = .9,
-#' @param thres_lump
-#' @param thres_imp
-#' @param thres_nzv_freq
-#' @param thres_nzv_unique
-#' @param vars_imp_ignore
-#' @param vars_fct_expl_na
+#' @param thres_corr          = .9,
+#' @param thres_lump = 0.05
+#' @param thres_imp = 0.8
+#' @param thres_nzv_freq =95/5
+#' @param thres_nzv_unique = 10
+#' @param vars_imp_ignore = NULL
+#' @param vars_fct_expl_na = NULL
 #' @param vars_ordinalscore  = NULL, 
 #' @param one_hot = TRUE
 #'

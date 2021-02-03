@@ -1,4 +1,3 @@
-
 #' spec occ 
 #' 
 #' @param file the sas file 
