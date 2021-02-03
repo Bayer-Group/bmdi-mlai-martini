@@ -152,14 +152,7 @@ prepare_ml <- function(
   
   # ... ... standardize outcome name ####
   outcome <- outcome %>% 
-    dplyr::select(all_of('.id'), tidyselect::all_of(outcome_name)) %>% 
-    # standardize column names
-    {if(outcome_mode %in% c('classification', 'regression')){
-      dplyr::rename(., .out = all_of(outcome_name))
-    }else{.}} # names time and status are mandatory for input
-    #   dplyr::rename(., '.time' = 'time', '.status' = 'status')
-    # }}
-  
+    dplyr::select(all_of('.id'), tidyselect::all_of(outcome_name))
   
   # ... ... classification -> factor(), fct_relevel() ####
   if (outcome_mode == "classification"){
