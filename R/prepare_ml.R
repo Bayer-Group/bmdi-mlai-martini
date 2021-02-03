@@ -109,17 +109,6 @@ prepare_ml <- function(
   } # -> outcome_name is set, either of length one or two
   
   
-  
-  # ... outcome_label ####
-  # extract label(s) of outcome before potentially mutating to factor (classification)
-  # for consistency, outcome label is a named vector.
-  outcome_label <- outcome_name 
-  walk(outcome_name, ~ {
-    the_label <- labelled::var_label(outcome)[.x] %>%  unlist()
-    outcome_label[names(.x)] <<- the_label
-  } )
-  
-  
   # ... outcome_mode ####
   if(length(outcome_name) == 2){
     outcome_mode <- 'survival'
@@ -132,11 +121,20 @@ prepare_ml <- function(
     )
   }  
   
-  
   # for consistency, add name if mode != survival
   if(outcome_mode != 'survival'){
     names(outcome_name) <- '.out'
   }
+  
+  # ... outcome_label ####
+  # extract label(s) of outcome before potentially mutating to factor (classification)
+  # for consistency, outcome label is a named vector.
+  outcome_label <- outcome_name 
+  iwalk(outcome_name, ~ {
+    the_label <- labelled::var_label(outcome)[.x] %>% unlist()
+    outcome_label[.y] <<- the_label
+  })
+  
   
   # ... outcome dict ####
   outcome_dict <- tibble::tibble(
