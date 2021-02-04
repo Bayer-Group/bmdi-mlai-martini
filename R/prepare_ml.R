@@ -201,7 +201,7 @@ prepare_ml <- function(
   
   # FEATURE ####
   
-  # RENAMING VECTOR ####
+  # ... define renaming vector ####
   # order matters!
   renaming <- c('<= |<=' = 'less_than_',  
                 '> '  = 'over_',
@@ -219,7 +219,7 @@ prepare_ml <- function(
   )
   
   
-  
+  # ... intersect 'vars_fct_expl_na' with factor columns ####
   if (!is.null(vars_fct_expl_na)){
     vars_fct_expl_na <- feature %>% 
       select_if(is.factor) %>% 
@@ -229,7 +229,7 @@ prepare_ml <- function(
     if (length(vars_fct_expl_na) == 0) vars_fct_expl_na <- NULL
   }
   
-  # transform all character columns into factors (strips labels)
+  # ... transform all character columns into factors (strips labels) ####
   feature <- feature %>% 
     dplyr::mutate_if(is.character, factor) %>% 
     dplyr::mutate_if(is.factor, ~ forcats::fct_relabel(., ~stringr::str_replace_all(., renaming) )) %>% 
@@ -239,7 +239,7 @@ prepare_ml <- function(
     }else{.}
     }
   
-  # identify columns with 'Other' level
+  # ... identify columns with 'Other' level ####
   level_other <- "other"
   
   vars_with_other <- feature %>% 
@@ -256,7 +256,7 @@ prepare_ml <- function(
       })
   }
   
-  # MERGE  ####
+  # MERGE OUTCOME AND FEATURE  ####
   
   d_raw <- outcome %>%
     dplyr::inner_join(feature, by = ".id")
@@ -287,14 +287,10 @@ prepare_ml <- function(
     d_test_raw  <- NULL
   }
   
+  #  RECIPE PREP ####
+  # derive variable lists for steps
   
-
-  
-  
-  #  PREPROCESSING PREP    ####
-  
-  # derive variable lists for steps ####
-  # ...identify integers with only a limited number of values ####
+  # ... vars_logtr_ignore: identify integers with only a limited number of values ####
   vars_logtr_ignore <- NULL
   if (any(purrr::map_lgl(d_train_raw, is.integer))){
     vars_log_ignore <- d_train_raw %>% 
@@ -307,7 +303,7 @@ prepare_ml <- function(
       dplyr::pull(PARAMCD)
   }
   
-  # ...identify skewed parameters -> logtrafo later in recipe  ####
+  # ... vars_logtr: identify skewed parameters -> logtrafo later in recipe  ####
   vars_logtr <- NULL
   if (any(purrr::map_lgl(d_train_raw, is.numeric))){
     vars_logtr <- d_train_raw %>% 
@@ -324,12 +320,12 @@ prepare_ml <- function(
   }
 
   
-  # ...calculate proportion of missing values per column ####
+  # ... prop_available: calculate proportion of missing values per column ####
   prop_available <- d_train_raw %>% 
     purrr::map_dbl(~ mean(!is.na(.))) %>% 
     tibble::enframe()
   
-  # ...factors to skip from step_other ####
+  # ... vars_nolump: factors to skip from step_other ####
   # if a single class falls below the threshold thres_lump, the class would be renamed to 'other'
   vars_nolump <- d_train_raw %>% 
     dplyr::select_if(is.factor) %>% 
@@ -337,27 +333,27 @@ prepare_ml <- function(
     which(.) %>% 
     names()
   
+  # ... vars_imp: missing values will be knn imputed ####
   # var %in% 'vars_imp_ignore' : rows with missing values are dropped
   # else if thres_imp is not met vars are dropped
-  
   vars_imp <- prop_available %>% 
     dplyr::filter(value >= thres_imp) %>% 
     dplyr::pull(name) %>% 
     setdiff(vars_imp_ignore) %>% 
     setdiff((c(".out", ".id", ".status", ".time")))
   
+  # ... vars_exclude: variables with a large number of missing values are excluded ####
   vars_exclude <- prop_available %>% 
     dplyr::filter(value < thres_imp) %>% 
     dplyr::pull(name) %>% 
     setdiff((c(".out", ".id", ".status", ".time")))
     
     
-  
   # RECIPE ####
   
   if (is.null(prep_recipe)){
     
-    # ... formula
+    # ... formula ####
     if(outcome_mode %in% c('regression', 'classification')){
       the_formula <- as.formula(".out ~ .")
     }else{
@@ -365,59 +361,60 @@ prepare_ml <- function(
       the_formula <-  as.formula('.time + .status ~ .') # best guess...
     }  
    
-     
+    # ... write recipe ####
     # Note that order is important when building the recipe,
     # e.g. exclude variable before imputation, nzv and log before normalize 
     rcp <- recipes::recipe(the_formula, data = d_train_raw) %>% 
       recipes::step_rm(tidyselect::any_of(vars_exclude)) %>% 
       recipes::update_role(.id, new_role = "ID") %>% 
       
-      # ...omit observations with missing endpoint ####
+      # ... ... omit observations with missing endpoint ####
       recipes::step_naomit(recipes::all_outcomes()) %>% 
       
-      # ...imputation ####
+      # ... ... imputation ####
       {if(prep_step_knnimpute){
         recipes::step_knnimpute(., tidyselect::any_of(vars_imp)) }else{.}
       } %>% 
       
-      # ...omit observations with missing data in variables ignored in imputation ####
+      # ... ... omit observations with missing data in variables ignored in imputation ####
       recipes::step_naomit(recipes::all_predictors()) %>% 
       
-      # ...near zero variance ####
+      # ... ... near zero variance ####
       recipes::step_nzv(recipes::all_predictors(),
                         freq_cut = thres_nzv_freq, unique_cut = thres_nzv_unique
       ) %>% 
       
-      # ...log transformation ####
+      # ... ... log transformation ####
       {if(prep_step_log && length(vars_logtr)>0){
         recipes::step_log(., tidyselect::any_of(vars_logtr), base = log_base) 
       }else{.}
       }  %>%
       
-      # ...normalization ####
+      # ... ... normalization ####
       {if(prep_step_normalize){
         recipes::step_normalize(., recipes::all_numeric(), -recipes::all_outcomes(), - recipes::has_role("ID")) }else{.}
       }  %>% 
       
-      # ...remove highly correlated variables ####
+      # ... ... remove highly correlated variables ####
       {if(prep_step_corr){
         recipes::step_corr(., recipes::all_numeric(), -recipes::all_outcomes(), 
                            threshold = thres_corr, method = "pearson",
                            use = "pairwise.complete.obs")
       }else{.}} %>%  
       
-      # ...lump factors ####
+      # ... ... lump factors ####
       recipes::step_other(., 
                           recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
                           -any_of(vars_nolump),
                           threshold = thres_lump, other = level_other) %>%  
       
-      # ...factor handling ####
+      # ... ... factor handling ####
       {if(! is.null(vars_ordinalscore)){
         recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )}else{.}
       } %>%  
       
       #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
+      # ... .. dummy coding ####
       {if(prep_step_dummy){
         recipes::step_dummy(.,  recipes::all_nominal(), - recipes::all_outcomes(), - recipes::has_role("ID")  , 
                             one_hot = one_hot) }else{.} 
@@ -428,6 +425,7 @@ prepare_ml <- function(
     rcp <- prep_recipe
   }
   
+  # ... prep recipe ####
   rcp_prep <- rcp %>% 
     {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE)} %>% 
     pluck("result")
@@ -455,17 +453,11 @@ prepare_ml <- function(
   attr(d_test,  "label") <- NULL
   
   
-  # excluded rows and columns ####
+  # DOCUMENT EXCLUDED ROWS AND COLUMNS ####
   
-  ## ...rows #### 
-  # na_outcome <- d_train_raw %>% 
-  #   dplyr::filter(
-  #     !{d_train_raw %>% 
-  #         dplyr::select(tidyselect::all_of(outcome_name)) %>% 
-  #         stats::complete.cases()}
-  #   ) %>% 
-  #   dplyr::pull(.id)
+  # ... rows ####
   
+  # ... ... na_outcome ####
   na_outcome <- d_train_raw %>% 
     dplyr::select(tidyselect::any_of(c(".id", ".out", ".status", ".time"))) %>% 
     mutate_all(is.na) %>%  
@@ -478,22 +470,21 @@ prepare_ml <- function(
   attributes(na_outcome) <- NULL
   if (length(na_outcome) == 0) na_outcome <- NULL
   
-  # na_feature <- d_train_raw %>% 
-  #   dplyr::select(.id) %>% 
-  #   {if (!is.null(na_outcome)){
-  #     dplyr::filter(., !.id %in% na_outcome)
-  #   }else{.}} %>% 
-  #   anti_join(d_train %>% dplyr::select(.id), by = ".id") %>% 
-  #   dplyr::pull(.id)
-  
+  # ... ... na_feature ####
   na_feature <- d_train_raw$.id %>% 
     setdiff(na_outcome) %>% 
     setdiff(d_train$.id)
   
-  # attributes(na_feature) <- NULL
   if (length(na_feature) == 0) na_feature <- NULL
 
-  ## ...columns ####
+  # ... ... removed_rows: collect and add outlier ids ####
+  removed_rows <- list(
+    outlier_outcome = id_outlier,
+    na_outcome      = na_outcome,
+    na_feature      = na_feature
+  )
+  
+  # ... columns ####
   
   # extract prep step information
   prep_steps <- rcp_prep$steps
@@ -515,7 +506,8 @@ prepare_ml <- function(
     # set empty 'removal' slots (=vector of length 0) to NULL
     purrr::map(~{if(length(.x) > 0) .x})
   
-  # document preparation parameter setting ####
+  
+  # DOCUMENT PREP PARAMETER SETTINGS ####
   # NOTE TEMP text slots will be removed once documentation is fully available
   # TODO  documentation of pre-processing parameters    
   prep_params <- list(
@@ -577,6 +569,9 @@ prepare_ml <- function(
     
   )    
   
+  # ... outlier_remove ####
+  # NOTE adjust to output of 'prepare_ml_outcome()'
+  
   if(outcome_mode == 'regression' ){
     prep_params <- append(
       prep_params, 
@@ -592,10 +587,7 @@ prepare_ml <- function(
     )
   } 
   
-  
- 
-  
-  
+
   # OUTPUT #### 
   
   prep_output <- list(
@@ -635,17 +627,11 @@ prepare_ml <- function(
     prep_params = prep_params,
     
     removed = list(
-      rows = list(
-        outlier_outcome = id_outlier,
-        na_outcome      = na_outcome,
-        na_feature      = na_feature
-      ),
+      rows = removed_rows,
       cols = removed_columns
     )
     
   )
-  
-  #saveRDS(prep_output, file = paste0("data/prep_output_",outcome_mode,".rds"))
   
   prep_output
   
