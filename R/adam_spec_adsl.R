@@ -2,7 +2,7 @@
 #' 
 #' @param file the path of the sas file to process
 #' @param id name of id column to keep
-#' @param trt name of trt column to keep (e.g. TRT01A, )
+#' @param trt name of trt column to keep (e.g. TRT01A)
 #' @param keep columns to be kept (overrides blacklist)
 #' @param drop superseded. columns to be dropped (overrides whitelist)
 #' @param filter character vector of filter criteria to be evaluated
