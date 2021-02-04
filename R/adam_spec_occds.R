@@ -1,32 +1,24 @@
-#' spec occ 
+#' Create spec object for occurrence data sets 
 #' 
-#' @param file the sas file 
+#' 
+#' @param file the path of the sas file to process
 #' @param id name of id column to be kept and used for merge of data sets
 #' @param label name of the column that identifies the occurrence labels. Defaults to NULL, will be guessed if not set (see Details). 
 #' @param time name of the column that is used for time filtering. Defaults to NULL, will be guessed if not set (see Details).
 #' @param value optional value column (e.g. AE severity). Defaults to NULL, which leads to an Y/N coding of the event
 #' @param filter character vector of filters to be applied to the bds data set. 
 #' Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL. 
-#' @param attach_data boolean. attach the imported raw data
+#' @param count  boolean, defaults to FALSE. # NOTE: add further options (weights, scoring matrix, ...)
+#' @param pre_study   = FALSE, 
+#' @param attach_data boolean. attach the imported raw data in \code{data} slot of output object
 #' 
 #' @description 
 #' For file names 'adae.sas7bdat', 'adcm.sas7bdat' and 'admh.sas7bdat', values for
 #' arguments \code{label} and \code{time} will be guessed if not provided. 
-#' Guesses will be the first of the following options that matches a column name (exact match).
-#' @section \code{label}
-#' \itemize{
-#'      \item[adae] ...
-#'      \item[adcm] ...
-#'      \item[admh] ...
-#' }
-#' @section \code{time}
-#' \itemize{
-#'      \item[adae] ...
-#'      \item[adcm] ...
-#'      \item[admh] ...
-#' }
+#' Please refer to \code{adam_guess()} for details on guessing procedure.  
 #' Function will escape if one of label or value are neither provided nor can be guessed.
-#' Note that the original values in the labels column will end up being the parameter labels, not the parameters in the ML feature matrix. These will be derived later using \code{make_names()} or the like.
+#' Note that the original values in the \code{label} column will end up being the parameter labels, 
+#' not the parameters in the ML feature matrix. These might be modified later using \code{make_names()} or the like \code{prepare_ml()}.
 
 # function adam_spec_occds() ####
 adam_spec_occds <- function(

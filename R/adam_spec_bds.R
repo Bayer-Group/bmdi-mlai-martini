@@ -1,5 +1,4 @@
-
-#' spec bds (basic data structure)
+#' Create spec object for bds data sets (basic data structure)
 #' 
 #' @param file the sas file 
 #' @param id name of id column to be kept and used for merge of data sets

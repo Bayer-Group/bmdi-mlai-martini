@@ -1,13 +1,14 @@
-#' spec adsl
+#' Create spec object for adsl data sets 
 #' 
-#' @param file the file 
+#' @param file the path of the sas file to process
 #' @param id name of id column to keep
-#' @param trt name of trt column to keep
+#' @param trt name of trt column to keep (e.g. TRT01A)
 #' @param keep columns to be kept (overrides blacklist)
 #' @param drop superseded. columns to be dropped (overrides whitelist)
 #' @param filter character vector of filter criteria to be evaluated
 #' @param attach_data boolean. attach the imported raw data
-#' 
+
+
 
 adam_spec_adsl <- function(
   file, 
@@ -318,6 +319,30 @@ if(FALSE){
   study <- c(99999)[1]#  , 99999, 99999)[3]
   # file  <- paste0('real_world_data/adsl/', study, '/adsl.sas7bdat')
   file <-  paste0('data/', study, '/ads/adsl.sas7bdat')
+  
+  id = 'SUBJID'
+  trt = NULL
+  keep = NULL
+  drop = NULL
+  filter = c("FASFL == 'Y'", "AGE < 80", "GENDER == 'female'")
+  attach_data = TRUE
+  
+  spec <- adam_spec_adsl(file = file, id = id, filter = filter, attach_data = attach_data)
+  
+}
+
+
+# test area####
+if(FALSE){
+  
+  require(tidyverse)
+  require(haven)
+  require(labelled)
+  
+  # 'real_world_data/adsl/99999/adsl.sas7bdat'
+  study <- c(99999)[1]#  , 99999, 99999)[3]
+  # file  <- paste0('real_world_data/adsl/', study, '/adsl.sas7bdat')
+  file  <-  paste0('data/', study, '/ads/adsl.sas7bdat')
   
   id = 'SUBJID'
   trt = NULL
