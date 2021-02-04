@@ -7,6 +7,7 @@
 #' where .time is numeric and .status is binary with 0 coding for censored, and 1 coding for event. Currently, only right-censoring is supported. Please note, that survival will never be guessed
 #' @param level_order  = NULL (only used for classification)
 #' @param prep_recipe  = NULL,
+#' @param train_prop   = 3/4
 #' @param seed         = NULL,
 #' @param prep_step_normalize = TRUE,
 #' @param prep_step_knnimpute = TRUE,
@@ -34,6 +35,7 @@ prepare_ml <- function(
   outcome_name = NULL,
   level_order  = NULL,
   prep_recipe  = NULL,
+  train_prop   = 3/4,
   seed         = NULL,
   
   prep_step_normalize = TRUE,
@@ -262,10 +264,26 @@ prepare_ml <- function(
   if(outcome_mode == "classification") strata <- '.out'
   if(outcome_mode == "survival")       strata <- '.status'
   
-  d_split <- d_raw %>% rsample::initial_split(strata = tidyselect::all_of(strata))
+  train_prop_valid <- c(0.5, 1)
+  if (!dplyr::between(train_prop, train_prop_valid[1], train_prop_valid[2])){
+    usethis::ui_stop(paste0(
+      "The provided training proportion 'train_prop' is outside [",
+      train_prop_valid[1], ", ", train_prop_valid[2], "]. Please check!"
+    ))
+  } 
   
-  d_train_raw <- training(d_split)
-  d_valid_raw <- testing( d_split)
+  if (train_prop < 1){
+    d_split     <- d_raw %>% rsample::initial_split(strata = tidyselect::all_of(strata), prop = train_prop)
+    d_train_raw <- training(d_split)
+    d_test_raw  <- testing( d_split)
+  } else {
+    d_split     <- NULL
+    d_train_raw <- d_raw
+    d_test_raw  <- NULL
+  }
+  
+  
+
   
   
   #  PREPROCESSING PREP    ####
@@ -393,20 +411,25 @@ prepare_ml <- function(
   
   d_train <- rcp_prep %>%  recipes::juice()
   
-  d_valid <- rcp_prep %>% 
-    {purrr::quietly(recipes::bake)(., d_valid_raw)} %>% 
-    pluck("result")
+  if (train_prop < 1){
+    d_test  <- rcp_prep %>% 
+      {purrr::quietly(recipes::bake)(., d_test_raw)} %>% 
+      pluck("result")
+  } else {
+    d_test  <- NULL
+  }
+
   
   # CLEAN UP ####
   
   for (i in 1:ncol(d_train)){
     attr(d_train[[i]], "format.sas") <- NULL
-    attr(d_valid[[i]], "format.sas") <- NULL
+    attr( d_test[[i]], "format.sas") <- NULL
     attr(d_train[[i]], "label"     ) <- NULL
-    attr(d_valid[[i]], "label"     ) <- NULL
+    attr( d_test[[i]], "label"     ) <- NULL
   }
   attr(d_train, "label") <- NULL
-  attr(d_valid, "label") <- NULL
+  attr(d_test,  "label") <- NULL
   
   
   # excluded rows and columns ####
@@ -540,11 +563,11 @@ prepare_ml <- function(
   prep_output <- list(
     data_raw = list(
       train = d_train_raw,
-      test  = d_valid_raw
+      test  = d_test_raw
     ),
     data_prep = list(
       train = d_train,
-      test  = d_valid
+      test  = d_test 
     ),
     
     split = d_split,
