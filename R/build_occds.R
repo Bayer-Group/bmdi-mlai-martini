@@ -98,7 +98,7 @@ build_occds <- function(
   
   occds_wide <- occds %>% 
       dplyr::select(tidyselect::all_of(c('value', 'param', '.id'))) %>% 
-      { if(! spec$count){
+      { if(spec$count){
          dplyr::count(., .id, param, name = 'value' )  
       } else {.}
       }  %>%   
