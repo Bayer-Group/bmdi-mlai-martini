@@ -1,4 +1,4 @@
-#'
+#' Prepare ML ready data set from outcome and predictor data
 #'
 #' @param feature feature matrix in wide format, e.g. output object of \code{build()}, i.e. containing \code{.id} column and predictors 
 #' @param outcome tibble containing \code{.id} column and the outcome of interest
@@ -15,6 +15,7 @@
 #' @param prep_step_corr      = TRUE,
 #' @param prep_step_dummy FALSE converted  variables to be 
 #' @param thres_log           = 2,
+#' @param thres_log_ignore    = 10
 #' @param thres_corr          = .9,
 #' @param thres_lump = 0.05
 #' @param thres_imp = 0.8
@@ -24,7 +25,9 @@
 #' @param vars_fct_expl_na = NULL
 #' @param vars_ordinalscore  = NULL, 
 #' @param one_hot = TRUE
-#'
+#' @param log_base            = exp(1),
+#' @param outlier_remove      = FALSE,
+#' @param outlier_ctrl        = list(coef = 3)
 #'
 #'
 
@@ -45,6 +48,7 @@ prepare_ml <- function(
   prep_step_dummy     = TRUE,
   
   thres_log           = 2,
+  thres_log_ignore    = 10,
   thres_corr          = 0.9,
   thres_lump          = 0.05,
   thres_imp           = 0.8,
@@ -57,6 +61,7 @@ prepare_ml <- function(
   
   one_hot             = TRUE,
   
+  log_base            = exp(1),
   outlier_remove      = FALSE,
   outlier_ctrl        = list(coef = 3)
   
@@ -289,17 +294,35 @@ prepare_ml <- function(
   #  PREPROCESSING PREP    ####
   
   # derive variable lists for steps ####
+  # ...identify integers with only a limited number of values ####
+  vars_logtr_ignore <- NULL
+  if (any(purrr::map_lgl(d_train_raw, is.integer))){
+    vars_log_ignore <- d_train_raw %>% 
+      dplyr::select_if(is.integer) %>% 
+      tidyr::pivot_longer(-tidyselect::any_of(c(".id", ".out", ".status", ".time")), 
+                          names_to = "PARAMCD", values_to = "AVAL") %>% 
+      dplyr::group_by(PARAMCD) %>% 
+      dplyr::summarise(NDIST = dplyr::n_distinct(AVAL)) %>% 
+      dplyr::filter(NDIST <= thres_log_ignore) %>% 
+      dplyr::pull(PARAMCD)
+  }
+  
   # ...identify skewed parameters -> logtrafo later in recipe  ####
-  vars_logtr <- d_train_raw %>% 
-    dplyr::select_if(is.numeric) %>% 
-    tidyr::pivot_longer(-any_of(c(".id", ".out", ".status", ".time")), 
-                        names_to = "PARAMCD", values_to = "AVAL") %>% 
-    dplyr::group_by(PARAMCD) %>% 
-    dplyr::mutate(MINAVAL = min(AVAL)) %>% 
-    dplyr::filter(MINAVAL > 0) %>% 
-    dplyr::summarise(skew = e1071::skewness(AVAL, na.rm = TRUE), .groups = "drop") %>% 
-    dplyr::filter(skew > thres_log ) %>% 
-    dplyr::pull(PARAMCD)
+  vars_logtr <- NULL
+  if (any(purrr::map_lgl(d_train_raw, is.numeric))){
+    vars_logtr <- d_train_raw %>% 
+      dplyr::select_if(is.numeric) %>% 
+      tidyr::pivot_longer(-tidyselect::any_of(c(".id", ".out", ".status", ".time")), 
+                          names_to = "PARAMCD", values_to = "AVAL") %>% 
+      dplyr::group_by(PARAMCD) %>% 
+      dplyr::mutate(MINAVAL = min(AVAL)) %>% 
+      dplyr::filter(MINAVAL > 0) %>% 
+      dplyr::summarise(skew = e1071::skewness(AVAL, na.rm = TRUE), .groups = "drop") %>% 
+      dplyr::filter(skew > thres_log ) %>% 
+      dplyr::pull(PARAMCD) %>% 
+      setdiff(vars_logtr_ignore)
+  }
+
   
   # ...calculate proportion of missing values per column ####
   prop_available <- d_train_raw %>% 
@@ -367,7 +390,7 @@ prepare_ml <- function(
       
       # ...log transformation ####
       {if(prep_step_log && length(vars_logtr)>0){
-        recipes::step_log(., tidyselect::any_of(vars_logtr)) 
+        recipes::step_log(., tidyselect::any_of(vars_logtr), base = log_base) 
       }else{.}
       }  %>%
       
@@ -497,15 +520,29 @@ prepare_ml <- function(
   # TODO  documentation of pre-processing parameters    
   prep_params <- list(
     
-    # log trafo
+    # ... log trafo  ####
     thres_log  = list(
-      value = ifelse(prep_step_log,  thres_log, NA),
+      value = ifelse(prep_step_log, thres_log, NA),
       text  = ifelse(prep_step_log,
-                     paste0('Variables were logtransformed if e1071::skewness() >',  thres_log,'.'),
+                     paste0('Variables were log transformed (base ', 
+                            ifelse(near(log_base, exp(1)), 'e', log_base),
+                            ') if e1071::skewness() > ',  thres_log,
+                            '. Variables that are assumed to be count variables were excluded from the transformation (see thres_log_ignore for details).'),
                      'No variables were logtransformed.')
     ),
     
-    # correlated variables
+    # ... log trafo excluded (integer with low number of values) ####
+    thres_log_ignore  = list(
+      value = ifelse( length(vars_logtr) > 0 && length(vars_logtr_ignore) > 0, 
+                      thres_log_ignore, NA_real_),
+      text  = ifelse(length(vars_logtr) > 0 && length(vars_logtr_ignore) > 0,
+                     paste0('Variables were excluded from log transformation if they are integer coded 
+                             and have ', thres_log_ignore, 'distinct values.'),
+                            'Not applicable.')
+    ),
+    
+    
+    # ... correlated variables ####
     thres_corr  = list(
       value = ifelse(prep_step_corr, thres_corr, NA),
       text  = ifelse(prep_step_corr,
@@ -513,13 +550,13 @@ prepare_ml <- function(
                      'No variables were removed for reasons of high correlation.')
     ),  
     
-    # lump factor levels (always applied)
+    # ... lump factor levels (always applied) ####
     thres_lump = list(
       value = thres_lump,
       text  = paste0('Low frequency factor levels were lumped using recipes::step_other(threshold = ', thres_lump, '). ')  
     ),
     
-    # imputation/missing values
+    # ... imputation/missing values  ####
     ## imputation/dropping of variables based on available probability
     imp_ignore = list(
       value = ifelse(prep_step_knnimpute, thres_imp, NA),
@@ -529,7 +566,7 @@ prepare_ml <- function(
                      'No imputation was done on the feature matrix.')
     ),
 
-    # nzv 
+    # ... nzv ####
     nzv = list(
       value = list(freq_cut = thres_nzv_freq, unique_cut = thres_nzv_unique),
       text  = paste0('Highly sparse and unbalanced variables were dropped using ',  
@@ -541,16 +578,17 @@ prepare_ml <- function(
   )    
   
   if(outcome_mode == 'regression' ){
-    prep_params <- append(prep_params, 
-                         list(
-                            value = ifelse(outlier_remove,
-                                           unlist(outlier_ctrl), NA ),
-                            text  = ifelse(outlier_remove,
-                                           paste0("Based on the outcome distribution, observations outside the interval ",
-                                           '[q25 - ', outlier_ctrl$coef, '*iqr; ',  
-                                            'q75 + ', outlier_ctrl$coef, '*iqr] were removed prior to data splitting and preprocessing.'),
-                                           NA)
-                          )
+    prep_params <- append(
+      prep_params, 
+      list(
+        value = ifelse(outlier_remove,
+                       unlist(outlier_ctrl), NA ),
+        text  = ifelse(outlier_remove,
+                       paste0("Based on the outcome distribution, observations outside the interval ",
+                       '[q25 - ', outlier_ctrl$coef, '*iqr; ',  
+                        'q75 + ', outlier_ctrl$coef, '*iqr] were removed prior to data splitting and preprocessing.'),
+                       NA)
+     )
     )
   } 
   
@@ -585,6 +623,13 @@ prepare_ml <- function(
     dict = dplyr::bind_rows(
       outcome_dict,
       attr(feature, "dict")  
+      ) %>% 
+      left_join(., 
+          tibble::tibble(
+            param = vars_logtr,
+            logtr = "Y"
+          ),
+          by = c("param")
       ),
     
     prep_params = prep_params,
@@ -625,6 +670,7 @@ if(FALSE){
   prep_step_dummy     = TRUE
   
   thres_log           = 2
+  thres_log_ignore    = 10
   thres_corr          = 0.9
   thres_lump          = 0.05
   thres_imp           = 0.8
