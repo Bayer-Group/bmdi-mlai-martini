@@ -9,7 +9,7 @@
 #' 
 #' @details
 #' 
-#' Files are read from the given \code{path} and file names are matched to their corresponsing type (ads, bds or occds) using a look up table. 
+#' Files are read from the given \code{path} and file names are matched to their corresponding type (ads, bds or occds) using a look up table. 
 #' This information is e.g. used to determine which versions of \code{adam_spec_*} and \code{build_*} to use for further processing
 #' Parameters \code{keep} and \code{drop} allow control over which files to use and ignore, resp. 
 #' (If both are provided files are kept if they are \code{kept} but not in \code{drop}.)
