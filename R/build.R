@@ -3,8 +3,7 @@
 #' {\itemize 
 #'   \item build from spec (with or without data already attached)
 #'   \item build from ads path (spec is created and used to build)
-#'   \item create spec only (also available from \code{adam_spec()})
-#'  }
+#'   \item create spec only (also available from \code{adam_spec()})}
 #' 
 #' @param spec 
 #' @param path the path to the ads files
@@ -30,7 +29,6 @@
 #' 
 #' @seealso \code{\link{adam_spec_adsl()}}, \code{\link{adam_spec_bds()}}
 #'
-#' @usage 
 
 build <- function(
   spec = NULL, 

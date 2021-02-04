@@ -1,4 +1,3 @@
-
 #' Create spec object for occurrence data sets 
 #' 
 #' 
@@ -29,7 +28,7 @@ adam_spec_occds <- function(
   time        = NULL,
   value       = NULL,
   filter      = NULL,
-  count       = FALSE, # NOTE: add further options (weights, scoring matrix, ...)
+  count       = TRUE, # NOTE: add further options (weights, scoring matrix, ...)
   pre_study   = FALSE,
   attach_data = FALSE
 ){

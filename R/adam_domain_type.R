@@ -1,17 +1,35 @@
-#' identify the data set type (ads, bds or occds) of ads files by file name
+#' Identify the data set type of ads files by file name
 #' 
-#' \code{adam_domain_type()} returns the look up table that is used for determining the type of an ads data set. 
-#' Note that this table contains regular expressions when searching for a particular domain 
-#' (\code{adqs.*} will match e.g. adqskccq and adqsnyha).
+#' \code{adam_domain_type()} returns the look up table that is used
+#' for determining the type of an ads data set (ads, bds or occds). 
+#'
+#' @param path ads path 
+#' @param keep only keep the domains provided, e.g. \code{keep = 'adsl'}
+#' @param drop exclude the domains provided, e.g. \code{drop = 'adxb'} 
 #' 
-#' Files are read from the given \code{path} and file names are matched to their corresponsing type (ads, bds or occds) using a look up table. 
+#' @details
+#' 
+#' Files are read from the given \code{path} and file names are matched to their corresponding type (ads, bds or occds) using a look up table. 
 #' This information is e.g. used to determine which versions of \code{adam_spec_*} and \code{build_*} to use for further processing
 #' Parameters \code{keep} and \code{drop} allow control over which files to use and ignore, resp. 
 #' (If both are provided files are kept if they are \code{kept} but not in \code{drop}.)
-#'
-#' @param path ads path 
-#' @keep only keep the domains provided, e.g. \code{keep = 'adsl'}
-#' @drop exclude the domains provided, e.g. \code{drop = 'adxb'} 
+#' 
+#' Note that this table contains regular expressions when searching for a particular domain 
+#' (\code{adqs.*} will match e.g. adqskccq and adqsnyha).
+#' 
+#' @return 
+#' 
+#' A tibble with one row for each \code{.sas7bdat} file in the specified folder and the following columns
+#' 
+#' \item{file}{File path}
+#' \item{type}{File type (*adsl*, *bds*, *occds* or *none*)}
+#' \item{dom}{Name of the adam domain, i.e. the file name without its extension}
+#' 
+#' @section Authors:
+#' 
+#' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+#' 
+#' @md
 
 adam_domain_type <- function(
   path = NULL , 
@@ -49,7 +67,7 @@ adam_domain_type <- function(
     return(ads_library) }
   else{
   
-      all_files <- list.files(path, pattern = ".sas7bdat", full.names = TRUE, recursive = TRUE)
+      all_files <- list.files(path, pattern = ".sas7bdat$", full.names = TRUE, recursive = TRUE)
       
       # if length == 0, 'path' might be a single file
       if (length(all_files) == 0) all_files <- path

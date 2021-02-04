@@ -8,32 +8,7 @@
 #' @param filter character vector of filter criteria to be evaluated
 #' @param attach_data boolean. attach the imported raw data
 
-# test area####
-if(FALSE){
-  
-  require(tidyverse)
-  require(haven)
-  require(labelled)
-  
-  # 'real_world_data/adsl/99999/adsl.sas7bdat'
-  study <- c(99999)[1]#  , 99999, 99999)[3]
-  # file  <- paste0('real_world_data/adsl/', study, '/adsl.sas7bdat')
-  file  <-  paste0('data/', study, '/ads/adsl.sas7bdat')
-  
-  id = 'SUBJID'
-  trt = NULL
-  keep = NULL
-  drop = NULL
-  filter = c("FASFL == 'Y'", "AGE < 80", "GENDER == 'female'")
-  attach_data = TRUE
-  
-  spec <- adam_spec_adsl(file = file, id = id, filter = filter, attach_data = attach_data)
-  
-}
 
-
-
-# adam_spec_adsl() ####
 
 adam_spec_adsl <- function(
   file, 
@@ -330,5 +305,52 @@ adam_spec_adsl <- function(
   }
   
   out
+  
+}
+
+# test area####
+if(FALSE){
+  
+  require(tidyverse)
+  require(haven)
+  require(labelled)
+  
+  # 'real_world_data/adsl/99999/adsl.sas7bdat'
+  study <- c(99999)[1]#  , 99999, 99999)[3]
+  # file  <- paste0('real_world_data/adsl/', study, '/adsl.sas7bdat')
+  file <-  paste0('data/', study, '/ads/adsl.sas7bdat')
+  
+  id = 'SUBJID'
+  trt = NULL
+  keep = NULL
+  drop = NULL
+  filter = c("FASFL == 'Y'", "AGE < 80", "GENDER == 'female'")
+  attach_data = TRUE
+  
+  spec <- adam_spec_adsl(file = file, id = id, filter = filter, attach_data = attach_data)
+  
+}
+
+
+# test area####
+if(FALSE){
+  
+  require(tidyverse)
+  require(haven)
+  require(labelled)
+  
+  # 'real_world_data/adsl/99999/adsl.sas7bdat'
+  study <- c(99999)[1]#  , 99999, 99999)[3]
+  # file  <- paste0('real_world_data/adsl/', study, '/adsl.sas7bdat')
+  file  <-  paste0('data/', study, '/ads/adsl.sas7bdat')
+  
+  id = 'SUBJID'
+  trt = NULL
+  keep = NULL
+  drop = NULL
+  filter = c("FASFL == 'Y'", "AGE < 80", "GENDER == 'female'")
+  attach_data = TRUE
+  
+  spec <- adam_spec_adsl(file = file, id = id, filter = filter, attach_data = attach_data)
   
 }

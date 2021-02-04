@@ -1,0 +1,37 @@
+Package: MLAIprepare
+Type: Package
+Title: BMDI MLAI pipeline - Prepare Module
+Version: 0.1.0
+Authors@R: c(
+  person("Ahrens", "Maike", email = "maike.ahrens@chrestos.de", role = c("aut", "cre")),
+  person("Voss", "Sebastian", email = "sebastian.voss@chrestos.de", role = c("aut")))
+Description: Prepare module of the BMDI MLAI pipeline. It contains functions to conveniently
+  transform a set of ADaM data sets (adsl, bds and occds) into a data object that can be used
+  for machine learning, e.g. using the BMDI MLAI pipeline.
+Depends:
+    R (>= 3.6.3),
+    tune
+Imports:
+    stats,
+    magrittr,
+    ggplot2,
+    vctrs,
+    rlang,
+    dplyr,
+    tibble,
+    tidyr (>= 1.0.0),
+    tidyselect (>= 1.0.0),
+    forcats,
+    purrr,
+    lubridate,
+    stringr
+Suggests:
+    knitr,
+    rmarkdown,
+    here
+VignetteBuilder: knitr
+BugReports: https://by-gitlab.de.bayer.cnb/EQYKG/batcave/-/issues
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
