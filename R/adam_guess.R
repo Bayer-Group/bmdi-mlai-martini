@@ -27,10 +27,10 @@
 adam_guess <- function(file){
   
   # ... check file exists ###
-  if( ! file.exists(path) ){
+  if( ! file.exists(file) ){
     usethis::ui_stop(paste0(
       crayon::silver( "The provided file does not exist. \n\t "), 
-      crayon::blue(path)
+      crayon::blue(file)
     ))
   }
   

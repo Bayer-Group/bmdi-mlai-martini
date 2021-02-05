@@ -55,7 +55,7 @@ adam_spec <- function(
     
     files_adsl <- file_info %>% 
       dplyr::filter(type == "adsl") %>% 
-      dplyr::select(dom, file) %>% 
+      dplyr::select(domain, file) %>% 
       tibble::deframe()
     
     spec <- spec %>% 
@@ -71,7 +71,7 @@ adam_spec <- function(
     
     files_bds <- file_info %>% 
       dplyr::filter(type == "bds") %>% 
-      dplyr::select(dom, file) %>% 
+      dplyr::select(domain, file) %>% 
       tibble::deframe()
     
     spec <- spec %>% 
@@ -87,7 +87,7 @@ adam_spec <- function(
     
     files_occds <- file_info %>% 
       dplyr::filter(type == "occds") %>% 
-      dplyr::select(dom, file) %>% 
+      dplyr::select(domain, file) %>% 
       tibble::deframe()
     
     spec <- spec %>% 
