@@ -109,7 +109,7 @@ adam_spec_occds <- function(
   
   
   # dictionary   ####
-  source <- adam_domain_type(file)$dom
+  source <- adam_domain_type(file)$domain
   
    
   # use unfiltered data 

@@ -29,19 +29,19 @@ adam_guess <- function(file){
   
   
   # OCCDS  ####
-  if (file_info$dom == "admh"){
+  if (file_info$domain == "admh"){
       list(
         label  = c("MHHLGT", "MHHLT", "MHBODSYS", "MHSOC", "MHDECOD"),
         time   = "MHSTDY",
         value  = NULL
       )
-    } else if (file_info$dom == "adcm"){
+    } else if (file_info$domain == "adcm"){
       list(
         label  = c("BDG01", "CMSCL01C", "CMCL01C", "DRUGRP1", "CMDECOD"),
         time   = "CMSTDY",
         value  = NULL
       )
-    } else if (file_info$dom == "adae"){
+    } else if (file_info$domain == "adae"){
       list(
         label  = c("AEHLGT", "AEHLT", "AEBODSYS", "AESOC", "AEDECOD", "AECAT"),
         time   = "AESTDY",
@@ -49,7 +49,7 @@ adam_guess <- function(file){
       )
     } else {
       usethis::ui_stop(
-        paste0("No guessing options available for domain '", file_info$dom, "' yet.\n")
+        paste0("No guessing options available for domain '", file_info$domain, "' yet.\n")
       )
     }
  

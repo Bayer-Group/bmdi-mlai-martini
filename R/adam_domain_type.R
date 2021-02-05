@@ -1,29 +1,38 @@
 #' Identify the data set type of ads files by file name
 #' 
-#' \code{adam_domain_type()} returns the look up table that is used
-#' for determining the type of an ads data set (ads, bds or occds). 
+#' Files are read from the given \code{path} and file names are matched
+#' to their corresponding adam data type (ads, bds or occds) using a look up table. 
 #'
-#' @param path ads path 
+#' @param path ads path to the file of interest
 #' @param keep only keep the domains provided, e.g. \code{keep = 'adsl'}
 #' @param drop exclude the domains provided, e.g. \code{drop = 'adxb'} 
+#' @param quiet whether to suppress printing info on unknown domains to the console, defaults to \code{FALSE}
 #' 
 #' @details
 #' 
-#' Files are read from the given \code{path} and file names are matched to their corresponding type (ads, bds or occds) using a look up table. 
-#' This information is e.g. used to determine which versions of \code{adam_spec_*} and \code{build_*} to use for further processing
+#' The derived information is e.g. used to determine which version of \code{adam_spec_\U002A()} and \code{build_\U002A()} 
+#' to use for further processing.
 #' Parameters \code{keep} and \code{drop} allow control over which files to use and ignore, resp. 
-#' (If both are provided files are kept if they are \code{kept} but not in \code{drop}.)
+#' (If both are provided, \code{drop} is ignored and only information in \code{keep} is used.)
+#'
+#' Without any arguments given, *\code{adam_domain_type()}* returns the look up table that is used
+#' for determining the type of an ads data set (ads, bds or occds). The column \code{domain} does not only contain 
+#' explicit domains (e.g. adqskccq) for human readability, but also regular expressions 
+#' ('adqs.\U002A' matches e.g. adqskccq, adqsnyha, adqseq5d, adqspad, ...)
 #' 
-#' Note that this table contains regular expressions when searching for a particular domain 
-#' (\code{adqs.*} will match e.g. adqskccq and adqsnyha).
+#' 
 #' 
 #' @return 
 #' 
-#' A tibble with one row for each \code{.sas7bdat} file in the specified folder and the following columns
+#' A tibble with one row for each matched \code{.sas7bdat} file in the specified folder and the following columns
 #' 
-#' \item{file}{File path}
-#' \item{type}{File type (*adsl*, *bds*, *occds* or *none*)}
-#' \item{dom}{Name of the adam domain, i.e. the file name without its extension}
+#' \item{file}{File path of the individual selected files}
+#' \item{type}{File type: *adsl*, *bds*, *occds* or *none* (if no matches are found in the look up table, see \code{adam_domain_type()})}
+#' \item{domain}{Name of the adam domain, i.e. the file name without its extension}
+#' 
+#' If unknown domains are found in \code{path} that cannot be matched to a type, 
+#' these can be found in the \code{unknown_domains} attribute of the outcome table. 
+#' In addition, a message is printed to the console, unless \code{quiet} is set to \code{TRUE}.
 #' 
 #' @section Authors:
 #' 
@@ -32,21 +41,21 @@
 #' @md
 
 adam_domain_type <- function(
-  path = NULL , 
-  keep = NULL, 
-  drop = NULL){
+  path  = NULL , 
+  keep  = NULL, 
+  drop  = NULL,
+  quiet = FALSE){
   
-  
-  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-  # library of data sets to be processed automatically   ####
-  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+  # define look-up table ####
+  # library of data sets to be processed automatically
   
   type_adsl <- c("adsl") %>% 
     paste0(".sas7bdat$") 
   type_bds <- c(   
     paste0( c(  "adegf",   "adpc",
                 "adlb",  "advs",  "adxb", "adxl", 
-                "adqskccq", "adqsnyha", 'adqseq5d') , ".sas7bdat$"),
+                "adqskccq", "adqsnyha", 'adqseq5d', 'adqspad', 'adqswimp'
+                ) , ".sas7bdat$"),
     "adqs.*[.]sas7bdat$" ) #%>% 
   type_occds <- c("adae", "adcm", "admh") %>% 
     paste0(".sas7bdat$")
@@ -63,29 +72,38 @@ adam_domain_type <- function(
   type_occds <- type_occds %>%  paste(collapse = "|")
   
   
+  # EITHER return look-up table  ####
   if(is.null(path)){ 
-    return(ads_library) }
-  else{
-  
+    return(ads_library) 
+    
+  # OR process path...  ####  
+  }else{
+        # ... check path ###
+         if(! dir.exists(path) ){
+           usethis::ui_stop(paste0(
+             crayon::silver( "The provided path does not seem to exist. \n\t "), 
+             crayon::blue(path)
+             ))
+         }
+      
+      # ... determine all file paths, file names ####
       all_files <- list.files(path, pattern = ".sas7bdat$", full.names = TRUE, recursive = TRUE)
       
-      # if length == 0, 'path' might be a single file
-      if (length(all_files) == 0) all_files <- path
+      # length(all_files) == 0 -> 'path' might be a single file
       
+      
+      if (length(all_files) == 0) all_files <- path
       
       file_name  <- stringr::str_split(all_files, '/|\\\\')  %>%  
         purrr::map( ~ .[length(.)]) %>% 
         unlist()
       
+      # ... determine types and domains from look-up table defined above ####
       all_types <- purrr::map_chr(file_name, ~{
-        if (stringr::str_detect(., type_adsl)){
-          "adsl"
-        } else if (stringr::str_detect(., type_bds)){
-          "bds"
-        } else if (stringr::str_detect(., type_occds)){
-          "occds"
-        } else {
-          "none"
+        if (       stringr::str_detect(., type_adsl )){ "adsl"
+        } else if (stringr::str_detect(., type_bds  )){ "bds"
+        } else if (stringr::str_detect(., type_occds)){ "occds"
+        } else {                                        "none"
         }
       })
       
@@ -94,40 +112,94 @@ adam_domain_type <- function(
         unlist() %>%
         stringr::str_remove('.sas7bdat')
       
+      # ... file_info: create full mapping table ####
       file_info <- tibble::tibble(
-        "file" = all_files,
-        "type" = all_types,
-        "dom"  = all_doms
+        "file"   = all_files,
+        "domain" = all_doms,
+        "type"   = all_types
       )
       
+      # ... subset according to user spec keep/drop ####
+      # strip file extension, in case the user provided the file name instead of domain
+      keep <- str_remove(keep, '.sas7bdat$')
+      drop <- str_remove(drop, '.sas7bdat$')
+      
+      # ... check selection options ###
+      if(!is.null(keep) && !is.null(drop) ){
+        usethis::ui_info(crayon::silver( 
+          "Please specify only one of 'keep' or 'drop'. Only 'keep' will be used for subsetting here. \n\t " 
+         ))
+      }
+      
       if (!is.null(keep)){
-        file_info <- file_info %>% dplyr::filter(dom %in% keep)
+          file_info <- file_info %>% dplyr::filter(domain %in% keep)
       } else {
         if(!is.null(drop)){
-          file_info <- file_info %>% dplyr::filter(!dom %in% drop)
+          file_info <- file_info %>% dplyr::filter(!domain %in% drop)
         }
       }
       
+      
+      # ... ui_stop ###
       if(nrow(file_info) == 0){
-        usethis::ui_stop("No files to process")
+           usethis::ui_stop("No files to process. Please check your file selection (keep/drop).")
       }
       
-      doms_ignored <- file_info %>% 
-        dplyr::filter(type == "none") %>% 
-        dplyr::pull(dom)
+      if(all(file_info$type == "none")){
+        usethis::ui_stop("The data type is unknown for all files in the given file selection.")
+      }
       
-      if(length(doms_ignored) > 0 ){
+     # doms_ignored: domains without match in look-up table  ####
+     doms_ignored <- file_info %>% 
+        dplyr::filter(type == "none") %>% 
+        dplyr::pull(domain)
+      
+      
+      
+      if(length(doms_ignored) > 0 && !quiet){
         usethis::ui_info( paste0(
           crayon::silver('The following domains were not processed as they are currently not in the library: \n\t'), 
           crayon::blue(paste(doms_ignored, collapse=', ')),
           crayon::silver( '\nYou can use the adam_spec_*() functions as appropriate.'))
         )
+        
       }
       
-      if(all(file_info$type == "none")){
-        usethis::ui_stop("No supported files in selected path.")
-      }
+      attr(file_info, 'unknown_domains') <- doms_ignored
       
-      file_info
+      file_info 
   }   
 }
+
+# testing
+if(FALSE){
+ 
+ paths <- paste0('../../../',
+         c('', 'adcm.sas7bdat'))
+ 
+ # print look-up table
+ adam_domain_type()
+ 
+ # process path with unknown domains (adpr)
+ adam_domain_type(path = paths[1])
+ adam_domain_type(path = paths[1], quiet = TRUE)
+ adam_domain_type(path = paths[1], quiet = TRUE) %>%  attr('unknown_domains')
+ 
+ # process single file
+ adam_domain_type(path = paths[2])
+ 
+ # keep: files actually in path
+ adam_domain_type(path = paths[1] , keep = c('adqseq5d', 'advs'))  
+ adam_domain_type(path = paths[1] , keep = c('adqseq5d', 'advs.sas7bdat'))  
+ 
+ # keep: files not found in path (typo, missing file selected)
+ adam_domain_type(path = paths[1] , keep = c('adqs'))  
+ 
+ # keep/drop: keep  
+ adam_domain_type(path = paths[1] , keep = c('adqseq5d', 'advs'), drop = 'advs')  
+ 
+ # path: path doesn't exist
+ adam_domain_type(path = str_remove(paths[1], 'Original/') )  
+
+}
+# 
