@@ -79,9 +79,9 @@ adam_domain_type <- function(
   # OR process path...  ####  
   }else{
         # ... check path ###
-         if(! dir.exists(path) ){
+         if( ! dir.exists(path) && ! file.exists(path)){
            usethis::ui_stop(paste0(
-             crayon::silver( "The provided path does not seem to exist. \n\t "), 
+             crayon::silver( "The provided path does not exist. \n\t "), 
              crayon::blue(path)
              ))
          }
@@ -119,22 +119,21 @@ adam_domain_type <- function(
         "type"   = all_types
       )
       
-      # ... subset according to user spec keep/drop ####
-      # strip file extension, in case the user provided the file name instead of domain
-      keep <- str_remove(keep, '.sas7bdat$')
-      drop <- str_remove(drop, '.sas7bdat$')
       
       # ... check selection options ###
-      if(!is.null(keep) && !is.null(drop) ){
+      if( !is.null(keep) && !is.null(drop) ){
         usethis::ui_info(crayon::silver( 
           "Please specify only one of 'keep' or 'drop'. Only 'keep' will be used for subsetting here. \n\t " 
          ))
       }
       
       if (!is.null(keep)){
-          file_info <- file_info %>% dplyr::filter(domain %in% keep)
+          # strip file extension, in case the user provided the file name instead of domain
+          keep      <- str_remove(keep, '.sas7bdat$')
+          file_info <- file_info %>% dplyr::filter( domain %in% keep)
       } else {
         if(!is.null(drop)){
+          drop      <- str_remove(drop, '.sas7bdat$')
           file_info <- file_info %>% dplyr::filter(!domain %in% drop)
         }
       }
