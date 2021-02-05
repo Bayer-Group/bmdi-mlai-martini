@@ -28,6 +28,7 @@
 #' @param log_base            = exp(1),
 #' @param outlier_remove      = FALSE,
 #' @param outlier_ctrl        = list(coef = 3)
+#' @param quiet =FALSE
 #'
 #'
 
@@ -63,141 +64,46 @@ prepare_ml <- function(
   
   log_base            = exp(1),
   outlier_remove      = FALSE,
-  outlier_ctrl        = list(coef = 3)
+  outlier_ctrl        = list(coef = 3),
+  
+  quiet               = FALSE
   
 ){
   
   # OUTCOME ####
   
-  # ... outcome_name ####
-  # guess outcome column, if outcome_name = NULL and outcome has more than 2 columns: use first that's not '.id'
+  outcome_prep <- prepare_ml_outcome(
+    outcome        = outcome,
+    outcome_name   = outcome_name,
+    level_order    = level_order,
+    outlier_remove = outlier_remove,
+    outlier_ctrl   = outlier_ctrl
+  )
   
-  if(is.null(outcome_name)){
-    
-    outcome_options <- setdiff(colnames(outcome), '.id')
-    needs_guessing  <- length(outcome_options) > 1
-    outcome_name    <- outcome_options[1]
-    
-    if(needs_guessing){
-      usethis::ui_info( paste0(
-        crayon::silver('The outcome object you provided has multiple options. The following option was chosen: \n'), # MARTINI chose: \n'), 
-        '\t' , crayon::magenta( outcome_name)     , '\n'
-      ))
-    } 
-    
-  } else { # outcome_name is provided
-    
-    # do columns exist?  
-    walk( outcome_name, ~  if(! .x %in% colnames(outcome) ){ 
-      usethis::ui_stop( paste0(
-        'The column ', .x, ' is not present in the outcome data set. ', 
-        'Please correct input of column_name or let the function choose from existing columns (regression and classification only).\n'))
-    } )
-    
-    # check number of provided outcome columns
-    if(length(outcome_name) > 2 ){ 
-      usethis::ui_stop('Please check input for outcome_name. No more than two columns might be selected.')
-    }else if( length(outcome_name) == 2 ){
-      # check column names and types for survival  
-      
-      names_valid  <- {sort(names(outcome_name)) == c('.status', '.time')} %>%  all()
-      if(!names_valid)  usethis::ui_stop('For survival analysis, please provide vector with names .status and .time for outcome_name.')
-      
-      status_valid <- outcome[, outcome_name['.status']] %>% pull() %>%  { . %in% c(0,1) } %>%  all() 
-      if(!status_valid) usethis::ui_stop('status may only contain values 0 and 1.')
-      # stops if NAs are present
-      
-      time_valid   <- outcome[, outcome_name['.time'  ]] %>% pull() %>%  is.numeric()
-      if(!time_valid)   usethis::ui_stop('Please check type of time column.')
-      
-      # sort by name
-      outcome_name <- outcome_name[ c('.time', '.status')]
-    }  
-  } # -> outcome_name is set, either of length one or two
+  # (for code readability)
+  outcome       <- outcome_prep$outcome
+  outcome_name  <- outcome_prep$outcome_name
+  outcome_label <- outcome_prep$outcome_label
+  outcome_mode  <- outcome_prep$outcome_mode
+  outcome_dict  <- outcome_prep$outcome_dict
+  na_outcome    <- outcome_prep$na_outcome
+  id_outlier    <- outcome_prep$id_outlier
   
-  
-  # ... outcome_mode ####
-  if(length(outcome_name) == 2){
-    outcome_mode <- 'survival'
-  }else{ 
-    outcome_mode <- ifelse(
-      is.numeric(outcome[[outcome_name]])
-      && n_distinct(outcome[[outcome_name]]) > 5,
-      "regression", 
-      "classification"
-    )
-  }  
-  
-  # for consistency, add name if mode != survival
-  if(outcome_mode != 'survival'){
-    names(outcome_name) <- '.out'
+  if (length(id_outlier)>0 && !quiet){
+    usethis::ui_info(paste0(
+      "Based on the outcome distribution, ", length(id_outlier),
+      ifelse(length(id_outlier)>1, " observations were "," observation was "),
+      "identified as outlier and removed from the outcome data prior to data splitting and preprocessing.\n"
+    ))
   }
   
-  # ... outcome_label ####
-  # extract label(s) of outcome before potentially mutating to factor (classification)
-  # for consistency, outcome label is a named vector.
-  outcome_label <- outcome_name 
-  iwalk(outcome_name, ~ {
-    the_label <- labelled::var_label(outcome)[.x] %>% unlist()
-    outcome_label[.y] <<- the_label
-  })
-  
-  
-  # ... outcome dict ####
-  outcome_dict <- tibble::tibble(
-    param  = names(outcome_name)) %>% 
-    mutate(
-      column = param,
-      source = "user_outcome",
-      label  = outcome_label[param]
-    )
-  
-  
-  # ... outcome data ####
-  
-  # ... ... standardize outcome name ####
-  outcome <- outcome %>% 
-    dplyr::select(all_of('.id'), tidyselect::all_of(outcome_name))
-  
-  # ... ... classification -> factor(), fct_relevel() ####
-  if (outcome_mode == "classification"){
-    
-    outcome <- outcome %>% dplyr::mutate_at(".out", factor) # strips labels
-    outcome_level <- outcome[[".out"]] %>% levels()
-    
-    if (!is.null(level_order)){
-      level_order <- intersect(level_order, outcome_level)
-      if (length(level_order) > 0){
-        outcome <- outcome %>% 
-          mutate_at(".out", ~ fct_relevel(., level_order))
-      }
-    }
-    
+  if (length(na_outcome)>0 && !quiet){
+    usethis::ui_info(paste0(
+      length(na_outcome),
+      ifelse(length(na_outcome)>1, " observations were "," observation was "),
+      "removed from the outcome data prior to data splitting and preprocessing due to missingness.\n"
+    ))
   }
-  
-  # ... ... regression -> outlier_removal
-  id_outlier <- NULL
-  if(outcome_mode == "regression" && outlier_remove){
-    
-    # with c = outlier_ctrl$coef, exclude observations outside [q25 - c*iqr;  q75 + c*iqr]
-    q   <- quantile(outcome$.out, probs = c(0.25, 0.75), names = FALSE, na.rm = TRUE)
-    loq <- q + c(-1,1) * abs(outlier_ctrl$coef[1]) * diff(q)
-    is_outlier <- !between(outcome$.out, loq[1], loq[2])
-    
-    outcome    <- outcome %>% dplyr::filter( ! is_outlier) # !is.na(.out) NAs will be removed and tracked in the recipe
-    
-    if (any(is_outlier)){
-      usethis::ui_info(paste0(
-        "Based on the outcome distribution, ", sum(is_outlier),
-        ifelse(sum(is_outlier)>1, " observations were "," observation was "),
-        "identified as outlier and removed from the input data prior to data splitting and preprocessing.\n"
-      ))
-    }
-    
-    id_outlier <- outcome$.id[is_outlier]
-    
-  }
-  
   
   # FEATURE ####
   
@@ -457,27 +363,14 @@ prepare_ml <- function(
   
   # ... rows ####
   
-  # ... ... na_outcome ####
-  na_outcome <- d_train_raw %>% 
-    dplyr::select(tidyselect::any_of(c(".id", ".out", ".status", ".time"))) %>% 
-    mutate_all(is.na) %>%  
-    dplyr::rowwise() %>% 
-    dplyr::mutate(ANYNA  = dplyr::c_across() %>% any()) %>% 
-    dplyr::ungroup() %>% 
-    dplyr::filter(ANYNA) %>% 
-    dplyr::pull(.id)
-
-  attributes(na_outcome) <- NULL
-  if (length(na_outcome) == 0) na_outcome <- NULL
-  
   # ... ... na_feature ####
-  na_feature <- d_train_raw$.id %>% 
+  na_feature <- d_raw$.id %>% 
     setdiff(na_outcome) %>% 
-    setdiff(d_train$.id)
+    setdiff(dplyr::bind_rows(d_train, d_test)$.id)
   
   if (length(na_feature) == 0) na_feature <- NULL
 
-  # ... ... removed_rows: collect and add outlier ids ####
+  # ... ... removed_rows: add outlier ids and NA outcome ids ####
   removed_rows <- list(
     outlier_outcome = id_outlier,
     na_outcome      = na_outcome,
