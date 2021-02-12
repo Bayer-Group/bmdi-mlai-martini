@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec_occds.R
 \name{adam_spec_occds}
 \alias{adam_spec_occds}
-\title{spec occ}
+\title{Create spec object for occurrence data sets}
 \usage{
 adam_spec_occds(
   file,
@@ -11,13 +11,13 @@ adam_spec_occds(
   time = NULL,
   value = NULL,
   filter = NULL,
-  count = FALSE,
+  count = TRUE,
   pre_study = FALSE,
   attach_data = FALSE
 )
 }
 \arguments{
-\item{file}{the sas file}
+\item{file}{the path of the sas file to process}
 
 \item{id}{name of id column to be kept and used for merge of data sets}
 
@@ -27,13 +27,20 @@ adam_spec_occds(
 
 \item{value}{optional value column (e.g. AE severity). Defaults to NULL, which leads to an Y/N coding of the event}
 
-\item{filter}{character vector of filters to be applied to the bds data set. 
+\item{filter}{character vector of filters to be applied to the bds data set.
 Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL.}
 
-\item{attach_data}{boolean. attach the imported raw data}
+\item{count}{boolean, defaults to FALSE. # NOTE: add further options (weights, scoring matrix, ...)}
+
+\item{pre_study}{= FALSE,}
+
+\item{attach_data}{boolean. attach the imported raw data in \code{data} slot of output object}
 }
 \description{
 For file names 'adae.sas7bdat', 'adcm.sas7bdat' and 'admh.sas7bdat', values for
-arguments \code{label} and \code{time} will be guessed if not provided. 
-Guesses will be the first of the following options that matches a column name (exact match).
+arguments \code{label} and \code{time} will be guessed if not provided.
+Please refer to \code{adam_guess()} for details on guessing procedure.
+Function will escape if one of label or value are neither provided nor can be guessed.
+Note that the original values in the \code{label} column will end up being the parameter labels,
+not the parameters in the ML feature matrix. These might be modified later using \code{make_names()} or the like \code{prepare_ml()}.
 }

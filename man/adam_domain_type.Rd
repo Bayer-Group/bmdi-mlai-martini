@@ -4,34 +4,42 @@
 \alias{adam_domain_type}
 \title{Identify the data set type of ads files by file name}
 \usage{
-adam_domain_type(path = NULL, keep = NULL, drop = NULL)
+adam_domain_type(path = NULL, keep = NULL, drop = NULL, quiet = FALSE)
 }
 \arguments{
-\item{path}{ads path}
+\item{path}{ads path to the file of interest}
 
 \item{keep}{only keep the domains provided, e.g. \code{keep = 'adsl'}}
 
 \item{drop}{exclude the domains provided, e.g. \code{drop = 'adxb'}}
+
+\item{quiet}{whether to suppress printing info on unknown domains to the console, defaults to \code{FALSE}}
 }
 \value{
-A tibble with one row for each \code{.sas7bdat} file in the specified folder and the following columns
+A tibble with one row for each matched \code{.sas7bdat} file in the specified folder and the following columns
 
-\item{file}{File path}
-\item{type}{File type (\emph{adsl}, \emph{bds}, \emph{occds} or \emph{none})}
-\item{dom}{Name of the adam domain, i.e. the file name without its extension}
+\item{file}{File path of the individual selected files}
+\item{type}{File type: \emph{adsl}, \emph{bds}, \emph{occds} or \emph{none} (if no matches are found in the look up table, see \code{adam_domain_type()})}
+\item{domain}{Name of the adam domain, i.e. the file name without its extension}
+
+If unknown domains are found in \code{path} that cannot be matched to a type,
+these can be found in the \code{unknown_domains} attribute of the outcome table.
+In addition, a message is printed to the console, unless \code{quiet} is set to \code{TRUE}.
 }
 \description{
-\code{adam_domain_type()} returns the look up table that is used
-for determining the type of an ads data set (ads, bds or occds).
+Files are read from the given \code{path} and file names are matched
+to their corresponding adam data type (ads, bds or occds) using a look up table.
 }
 \details{
-Files are read from the given \code{path} and file names are matched to their corresponsing type (ads, bds or occds) using a look up table.
-This information is e.g. used to determine which versions of \code{adam_spec_*} and \code{build_*} to use for further processing
+The derived information is e.g. used to determine which version of \code{adam_spec_\U002A()} and \code{build_\U002A()}
+to use for further processing.
 Parameters \code{keep} and \code{drop} allow control over which files to use and ignore, resp.
-(If both are provided files are kept if they are \code{kept} but not in \code{drop}.)
+(If both are provided, \code{drop} is ignored and only information in \code{keep} is used.)
 
-Note that this table contains regular expressions when searching for a particular domain
-(\code{adqs.*} will match e.g. adqskccq and adqsnyha).
+Without any arguments given, \emph{\code{adam_domain_type()}} returns the look up table that is used
+for determining the type of an ads data set (ads, bds or occds). The column \code{domain} does not only contain
+explicit domains (e.g. adqskccq) for human readability, but also regular expressions
+('adqs.\U002A' matches e.g. adqskccq, adqsnyha, adqseq5d, adqspad, ...)
 }
 \section{Authors}{
 

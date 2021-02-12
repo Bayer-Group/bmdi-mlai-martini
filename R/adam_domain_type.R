@@ -38,7 +38,6 @@
 #' 
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
-#' @md
 
 adam_domain_type <- function(
   path  = NULL , 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec_adsl.R
 \name{adam_spec_adsl}
 \alias{adam_spec_adsl}
-\title{spec adsl}
+\title{Create spec object for adsl data sets}
 \usage{
 adam_spec_adsl(
   file,
@@ -16,11 +16,11 @@ adam_spec_adsl(
 )
 }
 \arguments{
-\item{file}{the file}
+\item{file}{the path of the sas file to process}
 
 \item{id}{name of id column to keep}
 
-\item{trt}{name of trt column to keep}
+\item{trt}{name of trt column to keep (e.g. TRT01A)}
 
 \item{keep}{columns to be kept (overrides blacklist)}
 
@@ -29,9 +29,8 @@ adam_spec_adsl(
 \item{filter}{character vector of filter criteria to be evaluated}
 
 \item{attach_data}{boolean. attach the imported raw data
-
-adsl.sas7bdat' %in% list.files(path)}
+adsl.sas7bdat' \%in\% list.files(path)}
 }
 \description{
-spec adsl
+Create spec object for adsl data sets
 }

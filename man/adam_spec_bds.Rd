@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec_bds.R
 \name{adam_spec_bds}
 \alias{adam_spec_bds}
-\title{spec bds (basic data structure)}
+\title{Create spec object for bds data sets (basic data structure)}
 \usage{
 adam_spec_bds(
   file,
@@ -32,22 +32,22 @@ adam_spec_bds(
 
 \item{value}{Defaults to NULL, will be guessed if not set (see Details).}
 
-\item{filter}{character vector of filters to be applied to the bds data set. 
+\item{filter}{character vector of filters to be applied to the bds data set.
 Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL.}
 
 \item{attach_data}{boolean. attach the imported raw data}
 }
 \description{
-Values for arguments param, label, unit, time, value will be guessed if not provided. 
+Values for arguments param, label, unit, time, value will be guessed if not provided.
 Guess will be the first of the following options that matches a column name (exact match).
 \itemize{
-     \item[param] 'PARAMCD', paste0(dom,'TESTCD')
-     \item[label] substring of param with the last two characters removed
-     \item[time]  'AVISIT', 'VISIT'
-     \item[value] 'AVAL',   paste0(dom, c("STRESN", "ORRES")
-     \item[unit]  'AVALU',  paste0(dom, c("STRESU", "ORRESU") 
+\item\link{param} 'PARAMCD', paste0(dom,'TESTCD')
+\item\link{label} substring of param with the last two characters removed
+\item\link{time}  'AVISIT', 'VISIT'
+\item\link{value} 'AVAL',   paste0(dom, c("STRESN", "ORRES")
+\item\link{unit}  'AVALU',  paste0(dom, c("STRESU", "ORRESU")
 }
 Function will escape if one of param or value are neither provided nor can be guessed.
 A parameter dictionary will be created: A tibble with unique combinations of param, label, unit (or the provided subset)
-adsl.sas7bdat' %in% list.files(path)
+adsl.sas7bdat' \%in\% list.files(path)
 }

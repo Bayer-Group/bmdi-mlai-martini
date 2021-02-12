@@ -23,7 +23,7 @@
 #' @param thres_nzv_unique = 10
 #' @param vars_imp_ignore = NULL
 #' @param vars_fct_expl_na = NULL
-#' @param vars_ordinalscore  = NULL, 
+#' @param vars_ordinalscore  = NULL, convert ordinal factor variables into numeric scores
 #' @param one_hot = TRUE
 #' @param log_base            = exp(1),
 #' @param outlier_remove      = FALSE,
@@ -196,65 +196,28 @@ prepare_ml <- function(
   #  RECIPE PREP ####
   # derive variable lists for steps
   
-  # ... vars_count: identify integers with only a limited number of values ####
-  vars_count <- NULL
-  if (any(purrr::map_lgl(d_train_raw, is.integer))){
-    vars_count <- d_train_raw %>% 
-      dplyr::select_if(is.integer) %>% 
-      tidyr::pivot_longer(-tidyselect::any_of(c(".id", ".out", ".status", ".time")), 
-                          names_to = "PARAMCD", values_to = "AVAL") %>% 
-      dplyr::group_by(PARAMCD) %>% 
-      dplyr::summarise(NDIST = dplyr::n_distinct(AVAL)) %>% 
-      dplyr::filter(NDIST <= thres_count) %>% 
-      dplyr::pull(PARAMCD)
-  }
+  vars <- prepare_ml_vars(
+    data             = d_train_raw,
+    thres_count      = thres_count,
+    thres_log        = thres_log,
+    thres_corr       = thres_corr,   
+    thres_lump       = thres_lump,
+    thres_imp        = thres_imp,
+    thres_nzv_freq   = thres_nzv_freq, 
+    thres_nzv_unique = thres_nzv_unique
+  )
   
-  # ... vars_logtr: identify skewed parameters -> logtrafo later in recipe  ####
-  vars_logtr <- NULL
-  if (any(purrr::map_lgl(d_train_raw, is.numeric))){
-    vars_logtr <- d_train_raw %>% 
-      dplyr::select_if(is.numeric) %>% 
-      tidyr::pivot_longer(-tidyselect::any_of(c(".id", ".out", ".status", ".time")), 
-                          names_to = "PARAMCD", values_to = "AVAL") %>% 
-      dplyr::group_by(PARAMCD) %>% 
-      dplyr::mutate(MINAVAL = min(AVAL)) %>% 
-      dplyr::filter(MINAVAL > 0) %>% 
-      dplyr::summarise(skew = e1071::skewness(AVAL, na.rm = TRUE), .groups = "drop") %>% 
-      dplyr::filter(skew > thres_log ) %>% 
-      dplyr::pull(PARAMCD) %>% 
-      setdiff(vars_count)
-  }
-
+ 
+  vars_count   <- vars$count   
+  vars_log     <- vars$log   
+  vars_nolump  <- vars$nolump 
+  vars_exclude <- vars$exclude  
   
-  # ... prop_available: calculate proportion of missing values per column ####
-  prop_available <- d_train_raw %>% 
-    purrr::map_dbl(~ mean(!is.na(.))) %>% 
-    tibble::enframe()
-  
-  # ... vars_nolump: factors to skip from step_other ####
-  # if a single class falls below the threshold thres_lump, the class would be renamed to 'other'
-  vars_nolump <- d_train_raw %>% 
-    dplyr::select_if(is.factor) %>% 
-    map_lgl( ~ { freqs <- table(.x)/ length(.x); sum(freqs < thres_lump) == 1  } )  %>% 
-    which(.) %>% 
-    names()
-  
-  # ... vars_imp: missing values will be knn imputed ####
   # var %in% 'vars_imp_ignore' : rows with missing values are dropped
   # else if thres_imp is not met vars are dropped
-  vars_imp <- prop_available %>% 
-    dplyr::filter(value >= thres_imp) %>% 
-    dplyr::pull(name) %>% 
-    setdiff(vars_imp_ignore) %>% 
-    setdiff((c(".out", ".id", ".status", ".time")))
+  vars_imp     <- vars$imp %>% setdiff(vars_imp_ignore) 
   
-  # ... vars_exclude: variables with a large number of missing values are excluded ####
-  vars_exclude <- prop_available %>% 
-    dplyr::filter(value < thres_imp) %>% 
-    dplyr::pull(name) %>% 
-    setdiff((c(".out", ".id", ".status", ".time")))
-    
-    
+  
   # RECIPE ####
   
   if (is.null(prep_recipe)){
@@ -291,8 +254,8 @@ prepare_ml <- function(
       ) %>% 
       
       # ... ... log transformation ####
-      {if(prep_step_log && length(vars_logtr)>0){
-        recipes::step_log(., tidyselect::any_of(vars_logtr), base = log_base) 
+      {if(prep_step_log && length(vars_log)>0){
+        recipes::step_log(., tidyselect::any_of(vars_log), base = log_base) 
       }else{.}
       }  %>%
       
@@ -303,7 +266,7 @@ prepare_ml <- function(
           # exclude vars identified as counts (previously excluded from logtrafo as well)
           -tidyselect::any_of(vars_count),
           )
-        }else{.}
+      }else{.}
       }  %>% 
       
       # ... ... remove highly correlated variables ####
@@ -311,7 +274,8 @@ prepare_ml <- function(
         recipes::step_corr(., recipes::all_numeric(), -recipes::all_outcomes(), 
                            threshold = thres_corr, method = "pearson",
                            use = "pairwise.complete.obs")
-      }else{.}} %>%  
+      }else{.}
+      } %>%  
       
       # ... ... lump factors ####
       recipes::step_other(., 
@@ -321,14 +285,16 @@ prepare_ml <- function(
       
       # ... ... factor handling ####
       {if(! is.null(vars_ordinalscore)){
-        recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )}else{.}
+        recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )
+      }else{.}
       } %>%  
       
       #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
       # ... .. dummy coding ####
       {if(prep_step_dummy){
         recipes::step_dummy(.,  recipes::all_nominal(), - recipes::all_outcomes(), - recipes::has_role("ID")  , 
-                            one_hot = one_hot) }else{.} 
+                            one_hot = one_hot) 
+      }else{.} 
       }
     
     
@@ -423,9 +389,9 @@ prepare_ml <- function(
     
     # ... log trafo excluded (integer with low number of values) ####
     thres_count  = list(
-      value = ifelse( length(vars_logtr) > 0 && length(vars_count) > 0, 
+      value = ifelse( length(vars_log) > 0 && length(vars_count) > 0, 
                       thres_count, NA_real_),
-      text  = ifelse(length(vars_logtr) > 0 && length(vars_count) > 0,
+      text  = ifelse(length(vars_log) > 0 && length(vars_count) > 0,
                      paste0('Variables were excluded from log transformation if they are integer coded 
                              and have ', thres_count, 'distinct values.'),
                             'Not applicable.')
@@ -486,7 +452,24 @@ prepare_ml <- function(
   } 
   
 
+  # DICT ####
+  # prevent error in joining logtr column
+  if(is.null(vars_log)) vars_log <- NA_character_
+  the_dict <- dplyr::bind_rows(
+    outcome_dict,
+    attr(feature, "dict")  
+  ) %>% 
+    left_join(., 
+              tibble::tibble(
+                param = vars_log,
+                logtr = "Y"
+              ),
+              by = c("param")
+    )
+  
+  
   # OUTPUT #### 
+  
   
   prep_output <- list(
     data_raw = list(
@@ -510,17 +493,7 @@ prepare_ml <- function(
     
     prep_recipe = rcp_prep,
     
-    dict = dplyr::bind_rows(
-      outcome_dict,
-      attr(feature, "dict")  
-      ) %>% 
-      left_join(., 
-          tibble::tibble(
-            param = vars_logtr,
-            logtr = "Y"
-          ),
-          by = c("param")
-      ),
+    dict = the_dict,
     
     prep_params = prep_params,
     
