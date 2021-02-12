@@ -15,7 +15,7 @@
 #' @param prep_step_corr      = TRUE,
 #' @param prep_step_dummy FALSE converted  variables to be 
 #' @param thres_log           = 2,
-#' @param thres_log_ignore    = 10
+#' @param thres_count    = 10
 #' @param thres_corr          = .9,
 #' @param thres_lump = 0.05
 #' @param thres_imp = 0.8
@@ -49,7 +49,7 @@ prepare_ml <- function(
   prep_step_dummy     = TRUE,
   
   thres_log           = 2,
-  thres_log_ignore    = 10,
+  thres_count         = 10,
   thres_corr          = 0.9,
   thres_lump          = 0.05,
   thres_imp           = 0.8,
@@ -196,16 +196,16 @@ prepare_ml <- function(
   #  RECIPE PREP ####
   # derive variable lists for steps
   
-  # ... vars_logtr_ignore: identify integers with only a limited number of values ####
-  vars_logtr_ignore <- NULL
+  # ... vars_count: identify integers with only a limited number of values ####
+  vars_count <- NULL
   if (any(purrr::map_lgl(d_train_raw, is.integer))){
-    vars_log_ignore <- d_train_raw %>% 
+    vars_count <- d_train_raw %>% 
       dplyr::select_if(is.integer) %>% 
       tidyr::pivot_longer(-tidyselect::any_of(c(".id", ".out", ".status", ".time")), 
                           names_to = "PARAMCD", values_to = "AVAL") %>% 
       dplyr::group_by(PARAMCD) %>% 
       dplyr::summarise(NDIST = dplyr::n_distinct(AVAL)) %>% 
-      dplyr::filter(NDIST <= thres_log_ignore) %>% 
+      dplyr::filter(NDIST <= thres_count) %>% 
       dplyr::pull(PARAMCD)
   }
   
@@ -222,7 +222,7 @@ prepare_ml <- function(
       dplyr::summarise(skew = e1071::skewness(AVAL, na.rm = TRUE), .groups = "drop") %>% 
       dplyr::filter(skew > thres_log ) %>% 
       dplyr::pull(PARAMCD) %>% 
-      setdiff(vars_logtr_ignore)
+      setdiff(vars_count)
   }
 
   
@@ -298,7 +298,12 @@ prepare_ml <- function(
       
       # ... ... normalization ####
       {if(prep_step_normalize){
-        recipes::step_normalize(., recipes::all_numeric(), -recipes::all_outcomes(), - recipes::has_role("ID")) }else{.}
+        recipes::step_normalize(., 
+          recipes::all_numeric(), -recipes::all_outcomes(), -recipes::has_role("ID"),
+          # exclude vars identified as counts (previously excluded from logtrafo as well)
+          -tidyselect::any_of(vars_count),
+          )
+        }else{.}
       }  %>% 
       
       # ... ... remove highly correlated variables ####
@@ -412,17 +417,17 @@ prepare_ml <- function(
                      paste0('Variables were log transformed (base ', 
                             ifelse(near(log_base, exp(1)), 'e', log_base),
                             ') if e1071::skewness() > ',  thres_log,
-                            '. Variables that are assumed to be count variables were excluded from the transformation (see thres_log_ignore for details).'),
+                            '. Variables that are assumed to be count variables were excluded from the transformation (see thres_count for details).'),
                      'No variables were logtransformed.')
     ),
     
     # ... log trafo excluded (integer with low number of values) ####
-    thres_log_ignore  = list(
-      value = ifelse( length(vars_logtr) > 0 && length(vars_logtr_ignore) > 0, 
-                      thres_log_ignore, NA_real_),
-      text  = ifelse(length(vars_logtr) > 0 && length(vars_logtr_ignore) > 0,
+    thres_count  = list(
+      value = ifelse( length(vars_logtr) > 0 && length(vars_count) > 0, 
+                      thres_count, NA_real_),
+      text  = ifelse(length(vars_logtr) > 0 && length(vars_count) > 0,
                      paste0('Variables were excluded from log transformation if they are integer coded 
-                             and have ', thres_log_ignore, 'distinct values.'),
+                             and have ', thres_count, 'distinct values.'),
                             'Not applicable.')
     ),
     
@@ -549,7 +554,7 @@ if(FALSE){
   prep_step_dummy     = TRUE
   
   thres_log           = 2
-  thres_log_ignore    = 10
+  thres_count    = 10
   thres_corr          = 0.9
   thres_lump          = 0.05
   thres_imp           = 0.8
