@@ -27,35 +27,22 @@
 #'         Each element contains the specification for a single data set and is named with the domain abbreviation (e.g. adsl, adqskccq).
 #'         The list can be manually adjusted if required, e.g. adding further specifications or altering existing ones.
 #' 
-#' @seealso \code{\link{adam_spec_adsl()}}, \code{\link{adam_spec_bds()}}
+#' @seealso \code{\link{adam_spec_adsl}}, \code{\link{adam_spec_bds}}, \code{\link{adam_spec_occds}}
 #'
 
 build <- function(
-  spec = NULL, 
-  path = NULL, 
-  spec_only = FALSE, 
-  filter = NULL,
-  keep   = NULL,
-  drop   = NULL ,
-  join   = dplyr::inner_join,
-  attach_data = FALSE){
+  spec        = NULL, 
+  path        = NULL, 
+  spec_only   = FALSE, 
+  filter      = NULL,
+  keep        = NULL,
+  drop        = NULL ,
+  join        = dplyr::inner_join,
+  attach_data = FALSE
+){
   
-  if(FALSE){
-    
-     path = 'real_world_data/99999/'
-   # path   = '//by-xa221/Statdb/Ginger/Studies/BAY106-7197_Neladenosone_99999_PANTHEON/Data/Original/ads/'
-    filter = c("SEX == 'F'", "AVISIT == 'BASELINE'")
-    
-    spec = ads_spec 
-    spec_only = FALSE
-    filter = NULL
-    keep   = NULL
-    drop   = NULL 
-    attach_data = FALSE
-    
-  }
   
-  # initial check
+  # initial check    ####
   if ( is.null(spec) && is.null(path)) usethis::ui_oops("Either 'spec' or 'path' needs to be provided!")
   if (!is.null(spec) && spec_only) {
     spec_only <- FALSE
@@ -66,14 +53,14 @@ build <- function(
   from_spec <- is.null(path)
   from_path <- ! from_spec
   
-  # create sets  
-  if (from_path ){
+  # create specs ####   
+  if (from_path){
     
       file_info <- adam_domain_type(path, keep, drop)
        
       interim <- list()
       
-      # adsl spec ####
+      # ... adsl spec ####
       
       if ( any(file_info$type == "adsl") ){
         
@@ -94,7 +81,7 @@ build <- function(
         
       }
       
-      # bds spec ####
+      # ... bds spec ####
       
       if ( any(file_info$type == "bds") ){
         
@@ -115,7 +102,7 @@ build <- function(
         
       }
       
-      # occds spec ####
+      # ... occds spec ####
       if ( any(file_info$type == "occds") ){
         
         files_occds <- file_info %>% 
@@ -135,7 +122,7 @@ build <- function(
         
       }
       
-      #spec
+
    # end if(from_path)   
   }else{  # from_spec; spec is provided 
     
@@ -152,9 +139,8 @@ build <- function(
   }
   
  
-  # TODO add explicit NAs to all occds columns
   
-  # create output object
+  # create output object ####
   
   if(spec_only){
     
@@ -162,21 +148,26 @@ build <- function(
     
   }else{
     
-    prepped_dict <-   purrr::map(interim, ~.[['dict']]) %>% 
+    # ... dict  #### 
+    prepped_dict <- purrr::map(interim, ~.[['dict']]) %>% 
       purrr::reduce(dplyr::bind_rows)
     
-    # extract all occds columns for explicit factor na
-    vars_fct_expl_na <- prepped_dict %>% 
-      dplyr::filter(type == 'occds') %>% 
-      dplyr::pull(column)
+    # ... source  #### 
+    prepped_source <- purrr::map(interim, ~{
+      .x[["source"]] %>% 
+        tibble::as_tibble_row()
+      }) %>% 
+      purrr::reduce(dplyr::bind_rows) 
     
+     
     
+    # ... data ####
     # identify subjects from selected data sets to filter prepped_join
     # (if join is not a fct)
     if(! is.function(join)){
       if(any(join %in% names(interim) )) {
         join_ids <- purrr::map(interim[join %>%  intersect(names(interim))], ~.[['data']]) %>% 
-          purrr::reduce(., dplyr::full_join, by = '.id') %>% 
+          purrr::reduce(dplyr::full_join, by = '.id') %>% 
           pull(.id)
         join_filter <- ' .id %in% join_ids'
       }else{
@@ -185,36 +176,59 @@ build <- function(
       }  
     }
     
-    prepped_join <-   purrr::map(interim, ~.[['data']]) %>% 
-      { if(is.function(join)){
+   
+    # combine and filter
+    prepped_join <- purrr::map(interim, ~.[['data']]) %>% 
+      {if(is.function(join)){
         purrr::reduce(., join, by = '.id') 
       }else{
         purrr::reduce(., dplyr::full_join, by = '.id') %>% 
-        dplyr::filter(., !! rlang::parse_expr(join_filter))  
-      }
-      } %>% 
-      
-      dplyr::mutate_at(vars(tidyselect::any_of(vars_fct_expl_na)), ~{
-        if(is.numeric(.x)){
-          tidyr::replace_na(.x, replace = 0L )
-        }else{
-          forcats::fct_explicit_na(.x, na_level= 'none') %>% 
-            forcats::fct_shift(n = -1)
-        }  
-      })
-    
-    
-    
-    # out <- list(
-    #   data = prepped_join,
-    #   dict = prepped_dict
-    # )
-    
-    out <- prepped_join
-    attr(out, "dict") <- prepped_dict
-    
+          dplyr::filter(!! rlang::parse_expr(join_filter))  
+      }}
+     
+    # extract all occds columns for explicit factor na
+    # missing values occuring from occurence data mean 'absence of event', whereas NAs in bds data are true missing values
+    # -> replace missings by 0 for numerics, level 'none' for factors
+    vars_fct_expl_na <- prepped_dict %>% 
+      dplyr::filter(type == 'occds') %>% 
+      dplyr::pull(column)
+     
+    prepped_join <- prepped_join %>%  
+       dplyr::mutate_at(vars(tidyselect::any_of(vars_fct_expl_na)), ~{
+         if(is.numeric(.x)){
+           tidyr::replace_na(.x, replace = 0L )
+         }else{
+           forcats::fct_explicit_na(.x, na_level = 'none') %>% 
+             forcats::fct_shift(n = -1)
+         }  
+       })
+  
+  
+    out                 <- prepped_join
+    attr(out, "dict")   <- prepped_dict
+    attr(out, "source") <- prepped_source
   }
   
   out
   
 }
+
+
+if(FALSE){
+  
+  path = 'real_world_data/99999/'
+  # path   = '//by-xa221/Statdb/Ginger/Studies/BAY106-7197_Neladenosone_99999_PANTHEON/Data/Original/ads/'
+  filter = c("SEX == 'F'", "AVISIT == 'BASELINE'")
+  
+  spec = ads_spec 
+  spec_only = FALSE
+  filter = NULL
+  keep   = NULL
+  drop   = NULL 
+  attach_data = FALSE
+  
+}
+
+
+
+

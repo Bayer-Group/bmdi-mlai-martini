@@ -54,6 +54,8 @@ adam_spec_occds <- function(
   # READ occds ####
   occds <- haven::read_sas(file)
   
+  md5 <- tools::md5sum(file) %>%  as.character()
+  
   # GUESS label ####
   if (is.null(label)){
     guess_options <- adam_guess(file)$label
@@ -139,6 +141,7 @@ adam_spec_occds <- function(
   out <- list(
     file    = file,
     data    = NULL,
+    md5     = md5,
     type    = "occds",
     id      = id,
     filter  = actual_filter,

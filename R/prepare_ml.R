@@ -30,7 +30,10 @@
 #' @param outlier_ctrl        = list(coef = 3)
 #' @param quiet =FALSE
 #'
-#'
+#' @section Authors:
+#' 
+#' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+#' 
 
 
 prepare_ml <- function(
@@ -459,12 +462,13 @@ prepare_ml <- function(
     outcome_dict,
     attr(feature, "dict")  
   ) %>% 
-    left_join(., 
-              tibble::tibble(
-                param = vars_log,
-                logtr = "Y"
-              ),
-              by = c("param")
+    left_join(
+      ., 
+      tibble::tibble(
+        param = vars_log,
+        logtr = "Y"
+      ),
+      by = c("param")
     )
   
   
@@ -494,6 +498,8 @@ prepare_ml <- function(
     prep_recipe = rcp_prep,
     
     dict = the_dict,
+    
+    source = attr(feature, "source"),
     
     prep_params = prep_params,
     

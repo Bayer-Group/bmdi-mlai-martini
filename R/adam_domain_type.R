@@ -45,6 +45,7 @@ adam_domain_type <- function(
   drop  = NULL,
   quiet = FALSE){
   
+  
   # define look-up table ####
   # library of data sets to be processed automatically
   
@@ -77,95 +78,94 @@ adam_domain_type <- function(
     
   # OR process path...  ####  
   }else{
-        # ... check path ###
-         if( ! dir.exists(path) && ! file.exists(path)){
-           usethis::ui_stop(paste0(
-             crayon::silver( "The provided path does not exist. \n\t "), 
-             crayon::blue(path)
-             ))
-         }
+    # ... check path ###
+    path <- normalizePath(path)
+
+    if( ! dir.exists(path) && ! file.exists(path)){
+      usethis::ui_stop(paste0(
+        crayon::silver( "The provided path does not exist. \n\t "), 
+        crayon::blue(path)
+        ))
+    }
       
-      # ... determine all file paths, file names ####
-      all_files <- list.files(path, pattern = ".sas7bdat$", full.names = TRUE, recursive = TRUE)
-      
-      # length(all_files) == 0 -> 'path' might be a single file
-      
-      
-      if (length(all_files) == 0) all_files <- path
-      
-      file_name  <- stringr::str_split(all_files, '/|\\\\')  %>%  
-        purrr::map( ~ .[length(.)]) %>% 
-        unlist()
-      
-      # ... determine types and domains from look-up table defined above ####
-      all_types <- purrr::map_chr(file_name, ~{
-        if (       stringr::str_detect(., type_adsl )){ "adsl"
-        } else if (stringr::str_detect(., type_bds  )){ "bds"
-        } else if (stringr::str_detect(., type_occds)){ "occds"
-        } else {                                        "none"
-        }
-      })
-      
-      all_doms  <- stringr::str_split( all_files, '/|\\\\')  %>%  
-        purrr::map( ~ .[length(.)]) %>% 
-        unlist() %>%
+    # ... determine all file paths, file names ####
+    all_files <- list.files(path, pattern = ".sas7bdat$", full.names = TRUE, recursive = TRUE)
+    
+    # length(all_files) == 0 -> 'path' might be a single file
+    
+    
+    if (length(all_files) == 0) all_files <- path
+    
+    file_name  <- stringr::str_split(all_files, '/|\\\\')  %>%  
+      purrr::map( ~ .[length(.)]) %>% 
+      unlist()
+    
+    # ... determine types and domains from look-up table defined above ####
+    all_types <- purrr::map_chr(file_name, ~{
+      if (       stringr::str_detect(., type_adsl )){ "adsl"
+      } else if (stringr::str_detect(., type_bds  )){ "bds"
+      } else if (stringr::str_detect(., type_occds)){ "occds"
+      } else {                                        "none"
+      }
+    })
+    
+    all_doms  <- stringr::str_split( all_files, '/|\\\\')  %>%  
+      purrr::map( ~ .[length(.)]) %>% 
+      unlist() %>%
         stringr::str_remove('.sas7bdat')
       
-      # ... file_info: create full mapping table ####
-      file_info <- tibble::tibble(
-        "file"   = all_files,
-        "domain" = all_doms,
-        "type"   = all_types
-      )
+    # ... file_info: create full mapping table ####
+    file_info <- tibble::tibble(
+      "file"   = all_files,
+      "domain" = all_doms,
+      "type"   = all_types
+    )
       
       
-      # ... check selection options ###
-      if( !is.null(keep) && !is.null(drop) ){
-        usethis::ui_info(crayon::silver( 
-          "Please specify only one of 'keep' or 'drop'. Only 'keep' will be used for subsetting here. \n\t " 
-         ))
-      }
+    # ... check selection options ###
+    if( !is.null(keep) && !is.null(drop) ){
+      usethis::ui_info(crayon::silver( 
+        "Please specify only one of 'keep' or 'drop'. Only 'keep' will be used for subsetting here. \n\t " 
+       ))
+    }
       
-      if (!is.null(keep)){
-          # strip file extension, in case the user provided the file name instead of domain
-          keep      <- str_remove(keep, '.sas7bdat$')
-          file_info <- file_info %>% dplyr::filter( domain %in% keep)
-      } else {
-        if(!is.null(drop)){
+    if (!is.null(keep)){
+        # strip file extension, in case the user provided the file name instead of domain
+        keep      <- str_remove(keep, '.sas7bdat$')
+        file_info <- file_info %>% dplyr::filter( domain %in% keep)
+    } else {
+      if(!is.null(drop)){
           drop      <- str_remove(drop, '.sas7bdat$')
           file_info <- file_info %>% dplyr::filter(!domain %in% drop)
-        }
       }
+    }
+    
+    
+    # ... ui_stop ###
+    if(nrow(file_info) == 0){
+         usethis::ui_stop("No files to process. Please check your file selection (keep/drop).")
+    }
+    
+    if(all(file_info$type == "none")){
+      usethis::ui_stop("The data type is unknown for all files in the given file selection.")
+    }
       
+    # doms_ignored: domains without match in look-up table  ####
+    doms_ignored <- file_info %>% 
+      dplyr::filter(type == "none") %>% 
+      dplyr::pull(domain)
       
-      # ... ui_stop ###
-      if(nrow(file_info) == 0){
-           usethis::ui_stop("No files to process. Please check your file selection (keep/drop).")
-      }
+    if(length(doms_ignored) > 0 && !quiet){
+      usethis::ui_info( paste0(
+        crayon::silver('The following domains were not processed as they are currently not in the library: \n\t'), 
+        crayon::blue(paste(doms_ignored, collapse=', ')),
+        crayon::silver( '\nYou can use the adam_spec_*() functions as appropriate.'))
+      )
+    }
       
-      if(all(file_info$type == "none")){
-        usethis::ui_stop("The data type is unknown for all files in the given file selection.")
-      }
+    attr(file_info, 'unknown_domains') <- doms_ignored
       
-     # doms_ignored: domains without match in look-up table  ####
-     doms_ignored <- file_info %>% 
-        dplyr::filter(type == "none") %>% 
-        dplyr::pull(domain)
-      
-      
-      
-      if(length(doms_ignored) > 0 && !quiet){
-        usethis::ui_info( paste0(
-          crayon::silver('The following domains were not processed as they are currently not in the library: \n\t'), 
-          crayon::blue(paste(doms_ignored, collapse=', ')),
-          crayon::silver( '\nYou can use the adam_spec_*() functions as appropriate.'))
-        )
-        
-      }
-      
-      attr(file_info, 'unknown_domains') <- doms_ignored
-      
-      file_info 
+    file_info 
   }   
 }
 
@@ -194,9 +194,11 @@ if(FALSE){
  adam_domain_type(path = paths[1] , keep = c('adqs'))  
  
  # keep/drop: keep  
+ # info: Please specify only one of 'keep' or 'drop'. Only 'keep' will be used for subsetting here.
  adam_domain_type(path = paths[1] , keep = c('adqseq5d', 'advs'), drop = 'advs')  
  
  # path: path doesn't exist
+ # Error: The provided path does not exist
  adam_domain_type(path = str_remove(paths[1], 'Original/') )  
 
 }

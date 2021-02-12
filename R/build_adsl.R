@@ -33,7 +33,8 @@ build_adsl <- function(
   
 ){
   
- 
+  md5 <- tools::md5sum(spec$file) %>%  as.character()
+  
   if(is.null( spec$data )){
 
     # read data   ####
@@ -48,12 +49,19 @@ build_adsl <- function(
         dplyr::mutate_if(is.character,  ~ dplyr::na_if(., ""))
     
       
+      
     }else return(NULL)
     
   } else {
     
     adsl_full <- spec$data %>% 
       dplyr::mutate_if(is.character,  ~ dplyr::na_if(., ""))
+    
+    if( md5 != spec$md5){
+      usethis::ui_info(crayon::silver(
+        paste0('\t',  spec$spec_id, ': The spec was created from a file with a different md5 checksum. \n'))
+      )
+    }  
     
   }
   
@@ -136,8 +144,9 @@ build_adsl <- function(
   
   # output   ####
   list(
-    data = adsl,
-    dict = dict 
+    data   = adsl,
+    dict   = dict,
+    source = list(file = spec$file, md5 = md5) 
   )
   
 }

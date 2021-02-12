@@ -24,7 +24,8 @@ Imports:
     forcats,
     purrr,
     lubridate,
-    stringr
+    stringr,
+    tools
 Suggests:
     knitr,
     rmarkdown,

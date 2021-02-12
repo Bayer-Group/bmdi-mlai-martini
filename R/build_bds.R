@@ -53,8 +53,10 @@ build_bds <- function(
   
 ){
   
+  md5 <- tools::md5sum(spec$file) %>%  as.character()
   
   if(is.null(spec$data)){
+    
     # read data   ####
     file_name <- spec$file 
     file_ext  <- stringr::str_split( file_name, '/|\\\\')[[1]] %>%  
@@ -62,8 +64,17 @@ build_bds <- function(
       stringr::str_split(., '[.]') %>% 
       .[[1]] %>%  
       tail(1) 
+    
     if(file_ext == 'sas7bdat'){
       bds_full <- haven::read_sas(file_name)
+      
+      if( md5 != spec$md5){
+        usethis::ui_info(crayon::silver(
+          paste0('\t',  spec$spec_id, ': The spec was created from a file with a different md5 checksum. \n'))
+        )
+      }  
+      
+      
     }else return(NULL)
   } else {
     bds_full <- spec$data
@@ -153,8 +164,9 @@ build_bds <- function(
   
   # output ####
   list(
-    data = bds_wide,
-    dict = dict
+    data   = bds_wide,
+    dict   = dict,
+    source = list(file = spec$file, md5 = md5) 
   )
   
   

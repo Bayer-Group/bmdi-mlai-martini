@@ -40,12 +40,14 @@ adam_spec <- function(
   
   if(FALSE){
     # path = 'real_world_data/99999/'
-   path = '//by-xa221/Statdb/Ginger/Studies/BAY106-7197_Neladenosone_99999_PANTHEON/Data/Original/ads/'
+    # path = '//by-xa221/Statdb/Ginger/Studies/BAY106-7197_Neladenosone_99999_PANTHEON/Data/Original/ads/'
+    path <- "../"
     filter = c("SEX == 'F'", "AVISIT == 'BASELINE'")
     
   }
   
-  file_info <- adam_domain_type(path, keep, drop)
+  file_info <- adam_domain_type(path, keep, drop) %>% 
+    dplyr::filter(type != "none")
   
   spec <- list()
   

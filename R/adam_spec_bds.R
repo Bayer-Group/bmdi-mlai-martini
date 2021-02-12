@@ -62,6 +62,8 @@ adam_spec_bds <- function(
   #'adsl.sas7bdat' %in% list.files(path)
   bds <- haven::read_sas(file)
   
+  md5 <- tools::md5sum(file) %>%  as.character()
+  
   
   #  guess stuff ...####
   
@@ -167,12 +169,13 @@ adam_spec_bds <- function(
   # output ####
  
   out <- list(
-    file = file,
-    data = NULL,
-    type = "bds",
-    id = id,
-    filter = actual_filter,
-    dict = dict,
+    file    = file,
+    data    = NULL,
+    md5     = md5,
+    type    = "bds",
+    id      = id,
+    filter  = actual_filter,
+    dict    = dict,
     spec_id = source
   ) %>% 
     append(

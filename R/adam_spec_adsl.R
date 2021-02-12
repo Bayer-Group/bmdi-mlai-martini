@@ -33,6 +33,9 @@ adam_spec_adsl <- function(
   adsl <- haven::read_sas(file) %>% 
     dplyr::mutate_if(is.character,  ~ dplyr::na_if(., ""))
   
+  md5 <- tools::md5sum(file) %>%  as.character()
+  
+  
   # create column dict (name <-> label)  
   dict <- labelled::var_label(adsl) %>% 
     tibble::enframe(name ='param', value = 'label') %>%  
@@ -286,18 +289,21 @@ adam_spec_adsl <- function(
   
   # output ####
   out <- list(
-    file = file,
-    data = NULL,
-    type = "adsl",
-    filter = actual_filter,
-    select = select_list,
+    file    = file,
+    data    = NULL,
+    md5     = md5,
+    type    = "adsl",
+    
+    filter        = actual_filter,
+    select        = select_list,
     factor_levels = lev_list[intersect(select_list, names(lev_list))],
-    dict = dict,
+    
+    dict       = dict,
     drop_notes = NULL,
-    drop_list = drop_list,
-    id = id,
-    trt = trt,
-    spec_id = 'adsl'
+    drop_list  = drop_list,
+    id         = id,
+    trt        = trt,
+    spec_id    = 'adsl'
   )
 
   if(attach_data){
