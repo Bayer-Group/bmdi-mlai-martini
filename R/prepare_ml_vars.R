@@ -4,8 +4,8 @@
 #' e.g. skewed variables to be log transformed, counts
 #'
 #' @param data the data set to be searched for feature sets with specific characteristics releveant for further data preparation
-#' @param thres_log threshold for log transformation
 #' @param thres_count used to detect integer columns with up to \code{thres_count} distinct values (might be excluded from further processing, e.g. log & normalization) 
+#' @param thres_log threshold for log transformation
 #' @param thres_lump proportion threshold for factor lumping; used to detect factors with exactly one level having a relative frequency below \code{thres_lump}
 #' @param thres_imp proportion threshold used to detect variables with non-missing proportion up to \code{thres_imp}
 #' @param remove columns to be excluded from all identified sets; defaults to c(".id", ".out", ".status", ".time")
@@ -30,13 +30,10 @@ prepare_ml_vars <- function(
 
   data,
   thres_count      = NULL,
-  thres_log        = NULL,
-  thres_corr       = NULL,   
+  thres_log        = NULL, 
   thres_lump       = NULL,
   thres_imp        = NULL,
-  thres_nzv_freq   = NULL, 
-  thres_nzv_unique = NULL,
-  remove          = c(".id", ".out", ".status", ".time")
+  remove           = c(".id", ".out", ".status", ".time")
 
 ){
   

@@ -1,35 +1,93 @@
 #' Prepare ML ready data set from outcome and predictor data
 #'
+#' Given \code{feature}, a tibble representing a wide format feature matrix, and \code{outcome}, 
+#' a tibble containing the outcome information (regression/classification/survival is supported),
+#' \code{prepare_ml} will provide data sets suitable for various machine learning problems.
+#' The data preparation steps include, but are not limited to data splitting, 
+#' handling missing values, normalization, removal of redundant information (highly correlated features). 
+#' Please refer to the Details section for more information.
+#' 
+#'
 #' @param feature feature matrix in wide format, e.g. output object of \code{build()}, i.e. containing \code{.id} column and predictors 
 #' @param outcome tibble containing \code{.id} column and the outcome of interest
 #' @param outcome_name if NULL (default), the first column that's not .id is chosen for outcome_name and the outcome_type is guessed to be either classification or regression.
 #' One may also provide a single character giving the name of the outcome column OR a vector of length two giving the column names for the 'time' and 'status' data in survival analysis,
 #' where .time is numeric and .status is binary with 0 coding for censored, and 1 coding for event. Currently, only right-censoring is supported. Please note, that survival will never be guessed
 #' @param level_order  = NULL (only used for classification)
-#' @param prep_recipe  = NULL,
-#' @param train_prop   = 3/4
-#' @param seed         = NULL,
-#' @param prep_step_normalize = TRUE,
-#' @param prep_step_knnimpute = TRUE,
-#' @param prep_step_log       = TRUE,
-#' @param prep_step_corr      = TRUE,
-#' @param prep_step_dummy FALSE converted  variables to be 
-#' @param thres_log           = 2,
+#' @param prep_recipe a custom, pre-defined \code{recipes::recipe()} may be provided for data preparation. Defaults to NULL, yielding a data-driven preparation. 
+#' please refer to the details section to learn about the individual recipe steps.
+#' @param train_prop the proportion of data (0.5 \U2264 \code{train_prop} \U2264 1)) to be used for the training set. Defaults to 3/4, keeping a quarter of the data for testing.
+#' @param seed optionally set a seed before the data splitting. 
+#' @param prep_step_knnimpute,prep_step_log,prep_step_normalize,prep_step_corr,prep_step_dummy logicals determining 
+#' whether or not the corresponding step function should be included in the recipe, 
+#' possibly specified further using additional parameters (\code{thres_\U002A}, \code{log_base}, \code{one_hot})
+#' Please refer to the details section for the full list of recipe steps.
+#' @param thres_imp Minimal proportion of non-missing data per feature required to be kept 
+#' in the data and completed using \code{recipes::step_knnimpute}. Variables not meeting the threshold will be dropped and not be included in \code{data_prep} data. 
+#' Per default \code{thres_imp = 0.8}, variables will be dropped if the proportion of available data is less than 80%. 
+#' Variables listed in \code{vars_imp_ignore} will never be imputed, observations with missing data will be removed.
+#' @param thres_log variables will be log-transformed (with base \code{log_base}) if \code{prep_step_log = TRUE}, all observations are positive, and \code{e1071::skewness() > thres_log},
+#' which defaults to \code{thres_log = 2}.   
+#' @param thres_corr if \code{prep_step_corr = TRUE}, \code{thres_corr} is passed to \code{recipes::step_corr()}'s 
+#' \code{threshold} argument with a default of 0.9.
+#' @param thres_nzv_freq,thres_nzv_unique parameter passed to \code{recipes::step_nzv()} with defaults 
+#' \code{thres_nzv_freq = 95/5)} and \code{thres_nzv_unique = 10} }
+#' 
 #' @param thres_count    = 10
-#' @param thres_corr          = .9,
 #' @param thres_lump = 0.05
-#' @param thres_imp = 0.8
-#' @param thres_nzv_freq =95/5
-#' @param thres_nzv_unique = 10
-#' @param vars_imp_ignore = NULL
+#' @param one_hot = TRUE
+#' 
+#' @param vars_imp_ignore Variables that shall not be imputed can be specified in \code{vars_imp_ignore} (vector of column names, e.g. \code{vars_imp_ignore = '.trt'}).
 #' @param vars_fct_expl_na = NULL
 #' @param vars_ordinalscore  = NULL, convert ordinal factor variables into numeric scores
-#' @param one_hot = TRUE
-#' @param log_base            = exp(1),
-#' @param outlier_remove      = FALSE,
+#' @param log_base base to use for log-transformation is step_log is included in the recipe; defaults to exp(1).
+#' @param outlier_remove For outcome mode regression only:    = FALSE,
 #' @param outlier_ctrl        = list(coef = 3)
 #' @param quiet =FALSE
 #'
+#' @details 
+#'
+#' \code{split} NULL if \code{train_prop} was set to 1 and no splitting was done and \code{train}
+#'  contains the full ML data set.
+#' 
+#' The variable sets that a particular step function will be applied to are determined using 
+#' the internal function \code{prepare_ml_vars()}.
+#' 
+#' NOTE outline recipe wrt step order (optional/mandatory steps)
+#' 
+#'
+#' @return 
+#' 
+#' *data*
+#' 
+#' \code{prepare_ml} produces a list that contains the data set both with (\code{data_prep}) and 
+#' without (\code{data_raw}) applying the specified ML preparation steps. 
+#' Both versions are splitted in \code{train} and \code{test} set.
+#' In addition, \code{split} contains the combined \code{rsample::initial_split()} object that 
+#' the \code{train} and \code{test} data was extracted from. Depending on the programming workflow, 
+#' one might be more convenient to use than the other.
+#' 
+#' The slot \code{outcome} contains a list giving \code{name}, the standardized names of the 
+#' output column in the data sets ( \code{.out} for regression/classification, \code{.time} and \code{.status}
+#' for survival, as well as a \code{mode}, character string of the outcome mode \code{regression/classification/survival} 
+#' 
+#' The dictionary that was generated from is available from the \code{dict} slot.
+#' 
+#' The \code{source} slot simply passes the \code{source} attribute of \code{feature}, NULL if no such attribute is defined.
+#' If \code{\link{build}()} from the \code{MLAIprepare} package was used to generate \code{feature}, 
+#' this attribute lists the full paths of the files that were used in data generation of \code{feature}. 
+#' 
+#' *Preparation and documentation*
+#' 
+#' \code{prep_recipe} contains the prepared recipe object, 
+#' \code{prep_params} documents the parameters/thresholds used in the data preparation, 
+#' giving bare \code{value} slots, as well as a verbose description in \code{text}.
+#' \code{removed} gives a list of removed \code{rows} and \code{columns} along with the information
+#'  on why/in which recipe step the data was removed.
+#' 
+#' 
+#' 
+#' 
 #' @section Authors:
 #' 
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
@@ -43,7 +101,7 @@ prepare_ml <- function(
   level_order  = NULL,
   prep_recipe  = NULL,
   train_prop   = 3/4,
-  seed         = NULL,
+  seed         = 1130,
   
   prep_step_normalize = TRUE,
   prep_step_knnimpute = TRUE,
@@ -203,11 +261,8 @@ prepare_ml <- function(
     data             = d_train_raw,
     thres_count      = thres_count,
     thres_log        = thres_log,
-    thres_corr       = thres_corr,   
     thres_lump       = thres_lump,
-    thres_imp        = thres_imp,
-    thres_nzv_freq   = thres_nzv_freq, 
-    thres_nzv_unique = thres_nzv_unique
+    thres_imp        = thres_imp
   )
   
  
@@ -476,6 +531,8 @@ prepare_ml <- function(
   
   
   prep_output <- list(
+    
+    # data
     data_raw = list(
       train = d_train_raw,
       test  = d_test_raw
@@ -495,12 +552,13 @@ prepare_ml <- function(
       mode = outcome_mode
     ),
     
-    prep_recipe = rcp_prep,
-    
-    dict = the_dict,
+    dict   = the_dict,
     
     source = attr(feature, "source"),
     
+    # documentation
+    prep_recipe = rcp_prep,
+   
     prep_params = prep_params,
     
     removed = list(
@@ -533,7 +591,7 @@ if(FALSE){
   prep_step_dummy     = TRUE
   
   thres_log           = 2
-  thres_count    = 10
+  thres_count         = 10
   thres_corr          = 0.9
   thres_lump          = 0.05
   thres_imp           = 0.8
