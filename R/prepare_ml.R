@@ -58,7 +58,7 @@
 #'
 #' @return 
 #' 
-#' *data*
+#' ## Data sets
 #' 
 #' \code{prepare_ml} produces a list that contains the data set both with (\code{data_prep}) and 
 #' without (\code{data_raw}) applying the specified ML preparation steps. 
@@ -77,7 +77,7 @@
 #' If \code{\link{build}()} from the \code{MLAIprepare} package was used to generate \code{feature}, 
 #' this attribute lists the full paths of the files that were used in data generation of \code{feature}. 
 #' 
-#' *Preparation and documentation*
+#' ## Data preparation and documentation
 #' 
 #' \code{prep_recipe} contains the prepared recipe object, 
 #' \code{prep_params} documents the parameters/thresholds used in the data preparation, 
