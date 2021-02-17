@@ -1,4 +1,5 @@
-#' @title one stop shop for building the data set
+#' one stop shop for building the machine learning data set
+#' 
 #' Allows to 
 #' {\itemize 
 #'   \item build from spec (with or without data already attached)
