@@ -1,36 +1,11 @@
+#' @rdname build_x
+#'
+#' @export
 
-#' build adsl
-#' 
-#' @param spec preparation specification for a single file (as provided by result of adam_spec_adsl()) 
-
-#' 
-
-# test area####
-if(FALSE){
-  # 'real_world_data/adsl/99999/adsl.sas7bdat'
-  #study <- c(99999, 99999, 99999)[1]
-  #file  <- paste0('real_world_data/', study, '/adsl.sas7bdat')
-  
-  file  <- here::here('data', '99999', 'ads','adsl.sas7bdat')
-  
-  id = 'SUBJID'
-  trt = NULL
-  keep = NULL
-  drop = NULL
-  filter = c("FASFL == 'Y'", "AGE < 80", "GENDER == 'female'")
-  
-  spec <- adam_spec_adsl(file = file, id = id, filter = filter)
-  
-}
-
-
-
-# ads_prep() ####
+# (see 'build_x.R' for documentation details)
 
 build_adsl <- function(
-  spec,
-  ...
-  
+  spec
 ){
   
   md5 <- tools::md5sum(spec$file) %>%  as.character()
@@ -150,3 +125,23 @@ build_adsl <- function(
   )
   
 }
+
+
+# test area####
+if(FALSE){
+  # 'real_world_data/adsl/99999/adsl.sas7bdat'
+  #study <- c(99999, 99999, 99999)[1]
+  #file  <- paste0('real_world_data/', study, '/adsl.sas7bdat')
+  
+  file  <- here::here('data', '99999', 'ads','adsl.sas7bdat')
+  
+  id = 'SUBJID'
+  trt = NULL
+  keep = NULL
+  drop = NULL
+  filter = c("FASFL == 'Y'", "AGE < 80", "GENDER == 'female'")
+  
+  spec <- adam_spec_adsl(file = file, id = id, filter = filter)
+  
+}
+

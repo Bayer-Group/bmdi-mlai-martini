@@ -1,56 +1,11 @@
+#' @rdname build_x
+#'
+#' @export
 
-#' build bds
-#' 
-#' Extract and reshape data from a single bds-type data set according to the given specification as created by \code{adam_spec_bds()}.
-#' 
-#' @param spec result of \code{adam_spec_bds()}
-#' 
-#' @return 
-#' A list with two elements \code{data} and \code{dict}, where 
-#' \code{data} a tibble in wide format which one row per \code{id} 
-#' \code{dict} a tibble listing the distinct combinations of columns \code{param}, \code{label}, \code{unit}, \code{time}, \code{column}, \code{source} (if provided). 
-
-#' @description Note that the output dictionary differs from the dictionary created by \code{adam_spec_*}, as multiple features may be derived from a single parameter at different time points.  
-
-
-
-
-# test area####
-if(FALSE){
-  # 'real_world_data/adsl/99999/adsl.sas7bdat'
-  #study <- c(99999, 99999, 99999)[3]
-  
-  #file = paste0('real_world_data/99999/',
-  #              c('adqseq5d', 'advs', 'adegf')[3],'.sas7bdat')
-  
-  file =  '../adegf.sas7bdat'
-  id = 'SUBJID'
-  param  =  NULL
-  label  = NULL
-  unit   = NULL # AVALU, xxSTRESU, xxORESSU
-  time   = NULL 
-  value  = NULL #c(AVAL, CHG)
-  filter = 'AVISIT == Screening'
-  spec_0 <- adam_spec_bds(file = file, id = id, filter = filter,
-                   param = param, unit = unit, time = time)
-  spec <- spec_0
-  
-  spec_  <- spec_0
-  spec_c <- spec_
-  spec_c$value <- 'AVALC'
- 
-  spec <- spec_c
-  
-}
-
-
-
-# bds_prep() ####
+# (see 'build_x.R' for documentation details)
 
 build_bds <- function(
-  spec,
-  ...
-  
+  spec
 ){
   
   md5 <- tools::md5sum(spec$file) %>%  as.character()
@@ -178,4 +133,32 @@ build_bds <- function(
 # specksi <-  build_bds(speck)
 
 
+
+# test area####
+if(FALSE){
+  # 'real_world_data/adsl/99999/adsl.sas7bdat'
+  #study <- c(99999, 99999, 99999)[3]
+  
+  #file = paste0('real_world_data/99999/',
+  #              c('adqseq5d', 'advs', 'adegf')[3],'.sas7bdat')
+  
+  file =  '../adegf.sas7bdat'
+  id = 'SUBJID'
+  param  =  NULL
+  label  = NULL
+  unit   = NULL # AVALU, xxSTRESU, xxORESSU
+  time   = NULL 
+  value  = NULL #c(AVAL, CHG)
+  filter = 'AVISIT == Screening'
+  spec_0 <- adam_spec_bds(file = file, id = id, filter = filter,
+                          param = param, unit = unit, time = time)
+  spec <- spec_0
+  
+  spec_  <- spec_0
+  spec_c <- spec_
+  spec_c$value <- 'AVALC'
+  
+  spec <- spec_c
+  
+}
 
