@@ -3,7 +3,7 @@
 #' 
 #' Extract and reshape data from a single bds-type data set according to the given specification as created by \code{adam_spec_bds()}.
 #' 
-#' @param spec result of \code{adam_spec_bds()}
+#' @param spec result of \code{\link{adam_spec_bds}()}
 #' 
 #' @return 
 #' A list with two elements \code{data} and \code{dict}, where 

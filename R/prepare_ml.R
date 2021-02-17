@@ -300,7 +300,7 @@ prepare_ml <- function(
       
       # ... ... imputation ####
       {if(prep_step_knnimpute){
-        recipes::step_knnimpute(., tidyselect::any_of(vars_imp)) }else{.}
+        recipes::step_knnimpute(., tidyselect::any_of(vars_imp), -recipes::all_outcomes(), -recipes::has_role("ID")) }else{.}
       } %>% 
       
       # ... ... omit observations with missing data in variables ignored in imputation ####

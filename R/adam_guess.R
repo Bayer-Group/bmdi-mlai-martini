@@ -1,12 +1,12 @@
 #' Guess time and label columns for subsequent use in adam_spec_occds()
 #' 
 #' For domains admh, adcm and adae, appropriate choices for the parameters \code{label} and \code{time} 
-#' are returned for further use in \code{\link{adam_spec_occds}}. 
+#' are returned for further use in \code{\link{adam_spec_occds}()}. 
 #' 
 #' @param file the file containing the data for which label, time (and value) columns need to be guessed
 #' 
 #' @description 
-#' \code{\link{adam_guess}} makes use of the internal function \code{\link{adam_domain_type}} to map 
+#' \code{\link{adam_guess}()} makes use of the internal function \code{\link{adam_domain_type}()} to map 
 #' the domain type to the file name.
 #' The set of domains for which guessing options are available will be extended in the future if required.
 #' 
@@ -16,13 +16,13 @@
 #' a later point to determine the input for \code{adam_spec_\U002A()}.
 #' The function will exit for domains without guessing options.
 #' 
-#' @seealso \code{\link{adam_spec_occds}}
+#' @seealso \code{\link{adam_spec_occds}()}
 #'
 #' @section Authors:
 #' 
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
-#' 
-#' @md
+#'
+#' @export 
 
 adam_guess <- function(file){
   

@@ -5,54 +5,47 @@
 
 #' 
 
-# test area####
-if(FALSE){
-  # 'real_world_data/adsl/99999/adsl.sas7bdat'
-  #study <- c(99999, 99999, 99999)[1]
-  #file  <- paste0('real_world_data/', study, '/adsl.sas7bdat')
-  
-  file  <- here::here('data', '99999', 'ads','adsl.sas7bdat')
-  
-  id = 'SUBJID'
-  trt = NULL
-  keep = NULL
-  drop = NULL
-  filter = c("FASFL == 'Y'", "AGE < 80", "GENDER == 'female'")
-  
-  spec <- adam_spec_adsl(file = file, id = id, filter = filter)
-  
-}
+
 
 
 
 # ads_prep() ####
 
 build_adsl <- function(
-  spec,
-  ...
-  
+  spec
 ){
   
-  md5 <- tools::md5sum(spec$file) %>%  as.character()
+  # check/import data ####
   
-  if(is.null( spec$data )){
+  md5 <- tools::md5sum(spec$file) %>%  as.character()
 
-    # read data   ####
+  if(is.null(spec$data)){
+    
+    # ... no data attached ####
+    
     file_name <- spec$file 
     file_ext  <- stringr::str_split( file_name, '/|\\\\')[[1]] %>%  
       tail(1) %>%  
       stringr::str_split(., '[.]') %>% 
       .[[1]] %>%  
-      tail(1) 
+      tail(1)
+    
     if(file_ext == 'sas7bdat'){
+      
       adsl_full <- haven::read_sas(file_name) %>% 
         dplyr::mutate_if(is.character,  ~ dplyr::na_if(., ""))
-    
       
+    } else {
       
-    }else return(NULL)
-    
+      usethis::ui_info(crayon::silver(
+        paste0('\t build_adsl() expects a sas7bdat file to read. Please check your input or attach the data in the respective spec slot. \n'))
+      )
+      return(NULL)
+      
+    }
   } else {
+    
+    # ... data attached ####
     
     adsl_full <- spec$data %>% 
       dplyr::mutate_if(is.character,  ~ dplyr::na_if(., ""))
@@ -65,13 +58,6 @@ build_adsl <- function(
     
   }
   
-  
-  filter_txt <- paste( '(',
-                      paste(  spec$filter, collapse= ') & (' ),
-                      ')') 
-  
-  
-  
   # reorder factor levels  ####
   clmns <- names(spec$factor_levels)
   for(c in 1:length(clmns)){ # c=1
@@ -80,11 +66,15 @@ build_adsl <- function(
     
     adsl_full[, clmn, drop = TRUE]  <-  adsl_full[, clmn, drop = TRUE] %>%  
       factor(levels = levs)
-    # shift to prepare_ml:   map(levs, ~ (str_to_lower(.x) %>%  str_replace_all( clean_char) )))
   }
   
   
   # apply spec: filter, select and standardize column names ####
+  
+  filter_txt <- paste(
+    '(', paste(  spec$filter, collapse= ') & (' ), ')'
+  ) 
+  
   adsl <- adsl_full %>% 
     {if(length(spec$filter) > 0){ 
       dplyr::filter(., !! rlang::parse_expr(filter_txt))
@@ -97,7 +87,7 @@ build_adsl <- function(
     }else{.}
     }
     
-  # set 'spec_id' if missing (required for dictionary)
+  # set 'spec_id' if missing (required for dictionary) ####
   # this is e.g. the case, if spec was not created with 'adam_spec_adsl'
   if(!is.null(spec$spec_id)){
     if(spec$spec_id == ''){ 
@@ -139,14 +129,24 @@ build_adsl <- function(
     
   }
   
-  
-  
-  
-  # output   ####
+  # output ####
   list(
     data   = adsl,
     dict   = dict,
     source = list(file = spec$file, md5 = md5) 
   )
+  
+}
+
+# test area####
+if(FALSE){
+
+  file  <- '../adsl.sas7bdat'
+  
+  id = 'SUBJID'
+  trt = NULL
+  filter = c("FAS == 'Y'", "AGE < 80", "GENDER == 'female'")
+  
+  spec <- adam_spec_adsl(file = file, id = id, trt = trt, filter = filter)
   
 }

@@ -19,6 +19,14 @@
 #' Function will escape if one of label or value are neither provided nor can be guessed.
 #' Note that the original values in the \code{label} column will end up being the parameter labels, 
 #' not the parameters in the ML feature matrix. These might be modified later using \code{make_names()} or the like \code{prepare_ml()}.
+#'
+#' @section Authors:
+#' 
+#' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+#' 
+#' @export
+
+
 
 # function adam_spec_occds() ####
 adam_spec_occds <- function(
@@ -89,26 +97,11 @@ adam_spec_occds <- function(
     filter      <- filter %>%  append(filter_time)
   }      
   
-  
-  
-  
   # filter check ####
-  
-  keep_filter <- purrr::map_lgl(filter, function(x){
-    try_it <- try(
-      {occds %>% dplyr::filter(!! rlang::parse_expr(x))},
-      silent = TRUE
-    )
-    is_error <- "try-error" %in% class(try_it)
-    is_norow <- FALSE
-    if (!is_error) is_norow <- nrow(try_it) == 0
-    !(is_error || is_norow)
-    
-  })
-  
+  # only filter that individually yield non-empty tibbles are kept
+  keep_filter   <- check_filter(occds, filter)
   actual_filter <- filter[keep_filter]
 
-  
   
   # dictionary   ####
   source <- adam_domain_type(file)$domain
@@ -120,6 +113,9 @@ adam_spec_occds <- function(
     distinct() %>%
     dplyr::mutate(source = source) %>% 
     dplyr::mutate(type   = 'occds') 
+  
+  # remove occds data set label automatically created by haven
+  attr(dict, 'label') <- NULL
   
   
   

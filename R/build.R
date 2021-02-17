@@ -27,7 +27,7 @@
 #'         Each element contains the specification for a single data set and is named with the domain abbreviation (e.g. adsl, adqskccq).
 #'         The list can be manually adjusted if required, e.g. adding further specifications or altering existing ones.
 #' 
-#' @seealso \code{\link{adam_spec_adsl}}, \code{\link{adam_spec_bds}}, \code{\link{adam_spec_occds}}
+#' @seealso \code{\link{adam_spec_adsl}()}, \code{\link{adam_spec_bds}()}, \code{\link{adam_spec_occds}()}
 #'
 
 build <- function(

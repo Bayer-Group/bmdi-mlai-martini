@@ -18,87 +18,45 @@
 #'      \item[param] 'PARAMCD', paste0(dom,'TESTCD')
 #'      \item[label] substring of param with the last two characters removed
 #'      \item[time]  'AVISIT', 'VISIT'
-#'      \item[value] 'AVAL',   paste0(dom, c("STRESN", "ORRES")
-#'      \item[unit]  'AVALU',  paste0(dom, c("STRESU", "ORRESU") 
+#'      \item[value] 'AVAL',   paste0(dom, c("STRESN", "ORRES"))
+#'      \item[unit]  'AVALU',  paste0(dom, c("STRESU", "ORRESU")) 
 #' }
 #' Function will escape if one of param or value are neither provided nor can be guessed.
 #' A parameter dictionary will be created: A tibble with unique combinations of param, label, unit (or the provided subset)
+#'
+#' @section Authors:
+#' 
+#' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+#' 
+#' @export
 
 
 # function adam_spec_bds() ####
 adam_spec_bds <- function(
   file,
-  id = 'SUBJID', 
-  param  = NULL , # 'PARAMCD',
-  label  = NULL,  # PARAMLAB
-  unit   = NULL, # AVALU, xxSTRESU, ORESSU
-  time   = NULL, 
-  value  = NULL, #c(AVAL, CHG)
-  filter = NULL,
-  attach_data = FALSE,
-  ...
+  id          = 'SUBJID', 
+  param       = NULL,
+  label       = NULL,
+  unit        = NULL,
+  time        = NULL, 
+  value       = NULL,
+  filter      = NULL,
+  attach_data = FALSE
 ){
   
-  
-  # test area  ####
-  if(FALSE){
-    
-    require(tidyverse)
-    require(haven)
-    require(labelled)
-    
-    file = 'real_world_data/99999/adegf.sas7bdat'
-    id = 'SUBJID'
-    param  =  NULL
-    label  = NULL
-    unit   = NULL # AVALU, xxSTRESU, ORESSU
-    time   = NULL 
-    value  = NULL #c(AVAL, CHG)
-    filter = NULL
-    
-  }
-  
-  #  read bds ####
-  #'adsl.sas7bdat' %in% list.files(path)
+  # read bds ####
   bds <- haven::read_sas(file)
   
   md5 <- tools::md5sum(file) %>%  as.character()
   
-  
-  #  guess stuff ...####
-  
-  
-  # ... guess domain ####
-  dom <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
+  # identify domain ####
+  domain <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
     tail(1) %>% 
-    stringr::str_sub(3,4) %>%  # rm trailing 'ad'
-    # str_split('[:punct:]') %>% 
-    # .[[1]] %>% 
-    # .[1] %>%  
+    stringr::str_remove_all('^ad|[.]sas7bdat$') %>% 
     stringr::str_to_upper()
+  dom <- stringr::str_sub(domain, 1, 2) # used in e.g. EGTEST (instead of EGFTEST)
   
-  guesses <- list(
-    # ... guess param ####
-    param = c('PARAMCD', paste0(dom,'TESTCD')),
-    
-    # ... guess visit  ####
-    time = c('AVISIT', 'VISIT'),
-    
-    # ... guess value  ####
-    value = c(ifelse(# for adegf choose AVALC over AVAL
-                       stringr::str_split( file, '/|\\\\')[[1]] %>% 
-                       tail(1) %>% 
-                       stringr::str_remove('.sas7bdat$') %>%  {. %in%  c('adegf')}, 
-                      'AVALC', 'AVAL'),  
-              paste0(dom, "STRESN" ), paste0(dom, "ORRES")),
-    
-    # ... guess unit ####
-    unit = c('AVALU',  paste0(dom, 'STRESU'),  paste0(dom,'ORRESU'))
-    
-  )
-  
-  guesses$label <- stringr::str_sub(guesses$param, 1, -3)
-  
+  # check user input: columns available in data set? ####
   col_select <- c(
     "value" = value,
     "param" = param,
@@ -107,63 +65,84 @@ adam_spec_bds <- function(
     "label" = label
   )
   
+  purrr::iwalk(col_select, ~{
+    if (!is.null(.x) && (length(intersect(.x, colnames(bds))) == 0)) {
+      usethis::ui_info(crayon::silver(paste0(
+        'AD', domain, ": Column '", .x, "' is not available in the data set. '", .y, "' will be guessed.\n")))
+    }
+  })
+  
+ 
+  # define candidates for relevant columns accordingly ####
+  
+  guesses <- list(
+    
+    # ... candidates param ####
+    param = c('PARAMCD', paste0(dom, 'TESTCD')),
+    
+    # ... candidates time  ####
+    time = c('AVISIT', 'VISIT'),
+    
+    # ... candidates value  ####
+    value = c('AVAL', 'AVALC',
+              paste0(dom, c("STRESN", "STRESC", "ORRES"))),
+    
+    # ... candidates unit ####
+    unit = c('AVALU', paste0(dom, 'STRESU'),  paste0(dom, 'ORRESU'))
+    
+  )
+  
+  # ... candidates label ####
+  guesses$label <- stringr::str_sub(guesses$param, 1, -3)
+  # TODO move guessing candidates to adam_guess()
+  
+  # check data for candidate columns ####
+  
   col_required <- c('value', 'param')
   
   coln_bds     <- colnames(bds)
 
-  for (i in 1:length(guesses)){ # i=4
+   
+  for (i in names(guesses)){ 
     
-    col_i      <- col_select[i]
-    name_col_i <- names(guesses)[i]
-    
-    if (is.null(col_i) || !(col_i %in% coln_bds)){
-      choices <- guesses[[name_col_i]] %>% 
-        intersect(coln_bds)
+    if (is.null(col_select[i]) || !(col_select[i] %in% coln_bds)){
+      
+      choices <- guesses[[i]] %>% intersect(coln_bds)
       
       # escape if required columns cannot be identified
-      if (length(choices) == 0 && 
-          (name_col_i %in% col_required) ) return(NULL)
+      if (length(choices) == 0 && (i %in% col_required)){
+        usethis::ui_info(crayon::silver(paste0(
+          'AD', domain, ": No column could be identified to be used as ", i, ". No spec will be provided.\n")))
+        return(NULL)
+      }
       
       col_select[i] <- choices[1]
+      
     }
-    
-    names(col_select)[i] <- name_col_i
     
   }
   
   # filter check ####
-  
-  keep_filter <- purrr::map_lgl(filter, function(x){
-    try_it <- try(
-      {bds %>% dplyr::filter(!! rlang::parse_expr(x))},
-      silent = TRUE
-    )
-    is_error <- "try-error" %in% class(try_it)
-    is_norow <- FALSE
-    if (!is_error) is_norow <- nrow(try_it) == 0
-    !(is_error || is_norow)
-    
-  })
-  
+  # only filter that individually yield non-empty tibbles are kept
+  keep_filter   <- check_filter(bds, filter)
   actual_filter <- filter[keep_filter]
-
  
   # dictionary  ####
   source <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
-    tail(1) %>% stringr::str_remove('.sas7bdat')
+    tail(1) %>% 
+    stringr::str_remove('.sas7bdat')
   
   # use unfiltered data 
   dict  <- bds %>% 
     dplyr::select( tidyselect::any_of(
-      c("param" = col_select[['param']], 
-        "label" = col_select[['label']], 
-        "unit"  = col_select[['unit']]) %>%  na.omit)) %>% 
-    distinct() %>%
+      col_select[c('param', 'label', 'unit')] %>%  na.omit() 
+    )) %>% 
+    dplyr::distinct() %>%
     dplyr::mutate(source = source) %>% 
     dplyr::mutate(type   = 'bds') 
  
- 
- 
+  # remove bds data set label automatically created by haven
+  attr(dict, 'label') <- NULL
  
  
   # output ####
@@ -188,5 +167,35 @@ adam_spec_bds <- function(
   }
   
   out
+  
+}
+
+# test area  ####
+if(FALSE){
+  
+  require(tidyverse)
+  require(haven)
+  require(labelled)
+  
+  file = '../adegf.sas7bdat'
+  id = 'SUBJID'
+  param  =  NULL
+  label  = NULL
+  unit   = NULL # AVALU, xxSTRESU, ORESSU
+  time   = NULL 
+  value  = NULL #c(AVAL, CHG)
+  filter = NULL
+  
+  # basic function call
+  spec_res <- adam_spec_bds(file = file, id = id)
+  spec_res %>%  str()
+  
+  # specify filter that is partially not applicable
+  filter_test <- c("AVISIT == 'BASELINE'", "LBTESTCD == 'RHYNOS'")
+  spec_res <- adam_spec_bds(file = file, id = id, filter = filter_test)
+  spec_res$filter
+  
+  # specify value column that is not in the data
+  spec_res <- adam_spec_bds(file = file, id = id, value = "VALUE")
   
 }

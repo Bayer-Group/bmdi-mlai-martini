@@ -33,7 +33,7 @@ prepare_ml_vars <- function(
   thres_log        = NULL, 
   thres_lump       = NULL,
   thres_imp        = NULL,
-  remove           = c(".id", ".out", ".status", ".time")
+  remove           = c(".id", ".out", ".status", ".time", ".trt")
 
 ){
   
@@ -87,10 +87,9 @@ prepare_ml_vars <- function(
     if(! is.null(thres_lump)){
       vars_nolump <- data %>% 
         dplyr::select_if(is.factor) %>% 
-        map_lgl( ~ { freqs <- table(.x)/ length(.x); sum(freqs < thres_lump) == 1  } )  %>% 
+        purrr::map_lgl( ~ { freqs <- table(.x)/ length(.x); sum(freqs < thres_lump) == 1  } )  %>% 
         which(.) %>% 
-        names() %>% 
-        setdiff(remove)
+        names()
       if (length(vars_nolump) == 0) vars_nolump <- NULL
     }
   }

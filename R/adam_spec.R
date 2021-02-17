@@ -1,34 +1,44 @@
-#' @title adam spec
+#' Creating a specification for building a wide format data set from adam data
 #' 
-#' \code{\link{adam_spec}} is a wrapper for the \code{adam_spec_*()} functions.
+#' \code{\link{adam_spec}()} is a wrapper for the \code{adam_spec_\U002A()} functions.
 #' It creates a list of specifications on how to extract and process data from adam data sets in a given location. 
-#' The resulting list can be passed to \code{build()}, where the data sets are combined into a single wide format data set.
+#' The resulting list can be passed to \code{\link{build}()}, where the 
+#' created specs are applied and the generated data sets are combined into a single wide format data set.
 #'
-#' @param path the path to the ads files
-#' @param filter a character vector of conditions to be passed to \code{dplyr::filter()}, e.g. regarding visits, treatment arms or parameters. Defaults to NULL.
-#' @param keep character vector defining the subset of data sets in the given `path` to create the specification for (e.g. \code{c('adsl', 'advs'))}).
+#' @param path path to a directory containing ads files
+#' @param filter a character vector of conditions to be passed to \code{dplyr::filter()}, 
+#' e.g. regarding visits, treatment arms or parameters. Defaults to NULL.
+#' @param keep character vector defining the subset of data sets in the given \code{path} to create the specification for (e.g. \code{c('adsl', 'advs'))}).
 #'  If both \code{keep} and \code{drop} are specified, \code{keep} overrides \code{drop}. Defaults to NULL.
-#' @param drop character vector defining a subset of data sets in the given `path` to be excluded from the list of specifications (e.g. \code{'adqseq5d')}). Defaults to NULL.
-#' @param attach_data boolean indicating whether the imported raw data is included in the output
+#' @param drop character vector defining a subset of data sets in the given \code{path} to be 
+#' excluded from the list of specifications (e.g. \code{'adqseq5d')}). Defaults to NULL.
+#' @param attach_data boolean indicating whether the imported raw data is included in the output. Defaults to FALSE.
+#' @param id,trt id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()} for details).
+#' @param pre_study boolean. Include only pre-study events from occurence data sets (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.
 #' 
-#' @description  \code{adam_spec()} matches file names in the given path against an internal library to decide on which \code{adam_*_spec()} function to use for which data set.
-#'  Only files in the library will be processed, the rest will be ignored. Names of unprocessed files will be printed to the console.
-#'  For those, specifications may be created manually using the appropriate \code{adam_spec_*()} function and appended to the specification list created by \code{adam_*_spec()}. 
+#' @details 
+#' \code{adam_spec()} matches file names in the given path against an internal library
+#' to decide on which \code{adam_spec_\U002A()} function to use for which data set.
+#' Only files in the library will be processed, the rest will be ignored. Names of unprocessed files will be printed to the console.
+#' For those, specifications may be created manually using the appropriate \code{adam_spec_\U002A()} function and appended to the specification list created by \code{adam_*_spec()}. 
 #'
 #' Individual filters are only applied if the resulting data set has a positive number of rows (ignoring those causing errors or yielding a 0-row data set). 
 #'
-#' Please refer to the documentations of the \code{adam_spec_*()} functions for full details.
+#' Please refer to the documentations of the \code{adam_spec_\U002A()} functions for full details.
 #'
-#' @return  \code{adam_spec()} returns named list of specifications that can be passed to the \code{\link{build}} function. 
-#'         Each element contains the specification for a single data set and is named with the domain abbreviation (e.g. adsl, adqskccq).
-#'         The list can be manually adjusted if required, e.g. adding further specifications or altering existing ones.
+#' @return  
+#' \code{adam_spec()} returns named list of specifications that can be passed to the \code{\link{build}()} function. 
+#' Each element contains the specification for a single data set and is named with the domain abbreviation (e.g. adsl, adqskccq).
+#' The list can be manually adjusted if required, e.g. adding further specifications or altering existing ones. See the documentation
+#' of the \code{adam_spec_\U002A()} for a detailed description of the output object.
 #' 
-#' @seealso \code{\link{adam_spec_adsl}}, \code{\link{adam_spec_bds}}
+#' @seealso \code{\link{adam_spec_adsl}()}, \code{\link{adam_spec_bds}()},  \code{\link{adam_spec_occds}()
 #'
-#' @usage 
+#' @section Authors:
 #' 
-
-library(crayon)
+#' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+#'
+#' @export 
 
 adam_spec <- function(
   path, 
@@ -36,16 +46,12 @@ adam_spec <- function(
   keep        = NULL,
   drop        = NULL,
   pre_study   = FALSE,
-  attach_data = FALSE){
+  attach_data = FALSE,
+  id          = "SUBJID",
+  trt         = "TRT01A"
+){
   
-  if(FALSE){
-    # path = 'real_world_data/99999/'
-    # path = '//by-xa221/Statdb/Ginger/Studies/BAY106-7197_Neladenosone_99999_PANTHEON/Data/Original/ads/'
-    path <- "../"
-    filter = c("SEX == 'F'", "AVISIT == 'BASELINE'")
-    
-  }
-  
+  # identify type for selected files in path (adsl/bds/occds) #####
   file_info <- adam_domain_type(path, keep, drop) %>% 
     dplyr::filter(type != "none")
   
@@ -62,7 +68,7 @@ adam_spec <- function(
     
     spec <- spec %>% 
       append(
-        purrr::map(files_adsl, ~ adam_spec_adsl(file = .x, filter = filter, attach_data = attach_data))
+        purrr::map(files_adsl, ~ adam_spec_adsl(file = .x, id = id, trt = trt, filter = filter, attach_data = attach_data))
       )
     
   }
@@ -100,4 +106,14 @@ adam_spec <- function(
   }
   
   spec
+}
+
+# test area ####
+
+if(FALSE){
+
+  path <- "../"
+  filter <- c("SEXY == 'F'", "AVISIT == 'BASELINE'")
+  test_spec <- adam_spec(path = path, filter = filter, keep = c("adsl", "adqseq5d"))
+  
 }
