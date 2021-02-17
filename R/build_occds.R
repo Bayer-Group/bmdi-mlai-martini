@@ -1,45 +1,11 @@
+#' @rdname build_x
+#'
+#' @export
 
-#' build occds
-#' 
-#' Extract and reshape data from a single occds-type data set according to the given specification as created by \code{adam_spec_occds()}.
-#' 
-#' @param spec result of \code{adam_spec_occds()}
-#' 
-#' @return 
-#' A list with two elements \code{data} and \code{dict}, where 
-#' \code{data} a tibble in wide format which one row per \code{id} 
-#' \code{dict} a tibble listing the distinct combinations of columns \code{param}, \code{label}, \code{unit}, \code{time}, \code{column}, \code{source} (if provided). 
-
-#' @description Note that the output dictionary differs from the dictionary created by \code{adam_spec_*}, as multiple features may be derived from a single parameter at different time points.  
-
-
-
-
-# test area####
-if(FALSE){
-  # 'real_world_data/adsl/99999/adsl.sas7bdat'
-  #study <- c(99999, 99999, 99999)[3]
-  
-  #file = paste0('real_world_data/99999/',
-  #              c('adqseq5d', 'advs', 'adegf')[3],'.sas7bdat')
-  
-  file =  '../admh.sas7bdat'
-  spec <- adam_spec_occds(
-    file = file,
-    pre_study = TRUE,
-    attach_data = FALSE
-  )
-  
-}
-
-
-
-# occds_prep() ####
+# (see 'build_x.R' for documentation details)
 
 build_occds <- function(
-  spec,
-  ...
-  
+  spec
 ){
   
   md5 <- tools::md5sum(spec$file) %>%  as.character()
@@ -158,3 +124,22 @@ build_occds <- function(
   
 }
 
+
+
+
+# test area####
+if(FALSE){
+  # '../adegf.sas7bdat'
+  #study <- c(99999, 99999, 99999)[3]
+  
+  #file = paste0('data/ads/',
+  #              c('adqseq5d', 'advs', 'adegf')[3],'.sas7bdat')
+  
+  file =  '../admh.sas7bdat'
+  spec <- adam_spec_occds(
+    file = file,
+    pre_study = TRUE,
+    attach_data = FALSE
+  )
+  
+}
