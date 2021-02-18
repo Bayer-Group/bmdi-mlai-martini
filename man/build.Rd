@@ -36,27 +36,25 @@ Only applied, if \code{spec} is not provided.}
 \item{join}{either function to join data sets (e.g. \code{dplyr::full_join} or a character (vector) giving the names
 of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}}
 
-\item{attach_data}{boolean. attach the imported raw data. Only applied, if \code{spec_only = TRUE}.}
+\item{attach_data}{boolean. Attach the imported raw data. Only applied, if \code{spec_only = TRUE}.}
 }
 \value{
-\code{build()} returns a wide data set with one row per subject and standardized column names for the subject id (.id)
-and the treatment variable (.trt), if it is provided in the \code{spec} object. Objects with additional information on
+\code{build()} returns a wide data set with one row per subject and standardized column names for the subject id (\code{.id})
+and the treatment variable (\code{.trt}), if it is provided in the \code{spec} object. Objects with additional information on
 the data are provided in the attributes of the returned object.
 
-\strong{\code{dict}}
-
+\item{\code{dict}}{
+\describe{
 \item{\code{param}}{original parameter name in the source data}
 \item{\code{column}}{column name of the variable in the returned data. \code{column} is derived from \code{param} by transforming
 it into a valid file name and possibly adding a time extension, if multiple time points are considered for a particular parameter.}
-\item{\code{label}}{patameter label}
+\item{\code{label}}{parameter label}
 \item{\code{source}}{source id provided by the specification object. If created with \code{\link{adam_spec}()}, this is the name of the domain.}
 \item{\code{type}}{adam data type of the source data (adsl, bds or occds)}
 \item{\code{unit}}{parameter unit (if applicable)}
 \item{\code{time}}{measurement time point (if applicable)}
-
-\strong{\code{source}}
-
-The file path and md5 checksums of the source data sets.
+}}
+\item{\code{source}}{file path and md5 checksums of the source data sets}
 }
 \description{
 The build() function allows to build a machine learning data set from a specification object as provided
@@ -65,7 +63,6 @@ path. In this case the specification object is created internally by calling the
 and immediately used to build the data set.
 }
 \section{Authors}{
-
 
 Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }

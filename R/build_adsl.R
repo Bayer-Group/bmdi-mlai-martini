@@ -125,9 +125,10 @@ build_adsl <- function(
   
   # output ####
   list(
-    data   = adsl,
-    dict   = dict,
-    source = list(file = spec$file, md5 = md5) 
+    data       = adsl,
+    dict       = dict,
+    source     = list(file = spec$file, md5 = md5) ,
+    flag_table = spec$flag_table
   )
   
 }

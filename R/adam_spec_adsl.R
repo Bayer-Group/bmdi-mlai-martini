@@ -35,14 +35,20 @@
 #' \item{filter}{subset of \code{filter} that yields non-empty result when applied individually}
 #' \item{select}{the suggested list of columns to select from the data set} 
 #' \item{factor_levels}{a list column pairs factor/factorN to determine factor level order} 
+#' \item{flag_table} a tibble with columns id and any columns identified as flag (character and matching numeric) based on matching column names or labels
 #' \item{drop_list}{a list containing column names suggested to be dropped with the entry
-#'  name identifying the rationale for the discard (user input \code{drop}, date/times columns, 
-#'  numeric code for another variable, flags (both numeric and character columns), combined columns, empty and constant columns,
-#'   columns with redundant information to \code{id} and \code{trt} if provided)
+#' name identifying the rationale for the discard: 
+#'   \itemize{ 
+#'     \item user input \code{drop} 
+#'     \item date/times columns, 
+#'     \item numeric code for another variable (incl numeric flags) 
+#'     \item flags (both numeric and character columns), see also `flag_table` 
+#'     \item combined, empty and constant columns, resp.
+#'     \item columns with redundant information to \code{id} and \code{trt} if provided)
+#'  }
 #' \item{id, trt}{passing unchanged input}  
 #' \item{spec_id}{character string \code{adsl}, generally the name of the domain}  
 #' \item{dict}{a tibble of column names and labels (if present in the data set)}  
-#'  
 #' 
 #' @section Authors:
 #' 
@@ -305,6 +311,11 @@ adam_spec_adsl <- function(
       param %in% select_list, TRUE, FALSE
     ) )
   
+  # ... flag table ####
+  
+  flag_table <- adsl %>% 
+    dplyr::select(tidyselect::any_of(c(id, flags)))
+  
   # ... output object ####  
 
   out <- list(
@@ -318,7 +329,7 @@ adam_spec_adsl <- function(
     factor_levels = lev_list[intersect(select_list, names(lev_list))],
     
     dict       = dict,
-    #drop_notes = NULL,
+    flag_table = flag_table,
     drop_list  = drop_list,
     id         = id,
     trt        = trt,

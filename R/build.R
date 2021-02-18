@@ -18,34 +18,32 @@
 #' @param drop character vector defining a subset of data sets in the given `path` to
 #' be excluded from the list of specifications (e.g. \code{'adqseq5d')}). Defaults to NULL.
 #' Only applied, if \code{spec} is not provided.
-#' @param attach_data boolean. attach the imported raw data. Only applied, if \code{spec_only = TRUE}.
+#' @param attach_data boolean. Attach the imported raw data. Only applied, if \code{spec_only = TRUE}.
 #' 
 #'
 #' @return
 #' 
-#' \code{build()} returns a wide data set with one row per subject and standardized column names for the subject id (.id)
-#' and the treatment variable (.trt), if it is provided in the \code{spec} object. Objects with additional information on
+#' \code{build()} returns a wide data set with one row per subject and standardized column names for the subject id (`.id`)
+#' and the treatment variable (`.trt`), if it is provided in the \code{spec} object. Objects with additional information on
 #' the data are provided in the attributes of the returned object.
 #' 
-#' **`dict`**
+#' \item{`dict`}{
+#' \describe{
+#'   \item{`param`}{original parameter name in the source data}
+#'   \item{`column`}{column name of the variable in the returned data. `column` is derived from `param` by transforming
+#'   it into a valid file name and possibly adding a time extension, if multiple time points are considered for a particular parameter.}
+#'   \item{`label`}{parameter label}
+#'   \item{`source`}{source id provided by the specification object. If created with \code{\link{adam_spec}()}, this is the name of the domain.}
+#'   \item{`type`}{adam data type of the source data (adsl, bds or occds)}
+#'   \item{`unit`}{parameter unit (if applicable)}
+#'   \item{`time`}{measurement time point (if applicable)}
+#' }}
+#' \item{`source`}{file path and md5 checksums of the source data sets}
 #' 
-#' \item{`param`}{original parameter name in the source data}
-#' \item{`column`}{column name of the variable in the returned data. `column` is derived from `param` by transforming
-#' it into a valid file name and possibly adding a time extension, if multiple time points are considered for a particular parameter.}
-#' \item{`label`}{patameter label}
-#' \item{`source`}{source id provided by the specification object. If created with \code{\link{adam_spec}()}, this is the name of the domain.}
-#' \item{`type`}{adam data type of the source data (adsl, bds or occds)}
-#' \item{`unit`}{parameter unit (if applicable)}
-#' \item{`time`}{measurement time point (if applicable)}
-#' 
-#' **`source`**
-#' 
-#' The file path and md5 checksums of the source data sets.
 #' 
 #' @seealso \code{\link{build_adsl}()}, \code{\link{build_bds}()}, \code{\link{build_occds}()}
 #'
 #' @section Authors:
-#' 
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #'
 #' @export
@@ -80,7 +78,7 @@ build <- function(
        
       interim <- list()
       
-      # ... adsl spec ####
+      # ... type adsl ####
       
       if ( any(file_info$type == "adsl") ){
         
@@ -101,7 +99,7 @@ build <- function(
         
       }
       
-      # ... bds spec ####
+      # ... type bds ####
       
       if ( any(file_info$type == "bds") ){
         
@@ -122,7 +120,7 @@ build <- function(
         
       }
       
-      # ... occds spec ####
+      # ... type occds  ####
       if ( any(file_info$type == "occds") ){
         
         files_occds <- file_info %>% 
@@ -156,6 +154,7 @@ build <- function(
     interim <- purrr::map(spec, 
             ~  { do.call( paste0('build_',   .x[['type']]), list(.x)) }
         )
+
   }
   
  
@@ -207,7 +206,7 @@ build <- function(
       }}
      
     # extract all occds columns for explicit factor na
-    # missing values occuring from occurence data mean 'absence of event', whereas NAs in bds data are true missing values
+    # missing values occurring from occurrence data mean 'absence of event', whereas NAs in bds data are true missing values
     # -> replace missings by 0 for numerics, level 'none' for factors
     vars_fct_expl_na <- prepped_dict %>% 
       dplyr::filter(type == 'occds') %>% 
