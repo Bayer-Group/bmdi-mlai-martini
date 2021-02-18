@@ -2,35 +2,70 @@
 % Please edit documentation in R/adam_spec_adsl.R
 \name{adam_spec_adsl}
 \alias{adam_spec_adsl}
-\title{Create spec object for adsl data sets}
+\title{Create specification object for adam data sets of type 'adsl'.}
 \usage{
 adam_spec_adsl(
   file,
   id = "SUBJID",
-  trt = NULL,
+  trt = "TRT01A",
   keep = NULL,
   drop = NULL,
   filter = NULL,
-  attach_data = FALSE,
-  ...
+  attach_data = FALSE
 )
 }
 \arguments{
 \item{file}{the path of the sas file to process}
 
-\item{id}{name of id column to keep}
+\item{id}{name of id (e.g. SUBJIDN, SUBJID) column to keep.
+Highly redundant variables will not be included in the suggested set of columns returned in \code{select} (see Details).}
 
-\item{trt}{name of trt column to keep (e.g. TRT01A)}
+\item{trt}{column to be used as the treatment variable. All other predefined treatment variables (see Details) are added
+to the \code{drop_list}. If NULL, all treatment variables will be added to the \code{drop_list}.}
 
-\item{keep}{columns to be kept (overrides blacklist)}
+\item{keep, drop}{columns to be kept/dropped, independent of the technical selection process within this function}
 
-\item{drop}{superseded. columns to be dropped (overrides whitelist)}
+\item{filter}{character vector of filters following \code{dplyr::filter()} syntax for use in \code{\link{build_adsl}()}.
+Filters will be checked against the data and will only be kept if the filter would not throw an error and if the resulting
+data set has positive number of rows. Defaults to NULL.}
 
-\item{filter}{character vector of filter criteria to be evaluated}
-
-\item{attach_data}{boolean. attach the imported raw data
-adsl.sas7bdat' \%in\% list.files(path)}
+\item{attach_data}{boolean. attach the imported raw data}
+}
+\value{
+A list containing the following
+\item{file, md5}{the name and md5 checksum, resp., of the file the generated spec is based up-on }
+\item{data}{the raw data set if \code{attach_data}, NULL otherwise}
+\item{type}{character string \code{adsl}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+\item{filter}{subset of \code{filter} that yields non-empty result when applied individually}
+\item{select}{the suggested list of columns to select from the data set}
+\item{factor_levels}{a list column pairs factor/factorN to determine factor level order}
+\item{dict}{}
+\item{drop_list}{a list containing column names suggested to be dropped with the entry
+name identifying the rationale for the discard (user input \code{drop}, date/times columns,
+numeric code for another variable, combined columns, empty and constant columns,
+columns with redundant information to \code{id} and \code{trt} if provided)
+\item{id, trt}{passing unchanged input}
+\item{spec_id}{character string \code{adsl}, generally the name of the domain}
+\item{dict}{a tibble of column names and labels (if present in the data set)}
 }
 \description{
-Create spec object for adsl data sets
+Given a file containing an adsl data set, \code{\link{adam_spec_adsl}()} will create a specification
+object for use in \code{\link{build_adsl}()} to actually create a subset of
+the data to be used in machine learning. For adsl specifically, the main task is the
+identification of noise and redundancies in the data and the selection of a potentially meaningful
+set of columns (returned in \code{select}) and redundancies in the data.
 }
+\details{
+\item{id}{Non-numeric columns are recoded as numeric, based on the order in which they appear in the data (sorted by \code{id}).
+All columns with a perfect spearman correlation to \code{id} are considered redundant and added to the \code{drop_list}.}
+\item{trt}{The predefined list of treatment variables is TRT01A, ARMCD, ARM, ACTARM, ACTARMCD, TRT01P, TR01PG1, TR02PG1, TR01AG1, TR02AG1.
+No more than one of these variables will be returned in \code{select}. Note that the chosen treatment
+representing variable will be renamed to the standard '.trt' in \code{\link{build_adsl}()}.}
+\item{filter}{See \code{\link{check_filter}()}}
+}
+\section{Authors}{
+
+
+Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+}
+

@@ -1,6 +1,6 @@
 #' Creating a specification for building a wide format data set from adam data
 #' 
-#' \code{\link{adam_spec}()} is a wrapper for the \code{adam_spec_\U002A()} functions.
+#' \code{\link{adam_spec}()} is a wrapper for the `adam_spec_*()` functions.
 #' It creates a list of specifications on how to extract and process data from adam data sets in a given location. 
 #' The resulting list can be passed to \code{\link{build}()}, where the 
 #' created specs are applied and the generated data sets are combined into a single wide format data set.
@@ -14,23 +14,23 @@
 #' excluded from the list of specifications (e.g. \code{'adqseq5d')}). Defaults to NULL.
 #' @param attach_data boolean indicating whether the imported raw data is included in the output. Defaults to FALSE.
 #' @param id,trt id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()} for details).
-#' @param pre_study boolean. Include only pre-study events from occurence data sets (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.
+#' @param pre_study boolean. Include only pre-study events from occurrence data sets (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.
 #' 
 #' @details 
 #' \code{adam_spec()} matches file names in the given path against an internal library
-#' to decide on which \code{adam_spec_\U002A()} function to use for which data set.
+#' to decide on which `adam_spec_*()` function to use for which data set.
 #' Only files in the library will be processed, the rest will be ignored. Names of unprocessed files will be printed to the console.
-#' For those, specifications may be created manually using the appropriate \code{adam_spec_\U002A()} function and appended to the specification list created by \code{adam_*_spec()}. 
+#' For those, specifications may be created manually using the appropriate `adam_spec_*()` function and appended to the specification list created by \code{adam_*_spec()}. 
 #'
 #' Individual filters are only applied if the resulting data set has a positive number of rows (ignoring those causing errors or yielding a 0-row data set). 
 #'
-#' Please refer to the documentations of the \code{adam_spec_\U002A()} functions for full details.
+#' Please refer to the documentations of the `adam_spec_*()` functions for full details.
 #'
 #' @return  
 #' \code{adam_spec()} returns named list of specifications that can be passed to the \code{\link{build}()} function. 
 #' Each element contains the specification for a single data set and is named with the domain abbreviation (e.g. adsl, adqskccq).
 #' The list can be manually adjusted if required, e.g. adding further specifications or altering existing ones. See the documentation
-#' of the \code{adam_spec_\U002A()} for a detailed description of the output object.
+#' of the `adam_spec_*()` for a detailed description of the output object.
 #' 
 #' @seealso \code{\link{adam_spec_adsl}()}, \code{\link{adam_spec_bds}()},  \code{\link{adam_spec_occds}()
 #'

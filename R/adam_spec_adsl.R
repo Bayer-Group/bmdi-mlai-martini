@@ -29,16 +29,15 @@
 #' 
 #' @return 
 #' A list containing the following 
-#' \item{file, md5}{the name and md5 checksum, resp., of the file the generated spec is based up-on }
+#' \item{file, md5}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 #' \item{data}{the raw data set if \code{attach_data}, NULL otherwise}
 #' \item{type}{character string \code{adsl}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
 #' \item{filter}{subset of \code{filter} that yields non-empty result when applied individually}
 #' \item{select}{the suggested list of columns to select from the data set} 
 #' \item{factor_levels}{a list column pairs factor/factorN to determine factor level order} 
-#' \item{dict}{} 
 #' \item{drop_list}{a list containing column names suggested to be dropped with the entry
 #'  name identifying the rationale for the discard (user input \code{drop}, date/times columns, 
-#'  numeric code for another variable, combined columns, empty and constant columns,
+#'  numeric code for another variable, flags (both numeric and character columns), combined columns, empty and constant columns,
 #'   columns with redundant information to \code{id} and \code{trt} if provided)
 #' \item{id, trt}{passing unchanged input}  
 #' \item{spec_id}{character string \code{adsl}, generally the name of the domain}  
@@ -126,12 +125,13 @@ adam_spec_adsl <- function(
   # naming convention   xxxFL -> xxxFN
   all_FL <- c(
     clmns %>% stringr::str_subset('FL$'),
-    clmns[stringr::str_to_upper(labs %>% stringr::str_detect('\\bFLAG\\b'))]
+    clmns[stringr::str_to_upper(labs) %>% stringr::str_detect('\\bFLAG\\b')]
   ) %>% 
     unique()
   
   flags <- c(all_FL, stringr::str_replace(all_FL, 'FL$', 'FN')) %>% 
-    unique()
+    unique() %>% 
+    sort()
   
   # NOTE automated detection may not catch all flags
   
@@ -276,6 +276,7 @@ adam_spec_adsl <- function(
     "numcodes"     = all_num_codes,
     "combinations" = all_comb_columns,
     "redundancies" = all_redundants,
+    "flags"        = flags,  
     "empty"        = empties,
     "constant"     = constants
   ) %>% 

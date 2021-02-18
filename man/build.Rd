@@ -2,12 +2,7 @@
 % Please edit documentation in R/build.R
 \name{build}
 \alias{build}
-\title{one stop shop for building the data set
-Allows to
-{\itemize
-\item build from spec (with or without data already attached)
-\item build from ads path (spec is created and used to build)
-\item create spec only (also available from \code{adam_spec()})}}
+\title{One stop shop for building the machine learning data set}
 \usage{
 build(
   spec = NULL,
@@ -21,37 +16,60 @@ build(
 )
 }
 \arguments{
-\item{spec}{}
+\item{spec}{a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)}
 
-\item{path}{the path to the ads files}
+\item{path}{the path to the ads files (either \code{spec} or \code{path} has to be provided)}
 
 \item{spec_only}{if build from path, don't apply the just created spec to data set}
 
-\item{filter}{a character vector of conditions to be passed to \code{dplyr::filter()}, e.g. regarding visits, treatment arms or parameters. Defaults to NULL.}
+\item{filter}{a character vector of conditions to be passed to \code{dplyr::filter()},
+e.g. regarding visits, treatment arms or parameters. Defaults to NULL. Only applied, if \code{spec} is not provided.}
 
-\item{keep}{character vector defining the subset of data sets in the given \code{path} to create the specification for (e.g. \code{c('adsl', 'advs'))}).
-If both \code{keep} and \code{drop} are specified, \code{keep} overrides \code{drop}. Defaults to NULL.}
+\item{keep}{character vector defining the subset of data sets in the given \code{path} to create
+the specification for (e.g. \code{c('adsl', 'advs'))}). If both \code{keep} and \code{drop} are specified,
+\code{keep} overrides \code{drop}. Defaults to NULL. Only applied, if \code{spec} is not provided.}
 
-\item{drop}{character vector defining a subset of data sets in the given \code{path} to be excluded from the list of specifications (e.g. \code{'adqseq5d')}). Defaults to NULL.}
+\item{drop}{character vector defining a subset of data sets in the given \code{path} to
+be excluded from the list of specifications (e.g. \code{'adqseq5d')}). Defaults to NULL.
+Only applied, if \code{spec} is not provided.}
 
-\item{join}{either function to join data sets (e.g. \code{dplyr::full_join} or a character (vector) giving the names of the data sets containing the .ids to keep (e.g. \code{join= c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}}
+\item{join}{either function to join data sets (e.g. \code{dplyr::full_join} or a character (vector) giving the names
+of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}}
 
-\item{attach_data}{boolean. attach the imported raw data}
+\item{attach_data}{boolean. attach the imported raw data. Only applied, if \code{spec_only = TRUE}.}
 }
 \value{
-\code{adam_spec()} returns named list of specifications that can be passed to the \code{adam_prep()} function.
-Each element contains the specification for a single data set and is named with the domain abbreviation (e.g. adsl, adqskccq).
-The list can be manually adjusted if required, e.g. adding further specifications or altering existing ones.
+\code{build()} returns a wide data set with one row per subject and standardized column names for the subject id (.id)
+and the treatment variable (.trt), if it is provided in the \code{spec} object. Objects with additional information on
+the data are provided in the attributes of the returned object.
+
+\strong{\code{dict}}
+
+\item{\code{param}}{original parameter name in the source data}
+\item{\code{column}}{column name of the variable in the returned data. \code{column} is derived from \code{param} by transforming
+it into a valid file name and possibly adding a time extension, if multiple time points are considered for a particular parameter.}
+\item{\code{label}}{patameter label}
+\item{\code{source}}{source id provided by the specification object. If created with \code{\link{adam_spec}()}, this is the name of the domain.}
+\item{\code{type}}{adam data type of the source data (adsl, bds or occds)}
+\item{\code{unit}}{parameter unit (if applicable)}
+\item{\code{time}}{measurement time point (if applicable)}
+
+\strong{\code{source}}
+
+The file path and md5 checksums of the source data sets.
 }
 \description{
-\code{adam_spec()} matches file names in the given path against an internal library to decide on which \code{adam_*_spec()} function to use for which data set.
-Only files in the library will be processed, the rest will be ignored. Names of unprocessed files will be printed to the console.
-For those, specifications may be created manually using the appropriate \code{adam_spec_*()} function and appended to the specification list created by \code{adam_*_spec()}.
-
-Individual filters are only applied if the resulting data set has a positive number of rows (ignoring those causing errors or yielding a 0-row data set).
-
-Please refer to the documentations of the \code{adam_spec_*()} functions for full details.
+The build() function allows to build a machine learning data set from a specification object as provided
+by \code{\link{adam_spec}()} (with or without data already attached). It can also be used to build the data directly from an ads
+path. In this case the specification object is created internally by calling the respective \verb{adam_spec_*()} functions
+and immediately used to build the data set.
 }
+\section{Authors}{
+
+
+Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+}
+
 \seealso{
-\code{\link{adam_spec_adsl()}}, \code{\link{adam_spec_bds()}}
+\code{\link{build_adsl}()}, \code{\link{build_bds}()}, \code{\link{build_occds}()}
 }

@@ -20,7 +20,7 @@
 #' @param seed optionally set a seed before the data splitting. 
 #' @param prep_step_knnimpute,prep_step_log,prep_step_normalize,prep_step_corr,prep_step_dummy logicals determining 
 #' whether or not the corresponding step function should be included in the recipe, 
-#' possibly specified further using additional parameters (\code{thres_\U002A}, \code{log_base}, \code{one_hot})
+#' possibly specified further using additional parameters (`thres_*`, `log_base`, `one_hot`)
 #' Please refer to the details section for the full list of recipe steps.
 #' @param thres_imp Minimal proportion of non-missing data per feature required to be kept 
 #' in the data and completed using \code{recipes::step_knnimpute}. Variables not meeting the threshold will be dropped and not be included in \code{data_prep} data. 

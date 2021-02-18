@@ -10,7 +10,7 @@
 #' 
 #' @details
 #' 
-#' The derived information is e.g. used to determine which version of \code{adam_spec_\U002A()} and \code{build_\U002A()} 
+#' The derived information is e.g. used to determine which version of `adam_spec_*()` and `build_*()`
 #' to use for further processing.
 #' Parameters \code{keep} and \code{drop} allow control over which files to use and ignore, resp. 
 #' (If both are provided, \code{drop} is ignored and only information in \code{keep} is used.)

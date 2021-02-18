@@ -1,10 +1,10 @@
-#' Create wide format data following a given occds spec
+#' Create wide format data following a given spec
 #' 
-#' Extract and reshape data from a single occds-type data set according to the given specification 
-#' as created by \code{\link{adam_spec_occds}()}. In addition, an (updated) dictionary is returned along with 
+#' Extract and reshape data from a single data set according to the given specification 
+#' as created by `adam_spec_*()`. In addition, an (updated) dictionary is returned along with 
 #' the md5 checksum of the specified file.
 #' 
-#' @param spec result of \code{\link{adam_spec_occds}()}
+#' @param spec result of `adam_spec_*()`
 #' 
 #' @return 
 #' A list with the following entries
@@ -14,7 +14,7 @@
 #' the created data set is based upon along with the md5 checksum of this file
 #' 
 #' @details 
-#' Note that the output dictionary may differ from the dictionary created by \code{\link{adam_spec_occds}()}, 
+#' Note that the output dictionary may differ from the dictionary created by `adam_spec_*()`, 
 #' as multiple features may be derived from a single parameter at different time points.  
 #'
 #' @section Authors:

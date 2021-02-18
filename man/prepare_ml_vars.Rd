@@ -8,12 +8,9 @@ prepare_ml_vars(
   data,
   thres_count = NULL,
   thres_log = NULL,
-  thres_corr = NULL,
   thres_lump = NULL,
   thres_imp = NULL,
-  thres_nzv_freq = NULL,
-  thres_nzv_unique = NULL,
-  remove = c(".id", ".out", ".status", ".time")
+  remove = c(".id", ".out", ".status", ".time", ".trt")
 )
 }
 \arguments{
@@ -43,3 +40,9 @@ NA if required thresholds were not defined; NULL if no variables meet the corres
 Identify variable sets from input matrix that might require extra steps in data preparation,
 e.g. skewed variables to be log transformed, counts
 }
+\section{Authors}{
+
+
+Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+}
+

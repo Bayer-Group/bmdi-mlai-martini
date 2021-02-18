@@ -13,8 +13,7 @@ adam_spec_bds(
   time = NULL,
   value = NULL,
   filter = NULL,
-  attach_data = FALSE,
-  ...
+  attach_data = FALSE
 )
 }
 \arguments{
@@ -44,10 +43,15 @@ Guess will be the first of the following options that matches a column name (exa
 \item\link{param} 'PARAMCD', paste0(dom,'TESTCD')
 \item\link{label} substring of param with the last two characters removed
 \item\link{time}  'AVISIT', 'VISIT'
-\item\link{value} 'AVAL',   paste0(dom, c("STRESN", "ORRES")
-\item\link{unit}  'AVALU',  paste0(dom, c("STRESU", "ORRESU")
+\item\link{value} 'AVAL',   paste0(dom, c("STRESN", "ORRES"))
+\item\link{unit}  'AVALU',  paste0(dom, c("STRESU", "ORRESU"))
 }
 Function will escape if one of param or value are neither provided nor can be guessed.
 A parameter dictionary will be created: A tibble with unique combinations of param, label, unit (or the provided subset)
-adsl.sas7bdat' \%in\% list.files(path)
 }
+\section{Authors}{
+
+
+Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+}
+

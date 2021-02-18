@@ -13,7 +13,7 @@
 #' @return If guessing options are available, a list will be returned with possible options for 
 #' label, time and value columns, ranked by relevance. 
 #' These may be intersected with the actual column names of the data set at 
-#' a later point to determine the input for \code{adam_spec_\U002A()}.
+#' a later point to determine the input for `adam_spec_*()`.
 #' The function will exit for domains without guessing options.
 #' 
 #' @seealso \code{\link{adam_spec_occds}()}

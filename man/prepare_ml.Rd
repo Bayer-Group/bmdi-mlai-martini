@@ -11,7 +11,7 @@ prepare_ml(
   level_order = NULL,
   prep_recipe = NULL,
   train_prop = 3/4,
-  seed = NULL,
+  seed = 1130,
   prep_step_normalize = TRUE,
   prep_step_knnimpute = TRUE,
   prep_step_log = TRUE,
@@ -45,37 +45,34 @@ where .time is numeric and .status is binary with 0 coding for censored, and 1 c
 
 \item{level_order}{= NULL (only used for classification)}
 
-\item{prep_recipe}{= NULL,}
+\item{prep_recipe}{a custom, pre-defined \code{recipes::recipe()} may be provided for data preparation. Defaults to NULL, yielding a data-driven preparation.
+please refer to the details section to learn about the individual recipe steps.}
 
-\item{train_prop}{= 3/4}
+\item{train_prop}{the proportion of data (0.5 \U2264 \code{train_prop} \U2264 1)) to be used for the training set. Defaults to 3/4, keeping a quarter of the data for testing.}
 
-\item{seed}{= NULL,}
+\item{seed}{optionally set a seed before the data splitting.}
 
-\item{prep_step_normalize}{= TRUE,}
+\item{prep_step_knnimpute, prep_step_log, prep_step_normalize, prep_step_corr, prep_step_dummy}{logicals determining
+whether or not the corresponding step function should be included in the recipe,
+possibly specified further using additional parameters (\verb{thres_*}, \code{log_base}, \code{one_hot})
+Please refer to the details section for the full list of recipe steps.}
 
-\item{prep_step_knnimpute}{= TRUE,}
-
-\item{prep_step_log}{= TRUE,}
-
-\item{prep_step_corr}{= TRUE,}
-
-\item{prep_step_dummy}{FALSE converted  variables to be}
-
-\item{thres_log}{= 2,}
+\item{thres_log}{variables will be log-transformed (with base \code{log_base}) if \code{prep_step_log = TRUE}, all observations are positive, and \code{e1071::skewness() > thres_log},
+which defaults to \code{thres_log = 2}.}
 
 \item{thres_count}{= 10}
 
-\item{thres_corr}{= .9,}
+\item{thres_corr}{if \code{prep_step_corr = TRUE}, \code{thres_corr} is passed to \code{recipes::step_corr()}'s
+\code{threshold} argument with a default of 0.9.}
 
 \item{thres_lump}{= 0.05}
 
-\item{thres_imp}{= 0.8}
+\item{thres_imp}{Minimal proportion of non-missing data per feature required to be kept
+in the data and completed using \code{recipes::step_knnimpute}. Variables not meeting the threshold will be dropped and not be included in \code{data_prep} data.
+Per default \code{thres_imp = 0.8}, variables will be dropped if the proportion of available data is less than 80\%.
+Variables listed in \code{vars_imp_ignore} will never be imputed, observations with missing data will be removed.}
 
-\item{thres_nzv_freq}{=95/5}
-
-\item{thres_nzv_unique}{= 10}
-
-\item{vars_imp_ignore}{= NULL}
+\item{vars_imp_ignore}{Variables that shall not be imputed can be specified in \code{vars_imp_ignore} (vector of column names, e.g. \code{vars_imp_ignore = '.trt'}).}
 
 \item{vars_fct_expl_na}{= NULL}
 
@@ -83,16 +80,64 @@ where .time is numeric and .status is binary with 0 coding for censored, and 1 c
 
 \item{one_hot}{= TRUE}
 
-\item{log_base}{= exp(1),}
+\item{log_base}{base to use for log-transformation is step_log is included in the recipe; defaults to exp(1).}
 
-\item{outlier_remove}{= FALSE,}
+\item{outlier_remove}{For outcome mode regression only:    = FALSE,}
 
 \item{outlier_ctrl}{= list(coef = 3)}
 
-\item{quiet}{=FALSE
+\item{quiet}{=FALSE}
+}
+\value{
+\subsection{Data sets}{
 
-'  ='_',}
+\code{prepare_ml} produces a list that contains the data set both with (\code{data_prep}) and
+without (\code{data_raw}) applying the specified ML preparation steps.
+Both versions are splitted in \code{train} and \code{test} set.
+In addition, \code{split} contains the combined \code{rsample::initial_split()} object that
+the \code{train} and \code{test} data was extracted from. Depending on the programming workflow,
+one might be more convenient to use than the other.
+
+The slot \code{outcome} contains a list giving \code{name}, the standardized names of the
+output column in the data sets ( \code{.out} for regression/classification, \code{.time} and \code{.status}
+for survival, as well as a \code{mode}, character string of the outcome mode \code{regression/classification/survival}
+
+The dictionary that was generated from is available from the \code{dict} slot.
+
+The \code{source} slot simply passes the \code{source} attribute of \code{feature}, NULL if no such attribute is defined.
+If \code{\link{build}()} from the \code{MLAIprepare} package was used to generate \code{feature},
+this attribute lists the full paths of the files that were used in data generation of \code{feature}.
+}
+
+\subsection{Data preparation and documentation}{
+
+\code{prep_recipe} contains the prepared recipe object,
+\code{prep_params} documents the parameters/thresholds used in the data preparation,
+giving bare \code{value} slots, as well as a verbose description in \code{text}.
+\code{removed} gives a list of removed \code{rows} and \code{columns} along with the information
+on why/in which recipe step the data was removed.
+}
 }
 \description{
-Prepare ML ready data set from outcome and predictor data
+Given \code{feature}, a tibble representing a wide format feature matrix, and \code{outcome},
+a tibble containing the outcome information (regression/classification/survival is supported),
+\code{prepare_ml} will provide data sets suitable for various machine learning problems.
+The data preparation steps include, but are not limited to data splitting,
+handling missing values, normalization, removal of redundant information (highly correlated features).
+Please refer to the Details section for more information.
 }
+\details{
+\code{split} NULL if \code{train_prop} was set to 1 and no splitting was done and \code{train}
+contains the full ML data set.
+
+The variable sets that a particular step function will be applied to are determined using
+the internal function \code{prepare_ml_vars()}.
+
+NOTE outline recipe wrt step order (optional/mandatory steps)
+}
+\section{Authors}{
+
+
+Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+}
+
