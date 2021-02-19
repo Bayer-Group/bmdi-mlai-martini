@@ -18,8 +18,7 @@
 #' 
 #' @seealso \code{\link{adam_spec_occds}()}
 #'
-#' @section Authors:
-#' 
+#' @section Authors
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #'
 #' @export 

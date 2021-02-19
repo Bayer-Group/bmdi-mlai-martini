@@ -1,4 +1,8 @@
-#' Create spec object for bds data sets (basic data structure)
+#' Create specification object for adam data sets of type 'bds'.
+#' 
+#' Given a file containing an bds data set (e.g. adlb or advs), \code{\link{adam_spec_bds}()} will create a specification 
+#' object for use in \code{\link{build_bds}()} to prepare the data to be used in machine learning. The main task is to collect the key columns
+#' for reshaping the data into wide format and prepare the data filter.
 #' 
 #' @param file the sas file 
 #' @param id name of id column to be kept and used for merge of data sets
@@ -11,27 +15,35 @@
 #' Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL. 
 #' @param attach_data boolean. attach the imported raw data
 #' 
-#' @description 
-#' Values for arguments param, label, unit, time, value will be guessed if not provided. 
-#' Guess will be the first of the following options that matches a column name (exact match).
-#' \itemize{
-#'      \item[param] 'PARAMCD', paste0(dom,'TESTCD')
-#'      \item[label] substring of param with the last two characters removed
-#'      \item[time]  'AVISIT', 'VISIT'
-#'      \item[value] 'AVAL',   paste0(dom, c("STRESN", "ORRES"))
-#'      \item[unit]  'AVALU',  paste0(dom, c("STRESU", "ORRESU")) 
-#' }
-#' Function will escape if one of param or value are neither provided nor can be guessed.
-#' A parameter dictionary will be created: A tibble with unique combinations of param, label, unit (or the provided subset)
-#'
-#' @section Authors:
+#' @details
 #' 
+#' Values for arguments `param`, `label`, `unit`, `time` and `value` will be guessed if not provided. 
+#' Guess will be the first of the following options that matches a column name (exact match).
+#' 
+#' \item{`param`}{`PARAMCD`, `**TESTCD`, with `**` reflecting the two letter domain abbrevation (e.g. `LB`)}
+#' \item{`label`}{substring of param with the last two characters removed}
+#' \item{`time`}{`AVISIT`, `VISIT`}
+#' \item{`value`}{`AVAL`, `**STRESN`, `**ORRES`, with `**` reflecting the two letter domain abbrevation}
+#' \item{`unit`}{`AVALU`, `**STRESU`, `**ORRESU`, with `**` reflecting the two letter domain abbrevation}
+#' 
+#' Function will escape if one of `param` or `value` are neither provided nor can be guessed. The other columns are optional.
+#' 
+#' @return 
+#' A list containing the following 
+#' \item{file, md5}{the name and md5 checksum, resp., of the file the generated spec is based upon}
+#' \item{data}{the raw data set if \code{attach_data}, NULL otherwise}
+#' \item{type}{character string \code{bds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+#' \item{filter}{subset of \code{filter} that yields valid and non-empty result when applied individually}
+#' \item{id}{passing unchanged input}  
+#' \item{spec_id}{character string, generally the name of the domain} 
+#' \item{col_select}{named list with names of the key columns (see Details)}
+#' \item{dict}{a tibble with unique combinations within the `param` and `label` column (if present in the data set) to be used as a data dictionary}
+#' 
+#' @section Authors
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
 #' @export
 
-
-# function adam_spec_bds() ####
 adam_spec_bds <- function(
   file,
   id          = 'SUBJID', 
@@ -47,7 +59,7 @@ adam_spec_bds <- function(
   # read bds ####
   bds <- haven::read_sas(file)
   
-  md5 <- tools::md5sum(file) %>%  as.character()
+  md5 <- tools::md5sum(file) %>% as.character()
   
   # identify domain ####
   domain <- stringr::str_split( file, '/|\\\\') [[1]] %>%  

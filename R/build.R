@@ -43,7 +43,7 @@
 #' 
 #' @seealso \code{\link{build_adsl}()}, \code{\link{build_bds}()}, \code{\link{build_occds}()}
 #'
-#' @section Authors:
+#' @section Authors
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #'
 #' @export
@@ -71,14 +71,15 @@ build <- function(
   from_spec <- is.null(path)
   from_path <- ! from_spec
   
-  # create specs ####   
+  # if PATH is provieded ####
+  # ... create specs ####   
   if (from_path){
     
       file_info <- adam_domain_type(path, keep, drop)
        
       interim <- list()
       
-      # ... type adsl ####
+      # ... ... type adsl ####
       
       if ( any(file_info$type == "adsl") ){
         
@@ -99,7 +100,7 @@ build <- function(
         
       }
       
-      # ... type bds ####
+      # ... ... type bds ####
       
       if ( any(file_info$type == "bds") ){
         
@@ -120,7 +121,7 @@ build <- function(
         
       }
       
-      # ... type occds  ####
+      # ... ... type occds  ####
       if ( any(file_info$type == "occds") ){
         
         files_occds <- file_info %>% 
@@ -140,17 +141,17 @@ build <- function(
         
       }
       
-
-   # end if(from_path)   
-  }else{  # from_spec; spec is provided 
+  # if SPEC is provided ####
+  }else{
     
-    # no names at all (names(spec) is null)
+    # add names to the spec if none are provided
     if( is.null(names(spec)) )  names(spec) <- rep('', length(spec))
     
     for (i in 1:length(spec)){
       if(is.null(spec[[i]]$"spec_id"))   spec[[i]]$"spec_id" <- names(spec)[i]
     }
     
+    # call the appropriate build_*() function
     interim <- purrr::map(spec, 
             ~  { do.call( paste0('build_',   .x[['type']]), list(.x)) }
         )
@@ -177,8 +178,6 @@ build <- function(
         tibble::as_tibble_row()
       }) %>% 
       purrr::reduce(dplyr::bind_rows) 
-    
-     
     
     # ... data ####
     # identify subjects from selected data sets to filter prepped_join
@@ -232,7 +231,7 @@ build <- function(
   
 }
 
-
+# test area ####
 if(FALSE){
   
   path <- "data/99999/ads"
@@ -240,7 +239,6 @@ if(FALSE){
   keep <- c("adsl", "adxb")  
   wide <- build(path = path, keep = keep)
 
-  
 }
 
 

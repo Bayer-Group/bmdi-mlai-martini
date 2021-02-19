@@ -34,8 +34,7 @@
 #' these can be found in the \code{unknown_domains} attribute of the outcome table. 
 #' In addition, a message is printed to the console, unless \code{quiet} is set to \code{TRUE}.
 #' 
-#' @section Authors:
-#' 
+#' @section Authors
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #'
 #' @export 

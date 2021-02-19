@@ -45,13 +45,12 @@
 #'     \item flags (both numeric and character columns), see also `flag_table` 
 #'     \item combined, empty and constant columns, resp.
 #'     \item columns with redundant information to \code{id} and \code{trt} if provided)
-#'  }
+#'  }}
 #' \item{id, trt}{passing unchanged input}  
 #' \item{spec_id}{character string \code{adsl}, generally the name of the domain}  
 #' \item{dict}{a tibble of column names and labels (if present in the data set)}  
 #' 
-#' @section Authors:
-#' 
+#' @section Authors
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
 #' @export

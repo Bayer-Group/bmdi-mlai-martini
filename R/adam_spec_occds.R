@@ -20,8 +20,7 @@
 #' Note that the original values in the \code{label} column will end up being the parameter labels, 
 #' not the parameters in the ML feature matrix. These might be modified later using \code{make_names()} or the like \code{prepare_ml()}.
 #'
-#' @section Authors:
-#' 
+#' @section Authors
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
 #' @export
