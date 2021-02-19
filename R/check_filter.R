@@ -12,8 +12,9 @@
 #' (e.g. if the column used in the filter definition is not present in \code{data}).
 #' 
 #' @section Authors:
-#'
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+#' 
+#' @export
 
 
 check_filter <- function(data, filter){

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec_bds.R
 \name{adam_spec_bds}
 \alias{adam_spec_bds}
-\title{Create spec object for bds data sets (basic data structure)}
+\title{Create specification object for adam data sets of type 'bds'}
 \usage{
 adam_spec_bds(
   file,
@@ -17,7 +17,7 @@ adam_spec_bds(
 )
 }
 \arguments{
-\item{file}{the sas file}
+\item{file}{the path of the sas file to process}
 
 \item{id}{name of id column to be kept and used for merge of data sets}
 
@@ -36,21 +36,37 @@ Individual filters will only be considered if the resulting data set has positiv
 
 \item{attach_data}{boolean. attach the imported raw data}
 }
-\description{
-Values for arguments param, label, unit, time, value will be guessed if not provided.
-Guess will be the first of the following options that matches a column name (exact match).
-\itemize{
-\item\link{param} 'PARAMCD', paste0(dom,'TESTCD')
-\item\link{label} substring of param with the last two characters removed
-\item\link{time}  'AVISIT', 'VISIT'
-\item\link{value} 'AVAL',   paste0(dom, c("STRESN", "ORRES"))
-\item\link{unit}  'AVALU',  paste0(dom, c("STRESU", "ORRESU"))
+\value{
+A list containing the following
+\item{\code{file}, \code{md5}}{the name and md5 checksum, resp., of the file the generated spec is based upon}
+\item{\code{data}}{the raw data set if \code{attach_data}, NULL otherwise}
+\item{\code{type}}{character string \code{bds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+\item{\code{filter}}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}())}
+\item{\code{id}}{passing unchanged input}
+\item{\code{param}, \code{label}, \code{value}, \code{unit}, \code{time}}{names of the key columns to be used in \code{\link{build_bds}()} for reshaping
+\item{\code{spec_id}}{character string, generally the name of the domain}
+\item{\code{dict}}{a tibble with unique combinations within the \code{param} and \code{label} column (if present in the data set)
+to be used as a data dictionary}
 }
-Function will escape if one of param or value are neither provided nor can be guessed.
-A parameter dictionary will be created: A tibble with unique combinations of param, label, unit (or the provided subset)
+\description{
+Given a file containing a bds data set (e.g. adlb or advs), \code{\link{adam_spec_bds}()} will create a specification
+object for use in \code{\link{build_bds}()} to prepare the data to be used in machine learning.
+The main task is to collect the key columns
+for reshaping the data into wide format and prepare the data filter.
+}
+\details{
+Values for arguments \code{param}, \code{label}, \code{unit}, \code{time} and \code{value} will be guessed if not provided.
+Guess will be the first of the following options that matches a column name (exact match).
+
+\item{\code{param}}{\code{PARAMCD}, \verb{**TESTCD}, with \verb{**} reflecting the two letter domain abbrevation (e.g. \code{LB})}
+\item{\code{label}}{substring of \code{param} with trailing \code{CD} removed}
+\item{\code{time}}{\code{AVISIT}, \code{VISIT}}
+\item{\code{value}}{\code{AVAL}, \verb{**STRESN}, \verb{**ORRES}, with \verb{**} reflecting the two letter domain abbrevation}
+\item{\code{unit}}{\code{AVALU}, \verb{**STRESU}, \verb{**ORRESU}, with \verb{**} reflecting the two letter domain abbrevation}
+
+Function will escape if one of \code{param} or \code{value} are neither provided nor can be guessed. The other columns are optional.
 }
 \section{Authors}{
-
 
 Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }

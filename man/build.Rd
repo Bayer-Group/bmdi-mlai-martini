@@ -33,7 +33,7 @@ the specification for (e.g. \code{c('adsl', 'advs'))}). If both \code{keep} and 
 be excluded from the list of specifications (e.g. \code{'adqseq5d')}). Defaults to NULL.
 Only applied, if \code{spec} is not provided.}
 
-\item{join}{either function to join data sets (e.g. \code{dplyr::full_join} or a character (vector) giving the names
+\item{join}{either function to join data sets (e.g. \code{dplyr::full_join()} or a character (vector) giving the names
 of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}}
 
 \item{attach_data}{boolean. Attach the imported raw data. Only applied, if \code{spec_only = TRUE}.}
@@ -57,10 +57,17 @@ it into a valid file name and possibly adding a time extension, if multiple time
 \item{\code{source}}{file path and md5 checksums of the source data sets}
 }
 \description{
-The build() function allows to build a machine learning data set from a specification object as provided
+The \code{build()} function allows to build a machine learning data set from a specification object as provided
 by \code{\link{adam_spec}()} (with or without data already attached). It can also be used to build the data directly from an ads
 path. In this case the specification object is created internally by calling the respective \verb{adam_spec_*()} functions
 and immediately used to build the data set.
+}
+\details{
+Missing values in variables from occurrence data sets are interpreted as 'absence of event',
+whereas NAs in adsl and bds data are considered to be true missing values.
+For missing values in occds data after joining with other data sets,
+missing values are replace by 0 for numerics, an additional level 'none' is introduced for
+for factors.
 }
 \section{Authors}{
 

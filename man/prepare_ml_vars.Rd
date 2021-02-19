@@ -42,7 +42,6 @@ e.g. skewed variables to be log transformed, counts
 }
 \section{Authors}{
 
-
 Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }
 

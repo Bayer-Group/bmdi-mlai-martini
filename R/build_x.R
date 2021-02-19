@@ -21,7 +21,7 @@
 #' Note that the output dictionary may differ from the dictionary created by `adam_spec_*()`, 
 #' as multiple features may be derived from a single parameter at different time points.  
 #'
-#' @section Authors 
+#' @section Authors: 
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
 #' @name build_x

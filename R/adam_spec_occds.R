@@ -1,39 +1,54 @@
-#' Create spec object for occurrence data sets 
-#' 
-#' 
+#' Create specification object for adam data sets of type `occds`
+#'
+#' Given a file containing a occds data set (e.g. admh or adcm), \code{\link{adam_spec_occds}()}
+#' will create a specification object for use in \code{\link{build_occds}()} to prepare the data 
+#' to be used in machine learning. The main task is to collect the key columns for reshaping the 
+#' data into wide format and prepare the data filter.     
+#'
 #' @param file the path of the sas file to process
 #' @param id name of id column to be kept and used for merge of data sets
 #' @param label name of the column that identifies the occurrence labels. Defaults to NULL, will be guessed if not set (see Details). 
 #' @param time name of the column that is used for time filtering. Defaults to NULL, will be guessed if not set (see Details).
 #' @param value optional value column (e.g. AE severity). Defaults to NULL, which leads to an Y/N coding of the event
+#' @param valuen optional numeric coding column for `value`. Defaults to NULL, ignored if `value` is NULL.
 #' @param filter character vector of filters to be applied to the bds data set. 
 #' Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL. 
 #' @param count  boolean, defaults to FALSE. # NOTE: add further options (weights, scoring matrix, ...)
-#' @param pre_study   = FALSE, 
+#' @param pre_study  boolean. filter the data set to pre_study observations based on non-negative values in `time`
 #' @param attach_data boolean. attach the imported raw data in \code{data} slot of output object
 #' 
-#' @description 
+#' @return 
+#' A list containing the following 
+#' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
+#' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
+#' \item{`type`}{character string \code{occds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+#' \item{`filter`}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}())}}
+#' \item{`id`}{passing unchanged input}  
+#' \item{`label`, `value`, `valuen`}{names of the key columns to be used in \code{\link{build_occds}()} for reshaping}
+#' \item{`spec_id`}{character string, generally the name of the domain} 
+#' \item{`dict`}{a tibble with unique combinations within the `param` and `label` column (if present in the data set) to be used as a data dictionary}
+#' 
+#' @details 
 #' For file names 'adae.sas7bdat', 'adcm.sas7bdat' and 'admh.sas7bdat', values for
 #' arguments \code{label} and \code{time} will be guessed if not provided. 
 #' Please refer to \code{adam_guess()} for details on guessing procedure.  
 #' Function will escape if one of label or value are neither provided nor can be guessed.
 #' Note that the original values in the \code{label} column will end up being the parameter labels, 
-#' not the parameters in the ML feature matrix. These might be modified later using \code{make_names()} or the like \code{prepare_ml()}.
-#'
-#' @section Authors
+#' not the parameters in the ML feature matrix. These might be modified later using \code{make.names()} or the like in \code{prepare_ml()}.
+#' 
+#' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
 #' @export
 
 
-
-# function adam_spec_occds() ####
 adam_spec_occds <- function(
   file,
   id          = 'SUBJID', 
   label       = NULL,
   time        = NULL,
   value       = NULL,
+  valuen      = NULL,
   filter      = NULL,
   count       = TRUE, # NOTE: add further options (weights, scoring matrix, ...)
   pre_study   = FALSE,
@@ -41,57 +56,68 @@ adam_spec_occds <- function(
 ){
   
   
-  # test area  ####
-  if(FALSE){
-    
-    require(tidyverse)
-    require(haven)
-    require(labelled)
-    
-    file   = '../admh.sas7bdat'
-    id     = 'SUBJID'
-    label  = NULL
-    time   = NULL 
-    value  = NULL 
-    filter = NULL
-    pre_study = TRUE
-    count  = TRUE    }
-  
-
   # READ occds ####
-  occds <- haven::read_sas(file)
+  occds      <- haven::read_sas(file)
+  md5        <- tools::md5sum(file) %>%  as.character()
+  guesses    <- adam_guess(file)
+  coln_occds <- colnames(occds)
+  source     <- adam_domain_type(file)$domain
   
-  md5 <- tools::md5sum(file) %>%  as.character()
+  # check input validity ####
+  # ... mandatory columns ####
+  if (! id %in% coln_occds){
+    usethis::ui_stop(
+      paste0("The column id = ", id, " is not present in the data set.\n")
+    )
+  }
+  
+  if (!is.null(label)) if (! label %in% coln_occds){
+    usethis::ui_stop(
+      paste0("The column label = ", label, " is not present in the data set.\n")
+    )
+  } 
+  
+  # ... optional columns ####
+  if (!is.null(value)) if( !value  %in% coln_occds){ 
+    usethis::ui_info(paste0("'", value,  "' not found in data set and ignored.\n"))
+  }
+  
+  if (!is.null(valuen)) if( !valuen  %in% coln_occds){ 
+    usethis::ui_info(paste0("'", valuen, "' not found in data set and ignored.\n"))
+  }
+  
   
   # GUESS label ####
   if (is.null(label)){
-    guess_options <- adam_guess(file)$label
-    label <- guess_options %>% 
-      intersect(colnames(occds)) %>% 
+    
+    label <- guesses$label %>% 
+      intersect(coln_occds) %>% 
       head(1)
+    
     if (length(label) == 0){
       usethis::ui_stop(
-        paste0("Parameter '", "label", "' needs to be provided.\n")
+        "Parameter 'label' needs to be provided.\n"
       )
     }
   }
   
   # GUESS time ####
   if (is.null(time) && pre_study){
-    guess_options <- adam_guess(file)$time
-    time <- guess_options %>% 
-      intersect(colnames(occds)) %>% 
+    
+    time <- guesses$time %>% 
+      intersect(coln_occds) %>% 
       head(1)
+    
     if (length(time) == 0){
       usethis::ui_stop(
-        paste0("Parameter '", "time", "' needs to be provided.\n")
+        "Parameter 'time' could not be guessed and needs to be provided to build the `pre_study` filter.\n"
       )
     }
   }
   
-  # if requested, build and add pre-study filter
+  # if requested, build and add pre-study filter ####
   if(pre_study){
-    if(!time %in% colnames(occds)) usethis::ui_stop('pre_study filter could not be built.')
+    if(!time %in% coln_occds) usethis::ui_stop('pre_study filter could not be built. The provided parameter "time" is not present in the data.')
     filter_time <- paste0( time , ' < 0 | is.na(', time, ')')
     filter      <- filter %>%  append(filter_time)
   }      
@@ -103,9 +129,7 @@ adam_spec_occds <- function(
 
   
   # dictionary   ####
-  source <- adam_domain_type(file)$domain
   
-   
   # use unfiltered data 
   dict  <- occds %>% 
     dplyr::select( label = !!rlang::sym(label) ) %>% 
@@ -113,21 +137,18 @@ adam_spec_occds <- function(
     dplyr::mutate(source = source) %>% 
     dplyr::mutate(type   = 'occds') 
   
-  # remove occds data set label automatically created by haven
+  # remove occds data set label automatically created by haven::read_sas()
   attr(dict, 'label') <- NULL
   
-  
-  
-  col_select <- c('label' = label)
+  # collect key columns ####
+  col_select <- c(label = label)
   if(!is.null(value)) {
-    if (value %in% colnames(occds)){
-      col_select <- c(col_select, value = value)
-      if (paste0(value, "N") %in% colnames(occds) ||
-          paste0(labelled::var_label(occds)$value, " (N)") %in% labelled::var_label(occds) ){
-        col_select <- c(col_select, valuen = paste0(value, "N"))
-      }
-    } else {
-      usethis::ui_info(paste0("'", value, "' not found in data set and ignored.\n"))
+    col_select <- c(col_select, value = value)
+    
+    if (!is.null(valuen)){
+      col_select <- c(col_select, valuen = valuen)
+    } else if (paste0(value, "N") %in% coln_occds ){ # works only for nchar(value) < 8 and standard coding
+      col_select <- c(col_select, valuen = paste0(value, "N"))
     }
   }
   
@@ -135,8 +156,8 @@ adam_spec_occds <- function(
   
   out <- list(
     file    = file,
-    data    = NULL,
     md5     = md5,
+    data    = NULL,
     type    = "occds",
     id      = id,
     filter  = actual_filter,
@@ -154,8 +175,16 @@ adam_spec_occds <- function(
   }
   
   out
-  
-  
 
-  
+}
+
+
+# test area  ####
+if(FALSE){
+
+  file      = '../admh.sas7bdat'
+
+  adam_spec_occds(file = file)
+  adam_spec_occds(file = file, value = "MHPRESP")
+
 }

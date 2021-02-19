@@ -17,16 +17,15 @@ a later point to determine the input for \verb{adam_spec_*()}.
 The function will exit for domains without guessing options.
 }
 \description{
+For domains admh, adcm and adae, appropriate choices for the parameters \code{label} and \code{time}
+are returned for further use in \code{\link{adam_spec_occds}()}.
+}
+\details{
 \code{\link{adam_guess}()} makes use of the internal function \code{\link{adam_domain_type}()} to map
 the domain type to the file name.
 The set of domains for which guessing options are available will be extended in the future if required.
 }
-\details{
-For domains admh, adcm and adae, appropriate choices for the parameters \code{label} and \code{time}
-are returned for further use in \code{\link{adam_spec_occds}()}.
-}
 \section{Authors}{
-
 
 Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }

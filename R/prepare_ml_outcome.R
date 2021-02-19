@@ -1,6 +1,6 @@
 #' Prepare ML ready outcome data set
 #'
-#' Prepares an ML ready outcome data set (used in \code{\link{prepare_ml}})
+#' Prepares an ML ready outcome data set (used in \code{\link{prepare_ml}()})
 #'
 #' @param outcome tibble containing \code{.id} column and the outcome of interest
 #' @param outcome_name if \code{NULL} (default), the first column that's not \code{.id} is chosen for \code{outcome_name}
@@ -10,8 +10,8 @@
 #' is binary with 0 coding for censored, and 1 coding for event. Currently, only right-censoring is supported. Please note,
 #' that survival will never be guessed.
 #' @param level_order Level order for a classification outcome. \code{NULL} keeps the natural order (only used for classification).
-#' @param outlier_remove Remove outliers in a regression outcome based on the 'boxplot definition'. The outlier coefficient can be modified
-#' in \code{outlier_ctrl} (only used for regression).
+#' @param outlier_remove Remove outliers in a regression outcome based on the 'boxplot definition'. 
+#' The outlier coefficient can be modified in \code{outlier_ctrl}, defaults to 3 (only used for regression).
 #' @param outlier_ctrl Control list for the outlier removal, if \code{outlier_remove} is \code{TRUE}. Currently, the list contains only
 #' the boxplot outlier coefficient \code{coef}, which defaults to 3.
 #' 
@@ -19,21 +19,20 @@
 #' 
 #' A list with the following slots
 #' 
-#' \item{outcome}{The outcome data set containing only the id and one or two columns 
+#' \item{`outcome`}{The outcome data set containing only the id and one or two columns 
 #' with standardized column names (\code{.out} for regression or classification, \code{.time} and \code{.status} for survival).}
-#' \item{outcome_name}{Named vector with the original name(s) of the outcome variable(s).}
-#' \item{outcome_label}{Named vector with the labels(s) of the outcome variable(s). If the columns of \code{outcome} do not contain labels,
+#' \item{`outcome_name`}{Named vector with the original name(s) of the outcome variable(s).}
+#' \item{`outcome_label`}{Named vector with the labels(s) of the outcome variable(s). If the columns of \code{outcome} do not contain labels,
 #' the column name is used instead.}
-#' \item{outcome_mode}{The outcome mode (\code{regression}, \code{classification} or \code{survival}.}
-#' \item{outcome_dict}{Dictionary tibble for the outcome variable(s).}
-#' \item{na_outcome}{The IDs of NAs in \code{outcome}.}
-#' \item{id_outlier}{The IDs of removed outliers.}
+#' \item{`outcome_mode`}{The outcome mode (\code{regression}, \code{classification} or \code{survival}.}
+#' \item{`outcome_dict`}{Dictionary tibble for the outcome variable(s).}
+#' \item{`na_outcome`}{The IDs of NAs in \code{outcome}.}
+#' \item{`id_outlier`}{The IDs of removed outliers.}
 #' 
-#' @section Authors:
-#' 
+#' @section Authors: 
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
-#' @md
+#' @export
 
 prepare_ml_outcome <- function(
   

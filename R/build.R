@@ -1,6 +1,6 @@
 #' One stop shop for building the machine learning data set
 #' 
-#' The build() function allows to build a machine learning data set from a specification object as provided
+#' The `build()` function allows to build a machine learning data set from a specification object as provided
 #' by \code{\link{adam_spec}()} (with or without data already attached). It can also be used to build the data directly from an ads
 #' path. In this case the specification object is created internally by calling the respective `adam_spec_*()` functions 
 #' and immediately used to build the data set.
@@ -8,7 +8,7 @@
 #' @param spec a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)
 #' @param path the path to the ads files (either \code{spec} or \code{path} has to be provided)
 #' @param spec_only if build from path, don't apply the just created spec to data set
-#' @param join either function to join data sets (e.g. \code{dplyr::full_join} or a character (vector) giving the names
+#' @param join either function to join data sets (e.g. \code{dplyr::full_join()} or a character (vector) giving the names
 #' of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}
 #' @param filter a character vector of conditions to be passed to \code{dplyr::filter()},
 #' e.g. regarding visits, treatment arms or parameters. Defaults to NULL. Only applied, if \code{spec} is not provided.
@@ -40,10 +40,16 @@
 #' }}
 #' \item{`source`}{file path and md5 checksums of the source data sets}
 #' 
+#' @details 
+#' Missing values in variables from occurrence data sets are interpreted as 'absence of event', 
+#' whereas NAs in adsl and bds data are considered to be true missing values. 
+#' For missing values in occds data after joining with other data sets, 
+#' missing values are replace by 0 for numerics, an additional level 'none' is introduced for 
+#' for factors.
 #' 
 #' @seealso \code{\link{build_adsl}()}, \code{\link{build_bds}()}, \code{\link{build_occds}()}
 #'
-#' @section Authors
+#' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #'
 #' @export
@@ -75,73 +81,73 @@ build <- function(
   # ... create specs ####   
   if (from_path){
     
-      file_info <- adam_domain_type(path, keep, drop)
-       
-      interim <- list()
+    file_info <- adam_domain_type(path, keep, drop)
+    
+    interim <- list()
+    
+    # ... ... type adsl ####
+    
+    if ( any(file_info$type == "adsl") ){
       
-      # ... ... type adsl ####
+      files_adsl <- file_info %>% 
+        dplyr::filter(type == "adsl") %>% 
+        dplyr::select(domain, file) %>% 
+        tibble::deframe()
       
-      if ( any(file_info$type == "adsl") ){
-        
-        files_adsl <- file_info %>% 
-          dplyr::filter(type == "adsl") %>% 
-          dplyr::select(domain, file) %>% 
-          tibble::deframe()
-        
-        interim <- interim %>% 
-          append(
-            purrr::map(files_adsl,
-                ~ adam_spec_adsl(file = .x, filter = filter, attach_data = attach_data) %>% 
-                  {if(! spec_only){
-                    build_adsl(.)
-                  } else {.} }
-                )
+      interim <- interim %>% 
+        append(
+          purrr::map(files_adsl,
+                     ~ adam_spec_adsl(file = .x, filter = filter, attach_data = attach_data) %>% 
+                       {if(! spec_only){
+                         build_adsl(.)
+                       } else {.} }
           )
-        
-      }
+        )
       
-      # ... ... type bds ####
+    }
+    
+    # ... ... type bds ####
+    
+    if ( any(file_info$type == "bds") ){
       
-      if ( any(file_info$type == "bds") ){
-        
-        files_bds <- file_info %>% 
-          dplyr::filter(type == "bds") %>% 
-          dplyr::select(domain, file) %>% 
-          tibble::deframe()
-        
-        interim <- interim %>% 
-          append(
-            purrr::map(files_bds, 
-                ~adam_spec_bds(file = .x, filter = filter, attach_data = attach_data)%>% 
-                  {if(! spec_only){
-                    build_bds(.)
-                  } else {.} }
-                )
+      files_bds <- file_info %>% 
+        dplyr::filter(type == "bds") %>% 
+        dplyr::select(domain, file) %>% 
+        tibble::deframe()
+      
+      interim <- interim %>% 
+        append(
+          purrr::map(files_bds, 
+                     ~adam_spec_bds(file = .x, filter = filter, attach_data = attach_data)%>% 
+                       {if(! spec_only){
+                         build_bds(.)
+                       } else {.} }
           )
-        
-      }
+        )
       
-      # ... ... type occds  ####
-      if ( any(file_info$type == "occds") ){
-        
-        files_occds <- file_info %>% 
-          dplyr::filter(type == "occds") %>% 
-          dplyr::select(domain, file) %>% 
-          tibble::deframe()
-        
-        interim <- interim %>% 
-          append(
-            purrr::map(files_occds, 
-                       ~adam_spec_occds(file = .x, filter = filter, attach_data = attach_data)%>% 
-                         {if(! spec_only){
-                           build_occds(.)
-                         } else {.} }
-            )
+    }
+    
+    # ... ... type occds  ####
+    if ( any(file_info$type == "occds") ){
+      
+      files_occds <- file_info %>% 
+        dplyr::filter(type == "occds") %>% 
+        dplyr::select(domain, file) %>% 
+        tibble::deframe()
+      
+      interim <- interim %>% 
+        append(
+          purrr::map(files_occds, 
+                     ~adam_spec_occds(file = .x, filter = filter, attach_data = attach_data)%>% 
+                       {if(! spec_only){
+                         build_occds(.)
+                       } else {.} }
           )
-        
-      }
+        )
       
-  # if SPEC is provided ####
+    }
+    
+    # if SPEC is provided ####
   }else{
     
     # add names to the spec if none are provided
@@ -153,12 +159,12 @@ build <- function(
     
     # call the appropriate build_*() function
     interim <- purrr::map(spec, 
-            ~  { do.call( paste0('build_',   .x[['type']]), list(.x)) }
-        )
-
+                          ~  { do.call( paste0('build_',   .x[['type']]), list(.x)) }
+    )
+    
   }
   
- 
+  
   
   # create output object ####
   
@@ -176,7 +182,7 @@ build <- function(
     prepped_source <- purrr::map(interim, ~{
       .x[["source"]] %>% 
         tibble::as_tibble_row()
-      }) %>% 
+    }) %>% 
       purrr::reduce(dplyr::bind_rows) 
     
     # ... data ####
@@ -194,7 +200,7 @@ build <- function(
       }  
     }
     
-   
+    
     # combine and filter
     prepped_join <- purrr::map(interim, ~.[['data']]) %>% 
       {if(is.function(join)){
@@ -203,25 +209,25 @@ build <- function(
         purrr::reduce(., dplyr::full_join, by = '.id') %>% 
           dplyr::filter(!! rlang::parse_expr(join_filter))  
       }}
-     
+    
     # extract all occds columns for explicit factor na
     # missing values occurring from occurrence data mean 'absence of event', whereas NAs in bds data are true missing values
     # -> replace missings by 0 for numerics, level 'none' for factors
     vars_fct_expl_na <- prepped_dict %>% 
       dplyr::filter(type == 'occds') %>% 
       dplyr::pull(column)
-     
+    
     prepped_join <- prepped_join %>%  
-       dplyr::mutate_at(vars(tidyselect::any_of(vars_fct_expl_na)), ~{
-         if(is.numeric(.x)){
-           tidyr::replace_na(.x, replace = 0L )
-         }else{
-           forcats::fct_explicit_na(.x, na_level = 'none') %>% 
-             forcats::fct_shift(n = -1)
-         }  
-       })
-  
-  
+      dplyr::mutate_at(vars(tidyselect::any_of(vars_fct_expl_na)), ~{
+        if(is.numeric(.x)){
+          tidyr::replace_na(.x, replace = 0L )
+        }else{
+          forcats::fct_explicit_na(.x, na_level = 'none') %>% 
+            forcats::fct_shift(n = -1)
+        }  
+      })
+    
+    
     out                 <- prepped_join
     attr(out, "dict")   <- prepped_dict
     attr(out, "source") <- prepped_source
@@ -238,7 +244,7 @@ if(FALSE){
   filter <- c("SEX == 'F'", "AVISIT == 'BASELINE'")
   keep <- c("adsl", "adxb")  
   wide <- build(path = path, keep = keep)
-
+  
 }
 
 

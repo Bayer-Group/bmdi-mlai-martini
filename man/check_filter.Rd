@@ -22,7 +22,6 @@ Check a given (set of) filter(s) against a data set and assess whether or not a 
 }
 \section{Authors}{
 
-
 Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }
 

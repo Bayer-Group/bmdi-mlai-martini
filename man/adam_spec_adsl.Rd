@@ -36,7 +36,7 @@ A list containing the following
 \item{file, md5}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 \item{data}{the raw data set if \code{attach_data}, NULL otherwise}
 \item{type}{character string \code{adsl}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
-\item{filter}{subset of \code{filter} that yields non-empty result when applied individually}
+\item{filter}{subset of \code{filter} that yields non-empty result when applied individually (using \code{\link{check_filter}())}
 \item{select}{the suggested list of columns to select from the data set}
 \item{factor_levels}{a list column pairs factor/factorN to determine factor level order}
 \item{flag_table} a tibble with columns id and any columns identified as flag (character and matching numeric) based on matching column names or labels
@@ -49,7 +49,7 @@ name identifying the rationale for the discard:
 \item flags (both numeric and character columns), see also \code{flag_table}
 \item combined, empty and constant columns, resp.
 \item columns with redundant information to \code{id} and \code{trt} if provided)
-}
+}}
 \item{id, trt}{passing unchanged input}
 \item{spec_id}{character string \code{adsl}, generally the name of the domain}
 \item{dict}{a tibble of column names and labels (if present in the data set)}
@@ -70,7 +70,6 @@ representing variable will be renamed to the standard '.trt' in \code{\link{buil
 \item{filter}{See \code{\link{check_filter}()}}
 }
 \section{Authors}{
-
 
 Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }

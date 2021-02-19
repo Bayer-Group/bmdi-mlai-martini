@@ -57,7 +57,6 @@ Please refer to the documentations of the \verb{adam_spec_*()} functions for ful
 }
 \section{Authors}{
 
-
 Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }
 

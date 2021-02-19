@@ -43,7 +43,6 @@ explicit domains (e.g. adqskccq) for human readability, but also regular express
 }
 \section{Authors}{
 
-
 Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }
 

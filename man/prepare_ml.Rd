@@ -35,15 +35,19 @@ prepare_ml(
 )
 }
 \arguments{
-\item{feature}{feature matrix in wide format, e.g. output object of \code{build()}, i.e. containing \code{.id} column and predictors}
+\item{feature}{feature matrix in wide format, e.g. output object of \code{\link{build}()},
+i.e. containing \code{.id} column and predictors}
 
-\item{outcome}{tibble containing \code{.id} column and the outcome of interest}
+\item{outcome}{tibble containing \code{.id} column and the outcome of interest, \code{\link{prepare_ml_outcome}()}}
 
-\item{outcome_name}{if NULL (default), the first column that's not .id is chosen for outcome_name and the outcome_type is guessed to be either classification or regression.
-One may also provide a single character giving the name of the outcome column OR a vector of length two giving the column names for the 'time' and 'status' data in survival analysis,
-where .time is numeric and .status is binary with 0 coding for censored, and 1 coding for event. Currently, only right-censoring is supported. Please note, that survival will never be guessed}
+\item{outcome_name}{if NULL (default), the first column that's not \code{.id} is chosen for outcome_name
+and the outcome_type is guessed to be either classification or regression.
+One may also provide a single character giving the name of the outcome column OR
+a vector of length two giving the column names for the 'time' and 'status' data in survival analysis,
+where \code{.time} is numeric and \code{.status} is binary with 0 coding for censored, and 1 coding for event.
+Currently, only right-censoring is supported. Please note, that survival will never be guessed.}
 
-\item{level_order}{= NULL (only used for classification)}
+\item{level_order}{level order for a classification outcome. Default \code{NULL} keeps the natural order (only used for classification).}
 
 \item{prep_recipe}{a custom, pre-defined \code{recipes::recipe()} may be provided for data preparation. Defaults to NULL, yielding a data-driven preparation.
 please refer to the details section to learn about the individual recipe steps.}
@@ -57,52 +61,63 @@ whether or not the corresponding step function should be included in the recipe,
 possibly specified further using additional parameters (\verb{thres_*}, \code{log_base}, \code{one_hot})
 Please refer to the details section for the full list of recipe steps.}
 
-\item{thres_log}{variables will be log-transformed (with base \code{log_base}) if \code{prep_step_log = TRUE}, all observations are positive, and \code{e1071::skewness() > thres_log},
-which defaults to \code{thres_log = 2}.}
+\item{thres_log}{variables will be log-transformed (with base \code{log_base}) if \code{prep_step_log = TRUE},
+all observations are positive, and \code{e1071::skewness() > thres_log}, where \code{thres_log} defaults to 2.}
 
-\item{thres_count}{= 10}
+\item{thres_count}{integer variables with no more than \code{thres_count} distinct values are considered as count variables and
+are excluded from the log-transformation and normalization. Defaults to 10.}
 
 \item{thres_corr}{if \code{prep_step_corr = TRUE}, \code{thres_corr} is passed to \code{recipes::step_corr()}'s
-\code{threshold} argument with a default of 0.9.}
+\code{threshold} argument with a default of 0.9 to remove highly correlated features}
 
-\item{thres_lump}{= 0.05}
+\item{thres_lump}{this parameter is used to prevent renaming of a single low frequency class to 'other' by \code{recipes::step_other()}, to
+which \code{thres_lump} is passed as parameter \code{threshold}. Defaults to 0.05.}
 
 \item{thres_imp}{Minimal proportion of non-missing data per feature required to be kept
-in the data and completed using \code{recipes::step_knnimpute}. Variables not meeting the threshold will be dropped and not be included in \code{data_prep} data.
-Per default \code{thres_imp = 0.8}, variables will be dropped if the proportion of available data is less than 80\%.
-Variables listed in \code{vars_imp_ignore} will never be imputed, observations with missing data will be removed.}
+in the data and completed using \code{recipes::step_knnimpute()}.
+Variables not meeting the threshold will be dropped and not be included in \code{data_prep} data.
+Per default \code{thres_imp = 0.8}, i.e. variables will be dropped if the proportion of available data is less than 80\%.
+Variables listed in \code{vars_imp_ignore} will never be imputed, observations with missing data in the respective
+variables will be removed.}
 
-\item{vars_imp_ignore}{Variables that shall not be imputed can be specified in \code{vars_imp_ignore} (vector of column names, e.g. \code{vars_imp_ignore = '.trt'}).}
+\item{thres_nzv_freq, thres_nzv_unique}{parameters passed to \code{recipes::step_nzv()} with defaults
+\code{thres_nzv_freq = 95/5)} and \code{thres_nzv_unique = 10}}
 
-\item{vars_fct_expl_na}{= NULL}
+\item{vars_imp_ignore}{variables that shall not be imputed can be specified in \code{vars_imp_ignore}
+(vector of column names, e.g. \code{vars_imp_ignore = '.trt'}).
+Observations with missing values in these variables will be removed. Removal is documented in \code{removed$rows}.}
 
-\item{vars_ordinalscore}{= NULL, convert ordinal factor variables into numeric scores}
+\item{vars_fct_expl_na}{column names of factors for which NAs should be treated as an explicit factor level. Defaults to NULL.}
 
-\item{one_hot}{= TRUE}
+\item{vars_ordinalscore}{column names of ordinal factor variables to be converted into numeric scores. Defaults to NULL.}
 
-\item{log_base}{base to use for log-transformation is step_log is included in the recipe; defaults to exp(1).}
+\item{one_hot}{boolean. passed to \code{recipes::step_dummy()} to choose one hot encoding over dummy encoding}
 
-\item{outlier_remove}{For outcome mode regression only:    = FALSE,}
+\item{log_base}{base to use for log-transformation in \code{recipes::step_log()}. Defaults to \emph{exp(1)}.}
 
-\item{outlier_ctrl}{= list(coef = 3)}
+\item{outlier_remove, outlier_ctrl}{For outcome mode regression only, see \code{\link{prepare_ml_outcome}()}
+for details on how outliers are removed from outcome variables. \code{outlier_remove} defaults to FALSE, \code{outlier_ctrl} to \code{list(coef = 3)}.}
 
-\item{quiet}{=FALSE}
+\item{quiet}{boolean. Suppress messages during outcome preparation to the console on NA and outlier removal, resp. Defaults to \code{FALSE}.}
 }
 \value{
 \subsection{Data sets}{
 
-\code{prepare_ml} produces a list that contains the data set both with (\code{data_prep}) and
+\code{prepare_ml()} produces a list that contains the data set both with (\code{data_prep}) and
 without (\code{data_raw}) applying the specified ML preparation steps.
 Both versions are splitted in \code{train} and \code{test} set.
 In addition, \code{split} contains the combined \code{rsample::initial_split()} object that
 the \code{train} and \code{test} data was extracted from. Depending on the programming workflow,
 one might be more convenient to use than the other.
+Both \code{data_test} slots as well as \code{split} are NULL
+if \code{train_prop} was set to 1 (i.e. no splitting was done) and \code{train} contains the full ML data set.
 
 The slot \code{outcome} contains a list giving \code{name}, the standardized names of the
 output column in the data sets ( \code{.out} for regression/classification, \code{.time} and \code{.status}
 for survival, as well as a \code{mode}, character string of the outcome mode \code{regression/classification/survival}
 
-The dictionary that was generated from is available from the \code{dict} slot.
+The dictionary available as an attribute of \code{feature} is updated with information on the outcome variable
+and the log-transformation and available from the \code{dict} slot, NULL if no such attribute is defined.
 
 The \code{source} slot simply passes the \code{source} attribute of \code{feature}, NULL if no such attribute is defined.
 If \code{\link{build}()} from the \code{MLAIprepare} package was used to generate \code{feature},
@@ -121,22 +136,30 @@ on why/in which recipe step the data was removed.
 \description{
 Given \code{feature}, a tibble representing a wide format feature matrix, and \code{outcome},
 a tibble containing the outcome information (regression/classification/survival is supported),
-\code{prepare_ml} will provide data sets suitable for various machine learning problems.
+\code{prepare_ml()} will provide data sets suitable for various machine learning problems along with additional information.
 The data preparation steps include, but are not limited to data splitting,
 handling missing values, normalization, removal of redundant information (highly correlated features).
 Please refer to the Details section for more information.
 }
 \details{
-\code{split} NULL if \code{train_prop} was set to 1 and no splitting was done and \code{train}
-contains the full ML data set.
-
-The variable sets that a particular step function will be applied to are determined using
-the internal function \code{prepare_ml_vars()}.
-
-NOTE outline recipe wrt step order (optional/mandatory steps)
+The following order of recipe steps for data preparation will be applied (if no recipe is provided).
+The variable sets that a particular step function will be applied to are determined based on user input
+and output of the function \code{\link{prepare_ml_vars}()}, respectively.
+\itemize{
+\item drop variables e.g. not meeting the minimum threshold for non-missing data proportion (\code{step_rm()})
+\item remove observations with missing data in outcome (\code{step_naomit()})
+\item knn imputation on variables with missing values that are not explicitly excluded from imputation  (\code{step_knnimpute()})
+\item omit observations with remaining missing values (i.e. in variables that were excluded from imputation and not dropped before) (\code{step_naomit()})
+\item removal of near-zero variance variables (\code{step_nzv()})
+\item log-transformation (\code{step_log()})
+\item normalization (\code{step_normalize()})
+\item removal of highly correlated variables (\code{step_corr()})
+\item lumping of low frequency factor levels into a single class (\code{step_other()})
+\item transform ordinal factors into numeric variables (\code{step_ordinalscore()})
+\item dummy/one hot encoding (\code{step_dummy()})
+}
 }
 \section{Authors}{
-
 
 Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }

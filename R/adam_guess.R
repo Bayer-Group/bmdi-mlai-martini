@@ -5,7 +5,7 @@
 #' 
 #' @param file the file containing the data for which label, time (and value) columns need to be guessed
 #' 
-#' @description 
+#' @details  
 #' \code{\link{adam_guess}()} makes use of the internal function \code{\link{adam_domain_type}()} to map 
 #' the domain type to the file name.
 #' The set of domains for which guessing options are available will be extended in the future if required.
@@ -18,7 +18,7 @@
 #' 
 #' @seealso \code{\link{adam_spec_occds}()}
 #'
-#' @section Authors
+#' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #'
 #' @export 

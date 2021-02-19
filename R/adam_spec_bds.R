@@ -1,10 +1,11 @@
-#' Create specification object for adam data sets of type 'bds'.
+#' Create specification object for adam data sets of type 'bds'
 #' 
-#' Given a file containing an bds data set (e.g. adlb or advs), \code{\link{adam_spec_bds}()} will create a specification 
-#' object for use in \code{\link{build_bds}()} to prepare the data to be used in machine learning. The main task is to collect the key columns
+#' Given a file containing a bds data set (e.g. adlb or advs), \code{\link{adam_spec_bds}()} will create a specification 
+#' object for use in \code{\link{build_bds}()} to prepare the data to be used in machine learning. 
+#' The main task is to collect the key columns
 #' for reshaping the data into wide format and prepare the data filter.
 #' 
-#' @param file the sas file 
+#' @param file the path of the sas file to process
 #' @param id name of id column to be kept and used for merge of data sets
 #' @param param name of the column that identifies the parameter. Defaults to NULL, will be guessed if not set (see Details).
 #' @param label name of the column that gives column labels. Defaults to NULL.
@@ -21,7 +22,7 @@
 #' Guess will be the first of the following options that matches a column name (exact match).
 #' 
 #' \item{`param`}{`PARAMCD`, `**TESTCD`, with `**` reflecting the two letter domain abbrevation (e.g. `LB`)}
-#' \item{`label`}{substring of param with the last two characters removed}
+#' \item{`label`}{substring of `param` with trailing `CD` removed}
 #' \item{`time`}{`AVISIT`, `VISIT`}
 #' \item{`value`}{`AVAL`, `**STRESN`, `**ORRES`, with `**` reflecting the two letter domain abbrevation}
 #' \item{`unit`}{`AVALU`, `**STRESU`, `**ORRESU`, with `**` reflecting the two letter domain abbrevation}
@@ -30,16 +31,17 @@
 #' 
 #' @return 
 #' A list containing the following 
-#' \item{file, md5}{the name and md5 checksum, resp., of the file the generated spec is based upon}
-#' \item{data}{the raw data set if \code{attach_data}, NULL otherwise}
-#' \item{type}{character string \code{bds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
-#' \item{filter}{subset of \code{filter} that yields valid and non-empty result when applied individually}
-#' \item{id}{passing unchanged input}  
-#' \item{spec_id}{character string, generally the name of the domain} 
-#' \item{col_select}{named list with names of the key columns (see Details)}
-#' \item{dict}{a tibble with unique combinations within the `param` and `label` column (if present in the data set) to be used as a data dictionary}
+#' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
+#' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
+#' \item{`type`}{character string \code{bds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+#' \item{`filter`}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}())}
+#' \item{`id`}{passing unchanged input}  
+#' \item{`param`, `label`, `value`, `unit`, `time`}{names of the key columns to be used in \code{\link{build_bds}()} for reshaping
+#' \item{`spec_id`}{character string, generally the name of the domain} 
+#' \item{`dict`}{a tibble with unique combinations within the `param` and `label` column (if present in the data set) 
+#' to be used as a data dictionary}
 #' 
-#' @section Authors
+#' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
 #' @export
@@ -57,9 +59,17 @@ adam_spec_bds <- function(
 ){
   
   # read bds ####
-  bds <- haven::read_sas(file)
+  bds      <- haven::read_sas(file)
+  md5      <- tools::md5sum(file) %>% as.character()
+  coln_bds <- colnames(bds)
+  source   <- adam_domain_type(file)$domain
   
-  md5 <- tools::md5sum(file) %>% as.character()
+  if (! id %in% coln_bds){
+    usethis::ui_stop(
+      paste0("The column id = ", id, " is not present in the data set.\n")
+    )
+  }
+  
   
   # identify domain ####
   domain <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
@@ -78,7 +88,7 @@ adam_spec_bds <- function(
   )
   
   purrr::iwalk(col_select, ~{
-    if (!is.null(.x) && (length(intersect(.x, colnames(bds))) == 0)) {
+    if (!is.null(.x) && (length(intersect(.x, coln_bds)) == 0)) {
       usethis::ui_info(crayon::silver(paste0(
         'AD', domain, ": Column '", .x, "' is not available in the data set. '", .y, "' will be guessed.\n")))
     }
@@ -105,15 +115,15 @@ adam_spec_bds <- function(
   )
   
   # ... candidates label ####
-  guesses$label <- stringr::str_sub(guesses$param, 1, -3)
+  
+  guesses$label <- stringr::str_remove(c(param, guesses$param), 'CD$')
   # TODO move guessing candidates to adam_guess()
   
   # check data for candidate columns ####
   
   col_required <- c('value', 'param')
   
-  coln_bds     <- colnames(bds)
-
+  
    
   for (i in names(guesses)){ 
     
@@ -128,7 +138,7 @@ adam_spec_bds <- function(
         return(NULL)
       }
       
-      col_select[i] <- choices[1]
+      col_select[i] <- if(!is.na(col_select[i])){ choices[1] } else { NULL }
       
     }
     
@@ -140,9 +150,6 @@ adam_spec_bds <- function(
   actual_filter <- filter[keep_filter]
  
   # dictionary  ####
-  source <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
-    tail(1) %>% 
-    stringr::str_remove('.sas7bdat')
   
   # use unfiltered data 
   dict  <- bds %>% 
@@ -153,7 +160,8 @@ adam_spec_bds <- function(
     dplyr::mutate(source = source) %>% 
     dplyr::mutate(type   = 'bds') 
  
-  # remove bds data set label automatically created by haven
+  
+  # remove bds data set label automatically created by haven::read_sas()
   attr(dict, 'label') <- NULL
  
  

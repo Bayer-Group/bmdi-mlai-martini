@@ -21,9 +21,10 @@
 #' \item{imp}{to be imputed}
 #' \item{exclude}{to be excluded from the data as the proportion of missing values exceeds \code{thres_imp}}
 #'
-#' @section Authors
+#' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
+#' @export
       
 prepare_ml_vars <- function(
 

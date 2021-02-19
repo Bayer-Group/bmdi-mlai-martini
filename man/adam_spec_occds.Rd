@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec_occds.R
 \name{adam_spec_occds}
 \alias{adam_spec_occds}
-\title{Create spec object for occurrence data sets}
+\title{Create specification object for adam data sets of type \code{occds}}
 \usage{
 adam_spec_occds(
   file,
@@ -10,6 +10,7 @@ adam_spec_occds(
   label = NULL,
   time = NULL,
   value = NULL,
+  valuen = NULL,
   filter = NULL,
   count = TRUE,
   pre_study = FALSE,
@@ -27,25 +28,43 @@ adam_spec_occds(
 
 \item{value}{optional value column (e.g. AE severity). Defaults to NULL, which leads to an Y/N coding of the event}
 
+\item{valuen}{optional numeric coding column for \code{value}. Defaults to NULL, ignored if \code{value} is NULL.}
+
 \item{filter}{character vector of filters to be applied to the bds data set.
 Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL.}
 
 \item{count}{boolean, defaults to FALSE. # NOTE: add further options (weights, scoring matrix, ...)}
 
-\item{pre_study}{= FALSE,}
+\item{pre_study}{boolean. filter the data set to pre_study observations based on non-negative values in \code{time}}
 
 \item{attach_data}{boolean. attach the imported raw data in \code{data} slot of output object}
 }
+\value{
+A list containing the following
+\item{\code{file}, \code{md5}}{the name and md5 checksum, resp., of the file the generated spec is based upon}
+\item{\code{data}}{the raw data set if \code{attach_data}, NULL otherwise}
+\item{\code{type}}{character string \code{occds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+\item{\code{filter}}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}())}}
+\item{\code{id}}{passing unchanged input}
+\item{\code{label}, \code{value}, \code{valuen}}{names of the key columns to be used in \code{\link{build_occds}()} for reshaping}
+\item{\code{spec_id}}{character string, generally the name of the domain}
+\item{\code{dict}}{a tibble with unique combinations within the \code{param} and \code{label} column (if present in the data set) to be used as a data dictionary}
+}
 \description{
+Given a file containing a occds data set (e.g. admh or adcm), \code{\link{adam_spec_occds}()}
+will create a specification object for use in \code{\link{build_occds}()} to prepare the data
+to be used in machine learning. The main task is to collect the key columns for reshaping the
+data into wide format and prepare the data filter.
+}
+\details{
 For file names 'adae.sas7bdat', 'adcm.sas7bdat' and 'admh.sas7bdat', values for
 arguments \code{label} and \code{time} will be guessed if not provided.
 Please refer to \code{adam_guess()} for details on guessing procedure.
 Function will escape if one of label or value are neither provided nor can be guessed.
 Note that the original values in the \code{label} column will end up being the parameter labels,
-not the parameters in the ML feature matrix. These might be modified later using \code{make_names()} or the like \code{prepare_ml()}.
+not the parameters in the ML feature matrix. These might be modified later using \code{make.names()} or the like in \code{prepare_ml()}.
 }
 \section{Authors}{
-
 
 Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }
