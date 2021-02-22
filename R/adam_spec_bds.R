@@ -131,14 +131,19 @@ adam_spec_bds <- function(
       
       choices <- guesses[[i]] %>% intersect(coln_bds)
       
-      # escape if required columns cannot be identified
-      if (length(choices) == 0 && (i %in% col_required)){
-        usethis::ui_info(crayon::silver(paste0(
-          'AD', domain, ": No column could be identified to be used as ", i, ". No spec will be provided.\n")))
-        return(NULL)
+      if (length(choices) == 0){
+        # escape if required columns cannot be identified
+        if (i %in% col_required) {
+          usethis::ui_info(crayon::silver(paste0(
+            'AD', domain, ": No column could be identified to be used as ", i, ". No spec will be provided.\n")))
+          return(NULL)
+          # else set to NULL (instead of character vector of length 0)
+        } else {
+          choices <- NULL
+        }
       }
       
-      col_select[i] <- if(!is.na(col_select[i])){ choices[1] } else { NULL }
+      col_select[i] <- choices[1]
       
     }
     
