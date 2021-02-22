@@ -264,8 +264,8 @@ prepare_ml <- function(
   
   if (train_prop < 1){
     d_split     <- d_raw %>% rsample::initial_split(strata = tidyselect::all_of(strata), prop = train_prop)
-    d_train_raw <- training(d_split)
-    d_test_raw  <- testing( d_split)
+    d_train_raw <- rsample::training(d_split)
+    d_test_raw  <- rsample::testing( d_split)
   } else {
     d_split     <- NULL
     d_train_raw <- d_raw
