@@ -32,12 +32,12 @@
 #' The list can be manually adjusted if required, e.g. adding further specifications or altering existing ones. See the documentation
 #' of the `adam_spec_*()` for a detailed description of the output object.
 #' 
-#' @seealso \code{\link{adam_spec_adsl}()}, \code{\link{adam_spec_bds}()},  \code{\link{adam_spec_occds}()
+#' @seealso \code{\link{adam_spec_adsl}()}, \code{\link{adam_spec_bds}()},  \code{\link{adam_spec_occds}()}
 #'
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #'
-#' @export 
+#' @export
 
 adam_spec <- function(
   path, 

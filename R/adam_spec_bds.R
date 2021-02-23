@@ -21,11 +21,13 @@
 #' Values for arguments `param`, `label`, `unit`, `time` and `value` will be guessed if not provided. 
 #' Guess will be the first of the following options that matches a column name (exact match).
 #' 
-#' \item{`param`}{`PARAMCD`, `**TESTCD`, with `**` reflecting the two letter domain abbrevation (e.g. `LB`)}
-#' \item{`label`}{substring of `param` with trailing `CD` removed}
-#' \item{`time`}{`AVISIT`, `VISIT`}
-#' \item{`value`}{`AVAL`, `**STRESN`, `**ORRES`, with `**` reflecting the two letter domain abbrevation}
-#' \item{`unit`}{`AVALU`, `**STRESU`, `**ORRESU`, with `**` reflecting the two letter domain abbrevation}
+#' \describe{
+#'   \item{`param`}{`PARAMCD`, `**TESTCD`, with `**` reflecting the two letter domain abbrevation (e.g. `LB`)}
+#'   \item{`label`}{substring of `param` with trailing `CD` removed}
+#'   \item{`time`}{`AVISIT`, `VISIT`}
+#'   \item{`value`}{`AVAL`, `**STRESN`, `**ORRES`, with `**` reflecting the two letter domain abbrevation}
+#'   \item{`unit`}{`AVALU`, `**STRESU`, `**ORRESU`, with `**` reflecting the two letter domain abbrevation}
+#' }
 #' 
 #' Function will escape if one of `param` or `value` are neither provided nor can be guessed. The other columns are optional.
 #' 
@@ -34,9 +36,9 @@
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 #' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
 #' \item{`type`}{character string \code{bds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
-#' \item{`filter`}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}())}
+#' \item{`filter`}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}()})}
 #' \item{`id`}{passing unchanged input}  
-#' \item{`param`, `label`, `value`, `unit`, `time`}{names of the key columns to be used in \code{\link{build_bds}()} for reshaping
+#' \item{`param`, `label`, `value`, `unit`, `time`}{names of the key columns to be used in \code{\link{build_bds}()} for reshaping}
 #' \item{`spec_id`}{character string, generally the name of the domain} 
 #' \item{`dict`}{a tibble with unique combinations within the `param` and `label` column (if present in the data set) 
 #' to be used as a data dictionary}

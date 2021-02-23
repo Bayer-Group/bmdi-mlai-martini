@@ -74,7 +74,7 @@ build_adsl <- function(
       dplyr::filter(., !! rlang::parse_expr(filter_txt))
     }else{.}
     } %>%  
-    dplyr::select(any_of(spec$select )) %>% 
+    dplyr::select(tidyselect::any_of(spec$select )) %>% 
     dplyr::rename(".id" = spec$id) %>% 
     {if(!is.null(spec$trt)){
       dplyr::rename(., ".trt"= spec$trt)
@@ -113,7 +113,7 @@ build_adsl <- function(
     dict      <- tibble::tibble(
       column = colnames(adsl),
       param  = column ) %>%  
-      mutate(
+      dplyr::mutate(
         label = dplyr::case_when(
             !is.na(labs) ~ labs,
             TRUE ~ param),

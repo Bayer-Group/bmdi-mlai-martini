@@ -61,5 +61,5 @@ Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }
 
 \seealso{
-\code{\link{adam_spec_adsl}()}, \code{\link{adam_spec_bds}()},  \code{\link{adam_spec_occds}()
+\code{\link{adam_spec_adsl}()}, \code{\link{adam_spec_bds}()},  \code{\link{adam_spec_occds}()}
 }

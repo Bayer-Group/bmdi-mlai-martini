@@ -52,7 +52,7 @@ Currently, only right-censoring is supported. Please note, that survival will ne
 \item{prep_recipe}{a custom, pre-defined \code{recipes::recipe()} may be provided for data preparation. Defaults to NULL, yielding a data-driven preparation.
 please refer to the details section to learn about the individual recipe steps.}
 
-\item{train_prop}{the proportion of data (0.5 \U2264 \code{train_prop} \U2264 1)) to be used for the training set. Defaults to 3/4, keeping a quarter of the data for testing.}
+\item{train_prop}{the proportion of data to be used for the training set. Has to be in [0.5;1.0]. Defaults to 3/4, keeping a quarter of the data for testing.}
 
 \item{seed}{optionally set a seed before the data splitting.}
 

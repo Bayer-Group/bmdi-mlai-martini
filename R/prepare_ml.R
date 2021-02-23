@@ -20,7 +20,7 @@
 #' @param level_order level order for a classification outcome. Default \code{NULL} keeps the natural order (only used for classification).
 #' @param prep_recipe a custom, pre-defined \code{recipes::recipe()} may be provided for data preparation. Defaults to NULL, yielding a data-driven preparation. 
 #' please refer to the details section to learn about the individual recipe steps.
-#' @param train_prop the proportion of data (0.5 \U2264 \code{train_prop} \U2264 1)) to be used for the training set. Defaults to 3/4, keeping a quarter of the data for testing.
+#' @param train_prop the proportion of data to be used for the training set. Has to be in \[0.5;1.0\]. Defaults to 3/4, keeping a quarter of the data for testing.
 #' @param seed optionally set a seed before the data splitting. 
 #' @param prep_step_knnimpute,prep_step_log,prep_step_normalize,prep_step_corr,prep_step_dummy logicals determining 
 #' whether or not the corresponding step function should be included in the recipe, 
@@ -196,8 +196,7 @@ prepare_ml <- function(
                 '<'   = 'under_' ,
                 '>'   = 'over_',
                 ' years|years' = '_y',
-                '%'   = 'pct', 
-                #' '  ='_',
+                '%'   = 'pct',
                 '[[:punct:]]|[[:space:]]' = '_',
                 '_+'  = '_',
                 '_$' = ''
@@ -207,7 +206,7 @@ prepare_ml <- function(
   # ... intersect 'vars_fct_expl_na' with factor columns ####
   if (!is.null(vars_fct_expl_na)){
     vars_fct_expl_na <- feature %>% 
-      select_if(is.factor) %>% 
+      dplyr::select_if(is.factor) %>% 
       colnames() %>% 
       intersect(vars_fct_expl_na)
     # catch special case 'no factors in feature'
@@ -356,7 +355,7 @@ prepare_ml <- function(
       # ... ... lump factors ####
     recipes::step_other(., 
                         recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
-                        -any_of(vars_nolump),
+                        -tidyselect::any_of(vars_nolump),
                         threshold = thres_lump, other = level_other) %>%  
       
       # ... ... factor handling ####
@@ -381,14 +380,14 @@ prepare_ml <- function(
   # ... prep recipe ####
   rcp_prep <- rcp %>% 
     {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE)} %>% 
-    pluck("result")
+    purrr::pluck("result")
   
   d_train <- rcp_prep %>%  recipes::juice()
   
   if (train_prop < 1){
     d_test  <- rcp_prep %>% 
       {purrr::quietly(recipes::bake)(., d_test_raw)} %>% 
-      pluck("result")
+      purrr::pluck("result")
   } else {
     d_test  <- NULL
   }
@@ -457,7 +456,7 @@ prepare_ml <- function(
       value = ifelse(prep_step_log, thres_log, NA),
       text  = ifelse(prep_step_log,
                      paste0('Variables were log transformed (base ', 
-                            ifelse(near(log_base, exp(1)), 'e', log_base),
+                            ifelse(dplyr::near(log_base, exp(1)), 'e', log_base),
                             ') if e1071::skewness() > ',  thres_log,
                             '. Variables that are assumed to be count variables were excluded from the transformation (see thres_count for details).'),
                      'No variables were logtransformed.')
@@ -537,7 +536,7 @@ prepare_ml <- function(
       outcome_dict,
       attr(feature, "dict")  
     ) %>% 
-      left_join(
+      dplyr::left_join(
         ., 
         tibble::tibble(
           param = vars_log,

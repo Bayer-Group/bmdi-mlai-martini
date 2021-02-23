@@ -192,7 +192,7 @@ build <- function(
       if(any(join %in% names(interim) )) {
         join_ids <- purrr::map(interim[join %>%  intersect(names(interim))], ~.[['data']]) %>% 
           purrr::reduce(dplyr::full_join, by = '.id') %>% 
-          pull(.id)
+          dplyr::pull(.id)
         join_filter <- ' .id %in% join_ids'
       }else{
         join_filter <- 'TRUE'
@@ -218,7 +218,7 @@ build <- function(
       dplyr::pull(column)
     
     prepped_join <- prepped_join %>%  
-      dplyr::mutate_at(vars(tidyselect::any_of(vars_fct_expl_na)), ~{
+      dplyr::mutate_at(dplyr::vars(tidyselect::any_of(vars_fct_expl_na)), ~{
         if(is.numeric(.x)){
           tidyr::replace_na(.x, replace = 0L )
         }else{

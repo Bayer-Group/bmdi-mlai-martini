@@ -1,4 +1,4 @@
-#' Create specification object for adam data sets of type 'adsl'.
+#' Create specification object for adam data sets of type 'adsl'
 #' 
 #' Given a file containing an adsl data set, \code{\link{adam_spec_adsl}()} will create a specification 
 #' object for use in \code{\link{build_adsl}()} to actually create a subset of 
@@ -12,43 +12,45 @@
 #' @param trt column to be used as the treatment variable. All other predefined treatment variables (see Details) are added
 #' to the \code{drop_list}. If NULL, all treatment variables will be added to the \code{drop_list}.
 #' @param keep,drop columns to be kept/dropped, independent of the technical selection process within this function
-#' @param filter character vector of filters following \code{dplyr::filter()} syntax for use in \code{\link{build_adsl}()}. 
-#' Filters will be checked against the data and will only be kept if the filter would not throw an error and if the resulting
-#' data set has positive number of rows. Defaults to NULL. 
-#' @param attach_data boolean. attach the imported raw data
+#' @param filter character vector of filters following \code{dplyr::filter()} syntax for use in \code{\link{build_adsl}()} (see Details).
+#' Defaults to NULL. 
+#' @param attach_data boolean. attach the imported raw data.
 #' 
-#' @details 
+#' @details
 #' 
-#' \item{id}{Non-numeric columns are recoded as numeric, based on the order in which they appear in the data (sorted by \code{id}). 
-#' All columns with a perfect spearman correlation to \code{id} are considered redundant and added to the \code{drop_list}.}
-#' \item{trt}{The predefined list of treatment variables is TRT01A, ARMCD, ARM, ACTARM, ACTARMCD, TRT01P, TR01PG1, TR02PG1, TR01AG1, TR02AG1.
-#' No more than one of these variables will be returned in \code{select}. Note that the chosen treatment 
-#' representing variable will be renamed to the standard '.trt' in \code{\link{build_adsl}()}.}
-#' \item{filter}{See \code{\link{check_filter}()}}
-#' 
+#' \describe{
+#'   \item{*Subject id*}{Non-numeric columns are recoded as numeric, based on the order in which they appear in the data
+#'   (sorted by \code{id}). All columns with a perfect Spearman correlation to \code{id} are considered redundant and added to
+#'   the \code{drop_list}.}
+#'   \item{*Treatment variable*}{The predefined list of treatment variables is TRT01A, ARMCD, ARM, ACTARM, ACTARMCD, TRT01P, TR01PG1, TR02PG1, TR01AG1, TR02AG1.
+#'   No more than one of these variables will be returned in \code{select}. Note that the chosen treatment representing
+#'   variable will be renamed to the standard '.trt' in \code{\link{build_adsl}()}.}
+#'   \item{*Filter check*}{Filters will be checked against the data and will only be kept if the filter would not throw an error and if the resulting
+#'   data set has positive number of rows. See \code{\link{check_filter}()} for further details.}
+#' }
 #' 
 #' @return 
 #' A list containing the following 
-#' \item{file, md5}{the name and md5 checksum, resp., of the file the generated spec is based upon}
-#' \item{data}{the raw data set if \code{attach_data}, NULL otherwise}
-#' \item{type}{character string \code{adsl}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
-#' \item{filter}{subset of \code{filter} that yields non-empty result when applied individually (using \code{\link{check_filter}())}
-#' \item{select}{the suggested list of columns to select from the data set} 
-#' \item{factor_levels}{a list column pairs factor/factorN to determine factor level order} 
-#' \item{flag_table} a tibble with columns id and any columns identified as flag (character and matching numeric) based on matching column names or labels
-#' \item{drop_list}{a list containing column names suggested to be dropped with the entry
-#' name identifying the rationale for the discard: 
-#'   \itemize{ 
-#'     \item user input \code{drop} 
-#'     \item date/times columns, 
-#'     \item numeric code for another variable (incl numeric flags) 
-#'     \item flags (both numeric and character columns), see also `flag_table` 
-#'     \item combined, empty and constant columns, resp.
-#'     \item columns with redundant information to \code{id} and \code{trt} if provided)
+#' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
+#' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
+#' \item{`type`}{character string \code{adsl}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+#' \item{`filter`}{subset of \code{filter} that yields non-empty result when applied individually (using \code{\link{check_filter}()}}
+#' \item{`select`}{the suggested list of columns to select from the data set} 
+#' \item{`factor_levels`}{a list column pairs factor/factorN to determine factor level order} 
+#' \item{`flag_table`}{a tibble with columns id and any columns identified as flag (character and matching numeric) based on matching column names or labels}
+#' \item{`id`, `trt`}{passing unchanged input}  
+#' \item{`drop_list`}{a list containing column names suggested to be dropped with the entry
+#' name identifying the rationale for the discard
+#'   \describe{ 
+#'     \item{`drop`}{user input `drop`} 
+#'     \item{`datetimes`}{date/times columns} 
+#'     \item{`numcodes`}{numeric code for another variable (incl numeric flags)} 
+#'     \item{`flags`}{flags (both numeric and character columns), see also `flag_table`}
+#'     \item{`combinations`, `empty`, `constant`}{combined, empty and constant columns, resp.}
+#'     \item{`redundancies`}{columns with redundant information to `id` and `trt` if provided)}
 #'  }}
-#' \item{id, trt}{passing unchanged input}  
-#' \item{spec_id}{character string \code{adsl}, generally the name of the domain}  
-#' \item{dict}{a tibble of column names and labels (if present in the data set)}  
+#' \item{`spec_id`}{character string \code{adsl}, generally the name of the domain}  
+#' \item{`dict`}{a tibble of column names and labels (if present in the data set)}  
 #' 
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
@@ -122,7 +124,7 @@ adam_spec_adsl <- function(
   
   # transform date and time to character
   adsl <- adsl %>% 
-    mutate_at(unique(c(all_dates, all_times)), as.character)
+    dplyr::mutate_at(unique(c(all_dates, all_times)), as.character)
   
   # ... identify pairs of categorical/numerical columns ####
   
@@ -167,11 +169,11 @@ adam_spec_adsl <- function(
     ),
     tibble::tibble(
       lab = dict %>%
-        slice(match(lab_cat, dict %>%  pull(label))) %>%  
-        pull(param),
+        dplyr::slice(match(lab_cat, dict %>%  dplyr::pull(label))) %>%  
+        dplyr::pull(param),
       lev = dict %>%
-        slice(match(lab_num, dict %>%  pull(label))) %>% 
-        pull(param)
+        dplyr::slice(match(lab_num, dict %>%  dplyr::pull(label))) %>% 
+        dplyr::pull(param)
     )
   ) %>% 
     dplyr::distinct() 
@@ -179,7 +181,7 @@ adam_spec_adsl <- function(
   # keep list of all num codes for later use (setdiff with all numeric columns)
   all_num_codes <- c(
     all_lab_lev$lev,
-    dict %>% filter(str_detect(label, "\\(N\\)$")) %>% pull(param)
+    dict %>% filter(stringr::str_detect(label, "\\(N\\)$")) %>% dplyr::pull(param)
   ) %>% unique()
   
   # reduce to pairs for which level order needs to be extracted
@@ -211,7 +213,7 @@ adam_spec_adsl <- function(
     purrr::map_lgl( ~ { all(.x %in% labs)})
   
   all_comb <- all_slash[ind]
-  all_comb_columns <- dict %>% filter(labs %in% all_comb) %>% pull(param)
+  all_comb_columns <- dict %>% filter(labs %in% all_comb) %>% dplyr::pull(param)
   
   
   # ... identify redundants for id and trt ####
@@ -237,7 +239,7 @@ adam_spec_adsl <- function(
     dplyr::rename(value = tidyselect::all_of(id))
   
   redundant_id <- cors_id %>% 
-    dplyr::filter(near(value, 1)) %>% 
+    dplyr::filter(dplyr::near(value, 1)) %>% 
     dplyr::pull(name) %>% 
     setdiff(id)
 

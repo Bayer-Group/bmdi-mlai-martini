@@ -1,4 +1,4 @@
-Package: MLAIprepare
+Package: martini
 Type: Package
 Title: BMDI MLAI pipeline - Prepare Module
 Version: 0.1.0
@@ -28,7 +28,13 @@ Imports:
     tools,
     recipes,
     usethis,
-    crayon
+    crayon,
+    assertive.types,
+    haven,
+    janitor,
+    labelled,
+    e1071,
+    rsample
 Suggests:
     knitr,
     rmarkdown,

@@ -41,9 +41,9 @@ A list containing the following
 \item{\code{file}, \code{md5}}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 \item{\code{data}}{the raw data set if \code{attach_data}, NULL otherwise}
 \item{\code{type}}{character string \code{bds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
-\item{\code{filter}}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}())}
+\item{\code{filter}}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}()})}
 \item{\code{id}}{passing unchanged input}
-\item{\code{param}, \code{label}, \code{value}, \code{unit}, \code{time}}{names of the key columns to be used in \code{\link{build_bds}()} for reshaping
+\item{\code{param}, \code{label}, \code{value}, \code{unit}, \code{time}}{names of the key columns to be used in \code{\link{build_bds}()} for reshaping}
 \item{\code{spec_id}}{character string, generally the name of the domain}
 \item{\code{dict}}{a tibble with unique combinations within the \code{param} and \code{label} column (if present in the data set)
 to be used as a data dictionary}
@@ -58,11 +58,13 @@ for reshaping the data into wide format and prepare the data filter.
 Values for arguments \code{param}, \code{label}, \code{unit}, \code{time} and \code{value} will be guessed if not provided.
 Guess will be the first of the following options that matches a column name (exact match).
 
+\describe{
 \item{\code{param}}{\code{PARAMCD}, \verb{**TESTCD}, with \verb{**} reflecting the two letter domain abbrevation (e.g. \code{LB})}
 \item{\code{label}}{substring of \code{param} with trailing \code{CD} removed}
 \item{\code{time}}{\code{AVISIT}, \code{VISIT}}
 \item{\code{value}}{\code{AVAL}, \verb{**STRESN}, \verb{**ORRES}, with \verb{**} reflecting the two letter domain abbrevation}
 \item{\code{unit}}{\code{AVALU}, \verb{**STRESU}, \verb{**ORRESU}, with \verb{**} reflecting the two letter domain abbrevation}
+}
 
 Function will escape if one of \code{param} or \code{value} are neither provided nor can be guessed. The other columns are optional.
 }
