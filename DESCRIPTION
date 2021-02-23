@@ -25,7 +25,8 @@ Imports:
     purrr,
     lubridate,
     stringr,
-    tools
+    tools,
+    recipes
 Suggests:
     knitr,
     rmarkdown,
