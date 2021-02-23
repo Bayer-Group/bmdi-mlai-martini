@@ -24,7 +24,6 @@
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
-#' @export
       
 prepare_ml_vars <- function(
 
@@ -47,11 +46,11 @@ prepare_ml_vars <- function(
       vars_count <- data %>% 
         dplyr::select_if(is.integer) %>% 
         tidyr::pivot_longer(-tidyselect::any_of(remove), 
-                            names_to = "PARAMCD", values_to = "AVAL") %>% 
-        dplyr::group_by(PARAMCD) %>% 
-        dplyr::summarise(NDIST = dplyr::n_distinct(AVAL)) %>% 
-        dplyr::filter(NDIST <= thres_count) %>% 
-        dplyr::pull(PARAMCD)
+                            names_to = "paramcd", values_to = "aval") %>% 
+        dplyr::group_by(paramcd) %>% 
+        dplyr::summarise(n_dist = dplyr::n_distinct(aval)) %>% 
+        dplyr::filter(n_dist <= thres_count) %>% 
+        dplyr::pull(paramcd)
     }
     if (length(vars_count) == 0) vars_count <- NULL
   }
@@ -66,13 +65,13 @@ prepare_ml_vars <- function(
       vars_log <- data %>% 
         dplyr::select_if(is.numeric) %>% 
         tidyr::pivot_longer(-tidyselect::any_of(remove), 
-                            names_to = "PARAMCD", values_to = "AVAL") %>% 
-        dplyr::group_by(PARAMCD) %>% 
-        dplyr::mutate(MINAVAL = min(AVAL)) %>% 
-        dplyr::filter(MINAVAL > 0) %>% 
-        dplyr::summarise(skew = e1071::skewness(AVAL, na.rm = TRUE), .groups = "drop") %>% 
+                            names_to = "paramcd", values_to = "aval") %>% 
+        dplyr::group_by(paramcd) %>% 
+        dplyr::mutate(min_aval = min(aval)) %>% 
+        dplyr::filter(min_aval > 0) %>% 
+        dplyr::summarise(skew = e1071::skewness(aval, na.rm = TRUE), .groups = "drop") %>% 
         dplyr::filter(skew > thres_log ) %>% 
-        dplyr::pull(PARAMCD) %>% 
+        dplyr::pull(paramcd) %>% 
         setdiff(vars_count)
       if (length(vars_log) == 0) vars_log <- NULL
     } 

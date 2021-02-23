@@ -45,21 +45,19 @@ adam_guess <- function(file){
   if (        file_info$domain == "admh"){
       list(
         label  = paste0('MH', c("HLGT", "HLT", "BODSYS", "SOC", "DECOD")), 
-                             #c("MHHLGT", "MHHLT", "MHBODSYS", "MHSOC", "MHDECOD"),
-        time   = "MHSTDY", # occds_time
+        time   = "MHSTDY",
         value  = NULL
       )
     } else if(file_info$domain == "adcm"){
       list(
         label  = c("BDG01", "CMSCL01C", "CMCL01C", "DRUGRP1", "CMDECOD"),
-        time   = "CMSTDY", # occds_time
+        time   = "CMSTDY",
         value  = NULL
       )
     } else if(file_info$domain == "adae"){
       list(
-        label  = paste0('AE', c("HLGT", "HLT", "BODSYS", "SOC", "DECOD", "CAT")) , 
-                             #c("AEHLGT", "AEHLT", "AEBODSYS", "AESOC", "AEDECOD", "AECAT"),
-        time   = "AESTDY", # occds_time
+        label  = paste0('AE', c("HLGT", "HLT", "BODSYS", "SOC", "DECOD", "CAT")),
+        time   = "AESTDY",
         value  = NULL #AESERV
       )
     } else {
@@ -67,11 +65,9 @@ adam_guess <- function(file){
         paste0("No guessing options available for domain '", file_info$domain, "' yet.\n")
       )
     }
-
-  #}
 }
 
-# tests 
+# test area ####
 if(FALSE){
   file <- "../../../adcm.sas7bdat"
   

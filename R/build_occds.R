@@ -57,7 +57,7 @@ build_occds <- function(
         dplyr::mutate(., value = factor(!!rlang::sym(spec$value)))
       }else{
         dplyr::mutate(., value = forcats::fct_reorder(!!rlang::sym(spec$value), !!rlang::sym(spec$valuen))) %>% 
-          select(- any_of( spec$valuen))
+          dplyr::select(- tidyselect::any_of( spec$valuen))
       }}
     }} %>% 
     # dplyr::distinct() %>% 
@@ -89,11 +89,11 @@ build_occds <- function(
       
   # transform all character columns to factors except for .id, which is kept as-is
   char2fct <- occds_wide %>% 
-    select_if(is.character) %>% 
+    dplyr::select_if(is.character) %>% 
     colnames() %>% 
     setdiff('.id' )
   
-  if (length(char2fct) > 0) occds_wide <- occds_wide %>% mutate_at(char2fct, factor)
+  if (length(char2fct) > 0) occds_wide <- occds_wide %>% dplyr::mutate_at(char2fct, factor)
 
   # dictionary ####
   # overwrite dictionary from spec

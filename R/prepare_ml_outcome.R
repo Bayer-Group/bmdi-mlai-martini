@@ -1,6 +1,6 @@
 #' Prepare ML ready outcome data set
 #'
-#' Prepares an ML ready outcome data set (used in \code{\link{prepare_ml}()})
+#' Prepares an ML ready outcome data set (used in \code{\link{prepare_ml}})
 #'
 #' @param outcome tibble containing \code{.id} column and the outcome of interest
 #' @param outcome_name if \code{NULL} (default), the first column that's not \code{.id} is chosen for \code{outcome_name}
@@ -10,8 +10,8 @@
 #' is binary with 0 coding for censored, and 1 coding for event. Currently, only right-censoring is supported. Please note,
 #' that survival will never be guessed.
 #' @param level_order Level order for a classification outcome. \code{NULL} keeps the natural order (only used for classification).
-#' @param outlier_remove Remove outliers in a regression outcome based on the 'boxplot definition'. 
-#' The outlier coefficient can be modified in \code{outlier_ctrl}, defaults to 3 (only used for regression).
+#' @param outlier_remove Remove outliers in a regression outcome based on the 'boxplot definition'. The outlier coefficient can be modified
+#' in \code{outlier_ctrl} (only used for regression).
 #' @param outlier_ctrl Control list for the outlier removal, if \code{outlier_remove} is \code{TRUE}. Currently, the list contains only
 #' the boxplot outlier coefficient \code{coef}, which defaults to 3.
 #' 
@@ -19,20 +19,21 @@
 #' 
 #' A list with the following slots
 #' 
-#' \item{`outcome`}{The outcome data set containing only the id and one or two columns 
+#' \item{outcome}{The outcome data set containing only the id and one or two columns 
 #' with standardized column names (\code{.out} for regression or classification, \code{.time} and \code{.status} for survival).}
-#' \item{`outcome_name`}{Named vector with the original name(s) of the outcome variable(s).}
-#' \item{`outcome_label`}{Named vector with the labels(s) of the outcome variable(s). If the columns of \code{outcome} do not contain labels,
+#' \item{outcome_name}{Named vector with the original name(s) of the outcome variable(s).}
+#' \item{outcome_label}{Named vector with the labels(s) of the outcome variable(s). If the columns of \code{outcome} do not contain labels,
 #' the column name is used instead.}
-#' \item{`outcome_mode`}{The outcome mode (\code{regression}, \code{classification} or \code{survival}.}
-#' \item{`outcome_dict`}{Dictionary tibble for the outcome variable(s).}
-#' \item{`na_outcome`}{The IDs of NAs in \code{outcome}.}
-#' \item{`id_outlier`}{The IDs of removed outliers.}
+#' \item{outcome_mode}{The outcome mode (\code{regression}, \code{classification} or \code{survival}.}
+#' \item{outcome_dict}{Dictionary tibble for the outcome variable(s).}
+#' \item{na_outcome}{The IDs of NAs in \code{outcome}.}
+#' \item{id_outlier}{The IDs of removed outliers.}
 #' 
-#' @section Authors: 
+#' @section Authors:
+#' 
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
-#' @export
+#' @md
 
 prepare_ml_outcome <- function(
   
@@ -63,7 +64,7 @@ prepare_ml_outcome <- function(
   } else { # outcome_name is provided
     
     # do columns exist?  
-    walk( outcome_name, ~  if(! .x %in% colnames(outcome) ){ 
+    purrr::walk( outcome_name, ~  if(! .x %in% colnames(outcome) ){ 
       usethis::ui_stop( paste0(
         'The column ', .x, ' is not present in the outcome data set. ', 
         'Please correct input of column_name or let the function choose from existing columns (regression and classification only).\n'))
@@ -78,11 +79,11 @@ prepare_ml_outcome <- function(
       names_valid  <- {sort(names(outcome_name)) == c('.status', '.time')} %>%  all()
       if(!names_valid)  usethis::ui_stop('For survival analysis, please provide vector with names .status and .time for outcome_name.')
       
-      status_valid <- outcome[, outcome_name['.status']] %>% pull() %>%  { . %in% c(0,1) } %>%  all() 
+      status_valid <- outcome[, outcome_name['.status']] %>% dplyr::pull() %>%  { . %in% c(0,1) } %>%  all() 
       if(!status_valid) usethis::ui_stop('status may only contain values 0 and 1.')
       # stops if NAs are present
       
-      time_valid   <- outcome[, outcome_name['.time'  ]] %>% pull() %>%  is.numeric()
+      time_valid   <- outcome[, outcome_name['.time'  ]] %>% dplyr::pull() %>%  is.numeric()
       if(!time_valid)   usethis::ui_stop('Please check type of time column.')
       
       # sort by name
@@ -97,7 +98,7 @@ prepare_ml_outcome <- function(
   }else{ 
     outcome_mode <- ifelse(
       is.numeric(outcome[[outcome_name]])
-      && n_distinct(outcome[[outcome_name]]) > 5,
+      && dplyr::n_distinct(outcome[[outcome_name]]) > 5,
       "regression", 
       "classification"
     )
@@ -112,7 +113,7 @@ prepare_ml_outcome <- function(
   # extract label(s) of outcome before potentially mutating to factor (classification)
   # for consistency, outcome label is a named vector.
   outcome_label <- outcome_name 
-  iwalk(outcome_name, ~ {
+  purrr::iwalk(outcome_name, ~ {
     the_label <- labelled::var_label(outcome)[.x] %>% unlist()
     outcome_label[.y] <<- the_label
   })
@@ -121,7 +122,7 @@ prepare_ml_outcome <- function(
   # outcome dict ####
   outcome_dict <- tibble::tibble(
     param  = names(outcome_name)) %>% 
-    mutate(
+    dplyr::mutate(
       column = param,
       source = "user_outcome",
       label  = outcome_label[param]
@@ -132,7 +133,7 @@ prepare_ml_outcome <- function(
   
   # ... standardize outcome name ####
   outcome <- outcome %>% 
-    dplyr::select(all_of('.id'), tidyselect::all_of(outcome_name))
+    dplyr::select(tidyselect::all_of('.id'), tidyselect::all_of(outcome_name))
   
   # ... classification -> factor(), fct_relevel() ####
   if (outcome_mode == "classification"){
@@ -144,7 +145,7 @@ prepare_ml_outcome <- function(
       level_order <- intersect(level_order, outcome_level)
       if (length(level_order) > 0){
         outcome <- outcome %>% 
-          mutate_at(".out", ~ fct_relevel(., level_order))
+          dplyr::mutate_at(".out", ~ fct_relevel(., level_order))
       }
     }
     
@@ -157,7 +158,7 @@ prepare_ml_outcome <- function(
     # with c = outlier_ctrl$coef, exclude observations outside [q25 - c*iqr;  q75 + c*iqr]
     q   <- quantile(outcome$.out, probs = c(0.25, 0.75), names = FALSE, na.rm = TRUE)
     loq <- q + c(-1,1) * abs(outlier_ctrl$coef[1]) * diff(q)
-    is_outlier <- !between(outcome$.out, loq[1], loq[2])
+    is_outlier <- !dplyr::between(outcome$.out, loq[1], loq[2])
     
     id_outlier <- outcome$.id[which(is_outlier)]
     
@@ -167,11 +168,11 @@ prepare_ml_outcome <- function(
   
   # na_outcome: IDs of NA rows ####
   na_outcome <- outcome %>% 
-    dplyr::mutate_at(vars(-tidyselect::any_of(".id")), is.na) %>%  
+    dplyr::mutate_at(dplyr::vars(-tidyselect::any_of(".id")), is.na) %>%  
     dplyr::rowwise() %>% 
-    dplyr::mutate(ANYNA  = dplyr::c_across(-.id) %>% any()) %>% 
+    dplyr::mutate(any_na  = dplyr::c_across(-.id) %>% any()) %>% 
     dplyr::ungroup() %>% 
-    dplyr::filter(ANYNA) %>% 
+    dplyr::filter(any_na) %>% 
     dplyr::pull(.id)
   
   attributes(na_outcome) <- NULL

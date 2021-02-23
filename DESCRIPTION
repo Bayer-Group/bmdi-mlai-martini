@@ -1,4 +1,4 @@
-Package: MLAIprepare
+Package: martini
 Type: Package
 Title: BMDI MLAI pipeline - Prepare Module
 Version: 0.1.0
@@ -9,10 +9,10 @@ Description: Prepare module of the BMDI MLAI pipeline. It contains functions to 
   transform a set of ADaM data sets (adsl, bds and occds) into a data object that can be used
   for machine learning, e.g. using the BMDI MLAI pipeline.
 Depends:
-    R (>= 3.6.3),
-    tune
+    R (>= 3.6)
 Imports:
     stats,
+    utils,
     magrittr,
     ggplot2,
     vctrs,
@@ -25,7 +25,16 @@ Imports:
     purrr,
     lubridate,
     stringr,
-    tools
+    tools,
+    recipes,
+    usethis,
+    crayon,
+    assertive.types,
+    haven,
+    janitor,
+    labelled,
+    e1071,
+    rsample
 Suggests:
     knitr,
     rmarkdown,

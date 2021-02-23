@@ -55,15 +55,15 @@ build_bds <- function(
   # prior to pivoting,  create key column (PARAM or PARAM/TIME)
   # check if multiple time points are present after subsetting
   n_time <- ifelse(! is.na(spec$time),
-                   bds %>%  pull(spec$time) %>%  dplyr::n_distinct() ,
+                   bds %>%  dplyr::pull(spec$time) %>%  dplyr::n_distinct() ,
                    1)
   if(n_time > 1){
     bds <- bds %>% 
       tidyr::unite(.key, spec$param, spec$time, remove = FALSE, sep='_') %>% 
-      dplyr::mutate(.key = str_replace_all(.key, '[:punct:]|[:space:]', '_'))
+      dplyr::mutate(.key = stringr::str_replace_all(.key, '[:punct:]|[:space:]', '_'))
   }else{
     bds <- bds %>% 
-      dplyr::mutate( '.key' = str_replace_all( !! rlang::sym(spec$param), '[:punct:]|[:space:]', '_'))
+      dplyr::mutate( '.key' = stringr::str_replace_all( !! rlang::sym(spec$param), '[:punct:]|[:space:]', '_'))
   }
 
   # pivot   ####
@@ -80,14 +80,14 @@ build_bds <- function(
   
   # transform all character columns to factors except for .id, which is kept as-is
   char2fct <-   bds_wide %>% 
-    select_if(is.character) %>% 
+    dplyr::select_if(is.character) %>% 
     colnames() %>% 
     setdiff('.id' )
   
   bds_wide <- bds_wide  %>% 
-    mutate_at(char2fct, factor) %>%  
+    dplyr::mutate_at(char2fct, factor) %>%  
     {if(spec$spec_id == 'adegf'){
-      mutate_at(., char2fct, ~ fct_explicit_na(., na_level = 'missing') )
+      dplyr::mutate_at(., char2fct, ~ fct_explicit_na(., na_level = 'missing') )
     }else{.}
     }
   
@@ -106,7 +106,7 @@ build_bds <- function(
   }
     
   dict <- bds %>% 
-    dplyr::select(any_of(
+    dplyr::select(tidyselect::any_of(
       c("param" = spec$param, 
         "label" = spec$label,
         "unit"  = spec$unit, 
