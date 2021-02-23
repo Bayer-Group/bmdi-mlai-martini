@@ -9,10 +9,10 @@ Description: Prepare module of the BMDI MLAI pipeline. It contains functions to 
   transform a set of ADaM data sets (adsl, bds and occds) into a data object that can be used
   for machine learning, e.g. using the BMDI MLAI pipeline.
 Depends:
-    R (>= 3.6.3),
-    tune
+    R (>= 3.6)
 Imports:
     stats,
+    utils,
     magrittr,
     ggplot2,
     vctrs,
@@ -26,7 +26,9 @@ Imports:
     lubridate,
     stringr,
     tools,
-    recipes
+    recipes,
+    usethis,
+    crayon
 Suggests:
     knitr,
     rmarkdown,

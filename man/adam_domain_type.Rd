@@ -38,8 +38,8 @@ Parameters \code{keep} and \code{drop} allow control over which files to use and
 
 Without any arguments given, \emph{\code{adam_domain_type()}} returns the look up table that is used
 for determining the type of an ads data set (ads, bds or occds). The column \code{domain} does not only contain
-explicit domains (e.g. adqskccq) for human readability, but also regular expressions
-('adqs.\U002A' matches e.g. adqskccq, adqsnyha, adqseq5d, adqspad, ...)
+explicit domains (e.g. \code{adqskccq}) for human readability, but also regular expressions
+(\verb{adqs.*} matches e.g. \code{adqskccq}, \code{adqsnyha}, \code{adqseq5d}, \code{adqspad}, ...)
 }
 \section{Authors}{
 

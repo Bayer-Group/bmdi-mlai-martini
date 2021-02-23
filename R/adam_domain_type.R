@@ -14,11 +14,11 @@
 #' to use for further processing.
 #' Parameters \code{keep} and \code{drop} allow control over which files to use and ignore, resp. 
 #' (If both are provided, \code{drop} is ignored and only information in \code{keep} is used.)
-#'
+#' 
 #' Without any arguments given, *\code{adam_domain_type()}* returns the look up table that is used
 #' for determining the type of an ads data set (ads, bds or occds). The column \code{domain} does not only contain 
-#' explicit domains (e.g. adqskccq) for human readability, but also regular expressions 
-#' ('adqs.\U002A' matches e.g. adqskccq, adqsnyha, adqseq5d, adqspad, ...)
+#' explicit domains (e.g. `adqskccq`) for human readability, but also regular expressions 
+#' (`adqs.*` matches e.g. `adqskccq`, `adqsnyha`, `adqseq5d`, `adqspad`, ...)
 #' 
 #' 
 #' 
@@ -60,12 +60,12 @@ adam_domain_type <- function(
   type_occds <- c("adae", "adcm", "admh") %>% 
     paste0(".sas7bdat$")
   
-  ads_library <- bind_rows(
-    tibble(domain = type_adsl)  %>%  mutate(`adam_spec_*` = 'adsl' ) ,
-    tibble(domain = type_bds)   %>%  mutate(`adam_spec_*` = 'bds'  ) ,
-    tibble(domain = type_occds) %>%  mutate(`adam_spec_*` = 'occds') 
+  ads_library <- dplyr::bind_rows(
+    tibble::tibble(domain = type_adsl)  %>%  dplyr::mutate(`adam_spec_*` = 'adsl' ) ,
+    tibble::tibble(domain = type_bds)   %>%  dplyr::mutate(`adam_spec_*` = 'bds'  ) ,
+    tibble::tibble(domain = type_occds) %>%  dplyr::mutate(`adam_spec_*` = 'occds') 
   )  %>%  
-    mutate_at('domain',~  stringr::str_remove_all(.x, '(\\[.\\]|[.])sas7bdat\\$'))
+    dplyr::mutate_at('domain',~  stringr::str_remove_all(.x, '(\\[.\\]|[.])sas7bdat\\$'))
   
   type_adsl  <- type_adsl  %>%  paste(collapse = "|")
   type_bds   <- type_bds   %>%  paste(collapse = "|")
@@ -85,7 +85,7 @@ adam_domain_type <- function(
       usethis::ui_stop(paste0(
         crayon::silver( "The provided path does not exist. \n\t "), 
         crayon::blue(path)
-        ))
+      ))
     }
       
     # ... determine all file paths, file names ####
@@ -131,11 +131,11 @@ adam_domain_type <- function(
       
     if (!is.null(keep)){
         # strip file extension, in case the user provided the file name instead of domain
-        keep      <- str_remove(keep, '.sas7bdat$')
+        keep      <- stringr::str_remove(keep, '.sas7bdat$')
         file_info <- file_info %>% dplyr::filter( domain %in% keep)
     } else {
       if(!is.null(drop)){
-          drop      <- str_remove(drop, '.sas7bdat$')
+          drop      <- stringr::str_remove(drop, '.sas7bdat$')
           file_info <- file_info %>% dplyr::filter(!domain %in% drop)
       }
     }
@@ -169,7 +169,7 @@ adam_domain_type <- function(
   }   
 }
 
-# testing
+# test area ####
 if(FALSE){
  
  paths <- paste0('../../../',
@@ -202,4 +202,3 @@ if(FALSE){
  adam_domain_type(path = str_remove(paths[1], 'Original/') )  
 
 }
-# 
