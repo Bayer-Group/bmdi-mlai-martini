@@ -115,7 +115,9 @@ prepare_ml_outcome <- function(
   outcome_label <- outcome_name 
   purrr::iwalk(outcome_name, ~ {
     the_label <- labelled::var_label(outcome)[.x] %>% unlist()
-    outcome_label[.y] <<- the_label
+    if(!is.null(the_label)){
+      outcome_label[.y] <<- the_label
+    }
   })
   
   
