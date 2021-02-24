@@ -38,7 +38,8 @@ Imports:
 Suggests:
     knitr,
     rmarkdown,
-    here
+    here,
+    testthat
 VignetteBuilder: knitr
 BugReports: https://by-gitlab.de.bayer.cnb/EQYKG/batcave/-/issues
 License: GPL-3
