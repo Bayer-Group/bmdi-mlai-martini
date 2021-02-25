@@ -5,7 +5,7 @@ test_that("outcome preparation works (NA removal)", {
   
   set.seed(1605)
   outcome <- c(NA,  rnorm(9)) %>%  tibble::as_tibble_col('num_outcome') %>% 
-    dplyr::mutate(.id = 1:n(), .before=1)
+    dplyr::mutate(.id = 1:dplyr::n(), .before = 1)
   
   prep_res <- prepare_ml_outcome(
     outcome
@@ -22,7 +22,7 @@ test_that("outcome preparation works (outlier removal for regression)", {
   
   set.seed(1605)
   outcome <- c(20,  rnorm(9)) %>%  tibble::as_tibble_col('num_outcome') %>% 
-    dplyr::mutate(.id = 1:n(), .before=1)
+    dplyr::mutate(.id = 1:dplyr::n(), .before=1)
   
   prep_res <- prepare_ml_outcome(
     outcome,
