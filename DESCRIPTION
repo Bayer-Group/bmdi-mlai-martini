@@ -1,7 +1,7 @@
 Package: martini
 Type: Package
 Title: BMDI MLAI pipeline - Prepare Module
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
   person("Ahrens", "Maike", email = "maike.ahrens@chrestos.de", role = c("aut", "cre")),
   person("Voss", "Sebastian", email = "sebastian.voss@chrestos.de", role = c("aut")))

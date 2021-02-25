@@ -1,0 +1,23 @@
+---
+title: "MARTINI - MLAI pipeline prepare module"
+subtitle: "Prepare ADaM data for Machine Learning"
+author: "Maike Ahrens, Sebastian Voss"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MARTINI - MLAI pipeline prepare module}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## High-level concept
+
+<img src="img/martini-high-level.png" width="100%">
+
+
