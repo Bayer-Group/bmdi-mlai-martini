@@ -135,6 +135,7 @@ prepare_ml_vars <- function(
 # tests
 if (FALSE){
   
+  # require(tidyverse)
   n <- 27
   set.seed(1909)
   
@@ -154,5 +155,13 @@ if (FALSE){
     thres_lump  = 0.05,
     thres_imp   = 0.9
   )
-  
+ 
+  list(
+    count   = "count", 
+    log     = "log", 
+    nolump  = "nolump", 
+    imp     = "imp", 
+    exclude = "exclude"
+  )
+   
 }
