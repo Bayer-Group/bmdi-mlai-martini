@@ -60,8 +60,8 @@ build_occds <- function(
           dplyr::select(- tidyselect::any_of( spec$valuen))
       }}
     }} %>% 
-    # dplyr::distinct() %>% 
-    dplyr::filter(!spec$label %in% c("", " ")) %>% 
+    # remove observations with empty label
+    dplyr::filter(stringr::str_squish(label) != "") %>% 
     dplyr::mutate(param = make.names(label) %>% 
                     stringr::str_replace_all("[.]", "_") %>%
                     stringr::str_to_lower()) 
