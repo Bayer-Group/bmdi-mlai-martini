@@ -21,7 +21,8 @@
 #' \describe{
 #'   \item{*Subject id*}{Non-numeric columns are recoded as numeric, based on the order in which they appear in the data
 #'   (sorted by \code{id}). All columns with a perfect Spearman correlation to \code{id} are considered redundant and added to
-#'   the \code{drop_list}.}
+#'   the \code{drop_list}. In addition, all numeric columns with a perfect Spearman correlation to RANDDT (if available in the data)
+#'   are also added to the \code{drop_list}, as well as RANDNO (if present in data.}
 #'   \item{*Treatment variable*}{The predefined list of treatment variables is TRT01A, ARMCD, ARM, ACTARM, ACTARMCD, TRT01P, TR01PG1, TR02PG1, TR01AG1, TR02AG1.
 #'   No more than one of these variables will be returned in \code{select}. Note that the chosen treatment representing
 #'   variable will be renamed to the standard '.trt' in \code{\link{build_adsl}()}.}
@@ -222,7 +223,11 @@ adam_spec_adsl <- function(
   
   # transform all variables into numerics to enable correlation computation
   # sorting by id and using fct_inorder to assess monotonous association of id column with remaining data set
-  adsl_num <- adsl %>%
+  # (excluding previously identified flags, as they might introduce zero variance issues)
+  # -> identifies all character id columns (also those with a different order as 'id')
+  # and all numeric id columns with the same order as 'id'
+  adsl_cor_id <- adsl %>%
+    dplyr::select(-tidyselect::all_of(all_FL)) %>% 
     dplyr::arrange(tidyselect::all_of(id)) %>% 
     dplyr::mutate_if(~!is.numeric(.), ~{
       factor(.x) %>% 
@@ -232,17 +237,38 @@ adam_spec_adsl <- function(
     janitor::remove_constant(na.rm = TRUE)
   
   # correlations with 'id'
-  cors_id <- stats::cor(adsl_num, adsl_num[, id], method = "spearman", use = 'pairwise.complete.obs') %>% 
+  cors_id <- stats::cor(adsl_cor_id, adsl_cor_id[, id], method = "spearman", use = 'pairwise.complete.obs') %>% 
     as.data.frame() %>% 
     tibble::rownames_to_column("name") %>% 
     tibble::as_tibble() %>% 
     dplyr::rename(value = tidyselect::all_of(id))
   
+  # potential remaining numeric id columns are identified by monotonous relation with randomization date
+  cors_randdt <- NULL
+  if ("RANDDT" %in% colnames(adsl)){
+    
+    adsl_cor_randdt <- adsl %>%
+      dplyr::select(-tidyselect::all_of(all_FL)) %>% 
+      dplyr::mutate(RANDDT = as.numeric(RANDDT)) %>% 
+      dplyr::select_if(is.numeric) %>% 
+      janitor::remove_constant(na.rm = TRUE)
+    
+    cors_randdt <- stats::cor(adsl_cor_randdt, adsl_cor_randdt[, "RANDDT"], method = "spearman", use = 'pairwise.complete.obs') %>% 
+      as.data.frame() %>% 
+      tibble::rownames_to_column("name") %>% 
+      tibble::as_tibble() %>% 
+      dplyr::rename(value = tidyselect::all_of("RANDDT"))
+  }
+  
   redundant_id <- cors_id %>% 
+    dplyr::bind_rows(cors_randdt) %>% 
     dplyr::filter(dplyr::near(value, 1)) %>% 
     dplyr::pull(name) %>% 
     setdiff(id)
 
+  # randomization number (standard name = RANDNO) can not be identified by algorithm
+  if ("RANDNO" %in% colnames(adsl)) redundant_id <- c(redundant_id, "RANDNO")
+  
   # ... ... treatment ####
   
   # match standard treatment column names against actual data
