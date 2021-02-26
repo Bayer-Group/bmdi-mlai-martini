@@ -75,13 +75,15 @@ if(FALSE){
   adam_guess(file)
   
   # file doesn't exist
-  adam_guess(str_remove(file, 'Original/'))
+  adam_guess(stringr::str_remove(file, 'Original/'))
+  #testthat::expect_failure()
   
   # nothing guessed in adam_domain_type
-  adam_guess(str_replace(file, 'prod/adcm', 'prod/adpr'))
+  adam_guess(stringr::str_replace(file, 'prod/adcm', 'prod/adpr'))
+  #testthat::expect_failure()
   
   # nothing guessed for label and time
-  adam_guess(str_replace(file, 'prod/adcm', 'prod/advs'))
+  adam_guess(stringr::str_replace(file, 'prod/adcm', 'prod/advs'))
   
 }
 
