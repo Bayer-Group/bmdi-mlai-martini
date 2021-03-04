@@ -1,16 +1,18 @@
 testthat::test_that("prepare_ml_vars() works", {
  
+  library(readr)
   # require(tidyverse)
   n <- 27
   set.seed(1909)
   
   data <- tibble::tibble(
-    count   = sample(0:3, size = n, replace = TRUE),
-    log     = rnorm(n) %>% exp(),
-    nolump  = sample(c("a", "b"), size = n-1, replace = TRUE) %>% c("c") %>% factor(),
-    imp     = rnorm(n-1) %>% c(NA),
-    exclude = rep(NA, n-2) %>% c("a", "b") %>% factor(),
-    .out    = log
+    count     = sample(0:3, size = n, replace = TRUE),
+    count_dbl = as.double(count),
+    log       = rnorm(n) %>% exp(),
+    nolump    = sample(c("a", "b"), size = n-1, replace = TRUE) %>% c("c") %>% factor(),
+    imp       = rnorm(n-1) %>% c(NA),
+    exclude   = rep(NA, n-2) %>% c("a", "b") %>% factor(),
+    .out      = log
   )
   
   testthat::expect_equal(
@@ -24,7 +26,7 @@ testthat::test_that("prepare_ml_vars() works", {
     ),
     
     list(
-      count   = "count", 
+      count   = c("count", "count_dbl"), 
       log     = "log", 
       nolump  = "nolump", 
       imp     = "imp", 

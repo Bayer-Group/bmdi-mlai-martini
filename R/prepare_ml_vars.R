@@ -42,13 +42,16 @@ prepare_ml_vars <- function(
     vars_count <- NA
   } else {
     vars_count <- NULL
-    if (any(purrr::map_lgl(data, is.integer))){
+    vars_integer <- purrr::map_lgl(data, 
+      ~{ guess_parser(.x, guess_integer = TRUE)== 'integer'}) %>% 
+      which(.) %>%  names()
+    if (length(vars_integer)>0){
       vars_count <- data %>% 
-        dplyr::select_if(is.integer) %>% 
+        dplyr::select_if( ~{readr::guess_parser(.x, guess_integer = TRUE) == 'integer'} ) %>%  
         tidyr::pivot_longer(-tidyselect::any_of(remove), 
                             names_to = "paramcd", values_to = "aval") %>% 
         dplyr::group_by(paramcd) %>% 
-        dplyr::summarise(n_dist = dplyr::n_distinct(aval)) %>% 
+        dplyr::summarise(n_dist = dplyr::n_distinct(aval), .groups = "drop") %>% 
         dplyr::filter(n_dist <= thres_count) %>% 
         dplyr::pull(paramcd)
     }
