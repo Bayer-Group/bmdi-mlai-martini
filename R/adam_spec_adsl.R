@@ -201,7 +201,14 @@ adam_spec_adsl <- function(
       dplyr::select(lab_lev[r,] %>% as.character()) %>% 
       dplyr::distinct() %>% 
       dplyr::arrange(!! lev) %>% 
-      dplyr::pull(!! lab)
+      dplyr::pull(!! lab) %>% 
+      na.exclude()
+    
+    levs_label          <- attr(levs, "label") 
+    attributes(levs)    <- NULL
+    attr(levs, "label") <- levs_label
+    
+    lev_list[[lab]] <- levs
     
     lev_list[[lab]] <- levs
   }
