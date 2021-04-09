@@ -3,7 +3,7 @@
 #' Identify variable sets from input matrix that might require extra steps in data preparation,
 #' e.g. skewed variables to be log transformed, counts
 #'
-#' @param data the data set to be searched for feature sets with specific characteristics releveant for further data preparation
+#' @param data the data set to be searched for feature sets with specific characteristics relevant for further data preparation
 #' @param thres_count used to detect integer columns with up to \code{thres_count} distinct values (might be excluded from further processing, e.g. log & normalization) 
 #' @param thres_log threshold for log transformation
 #' @param thres_lump proportion threshold for factor lumping; used to detect factors with exactly one level having a relative frequency below \code{thres_lump}
@@ -37,19 +37,27 @@ prepare_ml_vars <- function(
 ){
   
   
+  
   # vars_count: identify integers with only a limited number of values ####
   if (is.null(thres_count)){
     vars_count <- NA
   } else {
     vars_count <- NULL
-    vars_integer <- purrr::map_lgl(data, 
-      ~{ guess_parser(.x, guess_integer = TRUE)== 'integer'}) %>% 
-      which(.) %>%  names()
+    vars_integer <- data %>%  
+      dplyr::mutate_if(is.factor, as.character) %>% 
+      purrr::map_lgl( 
+        ~{ readr::guess_parser(.x, guess_integer = TRUE) == 'integer'}
+      ) %>% 
+      which(.) %>%  
+      names()
     if (length(vars_integer)>0){
       vars_count <- data %>% 
+        dplyr::mutate_if(is.factor, as.character) %>% 
         dplyr::select_if( ~{readr::guess_parser(.x, guess_integer = TRUE) == 'integer'} ) %>%  
-        tidyr::pivot_longer(-tidyselect::any_of(remove), 
-                            names_to = "paramcd", values_to = "aval") %>% 
+        tidyr::pivot_longer(
+          -tidyselect::any_of(remove), 
+          names_to = "paramcd", values_to = "aval"
+        ) %>% 
         dplyr::group_by(paramcd) %>% 
         dplyr::summarise(n_dist = dplyr::n_distinct(aval), .groups = "drop") %>% 
         dplyr::filter(n_dist <= thres_count) %>% 

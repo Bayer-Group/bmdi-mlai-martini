@@ -210,6 +210,7 @@ build <- function(
           dplyr::filter(!! rlang::parse_expr(join_filter))  
       }}
     
+    # NOTE 
     # extract all occds columns for explicit factor na
     # missing values occurring from occurrence data mean 'absence of event', whereas NAs in bds data are true missing values
     # -> replace missings by 0 for numerics, level 'none' for factors

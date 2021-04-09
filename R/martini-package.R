@@ -12,5 +12,6 @@ utils::globalVariables(c(
   "domain", "type", "param", "label", "value", "name",
   ".id", ".trt", ".out", ".time", ".status", ".",
   "column", "selected", ".key",
-  "any_na", "aval", "min_aval", "n_dist", "paramcd", "skew"
+  "any_na", "aval", "min_aval", "n_dist", "paramcd", "skew",
+  "RANDDT", 'RANDNO'
 ))
