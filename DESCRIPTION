@@ -14,8 +14,6 @@ Imports:
     stats,
     utils,
     magrittr,
-    ggplot2,
-    vctrs,
     rlang,
     dplyr,
     tibble,
@@ -23,7 +21,6 @@ Imports:
     tidyselect (>= 1.0.0),
     forcats,
     purrr,
-    lubridate,
     stringr,
     tools,
     recipes,
@@ -34,7 +31,8 @@ Imports:
     janitor,
     labelled,
     e1071,
-    rsample
+    rsample,
+    readr
 Suggests:
     knitr,
     rmarkdown,

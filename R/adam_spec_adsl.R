@@ -83,9 +83,15 @@ adam_spec_adsl <- function(
     if (!trt %in% colnames(adsl)) usethis::ui_stop(paste0("Provided 'trt' column ", trt, " not present in the data set.\n"))
   }
   
+  # fix labels (no label = empty string) ####
+  labelled::var_label(adsl) <- labelled::var_label(adsl) %>% 
+    purrr::map(~{
+      if(is.null(.x)){""}else{.x}}
+    ) 
+  
   # create column dict (name <-> label)  ####
   dict <- labelled::var_label(adsl) %>% 
-    tibble::enframe(name = 'param', value = 'label') %>%  
+    tibble::enframe(name = 'param', value = 'label') %>% 
     dplyr::mutate(label  = purrr::map_chr(label, ~ .x[[1]])) %>% 
     dplyr::mutate(source = 'adsl') %>% 
     dplyr::mutate(type   = 'adsl')
@@ -182,7 +188,7 @@ adam_spec_adsl <- function(
   # keep list of all num codes for later use (setdiff with all numeric columns)
   all_num_codes <- c(
     all_lab_lev$lev,
-    dict %>% filter(stringr::str_detect(label, "\\(N\\)$")) %>% dplyr::pull(param)
+    dict %>% dplyr::filter(stringr::str_detect(label, "\\(N\\)$")) %>% dplyr::pull(param)
   ) %>% unique()
   
   # reduce to pairs for which level order needs to be extracted
@@ -221,7 +227,7 @@ adam_spec_adsl <- function(
     purrr::map_lgl( ~ { all(.x %in% labs)})
   
   all_comb <- all_slash[ind]
-  all_comb_columns <- dict %>% filter(labs %in% all_comb) %>% dplyr::pull(param)
+  all_comb_columns <- dict %>% dplyr::filter(labs %in% all_comb) %>% dplyr::pull(param)
   
   
   # ... identify redundants for id and trt ####
@@ -256,11 +262,16 @@ adam_spec_adsl <- function(
     
     adsl_cor_randdt <- adsl %>%
       dplyr::select(-tidyselect::all_of(all_FL)) %>% 
-      dplyr::mutate(RANDDT = as.numeric(RANDDT)) %>% 
+      dplyr::mutate(RANDDT = as.Date(RANDDT) %>% as.numeric()) %>% 
       dplyr::select_if(is.numeric) %>% 
       janitor::remove_constant(na.rm = TRUE)
     
-    cors_randdt <- stats::cor(adsl_cor_randdt, adsl_cor_randdt[, "RANDDT"], method = "spearman", use = 'pairwise.complete.obs') %>% 
+    cors_randdt <- stats::cor(
+        adsl_cor_randdt,
+        adsl_cor_randdt[, "RANDDT"],
+        method = "spearman",
+        use = 'pairwise.complete.obs'
+      ) %>% 
       as.data.frame() %>% 
       tibble::rownames_to_column("name") %>% 
       tibble::as_tibble() %>% 

@@ -226,7 +226,8 @@ build <- function(
           forcats::fct_explicit_na(.x, na_level = 'none') %>% 
             forcats::fct_shift(n = -1)
         }  
-      })
+      }) %>% 
+      droplevels()
     
     
     out                 <- prepped_join
