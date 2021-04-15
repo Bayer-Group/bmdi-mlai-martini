@@ -8,13 +8,13 @@ build_bds <- function(
   spec
 ){
   
-  md5 <- tools::md5sum(spec$file) %>%  as.character()
+  md5 <- tools::md5sum(spec$file) %>% as.character()
   
   if(is.null(spec$data)){
     
     # read data   ####
     file_name <- spec$file 
-    file_ext  <- stringr::str_split( file_name, '/|\\\\')[[1]] %>%  
+    file_ext  <- stringr::str_split(file_name, '/|\\\\')[[1]] %>%  
       tail(1) %>%  
       stringr::str_split(., '[.]') %>% 
       .[[1]] %>%  
@@ -25,7 +25,8 @@ build_bds <- function(
       
       if( md5 != spec$md5){
         usethis::ui_info(crayon::silver(
-          paste0('\t',  spec$spec_id, ': The spec was created from a file with a different md5 checksum. \n'))
+          paste0('\t',  spec$spec_id, 
+                 ': The spec was created from a file with a different md5 checksum. \n'))
         )
       }  
       
@@ -47,8 +48,8 @@ build_bds <- function(
       
         dplyr::filter(., !! rlang::parse_expr(filter_txt))
       }else{.}} %>% 
-    dplyr::filter( ! is.na(!! rlang::sym(spec$value )) ) %>% 
-    dplyr::select( tidyselect::any_of( c(spec$id, col_select  ))) %>% 
+    dplyr::filter( ! is.na(!! rlang::sym(spec$value) ) ) %>% 
+    dplyr::select( tidyselect::any_of( c(spec$id, col_select))) %>% 
     dplyr::rename( `.id` = spec$id ) # 
   
  
@@ -67,7 +68,6 @@ build_bds <- function(
   }
 
   # pivot   ####
- 
   
   bds_wide <- bds %>% 
     dplyr::select(tidyselect::all_of(c(spec$value, '.key', '.id'))) %>% 
@@ -91,9 +91,6 @@ build_bds <- function(
     }else{.}
     }
   
-  
-    
-
   
   # dictionary ####
   # overwrite dictionary from spec

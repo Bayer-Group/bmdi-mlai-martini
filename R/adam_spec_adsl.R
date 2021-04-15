@@ -78,9 +78,12 @@ adam_spec_adsl <- function(
   md5 <- tools::md5sum(file) %>% as.character()
   
   # check input ####
-  if (!id %in% colnames(adsl)) usethis::ui_stop(paste0("Provided 'id' column ", id, " not present in the data set.\n"))
+  if (!id %in% colnames(adsl)){
+    usethis::ui_stop(paste0("Provided 'id' column ", id, " not present in the data set.\n"))
+    }
   if (!is.null(trt)){
-    if (!trt %in% colnames(adsl)) usethis::ui_stop(paste0("Provided 'trt' column ", trt, " not present in the data set.\n"))
+    if (!trt %in% colnames(adsl)) {
+      usethis::ui_stop(paste0("Provided 'trt' column ", trt, " not present in the data set.\n"))}
   }
   
   # fix labels (no label = empty string) ####
@@ -98,7 +101,6 @@ adam_spec_adsl <- function(
   
   clmns <- dict$param
   labs  <- dict$label
-  
   
   # define black list (column names that are always excluded) ####
   black_list <- c(
@@ -215,8 +217,6 @@ adam_spec_adsl <- function(
     attr(levs, "label") <- levs_label
     
     lev_list[[lab]] <- levs
-    
-    lev_list[[lab]] <- levs
   }
   
   # ... identify combined columns (e.g. age/sex/race) ####
@@ -270,7 +270,7 @@ adam_spec_adsl <- function(
         adsl_cor_randdt,
         adsl_cor_randdt[, "RANDDT"],
         method = "spearman",
-        use = 'pairwise.complete.obs'
+        use    = 'pairwise.complete.obs'
       ) %>% 
       as.data.frame() %>% 
       tibble::rownames_to_column("name") %>% 
@@ -307,14 +307,14 @@ adam_spec_adsl <- function(
   
   # ... empty columns ####
   empties <- setdiff( 
-    adsl %>%  colnames(),
-    adsl %>%  janitor::remove_empty(which = 'cols') %>%  colnames()
+    adsl %>% colnames(),
+    adsl %>% janitor::remove_empty(which = 'cols') %>%  colnames()
   )
   
   # ... constant columns ####
   constants <- setdiff( 
-    adsl %>%  colnames(),
-    adsl %>%  janitor::remove_constant(na.rm = TRUE) %>% colnames()
+    adsl %>% colnames(),
+    adsl %>% janitor::remove_constant(na.rm = TRUE) %>% colnames()
   ) %>% 
     setdiff(empties)
   
@@ -401,10 +401,11 @@ if(FALSE){
   # file  <- paste0('real_world_data/adsl/', study, '/adsl.sas7bdat')
   file <-  paste0('data/', study, '/ads/adsl.sas7bdat')
   
-  id = 'SUBJID'
-  trt = NULL
+  id   = 'SUBJID'
+  trt  = NULL
   keep = NULL
   drop = NULL
+  
   filter = c("FASFL == 'Y'", "AGE < 80", "GENDER == 'female'")
   attach_data = TRUE
   

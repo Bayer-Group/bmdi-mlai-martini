@@ -92,7 +92,7 @@ build_adsl <- function(
   }
   
   # update dictionary   ####
-  if (!is.null(spec$dict)){
+  if(!is.null(spec$dict)){
     dict <- spec$dict %>% 
       # treatment variable was renamed to standard name
       dplyr::filter(param %in% c(spec$trt, colnames(adsl))) %>% 

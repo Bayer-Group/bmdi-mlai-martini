@@ -43,8 +43,8 @@ adam_domain_type <- function(
   path  = NULL , 
   keep  = NULL, 
   drop  = NULL,
-  quiet = FALSE){
-  
+  quiet = FALSE
+  ){
   
   # define look-up table ####
   # library of data sets to be processed automatically
@@ -52,24 +52,26 @@ adam_domain_type <- function(
   type_adsl <- c("adsl") %>% 
     paste0(".sas7bdat$") 
   type_bds <- c(   
-    paste0( c(  "adegf",   "adpc",
-                "adlb",  "advs",  "adxb", "adxl", 
-                "adqskccq", "adqsnyha", 'adqseq5d', 'adqspad', 'adqswimp'
-                ) , ".sas7bdat$"),
+    paste0( c(  
+      "adegf", "adpc",
+      "adlb", "advs", "adxb", "adxl", 
+      "adqskccq", "adqsnyha", 'adqseq5d', 'adqspad', 'adqswimp'
+      ) , 
+      ".sas7bdat$"),
     "adqs.*[.]sas7bdat$" ) #%>% 
   type_occds <- c("adae", "adcm", "admh") %>% 
     paste0(".sas7bdat$")
   
   ads_library <- dplyr::bind_rows(
-    tibble::tibble(domain = type_adsl)  %>%  dplyr::mutate(`adam_spec_*` = 'adsl' ) ,
-    tibble::tibble(domain = type_bds)   %>%  dplyr::mutate(`adam_spec_*` = 'bds'  ) ,
-    tibble::tibble(domain = type_occds) %>%  dplyr::mutate(`adam_spec_*` = 'occds') 
+    tibble::tibble(domain = type_adsl)  %>% dplyr::mutate(`adam_spec_*` = 'adsl' ),
+    tibble::tibble(domain = type_bds)   %>% dplyr::mutate(`adam_spec_*` = 'bds'  ),
+    tibble::tibble(domain = type_occds) %>% dplyr::mutate(`adam_spec_*` = 'occds') 
   )  %>%  
     dplyr::mutate_at('domain',~  stringr::str_remove_all(.x, '(\\[.\\]|[.])sas7bdat\\$'))
   
-  type_adsl  <- type_adsl  %>%  paste(collapse = "|")
-  type_bds   <- type_bds   %>%  paste(collapse = "|")
-  type_occds <- type_occds %>%  paste(collapse = "|")
+  type_adsl  <- type_adsl  %>% paste(collapse = "|")
+  type_bds   <- type_bds   %>% paste(collapse = "|")
+  type_occds <- type_occds %>% paste(collapse = "|")
   
   
   # EITHER return look-up table  ####
@@ -83,7 +85,7 @@ adam_domain_type <- function(
 
     if( ! dir.exists(path) && ! file.exists(path)){
       usethis::ui_stop(paste0(
-        crayon::silver( "The provided path does not exist. \n\t "), 
+        crayon::silver("The provided path does not exist. \n\t "), 
         crayon::blue(path)
       ))
     }
@@ -187,15 +189,15 @@ if(FALSE){
  adam_domain_type(path = paths[2])
  
  # keep: files actually in path
- adam_domain_type(path = paths[1] , keep = c('adqseq5d', 'advs'))  
- adam_domain_type(path = paths[1] , keep = c('adqseq5d', 'advs.sas7bdat'))  
+ adam_domain_type(path = paths[1], keep = c('adqseq5d', 'advs'))  
+ adam_domain_type(path = paths[1], keep = c('adqseq5d', 'advs.sas7bdat'))  
  
  # keep: files not found in path (typo, missing file selected)
- adam_domain_type(path = paths[1] , keep = c('adqs'))  
+ adam_domain_type(path = paths[1], keep = c('adqs'))  
  
  # keep/drop: keep  
  # info: Please specify only one of 'keep' or 'drop'. Only 'keep' will be used for subsetting here.
- adam_domain_type(path = paths[1] , keep = c('adqseq5d', 'advs'), drop = 'advs')  
+ adam_domain_type(path = paths[1], keep = c('adqseq5d', 'advs'), drop = 'advs')  
  
  # path: path doesn't exist
  # Error: The provided path does not exist

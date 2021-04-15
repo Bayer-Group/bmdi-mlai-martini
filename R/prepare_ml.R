@@ -188,18 +188,19 @@ prepare_ml <- function(
   
   # ... define renaming vector ####
   # order matters!
-  renaming <- c('<= |<=' = 'less_than_',  
-                '> '  = 'over_',
-                '< '  = 'under_',
-                ' - ' = '_to_',  
-                '>= |>=' = 'at_least_', 
-                '<'   = 'under_' ,
-                '>'   = 'over_',
-                ' years|years' = '_y',
-                '%'   = 'pct',
-                '[[:punct:]]|[[:space:]]' = '_',
-                '_+'  = '_',
-                '_$' = ''
+  renaming <- c(
+    '<= |<=' = 'less_than_',  
+    '> '  = 'over_',
+    '< '  = 'under_',
+    ' - ' = '_to_',  
+    '>= |>=' = 'at_least_', 
+    '<'   = 'under_' ,
+    '>'   = 'over_',
+    ' years|years' = '_y',
+    '%'   = 'pct',
+    '[[:punct:]]|[[:space:]]' = '_',
+    '_+'  = '_',
+    '_$' = ''
   )
   
   

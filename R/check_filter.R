@@ -44,12 +44,3 @@ check_filter <- function(data, filter){
 }
 
 
-# tests
-if(FALSE){
-  test_filter <- c('mpg > 0', 'DISP < 200')
-  check_filter(mtcars, test_filter)
-  #expected: TRUE, FALSE
-}
-
-
-

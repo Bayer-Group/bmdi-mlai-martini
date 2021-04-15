@@ -26,7 +26,8 @@ build_occds <- function(
       
       if( md5 != spec$md5){
         usethis::ui_info(crayon::silver(
-          paste0('\t',  spec$spec_id, ': The spec was created from a file with a different md5 checksum. \n'))
+          paste0('\t',  spec$spec_id, 
+                 ': The spec was created from a file with a different md5 checksum. \n'))
         )
       }  
       
@@ -71,8 +72,8 @@ build_occds <- function(
   
   # TODO for pivoting: add parameter values_fn, currently maximum is chosen 
   values_fn <- function(x) base::max(as.numeric(x))
-  # pivot   ####
   
+  # pivot   ####
   
   occds_wide <- occds %>% 
       dplyr::select(tidyselect::all_of(c('value', 'param', '.id'))) %>% 

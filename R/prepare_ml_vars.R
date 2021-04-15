@@ -36,8 +36,6 @@ prepare_ml_vars <- function(
 
 ){
   
-  
-  
   # vars_count: identify integers with only a limited number of values ####
   if (is.null(thres_count)){
     vars_count <- NA

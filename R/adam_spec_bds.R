@@ -92,7 +92,8 @@ adam_spec_bds <- function(
   purrr::iwalk(col_select, ~{
     if (!is.null(.x) && (length(intersect(.x, coln_bds)) == 0)) {
       usethis::ui_info(crayon::silver(paste0(
-        'AD', domain, ": Column '", .x, "' is not available in the data set. '", .y, "' will be guessed.\n")))
+        'AD', domain, ": Column '", .x, "' is not available in the data set. '",
+        .y, "' will be guessed.\n")))
     }
   })
   

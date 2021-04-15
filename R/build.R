@@ -96,11 +96,12 @@ build <- function(
       
       interim <- interim %>% 
         append(
-          purrr::map(files_adsl,
-                     ~ adam_spec_adsl(file = .x, filter = filter, attach_data = attach_data) %>% 
-                       {if(! spec_only){
-                         build_adsl(.)
-                       } else {.} }
+          purrr::map(
+            files_adsl,
+            ~ adam_spec_adsl(file = .x, filter = filter, attach_data = attach_data) %>% 
+              {if(! spec_only){
+                build_adsl(.)
+              } else {.} }
           )
         )
       
@@ -108,7 +109,7 @@ build <- function(
     
     # ... ... type bds ####
     
-    if ( any(file_info$type == "bds") ){
+    if(any(file_info$type == "bds")){
       
       files_bds <- file_info %>% 
         dplyr::filter(type == "bds") %>% 
@@ -117,18 +118,19 @@ build <- function(
       
       interim <- interim %>% 
         append(
-          purrr::map(files_bds, 
-                     ~adam_spec_bds(file = .x, filter = filter, attach_data = attach_data)%>% 
-                       {if(! spec_only){
-                         build_bds(.)
-                       } else {.} }
+          purrr::map(
+            files_bds, 
+            ~adam_spec_bds(file = .x, filter = filter, attach_data = attach_data) %>% 
+              {if(! spec_only){
+                build_bds(.)
+              } else {.} }
           )
         )
       
     }
     
     # ... ... type occds  ####
-    if ( any(file_info$type == "occds") ){
+    if(any(file_info$type == "occds")){
       
       files_occds <- file_info %>% 
         dplyr::filter(type == "occds") %>% 
@@ -137,11 +139,12 @@ build <- function(
       
       interim <- interim %>% 
         append(
-          purrr::map(files_occds, 
-                     ~adam_spec_occds(file = .x, filter = filter, attach_data = attach_data)%>% 
-                       {if(! spec_only){
-                         build_occds(.)
-                       } else {.} }
+          purrr::map(
+            files_occds, 
+            ~ adam_spec_occds(file = .x, filter = filter, attach_data = attach_data) %>% 
+              {if(! spec_only){
+                     build_occds(.)
+              } else {.} }
           )
         )
       
@@ -151,15 +154,18 @@ build <- function(
   }else{
     
     # add names to the spec if none are provided
-    if( is.null(names(spec)) )  names(spec) <- rep('', length(spec))
+    if(is.null(names(spec))) names(spec) <- rep('', length(spec))
     
     for (i in 1:length(spec)){
-      if(is.null(spec[[i]]$"spec_id"))   spec[[i]]$"spec_id" <- names(spec)[i]
+      if(is.null(spec[[i]]$"spec_id")) {
+        spec[[i]]$"spec_id" <- names(spec)[i]
+      }
     }
     
     # call the appropriate build_*() function
-    interim <- purrr::map(spec, 
-                          ~  { do.call( paste0('build_',   .x[['type']]), list(.x)) }
+    interim <- purrr::map(
+      spec, 
+      ~  { do.call( paste0('build_', .x[['type']]), list(.x)) }
     )
     
   }
@@ -228,7 +234,6 @@ build <- function(
         }  
       }) %>% 
       droplevels()
-    
     
     out                 <- prepped_join
     attr(out, "dict")   <- prepped_dict
