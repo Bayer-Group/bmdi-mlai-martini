@@ -3,8 +3,17 @@ Type: Package
 Title: BMDI MLAI pipeline - Prepare Module
 Version: 0.1.1
 Authors@R: c(
-  person("Ahrens", "Maike", email = "maike.ahrens@chrestos.de", role = c("aut", "cre")),
-  person("Voss", "Sebastian", email = "sebastian.voss@chrestos.de", role = c("aut")))
+    person("Ahrens", "Maike", 
+      email   = "maike.ahrens.ext@bayer.com", 
+      role    = c("aut", "cre"),
+      comment = c(CWID = "ahrensmaike")
+      ),
+    person("Voss", "Sebastian", 
+      email   = "sebastian.voss.ext@bayer.com", 
+      role    = c("aut"),
+      comment = c(CWID = "svoss09")
+    )
+  )
 Description: Prepare module of the BMDI MLAI pipeline. It contains functions to conveniently
   transform a set of ADaM data sets (adsl, bds and occds) into a data object that can be used
   for machine learning, e.g. using the BMDI MLAI pipeline.
