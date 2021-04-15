@@ -85,8 +85,8 @@ adam_spec_adsl <- function(
   
   # fix labels (no label = empty string) ####
   labelled::var_label(adsl) <- labelled::var_label(adsl) %>% 
-    purrr::map(~{
-      if(is.null(.x)){""}else{.x}}
+    purrr::imap(~{
+      if(is.null(.x)){.y}else{.x}}
     ) 
   
   # create column dict (name <-> label)  ####

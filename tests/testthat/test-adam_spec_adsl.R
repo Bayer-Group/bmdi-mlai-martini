@@ -14,7 +14,7 @@ test_that("adam_spec_adsl", {
   # TEST adsl prepare specification ####
   
   # ... column selection ####
-  testthat::expect_equal(
+  testthat::expect_setequal(
     ads_spec_adsl$select,
     c("SUBJID", "TRT01A", "AGEGR01", "SEX", "RACE", "AGE")
   )
