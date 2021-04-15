@@ -41,31 +41,31 @@ adsl <- tibble(
   AGE      = sample(45:92, size = n, replace = TRUE)
 ) %>% 
   
-# factors with numeric coding
-mutate(
-  # ... SEX
-  SEX      = sample(c("M", "F"), size = n, replace = TRUE),
-  SEXN     = factor(SEX) %>%  fct_relevel('M') %>%  as.integer(),
+  # factors with numeric coding
+  mutate(
+    # ... SEX
+    SEX      = sample(c("M", "F"), size = n, replace = TRUE),
+    SEXN     = factor(SEX) %>%  fct_relevel('M') %>%  as.integer(),
+    
+    # ... RACE
+    RACE     = sample(c(race_levs, NA_character_), 
+                      size = n, replace = TRUE, prob = c(0.7, 0.1, 0.15, 0.05)),
+    RACEN    = factor(RACE, levels = race_levs) %>%   as.integer()
+  ) %>% 
+    
+  # ... AGE  
+  mutate(
+    AGEGR01  = cut(AGE, breaks = age_breaks, right = FALSE),
+    AGEGR01N = as.numeric(AGEGR01) %>%  as.integer(),
+    .after   = AGE
+  ) %>%  
+  mutate_at('AGEGR01',  ~ fct_recode(.x, !!! age_levs ) %>%  as.character() ) %>%  
   
-  # ...RACE
-  RACE     = sample(c(race_levs, NA_character_), 
-                    size = n, replace = TRUE, prob = c(0.7, 0.1, 0.15, 0.05)),
-  RACEN    = factor(RACE, levels = race_levs) %>%   as.integer()
-) %>% 
+  # combined column
+  unite(UASR, USUBJID, AGE, RACE, SEX, sep = '/', remove = FALSE)
   
-# ... AGE  
-mutate(
-  AGEGR01  = cut(AGE, breaks = age_breaks, right = FALSE),
-  AGEGR01N = as.numeric(AGEGR01) %>%  as.integer(),
-  .after   = AGE
-) %>%  
-mutate_at('AGEGR01',  ~ fct_recode(.x, !!! age_levs ) %>%  as.character() ) %>%  
-
-# combined column
-unite(UASR, USUBJID, AGE, RACE, SEX, sep='/', remove = FALSE)
-
-
-
+  
+  
 # define labels ####
 adsl_labels <- list(
   ADSNAME  = "Dataset Name",
@@ -76,8 +76,8 @@ adsl_labels <- list(
   TRT01A   = "Actual Treatment for Period 01",
   TRT01P   = "Planned Treatment for Period 01",
   RANDDT   = "Date of Randomization",
-  EMPTYC   = NULL,
-  EMPTYN   = NULL,
+  EMPTYC   = "",
+  EMPTYN   = "",
   AGE      = "Age",
   AGEGR01  = "Age Group 01",
   AGEGR01N = "Age Group 01 (N)",
@@ -91,5 +91,16 @@ adsl_labels <- list(
 
 adsl <- adsl %>% 
   set_variable_labels( .labels = adsl_labels)
+
+adsl_labels_exp <- adsl_labels %>% 
+  unlist() %>% 
+  enframe(name = "column", value = "label")
+
+
+
+write_csv(adsl, "data/adsl.csv", na = "")
+write_csv(adsl_labels_exp, "data/adsl_labels.csv")
+
+
 
 # view(adsl)
