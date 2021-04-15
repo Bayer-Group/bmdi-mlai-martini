@@ -67,7 +67,9 @@ adam_spec <- function(
     
     spec <- spec %>% 
       append(
-        purrr::map(files_adsl, ~ adam_spec_adsl(file = .x, id = id, trt = trt, filter = filter, attach_data = attach_data))
+        purrr::map(files_adsl, ~ adam_spec_adsl(
+          file = .x, id = id, trt = trt, filter = filter, attach_data = attach_data
+        ))
       )
     
   }
@@ -83,7 +85,9 @@ adam_spec <- function(
     
     spec <- spec %>% 
       append(
-        purrr::map(files_bds, ~ adam_spec_bds(file = .x, filter = filter, attach_data = attach_data))
+        purrr::map(files_bds, ~ adam_spec_bds(
+          file = .x, filter = filter, attach_data = attach_data
+        ))
       )
     
   }
@@ -99,7 +103,9 @@ adam_spec <- function(
     
     spec <- spec %>% 
       append(
-        purrr::map(files_occds, ~ adam_spec_occds(file = .x, filter = filter, attach_data = attach_data, pre_study = pre_study))
+        purrr::map(files_occds, ~ adam_spec_occds(
+          file = .x, filter = filter, attach_data = attach_data, pre_study = pre_study
+        ))
       )
     
   }
