@@ -14,7 +14,7 @@ prepare_ml_vars(
 )
 }
 \arguments{
-\item{data}{the data set to be searched for feature sets with specific characteristics releveant for further data preparation}
+\item{data}{the data set to be searched for feature sets with specific characteristics relevant for further data preparation}
 
 \item{thres_count}{used to detect integer columns with up to \code{thres_count} distinct values (might be excluded from further processing, e.g. log & normalization)}
 

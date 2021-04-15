@@ -2,4 +2,5 @@
 ^\.Rproj\.user$
 ^data$
 ^tmp$
-^R_dev$
+^dev$
+^doc$
