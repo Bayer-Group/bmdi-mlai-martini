@@ -7,7 +7,7 @@
 #' handling missing values, normalization, removal of redundant information (highly correlated features). 
 #' Please refer to the Details section for more information.
 #' 
-#'
+#' 
 #' @param feature feature matrix in wide format, e.g. output object of \code{\link{build}()}, 
 #' i.e. containing \code{.id} column and predictors
 #' @param outcome tibble containing \code{.id} column and the outcome of interest, \code{\link{prepare_ml_outcome}()}
