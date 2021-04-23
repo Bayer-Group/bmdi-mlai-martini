@@ -229,7 +229,7 @@ build <- function(
         if(is.numeric(.x)){
           tidyr::replace_na(.x, replace = 0L )
         }else{
-          forcats::fct_explicit_na(.x, na_level = 'none') %>% 
+          forcats::fct_explicit_na(.x, na_level = 'no') %>% 
             forcats::fct_shift(n = -1)
         }  
       }) %>% 
