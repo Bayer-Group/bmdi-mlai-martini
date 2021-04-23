@@ -12,16 +12,19 @@ test_that("adam_spec", {
   # create prepare specification
   ads_spec <- martini::adam_spec(ads_path)
 
+  
   # TEST object structure ####
   
   testthat::expect_length(
     ads_spec,
-    1
+    2
   )
   
   testthat::expect_named(
     ads_spec,
-    c("adsl")
+    c("adsl", "adlb")
   )
+  
+  
   
 })
