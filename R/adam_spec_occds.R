@@ -61,7 +61,10 @@ adam_spec_occds <- function(
   md5        <- tools::md5sum(file) %>%  as.character()
   guesses    <- adam_guess(file)
   coln_occds <- colnames(occds)
-  source     <- adam_domain_type(file)$domain
+  domain     <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
+    tail(1) %>% 
+    stringr::str_remove_all('^ad|[.]sas7bdat$') %>% 
+    stringr::str_to_upper()
   
   # check input validity ####
   # ... mandatory columns ####
@@ -134,7 +137,7 @@ adam_spec_occds <- function(
   dict  <- occds %>% 
     dplyr::select( label = !!rlang::sym(label) ) %>% 
     dplyr::distinct() %>%
-    dplyr::mutate(source = source) %>% 
+    dplyr::mutate(source = domain) %>% 
     dplyr::mutate(type   = 'occds') 
   
   # remove occds data set label automatically created by haven::read_sas()
@@ -163,7 +166,7 @@ adam_spec_occds <- function(
     filter  = actual_filter,
     count   = count,
     dict    = dict,
-    spec_id = source
+    spec_id = domain
   ) %>% 
     append(
       col_select %>% as.list()
