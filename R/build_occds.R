@@ -71,7 +71,11 @@ build_occds <- function(
   
   
   # TODO for pivoting: add parameter values_fn, currently maximum is chosen 
-  values_fn <- function(x) base::max(as.numeric(x))
+  values_fn <- function(x){
+    # if numeric = max
+    # if factor  = highest level
+    sort(x) %>% tail(1)
+  }
   
   # pivot   ####
   
