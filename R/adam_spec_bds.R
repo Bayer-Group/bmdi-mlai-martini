@@ -64,7 +64,7 @@ adam_spec_bds <- function(
   bds      <- haven::read_sas(file)
   md5      <- tools::md5sum(file) %>% as.character()
   coln_bds <- colnames(bds)
-  source   <- adam_domain_type(file)$domain
+     
   
   if (! id %in% coln_bds){
     usethis::ui_stop(
@@ -165,7 +165,7 @@ adam_spec_bds <- function(
       col_select[c('param', 'label', 'unit')] %>%  na.omit() 
     )) %>% 
     dplyr::distinct() %>%
-    dplyr::mutate(source = source) %>% 
+    dplyr::mutate(source = domain) %>% 
     dplyr::mutate(type   = 'bds') 
  
   
@@ -183,7 +183,7 @@ adam_spec_bds <- function(
     id      = id,
     filter  = actual_filter,
     dict    = dict,
-    spec_id = source
+    spec_id = domain
   ) %>% 
     append(
       col_select %>% as.list()
