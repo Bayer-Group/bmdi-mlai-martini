@@ -18,11 +18,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Ahrens Maike \email{maike.ahrens@chrestos.de}
+\strong{Maintainer}: Ahrens Maike \email{maike.ahrens.ext@bayer.com} (ahrensmaike)
 
 Authors:
 \itemize{
-  \item Voss Sebastian \email{sebastian.voss@chrestos.de}
+  \item Voss Sebastian \email{sebastian.voss.ext@bayer.com} (svoss09)
 }
 
 }
