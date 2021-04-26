@@ -1,6 +1,6 @@
 test_that("adam_spec_adsl", {
   
-  # TEST SETUP ####
+  # SETUP ####
   
   # use system.file() to identify folder location after pkg is installed (system dependent)
   file_adsl <- system.file("sas/adsl.sas7bdat", package = "martini")
