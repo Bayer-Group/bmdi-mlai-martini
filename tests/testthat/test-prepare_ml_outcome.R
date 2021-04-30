@@ -1,4 +1,25 @@
 
+# MISSING OUTCOME LABEL  ####
+
+test_that("function handles missing outcome label", {
+  
+  # classification ####
+  set.seed(1719)
+  n <- 10
+  target_label_in_dict <- 'outcome'
+  outcome <- sample(c("A", "B"), size = n, replace = TRUE) %>%
+    tibble::as_tibble_col(target_label_in_dict) %>% 
+    dplyr::mutate(.id = 1:dplyr::n(), .before = 1)
+  
+  prep_res <- martini:::prepare_ml_outcome(
+    outcome
+  )
+  
+  # label in dictionary = column name
+  testthat::expect_equal(prep_res$outcome_label[['.out']], target_label_in_dict)
+  
+})
+
 # NA REMOVAL  ####
 
 test_that("outcome preparation works (NA removal)", {

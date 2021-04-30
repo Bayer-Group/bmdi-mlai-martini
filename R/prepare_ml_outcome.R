@@ -15,6 +15,7 @@
 #' @param outlier_ctrl Control list for the outlier removal, if \code{outlier_remove} is \code{TRUE}. Currently, the list contains only
 #' the boxplot outlier coefficient \code{coef}, which defaults to 3.
 #' 
+#' 
 #' @return 
 #' 
 #' A list with the following slots
@@ -25,7 +26,7 @@
 #' \item{outcome_label}{Named vector with the labels(s) of the outcome variable(s). If the columns of \code{outcome} do not contain labels,
 #' the column name is used instead.}
 #' \item{outcome_mode}{The outcome mode (\code{regression}, \code{classification} or \code{survival}.}
-#' \item{outcome_dict}{Dictionary tibble for the outcome variable(s).}
+#' \item{outcome_dict}{Dictionary tibble for the outcome variable(s). If no label was provided for the selected columns, the column name will be reused as label in the dictionary.}
 #' \item{na_outcome}{The IDs of NAs in \code{outcome}.}
 #' \item{id_outlier}{The IDs of removed outliers.}
 #' 
