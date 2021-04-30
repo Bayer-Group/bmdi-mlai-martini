@@ -30,7 +30,7 @@ test_that("build_bds works", {
     unique()
   
   comp <- martini::build_bds(spec = ads_spec_adlb)$data %>% 
-    select(tidyselect::all_of(c(".id", dupl))) %>% 
+    dplyr::select(tidyselect::all_of(c(".id", dupl))) %>% 
     tidyr::pivot_longer(-.id, names_to = "PARAMCD", values_to = "AVAL") %>% 
     dplyr::left_join(ref, by = c(".id" = "SUBJID", "PARAMCD"))
   
