@@ -60,7 +60,7 @@
 
 
 
-adam_spec_adsl <- function(
+ adam_spec_adsl <- function(
   file, 
   id          = 'SUBJID',
   trt         = 'TRT01A',
@@ -323,13 +323,14 @@ adam_spec_adsl <- function(
   # ... drop list ####
   drop_list <- list(
     "drop"         = drop,
-    "datetimes"    = all_date_times,
-    "numcodes"     = all_num_codes,
-    "combinations" = all_comb_columns,
-    "redundancies" = all_redundants,
-    "flags"        = flags,  
+    "datetime"     = all_date_times,
+    "numcode"      = all_num_codes,
+    "combination"  = all_comb_columns,
+    "redundancy"   = all_redundants,
+    "flag"         = flags,  
     "empty"        = empties,
-    "constant"     = constants
+    "constant"     = constants,
+    "blacklist"    = black_list
   ) %>% 
     purrr::map(~setdiff(., keep))
   
