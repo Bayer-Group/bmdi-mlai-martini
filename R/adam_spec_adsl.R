@@ -43,12 +43,12 @@
 #' \item{`drop_list`}{a list containing column names suggested to be dropped with the entry
 #' name identifying the rationale for the discard
 #'   \describe{ 
-#'     \item{`drop`}{user input `drop`} 
-#'     \item{`datetimes`}{date/times columns} 
-#'     \item{`numcodes`}{numeric code for another variable (incl numeric flags)} 
-#'     \item{`flags`}{flags (both numeric and character columns), see also `flag_table`}
-#'     \item{`combinations`, `empty`, `constant`}{combined, empty and constant columns, resp.}
-#'     \item{`redundancies`}{columns with redundant information to `id` and `trt` if provided)}
+#'     \item{`drop`}{passing the user input `drop`} 
+#'     \item{`datetime`}{date/times columns} 
+#'     \item{`numcode`}{numeric code for another variable (incl numeric flags)} 
+#'     \item{`flag`}{flags (both numeric and character columns), see also `flag_table`}
+#'     \item{`combination`, `empty`, `constant`}{combined, empty and constant columns, resp.}
+#'     \item{`redundancy`}{columns with redundant information to `id` and `trt` if provided)}
 #'  }}
 #' \item{`spec_id`}{character string \code{adsl}, generally the name of the domain}  
 #' \item{`dict`}{a tibble of column names and labels (if present in the data set)}  

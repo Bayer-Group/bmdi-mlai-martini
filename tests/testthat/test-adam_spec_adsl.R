@@ -23,19 +23,19 @@ test_that("adam_spec_adsl", {
   
   # ... ... date time ####
   testthat::expect_equal(
-    ads_spec_adsl$drop_list$datetimes,
+    ads_spec_adsl$drop_list$datetime,
     c("RANDDT")
   )
   
   # ... ... numeric codes ####
   testthat::expect_equal(
-    ads_spec_adsl$drop_list$numcodes,
+    ads_spec_adsl$drop_list$numcode,
     c("AGEGR01N", "SEXN", "RACEN")
   )
   
   # ... ... redundancies ####
   testthat::expect_equal(
-    ads_spec_adsl$drop_list$redundancies,
+    ads_spec_adsl$drop_list$redundancy,
     c("UASR", "USUBJID", "RANDDT", "TRT01P")
   )
   
