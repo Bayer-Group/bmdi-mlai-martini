@@ -24,7 +24,7 @@ Imports:
     utils,
     magrittr,
     rlang,
-    dplyr,
+    dplyr (>= 1.0.0),
     tibble,
     tidyr (>= 1.0.0),
     tidyselect (>= 1.0.0),
