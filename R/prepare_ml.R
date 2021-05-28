@@ -27,7 +27,7 @@
 #' possibly specified further using additional parameters (`thres_*`, `log_base`, `one_hot`)
 #' Please refer to the details section for the full list of recipe steps.
 #' @param thres_imp Minimal proportion of non-missing data per feature required to be kept 
-#' in the data and completed using \code{recipes::step_knnimpute()}. 
+#' in the data and completed using \code{recipes::step_impute_knn()}. 
 #' Variables not meeting the threshold will be dropped and not be included in \code{data_prep} data. 
 #' Per default \code{thres_imp = 0.8}, i.e. variables will be dropped if the proportion of available data is less than 80%. 
 #' Variables listed in \code{vars_imp_ignore} will never be imputed, observations with missing data in the respective
@@ -61,7 +61,7 @@
 #' 
 #' * drop variables e.g. not meeting the minimum threshold for non-missing data proportion (`step_rm()`)
 #' * remove observations with missing data in outcome (`step_naomit()`)
-#' * knn imputation on variables with missing values that are not explicitly excluded from imputation  (`step_knnimpute()`)
+#' * knn imputation on variables with missing values that are not explicitly excluded from imputation  (`step_impute_knn()`)
 #' * omit observations with remaining missing values (i.e. in variables that were excluded from imputation and not dropped before) (`step_naomit()`)
 #' * removal of near-zero variance variables (`step_nzv()`)
 #' * log-transformation (`step_log()`)
@@ -318,7 +318,7 @@ prepare_ml <- function(
       
       # ... ... imputation ####
     {if(prep_step_knnimpute){
-      recipes::step_knnimpute(., tidyselect::any_of(vars_imp), -recipes::all_outcomes(), -recipes::has_role("ID")) }else{.}
+      recipes::step_impute_knn(., tidyselect::any_of(vars_imp), -recipes::all_outcomes(), -recipes::has_role("ID")) }else{.}
     } %>% 
       
       # ... ... omit observations with missing data in variables ignored in imputation ####
