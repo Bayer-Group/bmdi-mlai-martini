@@ -21,6 +21,7 @@
 #' @param prep_recipe a custom, pre-defined \code{recipes::recipe()} may be provided for data preparation. Defaults to NULL, yielding a data-driven preparation. 
 #' please refer to the details section to learn about the individual recipe steps.
 #' @param train_prop the proportion of data to be used for the training set. Has to be in \[0.5;1.0\]. Defaults to 3/4, keeping a quarter of the data for testing.
+#' @param strata_trt boolean. Expand default stratum variable (\code{.out} for classification, \code{.stratum} for tte, \code{NULL} for regression) by trt (if character, else ignored). Defaults to FALSE.
 #' @param seed optionally set a seed before the data splitting. 
 #' @param prep_step_knnimpute,prep_step_log,prep_step_normalize,prep_step_corr,prep_step_dummy logicals determining 
 #' whether or not the corresponding step function should be included in the recipe, 
@@ -119,6 +120,7 @@ prepare_ml <- function(
   level_order  = NULL,
   prep_recipe  = NULL,
   train_prop   = 3/4,
+  strata_trt   = FALSE,
   seed         = 1130,
   
   prep_step_normalize = TRUE,
@@ -244,15 +246,9 @@ prepare_ml <- function(
   # MERGE OUTCOME AND FEATURE  ####
   
   d_raw <- outcome %>%
-    dplyr::inner_join(feature, by = ".id")
+    dplyr::inner_join(feature, by = ".id") 
   
   # DATA SPLIT ####
-  
-  if(!is.null(seed))  set.seed(seed)
-  
-  strata <- NULL
-  if(outcome_mode == "classification") strata <- '.out'
-  if(outcome_mode == "survival")       strata <- '.status'
   
   train_prop_valid <- c(0.5, 1)
   if (!dplyr::between(train_prop, train_prop_valid[1], train_prop_valid[2])){
@@ -263,9 +259,36 @@ prepare_ml <- function(
   } 
   
   if (train_prop < 1){
-    d_split     <- d_raw %>% rsample::initial_split(strata = tidyselect::all_of(strata), prop = train_prop)
-    d_train_raw <- rsample::training(d_split)
-    d_test_raw  <- rsample::testing( d_split)
+    if(!is.null(seed))  set.seed(seed)
+    
+    strata <- NULL
+    if(outcome_mode == "classification") strata <- '.out'
+    if(outcome_mode == "survival")       strata <- '.status'
+    
+    # TODO to be tested...
+    if(strata_trt){
+      # check .trt is available, else ignore
+      trt_present <- '.trt' %in% d_raw %>% colnames()
+      if(! trt_present){
+        # TODO crayon
+        usethis::ui_stop(paste0(
+          'No treatment variable was detected in the data set. Argument strata_trt was set to TRUE but will be ignored.'))
+      }  
+      
+      if(is.null(strata)){#if(outcome_mode == "regression"){
+        strata <- '.trt'
+      }else{
+        d_raw_split <- d_raw %>% 
+          dplyr::unite(extend_strata, strata, .trt, remove = FALSE)
+        
+        strata <- 'extend_strata'
+      }  
+      
+    }
+    
+    d_split     <- d_raw_split %>% rsample::initial_split(strata = tidyselect::all_of(strata), prop = train_prop)
+    d_train_raw <- rsample::training(d_split) %>% dplyr::select(-tidyselect::any_of(c('extend_strata')))
+    d_test_raw  <- rsample::testing( d_split) %>% dplyr::select(-tidyselect::any_of(c('extend_strata')))
   } else {
     d_split     <- NULL
     d_train_raw <- d_raw
