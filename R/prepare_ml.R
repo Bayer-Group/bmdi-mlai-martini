@@ -264,26 +264,25 @@ prepare_ml <- function(
     strata <- NULL
     if(outcome_mode == "classification") strata <- '.out'
     if(outcome_mode == "survival")       strata <- '.status'
-    
-    # TODO to be tested...
+   
+    strata_new <- strata
     if(strata_trt){
       if(! '.trt' %in% colnames(d_raw)){
         # TODO crayon
         usethis::ui_stop(paste0(
-          'No treatment variable was detected in the data set.',
+          'No treatment variable was detected in the data set.', 
           'Argument strata_trt was set to TRUE but will be ignored.'))
       }  
       
       if(is.null(strata)){#if(outcome_mode == "regression"){
-        strata <- '.trt'
+        strata_new <- '.trt'
       }else{
-        strata <- 'extend_strata'
+        strata_new <- 'extend_strata'
       }  
-      
     }
     
     d_split     <- d_raw %>%
-      {if(strata == 'extend_strata'){
+      {if(strata_new == 'extend_strata'){
         tidyr::unite(., extend_strata, all_of(strata), .trt, remove = FALSE)
       }else{.}
       } %>% 
