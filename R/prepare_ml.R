@@ -267,26 +267,27 @@ prepare_ml <- function(
     
     # TODO to be tested...
     if(strata_trt){
-      # check .trt is available, else ignore
-      trt_present <- '.trt' %in% d_raw %>% colnames()
-      if(! trt_present){
+      if(! '.trt' %in% colnames(d_raw)){
         # TODO crayon
         usethis::ui_stop(paste0(
-          'No treatment variable was detected in the data set. Argument strata_trt was set to TRUE but will be ignored.'))
+          'No treatment variable was detected in the data set.',
+          'Argument strata_trt was set to TRUE but will be ignored.'))
       }  
       
       if(is.null(strata)){#if(outcome_mode == "regression"){
         strata <- '.trt'
       }else{
-        d_raw_split <- d_raw %>% 
-          dplyr::unite(extend_strata, strata, .trt, remove = FALSE)
-        
         strata <- 'extend_strata'
       }  
       
     }
     
-    d_split     <- d_raw_split %>% rsample::initial_split(strata = tidyselect::all_of(strata), prop = train_prop)
+    d_split     <- d_raw %>%
+      {if(strata == 'extend_strata'){
+        tidyr::unite(., extend_strata, all_of(strata), .trt, remove = FALSE)
+      }else{.}
+      } %>% 
+      rsample::initial_split(strata = tidyselect::all_of(strata), prop = train_prop)
     d_train_raw <- rsample::training(d_split) %>% dplyr::select(-tidyselect::any_of(c('extend_strata')))
     d_test_raw  <- rsample::testing( d_split) %>% dplyr::select(-tidyselect::any_of(c('extend_strata')))
   } else {

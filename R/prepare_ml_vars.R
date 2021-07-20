@@ -42,6 +42,7 @@ prepare_ml_vars <- function(
   } else {
     vars_count <- NULL
     vars_integer <- data %>%  
+      dplyr::select(-tidyselect::any_of(remove)) %>% 
       dplyr::mutate_if(is.factor, as.character) %>% 
       purrr::map_lgl( 
         ~{ readr::guess_parser(.x, guess_integer = TRUE) == 'integer'}

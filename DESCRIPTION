@@ -32,7 +32,7 @@ Imports:
     purrr,
     stringr,
     tools,
-    recipes,
+    recipes (>= 0.1.16),
     usethis,
     crayon,
     assertive.types,
