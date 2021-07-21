@@ -1,6 +1,7 @@
-test_that("strata_trt works", {
+testthat::test_that("strata_trt works", {
   
   require(tidyverse)
+  require(martini)
   # test stratification WITH and WITHOUT added treatment
   
   trt_groups <- c('PLA', 'trt1', 'trt2')
@@ -25,7 +26,7 @@ test_that("strata_trt works", {
     table %>% 
     {. / sum(.)}
   
-  seed <- 1130
+  seed <- 1950 # 1130
   train_prop <- .5
   res_out <- prepare_ml(
     feature    = d_feat,
@@ -79,6 +80,8 @@ test_that("strata_trt works", {
       mutate(strata_trt = FALSE, .after = set)
   ) %>% 
     reduce(bind_rows)
+  
+  # prop_out_trt
   
   # compute sum of absolute deviations WITH and WITHOUT strata_trt parameter set to TRUE
   comp_strata_trt <- prop_out_trt %>%  
