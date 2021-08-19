@@ -1,0 +1,10 @@
+column,label
+ADSNAME,Dataset Name
+STUDYID,Study Identifier
+SUBJID,Subject Identifier for the Study
+USUBJID,Unique Subject Identifier
+MHHLGT,High Level Group Term
+MHDECOD,Dictionary-Derived Term
+MHOCCUR,Medical History Occurrence
+MHOCCURN,Medical History Occurrence (N)
+MHSTDY,Study Day of Start of Observation

@@ -17,7 +17,7 @@ race_levs  <- c("WHITE", "BLACK", "ASIAN")
 adsl <- tibble(
   # constants
   ADSNAME  = "ADSL",
-  STUDYID  = 1909,
+  STUDYID  = 17501,
   
   # study ID plus redundant
   SUBJID   = as.character(10000 + 1:n),
@@ -98,6 +98,7 @@ write_csv(adsl,        "dev/data/prep_pkg_study/adsl.csv", na = "")
 write_csv(adsl_labels, "dev/data/prep_pkg_study/adsl_labels.csv")
 
 # ADVS ----
+
 
 r <- tribble(
   ~BMI,  ~BPDIA, ~HR,    ~BPSYS, ~WEIGHT,
@@ -214,3 +215,66 @@ advs_labels <- advs_labels %>%
 
 write_csv(advs,        "dev/data/prep_pkg_study/advs.csv", na = "")
 write_csv(advs_labels, "dev/data/prep_pkg_study/advs_labels.csv")
+
+
+# admh -----
+
+lev <- list(
+  "Corornary artery disorders" = tribble(
+    ~MHDECOD,                    ~p,
+    "Myocardial infarction",     .3,
+    "Coronary artery disease",   .25,
+    "Angina pectoris",           .05
+  ),
+  "Cardiac arrhythmias" = tribble(
+    ~MHDECOD,                    ~p,
+    "Atrial fibrillation",       .75,      
+    "Ventricular tachycardia",   .05
+  )
+) %>% 
+  enframe("MHHLGT") %>% 
+  unnest("value")
+
+stdy_start  <- -20:120
+stdy_weight <- 1/(1:length(stdy_start))
+
+admh <- crossing(SUBJID = adsl$SUBJID, lev) %>% 
+  rowwise() %>% 
+  mutate(MHOCCUR = sample(c("Y", "N"), size = 1, prob = c(p, 1-p))) %>% 
+  ungroup() %>% 
+  select(-p) %>% 
+  filter(!(MHHLGT == "Corornary artery disorders" & MHOCCUR == "N")) %>% 
+  mutate(MHOCCUR = case_when(
+    MHHLGT == "Corornary artery disorders" ~ NA_character_,
+    TRUE                                   ~ MHOCCUR
+  )) %>%
+  mutate(MHOCCURN = factor(MHOCCUR) %>% as.integer() %>% `-`(1)) %>% 
+  mutate(
+    MHSTDY = sample(stdy_start, size = n(), replace = TRUE, prob = stdy_weight) +
+      sample(c(0, NA_real_), size = n(), replace = TRUE, prob = c(.7, .3))
+  ) %>% 
+  left_join(adsl %>% select(STUDYID, SUBJID, USUBJID), ., by = "SUBJID") %>% 
+  mutate(ADSNAME = "ADMH", .before = 1)
+
+# define labels ####
+admh_labels <- list(
+  ADSNAME  = "Dataset Name",
+  STUDYID  = "Study Identifier",
+  SUBJID   = "Subject Identifier for the Study",
+  USUBJID  = "Unique Subject Identifier",
+  MHHLGT   = "High Level Group Term",
+  MHDECOD  = "Dictionary-Derived Term",
+  MHOCCUR  = "Medical History Occurrence",
+  MHOCCURN = "Medical History Occurrence (N)",
+  MHSTDY   = "Study Day of Start of Observation"
+)
+
+admh <- admh %>% 
+  set_variable_labels( .labels = admh_labels)
+
+admh_labels <- admh_labels %>% 
+  unlist() %>% 
+  enframe(name = "column", value = "label")
+
+write_csv(admh,        "dev/data/prep_pkg_study/admh.csv", na = "")
+write_csv(admh_labels, "dev/data/prep_pkg_study/admh_labels.csv")
