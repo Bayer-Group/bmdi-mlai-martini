@@ -1,0 +1,19 @@
+column,label
+ADSNAME,Dataset Name
+STUDYID,Study Identifier
+SUBJID,Subject Identifier for the Study
+USUBJID,Unique Subject Identifier
+ITTFL,Intent-To-Treat Population Flag
+TRT01P,Planned Treatment for Period 01
+TRT01PN,Planned Treatment for Period 01 (N)
+TRT01A,Actual Treatment for Period 01
+TRT01AN,Actual Treatment for Period 01 (N)
+RANDDT,Date of Randomization
+AGE,Age
+AGEGR01,Age Group 01
+AGEGR01N,Age Group 01 (N)
+SEX,Sex
+SEXN,Sex (N)
+RACE,Race
+RACEN,Race (N)
+UASR,Unique Subject Identifier/Age/Sex/Race
