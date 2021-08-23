@@ -39,7 +39,7 @@ with standardized column names (\code{.out} for regression or classification, \c
 \item{outcome_label}{Named vector with the labels(s) of the outcome variable(s). If the columns of \code{outcome} do not contain labels,
 the column name is used instead.}
 \item{outcome_mode}{The outcome mode (\code{regression}, \code{classification} or \code{survival}.}
-\item{outcome_dict}{Dictionary tibble for the outcome variable(s).}
+\item{outcome_dict}{Dictionary tibble for the outcome variable(s). If no label was provided for the selected columns, the column name will be reused as label in the dictionary.}
 \item{na_outcome}{The IDs of NAs in \code{outcome}.}
 \item{id_outlier}{The IDs of removed outliers.}
 }

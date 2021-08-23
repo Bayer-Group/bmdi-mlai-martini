@@ -43,12 +43,12 @@ A list containing the following
 \item{\code{drop_list}}{a list containing column names suggested to be dropped with the entry
 name identifying the rationale for the discard
 \describe{
-\item{\code{drop}}{user input \code{drop}}
-\item{\code{datetimes}}{date/times columns}
-\item{\code{numcodes}}{numeric code for another variable (incl numeric flags)}
-\item{\code{flags}}{flags (both numeric and character columns), see also \code{flag_table}}
-\item{\code{combinations}, \code{empty}, \code{constant}}{combined, empty and constant columns, resp.}
-\item{\code{redundancies}}{columns with redundant information to \code{id} and \code{trt} if provided)}
+\item{\code{drop}}{passing the user input \code{drop}}
+\item{\code{datetime}}{date/times columns}
+\item{\code{numcode}}{numeric code for another variable (incl numeric flags)}
+\item{\code{flag}}{flags (both numeric and character columns), see also \code{flag_table}}
+\item{\code{combination}, \code{empty}, \code{constant}}{combined, empty and constant columns, resp.}
+\item{\code{redundancy}}{columns with redundant information to \code{id} and \code{trt} if provided)}
 }}
 \item{\code{spec_id}}{character string \code{adsl}, generally the name of the domain}
 \item{\code{dict}}{a tibble of column names and labels (if present in the data set)}

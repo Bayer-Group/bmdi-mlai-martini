@@ -11,6 +11,7 @@ prepare_ml(
   level_order = NULL,
   prep_recipe = NULL,
   train_prop = 3/4,
+  strata_trt = FALSE,
   seed = 1130,
   prep_step_normalize = TRUE,
   prep_step_knnimpute = TRUE,
@@ -54,6 +55,8 @@ please refer to the details section to learn about the individual recipe steps.}
 
 \item{train_prop}{the proportion of data to be used for the training set. Has to be in [0.5;1.0]. Defaults to 3/4, keeping a quarter of the data for testing.}
 
+\item{strata_trt}{boolean. Expand default stratum variable (\code{.out} for classification, \code{.stratum} for tte, \code{NULL} for regression) by trt (if character, else ignored). Defaults to FALSE.}
+
 \item{seed}{optionally set a seed before the data splitting.}
 
 \item{prep_step_knnimpute, prep_step_log, prep_step_normalize, prep_step_corr, prep_step_dummy}{logicals determining
@@ -74,7 +77,7 @@ are excluded from the log-transformation and normalization. Defaults to 10.}
 which \code{thres_lump} is passed as parameter \code{threshold}. Defaults to 0.05.}
 
 \item{thres_imp}{Minimal proportion of non-missing data per feature required to be kept
-in the data and completed using \code{recipes::step_knnimpute()}.
+in the data and completed using \code{recipes::step_impute_knn()}.
 Variables not meeting the threshold will be dropped and not be included in \code{data_prep} data.
 Per default \code{thres_imp = 0.8}, i.e. variables will be dropped if the proportion of available data is less than 80\%.
 Variables listed in \code{vars_imp_ignore} will never be imputed, observations with missing data in the respective
@@ -148,7 +151,7 @@ and output of the function \code{\link{prepare_ml_vars}()}, respectively.
 \itemize{
 \item drop variables e.g. not meeting the minimum threshold for non-missing data proportion (\code{step_rm()})
 \item remove observations with missing data in outcome (\code{step_naomit()})
-\item knn imputation on variables with missing values that are not explicitly excluded from imputation  (\code{step_knnimpute()})
+\item knn imputation on variables with missing values that are not explicitly excluded from imputation  (\code{step_impute_knn()})
 \item omit observations with remaining missing values (i.e. in variables that were excluded from imputation and not dropped before) (\code{step_naomit()})
 \item removal of near-zero variance variables (\code{step_nzv()})
 \item log-transformation (\code{step_log()})
