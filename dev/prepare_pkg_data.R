@@ -220,7 +220,7 @@ write_csv(advs_labels, "dev/data/prep_pkg_study/advs_labels.csv")
 # admh -----
 
 lev <- list(
-  "Corornary artery disorders" = tribble(
+  "Coronary artery disorders" = tribble(
     ~MHDECOD,                    ~p,
     "Myocardial infarction",     .3,
     "Coronary artery disease",   .25,
@@ -243,9 +243,9 @@ admh <- crossing(SUBJID = adsl$SUBJID, lev) %>%
   mutate(MHOCCUR = sample(c("Y", "N"), size = 1, prob = c(p, 1-p))) %>% 
   ungroup() %>% 
   select(-p) %>% 
-  filter(!(MHHLGT == "Corornary artery disorders" & MHOCCUR == "N")) %>% 
+  filter(!(MHHLGT == "Coronary artery disorders" & MHOCCUR == "N")) %>% 
   mutate(MHOCCUR = case_when(
-    MHHLGT == "Corornary artery disorders" ~ NA_character_,
+    MHHLGT == "Coronary artery disorders" ~ NA_character_,
     TRUE                                   ~ MHOCCUR
   )) %>%
   mutate(MHOCCURN = factor(MHOCCUR) %>% as.integer() %>% `-`(1)) %>% 
