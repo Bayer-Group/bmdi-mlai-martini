@@ -31,11 +31,11 @@ The output is meant to be used with packages `modtune` and `report`, both includ
 The preparation workflow is handled by the three main functions of `MARTINIprep`
 
 <!-- add links  -->
-<!-- * \link{\code{ads_spec}}\code{()} -->
+<!-- * \link{\code{adam_spec}}\code{()} -->
 <!-- * \link{\code{ads_build}}\code{()} -->
 <!-- * \link{\code{prepare_ml}}\code{()} -->
 
-* `ads_spec()`
+* `adam_spec()`
 * `ads_build()`
 * `prepare_ml()`
 
@@ -46,7 +46,7 @@ The package was developed in the clinical context which is reflected in the defa
 
 
 
-### `ads_spec()`
+### `adam_spec()`
 
 In the setting of clinical studies, we assume that a set of analysis data sets (ads) is stored in `.sas7bdat` format in a single folder `path`. 
 
@@ -60,7 +60,7 @@ path <- 'path/to/sasfiles'
 the command
 
 ```{r}
-ads_spec <- ads_spec(path)
+ads_spec <- adam_spec(path)
 ```
 
 will
