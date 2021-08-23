@@ -14,8 +14,6 @@
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
-#' @export
-
 
 check_filter <- function(data, filter){
   

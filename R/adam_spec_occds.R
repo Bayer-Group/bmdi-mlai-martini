@@ -39,7 +39,6 @@
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
-#' @export
 
 
 adam_spec_occds <- function(

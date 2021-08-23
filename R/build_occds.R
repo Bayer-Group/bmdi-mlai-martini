@@ -1,6 +1,5 @@
 #' @rdname build_x
 #'
-#' @export
 
 # (see 'build_x.R' for documentation details)
 
