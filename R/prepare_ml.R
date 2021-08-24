@@ -266,7 +266,7 @@ prepare_ml <- function(
     strata <- NULL
     if(outcome_mode == "classification") strata <- '.out'
     if(outcome_mode == "survival")       strata <- '.status'
-   
+    
     strata_new <- strata
     if(strata_trt){
       if(! '.trt' %in% colnames(d_raw)){
@@ -412,28 +412,29 @@ prepare_ml <- function(
   
   # were variables from vars_keep_corr removed by step_corr?
   number_corr <- rcp_prep %>% recipes::tidy() %>% dplyr::filter(type == 'corr') %>% dplyr::pull(number)
-
+  
   terms_corr <- rcp_prep %>% 
     recipes::tidy(number = number_corr) %>%
     dplyr::pull(terms)
   
-  adjust_corr <- any(terms_corr %in% vars_keep_corr)
+  # adjust_corr <- any(terms_corr %in% vars_keep_corr)
+  adjust_corr <- TRUE
+  
+  vars_exclude_corr <- NULL
   
   # if so re-create feature matrix without corr removal to identify 'competing' variables
   if(adjust_corr){
     
     # prep and train
     rcp_nocorr <- rcp
-    rcp_nocorr$steps[[number_corr]]$threshold <- 1
+    rcp_nocorr$steps[[number_corr]]$skip <- TRUE
     
     d_train_nocorr <- rcp_nocorr %>% 
       {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE, training = d_train_raw)} %>% 
       purrr::pluck("result") %>% 
-      recipes::juice()
+      recipes::bake(new_data = d_train_raw)
     
-    terms_corr_keep <- intersect(terms_corr, vars_keep_corr)
-    
-    vars_exclude_corr <- terms_corr_keep %>% 
+    vars_exclude_corr <- vars_keep_corr %>% 
       rlang::set_names() %>% 
       purrr::map(~{
         
@@ -472,7 +473,7 @@ prepare_ml <- function(
   d_train <- rcp_prep %>% recipes::juice()
   
   # compute test data
-
+  
   if (train_prop < 1){
     d_test  <- rcp_prep %>% 
       {purrr::quietly(recipes::bake)(., d_test_raw)} %>% 
@@ -633,7 +634,7 @@ prepare_ml <- function(
         by = c("param")
       )
   }
-
+  
   
   
   # OUTPUT #### 
@@ -674,7 +675,6 @@ prepare_ml <- function(
       rows = removed_rows,
       cols = removed_columns
     )
-    
   )
   
   prep_output
