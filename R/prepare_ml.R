@@ -412,7 +412,7 @@ prepare_ml <- function(
   
   # were variables from vars_keep_corr removed by step_corr?
   number_corr <- rcp_prep %>% recipes::tidy() %>% dplyr::filter(type == 'corr') %>% dplyr::pull(number)
-  
+
   terms_corr <- rcp_prep %>% 
     recipes::tidy(number = number_corr) %>%
     dplyr::pull(terms)
@@ -431,10 +431,8 @@ prepare_ml <- function(
       purrr::pluck("result") %>% 
       recipes::juice()
     
-    # which terms in 'vars_keep_corr' are affected by correlation removal?
     terms_corr_keep <- intersect(terms_corr, vars_keep_corr)
     
-    # for each of these: identify the correlated variables from full data set 
     vars_exclude_corr <- terms_corr_keep %>% 
       rlang::set_names() %>% 
       purrr::map(~{
@@ -463,16 +461,18 @@ prepare_ml <- function(
       envir = env_rm
     ) 
     
-    # update prepped recipe using the new vars_exclude variable
+    # update recipe
     rcp_prep <- rcp %>% 
       {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE, training = d_train_raw)} %>% 
       purrr::pluck("result")
     
   }
   
-  # finally build training and test data
+  # training data
   d_train <- rcp_prep %>% recipes::juice()
   
+  # compute test data
+
   if (train_prop < 1){
     d_test  <- rcp_prep %>% 
       {purrr::quietly(recipes::bake)(., d_test_raw)} %>% 
