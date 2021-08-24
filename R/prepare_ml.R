@@ -48,6 +48,7 @@
 #' (vector of column names, e.g. \code{vars_imp_ignore = '.trt'}). 
 #' Observations with missing values in these variables will be removed. Removal is documented in `removed$rows`.
 #' @param vars_fct_expl_na column names of factors for which NAs should be treated as an explicit factor level. Defaults to NULL.
+#' @param vars_keep_corr choose these variables over other options when removing variables due to high correlation in \code{recipes::step_corr()}
 #' @param vars_ordinalscore  column names of ordinal factor variables to be converted into numeric scores. Defaults to NULL.
 #' @param log_base base to use for log-transformation in \code{recipes::step_log()}. Defaults to _exp(1)_.
 #' @param outlier_remove,outlier_ctrl For outcome mode regression only, see \code{\link{prepare_ml_outcome}()}
@@ -140,6 +141,7 @@ prepare_ml <- function(
   vars_imp_ignore     = NULL,
   vars_fct_expl_na    = NULL,
   vars_ordinalscore   = NULL,
+  vars_keep_corr      = NULL,
   
   one_hot             = TRUE,
   
@@ -408,8 +410,69 @@ prepare_ml <- function(
     {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE)} %>% 
     purrr::pluck("result")
   
-  d_train <- rcp_prep %>%  recipes::juice()
+  # were variables from vars_keep_corr removed by step_corr?
+  number_corr <- rcp_prep %>% recipes::tidy() %>% dplyr::filter(type == 'corr') %>% dplyr::pull(number)
   
+  terms_corr <- rcp_prep %>% 
+    recipes::tidy(number = number_corr) %>%
+    dplyr::pull(terms)
+  
+  adjust_corr <- any(terms_corr %in% vars_keep_corr)
+  
+  # if so re-create feature matrix without corr removal to identify 'competing' variables
+  if(adjust_corr){
+    
+    # prep and train
+    rcp_nocorr <- rcp
+    rcp_nocorr$steps[[number_corr]]$threshold <- 1
+    
+    d_train_nocorr <- rcp_nocorr %>% 
+      {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE, training = d_train_raw)} %>% 
+      purrr::pluck("result") %>% 
+      recipes::juice()
+    
+    terms_corr_keep <- intersect(terms_corr, vars_keep_corr)
+    
+    vars_exclude_corr <- terms_corr_keep %>% 
+      rlang::set_names() %>% 
+      purrr::map(~{
+        
+        d_ref <- d_train_nocorr %>% 
+          dplyr::select(tidyselect::all_of(.x))
+        
+        d_test <- d_train_nocorr %>% 
+          dplyr::select_if(is.numeric) %>% 
+          dplyr::select(-tidyselect::any_of(c(.x, ".id")))
+        
+        cor(d_test, d_ref, method = "pearson") %>% 
+          as.data.frame() %>% 
+          tibble::rownames_to_column() %>% 
+          dplyr::filter(abs(!!sym(.x)) > thres_corr) %>% 
+          dplyr::pull(rowname)
+      })
+    
+    # modify removal step to add vars_exclude_corr
+    number_rm <- rcp %>% recipes::tidy() %>% dplyr::filter(type == 'rm') %>% dplyr::pull(number)
+    env_rm    <- rcp$steps[[number_rm]]$terms[[1]] %>% attr(which = '.Environment') 
+    
+    assign(
+      'vars_exclude', 
+      c(vars_exclude,  vars_exclude_corr %>%  unlist() %>%  as.character()),
+      envir = env_rm
+    ) 
+    
+    # update recipe
+    rcp_prep <- rcp %>% 
+      {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE, training = d_train_raw)} %>% 
+      purrr::pluck("result")
+    
+  }
+  
+  # training data
+  d_train <- rcp_prep %>% recipes::juice()
+  
+  # compute test data
+
   if (train_prop < 1){
     d_test  <- rcp_prep %>% 
       {purrr::quietly(recipes::bake)(., d_test_raw)} %>% 
@@ -417,7 +480,6 @@ prepare_ml <- function(
   } else {
     d_test  <- NULL
   }
-  
   
   # CLEAN UP ####
   
@@ -636,10 +698,12 @@ if(FALSE){
   prep_step_log       = TRUE
   prep_step_corr      = TRUE
   prep_step_dummy     = TRUE
+  strata_trt          = FALSE
+  one_hot = FALSE
   
   thres_log           = 2
   thres_count         = 10
-  thres_corr          = 0.9
+  thres_corr          = 0.8
   thres_lump          = 0.05
   thres_imp           = 0.8
   thres_nzv_freq      = 95/5
@@ -653,4 +717,44 @@ if(FALSE){
   
   outlier_remove      = FALSE
   outlier_ctrl        = list(coef = 3)
+}
+
+
+if(FALSE){
+  
+  trt_groups <- c('PLA', 'trt1', 'trt2')
+  n_total    <- 90
+  
+  feature <- tibble(
+    .id  = 1:n_total,
+    .trt = rep(trt_groups, length.out = n_total),
+    cont = rnorm(n_total),
+    cont2 = 1.5*cont + rnorm(sd=.01)
+  )
+  outcome <- tibble(
+    .id  = 1:n_total,
+    .out = rep(c(
+      rep('no event', round(n_total/length(trt_groups))-9),
+      rep('event',    9)), 
+      length.out = n_total) 
+  )
+  
+  d_raw <- inner_join(outcome, feature) %>% 
+    unite(trt.out, .trt, .out, remove = FALSE)
+  prop_tot_event_trt <- d_raw %>% 
+    pull(trt.out) %>% 
+    table %>% 
+    {. / sum(.)}
+  
+  seed <- 1950 # 1130
+  train_prop <- .5
+  res_out <- prepare_ml(
+    feature    = d_feat,
+    outcome    = d_out,
+    train_prop = train_prop,
+    strata_trt = FALSE,
+    seed       = seed
+  )$data_raw
+  
+  
 }
