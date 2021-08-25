@@ -282,6 +282,9 @@ prepare_ml <- function(
     if(outcome_mode == "classification") strata <- '.out'
     if(outcome_mode == "survival")       strata <- '.status'
     
+    # TODO: generous clean up
+    # always add column called strata, which will be removed lateron just like extend_strata
+    # btw: if trt is not present, unite will throw an error 
     strata_new <- strata
     if(strata_trt){
       if(! '.trt' %in% colnames(d_raw)){
