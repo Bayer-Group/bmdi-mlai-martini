@@ -263,37 +263,50 @@ prepare_ml <- function(
   if (train_prop < 1){
     if(!is.null(seed))  set.seed(seed)
     
-    strata <- NULL
-    if(outcome_mode == "classification") strata <- '.out'
-    if(outcome_mode == "survival")       strata <- '.status'
+    # create a new column .strata for stratified splitting by outcome
+    d_raw <- d_raw %>% 
+      {if(outcome_mode == "classification"){
+         mutate(., .strata = .out)
+      }else{.}
+      } %>% 
+      
+      {if(outcome_mode == "survival"){
+        mutate(., .strata = .status)
+      }else{.}
+      } %>% 
+      
+      # no outcome stratification for regression, but create the column
+      # anyways to make it extendable by strata_trt = TRUE
+      {if(outcome_mode == "regression"){
+         mutate(., .strata = '')
+      }else{.}
+      }
     
-    strata_new <- strata
+    # extend strata variable by treatment
     if(strata_trt){
       if(! '.trt' %in% colnames(d_raw)){
-        # TODO crayon
-        usethis::ui_stop(paste0(
+        usethis::ui_info(crayon::silver(paste(
           'No treatment variable was detected in the data set.', 
-          'Argument strata_trt was set to TRUE but will be ignored.'))
-      }  
-      
-      if(is.null(strata)){#if(outcome_mode == "regression"){
-        strata_new <- '.trt'
+          'Argument strata_trt was set to TRUE but will be ignored.')))
       }else{
-        strata_new <- 'extend_strata'
+        d_raw <- d_raw %>% 
+          mutate(strata = paste0(.strata, .trt , sep='_'))
       }  
     }
     
-    d_split     <- d_raw %>%
-      {if(strata_new == 'extend_strata'){
-        tidyr::unite(., extend_strata, all_of(strata), .trt, remove = FALSE)
-      }else{.}
-      } %>% 
-      rsample::initial_split(strata = tidyselect::all_of(strata_new), prop = train_prop)
+  
+    d_split <- d_raw %>%
+      rsample::initial_split(
+        strata = tidyselect::all_of('.strata'), 
+        prop   = train_prop
+      )
     
-    d_split$data <- d_split$data %>% dplyr::select(-tidyselect::any_of(c('extend_strata')))
+    # remove the strata variable '.strata' after splitting
+    d_split$data <- d_split$data %>% dplyr::select(-tidyselect::any_of(c('.strata')))
+    
     d_train_raw  <- rsample::training(d_split) 
     d_test_raw   <- rsample::testing( d_split) 
-  } else {
+  }else{
     d_split     <- NULL
     d_train_raw <- d_raw
     d_test_raw  <- NULL
