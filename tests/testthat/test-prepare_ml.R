@@ -119,6 +119,7 @@ testthat::test_that("keep_vars_corr works", {
   
   
   d_feat <- MASS::mvrnorm(n = n, mu = rep(0,p), Sigma = R) %>% 
+    as.data.frame() %>% 
     tibble::as_tibble() %>% 
     dplyr::mutate(.id = 1:n)
   
