@@ -595,6 +595,14 @@ prepare_ml <- function(
                      'No variables were removed for reasons of high correlation.')
     ),  
     
+    vars_keep_corr = list(
+      value = vars_exclude_corr,
+      text  = ifelse(prep_step_corr && !is.null (vars_exclude_corr),
+                     'Variable selection in recipes::step_corr() was adjusted according to "vars_keep_corr"',
+                     'No variables were excluded specifically due to high correlation with the variables in "vars_keep_corr"')
+    ),
+    
+    
     # ... lump factor levels (always applied) ####
     thres_lump = list(
       value = thres_lump,

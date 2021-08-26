@@ -86,13 +86,13 @@ testthat::test_that("strata_trt works", {
   # compute sum of absolute deviations WITH and WITHOUT strata_trt parameter set to TRUE
   comp_strata_trt <- prop_out_trt %>%  
     mutate_if(is.numeric, ~ abs(.x - .x[set == 'total'])) %>% 
-    filter(set != 'total') %>% 
+    dplyr::filter(set != 'total') %>% 
     nest(e=contains('event')) %>% 
     mutate(sum_e = map_dbl(e, sum)) %>% 
     group_by(strata_trt) %>% 
     mutate(sum_e = sum(sum_e)) %>% 
     ungroup() %>% 
-    select(strata_trt, sum_e)  %>% 
+    dplyr::select(strata_trt, sum_e) %>% 
     distinct() %>% 
     deframe()
   
@@ -105,9 +105,7 @@ testthat::test_that("strata_trt works", {
 
 
 testthat::test_that("keep_vars_corr works", {
-  
-  
-  library(MASS)
+
   library(tidyverse)
   
   set.seed(1492)
