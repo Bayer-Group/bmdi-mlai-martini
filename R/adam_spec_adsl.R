@@ -98,8 +98,9 @@
     dplyr::mutate(source = 'adsl') %>% 
     dplyr::mutate(type   = 'adsl')
   
-  clmns <- dict$param
-  labs  <- dict$label
+   labs  <- dict$label
+   clmns <- dict$param
+   clmns_num <- {adsl %>%  dplyr::select_if(is.numeric) %>% names()}
   
   # define black list (column names that are always excluded) ####
   black_list <- c(
@@ -137,16 +138,18 @@
   # ... identify pairs of categorical/numerical columns ####
   
   # ... ... flags ####
-  # naming convention   xxxFL -> xxxFN
+  # naming convention   xxxFN -> xxxFL
   all_FL <- c(
-    clmns %>% stringr::str_subset('FL$'),
+    adsl %>% dplyr::select_if(is.numeric) %>% names() %>% stringr::str_subset('FN$'),
+    # TODO check if suffix 'FN' + numeric is exclusively allowed for Flags, otherwise, condition above may catch too much
     clmns[stringr::str_to_upper(labs) %>% stringr::str_detect('\\bFLAG\\b')]
   ) %>% 
     unique()
   
-  flags <- c(all_FL, stringr::str_replace(all_FL, 'FL$', 'FN')) %>% 
+  flags <- c(all_FL, stringr::str_replace(all_FL, 'FN$', 'FL')) %>% 
     unique() %>% 
-    sort()
+    sort() %>% 
+    intersect(clmns)
   
   # NOTE automated detection may not catch all flags
   
@@ -184,20 +187,43 @@
         dplyr::pull(param)
     )
   ) %>% 
-    dplyr::distinct() 
+    dplyr::distinct() %>% 
+    # only keep guessed pairs if the column guessed as numeric code is actually numeric
+    dplyr::filter(lev %in% clmns_num)
   
-  # keep list of all num codes for later use (setdiff with all numeric columns)
-  all_num_codes <- c(
-    all_lab_lev$lev,
-    dict %>% dplyr::filter(stringr::str_detect(label, "\\(N\\)$")) %>% dplyr::pull(param)
-  ) %>% unique()
+  # keep list of all num codes for later use
+  all_num_codes <- all_lab_lev$lev
+  # all_num_codes <- c(
+  #   all_lab_lev$lev,
+  #   dict %>% dplyr::filter(stringr::str_detect(label, "\\(N\\)$")) %>% dplyr::pull(param)
+  # ) %>% unique()
   
   # reduce to pairs for which level order needs to be extracted
   lab_lev <- all_lab_lev  %>% 
     dplyr::filter(!lab %in% flags) %>% 
     dplyr::filter(lab != id) %>% 
     dplyr::filter(lev != id)
-
+  
+  # account for 'numeric coding only without matching categorical'
+  num_only <- dict %>% 
+    # start with potential num codes judging by label suffix
+    dplyr::filter(stringr::str_detect(label, "\\(N\\)$")) %>% 
+    dplyr::pull(param) %>% 
+    # remove those for which pairs were identified (in lab_lev)
+    setdiff(all_lab_lev$lev) %>% 
+    # check column is actually numeric
+    intersect(clmns_num)
+  
+  if(length(num_only > 0)){
+    lab_lev <- dplyr::bind_rows(
+      lab_lev,
+      tibble(
+        lab = num_only,
+        lev = num_only
+      )
+    )
+  }
+  
   # create list of factor levels
   lev_list <- list()
   for(r in 1:nrow(lab_lev)){
