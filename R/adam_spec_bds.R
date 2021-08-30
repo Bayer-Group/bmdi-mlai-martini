@@ -105,7 +105,7 @@ adam_spec_bds <- function(
     param = c('PARAMCD', paste0(dom, 'TESTCD')),
     
     # ... candidates time  ####
-    time = c('AVISIT', 'VISIT'),
+    time = c('AVISIT', 'VISIT', 'AVISITN', 'VISITN'),
     
     # ... candidates value  ####
     value = c('AVAL', 'AVALC',

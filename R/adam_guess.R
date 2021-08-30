@@ -59,6 +59,13 @@ adam_guess <- function(file){
         time   = "AESTDY",
         value  = NULL #AESERV
       )
+    } else if(file_info$domain == "adxa"){  
+      list(
+        label  = paste0('XA', c( "DECOD")),
+        time   = "XASTDY",
+        value  = NULL #AESERV
+      )
+      
     } else {
       usethis::ui_stop(
         paste0("No guessing options available for domain '", file_info$domain, "' yet.\n")
