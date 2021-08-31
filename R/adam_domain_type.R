@@ -54,7 +54,9 @@ adam_domain_type <- function(
   type_bds <- c(   
     paste0( c(  
       "adegf", "adpc",
-      "adlb", "advs", "adxb", "adxl", 
+      "adlb", "advs", 
+      "adxb", "adxl", 
+      "admicro",
       "adqskccq", "adqsnyha", 'adqseq5d', 'adqspad', 'adqswimp', 'adqsqolb', 'adqssgrq'
     ) , 
     ".sas7bdat$"),
