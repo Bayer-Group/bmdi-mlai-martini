@@ -55,11 +55,11 @@ adam_domain_type <- function(
     paste0( c(  
       "adegf", "adpc",
       "adlb", "advs", "adxb", "adxl", 
-      "adqskccq", "adqsnyha", 'adqseq5d', 'adqspad', 'adqswimp'
-      ) , 
-      ".sas7bdat$"),
+      "adqskccq", "adqsnyha", 'adqseq5d', 'adqspad', 'adqswimp', 'adqsqolb', 'adqssgrq'
+    ) , 
+    ".sas7bdat$"),
     "adqs.*[.]sas7bdat$" ) #%>% 
-  type_occds <- c("adae", "adcm", "admh") %>% 
+  type_occds <- c("adae", "adcm", "admh", "adxa") %>% 
     paste0(".sas7bdat$")
   
   ads_library <- dplyr::bind_rows(
@@ -176,6 +176,8 @@ if(FALSE){
  
  paths <- paste0('../../../',
          c('', 'adcm.sas7bdat'))
+ 
+ # '../../..//adxa.sas7bdat'
  
  # print look-up table
  adam_domain_type()
