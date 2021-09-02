@@ -105,7 +105,7 @@ adam_spec_bds <- function(
     param = c('PARAMCD', paste0(dom, 'TESTCD')),
     
     # ... candidates time  ####
-    time = c('AVISIT', 'VISIT'),
+    time = c('AVISIT', 'VISIT', 'AVISITN', 'VISITN'),
     
     # ... candidates value  ####
     value = c('AVAL', 'AVALC',
@@ -139,10 +139,10 @@ adam_spec_bds <- function(
           usethis::ui_info(crayon::silver(paste0(
             'AD', domain, ": No column could be identified to be used as ", i, ". No spec will be provided.\n")))
           return(NULL)
-          # else set to NULL (instead of character vector of length 0)
-        } else {
-          choices <- NULL
-        }
+          # else set to NULL (instead of character vector of length 0) -> throws error for replacement of length 0
+        }# else {
+        #  choices <- NULL
+        #}
       }
       
       col_select[i] <- choices[1]

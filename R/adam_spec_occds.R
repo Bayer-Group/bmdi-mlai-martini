@@ -121,7 +121,7 @@ adam_spec_occds <- function(
   if(pre_study){
     if(!time %in% coln_occds) usethis::ui_stop('pre_study filter could not be built. The provided parameter "time" is not present in the data.')
     filter_time <- paste0( time , ' < 0 | is.na(', time, ')')
-    filter      <- filter %>%  append(filter_time)
+    filter      <- filter %>% append(filter_time)
   }      
   
   # filter check ####

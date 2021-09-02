@@ -9,8 +9,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 library(martini)
+library(tidyverse)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -42,7 +44,7 @@ The automated part of the preparation workflow is handled by the three main func
 <!-- * `ads_build()` -->
 <!-- * `prepare_ml()` -->
 
-The package was developed in the clinical context which is reflected in the default settings and specifics of both main and helper functions. This vignette is solely focused on the standard clinical setting. 
+The package was developed in the clinical context which is reflected in the default settings and specifics of both the main and helper functions. This vignette is solely focused on the standard clinical setting. 
 However, the functions may also be used with more general data sets, please refer to the individual help pages for full details.
 
 **Vignette**
@@ -51,7 +53,12 @@ This vignette serves as a hands-on tutorial on the usage of the `MARTINIprep` pa
 It clearly outlines the steps on how to get from an ads folder to a machine-learning data set, listing a number of commonly required adaptations along the way. 
 <!-- gives valuable advice -->
 
-The package comes with a number of example data sets from raw sas data sets to read in, to data objects representing intermediate steps (`martini_spec`, `martini_build`) as well as the final output object (`martini_ml`) for further use in the `modtune` and/or `report` modules of the pipeline.
+The package comes with a number of example data sets from raw sas data sets to read in, 
+to data objects representing intermediate steps (`martini_spec`, `martini_build`) 
+as well as the final output object (`martini_ml`) for further use in the 
+<!-- TODO additional data package to include multiple endpoints? Cover only classification here-->
+<!-- TODO adjust package names-->
+`MARTINImodtune` and/or `MARTINIreport` modules of the pipeline.
 
 <!-- The full process is described in a lot more detail in the "under the hood" vignette of the package, where    -->
 
@@ -60,7 +67,7 @@ The package comes with a number of example data sets from raw sas data sets to r
 
 In the (admittedly unrealistic) case that no manual adaptations have to be made to the data contained in the ADaM data sets included in the analysis, the full preparation could be accomplished by running the composed command
 
-```{r}
+```{r, eval = FALSE}
 path %>% 
   adam_spec() %>% 
   build() %>% 
@@ -68,10 +75,10 @@ path %>%
 ```
 
 where `path` would be defined as the location where the ADaM data sets are stored in `.sas7bdat` format. 
+The chart below highlights the main workflow and related helper functions.
 
 
-
-```{r, out.width='100%', eval = TRUE, echo = FALSE, fig.cap = 'Overview of MARTINIprep functions. The basic workflow from ads path to ML data object is accomplished by the main functions (turquoise), which make use of the (mostly internal) helper functions shown below. '}
+```{r, out.width='100%', eval = TRUE, echo = FALSE, fig.cap = 'Overview of `MARTINIprep` functions. The basic workflow from ads path to ML data object is accomplished by the main functions (turquoise), which make use of the (mostly internal) helper functions shown below. '}
 
 knitr::include_graphics('img/martini-high-level.png')
 ```
@@ -115,6 +122,12 @@ you may check beforehand which data sets can be processed automatically to make 
 Running `adam_domain_type(path)` returns a tibble with the name of the domain, its mapped ADaM data type(occds/adsl/bds) along with the full file path. 
 For domains with `type=='none'` no mapping information is available (yet) and the data set would not be processed automatically.
 
+In case a particular domain is required for your analysis but not included in the current list, please get in touch with the package maintainers 
+(<a href="mailto:sebastian.voss.ext@bayer.com">Sebastian Voss</a>, 
+<a href="mailto:maike.ahrens.ext@bayer.com">Maike Ahrens</a>).
+<!-- TODO add details on:
+... or use the appropriate internal functions `ads_spec_*` and `build_*` to process the data set. -->
+
 ```{r domain type, eval = TRUE}
 adam_domain_type(path)
 ```
@@ -126,7 +139,9 @@ The outcome data set may contain information on different endpoints in a single 
 
 Since the analysis of survival endpoints is computationally much more expensive than for classification, the latter may be used for initial runs by using a dichotomized version of the endpoint (i.e. event yes/no in given time frame). When binarizing time-to-event endpoints, please pay attention to the study duration (potentially reduce to subjects with minimum time under observation) and the resulting outcome distribution (highly unbalanced data?).
 
-<!-- TODO actually prepare outcome(s) -->
+<!-- TODO actually prepare outcome(s) 
+update once outcome dataset is ready -->
+
 
 <!-- TODO: Use the function `binarize_tte()` in order to derive binary endpoints from a tte outcome. -->
 
@@ -144,9 +159,6 @@ Among other steps, `adam_spec()` will
 
 * generate md5 checksums 
 * identify data sets that can be processed automatically (by matching file names against an internal library). 
-In case a particular domain required for your analysis but not included in the current list, please get in touch with the package maintainers 
-(<a href="mailto:sebastian.voss.ext@bayer.com">Sebastian Voss</a>, 
-<a href="mailto:maike.ahrens.ext@bayer.com">Maike Ahrens</a>).
 * create a parameter dictionary 
 
 In general, this automatically created specification may be used with the subsequent workflow, however, in practice, it will be modified by the user to match specific requirements.
@@ -233,7 +245,7 @@ ads_spec$adsl$select <- ads_spec$adsl$select %>%
   setdiff(c('DEATHFL')) %>% 
  
   # categoricals with a continuous version 
-  str_subset("AGEGR|BMIGR|WEIGGR|RACEGR", negate = TRUE) 
+  str_subset("AGEGR|BMIGR|WEIGGR|RACEGR", negate = TRUE) %>% 
 
   # several grouped versions available
   str_subset("CNTYGR[3-7]") 
@@ -243,7 +255,9 @@ ads_spec$adsl$select <- ads_spec$adsl$select %>%
 
 **Change existing data** 
 
-If any manual changes need to be made to the data sets themselves, the `attach_data` parameter of `ads_spec()` needs to be set to `TRUE`. In this case, top level entry of `spec` will have a `data` slot where the data set is stored and used by the `ads_build()` function. Jsut like the other slots, it may be adjusted by the user in an intermediate step as shown in the following.
+If any manual changes need to be made to the data sets themselves, the `attach_data` parameter of `ads_spec()` needs to be set to `TRUE`. 
+In this case, top level entry of `spec` will have a `data` slot where the data set is stored and used by the `build()` function.
+Just like the other slots, it may be adjusted by the user in an intermediate step as shown in the following.
 
 
 
@@ -281,6 +295,7 @@ In order to add new (external) data, simply add a new entry in the existing `ads
 Depending on the type of the data you are adding, create a list that has the same structure as the relevant exemplary one above. 
 
 <!-- Assuming you want to add subject level data, the  -->
+
 ```{r, include = FALSE}
 ads_spec$add$data <- list(
   file = file_to_add,
@@ -317,25 +332,25 @@ ads_spec$admh$label <- "MHBODSYS"
 
 
 
-### ads_build()
+### build()
 
 Based on a given `ads_spec` object (modified or generated fully automatically), the `ads_build()` function will _execute_ the extraction of the relevant information according to the ads_spec entries and combine everything into a wide data set with one row per _id_. This data set is the basis for the feature matrix used later on for machine learning.
 
 ```{r}
-feature <- ads_build(spec)
+feature <- build(spec)
 ```
 
 
 <!-- #### Relevant helper functions -->
 
-<!-- Internally, `ads_build()` will call the appropriate `build_*()` function for each data type (adsl/bds/occds).  -->
+<!-- Internally, `build()` will call the appropriate `build_*()` function for each data type (adsl/bds/occds).  -->
 
 <!-- While `spec_bds()` and `spec_occds()` are rather similar in the sense that only few columns need to be extracted and reshaped, a lot more steps are required for the preparation of adsl. -->
 
-<!-- <!-- link to build_ads() etc --> -->
+<!-- <!-- link to build_ads() etc --> 
 
 
-<!-- **build_ads()** -->
+<!-- **build()** -->
 
 <!-- * extract factor codings and rename levels to obtain valid feature names -->
 <!-- * removal of -->

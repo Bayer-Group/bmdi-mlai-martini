@@ -281,19 +281,19 @@ prepare_ml <- function(
     # create a new column .strata for stratified splitting by outcome
     d_raw <- d_raw %>% 
       {if(outcome_mode == "classification"){
-         mutate(., .strata = .out)
+         dplyr::mutate(., .strata = .out)
       }else{.}
       } %>% 
       
       {if(outcome_mode == "survival"){
-        mutate(., .strata = .status)
+        dplyr::mutate(., .strata = .status)
       }else{.}
       } %>% 
       
       # no outcome stratification for regression, but create the column
       # anyways to make it extendable by strata_trt = TRUE
       {if(outcome_mode == "regression"){
-         mutate(., .strata = '')
+         dplyr::mutate(., .strata = '')
       }else{.}
       }
     
@@ -305,7 +305,7 @@ prepare_ml <- function(
           'Argument strata_trt was set to TRUE but will be ignored.')))
       }else{
         d_raw <- d_raw %>% 
-          mutate(strata = paste0(.strata, .trt , sep='_'))
+          dplyr::mutate(strata = paste0(.strata, .trt , sep='_'))
       }  
     }
     

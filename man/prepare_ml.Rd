@@ -28,6 +28,7 @@ prepare_ml(
   vars_imp_ignore = NULL,
   vars_fct_expl_na = NULL,
   vars_ordinalscore = NULL,
+  vars_keep_corr = NULL,
   one_hot = TRUE,
   log_base = exp(1),
   outlier_remove = FALSE,
@@ -94,6 +95,8 @@ Observations with missing values in these variables will be removed. Removal is 
 
 \item{vars_ordinalscore}{column names of ordinal factor variables to be converted into numeric scores. Defaults to NULL.}
 
+\item{vars_keep_corr}{choose these variables over other options when removing variables due to high correlation in \code{recipes::step_corr()}. See \code{recipes::step_rm()} below for details.}
+
 \item{one_hot}{boolean. passed to \code{recipes::step_dummy()} to choose one hot encoding over dummy encoding}
 
 \item{log_base}{base to use for log-transformation in \code{recipes::step_log()}. Defaults to \emph{exp(1)}.}
@@ -147,11 +150,11 @@ Please refer to the Details section for more information.
 \details{
 The following order of recipe steps for data preparation will be applied (if no recipe is provided).
 The variable sets that a particular step function will be applied to are determined based on user input
-and output of the function \code{\link{prepare_ml_vars}()}, respectively.
+and output of the function \code{\link{prepare_ml_vars}()}, respectively. Further details on particular steps are given below.
 \itemize{
-\item drop variables e.g. not meeting the minimum threshold for non-missing data proportion (\code{step_rm()})
+\item drop variables e.g. not meeting the minimum threshold for non-missing data proportion (\code{step_rm()}) or for variable removal related to the \code{vars_keep_corr} parameter (see below).
 \item remove observations with missing data in outcome (\code{step_naomit()})
-\item knn imputation on variables with missing values that are not explicitly excluded from imputation  (\code{step_impute_knn()})
+\item knn imputation on variables with missing values that are not explicitly excluded from imputation (\code{step_impute_knn()})
 \item omit observations with remaining missing values (i.e. in variables that were excluded from imputation and not dropped before) (\code{step_naomit()})
 \item removal of near-zero variance variables (\code{step_nzv()})
 \item log-transformation (\code{step_log()})
@@ -161,6 +164,21 @@ and output of the function \code{\link{prepare_ml_vars}()}, respectively.
 \item transform ordinal factors into numeric variables (\code{step_ordinalscore()})
 \item dummy/one hot encoding (\code{step_dummy()})
 }
+
+The \code{vars_keep_corr} parameter allows to prioritize these variables in the \code{step_corr()} part of the recipe
+over the variables that yield high correlations with them (i.e. exceeding \code{thres_corr}).
+This allows to choose a \emph{representative} from a set of correlated variables that is
+e.g. commonly used in the context of the indication or easier to interpret.
+Please note, that these imposed restrictions may increase the total number of removed variables
+in this step in comparison to the unrestricted version.
+
+A note on \code{step_impute_knn()} and the interpretation of the \code{prep()}ped recipe:
+The variables listed for this step are the ones that are \strong{used} for the imputation step.
+It does not mean that missing values in these variables have been or will be imputed.
+For more details on this matter please refer to the documentation of tidymodels and the
+difference in \code{prep()} and \code{bake()}, in particular.
+For example, the treatment variables will most likely be given in \code{vars_imp_ignore} to prevent any imputations;
+however, it will be listed in the variable set of the \code{prep()}ped recipe. Don't panic. #rtfm.
 }
 \section{Authors}{
 
