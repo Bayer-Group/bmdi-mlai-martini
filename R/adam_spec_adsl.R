@@ -286,7 +286,7 @@
 
   if("RANDDT" %in% colnames(adsl)){
     # also check it's not constant (e.g. all NA in IA)
-    if(adsl %>%  pull(RANDDT) %>% n_distinct() %>%  {.>1}){
+    if(adsl %>%  dplyr::pull(RANDDT) %>% dplyr::n_distinct() %>%  {.>1}){
 
     adsl_cor_randdt <- adsl %>%
       dplyr::select(-tidyselect::all_of(all_FL)) %>% 
