@@ -360,7 +360,9 @@
     "constant"     = constants,
     "blacklist"    = black_list
   ) %>% 
-    purrr::map(~setdiff(., keep))
+    purrr::map(~setdiff(., keep)) %>% 
+    purrr::map(~setdiff(., c(id, trt)))  
+    
   
   # ... selected columns ####
   select_list <- c(
