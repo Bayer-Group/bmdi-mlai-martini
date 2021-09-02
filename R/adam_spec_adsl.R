@@ -217,7 +217,7 @@
   if(length(num_only > 0)){
     lab_lev <- dplyr::bind_rows(
       lab_lev,
-      tibble(
+      tibble::tibble(
         lab = num_only,
         lev = num_only
       )

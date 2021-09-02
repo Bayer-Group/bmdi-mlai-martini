@@ -6,7 +6,7 @@
 \title{Example specification object.}
 \format{
 A list with the entries \code{adsl}, \code{admh} and \code{advs}. See the documentation of
-\code{\link{adan_spec}()} for further details on the object structure.
+\code{\link{adam_spec}()} for further details on the object structure.
 }
 \source{
 Simulated data
@@ -16,6 +16,6 @@ martini_spec
 }
 \description{
 Specification object of the included example study in \code{system.file("ads", package = "martini")}
-as created by \code{\link{adam_spec()}}.
+as created by \code{\link{adam_spec}()}.
 }
 \keyword{datasets}

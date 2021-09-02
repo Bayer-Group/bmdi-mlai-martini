@@ -12,9 +12,3 @@
 #'
 
 "martini_feat"
-
-data(martini_spec)
-
-martini_feat <- build(martini_spec)
-
-usethis::use_data(martini_feat, overwrite = TRUE)

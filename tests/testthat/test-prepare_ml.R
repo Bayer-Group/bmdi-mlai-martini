@@ -1,7 +1,11 @@
 testthat::test_that("strata_trt works", {
   
-  require(tidyverse)
+  require(tibble)
+  require(dplyr)
+  require(tidyr)
+  require(purrr)
   require(martini)
+  
   # test stratification WITH and WITHOUT added treatment
   
   trt_groups <- c('PLA', 'trt1', 'trt2')
@@ -106,8 +110,6 @@ testthat::test_that("strata_trt works", {
 
 testthat::test_that("keep_vars_corr works", {
 
-  library(tidyverse)
-  
   set.seed(1492)
   
   n <- 20

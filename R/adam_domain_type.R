@@ -169,7 +169,7 @@ adam_domain_type <- function(
       
     attr(file_info, 'unknown_domains') <- doms_ignored
       
-    file_info %>% dplyr::relocate(file, .after = last_col())
+    file_info %>% dplyr::relocate(file, .after = tidyselect::last_col())
   }   
 }
 

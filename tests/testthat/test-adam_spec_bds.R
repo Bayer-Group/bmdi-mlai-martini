@@ -8,14 +8,14 @@ test_that("adam_spec_bds works", {
   
   
   #  create prepare specification ####
-  ads_spec_adlb <- martini::adam_spec_bds(
+  ads_spec_adlb <- martini:::adam_spec_bds(
     file_adlb         
   )
   
   # TEST key columns ####
   # ... provide non-existing column name as key column but can be guessed ####
   testthat::expect_message(
-    ads_spec_adlb <- martini::adam_spec_bds(
+    ads_spec_adlb <- martini:::adam_spec_bds(
       file_adlb,
       param = 'PRMCD'         
     ),
@@ -24,12 +24,12 @@ test_that("adam_spec_bds works", {
   
   # ... column cannot be guessed ####
   testthat::expect_null(
-    martini::adam_spec_bds(file_adlb_rename)
+    martini:::adam_spec_bds(file_adlb_rename)
   )
   
   # ... provide non-standard column name ####
   testthat::expect_type(
-    martini::adam_spec_bds(
+    martini:::adam_spec_bds(
       file_adlb_rename,
       param = 'MARTINI'
     ),
