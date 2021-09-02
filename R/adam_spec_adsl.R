@@ -304,7 +304,7 @@
       tibble::rownames_to_column("name") %>% 
       tibble::as_tibble() %>% 
       dplyr::rename(value = tidyselect::all_of("RANDDT"))
-  }
+  }}
   
   redundant_id <- cors_id %>% 
     dplyr::bind_rows(cors_randdt) %>% 
