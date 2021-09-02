@@ -86,7 +86,7 @@ adam_spec <- function(
     spec <- spec %>% 
       append(
         purrr::map(files_bds, ~ adam_spec_bds(
-          file = .x, filter = filter, attach_data = attach_data
+          file = .x, id = id, filter = filter, attach_data = attach_data
         ))
       )
     
@@ -104,7 +104,7 @@ adam_spec <- function(
     spec <- spec %>% 
       append(
         purrr::map(files_occds, ~ adam_spec_occds(
-          file = .x, filter = filter, attach_data = attach_data, pre_study = pre_study
+          file = .x, id = id, filter = filter, attach_data = attach_data, pre_study = pre_study
         ))
       )
     
