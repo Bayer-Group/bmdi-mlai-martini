@@ -6,7 +6,7 @@ test_that("build_bds works", {
   file_adlb_miss   <- test_path("sas/adlb_miss.sas7bdat")
   file_adlb_rename <- test_path("sas/adlb_rename.sas7bdat")
   
-  ads_spec_adlb <- martini::adam_spec_bds(file_adlb, attach_data = TRUE)
+  ads_spec_adlb <- martini:::adam_spec_bds(file_adlb, attach_data = TRUE)
   
   #  duplicate handling ####
   ref <- ads_spec_adlb$data %>% 
@@ -21,7 +21,7 @@ test_that("build_bds works", {
     dplyr::pull(PARAMCD) %>% 
     unique()
   
-  comp <- martini::build_bds(spec = ads_spec_adlb)$data %>% 
+  comp <- martini:::build_bds(spec = ads_spec_adlb)$data %>% 
     dplyr::select(tidyselect::all_of(c(".id", dupl))) %>% 
     tidyr::pivot_longer(-.id, names_to = "PARAMCD", values_to = "AVAL") %>% 
     dplyr::left_join(ref, by = c(".id" = "SUBJID", "PARAMCD"))

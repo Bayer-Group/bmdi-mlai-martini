@@ -5,7 +5,7 @@ test_that("adam_spec_adsl", {
   file_adsl <- test_path("sas/adsl.sas7bdat")
   
   # create prepare specification
-  ads_spec_adsl <- martini::adam_spec_adsl(file_adsl)
+  ads_spec_adsl <- martini:::adam_spec_adsl(file_adsl)
   
   # TEST adsl prepare specification ####
   
