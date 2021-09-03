@@ -4,7 +4,8 @@
 # (see 'build_x.R' for documentation details)
 
 build_bds <- function(
-  spec
+  spec,
+  values_fn = function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), x[1])}
 ){
   
   md5 <- tools::md5sum(spec$file) %>% as.character()

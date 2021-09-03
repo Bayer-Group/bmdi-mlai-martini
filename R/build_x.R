@@ -5,6 +5,7 @@
 #' the md5 checksum of the specified file.
 #' 
 #' @param spec result of `adam_spec_*()`
+#' @param values_fn bds only. function to handle duplicates in pivoting step. see details section for default.
 #' 
 #' @return 
 #' A list with the following entries
@@ -20,6 +21,8 @@
 #' @details 
 #' Note that the output dictionary may differ from the dictionary created by `adam_spec_*()`, 
 #' as multiple features may be derived from a single parameter at different time points.  
+#' 
+#' \code{values_fn} is passed to \code{pivot_wider()}. The default is function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), x[1])}
 #'
 #' @section Authors: 
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
