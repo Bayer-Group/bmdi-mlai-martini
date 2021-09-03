@@ -354,7 +354,6 @@ If one does not opt for the count option, but for individual variables, there is
 ads_spec$admh$value <- 'MHPRESP'
 ```
 
-<!-- add paragraph on occurence data prep -->
 
 
 
