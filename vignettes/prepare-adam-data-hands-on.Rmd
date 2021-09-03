@@ -175,7 +175,7 @@ ads_spec %>%
 
 **Filters**
 
-The `filter` argument takes a character vector of valid filter expressions. A filter will be applied to a particular data only if its application yields a non-empty tibble (i.e. no error thrown, at least one row is selected). Common filters may be based on visit or treatment information, as well as flags indicating analysis sets.
+The `filter` argument takes a character vector of valid filter expressions. A filter will be applied to a particular data set only if its application yields a non-empty tibble (i.e. no error thrown, at least one row is selected). Common filters may be based on visit or treatment information, as well as flags indicating analysis sets.
 
 The `pre_study` argument allows to conveniently reduce e.g. medical history records to data that is available at baseline based on the study day.
 
@@ -184,8 +184,12 @@ filters  <- c(
   "AVISIT == 'Baseline'",
   "ITTFL == 'Y'",
   "!is.na(TRT01A)",
+  
   # exclude a single parameter 
-  "PARAMCD != 'BPDIA'"
+  "PARAMCD != 'BPDIA'",
+  
+  # some MH and CM entries have a Y/N coding (but not all)
+  "MHOCCUR != 'N'"
 )
 
 ads_spec <- adam_spec(
@@ -227,7 +231,7 @@ We already covered how to discard a _complete domain_ by using the `drop` argume
 
 A single parameter from a (_non-subject level_) domain can be discarded by using the `filter` argument in `adam_spec()`.
 
-In the following, we demonstrate how to remove variables from adsl (_subject level_):
+In the following, we demonstrate how to remove variables from `adsl` (_subject level_):
 
 The columns to be selected from the `adsl` data set are stored in `ads_spec$adsl$select`. 
 Simply remove column names from this entry to discard particular variables. 
@@ -329,6 +333,28 @@ ads_spec$adsl$factor_levels$TRT01A <- ads_spec$adsl$factor_levels$TRT01A %>% na.
 # change label column in admh
 ads_spec$admh$label <- "MHBODSYS"
 ```
+
+
+**Handling of occurrence data**
+
+When trying to extract information from an occurrence data set (such as admh, adcm, adxa) in a binary manner (e.g. particular medication yes/no), a lot of the resulting variables may be discarded in the data preparation process due to near-zero variance.  
+In order to keep at least some information, the default for occds data set preparation is to simply _count the number of entries_, as commonly a higher number of entries roughly translates to a worse status.
+
+If the count option is used, check that none of the entries is equivalent to no record (e.g. value 'none' in adjuvant therapy). These values should be excluded using the filter parameter in the `adam_spec()` function beforehand.  
+
+If instead individual variables should be derived, the user may set the `count` value in the corresponding spec to 'FALSE'.
+
+```{r count occurence}
+ads_spec$admh$count <- FALSE
+```
+
+If one does not opt for the count option, but for individual variables, there is also the possibility to specify a `valuen` column, which in the case of adae may be set to the column indicating the severity of the event. Analogously, a `value` entry may be provided for non-numeric information, e.g. 
+
+```{r}
+ads_spec$admh$value <- 'MHPRESP'
+```
+
+<!-- add paragraph on occurence data prep -->
 
 
 
