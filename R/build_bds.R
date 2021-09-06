@@ -5,8 +5,12 @@
 
 build_bds <- function(
   spec,
-  values_fn = function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), x[1])}
+  values_fn = NULL
 ){
+  
+  if (is.null(values_fn)){
+    values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), x[1])}
+  }
   
   md5 <- tools::md5sum(spec$file) %>% as.character()
   
