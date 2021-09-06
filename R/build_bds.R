@@ -5,12 +5,8 @@
 
 build_bds <- function(
   spec,
-<<<<<<< HEAD
-  values_fn = NULL
-=======
-  values_fn = function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), x[1])},
+  values_fn = NULL,
   arrange   = NULL
->>>>>>> 5cae4ccb678448bb96798c776cf0c369e533a306
 ){
   ##
   
