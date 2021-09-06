@@ -10,12 +10,18 @@
 \usage{
 build_adsl(spec)
 
-build_bds(spec)
+build_bds(
+  spec,
+  values_fn = function(x) {     ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), x[1])
+    }
+)
 
 build_occds(spec)
 }
 \arguments{
 \item{spec}{result of \verb{adam_spec_*()}}
+
+\item{values_fn}{bds only. function to handle duplicates in pivoting step. see details section for default.}
 }
 \value{
 A list with the following entries
@@ -34,6 +40,8 @@ the md5 checksum of the specified file.
 \details{
 Note that the output dictionary may differ from the dictionary created by \verb{adam_spec_*()},
 as multiple features may be derived from a single parameter at different time points.
+
+\code{values_fn} is passed to \code{pivot_wider()}. The default is function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), x\link{1})}
 }
 \section{Authors}{
 

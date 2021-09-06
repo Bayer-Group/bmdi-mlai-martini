@@ -23,36 +23,49 @@
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #'
-#'@export
-#'
-
+#' @export
 
 prepare_ml_split <- function(
   ml_obj, 
   by = ".trt"
 ){
   
+  var_names_raw <- ml_obj$data_raw$train %>% names()
+  
+  if(!by %in% var_names_raw){
+    usethis::ui_stop(
+      paste0("'", by, "' could not be found in the raw data.")
+    )
+  }
+  
   if(! is.factor(ml_obj$data_raw$train[[by]])){
     usethis::ui_stop(
       paste0("'", by, "' is not a factor.")
     )
   }
+  
   levs  <- ml_obj$data_raw$train[[by]] %>% levels()
+  
+  # split variables to remove in the preparation process
+  # ('by' or dummy-/one-hot encoded version of 'by')
+  vars_remove <- paste0(by, "_", levs) %>% 
+    c(by) %>% 
+    intersect(ml_obj$data_prep$train %>% names())
   
   purrr::map(1:length(levs), ~{ml_obj}) %>% 
     rlang::set_names(levs) %>% 
     purrr::imap(~{
       
       # remove 'by' from dictionary
-      .x$dict <- .x$dict %>% dplyr::filter(column != by)
+      .x$dict <- .x$dict %>% dplyr::filter(param != by)
       
-      #
+      # split raw data
       .x$data_raw$train <- .x$data_raw$train %>% dplyr::filter(!! rlang::sym(by) == .y)
       .x$data_raw$test  <- .x$data_raw$test  %>% dplyr::filter(!! rlang::sym(by) == .y)
       
       # add removal step to end of recipe, to remove 'by' after all prep steps are conducted
       .x$prep_recipe <- .x$prep_recipe %>% 
-        recipes::step_rm(tidyselect::any_of(by), trained = TRUE, removals = by)
+        recipes::step_rm(tidyselect::any_of(vars_remove), trained = TRUE, removals = vars_remove)
       
       .x$data_prep$train <- recipes::bake(.x$prep_recipe, new_data = .x$data_raw$train)
       .x$data_prep$test  <- recipes::bake(.x$prep_recipe, new_data = .x$data_raw$test )
