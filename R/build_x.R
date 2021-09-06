@@ -6,7 +6,9 @@
 #' 
 #' @param spec result of `adam_spec_*()`
 #' @param values_fn bds only. function to handle duplicates in pivoting step. see details section for default.
-#' 
+#' @param arrange bds only. expression passed to \code{arrange()} optional sorting of data set prior to pivoting, 
+#' e.g. in order to select the first/last value by date. defaults to NULL.  
+#'
 #' @return 
 #' A list with the following entries
 #' \item{\code{data}}{a tibble in wide format which one row per \code{id}}
@@ -23,7 +25,9 @@
 #' as multiple features may be derived from a single parameter at different time points.  
 #' 
 #' \code{values_fn} is passed to \code{pivot_wider()}. The default is function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), x[1])}
-#'
+#' 
+#' 
+#' 
 #' @section Authors: 
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 

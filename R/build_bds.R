@@ -5,8 +5,10 @@
 
 build_bds <- function(
   spec,
-  values_fn = function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), x[1])}
+  values_fn = function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), x[1])},
+  arrange   = NULL
 ){
+  ##
   
   md5 <- tools::md5sum(spec$file) %>% as.character()
   
@@ -32,39 +34,43 @@ build_bds <- function(
       
       
     }else return(NULL)
-  } else {
+  }else {
     bds_full <- spec$data
   }
 
   col_select <- spec[c("param",  "time" ,  "value",  "unit",   "label" )] %>% 
-    unlist() %>%  na.omit() %>%  as.character()
+    unlist() %>% na.omit() %>% as.character()
   
 
   bds <- bds_full %>% 
     {if(length(spec$filter) > 0){ 
-       filter_txt <-  paste( '(',
-                            paste(  spec$filter, collapse= ') & (' ),
-                            ')') 
-      
-        dplyr::filter(., !! rlang::parse_expr(filter_txt))
-      }else{.}} %>% 
-    dplyr::filter( ! is.na(!! rlang::sym(spec$value) ) ) %>% 
-    dplyr::select( tidyselect::any_of( c(spec$id, col_select))) %>% 
-    dplyr::rename( `.id` = spec$id ) # 
+       filter_txt <- paste( 
+         '(',
+         paste(  spec$filter, collapse= ') & (' ),
+         ')'
+       ) 
+       dplyr::filter(., !! rlang::parse_expr(filter_txt))
+      }else{.}
+    } %>% 
+    dplyr::filter(! is.na(!! rlang::sym(spec$value))) %>% 
+    dplyr::select(tidyselect::any_of(c(spec$id, col_select))) %>% 
+    dplyr::rename(`.id` = spec$id) # 
   
  
-  # prior to pivoting,  create key column (PARAM or PARAM/TIME)
+  # prior to pivoting, create key column (PARAM or PARAM/TIME)
   # check if multiple time points are present after subsetting
-  n_time <- ifelse(! is.na(spec$time),
-                   bds %>%  dplyr::pull(spec$time) %>%  dplyr::n_distinct() ,
-                   1)
+  n_time <- ifelse(
+    ! is.na(spec$time),
+    bds %>%  dplyr::pull(spec$time) %>% dplyr::n_distinct(),
+    1
+  )
   if(n_time > 1){
     bds <- bds %>% 
-      tidyr::unite(.key, spec$param, spec$time, remove = FALSE, sep='_') %>% 
+      tidyr::unite(.key, spec$param, spec$time, remove = FALSE, sep = '_') %>% 
       dplyr::mutate(.key = stringr::str_replace_all(.key, '[:punct:]|[:space:]', '_'))
   }else{
     bds <- bds %>% 
-      dplyr::mutate( '.key' = stringr::str_replace_all( !! rlang::sym(spec$param), '[:punct:]|[:space:]', '_'))
+      dplyr::mutate('.key' = stringr::str_replace_all( !! rlang::sym(spec$param), '[:punct:]|[:space:]', '_'))
   }
 
   # pivot   ####
@@ -72,6 +78,10 @@ build_bds <- function(
   bds_wide <- bds %>% 
     dplyr::select(tidyselect::all_of(c(spec$value, '.key', '.id'))) %>% 
     dplyr::filter(.key != "") %>% 
+    {if(!is.null(arrange)){ 
+       dplyr::arrange(., !!! arrange)
+       }else{.}
+    } %>% 
     tidyr::pivot_wider(
       names_from  = '.key', 
       values_from = spec$value,
@@ -79,15 +89,15 @@ build_bds <- function(
     ) 
   
   # transform all character columns to factors except for .id, which is kept as-is
-  char2fct <-   bds_wide %>% 
+  char2fct <- bds_wide %>% 
     dplyr::select_if(is.character) %>% 
     colnames() %>% 
-    setdiff('.id' )
+    setdiff('.id')
   
   bds_wide <- bds_wide  %>% 
     dplyr::mutate_at(char2fct, factor) %>%  
     {if(spec$spec_id == 'adegf'){
-      dplyr::mutate_at(., char2fct, ~ fct_explicit_na(., na_level = 'missing') )
+      dplyr::mutate_at(., char2fct, ~ fct_explicit_na(., na_level = 'missing'))
     }else{.}
     }
   
