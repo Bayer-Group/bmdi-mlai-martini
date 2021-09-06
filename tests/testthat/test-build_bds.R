@@ -2,9 +2,9 @@ test_that("build_bds works", {
   
   # TEST setup ####
   
-  file_adlb        <- test_path("sas/adlb.sas7bdat")
-  file_adlb_miss   <- test_path("sas/adlb_miss.sas7bdat")
-  file_adlb_rename <- test_path("sas/adlb_rename.sas7bdat")
+  file_adlb        <- testthat::test_path("sas/adlb.sas7bdat")
+  file_adlb_miss   <- testthat::test_path("sas/adlb_miss.sas7bdat")
+  file_adlb_rename <- testthat::test_path("sas/adlb_rename.sas7bdat")
   
   ads_spec_adlb <- martini:::adam_spec_bds(file_adlb, attach_data = TRUE)
   
@@ -33,5 +33,6 @@ test_that("build_bds works", {
   
   # data dimensions ####
   
+  # TODO add test for arrange parameter
   
 })
