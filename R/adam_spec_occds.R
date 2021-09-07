@@ -13,7 +13,7 @@
 #' @param valuen optional numeric coding column for `value`. Defaults to NULL, ignored if `value` is NULL.
 #' @param filter character vector of filters to be applied to the bds data set. 
 #' Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL. 
-#' @param count  boolean, defaults to FALSE. # NOTE: add further options (weights, scoring matrix, ...)
+#' @param count  boolean, defaults to FALSE. 
 #' @param pre_study  boolean. filter the data set to pre_study observations based on non-negative values in `time`
 #' @param attach_data boolean. attach the imported raw data in \code{data} slot of output object
 #' 
