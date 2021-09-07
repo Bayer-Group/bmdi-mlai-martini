@@ -47,6 +47,7 @@ A list containing the following
 \item{\code{spec_id}}{character string, generally the name of the domain}
 \item{\code{dict}}{a tibble with unique combinations within the \code{param} and \code{label} column (if present in the data set)
 to be used as a data dictionary}
+\item{\code{dupl_ctrl}}{a list of length 2 with parameters \code{values_fn} and \code{arrange} that are passed to \code{\link{build_bds}()} to handle pivoting for duplicated values. Both default to NULL.}
 }
 \description{
 Given a file containing a bds data set (e.g. adlb or advs), \code{\link{adam_spec_bds}()} will create a specification

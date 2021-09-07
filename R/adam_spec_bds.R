@@ -42,6 +42,7 @@
 #' \item{`spec_id`}{character string, generally the name of the domain} 
 #' \item{`dict`}{a tibble with unique combinations within the `param` and `label` column (if present in the data set) 
 #' to be used as a data dictionary}
+#' \item{`dupl_ctrl`}{a list of length 2 with parameters `values_fn` and `arrange` that are passed to \code{\link{build_bds}()} to handle pivoting for duplicated values. Both default to NULL.}
 #' 
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
@@ -175,17 +176,23 @@ adam_spec_bds <- function(
   # output ####
  
   out <- list(
-    file    = file,
-    data    = NULL,
-    md5     = md5,
-    type    = "bds",
-    id      = id,
-    filter  = actual_filter,
-    dict    = dict,
-    spec_id = domain
+    file      = file,
+    data      = NULL,
+    md5       = md5,
+    type      = "bds",
+    id        = id,
+    filter    = actual_filter,
+    dict      = dict,
+    spec_id   = domain
   ) %>% 
     append(
       col_select %>% as.list()
+    ) %>% 
+    c(
+      list(dupl_ctrl = list(
+        values_fn = NULL,
+        arrange   = NULL
+      ))
     )
 
   

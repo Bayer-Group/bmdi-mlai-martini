@@ -163,10 +163,20 @@ build <- function(
     }
     
     # call the appropriate build_*() function
-    interim <- purrr::map(
-      spec, 
-      ~  { do.call( paste0('build_', .x[['type']]), list(.x)) }
-    )
+    interim <- purrr::map(spec,  ~{
+      
+      if(.x[['type']] == 'bds'){
+        
+        .x[['values_fn']] <- .x$dupl_ctrl$values_fn
+        .x[['arrange']]   <- .x$dupl_ctrl$arrange
+        .x[['dupl_ctrl']] <- NULL
+        
+      }
+      
+      do.call( paste0('build_', .x[['type']]), list(.x))
+      
+      
+    })
     
   }
   
