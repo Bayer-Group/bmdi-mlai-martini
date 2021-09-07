@@ -47,6 +47,10 @@ build_bds <- function(
   
 
   bds <- bds_full %>% 
+    {if(!is.null(arrange)){ 
+      dplyr::arrange(., !!! rlang::parse_exprs(arrange))
+    }else{.}
+    } %>%
     {if(length(spec$filter) > 0){ 
        filter_txt <- paste( 
          '(',
@@ -82,14 +86,10 @@ build_bds <- function(
   bds_wide <- bds %>% 
     dplyr::select(tidyselect::all_of(c(spec$value, '.key', '.id'))) %>% 
     dplyr::filter(.key != "") %>% 
-    {if(!is.null(arrange)){ 
-       dplyr::arrange(., !!! arrange)
-       }else{.}
-    } %>% 
     tidyr::pivot_wider(
       names_from  = '.key', 
       values_from = spec$value,
-      values_fn   = function(x) {ifelse(all(is.numeric(x)), mean(x), x[1])}
+      values_fn   = values_fn
     ) 
   
   # transform all character columns to factors except for .id, which is kept as-is
