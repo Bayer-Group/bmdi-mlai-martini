@@ -63,12 +63,6 @@ as well as the final output object (`martini_ml_class`) for further use in the
 <!-- TODO adjust package names-->
 `MARTINImodtune` and/or `MARTINIreport` modules of the pipeline.
 
-```{r, include = FALSE}
-tribble()
-
-```
-
-
 
 <!-- The full process is described in a lot more detail in the "under the hood" vignette of the package, where    -->
 
@@ -372,7 +366,7 @@ ads_spec$adsl$factor_levels$TRT01A <- ads_spec$adsl$factor_levels$TRT01A %>% na.
 
 **Change data set label**
 
-`adam_spec()` automatically selects a `label` column in _occds_ data sets (e.g. _admh_), that controls the categorization of the occurrences and defines the variables that are created by the `build()` function. If you need a more or less detailed categorization, you need to change the `label` entry.
+`adam_spec()` automatically selects a `label` column in occds data sets (e.g. admh), that controls the categorization of the occurrences and defines the variables that are created by the `build()` function. If you need a more or less detailed categorization, you need to change the `label` entry.
 
 ```{r spec change label}
 # change label column in admh
