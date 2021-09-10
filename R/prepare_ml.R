@@ -558,7 +558,11 @@ prepare_ml <- function(
     purrr::keep(~{!is.null(.x)}) %>% 
     # set empty 'removal' slots (=vector of length 0) to NULL
     purrr::map(~{if(length(.x) > 0) .x})
-  
+
+   # imp.ignore is returned as named vector 
+  if("imp_ignore" %in% names(removed_columns)){
+     removed_columns$imp_ignore <- removed_columns$imp_ignore %>%  as.character()
+   }
   
   # DOCUMENT PREP PARAMETER SETTINGS ####
   # NOTE TEMP text slots will be removed once documentation is fully available
