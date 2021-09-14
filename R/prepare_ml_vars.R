@@ -52,6 +52,7 @@ prepare_ml_vars <- function(
     if (length(vars_integer)>0){
       vars_count <- data %>% 
         dplyr::mutate_if(is.factor, as.character) %>% 
+        dplyr::mutate_if(is.numeric, as.character) %>% 
         dplyr::select_if( ~{readr::guess_parser(.x, guess_integer = TRUE) == 'integer'} ) %>%  
         tidyr::pivot_longer(
           -tidyselect::any_of(remove), 
