@@ -305,7 +305,7 @@ prepare_ml <- function(
           'Argument strata_trt was set to TRUE but will be ignored.')))
       }else{
         d_raw <- d_raw %>% 
-          dplyr::mutate(strata = paste0(.strata, .trt , sep='_'))
+          dplyr::mutate(.strata = paste0(.strata, .trt , sep='_'))
       }  
     }
     
