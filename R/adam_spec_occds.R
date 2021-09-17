@@ -57,7 +57,8 @@ adam_spec_occds <- function(
   
   # READ occds ####
   occds      <- haven::read_sas(file) %>% 
-    haven::zap_empty()
+    dplyr::mutate_if(is.character, haven::zap_empty)
+
   
   md5        <- tools::md5sum(file) %>%  as.character()
   guesses    <- adam_guess(file)

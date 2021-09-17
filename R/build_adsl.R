@@ -25,7 +25,8 @@ build_adsl <- function(
     
     if(file_ext == 'sas7bdat'){
       
-      adsl_full <- haven::read_sas(file_name) %>% haven::zap_empty()
+      adsl_full <- haven::read_sas(file_name) %>% 
+        dplyr::mutate_if(is.character, haven::zap_empty)
       
     } else {
       
