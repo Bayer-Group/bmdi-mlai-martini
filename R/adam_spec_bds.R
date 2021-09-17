@@ -154,7 +154,9 @@ adam_spec_bds <- function(
   
   # filter check ####
   # only filter that individually yield non-empty tibbles are kept
-  keep_filter   <- check_filter(bds, filter)
+  keep_filter   <- check_filter(bds, filter, data_id = domain)$individual %>% 
+    purrr::map_lgl("keep") %>% 
+    as.logical()
   actual_filter <- filter[keep_filter]
  
   # dictionary  ####
