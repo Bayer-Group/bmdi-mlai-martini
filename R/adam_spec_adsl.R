@@ -71,8 +71,7 @@
 
   # read adsl ####
   
-  adsl <- haven::read_sas(file) %>% 
-    dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+  adsl <- haven::read_sas(file) %>% haven::zap_empty()
   
   md5 <- tools::md5sum(file) %>% as.character()
   

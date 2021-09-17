@@ -27,7 +27,7 @@ build_bds <- function(
       tail(1) 
     
     if(file_ext == 'sas7bdat'){
-      bds_full <- haven::read_sas(file_name)
+      bds_full <- haven::read_sas(file_name) %>% haven::zap_empty()
       
       if( md5 != spec$md5){
         usethis::ui_info(crayon::silver(
