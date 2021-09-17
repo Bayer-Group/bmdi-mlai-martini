@@ -60,9 +60,10 @@ check_filter <- function(
   
     # C. overall filter yields no rows  ####
     overall_norow <- logical(0)
-    if(any(individual$keep)){
+    filter_keep   <- individual %>% map_lgl("keep")
+    if(any(filter_keep)){
       overall_norow <- data %>% 
-        dplyr::filter(!!! rlang::parse_exprs(filter[individual$keep])) %>% 
+        dplyr::filter(!!! rlang::parse_exprs(filter[filter_keep])) %>% 
         nrow() %>% 
         {. == 0}
       
