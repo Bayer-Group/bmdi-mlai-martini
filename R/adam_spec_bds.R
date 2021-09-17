@@ -61,8 +61,8 @@ adam_spec_bds <- function(
 ){
   
   # read bds ####
-  bds      <- haven::read_sas(file) %>%         
-    dplyr::mutate_if(is.character, haven::zap_empty)
+  bds      <- haven::read_sas(file) %>% 
+    dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
 
   
   md5      <- tools::md5sum(file) %>% as.character()
