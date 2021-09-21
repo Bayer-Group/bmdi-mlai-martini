@@ -410,7 +410,7 @@
     drop_list  = drop_list,
     id         = id,
     trt        = trt,
-    spec_id    = 'adsl'
+    spec_id    = 'SL'
   )
 
   if(attach_data){
