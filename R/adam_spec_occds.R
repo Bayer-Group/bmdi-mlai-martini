@@ -56,7 +56,10 @@ adam_spec_occds <- function(
   
   
   # READ occds ####
-  occds      <- haven::read_sas(file)
+  occds      <- haven::read_sas(file) %>% 
+    dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+
+  
   md5        <- tools::md5sum(file) %>%  as.character()
   guesses    <- adam_guess(file)
   coln_occds <- colnames(occds)
@@ -126,7 +129,9 @@ adam_spec_occds <- function(
   
   # filter check ####
   # only filter that individually yield non-empty tibbles are kept
-  keep_filter   <- check_filter(occds, filter)
+  keep_filter   <- check_filter(occds, filter, data_id = domain)$individual %>% 
+    purrr::map_lgl("keep") %>% 
+    as.logical()
   actual_filter <- filter[keep_filter]
 
   

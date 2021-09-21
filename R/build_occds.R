@@ -21,7 +21,8 @@ build_occds <- function(
       tail(1) 
     
     if(file_ext == 'sas7bdat'){
-      occds_full <- haven::read_sas(file_name)
+      occds_full <- haven::read_sas(file_name) %>% 
+        dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))       
       
       if( md5 != spec$md5){
         usethis::ui_info(crayon::silver(

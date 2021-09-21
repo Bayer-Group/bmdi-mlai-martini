@@ -60,7 +60,7 @@ build <- function(
   spec_only   = FALSE, 
   filter      = NULL,
   keep        = NULL,
-  drop        = NULL ,
+  drop        = NULL,
   join        = dplyr::inner_join,
   attach_data = FALSE
 ){
@@ -83,7 +83,7 @@ build <- function(
     
     file_info <- adam_domain_type(path, keep, drop)
     
-    interim <- list()
+    spec_or_data_depends <- list()
     
     # ... ... type adsl ####
     
@@ -94,7 +94,7 @@ build <- function(
         dplyr::select(domain, file) %>% 
         tibble::deframe()
       
-      interim <- interim %>% 
+      spec_or_data_depends <- spec_or_data_depends %>% 
         append(
           purrr::map(
             files_adsl,
@@ -116,7 +116,7 @@ build <- function(
         dplyr::select(domain, file) %>% 
         tibble::deframe()
       
-      interim <- interim %>% 
+      spec_or_data_depends <- spec_or_data_depends %>% 
         append(
           purrr::map(
             files_bds, 
@@ -137,7 +137,7 @@ build <- function(
         dplyr::select(domain, file) %>% 
         tibble::deframe()
       
-      interim <- interim %>% 
+      spec_or_data_depends <- spec_or_data_depends %>% 
         append(
           purrr::map(
             files_occds, 
@@ -163,7 +163,7 @@ build <- function(
     }
     
     # call the appropriate build_*() function
-    interim <- purrr::map(spec,  ~{
+    spec_or_data_depends <- purrr::map(spec,  ~{
       
       if(.x[['type']] == 'bds'){
         
@@ -186,16 +186,59 @@ build <- function(
   
   if(spec_only){
     
-    out <- interim
+    out <- spec_or_data_depends
     
   }else{
     
+    # ... handle duplicate variable names across domains/sources ####
+    rename_dupes <- imap_dfr(spec_or_data_depends, ~{
+      .x[['data']] %>% names() %>% tibble::as_tibble_col() %>% dplyr::mutate(domain = .y)
+    })  %>% 
+      tidyr::unite(new_name, value, domain, sep = '_', remove = FALSE) %>% 
+      dplyr::rename('old_name' = 'value') %>% 
+      dplyr::add_count(old_name) %>% 
+      dplyr::filter(n>1) %>% 
+      dplyr::filter(! old_name %in% c('.id'))
+    
+    spec_or_data_depends <- imap(spec_or_data_depends, ~{
+      
+      out <- .x
+      
+      rename_y <- rename_dupes %>% 
+        filter(domain == .y) %>% 
+        select(new_name, old_name) %>% 
+        deframe()
+      
+      if(length(rename_y) > 0){
+        out[['data']] <- out[['data']] %>% rename(any_of(rename_y))
+        out[['dict']] <- out[['dict']] %>% 
+          dplyr::left_join(rename_dupes, by = c("column" = "old_name")) %>% 
+          dplyr::mutate(column = dplyr::case_when(
+            !is.na(new_name) ~ new_name,
+            TRUE             ~ column
+          )) %>% 
+          dplyr::mutate(param = dplyr::case_when(
+            !is.na(new_name) ~ paste0(param, "_", .y),
+            TRUE             ~ param
+          )) %>% 
+          dplyr::mutate(label = dplyr::case_when(
+            !is.na(new_name) ~ paste0(label, " (", .y, ")"),
+            TRUE             ~ label
+          )) %>% 
+          dplyr::select(-new_name)
+      }
+      
+      out
+      
+    })
+    
+    
     # ... dict  #### 
-    prepped_dict <- purrr::map(interim, ~.[['dict']]) %>% 
+    prepped_dict <- purrr::map(spec_or_data_depends, ~.[['dict']]) %>% 
       purrr::reduce(dplyr::bind_rows)
     
     # ... source  #### 
-    prepped_source <- purrr::map(interim, ~{
+    prepped_source <- purrr::map(spec_or_data_depends, ~{
       .x[["source"]] %>% 
         tibble::as_tibble_row()
     }) %>% 
@@ -205,8 +248,8 @@ build <- function(
     # identify subjects from selected data sets to filter prepped_join
     # (if join is not a fct)
     if(! is.function(join)){
-      if(any(join %in% names(interim) )) {
-        join_ids <- purrr::map(interim[join %>%  intersect(names(interim))], ~.[['data']]) %>% 
+      if(any(join %in% names(spec_or_data_depends) )) {
+        join_ids <- purrr::map(spec_or_data_depends[join %>%  intersect(names(spec_or_data_depends))], ~.[['data']]) %>% 
           purrr::reduce(dplyr::full_join, by = '.id') %>% 
           dplyr::pull(.id)
         join_filter <- ' .id %in% join_ids'
@@ -218,7 +261,7 @@ build <- function(
     
     
     # combine and filter
-    prepped_join <- purrr::map(interim, ~.[['data']]) %>% 
+    prepped_join <- purrr::map(spec_or_data_depends, ~.[['data']]) %>% 
       {if(is.function(join)){
         purrr::reduce(., join, by = '.id') 
       }else{
