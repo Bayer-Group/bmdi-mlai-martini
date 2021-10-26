@@ -104,8 +104,8 @@
 #'  
 #' 
 #' The slot \code{outcome} contains a list giving \code{name}, the standardized names of the 
-#' output column in the data sets ( \code{.out} for regression/classification, \code{.time} and \code{.status}
-#' for survival, as well as a \code{mode}, character string of the outcome mode \code{regression/classification/survival} 
+#' output column in the data sets (\code{.out} for regression/classification, \code{.time} and \code{.status}
+#' for survival, as well as a \code{mode}, character string of the outcome mode \code{regression/classification/survival}.
 #' 
 #' The dictionary available as an attribute of `feature` is updated with information on the outcome variable
 #' and the log-transformation and available from the \code{dict} slot, NULL if no such attribute is defined.
