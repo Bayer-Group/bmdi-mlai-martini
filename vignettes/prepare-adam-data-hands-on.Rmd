@@ -13,6 +13,8 @@ vignette: >
 library(martini)
 library(dplyr)
 library(stringr)
+library(tidyr)
+library(tibble)
 
 knitr::opts_chunk$set(
   collapse = TRUE,

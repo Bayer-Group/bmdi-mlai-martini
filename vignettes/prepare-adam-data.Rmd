@@ -10,6 +10,10 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
+library(martini)
+library(dplyr)
+library(stringr)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
