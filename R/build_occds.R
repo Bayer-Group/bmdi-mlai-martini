@@ -14,26 +14,25 @@ build_occds <- function(
     
     # read data   ####
     file_name <- spec$file 
-    file_ext  <- stringr::str_split( file_name, '/|\\\\')[[1]] %>%  
+    file_ext  <- stringr::str_split(file_name, '/|\\\\')[[1]] %>%  
       tail(1) %>%  
       stringr::str_split(., '[.]') %>% 
-      .[[1]] %>%  
+      {.[[1]]} %>%  
       tail(1) 
     
     if(file_ext == 'sas7bdat'){
       occds_full <- haven::read_sas(file_name) %>% 
         dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))       
       
-      if( md5 != spec$md5){
-        usethis::ui_info(crayon::silver(
-          paste0('\t',  spec$spec_id, 
-                 ': The spec was created from a file with a different md5 checksum. \n'))
+      if(md5 != spec$md5){
+        usethis::ui_info(crayon::silver(paste0('\t',  
+          spec$spec_id, 
+          ': The spec was created from a file with a different md5 checksum. \n'))
         )
       }  
       
-      
     }else return(NULL)
-  } else {
+  }else{
     occds_full <- spec$data
   }
   
@@ -43,18 +42,18 @@ build_occds <- function(
   
   occds <- occds_full %>% 
     {if(length(spec$filter) > 0){ 
-      filter_txt <-  paste( '(',
-                            paste(  spec$filter, collapse= ') & (' ),
+      filter_txt <- paste( '(',
+                            paste(spec$filter, collapse= ') & (' ),
                             ')') 
       
       dplyr::filter(., !! rlang::parse_expr(filter_txt))
     }else{.}} %>% 
-    dplyr::select( tidyselect::any_of( c(spec$id, col_select  ))) %>% 
-    dplyr::rename( c(`.id` = spec$id , label =  spec$label)) %>% 
+    dplyr::select(tidyselect::any_of(c(spec$id, col_select)) ) %>% 
+    dplyr::rename(c(`.id` = spec$id, label = spec$label)) %>% 
     {if(is.null(spec$value)){
       dplyr::mutate(., value = factor("yes"))
-    } else {
-      {if (is.null(spec$valuen)){
+    }else{
+      {if(is.null(spec$valuen)){
         dplyr::mutate(., value = factor(!!rlang::sym(spec$value)))
       }else{
         dplyr::mutate(., value = forcats::fct_reorder(!!rlang::sym(spec$value), !!rlang::sym(spec$valuen))) %>% 
@@ -64,8 +63,9 @@ build_occds <- function(
     # remove observations with empty label
     dplyr::filter(stringr::str_squish(label) != "") %>% 
     dplyr::mutate(param = make.names(label) %>% 
-                    stringr::str_replace_all("[.]", "_") %>%
-                    stringr::str_to_lower()) 
+      stringr::str_replace_all("[.]", "_") %>%
+      stringr::str_to_lower()) 
+    
   
   
   
@@ -81,9 +81,9 @@ build_occds <- function(
   
   occds_wide <- occds %>% 
       dplyr::select(tidyselect::all_of(c('value', 'param', '.id'))) %>% 
-      { if(spec$count){
+      {if(spec$count){
          dplyr::count(., .id, param, name = 'value' )  
-      } else {.}
+      }else{.}
       }  %>%   
       tidyr::pivot_wider(
         names_from  = param, 
@@ -96,9 +96,9 @@ build_occds <- function(
   char2fct <- occds_wide %>% 
     dplyr::select_if(is.character) %>% 
     colnames() %>% 
-    setdiff('.id' )
+    setdiff('.id')
   
-  if (length(char2fct) > 0) occds_wide <- occds_wide %>% dplyr::mutate_at(char2fct, factor)
+  if(length(char2fct) > 0) occds_wide <- occds_wide %>% dplyr::mutate_at(char2fct, factor)
 
   # dictionary ####
   # overwrite dictionary from spec
@@ -106,7 +106,7 @@ build_occds <- function(
     if(spec$spec_id == ''){ 
       spec$spec_id <- ifelse(is.null(spec$file), 'user', spec$file)
     }
-  } else {
+  }else{
     spec$spec_id <- 'user'
   }
   
@@ -116,6 +116,7 @@ build_occds <- function(
     dplyr::mutate(column = param) %>% 
     dplyr::mutate(source = spec$spec_id) %>% 
     dplyr::mutate(type   = 'occds')
+  #TODO: add '(count {label})' to label column
   
   # output ####
   list(

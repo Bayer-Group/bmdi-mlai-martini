@@ -11,7 +11,8 @@ vignette: >
 
 ```{r setup, include = FALSE}
 library(martini)
-library(tidyverse)
+library(dplyr)
+library(stringr)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -338,7 +339,7 @@ Depending on the type of data to add, create a list that has the same structure 
 ```{r}
 ads_spec$add <- list(
   file = file_to_add,
-  md5  = md5(file),
+  md5  = tools::md5sum(file),
   data = additional_data,
   type = 'adsl',
   ...

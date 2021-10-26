@@ -4,18 +4,26 @@
 \alias{check_filter}
 \title{Check filter}
 \usage{
-check_filter(data, filter)
+check_filter(data, filter, data_id = NULL)
 }
 \arguments{
 \item{data}{data set that the given filter(s) should be applied to}
 
 \item{filter}{an expression to be used in \code{dplyr::filter()}, (either a single filter, or multiple ones separated by ',')}
+
+\item{data_id}{character to include in warning message to help identify the data sets when used in \code{\link{adam_spec}()}. defaults to NULL.}
 }
 \value{
-The function returns a logical of length equal to the number of individual filters present in the \code{filter} argument.
-TRUE indicates that the filter applied individually to \code{data} returns a data set with positive number of rows.
-On the other hand, FALSE indicates either an empty result after filtering or a non-applicable filter
-(e.g. if the column used in the filter definition is not present in \code{data}).
+A list with two entries: \code{individual} for single filter assessment,
+\code{overall_norow} for the combined filter assessment, if all individually applicable filters are applied to \code{data}.
+\code{Individual} consists of a list of three logicals per filter, with values TRUE
+if the application of the \emph{individual} filter to \code{data} yields
+\describe{
+\item{is_error}{an error}
+\item{is_norow}{a tibble with 0 rows}
+\item{keep}{neither of the above}
+}
+\code{overall_norow} is TRUE, if the combination of all applicable filters to \code{data} results in a 0-row tibble. In this case a warning is thrown.
 }
 \description{
 Check a given (set of) filter(s) against a data set and assess whether or not a non-empty data set would be returned.

@@ -14,5 +14,6 @@ utils::globalVariables(c(
   "column", "selected", ".key",
   "any_na", "aval", "min_aval", "n_dist", "paramcd", "skew",
   "RANDDT", 'RANDNO',
-  ".strata", "number"
+  ".strata", "number",
+  "new_name", "old_name", "n"
 ))

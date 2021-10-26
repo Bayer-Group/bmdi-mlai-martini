@@ -376,9 +376,10 @@
   
   # ... check filter ####
   # only filter that individually yield non-empty tibbles are kept
-  keep_filter   <- check_filter(adsl, filter)
+  keep_filter   <- check_filter(adsl, filter, data_id = 'adsl')$individual %>% 
+    purrr::map_lgl("keep") %>% 
+    as.logical()
   actual_filter <- filter[keep_filter]
-  
   
   # ... dictionary ####
 
@@ -409,7 +410,7 @@
     drop_list  = drop_list,
     id         = id,
     trt        = trt,
-    spec_id    = 'adsl'
+    spec_id    = 'SL'
   )
 
   if(attach_data){

@@ -129,7 +129,9 @@ adam_spec_occds <- function(
   
   # filter check ####
   # only filter that individually yield non-empty tibbles are kept
-  keep_filter   <- check_filter(occds, filter)
+  keep_filter   <- check_filter(occds, filter, data_id = domain)$individual %>% 
+    purrr::map_lgl("keep") %>% 
+    as.logical()
   actual_filter <- filter[keep_filter]
 
   

@@ -1,12 +1,10 @@
-#' One stop shop for building the machine learning data set
+#' Build the feature matrix from various sources according to a specification object
 #' 
 #' The `build()` function allows to build a machine learning data set from a specification object as provided
-#' by \code{\link{adam_spec}()} (with or without data already attached). It can also be used to build the data directly from an ads
-#' path. In this case the specification object is created internally by calling the respective `adam_spec_*()` functions 
-#' and immediately used to build the data set.
+#' by \code{\link{adam_spec}()} (with or without data already attached). 
 #' 
 #' @param spec a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)
-#' @param path the path to the ads files (either \code{spec} or \code{path} has to be provided)
+#' @param path the path to the ads files (either \code{spec} or \code{path} has to be provided). 
 #' @param spec_only if build from path, don't apply the just created spec to data set
 #' @param join either function to join data sets (e.g. \code{dplyr::full_join()} or a character (vector) giving the names
 #' of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}
@@ -47,6 +45,12 @@
 #' missing values are replace by 0 for numerics, an additional level 'none' is introduced for 
 #' for factors.
 #' 
+#' The `build()` function can also be used to build the data directly from an ads
+#' path. In this case the specification object is created internally by calling the respective `adam_spec_*()` functions 
+#' and immediately used to build the data set. 
+#' In practice, this is not recommended though, since manual adaptations to the automatically generated spec object will be required. 
+#' The path parameter will be deprecated soon.
+#' 
 #' @seealso \code{\link{build_adsl}()}, \code{\link{build_bds}()}, \code{\link{build_occds}()}
 #'
 #' @section Authors:
@@ -60,7 +64,7 @@ build <- function(
   spec_only   = FALSE, 
   filter      = NULL,
   keep        = NULL,
-  drop        = NULL ,
+  drop        = NULL,
   join        = dplyr::inner_join,
   attach_data = FALSE
 ){
@@ -83,7 +87,7 @@ build <- function(
     
     file_info <- adam_domain_type(path, keep, drop)
     
-    interim <- list()
+    spec_or_data_depends <- list()
     
     # ... ... type adsl ####
     
@@ -94,7 +98,7 @@ build <- function(
         dplyr::select(domain, file) %>% 
         tibble::deframe()
       
-      interim <- interim %>% 
+      spec_or_data_depends <- spec_or_data_depends %>% 
         append(
           purrr::map(
             files_adsl,
@@ -116,7 +120,7 @@ build <- function(
         dplyr::select(domain, file) %>% 
         tibble::deframe()
       
-      interim <- interim %>% 
+      spec_or_data_depends <- spec_or_data_depends %>% 
         append(
           purrr::map(
             files_bds, 
@@ -137,7 +141,7 @@ build <- function(
         dplyr::select(domain, file) %>% 
         tibble::deframe()
       
-      interim <- interim %>% 
+      spec_or_data_depends <- spec_or_data_depends %>% 
         append(
           purrr::map(
             files_occds, 
@@ -163,7 +167,7 @@ build <- function(
     }
     
     # call the appropriate build_*() function
-    interim <- purrr::map(spec,  ~{
+    spec_or_data_depends <- purrr::map(spec,  ~{
       
       if(.x[['type']] == 'bds'){
         
@@ -186,18 +190,61 @@ build <- function(
   
   if(spec_only){
     
-    out <- interim
+    out <- spec_or_data_depends
     
   }else{
     
+    # ... handle duplicate variable names across domains/sources ####
+    rename_dupes <- purrr::imap_dfr(spec_or_data_depends, ~{
+      .x[['data']] %>% names() %>% tibble::as_tibble_col() %>% dplyr::mutate(domain = .y)
+    })  %>% 
+      tidyr::unite(new_name, value, domain, sep = '_', remove = FALSE) %>% 
+      dplyr::rename('old_name' = 'value') %>% 
+      dplyr::add_count(old_name) %>% 
+      dplyr::filter(n > 1) %>% 
+      dplyr::filter(! old_name %in% c('.id'))
+    
+    spec_or_data_depends <- purrr::imap(spec_or_data_depends, ~{
+      
+      out <- .x
+      
+      rename_y <- rename_dupes %>% 
+        filter(domain == .y) %>% 
+        select(new_name, old_name) %>% 
+        deframe()
+      
+      if(length(rename_y) > 0){
+        out[['data']] <- out[['data']] %>% rename(any_of(rename_y))
+        out[['dict']] <- out[['dict']] %>% 
+          dplyr::left_join(rename_dupes, by = c("column" = "old_name")) %>% 
+          dplyr::mutate(column = dplyr::case_when(
+            !is.na(new_name) ~ new_name,
+            TRUE             ~ column
+          )) %>% 
+          dplyr::mutate(param = dplyr::case_when(
+            !is.na(new_name) ~ paste0(param, "_", .y),
+            TRUE             ~ param
+          )) %>% 
+          dplyr::mutate(label = dplyr::case_when(
+            !is.na(new_name) ~ paste0(label, " (", .y, ")"),
+            TRUE             ~ label
+          )) %>% 
+          dplyr::select(-new_name)
+      }
+      
+      out
+      
+    })
+    
+    
     # ... dict  #### 
-    prepped_dict <- purrr::map(interim, ~.[['dict']]) %>% 
-      purrr::reduce(dplyr::bind_rows)
+    prepped_dict <- purrr::map_dfr(spec_or_data_depends, 'dict') 
     
     # ... source  #### 
-    prepped_source <- purrr::map(interim, ~{
+    prepped_source <- purrr::imap(spec_or_data_depends, ~{
       .x[["source"]] %>% 
-        tibble::as_tibble_row()
+        tibble::as_tibble_row() %>% 
+        mutate(spec_id = .y, .before = 1)
     }) %>% 
       purrr::reduce(dplyr::bind_rows) 
     
@@ -205,8 +252,8 @@ build <- function(
     # identify subjects from selected data sets to filter prepped_join
     # (if join is not a fct)
     if(! is.function(join)){
-      if(any(join %in% names(interim) )) {
-        join_ids <- purrr::map(interim[join %>%  intersect(names(interim))], ~.[['data']]) %>% 
+      if(any(join %in% names(spec_or_data_depends) )) {
+        join_ids <- purrr::map(spec_or_data_depends[join %>%  intersect(names(spec_or_data_depends))], ~.[['data']]) %>% 
           purrr::reduce(dplyr::full_join, by = '.id') %>% 
           dplyr::pull(.id)
         join_filter <- ' .id %in% join_ids'
@@ -218,7 +265,7 @@ build <- function(
     
     
     # combine and filter
-    prepped_join <- purrr::map(interim, ~.[['data']]) %>% 
+    prepped_join <- purrr::map(spec_or_data_depends, 'data') %>% 
       {if(is.function(join)){
         purrr::reduce(., join, by = '.id') 
       }else{

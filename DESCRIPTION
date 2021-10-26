@@ -41,7 +41,8 @@ Imports:
     labelled,
     e1071,
     rsample,
-    readr
+    readr,
+    MASS
 Suggests:
     knitr,
     rmarkdown,

@@ -1,5 +1,7 @@
 
 library(dplyr)
+library(purrr)
+library(tibble)
 
 test_that("build() correctly passes parameters to build_bds()", {
   

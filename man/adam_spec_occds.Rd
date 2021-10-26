@@ -33,7 +33,7 @@ adam_spec_occds(
 \item{filter}{character vector of filters to be applied to the bds data set.
 Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL.}
 
-\item{count}{boolean, defaults to FALSE. # NOTE: add further options (weights, scoring matrix, ...)}
+\item{count}{boolean, defaults to FALSE.}
 
 \item{pre_study}{boolean. filter the data set to pre_study observations based on non-negative values in \code{time}}
 

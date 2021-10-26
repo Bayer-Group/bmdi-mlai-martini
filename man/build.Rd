@@ -2,7 +2,7 @@
 % Please edit documentation in R/build.R
 \name{build}
 \alias{build}
-\title{One stop shop for building the machine learning data set}
+\title{Build the feature matrix from various sources according to a specification object}
 \usage{
 build(
   spec = NULL,
@@ -18,7 +18,7 @@ build(
 \arguments{
 \item{spec}{a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)}
 
-\item{path}{the path to the ads files (either \code{spec} or \code{path} has to be provided)}
+\item{path}{the path to the ads files (either \code{spec} or \code{path} has to be provided).}
 
 \item{spec_only}{if build from path, don't apply the just created spec to data set}
 
@@ -58,9 +58,7 @@ it into a valid file name and possibly adding a time extension, if multiple time
 }
 \description{
 The \code{build()} function allows to build a machine learning data set from a specification object as provided
-by \code{\link{adam_spec}()} (with or without data already attached). It can also be used to build the data directly from an ads
-path. In this case the specification object is created internally by calling the respective \verb{adam_spec_*()} functions
-and immediately used to build the data set.
+by \code{\link{adam_spec}()} (with or without data already attached).
 }
 \details{
 Missing values in variables from occurrence data sets are interpreted as 'absence of event',
@@ -68,6 +66,12 @@ whereas NAs in adsl and bds data are considered to be true missing values.
 For missing values in occds data after joining with other data sets,
 missing values are replace by 0 for numerics, an additional level 'none' is introduced for
 for factors.
+
+The \code{build()} function can also be used to build the data directly from an ads
+path. In this case the specification object is created internally by calling the respective \verb{adam_spec_*()} functions
+and immediately used to build the data set.
+In practice, this is not recommended though, since manual adaptations to the automatically generated spec object will be required.
+The path parameter will be deprecated soon.
 }
 \section{Authors}{
 
