@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 ```
 
 
-## Scope
+# Scope
 
 **Package**
 
@@ -68,7 +68,7 @@ as well as the final output object (`martini_ml_class`) for further use in the
 <!-- The full process is described in a lot more detail in the "under the hood" vignette of the package, where    -->
 
 
-## High-level concept
+# High-level concept
 
 In the (admittedly unrealistic) case that no manual adaptations have to be made to the data contained in the ADaM data sets included in the analysis, the full preparation could be accomplished by running the composed command
 
@@ -93,7 +93,7 @@ knitr::include_graphics('img/martini-high-level.png')
 
 
 
-## Example study MARTINI 
+# Example study MARTINI 
 
 This package comes with an example study containing three data sets in `.sas7bdat` format, covering the three different ADaM data types:
 
@@ -116,7 +116,7 @@ In addition to these raw data sets, the following data sets are available as exa
 We will focus on the description of the main functions, but each package function (exported or not) has its own help page, so feel free to learn more about the detailed functionality on the individual pages. 
 <!-- TODO or the 'MARTINI in depth' vignette -->
 
-### Getting started
+## Getting started
 
 **File location**
 
@@ -180,7 +180,7 @@ Please note that currently, only binary classification is supported by the MARTI
 
 
 
-### `adam_spec()`
+## `adam_spec()`
 
 The `adam_spec()` function creates a _preprocessing specification_ in the form of a list from a given `path`.
 Each entry contains the required information to extract relevant records from a particular data set and reshape the data into wide format. 
@@ -201,7 +201,7 @@ ads_spec <- adam_spec(path)
 ads_spec %>% str(max.level = 1)
 ```
 
-#### Important parameters
+### Important parameters
 
 **Filters**
 
@@ -257,7 +257,7 @@ ads_spec <- adam_spec(
 ```
 
 
-#### Manual adaptations
+### Manual adaptations
 
 The most common adaptations of an automatically generated _spec_ object are the removal of particular variables and adjustment of factor level order and/or names.
 
@@ -397,13 +397,16 @@ ads_spec$admh$value <- 'MHPRESP'
 
 
 
-### `build()`
+## `build()`
 
 Based on a given `ads_spec` object (modified or generated fully automatically), the `ads_build()` function will _execute_ the extraction of the relevant information according to the `ads_spec` entries and combine everything into a wide data set with one row per _id_. This data set is the basis for the feature matrix used later on for machine learning.
 
 ```{r}
 feature <- build(spec)
 ```
+
+
+****
 
 
 <!-- #### Relevant helper functions -->
@@ -430,9 +433,9 @@ feature <- build(spec)
 
 
 
-### `prepare_ml()`
+## `prepare_ml()`
 
-Once all potential features are available in a single data set, the `prepare_ml()` function will take care of the data preprocessing required for machine learning analysis based on the provided outcome data (see above for recommended preparation)
+Once all potential features are available in a single data set, the `prepare_ml()` function will take care of the data preprocessing required for machine learning analysis based on the provided outcome data (see above for recommended preparation).
 
 ```{r}
 ml_data <- prepare_ml(
@@ -452,6 +455,75 @@ The preprocessing includes the following steps
 * normalization
 * imputation
 * dummy coding
+
+
+
+### Inspect d_ml objects
+
+```{r, eval=TRUE}
+data("martini_ml_class")
+d_ml <- martini_ml_class
+str(d_ml, max.level = 2)
+```
+
+Description of the `d_ml` entries (taken from `martini::prepare_ml()` documentation)
+
+**Data sets**
+
+`prepare_ml()` produces a list that contains the data set both with (`data_prep`) and without (`data_raw`) applying the specified ML preparation steps. Both versions are splitted in `train` and `test` set. 
+In addition, `split` contains the combined `rsample::initial_split()` object that the `train` and `test` data was extracted from. 
+Depending on the programming workflow, one might be more convenient to use than the other. 
+
+The slot `outcome` contains a list giving `name`, the standardized names of the output column in the data sets ( `.out` for regression/classification, `.time` and `.status` for survival, as well as a `mode`, character string of the outcome mode regression/classification/survival
+
+The dictionary available as an attribute of feature is updated with information on the outcome variable and the log-transformation and available from the `dict` slot, NULL if no such attribute is defined.
+
+The `source` slot simply passes the source attribute of feature, NULL if no such attribute is defined. If `build()` from the `MLAIprepare` package was used to generate feature, this attribute lists the full paths of the files that were used in data generation of feature.
+
+**Data preparation and documentation**
+
+`prep_recipe` contains the prepared recipe object, `prep_params` documents the parameters/thresholds used in the data preparation, giving bare `value` slots, as well as a verbose description in `text`. `removed` gives a list of removed `rows` and `columns` along with the information on why/in which recipe step the data was removed.
+
+
+***
+
+* `data_raw` vs `data_prep`: less columns, with details on removal to be found in `d_ml$removed$cols` 
+
+```{r, eval=TRUE}
+d_ml$removed$cols %>% 
+  enframe() %>%  
+  unnest_longer(value) %>% 
+  left_join(
+    d_ml$dict %>% select(value = column, source, label),
+    ) %>% 
+  rename(reason = name, `variable removed` = value) %>% 
+  DT::datatable()
+```
+
+* `data_raw` vs `data_prep`: less rows, with details on removal to be found in `d_ml$removed$rows`. Observations are removed if 
+  * no outcome is available
+  * outcome value was identified as outlier (regression only, optional, parametrized)
+  * the value for a variable is missing, that is excluded from imputation (e.g. trt), but the missing value proportion is considered low enough that the observations are dropped (instead of dropping the variable)
+  
+  
+
+```{r, eval=TRUE}
+d_ml$removed$rows
+```
+
+```{r}
+d_ml$data_raw %>% 
+  bind_rows() %>% 
+  filter(.id %in% d_ml$removed$rows$na_feature)
+```
+
+For validation and transparency, all domains used for feature extraction are listed with full paths and md5 check sums.
+
+```{r}
+d_ml$source
+```
+
+
 
 
 <!-- TODO add value list for prepare_ml() -->
