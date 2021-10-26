@@ -195,7 +195,7 @@ build <- function(
   }else{
     
     # ... handle duplicate variable names across domains/sources ####
-    rename_dupes <- imap_dfr(spec_or_data_depends, ~{
+    rename_dupes <- purrr::imap_dfr(spec_or_data_depends, ~{
       .x[['data']] %>% names() %>% tibble::as_tibble_col() %>% dplyr::mutate(domain = .y)
     })  %>% 
       tidyr::unite(new_name, value, domain, sep = '_', remove = FALSE) %>% 
@@ -204,7 +204,7 @@ build <- function(
       dplyr::filter(n > 1) %>% 
       dplyr::filter(! old_name %in% c('.id'))
     
-    spec_or_data_depends <- imap(spec_or_data_depends, ~{
+    spec_or_data_depends <- purrr::imap(spec_or_data_depends, ~{
       
       out <- .x
       
