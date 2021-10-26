@@ -1,0 +1,14 @@
+column,label
+ADSNAME,Dataset Name
+STUDYID,Study Identifier
+SUBJID,Subject Identifier for the Study
+USUBJID,Unique Subject Identifier
+PARAMCD,Parameter Code
+PARAM,Parameter
+AVAL,Analysis Value
+AVALU,Analysis Unit
+AVISIT,Analysis Visit
+AVISITN,Analysis Visit (N)
+BASE,Baseline Value
+CHG,Change from Baseline
+R2BASE,Ratio to Baseline

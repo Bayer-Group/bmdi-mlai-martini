@@ -1,832 +1,828 @@
 ADSNAME,STUDYID,SUBJID,USUBJID,MHHLGT,MHDECOD,MHOCCUR,MHOCCURN,MHSTDY
 ADMH,17501,10001,1750110001,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10001,1750110001,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10002,1750110002,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
-ADMH,17501,10002,1750110002,Cardiac arrhythmias,Ventricular tachycardia,N,0,1
-ADMH,17501,10003,1750110003,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
-ADMH,17501,10003,1750110003,Cardiac arrhythmias,Ventricular tachycardia,N,0,4
-ADMH,17501,10004,1750110004,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10004,1750110004,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10004,1750110004,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10004,1750110004,Coronary artery disorders,Myocardial infarction,,,-4
-ADMH,17501,10005,1750110005,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10005,1750110005,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10005,1750110005,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10006,1750110006,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
-ADMH,17501,10006,1750110006,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10007,1750110007,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10007,1750110007,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10008,1750110008,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10008,1750110008,Cardiac arrhythmias,Ventricular tachycardia,N,0,-1
-ADMH,17501,10008,1750110008,Coronary artery disorders,Myocardial infarction,,,4
-ADMH,17501,10009,1750110009,Cardiac arrhythmias,Atrial fibrillation,Y,1,23
-ADMH,17501,10009,1750110009,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10010,1750110010,Cardiac arrhythmias,Atrial fibrillation,Y,1,-10
-ADMH,17501,10010,1750110010,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10011,1750110011,Cardiac arrhythmias,Atrial fibrillation,Y,1,97
-ADMH,17501,10011,1750110011,Cardiac arrhythmias,Ventricular tachycardia,N,0,25
-ADMH,17501,10011,1750110011,Coronary artery disorders,Myocardial infarction,,,-17
+ADMH,17501,10001,1750110001,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10001,1750110001,Coronary artery disorders,Myocardial infarction,,,-2
+ADMH,17501,10002,1750110002,Cardiac arrhythmias,Atrial fibrillation,Y,1,6
+ADMH,17501,10002,1750110002,Cardiac arrhythmias,Ventricular tachycardia,N,0,-5
+ADMH,17501,10002,1750110002,Coronary artery disorders,Coronary artery disease,,,-19
+ADMH,17501,10003,1750110003,Cardiac arrhythmias,Atrial fibrillation,Y,1,78
+ADMH,17501,10003,1750110003,Cardiac arrhythmias,Ventricular tachycardia,N,0,38
+ADMH,17501,10003,1750110003,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10004,1750110004,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10004,1750110004,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
+ADMH,17501,10005,1750110005,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10005,1750110005,Cardiac arrhythmias,Ventricular tachycardia,N,0,26
+ADMH,17501,10006,1750110006,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
+ADMH,17501,10006,1750110006,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10006,1750110006,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10007,1750110007,Cardiac arrhythmias,Atrial fibrillation,N,0,6
+ADMH,17501,10007,1750110007,Cardiac arrhythmias,Ventricular tachycardia,N,0,90
+ADMH,17501,10008,1750110008,Cardiac arrhythmias,Atrial fibrillation,Y,1,42
+ADMH,17501,10008,1750110008,Cardiac arrhythmias,Ventricular tachycardia,N,0,-10
+ADMH,17501,10009,1750110009,Cardiac arrhythmias,Atrial fibrillation,Y,1,45
+ADMH,17501,10009,1750110009,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10010,1750110010,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10010,1750110010,Cardiac arrhythmias,Ventricular tachycardia,N,0,98
+ADMH,17501,10011,1750110011,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10011,1750110011,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10011,1750110011,Coronary artery disorders,Coronary artery disease,,,44
 ADMH,17501,10012,1750110012,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10012,1750110012,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10012,1750110012,Coronary artery disorders,Myocardial infarction,,,0
-ADMH,17501,10013,1750110013,Cardiac arrhythmias,Atrial fibrillation,N,0,33
-ADMH,17501,10013,1750110013,Cardiac arrhythmias,Ventricular tachycardia,N,0,13
-ADMH,17501,10014,1750110014,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10014,1750110014,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10014,1750110014,Coronary artery disorders,Myocardial infarction,,,-9
-ADMH,17501,10015,1750110015,Cardiac arrhythmias,Atrial fibrillation,N,0,-18
-ADMH,17501,10015,1750110015,Cardiac arrhythmias,Ventricular tachycardia,N,0,118
-ADMH,17501,10015,1750110015,Coronary artery disorders,Coronary artery disease,,,-10
-ADMH,17501,10015,1750110015,Coronary artery disorders,Myocardial infarction,,,-20
-ADMH,17501,10016,1750110016,Cardiac arrhythmias,Atrial fibrillation,N,0,2
-ADMH,17501,10016,1750110016,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10017,1750110017,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
-ADMH,17501,10017,1750110017,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10017,1750110017,Coronary artery disorders,Myocardial infarction,,,5
-ADMH,17501,10018,1750110018,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10018,1750110018,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10018,1750110018,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10019,1750110019,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
-ADMH,17501,10019,1750110019,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
-ADMH,17501,10019,1750110019,Coronary artery disorders,Angina pectoris,,,21
+ADMH,17501,10012,1750110012,Cardiac arrhythmias,Ventricular tachycardia,Y,1,101
+ADMH,17501,10012,1750110012,Coronary artery disorders,Coronary artery disease,,,22
+ADMH,17501,10012,1750110012,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10013,1750110013,Cardiac arrhythmias,Atrial fibrillation,Y,1,18
+ADMH,17501,10013,1750110013,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10014,1750110014,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
+ADMH,17501,10014,1750110014,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10015,1750110015,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10015,1750110015,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10015,1750110015,Coronary artery disorders,Myocardial infarction,,,-19
+ADMH,17501,10016,1750110016,Cardiac arrhythmias,Atrial fibrillation,Y,1,57
+ADMH,17501,10016,1750110016,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10016,1750110016,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10017,1750110017,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10017,1750110017,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-15
+ADMH,17501,10018,1750110018,Cardiac arrhythmias,Atrial fibrillation,Y,1,10
+ADMH,17501,10018,1750110018,Cardiac arrhythmias,Ventricular tachycardia,N,0,-10
+ADMH,17501,10019,1750110019,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
+ADMH,17501,10019,1750110019,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
 ADMH,17501,10019,1750110019,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10020,1750110020,Cardiac arrhythmias,Atrial fibrillation,N,0,14
-ADMH,17501,10020,1750110020,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10021,1750110021,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10021,1750110021,Cardiac arrhythmias,Ventricular tachycardia,N,0,42
+ADMH,17501,10020,1750110020,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10020,1750110020,Cardiac arrhythmias,Ventricular tachycardia,N,0,70
+ADMH,17501,10020,1750110020,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10021,1750110021,Cardiac arrhythmias,Atrial fibrillation,Y,1,-12
+ADMH,17501,10021,1750110021,Cardiac arrhythmias,Ventricular tachycardia,N,0,33
+ADMH,17501,10021,1750110021,Coronary artery disorders,Coronary artery disease,,,-10
+ADMH,17501,10021,1750110021,Coronary artery disorders,Myocardial infarction,,,0
 ADMH,17501,10022,1750110022,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10022,1750110022,Cardiac arrhythmias,Ventricular tachycardia,N,0,17
-ADMH,17501,10023,1750110023,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10023,1750110023,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10023,1750110023,Coronary artery disorders,Myocardial infarction,,,-15
-ADMH,17501,10024,1750110024,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
-ADMH,17501,10024,1750110024,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10025,1750110025,Cardiac arrhythmias,Atrial fibrillation,N,0,28
-ADMH,17501,10025,1750110025,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
-ADMH,17501,10025,1750110025,Coronary artery disorders,Coronary artery disease,,,-17
-ADMH,17501,10026,1750110026,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
-ADMH,17501,10026,1750110026,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10026,1750110026,Coronary artery disorders,Myocardial infarction,,,-20
-ADMH,17501,10027,1750110027,Cardiac arrhythmias,Atrial fibrillation,Y,1,-11
+ADMH,17501,10022,1750110022,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10023,1750110023,Cardiac arrhythmias,Atrial fibrillation,N,0,-10
+ADMH,17501,10023,1750110023,Cardiac arrhythmias,Ventricular tachycardia,N,0,-1
+ADMH,17501,10024,1750110024,Cardiac arrhythmias,Atrial fibrillation,Y,1,-4
+ADMH,17501,10024,1750110024,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10024,1750110024,Coronary artery disorders,Myocardial infarction,,,-16
+ADMH,17501,10025,1750110025,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
+ADMH,17501,10025,1750110025,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10025,1750110025,Coronary artery disorders,Coronary artery disease,,,-20
+ADMH,17501,10025,1750110025,Coronary artery disorders,Myocardial infarction,,,-19
+ADMH,17501,10026,1750110026,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
+ADMH,17501,10026,1750110026,Cardiac arrhythmias,Ventricular tachycardia,N,0,54
+ADMH,17501,10026,1750110026,Coronary artery disorders,Myocardial infarction,,,83
+ADMH,17501,10027,1750110027,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
 ADMH,17501,10027,1750110027,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10027,1750110027,Coronary artery disorders,Coronary artery disease,,,-8
-ADMH,17501,10028,1750110028,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10028,1750110028,Cardiac arrhythmias,Ventricular tachycardia,N,0,-11
-ADMH,17501,10029,1750110029,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10029,1750110029,Cardiac arrhythmias,Ventricular tachycardia,N,0,-11
-ADMH,17501,10029,1750110029,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10027,1750110027,Coronary artery disorders,Myocardial infarction,,,-19
+ADMH,17501,10028,1750110028,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10028,1750110028,Cardiac arrhythmias,Ventricular tachycardia,N,0,8
+ADMH,17501,10028,1750110028,Coronary artery disorders,Coronary artery disease,,,-5
+ADMH,17501,10028,1750110028,Coronary artery disorders,Myocardial infarction,,,-16
+ADMH,17501,10029,1750110029,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10029,1750110029,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10029,1750110029,Coronary artery disorders,Angina pectoris,,,-19
+ADMH,17501,10029,1750110029,Coronary artery disorders,Coronary artery disease,,,
 ADMH,17501,10030,1750110030,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10030,1750110030,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10030,1750110030,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10031,1750110031,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
-ADMH,17501,10031,1750110031,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10031,1750110031,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10032,1750110032,Cardiac arrhythmias,Atrial fibrillation,Y,1,65
-ADMH,17501,10032,1750110032,Cardiac arrhythmias,Ventricular tachycardia,N,0,57
-ADMH,17501,10032,1750110032,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10030,1750110030,Cardiac arrhythmias,Ventricular tachycardia,N,0,-8
+ADMH,17501,10031,1750110031,Cardiac arrhythmias,Atrial fibrillation,Y,1,-9
+ADMH,17501,10031,1750110031,Cardiac arrhythmias,Ventricular tachycardia,N,0,20
+ADMH,17501,10031,1750110031,Coronary artery disorders,Angina pectoris,,,-20
+ADMH,17501,10031,1750110031,Coronary artery disorders,Coronary artery disease,,,-5
+ADMH,17501,10031,1750110031,Coronary artery disorders,Myocardial infarction,,,7
+ADMH,17501,10032,1750110032,Cardiac arrhythmias,Atrial fibrillation,Y,1,20
+ADMH,17501,10032,1750110032,Cardiac arrhythmias,Ventricular tachycardia,N,0,-9
+ADMH,17501,10032,1750110032,Coronary artery disorders,Myocardial infarction,,,76
 ADMH,17501,10033,1750110033,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10033,1750110033,Cardiac arrhythmias,Ventricular tachycardia,N,0,48
-ADMH,17501,10034,1750110034,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10034,1750110034,Cardiac arrhythmias,Ventricular tachycardia,N,0,4
-ADMH,17501,10034,1750110034,Coronary artery disorders,Coronary artery disease,,,46
-ADMH,17501,10035,1750110035,Cardiac arrhythmias,Atrial fibrillation,N,0,-18
-ADMH,17501,10035,1750110035,Cardiac arrhythmias,Ventricular tachycardia,N,0,-12
-ADMH,17501,10035,1750110035,Coronary artery disorders,Myocardial infarction,,,-1
-ADMH,17501,10036,1750110036,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
-ADMH,17501,10036,1750110036,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10037,1750110037,Cardiac arrhythmias,Atrial fibrillation,Y,1,26
+ADMH,17501,10033,1750110033,Cardiac arrhythmias,Ventricular tachycardia,N,0,24
+ADMH,17501,10034,1750110034,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10034,1750110034,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10034,1750110034,Coronary artery disorders,Coronary artery disease,,,-6
+ADMH,17501,10035,1750110035,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10035,1750110035,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10035,1750110035,Coronary artery disorders,Myocardial infarction,,,16
+ADMH,17501,10036,1750110036,Cardiac arrhythmias,Atrial fibrillation,Y,1,-10
+ADMH,17501,10036,1750110036,Cardiac arrhythmias,Ventricular tachycardia,N,0,-9
+ADMH,17501,10037,1750110037,Cardiac arrhythmias,Atrial fibrillation,Y,1,-6
 ADMH,17501,10037,1750110037,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10037,1750110037,Coronary artery disorders,Myocardial infarction,,,-9
-ADMH,17501,10038,1750110038,Cardiac arrhythmias,Atrial fibrillation,N,0,118
-ADMH,17501,10038,1750110038,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10038,1750110038,Coronary artery disorders,Myocardial infarction,,,-19
+ADMH,17501,10038,1750110038,Cardiac arrhythmias,Atrial fibrillation,Y,1,-2
+ADMH,17501,10038,1750110038,Cardiac arrhythmias,Ventricular tachycardia,N,0,
 ADMH,17501,10039,1750110039,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10039,1750110039,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10039,1750110039,Cardiac arrhythmias,Ventricular tachycardia,N,0,7
 ADMH,17501,10040,1750110040,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10040,1750110040,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10040,1750110040,Coronary artery disorders,Coronary artery disease,,,94
-ADMH,17501,10041,1750110041,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10041,1750110041,Cardiac arrhythmias,Ventricular tachycardia,N,0,3
-ADMH,17501,10042,1750110042,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10042,1750110042,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
-ADMH,17501,10042,1750110042,Coronary artery disorders,Angina pectoris,,,30
-ADMH,17501,10042,1750110042,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10042,1750110042,Coronary artery disorders,Myocardial infarction,,,-18
-ADMH,17501,10043,1750110043,Cardiac arrhythmias,Atrial fibrillation,Y,1,97
-ADMH,17501,10043,1750110043,Cardiac arrhythmias,Ventricular tachycardia,N,0,-9
-ADMH,17501,10044,1750110044,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10044,1750110044,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
-ADMH,17501,10044,1750110044,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10045,1750110045,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10045,1750110045,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10045,1750110045,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10040,1750110040,Cardiac arrhythmias,Ventricular tachycardia,N,0,-6
+ADMH,17501,10041,1750110041,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10041,1750110041,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10042,1750110042,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
+ADMH,17501,10042,1750110042,Cardiac arrhythmias,Ventricular tachycardia,N,0,68
+ADMH,17501,10042,1750110042,Coronary artery disorders,Coronary artery disease,,,-12
+ADMH,17501,10043,1750110043,Cardiac arrhythmias,Atrial fibrillation,N,0,72
+ADMH,17501,10043,1750110043,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10043,1750110043,Coronary artery disorders,Coronary artery disease,,,-19
+ADMH,17501,10043,1750110043,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10044,1750110044,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
+ADMH,17501,10044,1750110044,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10045,1750110045,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10045,1750110045,Cardiac arrhythmias,Ventricular tachycardia,N,0,
 ADMH,17501,10046,1750110046,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10046,1750110046,Cardiac arrhythmias,Ventricular tachycardia,N,0,6
-ADMH,17501,10047,1750110047,Cardiac arrhythmias,Atrial fibrillation,Y,1,11
-ADMH,17501,10047,1750110047,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10047,1750110047,Coronary artery disorders,Coronary artery disease,,,-12
-ADMH,17501,10048,1750110048,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10048,1750110048,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
-ADMH,17501,10049,1750110049,Cardiac arrhythmias,Atrial fibrillation,N,0,-19
-ADMH,17501,10049,1750110049,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
-ADMH,17501,10050,1750110050,Cardiac arrhythmias,Atrial fibrillation,N,0,-9
-ADMH,17501,10050,1750110050,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10051,1750110051,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10051,1750110051,Cardiac arrhythmias,Ventricular tachycardia,N,0,36
+ADMH,17501,10046,1750110046,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10047,1750110047,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
+ADMH,17501,10047,1750110047,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10048,1750110048,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
+ADMH,17501,10048,1750110048,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10048,1750110048,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10049,1750110049,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10049,1750110049,Cardiac arrhythmias,Ventricular tachycardia,N,0,28
+ADMH,17501,10049,1750110049,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10049,1750110049,Coronary artery disorders,Myocardial infarction,,,13
+ADMH,17501,10050,1750110050,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10050,1750110050,Cardiac arrhythmias,Ventricular tachycardia,N,0,98
+ADMH,17501,10051,1750110051,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
+ADMH,17501,10051,1750110051,Cardiac arrhythmias,Ventricular tachycardia,N,0,33
+ADMH,17501,10051,1750110051,Coronary artery disorders,Coronary artery disease,,,-7
 ADMH,17501,10052,1750110052,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10052,1750110052,Cardiac arrhythmias,Ventricular tachycardia,Y,1,21
-ADMH,17501,10052,1750110052,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10053,1750110053,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10053,1750110053,Cardiac arrhythmias,Ventricular tachycardia,N,0,-5
-ADMH,17501,10053,1750110053,Coronary artery disorders,Coronary artery disease,,,-10
-ADMH,17501,10054,1750110054,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
-ADMH,17501,10054,1750110054,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10055,1750110055,Cardiac arrhythmias,Atrial fibrillation,Y,1,76
+ADMH,17501,10052,1750110052,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10053,1750110053,Cardiac arrhythmias,Atrial fibrillation,Y,1,14
+ADMH,17501,10053,1750110053,Cardiac arrhythmias,Ventricular tachycardia,N,0,21
+ADMH,17501,10054,1750110054,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10054,1750110054,Cardiac arrhythmias,Ventricular tachycardia,N,0,-13
+ADMH,17501,10055,1750110055,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
 ADMH,17501,10055,1750110055,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10055,1750110055,Coronary artery disorders,Coronary artery disease,,,43
-ADMH,17501,10056,1750110056,Cardiac arrhythmias,Atrial fibrillation,Y,1,-4
-ADMH,17501,10056,1750110056,Cardiac arrhythmias,Ventricular tachycardia,N,0,-8
-ADMH,17501,10056,1750110056,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10057,1750110057,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
-ADMH,17501,10057,1750110057,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10057,1750110057,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10058,1750110058,Cardiac arrhythmias,Atrial fibrillation,Y,1,95
-ADMH,17501,10058,1750110058,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10058,1750110058,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10059,1750110059,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10059,1750110059,Cardiac arrhythmias,Ventricular tachycardia,N,0,-2
-ADMH,17501,10060,1750110060,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
+ADMH,17501,10055,1750110055,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10056,1750110056,Cardiac arrhythmias,Atrial fibrillation,Y,1,-5
+ADMH,17501,10056,1750110056,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10056,1750110056,Coronary artery disorders,Myocardial infarction,,,-14
+ADMH,17501,10057,1750110057,Cardiac arrhythmias,Atrial fibrillation,Y,1,-2
+ADMH,17501,10057,1750110057,Cardiac arrhythmias,Ventricular tachycardia,N,0,70
+ADMH,17501,10057,1750110057,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10058,1750110058,Cardiac arrhythmias,Atrial fibrillation,Y,1,-5
+ADMH,17501,10058,1750110058,Cardiac arrhythmias,Ventricular tachycardia,N,0,-11
+ADMH,17501,10059,1750110059,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
+ADMH,17501,10059,1750110059,Cardiac arrhythmias,Ventricular tachycardia,N,0,11
+ADMH,17501,10060,1750110060,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
 ADMH,17501,10060,1750110060,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10060,1750110060,Coronary artery disorders,Coronary artery disease,,,-4
-ADMH,17501,10060,1750110060,Coronary artery disorders,Myocardial infarction,,,-12
-ADMH,17501,10061,1750110061,Cardiac arrhythmias,Atrial fibrillation,Y,1,-3
-ADMH,17501,10061,1750110061,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10061,1750110061,Coronary artery disorders,Coronary artery disease,,,-16
-ADMH,17501,10061,1750110061,Coronary artery disorders,Myocardial infarction,,,-17
-ADMH,17501,10062,1750110062,Cardiac arrhythmias,Atrial fibrillation,N,0,-16
-ADMH,17501,10062,1750110062,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10062,1750110062,Coronary artery disorders,Coronary artery disease,,,-17
-ADMH,17501,10062,1750110062,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10063,1750110063,Cardiac arrhythmias,Atrial fibrillation,Y,1,-2
-ADMH,17501,10063,1750110063,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10063,1750110063,Coronary artery disorders,Coronary artery disease,,,-12
+ADMH,17501,10060,1750110060,Coronary artery disorders,Myocardial infarction,,,-8
+ADMH,17501,10061,1750110061,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10061,1750110061,Cardiac arrhythmias,Ventricular tachycardia,N,0,-1
+ADMH,17501,10061,1750110061,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10062,1750110062,Cardiac arrhythmias,Atrial fibrillation,N,0,2
+ADMH,17501,10062,1750110062,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10063,1750110063,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10063,1750110063,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
 ADMH,17501,10064,1750110064,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10064,1750110064,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
-ADMH,17501,10065,1750110065,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10064,1750110064,Cardiac arrhythmias,Ventricular tachycardia,N,0,-3
+ADMH,17501,10065,1750110065,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
 ADMH,17501,10065,1750110065,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10066,1750110066,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10066,1750110066,Cardiac arrhythmias,Atrial fibrillation,Y,1,-3
 ADMH,17501,10066,1750110066,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10067,1750110067,Cardiac arrhythmias,Atrial fibrillation,Y,1,66
-ADMH,17501,10067,1750110067,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10068,1750110068,Cardiac arrhythmias,Atrial fibrillation,Y,1,-11
+ADMH,17501,10067,1750110067,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10067,1750110067,Cardiac arrhythmias,Ventricular tachycardia,N,0,-8
+ADMH,17501,10067,1750110067,Coronary artery disorders,Coronary artery disease,,,-4
+ADMH,17501,10068,1750110068,Cardiac arrhythmias,Atrial fibrillation,Y,1,75
 ADMH,17501,10068,1750110068,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10069,1750110069,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10069,1750110069,Cardiac arrhythmias,Atrial fibrillation,Y,1,53
 ADMH,17501,10069,1750110069,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10070,1750110070,Cardiac arrhythmias,Atrial fibrillation,Y,1,7
-ADMH,17501,10070,1750110070,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10070,1750110070,Coronary artery disorders,Myocardial infarction,,,44
-ADMH,17501,10071,1750110071,Cardiac arrhythmias,Atrial fibrillation,N,0,-8
-ADMH,17501,10071,1750110071,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10071,1750110071,Coronary artery disorders,Coronary artery disease,,,-18
-ADMH,17501,10072,1750110072,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
-ADMH,17501,10072,1750110072,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10072,1750110072,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10073,1750110073,Cardiac arrhythmias,Atrial fibrillation,Y,1,-9
-ADMH,17501,10073,1750110073,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10073,1750110073,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10074,1750110074,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
-ADMH,17501,10074,1750110074,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10074,1750110074,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10075,1750110075,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10075,1750110075,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10076,1750110076,Cardiac arrhythmias,Atrial fibrillation,N,0,-1
-ADMH,17501,10076,1750110076,Cardiac arrhythmias,Ventricular tachycardia,N,0,64
-ADMH,17501,10077,1750110077,Cardiac arrhythmias,Atrial fibrillation,Y,1,0
-ADMH,17501,10077,1750110077,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10070,1750110070,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
+ADMH,17501,10070,1750110070,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
+ADMH,17501,10071,1750110071,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
+ADMH,17501,10071,1750110071,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
+ADMH,17501,10072,1750110072,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10072,1750110072,Cardiac arrhythmias,Ventricular tachycardia,N,0,-11
+ADMH,17501,10072,1750110072,Coronary artery disorders,Myocardial infarction,,,-18
+ADMH,17501,10073,1750110073,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10073,1750110073,Cardiac arrhythmias,Ventricular tachycardia,N,0,11
+ADMH,17501,10074,1750110074,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
+ADMH,17501,10074,1750110074,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
+ADMH,17501,10075,1750110075,Cardiac arrhythmias,Atrial fibrillation,Y,1,-13
+ADMH,17501,10075,1750110075,Cardiac arrhythmias,Ventricular tachycardia,N,0,5
+ADMH,17501,10075,1750110075,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10076,1750110076,Cardiac arrhythmias,Atrial fibrillation,Y,1,30
+ADMH,17501,10076,1750110076,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
+ADMH,17501,10076,1750110076,Coronary artery disorders,Coronary artery disease,,,-20
+ADMH,17501,10077,1750110077,Cardiac arrhythmias,Atrial fibrillation,Y,1,1
+ADMH,17501,10077,1750110077,Cardiac arrhythmias,Ventricular tachycardia,N,0,93
 ADMH,17501,10078,1750110078,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10078,1750110078,Cardiac arrhythmias,Ventricular tachycardia,N,0,-12
-ADMH,17501,10079,1750110079,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
-ADMH,17501,10079,1750110079,Cardiac arrhythmias,Ventricular tachycardia,N,0,6
-ADMH,17501,10079,1750110079,Coronary artery disorders,Coronary artery disease,,,-19
-ADMH,17501,10079,1750110079,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10080,1750110080,Cardiac arrhythmias,Atrial fibrillation,Y,1,-2
-ADMH,17501,10080,1750110080,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10080,1750110080,Coronary artery disorders,Myocardial infarction,,,-20
-ADMH,17501,10081,1750110081,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10081,1750110081,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-19
-ADMH,17501,10081,1750110081,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10078,1750110078,Cardiac arrhythmias,Ventricular tachycardia,N,0,9
+ADMH,17501,10078,1750110078,Coronary artery disorders,Coronary artery disease,,,-18
+ADMH,17501,10079,1750110079,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10079,1750110079,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
+ADMH,17501,10080,1750110080,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
+ADMH,17501,10080,1750110080,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10081,1750110081,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
+ADMH,17501,10081,1750110081,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
 ADMH,17501,10082,1750110082,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10082,1750110082,Cardiac arrhythmias,Ventricular tachycardia,N,0,-10
-ADMH,17501,10082,1750110082,Coronary artery disorders,Coronary artery disease,,,111
-ADMH,17501,10083,1750110083,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10083,1750110083,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10083,1750110083,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10083,1750110083,Coronary artery disorders,Myocardial infarction,,,-20
-ADMH,17501,10084,1750110084,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
-ADMH,17501,10084,1750110084,Cardiac arrhythmias,Ventricular tachycardia,N,0,56
-ADMH,17501,10084,1750110084,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10084,1750110084,Coronary artery disorders,Myocardial infarction,,,-20
-ADMH,17501,10085,1750110085,Cardiac arrhythmias,Atrial fibrillation,Y,1,5
-ADMH,17501,10085,1750110085,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10086,1750110086,Cardiac arrhythmias,Atrial fibrillation,N,0,-16
-ADMH,17501,10086,1750110086,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10087,1750110087,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10087,1750110087,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10087,1750110087,Coronary artery disorders,Myocardial infarction,,,-14
-ADMH,17501,10088,1750110088,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10082,1750110082,Cardiac arrhythmias,Ventricular tachycardia,N,0,-9
+ADMH,17501,10083,1750110083,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10083,1750110083,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-20
+ADMH,17501,10084,1750110084,Cardiac arrhythmias,Atrial fibrillation,N,0,-16
+ADMH,17501,10084,1750110084,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10084,1750110084,Coronary artery disorders,Myocardial infarction,,,-19
+ADMH,17501,10085,1750110085,Cardiac arrhythmias,Atrial fibrillation,Y,1,54
+ADMH,17501,10085,1750110085,Cardiac arrhythmias,Ventricular tachycardia,N,0,14
+ADMH,17501,10086,1750110086,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10086,1750110086,Cardiac arrhythmias,Ventricular tachycardia,N,0,33
+ADMH,17501,10087,1750110087,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10087,1750110087,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10087,1750110087,Coronary artery disorders,Coronary artery disease,,,-16
+ADMH,17501,10088,1750110088,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
 ADMH,17501,10088,1750110088,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10089,1750110089,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
-ADMH,17501,10089,1750110089,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10089,1750110089,Coronary artery disorders,Coronary artery disease,,,105
-ADMH,17501,10090,1750110090,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10090,1750110090,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
-ADMH,17501,10091,1750110091,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
-ADMH,17501,10091,1750110091,Cardiac arrhythmias,Ventricular tachycardia,N,0,-13
-ADMH,17501,10091,1750110091,Coronary artery disorders,Myocardial infarction,,,-15
-ADMH,17501,10092,1750110092,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10092,1750110092,Cardiac arrhythmias,Ventricular tachycardia,N,0,36
-ADMH,17501,10092,1750110092,Coronary artery disorders,Coronary artery disease,,,-18
-ADMH,17501,10092,1750110092,Coronary artery disorders,Myocardial infarction,,,-19
+ADMH,17501,10088,1750110088,Coronary artery disorders,Myocardial infarction,,,11
+ADMH,17501,10089,1750110089,Cardiac arrhythmias,Atrial fibrillation,Y,1,71
+ADMH,17501,10089,1750110089,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10089,1750110089,Coronary artery disorders,Coronary artery disease,,,-16
+ADMH,17501,10090,1750110090,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
+ADMH,17501,10090,1750110090,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
+ADMH,17501,10090,1750110090,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10091,1750110091,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10091,1750110091,Cardiac arrhythmias,Ventricular tachycardia,N,0,84
+ADMH,17501,10092,1750110092,Cardiac arrhythmias,Atrial fibrillation,N,0,-4
+ADMH,17501,10092,1750110092,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
 ADMH,17501,10093,1750110093,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10093,1750110093,Cardiac arrhythmias,Ventricular tachycardia,N,0,-8
-ADMH,17501,10094,1750110094,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
-ADMH,17501,10094,1750110094,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10094,1750110094,Coronary artery disorders,Coronary artery disease,,,60
-ADMH,17501,10094,1750110094,Coronary artery disorders,Myocardial infarction,,,13
-ADMH,17501,10095,1750110095,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10095,1750110095,Cardiac arrhythmias,Ventricular tachycardia,N,0,-10
-ADMH,17501,10096,1750110096,Cardiac arrhythmias,Atrial fibrillation,Y,1,22
-ADMH,17501,10096,1750110096,Cardiac arrhythmias,Ventricular tachycardia,N,0,8
-ADMH,17501,10096,1750110096,Coronary artery disorders,Myocardial infarction,,,-20
-ADMH,17501,10097,1750110097,Cardiac arrhythmias,Atrial fibrillation,N,0,41
-ADMH,17501,10097,1750110097,Cardiac arrhythmias,Ventricular tachycardia,N,0,50
-ADMH,17501,10098,1750110098,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10098,1750110098,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10099,1750110099,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10099,1750110099,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10099,1750110099,Coronary artery disorders,Angina pectoris,,,
-ADMH,17501,10099,1750110099,Coronary artery disorders,Myocardial infarction,,,45
-ADMH,17501,10100,1750110100,Cardiac arrhythmias,Atrial fibrillation,Y,1,22
-ADMH,17501,10100,1750110100,Cardiac arrhythmias,Ventricular tachycardia,N,0,59
-ADMH,17501,10100,1750110100,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10101,1750110101,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10101,1750110101,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10102,1750110102,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10102,1750110102,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10103,1750110103,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
-ADMH,17501,10103,1750110103,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10103,1750110103,Coronary artery disorders,Coronary artery disease,,,8
+ADMH,17501,10093,1750110093,Cardiac arrhythmias,Ventricular tachycardia,N,0,33
+ADMH,17501,10093,1750110093,Coronary artery disorders,Coronary artery disease,,,-16
+ADMH,17501,10094,1750110094,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10094,1750110094,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10094,1750110094,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10095,1750110095,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10095,1750110095,Cardiac arrhythmias,Ventricular tachycardia,Y,1,101
+ADMH,17501,10096,1750110096,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10096,1750110096,Cardiac arrhythmias,Ventricular tachycardia,N,0,7
+ADMH,17501,10096,1750110096,Coronary artery disorders,Coronary artery disease,,,-18
+ADMH,17501,10097,1750110097,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10097,1750110097,Cardiac arrhythmias,Ventricular tachycardia,Y,1,1
+ADMH,17501,10098,1750110098,Cardiac arrhythmias,Atrial fibrillation,N,0,-6
+ADMH,17501,10098,1750110098,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
+ADMH,17501,10098,1750110098,Coronary artery disorders,Angina pectoris,,,-20
+ADMH,17501,10098,1750110098,Coronary artery disorders,Myocardial infarction,,,39
+ADMH,17501,10099,1750110099,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10099,1750110099,Cardiac arrhythmias,Ventricular tachycardia,N,0,39
+ADMH,17501,10099,1750110099,Coronary artery disorders,Myocardial infarction,,,-11
+ADMH,17501,10100,1750110100,Cardiac arrhythmias,Atrial fibrillation,Y,1,-8
+ADMH,17501,10100,1750110100,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10100,1750110100,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10101,1750110101,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
+ADMH,17501,10101,1750110101,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10101,1750110101,Coronary artery disorders,Coronary artery disease,,,2
+ADMH,17501,10102,1750110102,Cardiac arrhythmias,Atrial fibrillation,Y,1,62
+ADMH,17501,10102,1750110102,Cardiac arrhythmias,Ventricular tachycardia,Y,1,13
+ADMH,17501,10102,1750110102,Coronary artery disorders,Myocardial infarction,,,24
+ADMH,17501,10103,1750110103,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10103,1750110103,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10103,1750110103,Coronary artery disorders,Myocardial infarction,,,
 ADMH,17501,10104,1750110104,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10104,1750110104,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-6
-ADMH,17501,10104,1750110104,Coronary artery disorders,Myocardial infarction,,,-9
-ADMH,17501,10105,1750110105,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
-ADMH,17501,10105,1750110105,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10105,1750110105,Coronary artery disorders,Myocardial infarction,,,77
-ADMH,17501,10106,1750110106,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10106,1750110106,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10106,1750110106,Coronary artery disorders,Coronary artery disease,,,-10
-ADMH,17501,10106,1750110106,Coronary artery disorders,Myocardial infarction,,,-15
-ADMH,17501,10107,1750110107,Cardiac arrhythmias,Atrial fibrillation,Y,1,44
-ADMH,17501,10107,1750110107,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10107,1750110107,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10107,1750110107,Coronary artery disorders,Myocardial infarction,,,27
-ADMH,17501,10108,1750110108,Cardiac arrhythmias,Atrial fibrillation,Y,1,68
-ADMH,17501,10108,1750110108,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10109,1750110109,Cardiac arrhythmias,Atrial fibrillation,N,0,43
-ADMH,17501,10109,1750110109,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10109,1750110109,Coronary artery disorders,Coronary artery disease,,,-19
-ADMH,17501,10110,1750110110,Cardiac arrhythmias,Atrial fibrillation,Y,1,-4
-ADMH,17501,10110,1750110110,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10110,1750110110,Coronary artery disorders,Myocardial infarction,,,-20
-ADMH,17501,10111,1750110111,Cardiac arrhythmias,Atrial fibrillation,Y,1,85
-ADMH,17501,10111,1750110111,Cardiac arrhythmias,Ventricular tachycardia,N,0,6
-ADMH,17501,10112,1750110112,Cardiac arrhythmias,Atrial fibrillation,N,0,65
-ADMH,17501,10112,1750110112,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10113,1750110113,Cardiac arrhythmias,Atrial fibrillation,N,0,-9
-ADMH,17501,10113,1750110113,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
-ADMH,17501,10113,1750110113,Coronary artery disorders,Myocardial infarction,,,-19
-ADMH,17501,10114,1750110114,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10114,1750110114,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10114,1750110114,Coronary artery disorders,Myocardial infarction,,,7
-ADMH,17501,10115,1750110115,Cardiac arrhythmias,Atrial fibrillation,Y,1,8
-ADMH,17501,10115,1750110115,Cardiac arrhythmias,Ventricular tachycardia,N,0,-13
-ADMH,17501,10116,1750110116,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
-ADMH,17501,10116,1750110116,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10117,1750110117,Cardiac arrhythmias,Atrial fibrillation,N,0,0
-ADMH,17501,10117,1750110117,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10118,1750110118,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10118,1750110118,Cardiac arrhythmias,Ventricular tachycardia,N,0,4
-ADMH,17501,10118,1750110118,Coronary artery disorders,Myocardial infarction,,,-13
-ADMH,17501,10119,1750110119,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10119,1750110119,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10119,1750110119,Coronary artery disorders,Angina pectoris,,,-15
-ADMH,17501,10120,1750110120,Cardiac arrhythmias,Atrial fibrillation,N,0,-19
-ADMH,17501,10120,1750110120,Cardiac arrhythmias,Ventricular tachycardia,N,0,34
-ADMH,17501,10121,1750110121,Cardiac arrhythmias,Atrial fibrillation,Y,1,91
-ADMH,17501,10121,1750110121,Cardiac arrhythmias,Ventricular tachycardia,N,0,44
-ADMH,17501,10121,1750110121,Coronary artery disorders,Coronary artery disease,,,-7
-ADMH,17501,10122,1750110122,Cardiac arrhythmias,Atrial fibrillation,Y,1,56
-ADMH,17501,10122,1750110122,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
-ADMH,17501,10122,1750110122,Coronary artery disorders,Coronary artery disease,,,71
-ADMH,17501,10123,1750110123,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10123,1750110123,Cardiac arrhythmias,Ventricular tachycardia,N,0,64
-ADMH,17501,10124,1750110124,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
-ADMH,17501,10124,1750110124,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10124,1750110124,Coronary artery disorders,Myocardial infarction,,,-16
-ADMH,17501,10125,1750110125,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10125,1750110125,Cardiac arrhythmias,Ventricular tachycardia,N,0,23
-ADMH,17501,10126,1750110126,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10126,1750110126,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10127,1750110127,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
-ADMH,17501,10127,1750110127,Cardiac arrhythmias,Ventricular tachycardia,Y,1,
-ADMH,17501,10128,1750110128,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
-ADMH,17501,10128,1750110128,Cardiac arrhythmias,Ventricular tachycardia,N,0,88
-ADMH,17501,10128,1750110128,Coronary artery disorders,Angina pectoris,,,
-ADMH,17501,10129,1750110129,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
-ADMH,17501,10129,1750110129,Cardiac arrhythmias,Ventricular tachycardia,N,0,42
-ADMH,17501,10129,1750110129,Coronary artery disorders,Myocardial infarction,,,2
-ADMH,17501,10130,1750110130,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10130,1750110130,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
-ADMH,17501,10131,1750110131,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
-ADMH,17501,10131,1750110131,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10131,1750110131,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10132,1750110132,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
-ADMH,17501,10132,1750110132,Cardiac arrhythmias,Ventricular tachycardia,N,0,76
-ADMH,17501,10133,1750110133,Cardiac arrhythmias,Atrial fibrillation,Y,1,-13
-ADMH,17501,10133,1750110133,Cardiac arrhythmias,Ventricular tachycardia,N,0,11
-ADMH,17501,10134,1750110134,Cardiac arrhythmias,Atrial fibrillation,Y,1,71
-ADMH,17501,10134,1750110134,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10135,1750110135,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
-ADMH,17501,10135,1750110135,Cardiac arrhythmias,Ventricular tachycardia,N,0,38
-ADMH,17501,10136,1750110136,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10136,1750110136,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10137,1750110137,Cardiac arrhythmias,Atrial fibrillation,Y,1,15
-ADMH,17501,10137,1750110137,Cardiac arrhythmias,Ventricular tachycardia,N,0,-8
-ADMH,17501,10138,1750110138,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10138,1750110138,Cardiac arrhythmias,Ventricular tachycardia,N,0,3
-ADMH,17501,10138,1750110138,Coronary artery disorders,Coronary artery disease,,,8
-ADMH,17501,10139,1750110139,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10139,1750110139,Cardiac arrhythmias,Ventricular tachycardia,N,0,69
-ADMH,17501,10139,1750110139,Coronary artery disorders,Coronary artery disease,,,-20
-ADMH,17501,10140,1750110140,Cardiac arrhythmias,Atrial fibrillation,N,0,-14
+ADMH,17501,10104,1750110104,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10104,1750110104,Coronary artery disorders,Angina pectoris,,,-10
+ADMH,17501,10105,1750110105,Cardiac arrhythmias,Atrial fibrillation,N,0,-11
+ADMH,17501,10105,1750110105,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10105,1750110105,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10106,1750110106,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10106,1750110106,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10106,1750110106,Coronary artery disorders,Myocardial infarction,,,48
+ADMH,17501,10107,1750110107,Cardiac arrhythmias,Atrial fibrillation,N,0,-18
+ADMH,17501,10107,1750110107,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-19
+ADMH,17501,10108,1750110108,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
+ADMH,17501,10108,1750110108,Cardiac arrhythmias,Ventricular tachycardia,N,0,-13
+ADMH,17501,10108,1750110108,Coronary artery disorders,Angina pectoris,,,-20
+ADMH,17501,10108,1750110108,Coronary artery disorders,Myocardial infarction,,,-17
+ADMH,17501,10109,1750110109,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10109,1750110109,Cardiac arrhythmias,Ventricular tachycardia,N,0,52
+ADMH,17501,10109,1750110109,Coronary artery disorders,Myocardial infarction,,,44
+ADMH,17501,10110,1750110110,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10110,1750110110,Cardiac arrhythmias,Ventricular tachycardia,N,0,-11
+ADMH,17501,10111,1750110111,Cardiac arrhythmias,Atrial fibrillation,N,0,-18
+ADMH,17501,10111,1750110111,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10112,1750110112,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10112,1750110112,Cardiac arrhythmias,Ventricular tachycardia,N,0,33
+ADMH,17501,10112,1750110112,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10113,1750110113,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10113,1750110113,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
+ADMH,17501,10114,1750110114,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10114,1750110114,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10114,1750110114,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10115,1750110115,Cardiac arrhythmias,Atrial fibrillation,N,0,8
+ADMH,17501,10115,1750110115,Cardiac arrhythmias,Ventricular tachycardia,N,0,-7
+ADMH,17501,10115,1750110115,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10115,1750110115,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10116,1750110116,Cardiac arrhythmias,Atrial fibrillation,N,0,20
+ADMH,17501,10116,1750110116,Cardiac arrhythmias,Ventricular tachycardia,N,0,86
+ADMH,17501,10117,1750110117,Cardiac arrhythmias,Atrial fibrillation,N,0,67
+ADMH,17501,10117,1750110117,Cardiac arrhythmias,Ventricular tachycardia,N,0,8
+ADMH,17501,10117,1750110117,Coronary artery disorders,Myocardial infarction,,,-16
+ADMH,17501,10118,1750110118,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
+ADMH,17501,10118,1750110118,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10118,1750110118,Coronary artery disorders,Myocardial infarction,,,18
+ADMH,17501,10119,1750110119,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10119,1750110119,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10120,1750110120,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10120,1750110120,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
+ADMH,17501,10121,1750110121,Cardiac arrhythmias,Atrial fibrillation,Y,1,-8
+ADMH,17501,10121,1750110121,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10121,1750110121,Coronary artery disorders,Coronary artery disease,,,-1
+ADMH,17501,10122,1750110122,Cardiac arrhythmias,Atrial fibrillation,N,0,-18
+ADMH,17501,10122,1750110122,Cardiac arrhythmias,Ventricular tachycardia,N,0,90
+ADMH,17501,10123,1750110123,Cardiac arrhythmias,Atrial fibrillation,N,0,31
+ADMH,17501,10123,1750110123,Cardiac arrhythmias,Ventricular tachycardia,N,0,6
+ADMH,17501,10124,1750110124,Cardiac arrhythmias,Atrial fibrillation,N,0,-16
+ADMH,17501,10124,1750110124,Cardiac arrhythmias,Ventricular tachycardia,N,0,28
+ADMH,17501,10124,1750110124,Coronary artery disorders,Myocardial infarction,,,44
+ADMH,17501,10125,1750110125,Cardiac arrhythmias,Atrial fibrillation,Y,1,-11
+ADMH,17501,10125,1750110125,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10126,1750110126,Cardiac arrhythmias,Atrial fibrillation,N,0,-5
+ADMH,17501,10126,1750110126,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
+ADMH,17501,10127,1750110127,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
+ADMH,17501,10127,1750110127,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10127,1750110127,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10128,1750110128,Cardiac arrhythmias,Atrial fibrillation,Y,1,-12
+ADMH,17501,10128,1750110128,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10129,1750110129,Cardiac arrhythmias,Atrial fibrillation,N,0,39
+ADMH,17501,10129,1750110129,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10129,1750110129,Coronary artery disorders,Myocardial infarction,,,-12
+ADMH,17501,10130,1750110130,Cardiac arrhythmias,Atrial fibrillation,Y,1,40
+ADMH,17501,10130,1750110130,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10130,1750110130,Coronary artery disorders,Angina pectoris,,,96
+ADMH,17501,10131,1750110131,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10131,1750110131,Cardiac arrhythmias,Ventricular tachycardia,N,0,62
+ADMH,17501,10132,1750110132,Cardiac arrhythmias,Atrial fibrillation,Y,1,24
+ADMH,17501,10132,1750110132,Cardiac arrhythmias,Ventricular tachycardia,N,0,5
+ADMH,17501,10132,1750110132,Coronary artery disorders,Coronary artery disease,,,48
+ADMH,17501,10132,1750110132,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10133,1750110133,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10133,1750110133,Cardiac arrhythmias,Ventricular tachycardia,N,0,-3
+ADMH,17501,10134,1750110134,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10134,1750110134,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10135,1750110135,Cardiac arrhythmias,Atrial fibrillation,N,0,87
+ADMH,17501,10135,1750110135,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10135,1750110135,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10136,1750110136,Cardiac arrhythmias,Atrial fibrillation,Y,1,59
+ADMH,17501,10136,1750110136,Cardiac arrhythmias,Ventricular tachycardia,N,0,31
+ADMH,17501,10137,1750110137,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10137,1750110137,Cardiac arrhythmias,Ventricular tachycardia,N,0,-12
+ADMH,17501,10137,1750110137,Coronary artery disorders,Coronary artery disease,,,-19
+ADMH,17501,10138,1750110138,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10138,1750110138,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10139,1750110139,Cardiac arrhythmias,Atrial fibrillation,Y,1,-9
+ADMH,17501,10139,1750110139,Cardiac arrhythmias,Ventricular tachycardia,N,0,118
+ADMH,17501,10140,1750110140,Cardiac arrhythmias,Atrial fibrillation,Y,1,-13
 ADMH,17501,10140,1750110140,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10141,1750110141,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10141,1750110141,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-18
-ADMH,17501,10142,1750110142,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
-ADMH,17501,10142,1750110142,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10142,1750110142,Coronary artery disorders,Coronary artery disease,,,-16
-ADMH,17501,10143,1750110143,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
-ADMH,17501,10143,1750110143,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10143,1750110143,Coronary artery disorders,Angina pectoris,,,-11
-ADMH,17501,10144,1750110144,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
+ADMH,17501,10141,1750110141,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10141,1750110141,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10141,1750110141,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10142,1750110142,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
+ADMH,17501,10142,1750110142,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10142,1750110142,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10143,1750110143,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
+ADMH,17501,10143,1750110143,Cardiac arrhythmias,Ventricular tachycardia,N,0,77
+ADMH,17501,10144,1750110144,Cardiac arrhythmias,Atrial fibrillation,Y,1,15
 ADMH,17501,10144,1750110144,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10144,1750110144,Coronary artery disorders,Myocardial infarction,,,-17
-ADMH,17501,10145,1750110145,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10145,1750110145,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10146,1750110146,Cardiac arrhythmias,Atrial fibrillation,N,0,54
-ADMH,17501,10146,1750110146,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10146,1750110146,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10146,1750110146,Coronary artery disorders,Myocardial infarction,,,104
-ADMH,17501,10147,1750110147,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10147,1750110147,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
-ADMH,17501,10148,1750110148,Cardiac arrhythmias,Atrial fibrillation,Y,1,26
-ADMH,17501,10148,1750110148,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10149,1750110149,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
-ADMH,17501,10149,1750110149,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10149,1750110149,Coronary artery disorders,Myocardial infarction,,,-20
-ADMH,17501,10150,1750110150,Cardiac arrhythmias,Atrial fibrillation,Y,1,9
-ADMH,17501,10150,1750110150,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10150,1750110150,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10151,1750110151,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10151,1750110151,Cardiac arrhythmias,Ventricular tachycardia,N,0,-9
-ADMH,17501,10151,1750110151,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10152,1750110152,Cardiac arrhythmias,Atrial fibrillation,Y,1,79
+ADMH,17501,10144,1750110144,Coronary artery disorders,Coronary artery disease,,,-19
+ADMH,17501,10145,1750110145,Cardiac arrhythmias,Atrial fibrillation,N,0,13
+ADMH,17501,10145,1750110145,Cardiac arrhythmias,Ventricular tachycardia,N,0,53
+ADMH,17501,10146,1750110146,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
+ADMH,17501,10146,1750110146,Cardiac arrhythmias,Ventricular tachycardia,N,0,13
+ADMH,17501,10147,1750110147,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10147,1750110147,Cardiac arrhythmias,Ventricular tachycardia,N,0,33
+ADMH,17501,10148,1750110148,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
+ADMH,17501,10148,1750110148,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10149,1750110149,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10149,1750110149,Cardiac arrhythmias,Ventricular tachycardia,N,0,-13
+ADMH,17501,10150,1750110150,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
+ADMH,17501,10150,1750110150,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10150,1750110150,Coronary artery disorders,Coronary artery disease,,,51
+ADMH,17501,10150,1750110150,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10151,1750110151,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10151,1750110151,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10152,1750110152,Cardiac arrhythmias,Atrial fibrillation,Y,1,-11
 ADMH,17501,10152,1750110152,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10153,1750110153,Cardiac arrhythmias,Atrial fibrillation,Y,1,17
-ADMH,17501,10153,1750110153,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
-ADMH,17501,10153,1750110153,Coronary artery disorders,Coronary artery disease,,,-19
-ADMH,17501,10154,1750110154,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10154,1750110154,Cardiac arrhythmias,Ventricular tachycardia,N,0,-8
-ADMH,17501,10154,1750110154,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10155,1750110155,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10155,1750110155,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10156,1750110156,Cardiac arrhythmias,Atrial fibrillation,Y,1,-13
-ADMH,17501,10156,1750110156,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10156,1750110156,Coronary artery disorders,Coronary artery disease,,,33
-ADMH,17501,10157,1750110157,Cardiac arrhythmias,Atrial fibrillation,Y,1,41
-ADMH,17501,10157,1750110157,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10158,1750110158,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
-ADMH,17501,10158,1750110158,Cardiac arrhythmias,Ventricular tachycardia,N,0,2
+ADMH,17501,10153,1750110153,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10153,1750110153,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10153,1750110153,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10154,1750110154,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
+ADMH,17501,10154,1750110154,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10155,1750110155,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10155,1750110155,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10156,1750110156,Cardiac arrhythmias,Atrial fibrillation,Y,1,12
+ADMH,17501,10156,1750110156,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
+ADMH,17501,10157,1750110157,Cardiac arrhythmias,Atrial fibrillation,Y,1,82
+ADMH,17501,10157,1750110157,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10157,1750110157,Coronary artery disorders,Coronary artery disease,,,94
+ADMH,17501,10157,1750110157,Coronary artery disorders,Myocardial infarction,,,-5
+ADMH,17501,10158,1750110158,Cardiac arrhythmias,Atrial fibrillation,Y,1,82
+ADMH,17501,10158,1750110158,Cardiac arrhythmias,Ventricular tachycardia,N,0,17
+ADMH,17501,10158,1750110158,Coronary artery disorders,Coronary artery disease,,,-18
+ADMH,17501,10158,1750110158,Coronary artery disorders,Myocardial infarction,,,
 ADMH,17501,10159,1750110159,Cardiac arrhythmias,Atrial fibrillation,N,0,
 ADMH,17501,10159,1750110159,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10160,1750110160,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10160,1750110160,Cardiac arrhythmias,Ventricular tachycardia,N,0,11
-ADMH,17501,10161,1750110161,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
-ADMH,17501,10161,1750110161,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10161,1750110161,Coronary artery disorders,Angina pectoris,,,-18
-ADMH,17501,10162,1750110162,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10162,1750110162,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10163,1750110163,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10163,1750110163,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-13
-ADMH,17501,10164,1750110164,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10164,1750110164,Cardiac arrhythmias,Ventricular tachycardia,N,0,45
-ADMH,17501,10165,1750110165,Cardiac arrhythmias,Atrial fibrillation,Y,1,22
-ADMH,17501,10165,1750110165,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10165,1750110165,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10166,1750110166,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
-ADMH,17501,10166,1750110166,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
-ADMH,17501,10167,1750110167,Cardiac arrhythmias,Atrial fibrillation,N,0,2
-ADMH,17501,10167,1750110167,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10168,1750110168,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10168,1750110168,Cardiac arrhythmias,Ventricular tachycardia,N,0,41
-ADMH,17501,10169,1750110169,Cardiac arrhythmias,Atrial fibrillation,Y,1,11
+ADMH,17501,10160,1750110160,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10160,1750110160,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-20
+ADMH,17501,10160,1750110160,Coronary artery disorders,Myocardial infarction,,,0
+ADMH,17501,10161,1750110161,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10161,1750110161,Cardiac arrhythmias,Ventricular tachycardia,N,0,13
+ADMH,17501,10161,1750110161,Coronary artery disorders,Angina pectoris,,,
+ADMH,17501,10161,1750110161,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10161,1750110161,Coronary artery disorders,Myocardial infarction,,,-19
+ADMH,17501,10162,1750110162,Cardiac arrhythmias,Atrial fibrillation,N,0,-13
+ADMH,17501,10162,1750110162,Cardiac arrhythmias,Ventricular tachycardia,N,0,26
+ADMH,17501,10162,1750110162,Coronary artery disorders,Myocardial infarction,,,8
+ADMH,17501,10163,1750110163,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
+ADMH,17501,10163,1750110163,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10164,1750110164,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10164,1750110164,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10164,1750110164,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10165,1750110165,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10165,1750110165,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10165,1750110165,Coronary artery disorders,Coronary artery disease,,,6
+ADMH,17501,10166,1750110166,Cardiac arrhythmias,Atrial fibrillation,Y,1,-10
+ADMH,17501,10166,1750110166,Cardiac arrhythmias,Ventricular tachycardia,N,0,31
+ADMH,17501,10167,1750110167,Cardiac arrhythmias,Atrial fibrillation,N,0,59
+ADMH,17501,10167,1750110167,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10167,1750110167,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10168,1750110168,Cardiac arrhythmias,Atrial fibrillation,Y,1,-7
+ADMH,17501,10168,1750110168,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10169,1750110169,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
 ADMH,17501,10169,1750110169,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10170,1750110170,Cardiac arrhythmias,Atrial fibrillation,Y,1,20
-ADMH,17501,10170,1750110170,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10171,1750110171,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10171,1750110171,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10172,1750110172,Cardiac arrhythmias,Atrial fibrillation,N,0,-15
-ADMH,17501,10172,1750110172,Cardiac arrhythmias,Ventricular tachycardia,N,0,10
-ADMH,17501,10173,1750110173,Cardiac arrhythmias,Atrial fibrillation,Y,1,-13
-ADMH,17501,10173,1750110173,Cardiac arrhythmias,Ventricular tachycardia,N,0,4
-ADMH,17501,10174,1750110174,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10174,1750110174,Cardiac arrhythmias,Ventricular tachycardia,N,0,-8
-ADMH,17501,10174,1750110174,Coronary artery disorders,Myocardial infarction,,,-20
-ADMH,17501,10175,1750110175,Cardiac arrhythmias,Atrial fibrillation,N,0,-18
-ADMH,17501,10175,1750110175,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
-ADMH,17501,10175,1750110175,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10176,1750110176,Cardiac arrhythmias,Atrial fibrillation,Y,1,-13
-ADMH,17501,10176,1750110176,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10177,1750110177,Cardiac arrhythmias,Atrial fibrillation,Y,1,102
-ADMH,17501,10177,1750110177,Cardiac arrhythmias,Ventricular tachycardia,Y,1,
-ADMH,17501,10177,1750110177,Coronary artery disorders,Angina pectoris,,,-11
-ADMH,17501,10178,1750110178,Cardiac arrhythmias,Atrial fibrillation,Y,1,0
+ADMH,17501,10169,1750110169,Coronary artery disorders,Myocardial infarction,,,-15
+ADMH,17501,10170,1750110170,Cardiac arrhythmias,Atrial fibrillation,N,0,-2
+ADMH,17501,10170,1750110170,Cardiac arrhythmias,Ventricular tachycardia,N,0,19
+ADMH,17501,10171,1750110171,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10171,1750110171,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10172,1750110172,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10172,1750110172,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
+ADMH,17501,10172,1750110172,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10173,1750110173,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10173,1750110173,Cardiac arrhythmias,Ventricular tachycardia,N,0,116
+ADMH,17501,10173,1750110173,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10174,1750110174,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10174,1750110174,Cardiac arrhythmias,Ventricular tachycardia,N,0,66
+ADMH,17501,10175,1750110175,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10175,1750110175,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10176,1750110176,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10176,1750110176,Cardiac arrhythmias,Ventricular tachycardia,N,0,-10
+ADMH,17501,10176,1750110176,Coronary artery disorders,Angina pectoris,,,-20
+ADMH,17501,10177,1750110177,Cardiac arrhythmias,Atrial fibrillation,N,0,-19
+ADMH,17501,10177,1750110177,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10177,1750110177,Coronary artery disorders,Angina pectoris,,,19
+ADMH,17501,10178,1750110178,Cardiac arrhythmias,Atrial fibrillation,Y,1,
 ADMH,17501,10178,1750110178,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10178,1750110178,Coronary artery disorders,Coronary artery disease,,,-20
-ADMH,17501,10178,1750110178,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10179,1750110179,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10179,1750110179,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10180,1750110180,Cardiac arrhythmias,Atrial fibrillation,Y,1,-4
-ADMH,17501,10180,1750110180,Cardiac arrhythmias,Ventricular tachycardia,N,0,3
-ADMH,17501,10180,1750110180,Coronary artery disorders,Coronary artery disease,,,43
-ADMH,17501,10180,1750110180,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10181,1750110181,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
-ADMH,17501,10181,1750110181,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10182,1750110182,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10182,1750110182,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
-ADMH,17501,10183,1750110183,Cardiac arrhythmias,Atrial fibrillation,N,0,90
-ADMH,17501,10183,1750110183,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10184,1750110184,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
+ADMH,17501,10178,1750110178,Coronary artery disorders,Myocardial infarction,,,-7
+ADMH,17501,10179,1750110179,Cardiac arrhythmias,Atrial fibrillation,N,0,-16
+ADMH,17501,10179,1750110179,Cardiac arrhythmias,Ventricular tachycardia,N,0,-13
+ADMH,17501,10179,1750110179,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10180,1750110180,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
+ADMH,17501,10180,1750110180,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10180,1750110180,Coronary artery disorders,Myocardial infarction,,,101
+ADMH,17501,10181,1750110181,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10181,1750110181,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10182,1750110182,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10182,1750110182,Cardiac arrhythmias,Ventricular tachycardia,N,0,18
+ADMH,17501,10182,1750110182,Coronary artery disorders,Myocardial infarction,,,-17
+ADMH,17501,10183,1750110183,Cardiac arrhythmias,Atrial fibrillation,N,0,-18
+ADMH,17501,10183,1750110183,Cardiac arrhythmias,Ventricular tachycardia,N,0,-8
+ADMH,17501,10184,1750110184,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
 ADMH,17501,10184,1750110184,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10184,1750110184,Coronary artery disorders,Coronary artery disease,,,-18
-ADMH,17501,10185,1750110185,Cardiac arrhythmias,Atrial fibrillation,Y,1,50
+ADMH,17501,10185,1750110185,Cardiac arrhythmias,Atrial fibrillation,N,0,-19
 ADMH,17501,10185,1750110185,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10185,1750110185,Coronary artery disorders,Coronary artery disease,,,31
-ADMH,17501,10186,1750110186,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10185,1750110185,Coronary artery disorders,Myocardial infarction,,,-13
+ADMH,17501,10186,1750110186,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
 ADMH,17501,10186,1750110186,Cardiac arrhythmias,Ventricular tachycardia,N,0,-1
-ADMH,17501,10186,1750110186,Coronary artery disorders,Coronary artery disease,,,-17
-ADMH,17501,10187,1750110187,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10187,1750110187,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
-ADMH,17501,10187,1750110187,Coronary artery disorders,Myocardial infarction,,,-3
-ADMH,17501,10188,1750110188,Cardiac arrhythmias,Atrial fibrillation,Y,1,-13
-ADMH,17501,10188,1750110188,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
-ADMH,17501,10189,1750110189,Cardiac arrhythmias,Atrial fibrillation,Y,1,6
-ADMH,17501,10189,1750110189,Cardiac arrhythmias,Ventricular tachycardia,N,0,-4
-ADMH,17501,10189,1750110189,Coronary artery disorders,Myocardial infarction,,,56
-ADMH,17501,10190,1750110190,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10190,1750110190,Cardiac arrhythmias,Ventricular tachycardia,N,0,-6
-ADMH,17501,10191,1750110191,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10191,1750110191,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10192,1750110192,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
-ADMH,17501,10192,1750110192,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10193,1750110193,Cardiac arrhythmias,Atrial fibrillation,Y,1,72
-ADMH,17501,10193,1750110193,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10194,1750110194,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
-ADMH,17501,10194,1750110194,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10194,1750110194,Coronary artery disorders,Myocardial infarction,,,37
-ADMH,17501,10195,1750110195,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
-ADMH,17501,10195,1750110195,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10196,1750110196,Cardiac arrhythmias,Atrial fibrillation,Y,1,111
-ADMH,17501,10196,1750110196,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-19
-ADMH,17501,10197,1750110197,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10197,1750110197,Cardiac arrhythmias,Ventricular tachycardia,N,0,74
-ADMH,17501,10198,1750110198,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10198,1750110198,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-15
-ADMH,17501,10198,1750110198,Coronary artery disorders,Coronary artery disease,,,29
-ADMH,17501,10198,1750110198,Coronary artery disorders,Myocardial infarction,,,-19
-ADMH,17501,10199,1750110199,Cardiac arrhythmias,Atrial fibrillation,Y,1,-6
-ADMH,17501,10199,1750110199,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
-ADMH,17501,10200,1750110200,Cardiac arrhythmias,Atrial fibrillation,Y,1,20
-ADMH,17501,10200,1750110200,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10200,1750110200,Coronary artery disorders,Coronary artery disease,,,7
-ADMH,17501,10200,1750110200,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10201,1750110201,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
-ADMH,17501,10201,1750110201,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10202,1750110202,Cardiac arrhythmias,Atrial fibrillation,Y,1,3
-ADMH,17501,10202,1750110202,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10202,1750110202,Coronary artery disorders,Myocardial infarction,,,6
-ADMH,17501,10203,1750110203,Cardiac arrhythmias,Atrial fibrillation,Y,1,2
-ADMH,17501,10203,1750110203,Cardiac arrhythmias,Ventricular tachycardia,N,0,-2
-ADMH,17501,10204,1750110204,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10204,1750110204,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10204,1750110204,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10205,1750110205,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10205,1750110205,Cardiac arrhythmias,Ventricular tachycardia,N,0,-13
-ADMH,17501,10205,1750110205,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10206,1750110206,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10206,1750110206,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10206,1750110206,Coronary artery disorders,Coronary artery disease,,,-20
-ADMH,17501,10206,1750110206,Coronary artery disorders,Myocardial infarction,,,40
-ADMH,17501,10207,1750110207,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10207,1750110207,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-4
-ADMH,17501,10207,1750110207,Coronary artery disorders,Coronary artery disease,,,-20
-ADMH,17501,10208,1750110208,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10208,1750110208,Cardiac arrhythmias,Ventricular tachycardia,N,0,-10
-ADMH,17501,10208,1750110208,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10209,1750110209,Cardiac arrhythmias,Atrial fibrillation,N,0,27
-ADMH,17501,10209,1750110209,Cardiac arrhythmias,Ventricular tachycardia,N,0,7
-ADMH,17501,10210,1750110210,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10210,1750110210,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10211,1750110211,Cardiac arrhythmias,Atrial fibrillation,Y,1,-10
-ADMH,17501,10211,1750110211,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10211,1750110211,Coronary artery disorders,Myocardial infarction,,,-7
-ADMH,17501,10212,1750110212,Cardiac arrhythmias,Atrial fibrillation,N,0,62
-ADMH,17501,10212,1750110212,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10213,1750110213,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10213,1750110213,Cardiac arrhythmias,Ventricular tachycardia,N,0,1
-ADMH,17501,10213,1750110213,Coronary artery disorders,Coronary artery disease,,,-20
-ADMH,17501,10214,1750110214,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
-ADMH,17501,10214,1750110214,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
-ADMH,17501,10215,1750110215,Cardiac arrhythmias,Atrial fibrillation,Y,1,101
-ADMH,17501,10215,1750110215,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10215,1750110215,Coronary artery disorders,Coronary artery disease,,,-19
-ADMH,17501,10216,1750110216,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10216,1750110216,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10217,1750110217,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
-ADMH,17501,10217,1750110217,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10217,1750110217,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10217,1750110217,Coronary artery disorders,Myocardial infarction,,,-12
-ADMH,17501,10218,1750110218,Cardiac arrhythmias,Atrial fibrillation,Y,1,-11
-ADMH,17501,10218,1750110218,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10219,1750110219,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10219,1750110219,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10220,1750110220,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10220,1750110220,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10221,1750110221,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10221,1750110221,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10221,1750110221,Coronary artery disorders,Myocardial infarction,,,-19
-ADMH,17501,10222,1750110222,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10222,1750110222,Cardiac arrhythmias,Ventricular tachycardia,N,0,-7
-ADMH,17501,10222,1750110222,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10222,1750110222,Coronary artery disorders,Myocardial infarction,,,-20
-ADMH,17501,10223,1750110223,Cardiac arrhythmias,Atrial fibrillation,Y,1,18
+ADMH,17501,10186,1750110186,Coronary artery disorders,Myocardial infarction,,,-3
+ADMH,17501,10187,1750110187,Cardiac arrhythmias,Atrial fibrillation,Y,1,-6
+ADMH,17501,10187,1750110187,Cardiac arrhythmias,Ventricular tachycardia,N,0,59
+ADMH,17501,10187,1750110187,Coronary artery disorders,Myocardial infarction,,,-19
+ADMH,17501,10188,1750110188,Cardiac arrhythmias,Atrial fibrillation,Y,1,-2
+ADMH,17501,10188,1750110188,Cardiac arrhythmias,Ventricular tachycardia,N,0,-1
+ADMH,17501,10188,1750110188,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10189,1750110189,Cardiac arrhythmias,Atrial fibrillation,Y,1,-8
+ADMH,17501,10189,1750110189,Cardiac arrhythmias,Ventricular tachycardia,N,0,92
+ADMH,17501,10190,1750110190,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10190,1750110190,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10191,1750110191,Cardiac arrhythmias,Atrial fibrillation,Y,1,22
+ADMH,17501,10191,1750110191,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
+ADMH,17501,10191,1750110191,Coronary artery disorders,Myocardial infarction,,,-18
+ADMH,17501,10192,1750110192,Cardiac arrhythmias,Atrial fibrillation,Y,1,-7
+ADMH,17501,10192,1750110192,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10192,1750110192,Coronary artery disorders,Myocardial infarction,,,-7
+ADMH,17501,10193,1750110193,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10193,1750110193,Cardiac arrhythmias,Ventricular tachycardia,N,0,62
+ADMH,17501,10194,1750110194,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
+ADMH,17501,10194,1750110194,Cardiac arrhythmias,Ventricular tachycardia,N,0,-9
+ADMH,17501,10194,1750110194,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10194,1750110194,Coronary artery disorders,Myocardial infarction,,,-9
+ADMH,17501,10195,1750110195,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10195,1750110195,Cardiac arrhythmias,Ventricular tachycardia,N,0,-11
+ADMH,17501,10196,1750110196,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10196,1750110196,Cardiac arrhythmias,Ventricular tachycardia,N,0,-11
+ADMH,17501,10197,1750110197,Cardiac arrhythmias,Atrial fibrillation,N,0,-6
+ADMH,17501,10197,1750110197,Cardiac arrhythmias,Ventricular tachycardia,N,0,47
+ADMH,17501,10198,1750110198,Cardiac arrhythmias,Atrial fibrillation,Y,1,-2
+ADMH,17501,10198,1750110198,Cardiac arrhythmias,Ventricular tachycardia,N,0,-13
+ADMH,17501,10198,1750110198,Coronary artery disorders,Coronary artery disease,,,-12
+ADMH,17501,10199,1750110199,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10199,1750110199,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10200,1750110200,Cardiac arrhythmias,Atrial fibrillation,Y,1,42
+ADMH,17501,10200,1750110200,Cardiac arrhythmias,Ventricular tachycardia,N,0,17
+ADMH,17501,10201,1750110201,Cardiac arrhythmias,Atrial fibrillation,N,0,113
+ADMH,17501,10201,1750110201,Cardiac arrhythmias,Ventricular tachycardia,N,0,114
+ADMH,17501,10202,1750110202,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10202,1750110202,Cardiac arrhythmias,Ventricular tachycardia,N,0,-1
+ADMH,17501,10202,1750110202,Coronary artery disorders,Myocardial infarction,,,-16
+ADMH,17501,10203,1750110203,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10203,1750110203,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10203,1750110203,Coronary artery disorders,Myocardial infarction,,,-13
+ADMH,17501,10204,1750110204,Cardiac arrhythmias,Atrial fibrillation,Y,1,-13
+ADMH,17501,10204,1750110204,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10205,1750110205,Cardiac arrhythmias,Atrial fibrillation,Y,1,83
+ADMH,17501,10205,1750110205,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10205,1750110205,Coronary artery disorders,Myocardial infarction,,,9
+ADMH,17501,10206,1750110206,Cardiac arrhythmias,Atrial fibrillation,N,0,-5
+ADMH,17501,10206,1750110206,Cardiac arrhythmias,Ventricular tachycardia,N,0,-10
+ADMH,17501,10207,1750110207,Cardiac arrhythmias,Atrial fibrillation,Y,1,7
+ADMH,17501,10207,1750110207,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
+ADMH,17501,10207,1750110207,Coronary artery disorders,Coronary artery disease,,,9
+ADMH,17501,10208,1750110208,Cardiac arrhythmias,Atrial fibrillation,Y,1,55
+ADMH,17501,10208,1750110208,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10209,1750110209,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10209,1750110209,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10209,1750110209,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10210,1750110210,Cardiac arrhythmias,Atrial fibrillation,Y,1,-7
+ADMH,17501,10210,1750110210,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
+ADMH,17501,10210,1750110210,Coronary artery disorders,Myocardial infarction,,,-19
+ADMH,17501,10211,1750110211,Cardiac arrhythmias,Atrial fibrillation,N,0,-15
+ADMH,17501,10211,1750110211,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
+ADMH,17501,10212,1750110212,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
+ADMH,17501,10212,1750110212,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10212,1750110212,Coronary artery disorders,Angina pectoris,,,-18
+ADMH,17501,10212,1750110212,Coronary artery disorders,Myocardial infarction,,,-10
+ADMH,17501,10213,1750110213,Cardiac arrhythmias,Atrial fibrillation,Y,1,7
+ADMH,17501,10213,1750110213,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10213,1750110213,Coronary artery disorders,Angina pectoris,,,65
+ADMH,17501,10214,1750110214,Cardiac arrhythmias,Atrial fibrillation,Y,1,2
+ADMH,17501,10214,1750110214,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-20
+ADMH,17501,10214,1750110214,Coronary artery disorders,Coronary artery disease,,,-19
+ADMH,17501,10215,1750110215,Cardiac arrhythmias,Atrial fibrillation,Y,1,-10
+ADMH,17501,10215,1750110215,Cardiac arrhythmias,Ventricular tachycardia,Y,1,
+ADMH,17501,10215,1750110215,Coronary artery disorders,Coronary artery disease,,,-13
+ADMH,17501,10215,1750110215,Coronary artery disorders,Myocardial infarction,,,34
+ADMH,17501,10216,1750110216,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
+ADMH,17501,10216,1750110216,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10216,1750110216,Coronary artery disorders,Myocardial infarction,,,-18
+ADMH,17501,10217,1750110217,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10217,1750110217,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10217,1750110217,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10218,1750110218,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
+ADMH,17501,10218,1750110218,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10218,1750110218,Coronary artery disorders,Myocardial infarction,,,-12
+ADMH,17501,10219,1750110219,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
+ADMH,17501,10219,1750110219,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10219,1750110219,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10220,1750110220,Cardiac arrhythmias,Atrial fibrillation,Y,1,99
+ADMH,17501,10220,1750110220,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
+ADMH,17501,10221,1750110221,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10221,1750110221,Cardiac arrhythmias,Ventricular tachycardia,N,0,40
+ADMH,17501,10222,1750110222,Cardiac arrhythmias,Atrial fibrillation,N,0,53
+ADMH,17501,10222,1750110222,Cardiac arrhythmias,Ventricular tachycardia,N,0,15
+ADMH,17501,10222,1750110222,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10223,1750110223,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
 ADMH,17501,10223,1750110223,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10224,1750110224,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10224,1750110224,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10224,1750110224,Coronary artery disorders,Myocardial infarction,,,66
-ADMH,17501,10225,1750110225,Cardiac arrhythmias,Atrial fibrillation,Y,1,-13
-ADMH,17501,10225,1750110225,Cardiac arrhythmias,Ventricular tachycardia,N,0,-3
-ADMH,17501,10226,1750110226,Cardiac arrhythmias,Atrial fibrillation,Y,1,-7
-ADMH,17501,10226,1750110226,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10227,1750110227,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10227,1750110227,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10227,1750110227,Coronary artery disorders,Myocardial infarction,,,-19
-ADMH,17501,10228,1750110228,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10228,1750110228,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10229,1750110229,Cardiac arrhythmias,Atrial fibrillation,Y,1,95
-ADMH,17501,10229,1750110229,Cardiac arrhythmias,Ventricular tachycardia,N,0,57
-ADMH,17501,10230,1750110230,Cardiac arrhythmias,Atrial fibrillation,Y,1,0
-ADMH,17501,10230,1750110230,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10230,1750110230,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10230,1750110230,Coronary artery disorders,Myocardial infarction,,,-12
-ADMH,17501,10231,1750110231,Cardiac arrhythmias,Atrial fibrillation,N,0,22
-ADMH,17501,10231,1750110231,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10231,1750110231,Coronary artery disorders,Angina pectoris,,,-19
-ADMH,17501,10231,1750110231,Coronary artery disorders,Coronary artery disease,,,-17
-ADMH,17501,10232,1750110232,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10232,1750110232,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10233,1750110233,Cardiac arrhythmias,Atrial fibrillation,Y,1,-13
-ADMH,17501,10233,1750110233,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10233,1750110233,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10234,1750110234,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10234,1750110234,Cardiac arrhythmias,Ventricular tachycardia,N,0,83
-ADMH,17501,10235,1750110235,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10235,1750110235,Cardiac arrhythmias,Ventricular tachycardia,N,0,-11
-ADMH,17501,10236,1750110236,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
-ADMH,17501,10236,1750110236,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10237,1750110237,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10237,1750110237,Cardiac arrhythmias,Ventricular tachycardia,N,0,80
-ADMH,17501,10237,1750110237,Coronary artery disorders,Myocardial infarction,,,4
-ADMH,17501,10238,1750110238,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10238,1750110238,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10239,1750110239,Cardiac arrhythmias,Atrial fibrillation,N,0,76
-ADMH,17501,10239,1750110239,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10239,1750110239,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10239,1750110239,Coronary artery disorders,Myocardial infarction,,,64
-ADMH,17501,10240,1750110240,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10240,1750110240,Cardiac arrhythmias,Ventricular tachycardia,N,0,-7
-ADMH,17501,10240,1750110240,Coronary artery disorders,Myocardial infarction,,,83
-ADMH,17501,10241,1750110241,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10241,1750110241,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10242,1750110242,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
-ADMH,17501,10242,1750110242,Cardiac arrhythmias,Ventricular tachycardia,N,0,-11
-ADMH,17501,10243,1750110243,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10243,1750110243,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10243,1750110243,Coronary artery disorders,Myocardial infarction,,,38
-ADMH,17501,10244,1750110244,Cardiac arrhythmias,Atrial fibrillation,Y,1,-3
-ADMH,17501,10244,1750110244,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10245,1750110245,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10245,1750110245,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10246,1750110246,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10246,1750110246,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
-ADMH,17501,10247,1750110247,Cardiac arrhythmias,Atrial fibrillation,Y,1,87
-ADMH,17501,10247,1750110247,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10247,1750110247,Coronary artery disorders,Myocardial infarction,,,1
-ADMH,17501,10248,1750110248,Cardiac arrhythmias,Atrial fibrillation,Y,1,12
-ADMH,17501,10248,1750110248,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10248,1750110248,Coronary artery disorders,Coronary artery disease,,,-6
-ADMH,17501,10249,1750110249,Cardiac arrhythmias,Atrial fibrillation,N,0,21
-ADMH,17501,10249,1750110249,Cardiac arrhythmias,Ventricular tachycardia,N,0,39
+ADMH,17501,10223,1750110223,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10224,1750110224,Cardiac arrhythmias,Atrial fibrillation,N,0,3
+ADMH,17501,10224,1750110224,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10224,1750110224,Coronary artery disorders,Myocardial infarction,,,-7
+ADMH,17501,10225,1750110225,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10225,1750110225,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10226,1750110226,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10226,1750110226,Cardiac arrhythmias,Ventricular tachycardia,N,0,73
+ADMH,17501,10227,1750110227,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10227,1750110227,Cardiac arrhythmias,Ventricular tachycardia,N,0,104
+ADMH,17501,10228,1750110228,Cardiac arrhythmias,Atrial fibrillation,Y,1,-4
+ADMH,17501,10228,1750110228,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10228,1750110228,Coronary artery disorders,Coronary artery disease,,,-20
+ADMH,17501,10228,1750110228,Coronary artery disorders,Myocardial infarction,,,11
+ADMH,17501,10229,1750110229,Cardiac arrhythmias,Atrial fibrillation,Y,1,34
+ADMH,17501,10229,1750110229,Cardiac arrhythmias,Ventricular tachycardia,N,0,15
+ADMH,17501,10230,1750110230,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10230,1750110230,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10231,1750110231,Cardiac arrhythmias,Atrial fibrillation,N,0,8
+ADMH,17501,10231,1750110231,Cardiac arrhythmias,Ventricular tachycardia,Y,1,15
+ADMH,17501,10231,1750110231,Coronary artery disorders,Angina pectoris,,,94
+ADMH,17501,10232,1750110232,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
+ADMH,17501,10232,1750110232,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10232,1750110232,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10232,1750110232,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10233,1750110233,Cardiac arrhythmias,Atrial fibrillation,N,0,56
+ADMH,17501,10233,1750110233,Cardiac arrhythmias,Ventricular tachycardia,N,0,-9
+ADMH,17501,10234,1750110234,Cardiac arrhythmias,Atrial fibrillation,Y,1,-13
+ADMH,17501,10234,1750110234,Cardiac arrhythmias,Ventricular tachycardia,N,0,41
+ADMH,17501,10234,1750110234,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10235,1750110235,Cardiac arrhythmias,Atrial fibrillation,N,0,41
+ADMH,17501,10235,1750110235,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10236,1750110236,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10236,1750110236,Cardiac arrhythmias,Ventricular tachycardia,N,0,43
+ADMH,17501,10236,1750110236,Coronary artery disorders,Coronary artery disease,,,-20
+ADMH,17501,10236,1750110236,Coronary artery disorders,Myocardial infarction,,,109
+ADMH,17501,10237,1750110237,Cardiac arrhythmias,Atrial fibrillation,Y,1,3
+ADMH,17501,10237,1750110237,Cardiac arrhythmias,Ventricular tachycardia,N,0,-10
+ADMH,17501,10238,1750110238,Cardiac arrhythmias,Atrial fibrillation,Y,1,41
+ADMH,17501,10238,1750110238,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10238,1750110238,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10239,1750110239,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
+ADMH,17501,10239,1750110239,Cardiac arrhythmias,Ventricular tachycardia,N,0,12
+ADMH,17501,10239,1750110239,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10240,1750110240,Cardiac arrhythmias,Atrial fibrillation,Y,1,-12
+ADMH,17501,10240,1750110240,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10240,1750110240,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10241,1750110241,Cardiac arrhythmias,Atrial fibrillation,N,0,-12
+ADMH,17501,10241,1750110241,Cardiac arrhythmias,Ventricular tachycardia,N,0,-13
+ADMH,17501,10242,1750110242,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
+ADMH,17501,10242,1750110242,Cardiac arrhythmias,Ventricular tachycardia,N,0,8
+ADMH,17501,10243,1750110243,Cardiac arrhythmias,Atrial fibrillation,N,0,-14
+ADMH,17501,10243,1750110243,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10243,1750110243,Coronary artery disorders,Myocardial infarction,,,-17
+ADMH,17501,10244,1750110244,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10244,1750110244,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
+ADMH,17501,10245,1750110245,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
+ADMH,17501,10245,1750110245,Cardiac arrhythmias,Ventricular tachycardia,N,0,-9
+ADMH,17501,10245,1750110245,Coronary artery disorders,Myocardial infarction,,,33
+ADMH,17501,10246,1750110246,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
+ADMH,17501,10246,1750110246,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10246,1750110246,Coronary artery disorders,Angina pectoris,,,-20
+ADMH,17501,10247,1750110247,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10247,1750110247,Cardiac arrhythmias,Ventricular tachycardia,N,0,8
+ADMH,17501,10248,1750110248,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
+ADMH,17501,10248,1750110248,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10249,1750110249,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10249,1750110249,Cardiac arrhythmias,Ventricular tachycardia,N,0,87
 ADMH,17501,10249,1750110249,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10249,1750110249,Coronary artery disorders,Myocardial infarction,,,-19
-ADMH,17501,10250,1750110250,Cardiac arrhythmias,Atrial fibrillation,N,0,-5
-ADMH,17501,10250,1750110250,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
-ADMH,17501,10250,1750110250,Coronary artery disorders,Myocardial infarction,,,-18
+ADMH,17501,10250,1750110250,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10250,1750110250,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
 ADMH,17501,10251,1750110251,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10251,1750110251,Cardiac arrhythmias,Ventricular tachycardia,N,0,8
-ADMH,17501,10252,1750110252,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10252,1750110252,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10253,1750110253,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10253,1750110253,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
-ADMH,17501,10253,1750110253,Coronary artery disorders,Coronary artery disease,,,98
-ADMH,17501,10254,1750110254,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10254,1750110254,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10254,1750110254,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10255,1750110255,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10255,1750110255,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10256,1750110256,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
-ADMH,17501,10256,1750110256,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10256,1750110256,Coronary artery disorders,Coronary artery disease,,,-19
-ADMH,17501,10256,1750110256,Coronary artery disorders,Myocardial infarction,,,51
-ADMH,17501,10257,1750110257,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10257,1750110257,Cardiac arrhythmias,Ventricular tachycardia,N,0,-1
-ADMH,17501,10258,1750110258,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10258,1750110258,Cardiac arrhythmias,Ventricular tachycardia,N,0,40
-ADMH,17501,10258,1750110258,Coronary artery disorders,Myocardial infarction,,,-20
-ADMH,17501,10259,1750110259,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10259,1750110259,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10260,1750110260,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
-ADMH,17501,10260,1750110260,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10261,1750110261,Cardiac arrhythmias,Atrial fibrillation,N,0,-15
-ADMH,17501,10261,1750110261,Cardiac arrhythmias,Ventricular tachycardia,Y,1,31
-ADMH,17501,10261,1750110261,Coronary artery disorders,Coronary artery disease,,,-9
-ADMH,17501,10261,1750110261,Coronary artery disorders,Myocardial infarction,,,-18
-ADMH,17501,10262,1750110262,Cardiac arrhythmias,Atrial fibrillation,Y,1,6
-ADMH,17501,10262,1750110262,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10262,1750110262,Coronary artery disorders,Coronary artery disease,,,8
-ADMH,17501,10263,1750110263,Cardiac arrhythmias,Atrial fibrillation,Y,1,5
-ADMH,17501,10263,1750110263,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
-ADMH,17501,10264,1750110264,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10264,1750110264,Cardiac arrhythmias,Ventricular tachycardia,N,0,66
-ADMH,17501,10264,1750110264,Coronary artery disorders,Myocardial infarction,,,31
-ADMH,17501,10265,1750110265,Cardiac arrhythmias,Atrial fibrillation,N,0,11
-ADMH,17501,10265,1750110265,Cardiac arrhythmias,Ventricular tachycardia,N,0,6
-ADMH,17501,10265,1750110265,Coronary artery disorders,Myocardial infarction,,,-17
-ADMH,17501,10266,1750110266,Cardiac arrhythmias,Atrial fibrillation,Y,1,22
-ADMH,17501,10266,1750110266,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10266,1750110266,Coronary artery disorders,Coronary artery disease,,,85
-ADMH,17501,10267,1750110267,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10267,1750110267,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
-ADMH,17501,10268,1750110268,Cardiac arrhythmias,Atrial fibrillation,N,0,-17
-ADMH,17501,10268,1750110268,Cardiac arrhythmias,Ventricular tachycardia,N,0,51
-ADMH,17501,10268,1750110268,Coronary artery disorders,Myocardial infarction,,,-18
-ADMH,17501,10269,1750110269,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10269,1750110269,Cardiac arrhythmias,Ventricular tachycardia,N,0,75
+ADMH,17501,10251,1750110251,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
+ADMH,17501,10252,1750110252,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10252,1750110252,Cardiac arrhythmias,Ventricular tachycardia,Y,1,5
+ADMH,17501,10253,1750110253,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
+ADMH,17501,10253,1750110253,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10253,1750110253,Coronary artery disorders,Myocardial infarction,,,50
+ADMH,17501,10254,1750110254,Cardiac arrhythmias,Atrial fibrillation,Y,1,58
+ADMH,17501,10254,1750110254,Cardiac arrhythmias,Ventricular tachycardia,N,0,40
+ADMH,17501,10255,1750110255,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
+ADMH,17501,10255,1750110255,Cardiac arrhythmias,Ventricular tachycardia,N,0,7
+ADMH,17501,10255,1750110255,Coronary artery disorders,Coronary artery disease,,,-5
+ADMH,17501,10255,1750110255,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10256,1750110256,Cardiac arrhythmias,Atrial fibrillation,Y,1,0
+ADMH,17501,10256,1750110256,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10257,1750110257,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10257,1750110257,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
+ADMH,17501,10257,1750110257,Coronary artery disorders,Angina pectoris,,,
+ADMH,17501,10257,1750110257,Coronary artery disorders,Coronary artery disease,,,34
+ADMH,17501,10258,1750110258,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10258,1750110258,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-7
+ADMH,17501,10259,1750110259,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10259,1750110259,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10259,1750110259,Coronary artery disorders,Coronary artery disease,,,-16
+ADMH,17501,10260,1750110260,Cardiac arrhythmias,Atrial fibrillation,N,0,11
+ADMH,17501,10260,1750110260,Cardiac arrhythmias,Ventricular tachycardia,N,0,83
+ADMH,17501,10260,1750110260,Coronary artery disorders,Coronary artery disease,,,35
+ADMH,17501,10261,1750110261,Cardiac arrhythmias,Atrial fibrillation,Y,1,23
+ADMH,17501,10261,1750110261,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10261,1750110261,Coronary artery disorders,Myocardial infarction,,,60
+ADMH,17501,10262,1750110262,Cardiac arrhythmias,Atrial fibrillation,N,0,-18
+ADMH,17501,10262,1750110262,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
+ADMH,17501,10263,1750110263,Cardiac arrhythmias,Atrial fibrillation,Y,1,-12
+ADMH,17501,10263,1750110263,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10263,1750110263,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10264,1750110264,Cardiac arrhythmias,Atrial fibrillation,Y,1,113
+ADMH,17501,10264,1750110264,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10265,1750110265,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10265,1750110265,Cardiac arrhythmias,Ventricular tachycardia,Y,1,
+ADMH,17501,10266,1750110266,Cardiac arrhythmias,Atrial fibrillation,Y,1,-5
+ADMH,17501,10266,1750110266,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-6
+ADMH,17501,10266,1750110266,Coronary artery disorders,Myocardial infarction,,,68
+ADMH,17501,10267,1750110267,Cardiac arrhythmias,Atrial fibrillation,N,0,71
+ADMH,17501,10267,1750110267,Cardiac arrhythmias,Ventricular tachycardia,N,0,38
+ADMH,17501,10268,1750110268,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10268,1750110268,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10268,1750110268,Coronary artery disorders,Coronary artery disease,,,24
+ADMH,17501,10269,1750110269,Cardiac arrhythmias,Atrial fibrillation,Y,1,30
+ADMH,17501,10269,1750110269,Cardiac arrhythmias,Ventricular tachycardia,N,0,
 ADMH,17501,10270,1750110270,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10270,1750110270,Cardiac arrhythmias,Ventricular tachycardia,N,0,29
-ADMH,17501,10270,1750110270,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10270,1750110270,Coronary artery disorders,Myocardial infarction,,,-19
-ADMH,17501,10271,1750110271,Cardiac arrhythmias,Atrial fibrillation,N,0,-19
+ADMH,17501,10270,1750110270,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10271,1750110271,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
 ADMH,17501,10271,1750110271,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10272,1750110272,Cardiac arrhythmias,Atrial fibrillation,Y,1,-13
-ADMH,17501,10272,1750110272,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10272,1750110272,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10273,1750110273,Cardiac arrhythmias,Atrial fibrillation,N,0,-17
-ADMH,17501,10273,1750110273,Cardiac arrhythmias,Ventricular tachycardia,Y,1,
-ADMH,17501,10273,1750110273,Coronary artery disorders,Angina pectoris,,,-18
-ADMH,17501,10273,1750110273,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10273,1750110273,Coronary artery disorders,Myocardial infarction,,,-6
-ADMH,17501,10274,1750110274,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10274,1750110274,Cardiac arrhythmias,Ventricular tachycardia,N,0,83
-ADMH,17501,10275,1750110275,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10272,1750110272,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
+ADMH,17501,10272,1750110272,Cardiac arrhythmias,Ventricular tachycardia,N,0,33
+ADMH,17501,10272,1750110272,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10273,1750110273,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10273,1750110273,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10274,1750110274,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10274,1750110274,Cardiac arrhythmias,Ventricular tachycardia,N,0,15
+ADMH,17501,10275,1750110275,Cardiac arrhythmias,Atrial fibrillation,Y,1,9
 ADMH,17501,10275,1750110275,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10275,1750110275,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10276,1750110276,Cardiac arrhythmias,Atrial fibrillation,N,0,33
+ADMH,17501,10275,1750110275,Coronary artery disorders,Myocardial infarction,,,2
+ADMH,17501,10276,1750110276,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
 ADMH,17501,10276,1750110276,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10277,1750110277,Cardiac arrhythmias,Atrial fibrillation,Y,1,31
-ADMH,17501,10277,1750110277,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10278,1750110278,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10278,1750110278,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10278,1750110278,Coronary artery disorders,Coronary artery disease,,,-17
-ADMH,17501,10279,1750110279,Cardiac arrhythmias,Atrial fibrillation,N,0,-7
-ADMH,17501,10279,1750110279,Cardiac arrhythmias,Ventricular tachycardia,N,0,43
-ADMH,17501,10280,1750110280,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10280,1750110280,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
-ADMH,17501,10280,1750110280,Coronary artery disorders,Myocardial infarction,,,-19
-ADMH,17501,10281,1750110281,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
-ADMH,17501,10281,1750110281,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10281,1750110281,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10282,1750110282,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10282,1750110282,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10282,1750110282,Coronary artery disorders,Coronary artery disease,,,68
-ADMH,17501,10283,1750110283,Cardiac arrhythmias,Atrial fibrillation,Y,1,37
-ADMH,17501,10283,1750110283,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10283,1750110283,Coronary artery disorders,Coronary artery disease,,,-10
-ADMH,17501,10284,1750110284,Cardiac arrhythmias,Atrial fibrillation,Y,1,-12
-ADMH,17501,10284,1750110284,Cardiac arrhythmias,Ventricular tachycardia,N,0,-11
-ADMH,17501,10285,1750110285,Cardiac arrhythmias,Atrial fibrillation,N,0,-5
-ADMH,17501,10285,1750110285,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10286,1750110286,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10286,1750110286,Cardiac arrhythmias,Ventricular tachycardia,N,0,-10
-ADMH,17501,10286,1750110286,Coronary artery disorders,Angina pectoris,,,-11
-ADMH,17501,10286,1750110286,Coronary artery disorders,Coronary artery disease,,,
-ADMH,17501,10287,1750110287,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10287,1750110287,Cardiac arrhythmias,Ventricular tachycardia,N,0,-12
-ADMH,17501,10288,1750110288,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10288,1750110288,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10289,1750110289,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10289,1750110289,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10290,1750110290,Cardiac arrhythmias,Atrial fibrillation,N,0,13
-ADMH,17501,10290,1750110290,Cardiac arrhythmias,Ventricular tachycardia,Y,1,109
-ADMH,17501,10291,1750110291,Cardiac arrhythmias,Atrial fibrillation,N,0,-9
-ADMH,17501,10291,1750110291,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10277,1750110277,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10277,1750110277,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
+ADMH,17501,10278,1750110278,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10278,1750110278,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10278,1750110278,Coronary artery disorders,Myocardial infarction,,,37
+ADMH,17501,10279,1750110279,Cardiac arrhythmias,Atrial fibrillation,Y,1,-5
+ADMH,17501,10279,1750110279,Cardiac arrhythmias,Ventricular tachycardia,N,0,-11
+ADMH,17501,10279,1750110279,Coronary artery disorders,Angina pectoris,,,-5
+ADMH,17501,10280,1750110280,Cardiac arrhythmias,Atrial fibrillation,N,0,-3
+ADMH,17501,10280,1750110280,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10281,1750110281,Cardiac arrhythmias,Atrial fibrillation,N,0,32
+ADMH,17501,10281,1750110281,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10281,1750110281,Coronary artery disorders,Myocardial infarction,,,2
+ADMH,17501,10282,1750110282,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10282,1750110282,Cardiac arrhythmias,Ventricular tachycardia,N,0,0
+ADMH,17501,10282,1750110282,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10283,1750110283,Cardiac arrhythmias,Atrial fibrillation,Y,1,21
+ADMH,17501,10283,1750110283,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10283,1750110283,Coronary artery disorders,Myocardial infarction,,,2
+ADMH,17501,10284,1750110284,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10284,1750110284,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10285,1750110285,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10285,1750110285,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
+ADMH,17501,10285,1750110285,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10286,1750110286,Cardiac arrhythmias,Atrial fibrillation,Y,1,-11
+ADMH,17501,10286,1750110286,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10287,1750110287,Cardiac arrhythmias,Atrial fibrillation,Y,1,1
+ADMH,17501,10287,1750110287,Cardiac arrhythmias,Ventricular tachycardia,N,0,-5
+ADMH,17501,10288,1750110288,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
+ADMH,17501,10288,1750110288,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10289,1750110289,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10289,1750110289,Cardiac arrhythmias,Ventricular tachycardia,Y,1,
+ADMH,17501,10290,1750110290,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
+ADMH,17501,10290,1750110290,Cardiac arrhythmias,Ventricular tachycardia,N,0,-10
+ADMH,17501,10290,1750110290,Coronary artery disorders,Myocardial infarction,,,-13
+ADMH,17501,10291,1750110291,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10291,1750110291,Cardiac arrhythmias,Ventricular tachycardia,N,0,14
 ADMH,17501,10292,1750110292,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10292,1750110292,Cardiac arrhythmias,Ventricular tachycardia,Y,1,24
-ADMH,17501,10293,1750110293,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10292,1750110292,Cardiac arrhythmias,Ventricular tachycardia,N,0,31
+ADMH,17501,10292,1750110292,Coronary artery disorders,Myocardial infarction,,,-8
+ADMH,17501,10293,1750110293,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
 ADMH,17501,10293,1750110293,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10294,1750110294,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10294,1750110294,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10295,1750110295,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10295,1750110295,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10296,1750110296,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10296,1750110296,Cardiac arrhythmias,Ventricular tachycardia,N,0,-16
-ADMH,17501,10297,1750110297,Cardiac arrhythmias,Atrial fibrillation,Y,1,-14
-ADMH,17501,10297,1750110297,Cardiac arrhythmias,Ventricular tachycardia,N,0,-8
-ADMH,17501,10297,1750110297,Coronary artery disorders,Coronary artery disease,,,16
-ADMH,17501,10297,1750110297,Coronary artery disorders,Myocardial infarction,,,99
-ADMH,17501,10298,1750110298,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
-ADMH,17501,10298,1750110298,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10298,1750110298,Coronary artery disorders,Myocardial infarction,,,-7
-ADMH,17501,10299,1750110299,Cardiac arrhythmias,Atrial fibrillation,Y,1,-10
+ADMH,17501,10294,1750110294,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10294,1750110294,Cardiac arrhythmias,Ventricular tachycardia,N,0,112
+ADMH,17501,10294,1750110294,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10295,1750110295,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
+ADMH,17501,10295,1750110295,Cardiac arrhythmias,Ventricular tachycardia,N,0,-12
+ADMH,17501,10295,1750110295,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10296,1750110296,Cardiac arrhythmias,Atrial fibrillation,N,0,-12
+ADMH,17501,10296,1750110296,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10297,1750110297,Cardiac arrhythmias,Atrial fibrillation,Y,1,36
+ADMH,17501,10297,1750110297,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
+ADMH,17501,10298,1750110298,Cardiac arrhythmias,Atrial fibrillation,Y,1,-2
+ADMH,17501,10298,1750110298,Cardiac arrhythmias,Ventricular tachycardia,N,0,31
+ADMH,17501,10298,1750110298,Coronary artery disorders,Myocardial infarction,,,
+ADMH,17501,10299,1750110299,Cardiac arrhythmias,Atrial fibrillation,Y,1,-5
 ADMH,17501,10299,1750110299,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10300,1750110300,Cardiac arrhythmias,Atrial fibrillation,Y,1,19
-ADMH,17501,10300,1750110300,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
-ADMH,17501,10301,1750110301,Cardiac arrhythmias,Atrial fibrillation,Y,1,15
-ADMH,17501,10301,1750110301,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10301,1750110301,Coronary artery disorders,Coronary artery disease,,,-15
-ADMH,17501,10302,1750110302,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10302,1750110302,Cardiac arrhythmias,Ventricular tachycardia,N,0,-11
-ADMH,17501,10303,1750110303,Cardiac arrhythmias,Atrial fibrillation,Y,1,-8
+ADMH,17501,10300,1750110300,Cardiac arrhythmias,Atrial fibrillation,Y,1,-9
+ADMH,17501,10300,1750110300,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10301,1750110301,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10301,1750110301,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10301,1750110301,Coronary artery disorders,Myocardial infarction,,,-19
+ADMH,17501,10302,1750110302,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10302,1750110302,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10302,1750110302,Coronary artery disorders,Coronary artery disease,,,-19
+ADMH,17501,10303,1750110303,Cardiac arrhythmias,Atrial fibrillation,Y,1,22
 ADMH,17501,10303,1750110303,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10303,1750110303,Coronary artery disorders,Coronary artery disease,,,25
-ADMH,17501,10304,1750110304,Cardiac arrhythmias,Atrial fibrillation,Y,1,-9
-ADMH,17501,10304,1750110304,Cardiac arrhythmias,Ventricular tachycardia,N,0,14
-ADMH,17501,10305,1750110305,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10305,1750110305,Cardiac arrhythmias,Ventricular tachycardia,N,0,-19
-ADMH,17501,10306,1750110306,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
-ADMH,17501,10306,1750110306,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10306,1750110306,Coronary artery disorders,Myocardial infarction,,,44
-ADMH,17501,10307,1750110307,Cardiac arrhythmias,Atrial fibrillation,N,0,
-ADMH,17501,10307,1750110307,Cardiac arrhythmias,Ventricular tachycardia,N,0,-7
-ADMH,17501,10307,1750110307,Coronary artery disorders,Myocardial infarction,,,-18
-ADMH,17501,10308,1750110308,Cardiac arrhythmias,Atrial fibrillation,Y,1,-15
-ADMH,17501,10308,1750110308,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10308,1750110308,Coronary artery disorders,Angina pectoris,,,-19
-ADMH,17501,10308,1750110308,Coronary artery disorders,Coronary artery disease,,,-11
+ADMH,17501,10304,1750110304,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10304,1750110304,Cardiac arrhythmias,Ventricular tachycardia,N,0,-15
+ADMH,17501,10304,1750110304,Coronary artery disorders,Angina pectoris,,,-8
+ADMH,17501,10305,1750110305,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10305,1750110305,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
+ADMH,17501,10305,1750110305,Coronary artery disorders,Myocardial infarction,,,-3
+ADMH,17501,10306,1750110306,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10306,1750110306,Cardiac arrhythmias,Ventricular tachycardia,N,0,27
+ADMH,17501,10307,1750110307,Cardiac arrhythmias,Atrial fibrillation,Y,1,
+ADMH,17501,10307,1750110307,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10308,1750110308,Cardiac arrhythmias,Atrial fibrillation,Y,1,-9
+ADMH,17501,10308,1750110308,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
+ADMH,17501,10308,1750110308,Coronary artery disorders,Coronary artery disease,,,29
+ADMH,17501,10308,1750110308,Coronary artery disorders,Myocardial infarction,,,102
 ADMH,17501,10309,1750110309,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10309,1750110309,Cardiac arrhythmias,Ventricular tachycardia,N,0,-13
-ADMH,17501,10310,1750110310,Cardiac arrhythmias,Atrial fibrillation,N,0,-19
-ADMH,17501,10310,1750110310,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
-ADMH,17501,10311,1750110311,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10311,1750110311,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10311,1750110311,Coronary artery disorders,Myocardial infarction,,,-19
-ADMH,17501,10312,1750110312,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
+ADMH,17501,10309,1750110309,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10310,1750110310,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10310,1750110310,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10311,1750110311,Cardiac arrhythmias,Atrial fibrillation,N,0,100
+ADMH,17501,10311,1750110311,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-12
+ADMH,17501,10311,1750110311,Coronary artery disorders,Angina pectoris,,,-15
+ADMH,17501,10312,1750110312,Cardiac arrhythmias,Atrial fibrillation,Y,1,
 ADMH,17501,10312,1750110312,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10313,1750110313,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10313,1750110313,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10313,1750110313,Cardiac arrhythmias,Atrial fibrillation,Y,1,-16
+ADMH,17501,10313,1750110313,Cardiac arrhythmias,Ventricular tachycardia,N,0,
+ADMH,17501,10313,1750110313,Coronary artery disorders,Coronary artery disease,,,
+ADMH,17501,10313,1750110313,Coronary artery disorders,Myocardial infarction,,,-15
 ADMH,17501,10314,1750110314,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10314,1750110314,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
-ADMH,17501,10315,1750110315,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10315,1750110315,Cardiac arrhythmias,Ventricular tachycardia,N,0,-8
-ADMH,17501,10315,1750110315,Coronary artery disorders,Myocardial infarction,,,-18
-ADMH,17501,10316,1750110316,Cardiac arrhythmias,Atrial fibrillation,Y,1,
-ADMH,17501,10316,1750110316,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10316,1750110316,Coronary artery disorders,Myocardial infarction,,,
-ADMH,17501,10317,1750110317,Cardiac arrhythmias,Atrial fibrillation,Y,1,1
+ADMH,17501,10314,1750110314,Cardiac arrhythmias,Ventricular tachycardia,N,0,14
+ADMH,17501,10315,1750110315,Cardiac arrhythmias,Atrial fibrillation,N,0,
+ADMH,17501,10315,1750110315,Cardiac arrhythmias,Ventricular tachycardia,N,0,-20
+ADMH,17501,10316,1750110316,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
+ADMH,17501,10316,1750110316,Cardiac arrhythmias,Ventricular tachycardia,N,0,-14
+ADMH,17501,10316,1750110316,Coronary artery disorders,Myocardial infarction,,,-20
+ADMH,17501,10317,1750110317,Cardiac arrhythmias,Atrial fibrillation,Y,1,-20
 ADMH,17501,10317,1750110317,Cardiac arrhythmias,Ventricular tachycardia,N,0,
-ADMH,17501,10318,1750110318,Cardiac arrhythmias,Atrial fibrillation,Y,1,50
-ADMH,17501,10318,1750110318,Cardiac arrhythmias,Ventricular tachycardia,N,0,40
-ADMH,17501,10319,1750110319,Cardiac arrhythmias,Atrial fibrillation,Y,1,-19
-ADMH,17501,10319,1750110319,Cardiac arrhythmias,Ventricular tachycardia,N,0,-18
-ADMH,17501,10320,1750110320,Cardiac arrhythmias,Atrial fibrillation,Y,1,-17
-ADMH,17501,10320,1750110320,Cardiac arrhythmias,Ventricular tachycardia,N,0,-17
+ADMH,17501,10318,1750110318,Cardiac arrhythmias,Atrial fibrillation,Y,1,-18
+ADMH,17501,10318,1750110318,Cardiac arrhythmias,Ventricular tachycardia,Y,1,-18
+ADMH,17501,10318,1750110318,Coronary artery disorders,Coronary artery disease,,,19
+ADMH,17501,10319,1750110319,Cardiac arrhythmias,Atrial fibrillation,Y,1,-4
+ADMH,17501,10319,1750110319,Cardiac arrhythmias,Ventricular tachycardia,N,0,115
+ADMH,17501,10320,1750110320,Cardiac arrhythmias,Atrial fibrillation,N,0,-20
+ADMH,17501,10320,1750110320,Cardiac arrhythmias,Ventricular tachycardia,N,0,85
+ADMH,17501,10320,1750110320,Coronary artery disorders,Coronary artery disease,,,

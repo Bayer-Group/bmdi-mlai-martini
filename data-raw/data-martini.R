@@ -55,6 +55,7 @@ b["int"]                      <-  0.5
 b["atrial_fibrillation_yes"]  <-  0.2
 b["angina_pectoris_yes"]      <-  1.5
 b["BPSYS"]                    <-  0.1
+b["HB"]                       <-  0.7
 b[".trt_TRT"]                 <- -0.5
 
 # intercept

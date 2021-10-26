@@ -217,6 +217,132 @@ write_csv(advs,        "dev/data/prep_pkg_study/advs.csv", na = "")
 write_csv(advs_labels, "dev/data/prep_pkg_study/advs_labels.csv")
 
 
+# ADLB ----
+
+r <- structure(c(1, -0.158, -0.043, 0.264, 0.206, 0.15, 0.137, -0.002, 
+            0.205, -0.04, 0.036, -0.158, 1, 0.066, -0.224, -0.177, -0.314, 
+            -0.14, 0.268, 0, -0.101, 0.307, -0.043, 0.066, 1, -0.044, 0.001, 
+            -0.053, -0.004, -0.112, -0.025, -0.173, 0.224, 0.264, -0.224, 
+            -0.044, 1, 0.939, 0.056, 0.163, 0.018, 0.038, 0.066, -0.033, 
+            0.206, -0.177, 0.001, 0.939, 1, 0.003, 0.134, 0.047, 0.056, 0.081, 
+            -0.014, 0.15, -0.314, -0.053, 0.056, 0.003, 1, 0.22, 0.018, 0.048, 
+            0.078, -0.192, 0.137, -0.14, -0.004, 0.163, 0.134, 0.22, 1, 0.14, 
+            0.055, 0.01, -0.036, -0.002, 0.268, -0.112, 0.018, 0.047, 0.018, 
+            0.14, 1, 0.032, 0.035, -0.018, 0.205, 0, -0.025, 0.038, 0.056, 
+            0.048, 0.055, 0.032, 1, -0.184, -0.095, -0.04, -0.101, -0.173, 
+            0.066, 0.081, 0.078, 0.01, 0.035, -0.184, 1, -0.095, 0.036, 0.307, 
+            0.224, -0.033, -0.014, -0.192, -0.036, -0.018, -0.095, -0.095, 
+            1), .Dim = c(11L, 11L), .Dimnames = list(c("CALCIUM", "CREAT", 
+                                                       "GGT", "HB", "HCT", "HDL", "LDL", "MAGNES", "POTASS", "SODIUM", 
+                                                       "URICAC"), c("CALCIUM", "CREAT", "GGT", "HB", "HCT", "HDL", "LDL", 
+                                                                    "MAGNES", "POTASS", "SODIUM", "URICAC")))
+
+
+m <-  c(2.25, 0.184, 3.685, 2.608, 3.719, 3.811, 4.375, 0.769, 1.476, 4.931, 2.002)
+names(m)  <- colnames(r)
+
+s <- c(0.047, 0.302, 0.874, 0.124, 0.12, 0.323, 0.389, 0.126, 0.105, 0.021, 0.298)
+names(s)  <- colnames(r)
+
+si <- c(0.028, 0.101, 0.185, 0.039, 0.045, 0.1, 0.145, 0.064, 0.069, 0.013, 0.111)
+names(si) <- colnames(r)
+
+
+adlb_pre <- MASS::mvrnorm(n = n, mu = m, Sigma = r * (s %x% t(s))) %>% 
+  as_tibble() %>% 
+  mutate_if(is.numeric, exp) %>% 
+  bind_cols(adsl %>% select(SUBJID)) %>% 
+  pivot_longer(-SUBJID, names_to = "PARAMCD", values_to = "Baseline") %>% 
+  arrange(SUBJID, PARAMCD)
+
+
+adlb_pre_sub <- adlb_pre %>% 
+  filter(PARAMCD %in% names(na.exclude(si))) %>% 
+  left_join(
+    si %>% 
+      na.exclude() %>% 
+      enframe("PARAMCD", "si"),
+    by = "PARAMCD"
+  ) %>% 
+  mutate(`Visit 2` = Baseline  + exp(rnorm(1, sd = si))) %>% 
+  mutate(`Visit 3` = `Visit 2` + exp(rnorm(1, sd = si))) %>% 
+  select(-si, -Baseline)
+
+adlb_info <- structure(list(PARAMCD = structure(c("CALCIUM", "CREAT", "GGT", 
+                                                  "HB", "HCT", "HDL", "LDL", "MAGNES", "POTASS", "SODIUM", "URICAC"
+), label = "Parameter Code"), PARAM = structure(c("Calcium (mg/dL) in Serum", 
+                                                  "Creatinine (mg/dL) in Serum", "Gamma Glutamyl Transferase (U/L) in Serum", 
+                                                  "Hemoglobin (g/dL) in Blood", "Hematocrit (%) in Blood - Calculated", 
+                                                  "HDL Cholesterol (mg/dL) in Serum", "LDL Cholesterol (mg/dL) in Serum", 
+                                                  "Magnesium (mg/dL) in Serum", "Potassium (mmol/L) in Serum", 
+                                                  "Sodium (mmol/L) in Serum", "Urate (mg/dL) in Serum"), label = "Parameter"), 
+AVALU = structure(c("mg/dL", "mg/dL", "U/L", "g/dL", "%", 
+                    "mg/dL", "mg/dL", "mg/dL", "mmol/L", "mmol/L", "mg/dL"), label = "Standard Units")), row.names = c(NA, 
+                                                                                                                       -11L), class = c("tbl_df", "tbl", "data.frame"))
+
+adlb <- adlb_pre %>% 
+  left_join(adlb_pre_sub, by = c("SUBJID", "PARAMCD")) %>% 
+  pivot_longer(
+    cols           = -c("SUBJID", "PARAMCD"),
+    names_to       = "AVISIT",
+    values_to      = "AVAL",
+    values_drop_na = TRUE
+  ) %>% 
+  left_join(adlb_info, by = "PARAMCD") %>% 
+  left_join(adsl %>% select(STUDYID, SUBJID, USUBJID, ITTFL), by = "SUBJID") %>% 
+  mutate(AVAL = round(AVAL, 3)) %>% 
+  mutate(AVAL = case_when(
+    AVISIT != "Baseline" & ITTFL != "Y" ~ NA_real_,
+    TRUE                                ~ AVAL
+  )) %>% 
+  na.exclude() %>% 
+  select(-ITTFL) %>% 
+  slice_sample(prop = .99) %>% 
+  relocate(STUDYID, USUBJID, SUBJID, PARAMCD, PARAM, AVAL, AVALU, AVISIT, .before = 1) %>% 
+  mutate(AVISITN = factor(AVISIT) %>% as.integer()) %>% 
+  arrange(SUBJID, PARAMCD, AVISITN) %>% 
+  group_by(SUBJID, PARAMCD) %>% 
+  nest() %>% 
+  mutate(BASE = map(data, ~{
+    .x %>% filter(AVISITN == 1) %>% pull(AVAL)
+  })) %>% 
+  unnest(BASE) %>% 
+  unnest(data) %>% 
+  ungroup() %>% 
+  mutate(CHG    = AVAL - BASE) %>% 
+  mutate(R2BASE = AVAL / BASE) %>% 
+  mutate(ADSNAME = "adlb", .before = 1)
+
+
+# define labels ####
+adlb_labels <- list(
+  ADSNAME  = "Dataset Name",
+  STUDYID  = "Study Identifier",
+  SUBJID   = "Subject Identifier for the Study",
+  USUBJID  = "Unique Subject Identifier",
+  PARAMCD  = "Parameter Code",
+  PARAM    = "Parameter",
+  AVAL     = "Analysis Value",
+  AVALU    = "Analysis Unit",
+  AVISIT   = "Analysis Visit",
+  AVISITN  = "Analysis Visit (N)",
+  BASE     = "Baseline Value",
+  CHG      = "Change from Baseline",
+  R2BASE   = "Ratio to Baseline"
+)
+
+adlb <- adlb %>% 
+  set_variable_labels( .labels = adlb_labels)
+
+adlb_labels <- adlb_labels %>% 
+  unlist() %>% 
+  enframe(name = "column", value = "label")
+
+write_csv(adlb,        "dev/data/prep_pkg_study/adlb.csv", na = "")
+write_csv(adlb_labels, "dev/data/prep_pkg_study/adlb_labels.csv")
+
+
+
 # admh -----
 
 lev <- list(
