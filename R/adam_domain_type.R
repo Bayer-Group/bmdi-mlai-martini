@@ -57,6 +57,8 @@ adam_domain_type <- function(
       "adlb", "advs", 
       "adxb", "adxl", 
       "admicro",
+      "adttr",
+      "adxt",
       "adqskccq", "adqsnyha", 'adqseq5d', 'adqspad', 'adqswimp', 'adqsqolb', 'adqssgrq'
     ) , 
     ".sas7bdat$"),
