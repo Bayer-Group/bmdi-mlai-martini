@@ -108,7 +108,7 @@ adam_spec_bds <- function(
   value_cat <- c('AVALC', 'AVAL',
                  paste0(dom, c("STRESC", "STRESN", "ORRES")))
   
-  dom_cat <- c("TR")
+  dom_cat <- c("TR", "EGF") #
   
   value <- if(dom %in% dom_cat){
     value_cat
