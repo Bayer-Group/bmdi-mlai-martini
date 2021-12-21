@@ -103,6 +103,19 @@ adam_spec_bds <- function(
  
   # define candidates for relevant columns accordingly ####
   
+  value_num <- c('AVAL', 'AVALC',
+                 paste0(dom, c("STRESN", "STRESC", "ORRES")))
+  value_cat <- c('AVALC', 'AVAL',
+                 paste0(dom, c("STRESC", "STRESN", "ORRES")))
+  
+  dom_cat <- c("TR", "EGF") #
+  
+  value <- if(dom %in% dom_cat){
+    value_cat
+  } else {
+    value_num
+  }
+  
   guesses <- list(
     
     # ... candidates param ####
@@ -112,8 +125,7 @@ adam_spec_bds <- function(
     time = c('AVISIT', 'VISIT', 'AVISITN', 'VISITN'),
     
     # ... candidates value  ####
-    value = c('AVAL', 'AVALC',
-              paste0(dom, c("STRESN", "STRESC", "ORRES"))),
+    value = value,
     
     # ... candidates unit ####
     unit = c('AVALU', paste0(dom, 'STRESU'),  paste0(dom, 'ORRESU'))
