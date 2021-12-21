@@ -93,7 +93,7 @@ martini_ml_class <- prepare_ml(
   feature             = martini_feat,
   outcome             = martini_outc_class,
   outcome_name        = ".out",
-  level_order         = c("no event", "event"),
+  level_order         = c("event", "no event"),
   strata_trt          = TRUE, 
   prep_step_dummy     = FALSE,
   prep_step_normalize = FALSE,
