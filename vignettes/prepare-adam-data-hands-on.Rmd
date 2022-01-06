@@ -165,7 +165,8 @@ Since the analysis of survival endpoints is computationally much more expensive 
 The package comes with two exemplary outcome data sets, one for classification, one for a regression problem. 
 Both are two column tibbles with an `.id` and an `.out` column, where in the classification example shown below, the `.out` variable is a factor with two levels (event/no event). 
 
-For survival, the outcome information would be coded in two separate columns, e.g. `.time` and `.status`.
+For survival, the outcome information would be coded in two separate columns, e.g. `days` and `event`.
+Note that for the specification of the outcome names for `prepare_ml()`, a named vector is expected in the survival case, e.g. `outcome_names = c(.time = 'days', .status = 'event')`.
 
 
 ```{r}
