@@ -51,15 +51,15 @@ build_adsl <- function(
     
   }
   
-  # reorder factor levels  ####
-  if(length(spec$factor_levels)>0){
-    clmns <- names(spec$factor_levels)
-    for(c in 1:length(clmns)){ 
-      clmn <- clmns[c]
-      levs <- spec$factor_levels[[c]]
-      
-      adsl_full[, clmn, drop = TRUE]  <-  adsl_full[, clmn, drop = TRUE] %>%  
-        factor(levels = levs)
+  # reorder / set factor levels  ####
+  clmns <- names(spec$factor_levels) %>% 
+    intersect(names(adsl_full))
+  
+  if(length(clmns)>0){
+
+    for(clmn in clmns){ 
+      adsl_full[[clmn]] <- adsl_full[[clmn]] %>% 
+        factor(levels = spec$factor_levels[[clmn]])
     }
   }
   
