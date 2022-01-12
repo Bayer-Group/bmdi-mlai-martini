@@ -526,6 +526,33 @@ d_ml$source
 ```
 
 
+### Outcome Preparation
+
+For convenience, the package also provides `build_out_tte()`, which allows to prepare a tte-based outcome for further use with `prepare_ml()`.
+Starting from either `file` (specifying the path to an adam `adtte.sas7bdat`) or an already existing `data` object with the same structure, 
+the user has the option to prepare either a tte outcome or a binarized version. 
+In the latter case, a duration of interest has to be specified in `cut` and the resulting endpoint translates to e.g. `event in first 2 years yes/no`. 
+Make sure, that the scale of `cut` matches the scale of the time column, e.g. if `AVAL` is in days, `cut` has to be in days, no conversion is done internally. `cut` is provided as numeric, not object of class duration.
+
+```{r}
+build_out_tte(
+  
+  # either fil or data have to be provided
+  file    = 'adtte.sas7bdat',
+  
+  # select e.g. parameter of interest, subset to population
+  filter  = 'PARAMCD == "CVDEATH"', 
+  
+  # AVAL is in days, cut is used as threshold 
+  cut     = 365*2
+)
+```
+
+Please note, that while the full population will be used for tte outcomes, the population for the binarized version is subsetted: Patients are discarded, if a censored event was recorded with an event time below the cutoff of interest (here 2 years). If a patient has not been observed for the duration of `cut`, there is no information on whether or not an event occurred within `cut`.
+
+
+
+
 
 
 <!-- TODO add value list for prepare_ml() -->

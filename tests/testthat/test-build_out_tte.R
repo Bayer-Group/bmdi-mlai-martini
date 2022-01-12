@@ -33,4 +33,22 @@ test_that("build_out_tte works", {
   
   )
   
+  
+  testthat::expect_setequal(
+    c('.id', '.out'),
+    build_out_tte(
+      data = data, 
+      filter = 'PARAMCD == "A"', 
+      cut = cut
+    ) %>% names()
+  )
+  
+  testthat::expect_setequal(
+    c('.id', '.time', '.status'),
+    build_out_tte(
+      data = data, 
+      filter = 'PARAMCD == "A"'
+    ) %>% names()
+  )
+  
 })
