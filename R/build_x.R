@@ -5,8 +5,9 @@
 #' the md5 checksum of the specified file.
 #' 
 #' @param spec result of `adam_spec_*()`
-#' @param values_fn bds only. function to handle duplicates in pivoting step. see details section for default.
-#' @param arrange bds only. expression passed to \code{arrange()} optional sorting of data set prior to pivoting, 
+#' @param dupl_ctrl bds only. A list with two entries
+#' \item{\code{values_fn}} function to handle duplicates in pivoting step. see details section for default.
+#' \item{\code{arrange}} expression passed to \code{arrange()} optional sorting of data set prior to pivoting, 
 #' e.g. in order to select the first/last value by date. defaults to NULL.  
 #'
 #' @return 

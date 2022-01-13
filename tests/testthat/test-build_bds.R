@@ -62,8 +62,10 @@ test_that("build_bds works", {
   
   lb_valuefn_custom <- build_bds(
     spec_arrange,
-    values_fn = function(x){last(x)}
-  )$data%>% 
+    dupl_ctrl = list( 
+      values_fn = function(x){last(x)}
+    )
+    )$data%>% 
     select(-.id) %>% 
     unlist() 
     
@@ -75,8 +77,10 @@ test_that("build_bds works", {
   
   lb_valuefn_arrange <- build_bds(
     spec_arrange,
-    values_fn = function(x){last(x)},
-    arrange = c("desc(Date)")
+    dupl_ctrl = list( 
+      values_fn = function(x){last(x)},
+      arrange = c("desc(Date)")
+    )
   )$data%>% 
     select(-.id) %>% 
     unlist() 
@@ -89,7 +93,8 @@ test_that("build_bds works", {
   ads_spec_adlb <- martini:::adam_spec_bds(
     file_adlb, 
     filter = "PARAMCD != 'LAB1'",
-    attach_data = TRUE)
+    attach_data = TRUE
+    )
   
   target_nrow <- ads_spec_adlb$data %>%
     dplyr::filter(!! rlang::parse_expr(ads_spec_adlb$filter)) %>% 
@@ -98,7 +103,7 @@ test_that("build_bds works", {
   
   target_ncol <- ads_spec_adlb$data %>%
     filter(!! rlang::parse_expr(ads_spec_adlb$filter)) %>% 
-    select(any_of(c(ads_spec_adlb[c('time', 'param')] %>%  unlist()))) %>% 
+    select(any_of(c(ads_spec_adlb[c('time', 'param')] %>% unlist()))) %>% 
     distinct() %>% 
     nrow() %>% 
     {.+1} # subj id
@@ -109,15 +114,6 @@ test_that("build_bds works", {
       c(target_nrow, target_ncol)
     )
   
-    # attach_data ####
-    # check if built data set is identical
-    spec_FALSE <- martini:::adam_spec_bds(file_adlb, attach_data = !TRUE)
-    spec_TRUE  <- martini:::adam_spec_bds(file_adlb, attach_data = TRUE)
-    
-    expect_equal(
-      build_bds(spec_FALSE),
-      build_bds(spec_TRUE)
-    )
     
     
     

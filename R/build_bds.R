@@ -5,14 +5,22 @@
 
 build_bds <- function(
   spec,
-  values_fn = NULL,
-  arrange   = NULL
+  dupl_ctrl = list(
+    values_fn = NULL,
+    arrange   = NULL
+  )
 ){
-  ##
   
+  ##
+
+  # use duplicated controls from 'dupl_ctrl' argument over duplicated controls in 'spec', if not NULL
+  values_fn <- c(dupl_ctrl$values_fn, spec$dupl_ctrl$values_fn) %>% .[[1]]
+  arrange   <- c(dupl_ctrl$arrange,   spec$dupl_ctrl$arrange)   %>% .[[1]]
+
   if (is.null(values_fn)){
     values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), x[1])}
   }
+  
   
   md5 <- tools::md5sum(spec$file) %>% as.character()
   

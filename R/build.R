@@ -4,8 +4,6 @@
 #' by \code{\link{adam_spec}()} (with or without data already attached). 
 #' 
 #' @param spec a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)
-#' @param path the path to the ads files (either \code{spec} or \code{path} has to be provided). 
-#' @param spec_only if build from path, don't apply the just created spec to data set
 #' @param join either function to join data sets (e.g. \code{dplyr::full_join()} or a character (vector) giving the names
 #' of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}
 #' @param filter a character vector of conditions to be passed to \code{dplyr::filter()},
@@ -16,7 +14,6 @@
 #' @param drop character vector defining a subset of data sets in the given `path` to
 #' be excluded from the list of specifications (e.g. \code{'adqseq5d')}). Defaults to NULL.
 #' Only applied, if \code{spec} is not provided.
-#' @param attach_data boolean. Attach the imported raw data. Only applied, if \code{spec_only = TRUE}.
 #' 
 #'
 #' @return
@@ -45,11 +42,6 @@
 #' missing values are replace by 0 for numerics, an additional level 'none' is introduced for 
 #' for factors.
 #' 
-#' The `build()` function can also be used to build the data directly from an ads
-#' path. In this case the specification object is created internally by calling the respective `adam_spec_*()` functions 
-#' and immediately used to build the data set. 
-#' In practice, this is not recommended though, since manual adaptations to the automatically generated spec object will be required. 
-#' The path parameter will be deprecated soon.
 #' 
 #' @seealso \code{\link{build_adsl}()}, \code{\link{build_bds}()}, \code{\link{build_occds}()}
 #'
@@ -59,9 +51,7 @@
 #' @export
 
 build <- function(
-  spec        = NULL, 
-  path        = NULL, 
-  spec_only   = FALSE, 
+  spec, 
   filter      = NULL,
   keep        = NULL,
   drop        = NULL,
@@ -69,233 +59,126 @@ build <- function(
   attach_data = FALSE
 ){
   
+  # add names to the spec if none are provided
+  if(is.null(names(spec))) names(spec) <- rep('', length(spec))
   
-  # initial check    ####
-  if ( is.null(spec) && is.null(path)) usethis::ui_oops("Either 'spec' or 'path' needs to be provided!")
-  if (!is.null(spec) && spec_only) {
-    spec_only <- FALSE
-    cat('\n')
-    usethis::ui_info("`spec_only = TRUE` is ignored since spec is already provided.\n")
+  for (i in 1:length(spec)){
+    if(is.null(spec[[i]]$"spec_id")) {
+      spec[[i]]$"spec_id" <- names(spec)[i]
+    }
   }
   
-  from_spec <- is.null(path)
-  from_path <- ! from_spec
-  
-  # if PATH is provieded ####
-  # ... create specs ####   
-  if (from_path){
+  # call the appropriate build_*() function
+  built_data <- purrr::map(spec,  ~{
     
-    file_info <- adam_domain_type(path, keep, drop)
+    do.call( paste0('build_', .x[['type']]), list(.x))
     
-    spec_or_data_depends <- list()
-    
-    # ... ... type adsl ####
-    
-    if ( any(file_info$type == "adsl") ){
-      
-      files_adsl <- file_info %>% 
-        dplyr::filter(type == "adsl") %>% 
-        dplyr::select(domain, file) %>% 
-        tibble::deframe()
-      
-      spec_or_data_depends <- spec_or_data_depends %>% 
-        append(
-          purrr::map(
-            files_adsl,
-            ~ adam_spec_adsl(file = .x, filter = filter, attach_data = attach_data) %>% 
-              {if(! spec_only){
-                build_adsl(.)
-              } else {.} }
-          )
-        )
-      
-    }
-    
-    # ... ... type bds ####
-    
-    if(any(file_info$type == "bds")){
-      
-      files_bds <- file_info %>% 
-        dplyr::filter(type == "bds") %>% 
-        dplyr::select(domain, file) %>% 
-        tibble::deframe()
-      
-      spec_or_data_depends <- spec_or_data_depends %>% 
-        append(
-          purrr::map(
-            files_bds, 
-            ~adam_spec_bds(file = .x, filter = filter, attach_data = attach_data) %>% 
-              {if(! spec_only){
-                build_bds(.)
-              } else {.} }
-          )
-        )
-      
-    }
-    
-    # ... ... type occds  ####
-    if(any(file_info$type == "occds")){
-      
-      files_occds <- file_info %>% 
-        dplyr::filter(type == "occds") %>% 
-        dplyr::select(domain, file) %>% 
-        tibble::deframe()
-      
-      spec_or_data_depends <- spec_or_data_depends %>% 
-        append(
-          purrr::map(
-            files_occds, 
-            ~ adam_spec_occds(file = .x, filter = filter, attach_data = attach_data) %>% 
-              {if(! spec_only){
-                     build_occds(.)
-              } else {.} }
-          )
-        )
-      
-    }
-    
-    # if SPEC is provided ####
-  }else{
-    
-    # add names to the spec if none are provided
-    if(is.null(names(spec))) names(spec) <- rep('', length(spec))
-    
-    for (i in 1:length(spec)){
-      if(is.null(spec[[i]]$"spec_id")) {
-        spec[[i]]$"spec_id" <- names(spec)[i]
-      }
-    }
-    
-    # call the appropriate build_*() function
-    spec_or_data_depends <- purrr::map(spec,  ~{
-      
-      if(.x[['type']] == 'bds'){
-        
-        .x[['values_fn']] <- .x$dupl_ctrl$values_fn
-        .x[['arrange']]   <- .x$dupl_ctrl$arrange
-        .x[['dupl_ctrl']] <- NULL
-        
-      }
-      
-      do.call( paste0('build_', .x[['type']]), list(.x))
-      
-      
-    })
-    
-  }
-  
+  })
   
   
   # create output object ####
+    
+  # ... handle duplicate variable names across domains/sources ####
+  rename_dupes <- purrr::imap_dfr(built_data, ~{
+    .x[['data']] %>% names() %>% tibble::as_tibble_col() %>% dplyr::mutate(domain = .y)
+  })  %>% 
+    tidyr::unite(new_name, value, domain, sep = '_', remove = FALSE) %>% 
+    dplyr::rename('old_name' = 'value') %>% 
+    dplyr::add_count(old_name) %>% 
+    dplyr::filter(n > 1) %>% 
+    dplyr::filter(! old_name %in% c('.id'))
   
-  if(spec_only){
+  built_data <- purrr::imap(built_data, ~{
     
-    out <- spec_or_data_depends
+    out <- .x
     
-  }else{
+    rename_y <- rename_dupes %>% 
+      filter(domain == .y) %>% 
+      select(new_name, old_name) %>% 
+      deframe()
     
-    # ... handle duplicate variable names across domains/sources ####
-    rename_dupes <- purrr::imap_dfr(spec_or_data_depends, ~{
-      .x[['data']] %>% names() %>% tibble::as_tibble_col() %>% dplyr::mutate(domain = .y)
-    })  %>% 
-      tidyr::unite(new_name, value, domain, sep = '_', remove = FALSE) %>% 
-      dplyr::rename('old_name' = 'value') %>% 
-      dplyr::add_count(old_name) %>% 
-      dplyr::filter(n > 1) %>% 
-      dplyr::filter(! old_name %in% c('.id'))
-    
-    spec_or_data_depends <- purrr::imap(spec_or_data_depends, ~{
-      
-      out <- .x
-      
-      rename_y <- rename_dupes %>% 
-        filter(domain == .y) %>% 
-        select(new_name, old_name) %>% 
-        deframe()
-      
-      if(length(rename_y) > 0){
-        out[['data']] <- out[['data']] %>% rename(any_of(rename_y))
-        out[['dict']] <- out[['dict']] %>% 
-          dplyr::left_join(rename_dupes, by = c("column" = "old_name")) %>% 
-          dplyr::mutate(column = dplyr::case_when(
-            !is.na(new_name) ~ new_name,
-            TRUE             ~ column
-          )) %>% 
-          dplyr::mutate(param = dplyr::case_when(
-            !is.na(new_name) ~ paste0(param, "_", .y),
-            TRUE             ~ param
-          )) %>% 
-          dplyr::mutate(label = dplyr::case_when(
-            !is.na(new_name) ~ paste0(label, " (", .y, ")"),
-            TRUE             ~ label
-          )) %>% 
-          dplyr::select(-new_name)
-      }
-      
-      out
-      
-    })
-    
-    
-    # ... dict  #### 
-    prepped_dict <- purrr::map_dfr(spec_or_data_depends, 'dict') 
-    
-    # ... source  #### 
-    prepped_source <- purrr::imap(spec_or_data_depends, ~{
-      .x[["source"]] %>% 
-        tibble::as_tibble_row() %>% 
-        mutate(spec_id = .y, .before = 1)
-    }) %>% 
-      purrr::reduce(dplyr::bind_rows) 
-    
-    # ... data ####
-    # identify subjects from selected data sets to filter prepped_join
-    # (if join is not a fct)
-    if(! is.function(join)){
-      if(any(join %in% names(spec_or_data_depends) )) {
-        join_ids <- purrr::map(spec_or_data_depends[join %>%  intersect(names(spec_or_data_depends))], ~.[['data']]) %>% 
-          purrr::reduce(dplyr::full_join, by = '.id') %>% 
-          dplyr::pull(.id)
-        join_filter <- ' .id %in% join_ids'
-      }else{
-        join_filter <- 'TRUE'
-        usethis::ui_info("The domain(s) specified for 'join' are not available in the given spec. dplyr::full_join was used without additional filters.\n")
-      }  
+    if(length(rename_y) > 0){
+      out[['data']] <- out[['data']] %>% rename(any_of(rename_y))
+      out[['dict']] <- out[['dict']] %>% 
+        dplyr::left_join(rename_dupes, by = c("column" = "old_name")) %>% 
+        dplyr::mutate(column = dplyr::case_when(
+          !is.na(new_name) ~ new_name,
+          TRUE             ~ column
+        )) %>% 
+        dplyr::mutate(param = dplyr::case_when(
+          !is.na(new_name) ~ paste0(param, "_", .y),
+          TRUE             ~ param
+        )) %>% 
+        dplyr::mutate(label = dplyr::case_when(
+          !is.na(new_name) ~ paste0(label, " (", .y, ")"),
+          TRUE             ~ label
+        )) %>% 
+        dplyr::select(-new_name)
     }
     
+    out
     
-    # combine and filter
-    prepped_join <- purrr::map(spec_or_data_depends, 'data') %>% 
-      {if(is.function(join)){
-        purrr::reduce(., join, by = '.id') 
-      }else{
-        purrr::reduce(., dplyr::full_join, by = '.id') %>% 
-          dplyr::filter(!! rlang::parse_expr(join_filter))  
-      }}
-    
-    # NOTE 
-    # extract all occds columns for explicit factor na
-    # missing values occurring from occurrence data mean 'absence of event', whereas NAs in bds data are true missing values
-    # -> replace missings by 0 for numerics, level 'none' for factors
-    vars_fct_expl_na <- prepped_dict %>% 
-      dplyr::filter(type == 'occds') %>% 
-      dplyr::pull(column)
-    
-    prepped_join <- prepped_join %>%  
-      dplyr::mutate_at(dplyr::vars(tidyselect::any_of(vars_fct_expl_na)), ~{
-        if(is.numeric(.x)){
-          tidyr::replace_na(.x, replace = 0L )
-        }else{
-          forcats::fct_explicit_na(.x, na_level = 'no') %>% 
-            forcats::fct_shift(n = -1)
-        }  
-      }) %>% 
-      droplevels()
-    
-    out                 <- prepped_join
-    attr(out, "dict")   <- prepped_dict
-    attr(out, "source") <- prepped_source
+  })
+  
+  
+  # ... dict  #### 
+  prepped_dict <- purrr::map_dfr(built_data, 'dict') 
+  
+  # ... source  #### 
+  prepped_source <- purrr::imap(built_data, ~{
+    .x[["source"]] %>% 
+      tibble::as_tibble_row() %>% 
+      mutate(spec_id = .y, .before = 1)
+  }) %>% 
+    purrr::reduce(dplyr::bind_rows) 
+  
+  # ... data ####
+  # identify subjects from selected data sets to filter prepped_join
+  # (if join is not a fct)
+  if(! is.function(join)){
+    if(any(join %in% names(built_data) )) {
+      join_ids <- purrr::map(built_data[join %>%  intersect(names(built_data))], ~.[['data']]) %>% 
+        purrr::reduce(dplyr::full_join, by = '.id') %>% 
+        dplyr::pull(.id)
+      join_filter <- ' .id %in% join_ids'
+    }else{
+      join_filter <- 'TRUE'
+      usethis::ui_info("The domain(s) specified for 'join' are not available in the given spec. dplyr::full_join was used without additional filters.\n")
+    }  
   }
+  
+  
+  # combine and filter
+  prepped_join <- purrr::map(built_data, 'data') %>% 
+    {if(is.function(join)){
+      purrr::reduce(., join, by = '.id') 
+    }else{
+      purrr::reduce(., dplyr::full_join, by = '.id') %>% 
+        dplyr::filter(!! rlang::parse_expr(join_filter))  
+    }}
+  
+  # NOTE 
+  # extract all occds columns for explicit factor na
+  # missing values occurring from occurrence data mean 'absence of event', whereas NAs in bds data are true missing values
+  # -> replace missings by 0 for numerics, level 'none' for factors
+  vars_fct_expl_na <- prepped_dict %>% 
+    dplyr::filter(type == 'occds') %>% 
+    dplyr::pull(column)
+  
+  prepped_join <- prepped_join %>%  
+    dplyr::mutate_at(dplyr::vars(tidyselect::any_of(vars_fct_expl_na)), ~{
+      if(is.numeric(.x)){
+        tidyr::replace_na(.x, replace = 0L )
+      }else{
+        forcats::fct_explicit_na(.x, na_level = 'no') %>% 
+          forcats::fct_shift(n = -1)
+      }  
+    }) %>% 
+    droplevels()
+  
+  out                 <- prepped_join
+  attr(out, "dict")   <- prepped_dict
+  attr(out, "source") <- prepped_source
   
   out
   
