@@ -40,6 +40,8 @@ The list can be manually adjusted if required, e.g. adding further specification
 of the \verb{adam_spec_*()} for a detailed description of the output object.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
+
 \code{\link{adam_spec}()} is a wrapper for the \verb{adam_spec_*()} functions.
 It creates a list of specifications on how to extract and process data from adam data sets in a given location.
 The resulting list can be passed to \code{\link{build}()}, where the

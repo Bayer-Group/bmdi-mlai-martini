@@ -21,6 +21,8 @@ As the \code{by} variable is constant in each data part per definition,
 it is removed from the prepared data, while being kept in raw versions.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
+
 \code{prepare_ml_split()} allows to split a \code{\link{prepare_ml}} object by a factor variable, e.g. treatment.
 This approach is preferable over independent preparations of each data part if
 comparability of resulting models is required (e.g. between treatment groups or studies).

@@ -57,6 +57,8 @@ it into a valid file name and possibly adding a time extension, if multiple time
 \item{\code{source}}{file path and md5 checksums of the source data sets}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
+
 The \code{build()} function allows to build a machine learning data set from a specification object as provided
 by \code{\link{adam_spec}()} (with or without data already attached).
 }

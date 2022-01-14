@@ -476,7 +476,7 @@ Description of the `d_ml` entries (taken from `martini::prepare_ml()` documentat
 In addition, `split` contains the combined `rsample::initial_split()` object that the `train` and `test` data was extracted from. 
 Depending on the programming workflow, one might be more convenient to use than the other. 
 
-The slot `outcome` contains a list giving `name`, the standardized names of the output column in the data sets ( `.out` for regression/classification, `.time` and `.status` for survival, as well as a `mode`, character string of the outcome mode regression/classification/survival
+The slot `outcome` contains a list giving `name`, the standardized names of the output column in the data sets (`.out` for regression/classification, `.time` and `.status` for survival, as well as a `mode`, character string of the outcome mode regression/classification/survival
 
 The dictionary available as an attribute of feature is updated with information on the outcome variable and the log-transformation and available from the `dict` slot, NULL if no such attribute is defined.
 
