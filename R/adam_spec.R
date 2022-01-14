@@ -112,13 +112,3 @@ adam_spec <- function(
   
   spec
 }
-
-# test area ####
-
-if(FALSE){
-
-  path <- "../"
-  filter <- c("SEXY == 'F'", "AVISIT == 'BASELINE'")
-  test_spec <- adam_spec(path = path, filter = filter, keep = c("adsl", "adqseq5d"))
-  
-}
