@@ -1,4 +1,7 @@
 #' Split a prepared ML data set by factor
+#'
+#' @description 
+#' `r lifecycle::badge('maturing')`
 #' 
 #' \code{prepare_ml_split()} allows to split a \code{\link{prepare_ml}} object by a factor variable, e.g. treatment. 
 #' This approach is preferable over independent preparations of each data part if 
@@ -52,8 +55,11 @@ prepare_ml_split <- function(
     c(by) %>% 
     intersect(ml_obj$data_prep$train %>% names())
   
+  # start by duplicating the full ml object...
   purrr::map(1:length(levs), ~{ml_obj}) %>% 
     rlang::set_names(levs) %>% 
+    
+    # ... then filter and adjust
     purrr::imap(~{
       
       # remove 'by' from dictionary

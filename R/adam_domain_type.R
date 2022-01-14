@@ -57,7 +57,7 @@ adam_domain_type <- function(
       "adlb", "advs", 
       "adxb", "adxl", 
       "admicro",
-      "adttr",
+      "adtrr",
       "adxt",
       "adqskccq", "adqsnyha", 'adqseq5d', 'adqspad', 'adqswimp', 'adqsqolb', 'adqssgrq'
     ) , 

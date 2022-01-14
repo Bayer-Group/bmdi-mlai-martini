@@ -165,7 +165,8 @@ Since the analysis of survival endpoints is computationally much more expensive 
 The package comes with two exemplary outcome data sets, one for classification, one for a regression problem. 
 Both are two column tibbles with an `.id` and an `.out` column, where in the classification example shown below, the `.out` variable is a factor with two levels (event/no event). 
 
-For survival, the outcome information would be coded in two separate columns, e.g. `.time` and `.status`.
+For survival, the outcome information would be coded in two separate columns, e.g. `days` and `event`.
+Note that for the specification of the outcome names for `prepare_ml()`, a named vector is expected in the survival case, e.g. `outcome_names = c(.time = 'days', .status = 'event')`.
 
 
 ```{r}
@@ -476,7 +477,7 @@ Description of the `d_ml` entries (taken from `martini::prepare_ml()` documentat
 In addition, `split` contains the combined `rsample::initial_split()` object that the `train` and `test` data was extracted from. 
 Depending on the programming workflow, one might be more convenient to use than the other. 
 
-The slot `outcome` contains a list giving `name`, the standardized names of the output column in the data sets ( `.out` for regression/classification, `.time` and `.status` for survival, as well as a `mode`, character string of the outcome mode regression/classification/survival
+The slot `outcome` contains a list giving `name`, the standardized names of the output column in the data sets (`.out` for regression/classification, `.time` and `.status` for survival, as well as a `mode`, character string of the outcome mode regression/classification/survival
 
 The dictionary available as an attribute of feature is updated with information on the outcome variable and the log-transformation and available from the `dict` slot, NULL if no such attribute is defined.
 
@@ -551,8 +552,14 @@ build_out_tte(
 Please note, that while the full population will be used for tte outcomes, the population for the binarized version is subsetted: Patients are discarded, if a censored event was recorded with an event time below the cutoff of interest (here 2 years). If a patient has not been observed for the duration of `cut`, there is no information on whether or not an event occurred within `cut`.
 
 
+***
 
+**data splitting**
 
+In order to assess treatment interactions, a group specific modelling approach has been established for the MARTINI pipeline (#melon app). 
+For the comparability of results across groups, it is crucial that the data preparation is identical (e.g. in terms of coefficients for the normalization). 
+
+Given an output object of `prepare_ml()` and a character defining the name of the `by` variable (factor) to split by, `prepare_ml_split()` will return separate ml data sets for each factor level to be used with the remainder of the MARTINI modules. Note that the `by` variable is constant in each subset, thus removed from the feature set in the prepared data, but still available in the raw data sets.
 
 
 <!-- TODO add value list for prepare_ml() -->

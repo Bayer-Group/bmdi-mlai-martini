@@ -1,5 +1,8 @@
 #' Prepare ML ready data set from outcome and predictor data
 #'
+#' @description 
+#' `r lifecycle::badge('maturing')`
+#'
 #' Given \code{feature}, a tibble representing a wide format feature matrix, and \code{outcome}, 
 #' a tibble containing the outcome information (regression/classification/survival is supported),
 #' \code{prepare_ml()} will provide data sets suitable for various machine learning problems along with additional information.

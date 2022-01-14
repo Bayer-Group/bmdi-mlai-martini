@@ -1,5 +1,8 @@
 #' Build the feature matrix from various sources according to a specification object
 #' 
+#' @description 
+#' `r lifecycle::badge('maturing')`
+#' 
 #' The `build()` function allows to build a machine learning data set from a specification object as provided
 #' by \code{\link{adam_spec}()} (with or without data already attached). 
 #' 

@@ -140,6 +140,8 @@ on why/in which recipe step the data was removed.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
+
 Given \code{feature}, a tibble representing a wide format feature matrix, and \code{outcome},
 a tibble containing the outcome information (regression/classification/survival is supported),
 \code{prepare_ml()} will provide data sets suitable for various machine learning problems along with additional information.
