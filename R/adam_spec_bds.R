@@ -5,7 +5,8 @@
 #' The main task is to collect the key columns
 #' for reshaping the data into wide format and prepare the data filter.
 #' 
-#' @param file the path of the sas file to process
+#' @param data tibble with the data for which the specification is created
+#' @param file the path of the sas file to process, ignored if data is provided
 #' @param id name of id column to be kept and used for merge of data sets
 #' @param param name of the column that identifies the parameter. Defaults to NULL, will be guessed if not set (see Details).
 #' @param label name of the column that gives column labels. Defaults to NULL.
@@ -15,6 +16,7 @@
 #' @param filter character vector of filters to be applied to the bds data set. 
 #' Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL. 
 #' @param attach_data boolean. attach the imported raw data
+#' @param domain character string to be included in dictionary. automatically derived for standard adam data sets. If not set for `data` provided, dictionary entry will be 'custom'.
 #' 
 #' @details
 #' 
@@ -49,7 +51,8 @@
 #' 
 
 adam_spec_bds <- function(
-  file,
+  data        = NULL,
+  file        = NULL,
   id          = 'SUBJID', 
   param       = NULL,
   label       = NULL,
@@ -57,33 +60,16 @@ adam_spec_bds <- function(
   time        = NULL, 
   value       = NULL,
   filter      = NULL,
-  attach_data = FALSE
+  attach_data = FALSE,
+  domain      = NULL
 ){
   
-  # read bds ####
-  bds      <- haven::read_sas(file) %>% 
-    dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
-
-  
-  md5      <- tools::md5sum(file) %>% as.character()
-  coln_bds <- colnames(bds)
-     
-  
-  if (! id %in% coln_bds){
-    usethis::ui_stop(
-      paste0("The column id = ", id, " is not present in the data set.\n")
-    )
+  # INPUT ####
+  # ... checks ####
+  if (all(c(is.null(data), is.null(file)))){
+    usethis::ui_stop(paste0('At least one of ', usethis::ui_code('data'), ' or ', usethis::ui_code('file'), ' need to be provided.'))
   }
   
-  
-  # identify domain ####
-  domain <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
-    tail(1) %>% 
-    stringr::str_remove_all('^ad|[.]sas7bdat$') %>% 
-    stringr::str_to_upper()
-  dom <- stringr::str_sub(domain, 1, 2) # used in e.g. EGTEST (instead of EGFTEST)
-  
-  # check user input: columns available in data set? ####
   col_select <- c(
     "value" = value,
     "param" = param,
@@ -92,80 +78,121 @@ adam_spec_bds <- function(
     "label" = label
   )
   
+  if (!is.null(data)){
+    
+    bds      <- data
+    coln_bds <- colnames(bds)
+    
+    missing_params <- purrr::map_lgl(list(param = param, value = value, id = id), is.null) %>% which() %>% names()
+    
+    if (length(missing_params)>0){
+      usethis::ui_stop(paste0(paste(usethis::ui_code(missing_params), collapse = ", "), " need(s) to be provided."))
+    }
+    
+    if(is.null(domain)) domain <- 'custom'
+
+        
+  }else{
+    
+    if (!file.exists(file)){
+      usethis::ui_stop(paste0(usethis::ui_code("file"), " not found."))
+    }
+    
+    if (file_ext(file) != "sas7bdat") {
+      usethis::ui_stop(paste0(usethis::ui_code("file"), " is not of type 'sas7bdat'."))
+    }
+    
+    # import bds ####
+    bds      <- haven::read_sas(file) %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+    coln_bds <- colnames(bds)
+    
+    md5 <- tools::md5sum(file) %>% as.character()
+    
+    # identify domain ####
+    domain <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
+      tail(1) %>% 
+      stringr::str_remove_all('^ad|[.]sas7bdat$') %>% 
+      stringr::str_to_upper()
+    dom <- stringr::str_sub(domain, 1, 2) # used in e.g. EGTEST (instead of EGFTEST)
+    
+    # define candidates for relevant columns accordingly ####
+    
+    value_num <- c('AVAL', 'AVALC',
+                   paste0(dom, c("STRESN", "STRESC", "ORRES")))
+    value_cat <- c('AVALC', 'AVAL',
+                   paste0(dom, c("STRESC", "STRESN", "ORRES")))
+    
+    dom_cat <- c("TR", "EGF") #
+    
+    value <- if(dom %in% dom_cat){
+      value_cat
+    } else {
+      value_num
+    }
+    
+    guesses <- list(
+      
+      # ... candidates param ####
+      param = c('PARAMCD', paste0(dom, 'TESTCD')),
+      
+      # ... candidates time  ####
+      time = c('AVISIT', 'VISIT', 'AVISITN', 'VISITN'),
+      
+      # ... candidates value  ####
+      value = value,
+      
+      # ... candidates unit ####
+      unit = c('AVALU', paste0(dom, 'STRESU'),  paste0(dom, 'ORRESU'))
+      
+    )
+    
+    # ... candidates label ####
+    
+    guesses$label <- stringr::str_remove(c(param, guesses$param), 'CD$')
+    # TODO move guessing candidates to adam_guess()
+    
+    # check data for candidate columns ####
+    
+    col_required <- c('value', 'param')
+    
+    for (i in names(guesses)){ 
+      
+      if (is.null(col_select[i]) || !(col_select[i] %in% coln_bds)){
+        
+        choices <- guesses[[i]] %>% intersect(coln_bds)
+        
+        if (length(choices) == 0){
+          # escape if required columns cannot be identified
+          if (i %in% col_required) {
+            usethis::ui_info(crayon::silver(paste0(
+              'AD', domain, ": No column could be identified to be used as ", i, ". No spec will be provided.\n")))
+            return(NULL)
+            # else set to NULL (instead of character vector of length 0) -> throws error for replacement of length 0
+          }# else {
+          #  choices <- NULL
+          #}
+        }
+        
+        col_select[i] <- choices[1]
+        
+      }
+      
+    }
+    
+    
+  }
+
+  # column check ####
+  
   purrr::iwalk(col_select, ~{
     if (!is.null(.x) && (length(intersect(.x, coln_bds)) == 0)) {
       usethis::ui_info(crayon::silver(paste0(
-        'AD', domain, ": Column '", .x, "' is not available in the data set. '",
+        ifelse(is.null(data), 'AD', ''), domain, ": Column '", .x, "' is not available in the data set. '",
         .y, "' will be guessed.\n")))
     }
   })
   
  
-  # define candidates for relevant columns accordingly ####
-  
-  value_num <- c('AVAL', 'AVALC',
-                 paste0(dom, c("STRESN", "STRESC", "ORRES")))
-  value_cat <- c('AVALC', 'AVAL',
-                 paste0(dom, c("STRESC", "STRESN", "ORRES")))
-  
-  dom_cat <- c("TR", "EGF") #
-  
-  value <- if(dom %in% dom_cat){
-    value_cat
-  } else {
-    value_num
-  }
-  
-  guesses <- list(
-    
-    # ... candidates param ####
-    param = c('PARAMCD', paste0(dom, 'TESTCD')),
-    
-    # ... candidates time  ####
-    time = c('AVISIT', 'VISIT', 'AVISITN', 'VISITN'),
-    
-    # ... candidates value  ####
-    value = value,
-    
-    # ... candidates unit ####
-    unit = c('AVALU', paste0(dom, 'STRESU'),  paste0(dom, 'ORRESU'))
-    
-  )
-  
-  # ... candidates label ####
-  
-  guesses$label <- stringr::str_remove(c(param, guesses$param), 'CD$')
-  # TODO move guessing candidates to adam_guess()
-  
-  # check data for candidate columns ####
-  
-  col_required <- c('value', 'param')
-  
-  
-   
-  for (i in names(guesses)){ 
-    
-    if (is.null(col_select[i]) || !(col_select[i] %in% coln_bds)){
-      
-      choices <- guesses[[i]] %>% intersect(coln_bds)
-      
-      if (length(choices) == 0){
-        # escape if required columns cannot be identified
-        if (i %in% col_required) {
-          usethis::ui_info(crayon::silver(paste0(
-            'AD', domain, ": No column could be identified to be used as ", i, ". No spec will be provided.\n")))
-          return(NULL)
-          # else set to NULL (instead of character vector of length 0) -> throws error for replacement of length 0
-        }# else {
-        #  choices <- NULL
-        #}
-      }
-      
-      col_select[i] <- choices[1]
-      
-    }
-    
-  }
   
   # filter check ####
   # only filter that individually yield non-empty tibbles are kept
