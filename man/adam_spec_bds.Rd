@@ -5,7 +5,8 @@
 \title{Create specification object for adam data sets of type 'bds'}
 \usage{
 adam_spec_bds(
-  file,
+  file = NULL,
+  data = NULL,
   id = "SUBJID",
   param = NULL,
   label = NULL,
@@ -13,11 +14,14 @@ adam_spec_bds(
   time = NULL,
   value = NULL,
   filter = NULL,
-  attach_data = FALSE
+  attach_data = FALSE,
+  domain = NULL
 )
 }
 \arguments{
-\item{file}{the path of the sas file to process}
+\item{file}{the path of the sas file to process, ignored if data is provided}
+
+\item{data}{tibble with the data for which the specification is created}
 
 \item{id}{name of id column to be kept and used for merge of data sets}
 
@@ -35,6 +39,8 @@ adam_spec_bds(
 Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL.}
 
 \item{attach_data}{boolean. attach the imported raw data}
+
+\item{domain}{character string to be included in dictionary. automatically derived for standard adam data sets. If not set for \code{data} provided, dictionary entry will be 'custom'.}
 }
 \value{
 A list containing the following

@@ -10,16 +10,16 @@
 \usage{
 build_adsl(spec)
 
-build_bds(spec, values_fn = NULL, arrange = NULL)
+build_bds(spec, dupl_ctrl = list(values_fn = NULL, arrange = NULL))
 
 build_occds(spec)
 }
 \arguments{
 \item{spec}{result of \verb{adam_spec_*()}}
 
-\item{values_fn}{bds only. function to handle duplicates in pivoting step. see details section for default.}
-
-\item{arrange}{bds only. expression passed to \code{arrange()} optional sorting of data set prior to pivoting,
+\item{dupl_ctrl}{bds only. A list with two entries
+\item{\code{values_fn}} function to handle duplicates in pivoting step. see details section for default.
+\item{\code{arrange}} expression passed to \code{arrange()} optional sorting of data set prior to pivoting,
 e.g. in order to select the first/last value by date. defaults to NULL.}
 }
 \value{

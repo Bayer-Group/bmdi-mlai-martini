@@ -49,10 +49,11 @@
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
+#' @export
 
 adam_spec_bds <- function(
-  data        = NULL,
   file        = NULL,
+  data        = NULL,
   id          = 'SUBJID', 
   param       = NULL,
   label       = NULL,
@@ -64,13 +65,16 @@ adam_spec_bds <- function(
   domain      = NULL
 ){
   
-  # INPUT ####
-  # ... checks ####
+  # initial check(s) ####
+  
   if (all(c(is.null(data), is.null(file)))){
-    usethis::ui_stop(paste0('At least one of ', usethis::ui_code('data'), ' or ', usethis::ui_code('file'), ' need to be provided.'))
+    usethis::ui_stop(paste0('At least one of ', usethis::ui_code('data'), ' or ', usethis::ui_code('file'), ' need to be provided.\n'))
   }
   
-  col_select <- c(
+  # collect column name parameters ####
+  
+  col_select <- list(
+    "id"    = id,
     "value" = value,
     "param" = param,
     "time"  = time,
@@ -78,107 +82,122 @@ adam_spec_bds <- function(
     "label" = label
   )
   
+  # check/modify 'col_select' and set 'domain' ####
+  
   if (!is.null(data)){
-    
+  
+    # ... if 'data' is used ####
+      
     bds      <- data
     coln_bds <- colnames(bds)
     
+    # check if required columns are provided by user
     missing_params <- purrr::map_lgl(list(param = param, value = value, id = id), is.null) %>% which() %>% names()
     
     if (length(missing_params)>0){
-      usethis::ui_stop(paste0(paste(usethis::ui_code(missing_params), collapse = ", "), " need(s) to be provided."))
+      usethis::ui_stop(paste0(paste(usethis::ui_code(missing_params), collapse = ", "), " need(s) to be provided.\n"))
     }
     
+    # set 'domain' to default, if not provided
     if(is.null(domain)) domain <- 'custom'
 
         
   }else{
     
+    # ... if 'file' is used ####
+    
     if (!file.exists(file)){
       usethis::ui_stop(paste0(usethis::ui_code("file"), " not found."))
     }
     
-    if (file_ext(file) != "sas7bdat") {
+    if (tools::file_ext(file) != "sas7bdat") {
       usethis::ui_stop(paste0(usethis::ui_code("file"), " is not of type 'sas7bdat'."))
     }
     
-    # import bds ####
+    # ... ... import data ####
     bds      <- haven::read_sas(file) %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
     coln_bds <- colnames(bds)
     
     md5 <- tools::md5sum(file) %>% as.character()
     
-    # identify domain ####
+    # ... ... identify domain ####
     domain <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
       tail(1) %>% 
       stringr::str_remove_all('^ad|[.]sas7bdat$') %>% 
       stringr::str_to_upper()
+    
     dom <- stringr::str_sub(domain, 1, 2) # used in e.g. EGTEST (instead of EGFTEST)
     
-    # define candidates for relevant columns accordingly ####
     
-    value_num <- c('AVAL', 'AVALC',
-                   paste0(dom, c("STRESN", "STRESC", "ORRES")))
-    value_cat <- c('AVALC', 'AVAL',
-                   paste0(dom, c("STRESC", "STRESN", "ORRES")))
+    # ... ... define candidates for column names (based on 'dom') ####
+    
+    # TODO move guessing candidates to adam_guess()
+    
+    guess_value_num <- c('AVAL', 'AVALC',
+                         paste0(dom, c("STRESN", "STRESC", "ORRES")))
+    guess_value_cat <- c('AVALC', 'AVAL',
+                         paste0(dom, c("STRESC", "STRESN", "ORRES")))
     
     dom_cat <- c("TR", "EGF") #
     
-    value <- if(dom %in% dom_cat){
-      value_cat
+    guess_value <- if(dom %in% dom_cat){
+      guess_value_cat
     } else {
-      value_num
+      guess_value_num
     }
     
     guesses <- list(
       
-      # ... candidates param ####
+      # candidates 'param'
       param = c('PARAMCD', paste0(dom, 'TESTCD')),
       
-      # ... candidates time  ####
+      # candidates 'time'
       time = c('AVISIT', 'VISIT', 'AVISITN', 'VISITN'),
       
-      # ... candidates value  ####
-      value = value,
+      # candidates 'value'
+      value = guess_value,
       
-      # ... candidates unit ####
+      # candidates 'unit'
       unit = c('AVALU', paste0(dom, 'STRESU'),  paste0(dom, 'ORRESU'))
       
     )
     
-    # ... candidates label ####
-    
+    # candidates 'label'
     guesses$label <- stringr::str_remove(c(param, guesses$param), 'CD$')
-    # TODO move guessing candidates to adam_guess()
     
-    # check data for candidate columns ####
+    
+    # ... ... check data for candidate columns ####
     
     col_required <- c('value', 'param')
     
+    # ... ... ... guessed columns ####
+    
     for (i in names(guesses)){ 
       
-      if (is.null(col_select[i]) || !(col_select[i] %in% coln_bds)){
+      if (is.null(col_select[[i]])){
         
         choices <- guesses[[i]] %>% intersect(coln_bds)
         
-        if (length(choices) == 0){
-          # escape if required columns cannot be identified
-          if (i %in% col_required) {
-            usethis::ui_info(crayon::silver(paste0(
-              'AD', domain, ": No column could be identified to be used as ", i, ". No spec will be provided.\n")))
-            return(NULL)
-            # else set to NULL (instead of character vector of length 0) -> throws error for replacement of length 0
-          }# else {
-          #  choices <- NULL
-          #}
+        if (length(choices) == 0 && i %in% col_required){
+          # add 'domain' for information when used within adam_spec()
+          usethis::ui_info(crayon::silver(paste0(
+            'AD', domain, ": No column could be identified to be used as ", i, ". No spec will be provided.\n")))
+          return(NULL)
         }
         
-        col_select[i] <- choices[1]
+        col_select[[i]] <- choices[1]
         
       }
       
     }
     
+    # ... ... ... 'id' (input parameter with default, not guessed) ####
+    
+    if (!id %in% coln_bds){
+      usethis::ui_stop(
+        paste0("AD", domain, ": The ", usethis::ui_code("id"), " column '", id, "' is not present in the data set.\n")
+      )
+    }
     
   }
 
@@ -186,51 +205,47 @@ adam_spec_bds <- function(
   
   purrr::iwalk(col_select, ~{
     if (!is.null(.x) && (length(intersect(.x, coln_bds)) == 0)) {
-      usethis::ui_info(crayon::silver(paste0(
-        ifelse(is.null(data), 'AD', ''), domain, ": Column '", .x, "' is not available in the data set. '",
-        .y, "' will be guessed.\n")))
+      usethis::ui_stop(crayon::silver(paste0(
+        "The ", usethis::ui_code(.y), " column '", .x, "' is not available in the data set.\n")))
     }
   })
   
- 
-  
   # filter check ####
+  
   # only filter that individually yield non-empty tibbles are kept
   keep_filter   <- check_filter(bds, filter, data_id = domain)$individual %>% 
     purrr::map_lgl("keep") %>% 
     as.logical()
   actual_filter <- filter[keep_filter]
  
-  # dictionary  ####
+  # dictionary ####
   
   # use unfiltered data 
   dict  <- bds %>% 
     dplyr::select( tidyselect::any_of(
-      col_select[c('param', 'label', 'unit')] %>%  na.omit() 
+      col_select[c('param', 'label', 'unit')] %>% unlist() %>% na.omit() 
     )) %>% 
     dplyr::distinct() %>%
     dplyr::mutate(source = domain) %>% 
     dplyr::mutate(type   = 'bds') 
  
-  
   # remove bds data set label automatically created by haven::read_sas()
   attr(dict, 'label') <- NULL
  
  
-  # output ####
+  # OUTPUT ####
  
   out <- list(
     file      = file,
     data      = NULL,
     md5       = md5,
     type      = "bds",
-    id        = id,
     filter    = actual_filter,
     dict      = dict,
     spec_id   = domain
   ) %>% 
     append(
-      col_select %>% as.list()
+      col_select
     ) %>% 
     c(
       list(dupl_ctrl = list(
@@ -239,7 +254,6 @@ adam_spec_bds <- function(
       ))
     )
 
-  
   if(attach_data){
     out$data <- bds
   }

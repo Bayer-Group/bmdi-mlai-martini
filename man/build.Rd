@@ -5,9 +5,7 @@
 \title{Build the feature matrix from various sources according to a specification object}
 \usage{
 build(
-  spec = NULL,
-  path = NULL,
-  spec_only = FALSE,
+  spec,
   filter = NULL,
   keep = NULL,
   drop = NULL,
@@ -17,10 +15,6 @@ build(
 }
 \arguments{
 \item{spec}{a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)}
-
-\item{path}{the path to the ads files (either \code{spec} or \code{path} has to be provided).}
-
-\item{spec_only}{if build from path, don't apply the just created spec to data set}
 
 \item{filter}{a character vector of conditions to be passed to \code{dplyr::filter()},
 e.g. regarding visits, treatment arms or parameters. Defaults to NULL. Only applied, if \code{spec} is not provided.}
@@ -35,8 +29,6 @@ Only applied, if \code{spec} is not provided.}
 
 \item{join}{either function to join data sets (e.g. \code{dplyr::full_join()} or a character (vector) giving the names
 of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}}
-
-\item{attach_data}{boolean. Attach the imported raw data. Only applied, if \code{spec_only = TRUE}.}
 }
 \value{
 \code{build()} returns a wide data set with one row per subject and standardized column names for the subject id (\code{.id})
@@ -68,12 +60,6 @@ whereas NAs in adsl and bds data are considered to be true missing values.
 For missing values in occds data after joining with other data sets,
 missing values are replace by 0 for numerics, an additional level 'none' is introduced for
 for factors.
-
-The \code{build()} function can also be used to build the data directly from an ads
-path. In this case the specification object is created internally by calling the respective \verb{adam_spec_*()} functions
-and immediately used to build the data set.
-In practice, this is not recommended though, since manual adaptations to the automatically generated spec object will be required.
-The path parameter will be deprecated soon.
 }
 \section{Authors}{
 
