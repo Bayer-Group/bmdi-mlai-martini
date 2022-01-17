@@ -89,6 +89,7 @@ adam_spec_bds <- function(
     # ... if 'data' is used ####
       
     bds      <- data
+    md5      <- NULL
     coln_bds <- colnames(bds)
     
     # check if required columns are provided by user
@@ -100,7 +101,6 @@ adam_spec_bds <- function(
     
     # set 'domain' to default, if not provided
     if(is.null(domain)) domain <- 'custom'
-
         
   }else{
     

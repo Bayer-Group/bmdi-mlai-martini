@@ -48,8 +48,8 @@ test_that("adam_spec_bds works", {
   )
   
   testthat::expect_equal(
-    spec_bds_file[!names(spec_bds_file) %in% c("file")],
-    spec_bds_data[!names(spec_bds_data) %in% c("file")]
+    spec_bds_file[!names(spec_bds_file) %in% c("file", "md5")],
+    spec_bds_data[!names(spec_bds_data) %in% c("file", "md5")]
   )
   
   
