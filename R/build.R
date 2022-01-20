@@ -58,8 +58,7 @@ build <- function(
   filter      = NULL,
   keep        = NULL,
   drop        = NULL,
-  join        = dplyr::inner_join,
-  attach_data = FALSE
+  join        = dplyr::inner_join
 ){
   
   # add names to the spec if none are provided
@@ -96,12 +95,12 @@ build <- function(
     out <- .x
     
     rename_y <- rename_dupes %>% 
-      filter(domain == .y) %>% 
-      select(new_name, old_name) %>% 
-      deframe()
+      dplyr::filter(domain == .y) %>% 
+      dplyr::select(new_name, old_name) %>% 
+      tibble::deframe()
     
     if(length(rename_y) > 0){
-      out[['data']] <- out[['data']] %>% rename(any_of(rename_y))
+      out[['data']] <- out[['data']] %>% dplyr::rename(tidyselect::any_of(rename_y))
       out[['dict']] <- out[['dict']] %>% 
         dplyr::left_join(rename_dupes, by = c("column" = "old_name")) %>% 
         dplyr::mutate(column = dplyr::case_when(
@@ -131,7 +130,7 @@ build <- function(
   prepped_source <- purrr::imap(built_data, ~{
     .x[["source"]] %>% 
       tibble::as_tibble_row() %>% 
-      mutate(spec_id = .y, .before = 1)
+      dplyr::mutate(spec_id = .y, .before = 1)
   }) %>% 
     purrr::reduce(dplyr::bind_rows) 
   

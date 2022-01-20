@@ -6,20 +6,22 @@
 #' 
 #' @param spec result of `adam_spec_*()`
 #' @param dupl_ctrl bds only. A list with two entries
+#' \itemize{
 #' \item{\code{values_fn}} function to handle duplicates in pivoting step. see details section for default.
 #' \item{\code{arrange}} expression passed to \code{arrange()} optional sorting of data set prior to pivoting, 
-#' e.g. in order to select the first/last value by date. defaults to NULL.  
+#' e.g. in order to select the first/last value by date. defaults to NULL. 
+#' }
 #'
 #' @return 
 #' A list with the following entries
+#' \itemize{
 #' \item{\code{data}}{a tibble in wide format which one row per \code{id}}
 #' \item{\code{dict}}{a tibble listing the distinct combinations of columns
 #' \code{param}, \code{label}, \code{unit}, \code{time}, \code{column}, \code{source} (if provided).} 
 #' \item{\code{source}}{a list passing the \code{file} slot from the given \code{spec} that the created data set is based
 #'  upon along with the md5 checksum of this file}
 #' \item{`flag_table`}{`build_adsl()` only. flag table is passed from `spec$flag_table` slot}
-#'  
-#' 
+#' }
 #' 
 #' @details 
 #' Note that the output dictionary may differ from the dictionary created by `adam_spec_*()`, 
