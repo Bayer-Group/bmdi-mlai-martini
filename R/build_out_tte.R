@@ -92,7 +92,7 @@ build_out_tte <- function(
     # ... binarization (optional) ####
     { if(!is.null(cut)){ 
         dplyr::mutate(.,
-          .out = case_when(
+          .out = dplyr::case_when(
             # censored within cut -> drop
             .time <= cut & .status == 0 ~ NA_character_,
             .time <= cut & .status == 1 ~ paste0("event",    " in first ", ifelse(cut == 1, '', cut), " ", unit, "(s)"),

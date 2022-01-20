@@ -4,14 +4,7 @@
 \alias{build}
 \title{Build the feature matrix from various sources according to a specification object}
 \usage{
-build(
-  spec,
-  filter = NULL,
-  keep = NULL,
-  drop = NULL,
-  join = dplyr::inner_join,
-  attach_data = FALSE
-)
+build(spec, filter = NULL, keep = NULL, drop = NULL, join = dplyr::inner_join)
 }
 \arguments{
 \item{spec}{a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)}
