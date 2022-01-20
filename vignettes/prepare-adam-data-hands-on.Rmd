@@ -14,7 +14,6 @@ library(martini)
 library(dplyr)
 library(stringr)
 library(tidyr)
-library(tibble)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -154,40 +153,27 @@ In case a particular domain is required for your analysis but not included in th
 adam_domain_type(path)
 ```
 
-**Outcome preparation**
 
-It is recommended to clearly define the outcome of interest and prepare the _outcome_ data set independently from the feature engineering process. 
-The outcome data set may contain information on different endpoints in a single tibble, with one row per `id` and the different outcomes in the columns. In practice, separate data sets for each outcome are preferable for large studies, considering the potentially higher preparation times.
-For time-to-event data, each endpoint is described by two columns (representing time and censor, resp.). 
+### start to finish
 
-Since the analysis of survival endpoints is computationally much more expensive than for classification, the latter may be used for initial runs by using a dichotomized version of the endpoint (i.e. event yes/no in given time frame). When binarizing time-to-event endpoints, please pay attention to the study duration (potentially reduce to subjects with minimum time under observation) and the resulting outcome distribution (highly unbalanced data?).
+```{r, eval = FALSE}
 
-The package comes with two exemplary outcome data sets, one for classification, one for a regression problem. 
-Both are two column tibbles with an `.id` and an `.out` column, where in the classification example shown below, the `.out` variable is a factor with two levels (event/no event). 
+ads_spec <- path %>% 
+  
+  # build automated spec
+  adam_spec() %>% 
+  
+  # make adjustments
+  
+  
 
-For survival, the outcome information would be coded in two separate columns, e.g. `days` and `event`.
-Note that for the specification of the outcome names for `prepare_ml()`, a named vector is expected in the survival case, e.g. `outcome_names = c(.time = 'days', .status = 'event')`.
-
-
-```{r}
-martini_outc_class %>% 
-  head(3) %>% 
-  kableExtra::kable() %>% 
-  kableExtra::kable_styling(full_width = FALSE)
 ```
-
-Please note that currently, only binary classification is supported by the MARTINI pipeline.
-
-
-<!-- TODO: Use the function `binarize_tte()` in order to derive binary endpoints from a tte outcome. -->
-
-
 
 ## `adam_spec()`
 
 The `adam_spec()` function creates a _preprocessing specification_ in the form of a list from a given `path`.
 Each entry contains the required information to extract relevant records from a particular data set and reshape the data into wide format. 
-The structure of the top level entries depends on the type of corresponding data set (adsl/bds/occds).
+The structure of the top level entries depends on the type of the corresponding data set (adsl/bds/occds).
 
 Among other steps, `adam_spec()` will
 
@@ -204,7 +190,7 @@ ads_spec <- adam_spec(path)
 ads_spec %>% str(max.level = 1)
 ```
 
-### Important parameters
+## Important parameters
 
 **Filters**
 
@@ -262,24 +248,48 @@ ads_spec <- adam_spec(
 
 ### Manual adaptations
 
-The most common adaptations of an automatically generated _spec_ object are the removal of particular variables and adjustment of factor level order and/or names.
+The most common adaptations of an automatically generated _spec_ object are probably the removal of particular variables and adjustment of factor level order and/or names.
 
-**Exclude data**
+Two helper function are available that allow for easy modification of the _spec_ objects in a pipe-based workflow: 
 
-We already covered how to discard a _complete domain_ by using the `drop` argument in `adam_spec()`.
+* `adjust_adsl()` specifically allows to add/drop variables from adsl to the automated selection
+* `adjust_spec()` is a general helper to adjust/set any spec entry
 
-A single parameter from a (_non-subject level_) domain can be discarded by using the `filter` argument in `adam_spec()`.
 
-In the following, we demonstrate how to remove variables from `adsl` (_subject level_):
+#### `adjust_adsl()`
 
-The columns to be selected from the `adsl` data set are stored in `ads_spec$adsl$select`. 
-Simply remove column names from this entry to discard particular variables. 
+In the following, we demonstrate how to remove variables from `adsl` (_subject level_).
+
 Reasons for exclusion may include but are not limited to:
 
 * post baseline information (MARTINI pipeline aims at assessing the relation of baseline information with a given outcome. Consequently, outcome-related information should be removed (e.g. death flag))
-* variables are available in both a continuous as well as categorical version (e.g. age, BMI, weight)
+* variables are available in both a continuous as well as categorical version (e.g. age, BMI, weight), there is no automated selection available
 * different groupings based on the same variable (e.g. country group)
 
+Given an `ads_spec` object as built from `adam_spec()` such as the example object `martini::martini_spec`,
+the user may simply pass character vectors of variables to add/drop to the automated selection.
+
+Variables included from adsl are `pander::pandoc.list.return(martini::martini_spec$adsl$select)`.
+
+Assuming we wanted to switch the continuous age variable to the grouped one (not recommended in practice)
+```{r}
+add   <- c('AGEGR01')
+drop  <- c('AGE')
+spec_age <- martini_spec %>% 
+  adjust_adsl(
+    add  = add,
+    drop = drop
+  ) 
+```
+
+the `build()` function would now extract  
+`pander::pandoc.list.return(martini::martini_spec$adsl$select)`.
+
+
+
+The variable selection can also be adjusted manually:
+The columns to be selected from the `adsl` data set are stored in `ads_spec$adsl$select`. 
+Simply remove column names from this entry to discard particular variables. 
 
 ```{r spec remove adsl columns}
 ads_spec$adsl$select <- ads_spec$adsl$select %>% 
@@ -295,6 +305,53 @@ ads_spec$adsl$select <- ads_spec$adsl$select %>%
 
 ```
 
+
+
+#### `adjust_spec()`
+
+The _spec_ object is a nested list, with a data set/domain id on the top level with the entries required for building the wide data set in nested lists.
+Instead of adjusting/setting these entries in individual steps, one may also use the `adjust_spec()` helper function. 
+
+In particular, this allows convenient factor handlings, where one may 
+
+* set factor level order to adjust the order in all corresponding outputs
+* specify variables that should be treated as factors with the given factor level order. This may come in useful for variables that could not be detected as factors automatically (e.g. either code or decode missing). Specify `append = TRUE` is modification should be appended to the existing entry instead of replacing/overwriting it.
+
+Other options include but are not limited to
+ 
+ * data set label
+
+
+```{r}
+martini_spec %>% 
+  # 
+  adjust_spec(
+    id    = 'admh',
+    count = TRUE
+  ) %>% 
+  # factor handling
+  adjust_spec(
+    id    = 'adsl',
+    factor_levels = list(
+      # set factor level order (SEX and TRT01A already present in factor_levels)
+      SEX = c('F', 'M'), 
+      TRT01A = c('TRT', 'PLC')
+    )
+  ) %>% 
+    adjust_spec(
+    id    = 'adsl',
+    factor_levels = list(
+      # add variables to factor list that are not included automatically. 
+      NEW = c('A', 'B')
+    ),
+    append = TRUE
+  )
+  
+```
+
+
+
+#### further adaptations
 
 **Change existing data** 
 
@@ -351,21 +408,6 @@ ads_spec$add <- list(
 
 This approach is preferable to adding data e.g. to the data slot of `adsl` since it makes sure that the extracted variables will appear in the data dictionary with the appropriate data source (name of spec entry). 
 
-**Factor level order**
-
-`adam_spec()` automatically identifies pairs of code and decode columns in adsl type data sets to combine the information in a factor variable with the given factor level order. 
-
-In order to adjust factor level names and/or their order, update the `factor_levels` entry of the corresponding data set in the _spec_ object. The information is stored in a list, where the entries are named after the column containing the factor labels (i.e. TRT01A instead of TRT01AN).
-This is often used to specify the order of the treatment variable to control the order in the result presentation.
-
-<!-- TODO CHECK in the original data set (i.e. before renaming?) -->
-
-```{r spec change factor levels/order}
-# change order of treatment levels
-ads_spec$adsl$factor_levels$TRT01A <- ads_spec$adsl$factor_levels$TRT01A %>% na.exclude %>% rev()
-```
-
- 
 
 
 **Change data set label**
@@ -374,7 +416,14 @@ ads_spec$adsl$factor_levels$TRT01A <- ads_spec$adsl$factor_levels$TRT01A %>% na.
 
 ```{r spec change label}
 # change label column in admh
-ads_spec$admh$label <- "MHBODSYS"
+ads_spec %>% 
+  adjust_spec(
+    id = 'admh',
+    label = "MHBODSYS"
+  )
+
+# equivalent to
+# ads_spec $admh$label <- "MHBODSYS"
 ```
 
 
@@ -394,7 +443,11 @@ ads_spec$admh$count <- FALSE
 If one does not opt for the count option, but for individual variables, there is also the possibility to specify a `valuen` column, which in the case of adae may be set to the column indicating the severity of the event. Analogously, a `value` entry may be provided for non-numeric information, e.g. 
 
 ```{r}
-ads_spec$admh$value <- 'MHPRESP'
+ads_spec %>% 
+  adjust_spec('admh', value = 'MHPRESP')
+
+# equivalent to
+# ads_spec$admh$value <- 'MHPRESP'
 ```
 
 
@@ -438,7 +491,7 @@ feature <- build(spec)
 
 ## `prepare_ml()`
 
-Once all potential features are available in a single data set, the `prepare_ml()` function will take care of the data preprocessing required for machine learning analysis based on the provided outcome data (see above for recommended preparation).
+Once all potential features are available in a single data set, the `prepare_ml()` function will take care of the data preprocessing required for machine learning analysis based on the provided outcome data (see below for recommended preparation).
 
 ```{r}
 ml_data <- prepare_ml(
@@ -446,6 +499,13 @@ ml_data <- prepare_ml(
   outcome
 )
 ```
+
+**Data splitting**
+
+Splitting the data in training and test data will create a 3:1 split by default, stratified by outcome if appropriate. To include treatment information in the stratification, set `strata_trt = TRUE`.
+
+
+**Preprocessing**
 
 While each step is optional and parametrized to provide maximum flexibility to the user, default parameters were chosen carefully and may be considered appropriate for a large number of analyses.
 
@@ -458,6 +518,16 @@ The preprocessing includes the following steps
 * normalization
 * imputation
 * dummy coding
+
+NOTE: Please be aware that in the initial versions, dummy coding was set to true by default. 
+From version 0.2 on, the default is `FALSE` which is appropriate for most applications.
+
+<!--This will most likely be changed with future versions, but in a major update, 
+since changing the default behaviour would break existing code. 
+For most applications, `prep_step_dummy` should be set to `FALSE`.
+-->
+
+
 
 
 
@@ -527,7 +597,36 @@ d_ml$source
 ```
 
 
-### Outcome Preparation
+# Outcome Preparation
+
+
+**Outcome preparation**
+
+It is recommended to clearly define the outcome of interest and prepare the _outcome_ data set independently from the feature engineering process. 
+The outcome data set may contain information on different endpoints in a single tibble, with one row per `id` and the different outcomes in the columns. In practice, separate data sets for each outcome are preferable for large studies, considering the potentially higher preparation times.
+For time-to-event data, each endpoint is described by two columns (representing time and censor, resp.). 
+
+Since the analysis of survival endpoints is computationally much more expensive than for classification, the latter may be used for initial runs by using a dichotomized version of the endpoint (i.e. event yes/no in given time frame). When binarizing time-to-event endpoints, please pay attention to the study duration (potentially reduce to subjects with minimum time under observation) and the resulting outcome distribution (highly unbalanced data?).
+
+The package comes with two exemplary outcome data sets, one for classification, one for a regression problem. 
+Both are two column tibbles with an `.id` and an `.out` column, where in the classification example shown below, the `.out` variable is a factor with two levels (event/no event). 
+
+For survival, the outcome information would be coded in two separate columns, e.g. `days` and `event`.
+Note that for the specification of the outcome names for `prepare_ml()`, a named vector is expected in the survival case, e.g. `outcome_names = c(.time = 'days', .status = 'event')`.
+
+
+```{r}
+martini_outc_class %>% 
+  head(3) %>% 
+  kableExtra::kable() %>% 
+  kableExtra::kable_styling(full_width = FALSE)
+```
+
+Please note that currently, only binary classification is supported by the MARTINI pipeline.
+
+
+<!-- TODO: Use the function `binarize_tte()` in order to derive binary endpoints from a tte outcome. -->
+
 
 For convenience, the package also provides `build_out_tte()`, which allows to prepare a tte-based outcome for further use with `prepare_ml()`.
 Starting from either `file` (specifying the path to an adam `adtte.sas7bdat`) or an already existing `data` object with the same structure, 
