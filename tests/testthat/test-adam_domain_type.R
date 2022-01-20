@@ -1,8 +1,8 @@
 test_that("adam_domain_type works", {
   
   # test setup  ####
-  library(tidyverse)
-  #ads_path <- test_path('sas/')
+  library(tibble)
+  ads_path <- test_path('sas/')
   
   
   # print look-up table ####
