@@ -17,7 +17,7 @@ prepare_ml(
   prep_step_knnimpute = TRUE,
   prep_step_log = TRUE,
   prep_step_corr = TRUE,
-  prep_step_dummy = TRUE,
+  prep_step_dummy = FALSE,
   thres_log = 2,
   thres_count = 10,
   thres_corr = 0.9,
