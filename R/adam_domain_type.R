@@ -141,15 +141,15 @@ adam_domain_type <- function(
         file_info <- file_info %>% dplyr::filter( domain %in% keep)
     } else {
       if(!is.null(drop)){
-          drop      <- stringr::str_remove(drop, '.sas7bdat$')
-          file_info <- file_info %>% dplyr::filter(!domain %in% drop)
+        drop      <- stringr::str_remove(drop, '.sas7bdat$')
+        file_info <- file_info %>% dplyr::filter(!domain %in% drop)
       }
     }
     
     
     # ... ui_stop ###
     if(nrow(file_info) == 0){
-         usethis::ui_stop("No files to process. Please check your file selection (keep/drop).")
+      usethis::ui_stop("No files to process. Please check your file selection (keep/drop).")
     }
     
     if(all(file_info$type == "none")){
@@ -175,38 +175,3 @@ adam_domain_type <- function(
   }   
 }
 
-# test area ####
-if(FALSE){
- 
- paths <- paste0('../../../',
-         c('', 'adcm.sas7bdat'))
- 
- # '../../..//adxa.sas7bdat'
- 
- # print look-up table
- adam_domain_type()
- 
- # process path with unknown domains (adpr)
- adam_domain_type(path = paths[1])
- adam_domain_type(path = paths[1], quiet = TRUE)
- adam_domain_type(path = paths[1], quiet = TRUE) %>%  attr('unknown_domains')
- 
- # process single file
- adam_domain_type(path = paths[2])
- 
- # keep: files actually in path
- adam_domain_type(path = paths[1], keep = c('adqseq5d', 'advs'))  
- adam_domain_type(path = paths[1], keep = c('adqseq5d', 'advs.sas7bdat'))  
- 
- # keep: files not found in path (typo, missing file selected)
- adam_domain_type(path = paths[1], keep = c('adqs'))  
- 
- # keep/drop: keep  
- # info: Please specify only one of 'keep' or 'drop'. Only 'keep' will be used for subsetting here.
- adam_domain_type(path = paths[1], keep = c('adqseq5d', 'advs'), drop = 'advs')  
- 
- # path: path doesn't exist
- # Error: The provided path does not exist
- adam_domain_type(path = str_remove(paths[1], 'Original/') )  
-
-}
