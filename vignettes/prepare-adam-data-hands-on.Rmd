@@ -637,6 +637,26 @@ The `source` slot simply passes the source attribute of feature, NULL if no such
 
 ***
 
+### Avoiding downstream issues 
+
+In some applications, issues were observed if the training data set contains factors with low frequency classes. 
+These may cause issues in the tuning process, most likely in the cross-validation steps. 
+Please note, that this is in fact an issue with the implementation of `ranger`, which is currently being worked on. 
+Since there is no generally best solution on the data prep side, we provide a helper function  that may 
+at least help in the identification of the variables causing the issue:
+
+`check_freq()` will check the prepped training data of a given ml object (result of `prepare_ml()`) 
+for factors that may cause problems in this regard.
+
+```{r}
+d_ml %>%  
+  check_freq(thres = 25)
+```
+In case factors with low frequency classes are identified, the corresponding frequency tables are returned in a list.
+
+
+***
+
 ### Data preparation and documentation
 
 * `prep_recipe` contains the prepared recipe object, `prep_params` documents the parameters/thresholds used in the data preparation, giving bare `value` slots, as well as a verbose description in `text`. `removed` gives a list of removed `rows` and `columns` along with the information on why/in which recipe step the data was removed.  
