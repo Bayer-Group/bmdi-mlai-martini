@@ -61,6 +61,8 @@ adam_spec_occds <- function(
 
   
   md5        <- tools::md5sum(file) %>%  as.character()
+  size       <- fs::file_size(file)
+  
   guesses    <- adam_guess(file)
   coln_occds <- colnames(occds)
   domain     <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
@@ -164,6 +166,7 @@ adam_spec_occds <- function(
   out <- list(
     file    = file,
     md5     = md5,
+    size    = size, 
     data    = NULL,
     type    = "occds",
     id      = id,

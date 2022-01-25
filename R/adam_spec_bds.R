@@ -118,7 +118,9 @@ adam_spec_bds <- function(
     bds      <- haven::read_sas(file) %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
     coln_bds <- colnames(bds)
     
-    md5 <- tools::md5sum(file) %>% as.character()
+    md5  <- tools::md5sum(file) %>% as.character()
+    size <- fs::file_size(file)
+    
     
     # ... ... identify domain ####
     domain <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
@@ -239,6 +241,7 @@ adam_spec_bds <- function(
     file      = file,
     data      = NULL,
     md5       = md5,
+    size      = size, 
     type      = "bds",
     filter    = actual_filter,
     dict      = dict,
