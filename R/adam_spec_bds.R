@@ -189,6 +189,8 @@ adam_spec_bds <- function(
         
         col_select[[i]] <- choices[1]
         
+        if(is.na(col_select[[i]])) col_select[i] <- list(NULL)
+        
       }
       
     }
