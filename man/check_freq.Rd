@@ -7,6 +7,8 @@
 check_freq(x, thres = 10)
 }
 \arguments{
+\item{x}{output of \verb{\link{prepare_ml}()} or a tibble}
+
 \item{thres}{integer. Factors with at least one class of size smaller than \code{thres} will be identified. Defaults to 10.}
 }
 \value{
@@ -17,7 +19,7 @@ relevant names are printed in the console and a list of frequency tables is retu
 Identify factors with low frequency classes
 }
 \details{
-If \code{x} is the output of \verb{\link(prepare_ml\}()}, the tibble \code{x$data_prep$train} is checked for
+If \code{x} is the output of \verb{\link{prepare_ml}()}, the tibble \code{x$data_prep$train} is checked for
 factors with at least one low frequency class.
 Please refer to the package vignette for further details.
 }
