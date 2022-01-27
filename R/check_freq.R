@@ -1,7 +1,7 @@
 #' Identify factors with low frequency classes
 #'
 #'
-#' @param x output of `\link(prepare_ml}()` or a tibble 
+#' @param x output of `\link{prepare_ml}()` or a tibble 
 #' @param thres integer. Factors with at least one class of size smaller than `thres` will be identified. Defaults to 10.
 #'
 #' @return
@@ -9,7 +9,7 @@
 #' relevant names are printed in the console and a list of frequency tables is returned.
 #' 
 #' @details 
-#' If `x` is the output of `\link(prepare_ml}()`, the tibble `x$data_prep$train` is checked for
+#' If `x` is the output of `\link{prepare_ml}()`, the tibble `x$data_prep$train` is checked for
 #'  factors with at least one low frequency class. 
 #'  Please refer to the package vignette for further details.
 #' 
