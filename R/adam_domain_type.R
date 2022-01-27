@@ -165,7 +165,7 @@ adam_domain_type <- function(
       usethis::ui_info( paste0(
         crayon::silver('The following domains were not processed as they are currently not in the library: \n\t'), 
         crayon::blue(paste(doms_ignored, collapse=', ')),
-        crayon::silver( '\nYou can use the adam_spec_*() functions as appropriate.'))
+        crayon::silver( '\nYou can use the adam_spec_*() functions as appropriate.\n'))
       )
     }
       
