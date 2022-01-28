@@ -92,14 +92,31 @@ build_bds <- function(
 
   # pivot   ####
   
-  bds_wide <- bds %>% 
+  bds_pivot <- bds %>% 
     dplyr::select(tidyselect::all_of(c(spec$value, '.key', '.id'))) %>% 
-    dplyr::filter(.key != "") %>% 
+    dplyr::filter(.key != "")
+  
+  # check for duplicates
+  any_dupes <- bds_pivot %>% 
+    dplyr::count(.id, .key) %>% 
+    dplyr::pull(n) %>% 
+    any({. > 1})
+  
+  if (any_dupes){
+    usethis::ui_info(crayon::silver(paste0(
+      'Duplicates were identified in ', usethis::ui_value(spec$spec_id), '.\n',  
+      'Please refer to the documentation of ', usethis::ui_code('dupl_ctrl'), ' for details.\n'
+    )))
+  }
+  
+  bds_wide <- bds_pivot %>% 
     tidyr::pivot_wider(
       names_from  = '.key', 
       values_from = spec$value,
       values_fn   = values_fn
     ) 
+  
+  
   
   # transform all character columns to factors except for .id, which is kept as-is
   char2fct <- bds_wide %>% 
