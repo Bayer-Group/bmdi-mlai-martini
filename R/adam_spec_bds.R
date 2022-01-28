@@ -90,6 +90,7 @@ adam_spec_bds <- function(
       
     bds      <- data
     md5      <- NULL
+    size     <- NULL
     coln_bds <- colnames(bds)
     
     # check if required columns are provided by user
