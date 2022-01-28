@@ -230,6 +230,7 @@ adam_spec_bds <- function(
     dplyr::select( tidyselect::any_of(
       col_select[c('param', 'label', 'unit')] %>% unlist() %>% na.omit() 
     )) %>% 
+    tidyr::fill(unit, direction = "downup") %>% 
     dplyr::distinct() %>%
     dplyr::mutate(source = domain) %>% 
     dplyr::mutate(type   = 'bds') 
