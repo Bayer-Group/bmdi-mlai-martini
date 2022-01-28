@@ -43,7 +43,8 @@ Imports:
     rsample,
     readr,
     MASS,
-    lifecycle
+    lifecycle,
+    fs
 Suggests:
     knitr,
     rmarkdown,

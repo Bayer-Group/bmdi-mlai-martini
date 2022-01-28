@@ -113,5 +113,8 @@ adam_spec <- function(
     
   }
   
+  class(spec) <- c("martini_spec", class(spec))
+  
   spec
+  
 }
