@@ -44,7 +44,7 @@ the md5 checksum of the specified file.
 Note that the output dictionary may differ from the dictionary created by \verb{adam_spec_*()},
 as multiple features may be derived from a single parameter at different time points.
 
-\code{values_fn} is passed to \code{pivot_wider()}. The default is \code{function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), x[1])}}
+\code{values_fn} is passed to \code{pivot_wider()}. The default is \code{function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}}
 }
 \section{Authors}{
 

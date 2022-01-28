@@ -18,7 +18,7 @@ build_bds <- function(
   arrange   <- c(dupl_ctrl$arrange,   spec$dupl_ctrl$arrange)   %>% .[[1]]
 
   if (is.null(values_fn)){
-    values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), x[1])}
+    values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
   }
   
   
