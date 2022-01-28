@@ -1,3 +1,5 @@
+#' @exportS3Method 
+
 print.martini_spec <- function(x){
   
   txt_sum <- c("name", "type", "size") %>% 
