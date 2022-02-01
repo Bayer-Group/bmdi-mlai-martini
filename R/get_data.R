@@ -7,7 +7,7 @@
 #' @param split_id Add column indicating split origin (train/test). Omitted if NULL (default)
 #'
 #' @return 
-#' result of `bind_rows` of data sets in `dml` of the chosen type, either with or without an added `train_test`column
+#' result of `dplyr::bind_rows()` of data sets in `ml_obj` of the chosen type, either with or without an added `train_test` column.
 #'
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
@@ -15,12 +15,14 @@
 #' @export
 
 get_data <- function(
-  dml, 
+  ml_obj, 
   type = c('prep', 'raw'),
   split_id = NULL
   ){
   
-  d_type <- dml[[paste0('data_', type)]]
+  type <- match.arg(type)
+  
+  d_type <- ml_obj[[paste0('data_', type)]]
   
   bind_rows(
     train = d_type$train, 
