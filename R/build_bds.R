@@ -100,7 +100,8 @@ build_bds <- function(
   any_dupes <- bds_pivot %>% 
     dplyr::count(.id, .key) %>% 
     dplyr::pull(n) %>% 
-    any({. > 1})
+    {. > 1} %>% 
+    any()
   
   if (any_dupes){
     usethis::ui_info(crayon::silver(paste0(
