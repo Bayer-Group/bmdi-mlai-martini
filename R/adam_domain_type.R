@@ -51,6 +51,7 @@ adam_domain_type <- function(
   
   type_adsl <- c("adsl") %>% 
     paste0(".sas7bdat$") 
+  
   type_bds <- c(   
     paste0( c(  
       "adegf", "adpc",
@@ -65,7 +66,8 @@ adam_domain_type <- function(
       "adqskccq", "adqsnyha", 'adqseq5d', 'adqspad', 'adqswimp', 'adqsqolb', 'adqssgrq'
     ) , 
     ".sas7bdat$"),
-    "adqs.*[.]sas7bdat$" ) #%>% 
+    "adqs.*[.]sas7bdat$" )
+  
   type_occds <- c("adae", "adcm", "admh", "adxa") %>% 
     paste0(".sas7bdat$")
   
@@ -167,8 +169,8 @@ adam_domain_type <- function(
     if(length(doms_ignored) > 0 && !quiet){
       usethis::ui_info( paste0(
         crayon::silver('The following domains were not processed as they are currently not in the library: \n\t'), 
-        crayon::blue(paste(doms_ignored, collapse=', ')),
-        crayon::silver( '\nYou can use the adam_spec_*() functions as appropriate.\n'))
+        crayon::blue(paste(doms_ignored, collapse = ', ')),
+        crayon::silver( '\nYou can use the adam_spec_*() functions as appropriate.\n\n'))
       )
     }
       
