@@ -24,7 +24,7 @@ get_data <- function(
   
   d_type <- ml_obj[[paste0('data_', type)]]
   
-  bind_rows(
+  dplyr::bind_rows(
     train = d_type$train, 
     test  = d_type$test,  # is NULL if no split was done
     .id   = split_id
