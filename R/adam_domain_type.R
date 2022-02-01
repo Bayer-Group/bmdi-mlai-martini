@@ -55,7 +55,10 @@ adam_domain_type <- function(
     paste0( c(  
       "adegf", "adpc",
       "adlb", "advs", 
-      "adxb", "adxl", 
+      "adxb", "adxl",
+      "adfapr",
+      "adxkpa",
+      "adxksl",
       "admicro",
       "adtrr",
       "adxt",
