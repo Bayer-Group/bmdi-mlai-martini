@@ -13,21 +13,26 @@
 #' @param unit Defaults to NULL, will be guessed if not set (see Details).
 #' @param time Defaults to NULL, will be guessed if not set (see Details).
 #' @param value Defaults to NULL, will be guessed if not set (see Details).
+#' @param value_type NULL or character string 'numeric' or 'character'. Determines guessing of the value column (e.g. AVAL over AVALC by default).
+#' If NULL (default), the type will be guessed based on name of the sas file (if `file` is provided) or set to 'numeric'.
 #' @param filter character vector of filters to be applied to the bds data set. 
 #' Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL. 
-#' @param attach_data boolean. attach the imported raw data
-#' @param domain character string to be included in dictionary. automatically derived for standard adam data sets. If not set for `data` provided, dictionary entry will be 'custom'.
+#' @param attach_data boolean. Attach the imported raw data.
+#' @param domain character string to be included in dictionary. Automatically derived for standard ADaM data sets. If not set for `data` provided, dictionary entry will be 'custom'.
 #' 
 #' @details
 #' 
 #' Values for arguments `param`, `label`, `unit`, `time` and `value` will be guessed if not provided. 
+#' (Only available with usage of 'file'; for 'data' all columns have to be specified explicitly.)
 #' Guess will be the first of the following options that matches a column name (exact match).
 #' 
 #' \describe{
 #'   \item{`param`}{`PARAMCD`, `**TESTCD`, with `**` reflecting the two letter domain abbrevation (e.g. `LB`)}
 #'   \item{`label`}{substring of `param` with trailing `CD` removed}
 #'   \item{`time`}{`AVISIT`, `VISIT`}
-#'   \item{`value`}{`AVAL`, `**STRESN`, `**ORRES`, with `**` reflecting the two letter domain abbrevation}
+#'   \item{`value`}{`AVAL`, `**STRESN`, `**ORRES` for numeric values, 
+#'   `AVALC`, `**STRESC`, `**ORRES` for character values,
+#'    with `**` reflecting the two letter domain abbrevation}
 #'   \item{`unit`}{`AVALU`, `**STRESU`, `**ORRESU`, with `**` reflecting the two letter domain abbrevation}
 #' }
 #' 
@@ -60,6 +65,7 @@ adam_spec_bds <- function(
   unit        = NULL,
   time        = NULL, 
   value       = NULL,
+  value_type  = NULL,
   filter      = NULL,
   attach_data = FALSE,
   domain      = NULL
@@ -69,6 +75,13 @@ adam_spec_bds <- function(
   
   if (all(c(is.null(data), is.null(file)))){
     usethis::ui_stop(paste0('At least one of ', usethis::ui_code('data'), ' or ', usethis::ui_code('file'), ' need to be provided.\n'))
+  }
+  
+  if (!is.null(value_type) && !value_type %in% c("character", "numeric")){
+    usethis::ui_stop(paste0(
+      usethis::ui_code("value_type"), " needs to be either ",
+      usethis::ui_value("numeric"), " or ", usethis::ui_value("character"), ".\n"
+    ))
   }
   
   # collect column name parameters ####
@@ -136,19 +149,17 @@ adam_spec_bds <- function(
     
     # TODO move guessing candidates to adam_guess()
     
-    guess_value_num <- c('AVAL', 'AVALC',
-                         paste0(dom, c("STRESN", "STRESC", "ORRES")))
-    guess_value_cat <- c('AVALC', 'AVAL',
-                         paste0(dom, c("STRESC", "STRESN", "ORRES")))
-    
-    dom_cat <- c("TR", "EGF") #
-    
-    guess_value <- if(dom %in% dom_cat){
-      guess_value_cat
+    if (is.null(value_type) && dom %in% c("TR", "EGF")){
+      value_type <- "character"
     } else {
-      guess_value_num
+      value_type <- "numeric"
     }
     
+    guess_value <- list(
+      "numeric"   = c('AVAL',  paste0(dom, c("STRESN", "ORRES"))),
+      "character" = c('AVALC', paste0(dom, c("STRESC", "ORRES")))
+    )[[value_type]]
+
     guesses <- list(
       
       # candidates 'param'
