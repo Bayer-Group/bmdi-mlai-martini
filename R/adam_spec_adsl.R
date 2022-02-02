@@ -96,7 +96,7 @@
   dict <- labelled::var_label(adsl) %>% 
     tibble::enframe(name = 'param', value = 'label') %>% 
     dplyr::mutate(label  = purrr::map_chr(label, ~ .x[[1]])) %>% 
-    dplyr::mutate(source = 'adsl') %>% 
+    dplyr::mutate(source = 'SL') %>% 
     dplyr::mutate(type   = 'adsl')
   
    labs  <- dict$label
