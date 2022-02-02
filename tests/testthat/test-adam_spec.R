@@ -19,6 +19,10 @@ test_that("adam_spec", {
     c("adsl", "adlb")
   )
   
+  # TEST add_bds argument ####
   
+  ads_spec_add <- adam_spec(ads_path, add_bds = "adlb_miss")
+  
+  # TODO finish test (check list names?)
   
 })

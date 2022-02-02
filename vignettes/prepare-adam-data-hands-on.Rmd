@@ -299,6 +299,18 @@ Only selected files will be read in order to create a specification, so these pa
 
 An example for a reasonable exclusion of a data set would be e.g. a data set on biomarkers that were measured only for a small subpopulation (by default, data sets are combined using `inner_join()`, but it's a parameter to `build()`).
 
+`adam_spec()` will print a list of domains that are not processed automatically, which are the ones that are not included in the internal package library of domains and corresponding data types.
+
+You may use the `add_bds` argument of `adam_spec()` to force them being treated as bds data sets. For these added data sets, it is particularly important to check the automated column selection (in the resulting spec object) and adjust as needed using `adjust_spec()`.
+
+```{r}
+adam_spec(
+  path,
+  add_bds = 'adfapr'
+)
+```
+
+
 ***
 
 **Attach data**
@@ -314,6 +326,8 @@ ads_spec <- adam_spec(
   attach_data = TRUE
 )
 ```
+
+
 
 ***
 
