@@ -155,10 +155,16 @@ adam_spec_bds <- function(
       value_type <- "numeric"
     }
     
-    guess_value <- list(
+    guess_value_lst <- list(
       "numeric"   = c('AVAL',  paste0(dom, c("STRESN", "ORRES"))),
       "character" = c('AVALC', paste0(dom, c("STRESC", "ORRES")))
-    )[[value_type]]
+    )
+    
+    guess_value <- c(
+      guess_value_lst[[value_type]],
+      guess_value_lst[[which(! names(guess_value_lst) %in% value_type)]]
+    )
+    
 
     guesses <- list(
       
