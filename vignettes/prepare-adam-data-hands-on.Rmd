@@ -290,6 +290,19 @@ ads_spec <- adam_spec(
 )
 ```
 
+Filters will not be applied to a data set, if it would raise an error. 
+Use `\link{filter_info}()` to get an overview of applied and discarded filters:
+
+```{r info_filter}
+info_filter(ads_spec)
+info_filter(
+  ads_spec,
+  filter = filters
+)
+```
+
+
+
 ***
 
 **Domain selection**
