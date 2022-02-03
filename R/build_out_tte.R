@@ -82,7 +82,7 @@ build_out_tte <- function(
     {if(!is.null(columns_used$status)){
       dplyr::mutate(., .status =     !!rlang::sym(columns_used$status))
     }else{
-      dplyr::mutate(., .status = 1 - !!rlang::sym(columns_used$censor))
+      dplyr::mutate(., .status = dplyr::if_else(!!rlang::sym(columns_used$censor) == 0), 1, 0)
     }} %>% 
     dplyr::rename(
       .id   = !!rlang::sym(columns_used$id),
