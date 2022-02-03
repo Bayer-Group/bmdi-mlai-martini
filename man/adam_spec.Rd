@@ -12,7 +12,8 @@ adam_spec(
   pre_study = FALSE,
   attach_data = FALSE,
   id = "SUBJID",
-  trt = "TRT01A"
+  trt = "TRT01A",
+  add_bds = NULL
 )
 }
 \arguments{
@@ -32,6 +33,8 @@ excluded from the list of specifications (e.g. \code{'adqseq5d')}). Defaults to 
 \item{attach_data}{boolean indicating whether the imported raw data is included in the output. Defaults to FALSE.}
 
 \item{id, trt}{id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()} for details).}
+
+\item{add_bds}{character vector of domain names of type bds that are not included in the package library of ADaM types (yet), but should be processed as per usual, e.g. 'adfapr'}
 }
 \value{
 \code{adam_spec()} returns named list of specifications that can be passed to the \code{\link{build}()} function.
