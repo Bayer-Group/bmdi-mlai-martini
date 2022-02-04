@@ -233,6 +233,16 @@ d_ml <- path %>%
 
 ```
 
+
+Pay attention to the output in the console. 
+If applicable, the following information will be provided
+
+* `adam_spec()` 
+  * data sets that could not be processed automatically
+  * assessment of the filter applicability 
+* `build()`  
+  * bds-type data sets with duplicate measures will be reported. Duplicates _may_ be indicative of missing filters (e.g. ABLFL == 1), thus resulting in incorrect data preparation. Check back with the information on filters applied to the respective data set. 
+
 ***
 
 # `adam_spec()`
@@ -250,11 +260,31 @@ Among other steps, `adam_spec()` will
 In general, this automatically created specification may be used with the subsequent workflow, however, in practice, it will be modified by the user to match specific requirements.
 
 
+Printing the spec object to the console will provide information on data set size, derived numbers of columns and subjects (after filter application).
+
 ```{r adam_spec, eval = TRUE}
 ads_spec <- adam_spec(path)
+ads_spec
+```
 
+Make yourself familiar with the list structure and contained information of the `spec` object:
+
+```{r adam_spec list, eval = TRUE}
 ads_spec %>% str(max.level = 1)
 ```
+
+**adsl column selection**
+
+In contrast to occds and bds type data, an automated column selection is required for the wide format adsl data sets.  
+
+Reasons for column exclusion are documented in the `drop_list` entry of the corresponding spec entry. Exclusion criteria include, but are not limited to datetime/duration-related columns or analysis set flags.
+
+```{r}
+ads_spec$adsl$drop_list %>% names()
+```
+
+
+
 
 ***
 
@@ -266,12 +296,18 @@ The `filter` argument takes a character vector of valid filter expressions. A fi
 
 The `pre_study` argument allows to conveniently reduce occurrence data sets (e.g. medical history records) to data that is available at baseline based on the study day.
 
+Filters have to be adjusted for the data at hand, find below a list of exemplary filters:
+
 ```{r}
 filters  <- c(
+  
   # use only baseline data
   "AVISIT == 'Baseline'",
+  "ABLFL == 'Y'",
+  
   # no baseline visit in advs domain, use visit 1 instead
   "AVISIT == 'Visit 1' & ADSNAME == 'ADVS'",
+  
   # ITT population
   "ITTFL == 'Y'",
   "!is.na(TRT01A)",
@@ -280,7 +316,9 @@ filters  <- c(
   "PARAMCD != 'BPDIA'",
   
   # some MH and CM entries have a Y/N coding (but not all)
-  "MHOCCUR != 'N'"
+  "MHOCCUR == 'Y' | is.na(MHOCCUR)",
+  "CMOCCUR == 'Y' | is.na(CMOCCUR)"
+
 )
 
 ads_spec <- adam_spec(
@@ -289,6 +327,8 @@ ads_spec <- adam_spec(
   pre_study = TRUE
 )
 ```
+
+
 
 Filters will not be applied to a data set, if it would raise an error. 
 Use `\link{filter_info}()` to get an overview of applied and discarded filters:
@@ -300,7 +340,23 @@ info_filter(
   filter = filters
 )
 ```
+***
 
+**`add_bds`**
+
+`adam_spec()` will print a list of domains that are not processed automatically, which are the ones that are not included in the internal package library of domains and corresponding data types.
+
+You may use the `add_bds` argument of `adam_spec()` to force them being treated as bds data sets. For these added data sets, it is particularly important to check the automated column selection (in the resulting spec object) and adjust as needed using `adjust_spec()`.
+
+```{r, eval = FALSE}
+ads_spec <- adam_spec(
+  path,
+  add_bds = 'adfapr'
+)
+
+# print to check the key column definition
+ads_spec
+```
 
 
 ***
@@ -311,17 +367,6 @@ Use `keep/drop` arguments in `adam_spec()` to select/deselect particular data se
 Only selected files will be read in order to create a specification, so these parameters directly impact run time.
 
 An example for a reasonable exclusion of a data set would be e.g. a data set on biomarkers that were measured only for a small subpopulation (by default, data sets are combined using `inner_join()`, but it's a parameter to `build()`).
-
-`adam_spec()` will print a list of domains that are not processed automatically, which are the ones that are not included in the internal package library of domains and corresponding data types.
-
-You may use the `add_bds` argument of `adam_spec()` to force them being treated as bds data sets. For these added data sets, it is particularly important to check the automated column selection (in the resulting spec object) and adjust as needed using `adjust_spec()`.
-
-```{r}
-adam_spec(
-  path,
-  add_bds = 'adfapr'
-)
-```
 
 
 ***
