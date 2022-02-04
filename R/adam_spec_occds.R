@@ -166,7 +166,9 @@ adam_spec_occds <- function(
   
   data_info <- list(
     nsubj = occds %>% 
-      dplyr::filter(!!! rlang::parse_exprs(actual_filter)) %>% 
+      {if(length(actual_filter) > 0){ 
+        dplyr::filter(., !!! rlang::parse_exprs(actual_filter))
+      }else{.}} %>% 
       dplyr::select(tidyselect::all_of(id)) %>% 
       dplyr::n_distinct(),
     ncol  = dict %>% nrow()
