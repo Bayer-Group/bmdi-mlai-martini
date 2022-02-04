@@ -8,7 +8,7 @@ print.martini_spec <- function(x){
     "\n"
   )
   
-  txt_sum <- c("name", "type", "size", "nsubj", "nvar") %>% 
+  txt_sum <- c("name", "type", "size", "nsubj", "ncol") %>% 
     rlang::set_names() %>% 
     tibble::as_tibble_row() %>% 
     dplyr::bind_rows(
@@ -22,7 +22,7 @@ print.martini_spec <- function(x){
             NA_character_, 
             .x$size %>% fs::as_fs_bytes() %>% as.character()),
           nsubj = as.character(.x$data_info$nsubj),
-          nvar  = as.character(.x$data_info$nvar)
+          ncol  = as.character(.x$data_info$ncol)
         )
       })
     ) %>% 
@@ -31,7 +31,7 @@ print.martini_spec <- function(x){
       ~crayon::col_align(.x, align = 'left' , width = max(nchar(.x), na.rm = TRUE))
     ) %>% 
     dplyr::mutate_at(
-      c('size', 'nsubj', 'nvar'),
+      c('size', 'nsubj', 'ncol'),
       ~crayon::col_align(.x, align = 'right', width = max(nchar(.x), na.rm = TRUE))
     ) %>% 
     

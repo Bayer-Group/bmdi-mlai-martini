@@ -34,7 +34,7 @@
 #' A list containing the following 
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 #' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
-#' \item{`data_info`}{a list containing the number of subjects `nsubj` and variables `nvar` in the data after applying `filter`}
+#' \item{`data_info`}{a list containing the number of subjects `nsubj` and columns `ncol` in the data after applying `filter`}
 #' \item{`type`}{character string \code{adsl}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
 #' \item{`filter`}{subset of \code{filter} that yields non-empty result when applied individually (using \code{\link{check_filter}()}}
 #' \item{`select`}{the suggested list of columns to select from the data set} 
@@ -402,7 +402,7 @@
       dplyr::filter(!!! rlang::parse_exprs(actual_filter)) %>% 
       dplyr::select(tidyselect::all_of(id)) %>% 
       dplyr::n_distinct(),
-    nvar  = dict %>% 
+    ncol  = dict %>% 
       filter(selected) %>% 
       nrow()
   )
