@@ -18,6 +18,7 @@
 #' @param attach_data boolean indicating whether the imported raw data is included in the output. Defaults to FALSE.
 #' @param id,trt id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()} for details).
 #' @param pre_study boolean. Include only pre-study events from occurrence data sets (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.
+#' @param add_bds character vector of domain names of type bds that are not included in the package library of ADaM types (yet), but should be processed as per usual, e.g. 'adfapr' 
 #' 
 #' @details 
 #' \code{adam_spec()} matches file names in the given path against an internal library
@@ -50,12 +51,34 @@ adam_spec <- function(
   pre_study   = FALSE,
   attach_data = FALSE,
   id          = "SUBJID",
-  trt         = "TRT01A"
+  trt         = "TRT01A",
+  add_bds     = NULL 
 ){
   
+  
   # identify type for selected files in path (adsl/bds/occds) #####
-  file_info <- adam_domain_type(path, keep, drop) %>% 
+  file_info <- adam_domain_type(path, keep, drop, quiet = FALSE) %>% 
+    {
+      if(!is.null(add_bds)){ 
+        dplyr::mutate(., type = dplyr::case_when(
+          domain %in% add_bds ~ "bds",
+          TRUE ~ type
+        ))
+      }else{.} 
+    } %>%    
     dplyr::filter(type != "none")
+  
+  if(!is.null(add_bds) && any(!add_bds %in% file_info$domain)){
+    
+    usethis::ui_oops(paste0(
+      '\nThe following domain(s) specified in ', '`add_bds`',
+      ' were not found in ', '`path`', ':\n  ',
+      paste(setdiff(add_bds, file_info$domain), collapse = ', ') %>% 
+        crayon::bold() %>%  
+        crayon::blue()
+    ))
+  }
+  
   
   spec <- list()
   
@@ -112,6 +135,12 @@ adam_spec <- function(
       )
     
   }
+  
+  # filter messages ####
+  
+  info_filter(spec, filter = filter)
+  
+  # output ####
   
   class(spec) <- c("martini_spec", class(spec))
   

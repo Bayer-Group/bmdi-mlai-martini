@@ -6,7 +6,7 @@
 #' @param path ads path to the file of interest
 #' @param keep only keep the domains provided, e.g. \code{keep = 'adsl'}
 #' @param drop exclude the domains provided, e.g. \code{drop = 'adxb'} 
-#' @param quiet whether to suppress printing info on unknown domains to the console, defaults to \code{FALSE}
+#' @param quiet whether to suppress printing info on unknown domains to the console, defaults to \code{TRUE}
 #' 
 #' @details
 #' 
@@ -43,7 +43,7 @@ adam_domain_type <- function(
   path  = NULL , 
   keep  = NULL, 
   drop  = NULL,
-  quiet = FALSE
+  quiet = TRUE
   ){
   
   # define look-up table ####
@@ -157,7 +157,7 @@ adam_domain_type <- function(
       usethis::ui_stop("No files to process. Please check your file selection (keep/drop).")
     }
     
-    if(all(file_info$type == "none")){
+    if(all(file_info$type == "none") && !quiet){
       usethis::ui_stop("The data type is unknown for all files in the given file selection.")
     }
       
@@ -167,16 +167,25 @@ adam_domain_type <- function(
       dplyr::pull(domain)
       
     if(length(doms_ignored) > 0 && !quiet){
+      cat('\n')
       usethis::ui_info( paste0(
-        crayon::silver('The following domains were not processed as they are currently not in the library: \n\t'), 
-        crayon::blue(paste(doms_ignored, collapse = ', ')),
-        crayon::silver( '\nYou can use the adam_spec_*() functions as appropriate.\n\n'))
-      )
+        crayon::silver(
+          'The following domains were not processed as they are currently not in the library: \n  '
+        ), 
+        crayon::blue(paste(doms_ignored, collapse = ', ')) %>% crayon::bold(),
+        crayon::silver(sep = '',
+          '\nYou may consider using the ', usethis::ui_code('add_bds'),
+          ' argument in ', usethis::ui_code('adam_spec()'),
+          ' to add bds-type data.\n'
+        )
+      ))
     }
       
     attr(file_info, 'unknown_domains') <- doms_ignored
       
-    file_info %>% dplyr::relocate(file, .after = tidyselect::last_col())
+    file_info %>% 
+      dplyr::relocate(file, .after = tidyselect::last_col()) %>% 
+      dplyr::arrange(domain)
   }   
 }
 

@@ -4,7 +4,7 @@
 \alias{adam_domain_type}
 \title{Identify the data set type of ads files by file name}
 \usage{
-adam_domain_type(path = NULL, keep = NULL, drop = NULL, quiet = FALSE)
+adam_domain_type(path = NULL, keep = NULL, drop = NULL, quiet = TRUE)
 }
 \arguments{
 \item{path}{ads path to the file of interest}
@@ -13,7 +13,7 @@ adam_domain_type(path = NULL, keep = NULL, drop = NULL, quiet = FALSE)
 
 \item{drop}{exclude the domains provided, e.g. \code{drop = 'adxb'}}
 
-\item{quiet}{whether to suppress printing info on unknown domains to the console, defaults to \code{FALSE}}
+\item{quiet}{whether to suppress printing info on unknown domains to the console, defaults to \code{TRUE}}
 }
 \value{
 A tibble with one row for each matched \code{.sas7bdat} file in the specified folder and the following columns

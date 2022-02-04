@@ -15,5 +15,6 @@ utils::globalVariables(c(
   "any_na", "aval", "min_aval", "n_dist", "paramcd", "skew",
   "RANDDT", 'RANDNO',
   ".strata", "number",
-  "new_name", "old_name", "n"
+  "new_name", "old_name", "n",
+  "txt"
 ))

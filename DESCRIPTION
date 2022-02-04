@@ -1,7 +1,7 @@
 Package: martini
 Type: Package
 Title: BMDI MLAI pipeline - Prepare Module
-Version: 0.2.2
+Version: 0.3
 Authors@R: c(
     person("Ahrens", "Maike", 
       email   = "maike.ahrens.ext@bayer.com", 
@@ -42,13 +42,13 @@ Imports:
     e1071,
     rsample,
     readr,
-    MASS,
-    lifecycle,
     fs
 Suggests:
     knitr,
     rmarkdown,
     here,
+    lifecycle,
+    MASS,
     testthat
 VignetteBuilder: knitr
 BugReports: https://by-gitlab.de.bayer.cnb/EQYKG/batcave/-/issues

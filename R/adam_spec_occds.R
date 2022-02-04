@@ -21,6 +21,7 @@
 #' A list containing the following 
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 #' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
+#' \item{`data_info`}{a list containing the number of subjects `nsubj` and columns `ncol` in the data after applying `filter`}
 #' \item{`type`}{character string \code{occds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
 #' \item{`filter`}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}())}}
 #' \item{`id`}{passing unchanged input}  
@@ -161,19 +162,32 @@ adam_spec_occds <- function(
     }
   }
   
+  # create data info ####
+  
+  data_info <- list(
+    nsubj = occds %>% 
+      {if(length(actual_filter) > 0){ 
+        dplyr::filter(., !!! rlang::parse_exprs(actual_filter))
+      }else{.}} %>% 
+      dplyr::select(tidyselect::all_of(id)) %>% 
+      dplyr::n_distinct(),
+    ncol  = dict %>% nrow()
+  )
+  
   # output ####
   
   out <- list(
-    file    = file,
-    md5     = md5,
-    size    = size, 
-    data    = NULL,
-    type    = "occds",
-    id      = id,
-    filter  = actual_filter,
-    count   = count,
-    dict    = dict,
-    spec_id = domain
+    file      = file,
+    md5       = md5,
+    size      = size, 
+    data      = NULL,
+    data_info = data_info,
+    type      = "occds",
+    id        = id,
+    filter    = actual_filter,
+    count     = count,
+    dict      = dict,
+    spec_id   = domain
   ) %>% 
     append(
       col_select %>% as.list()

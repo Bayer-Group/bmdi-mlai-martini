@@ -148,7 +148,7 @@ prepare_ml_outcome <- function(
       level_order <- intersect(level_order, outcome_level)
       if (length(level_order) > 0){
         outcome <- outcome %>% 
-          dplyr::mutate_at(".out", ~ fct_relevel(., level_order))
+          dplyr::mutate_at(".out", ~ forcats::fct_relevel(., level_order))
       }
     }
     

@@ -13,6 +13,7 @@ adam_spec_bds(
   unit = NULL,
   time = NULL,
   value = NULL,
+  value_type = NULL,
   filter = NULL,
   attach_data = FALSE,
   domain = NULL
@@ -35,17 +36,21 @@ adam_spec_bds(
 
 \item{value}{Defaults to NULL, will be guessed if not set (see Details).}
 
+\item{value_type}{NULL or character string 'numeric' or 'character'. Determines guessing of the value column (e.g. AVAL over AVALC by default).
+If NULL (default), the type will be guessed based on name of the sas file (if \code{file} is provided) or set to 'numeric'.}
+
 \item{filter}{character vector of filters to be applied to the bds data set.
 Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL.}
 
-\item{attach_data}{boolean. attach the imported raw data}
+\item{attach_data}{boolean. Attach the imported raw data.}
 
-\item{domain}{character string to be included in dictionary. automatically derived for standard adam data sets. If not set for \code{data} provided, dictionary entry will be 'custom'.}
+\item{domain}{character string to be included in dictionary. Automatically derived for standard ADaM data sets. If not set for \code{data} provided, dictionary entry will be 'custom'.}
 }
 \value{
 A list containing the following
 \item{\code{file}, \code{md5}}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 \item{\code{data}}{the raw data set if \code{attach_data}, NULL otherwise}
+\item{\code{data_info}}{a list containing the number of subjects \code{nsubj} and columns \code{ncol} in the data after applying \code{filter}}
 \item{\code{type}}{character string \code{bds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
 \item{\code{filter}}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}()})}
 \item{\code{id}}{passing unchanged input}
@@ -63,13 +68,16 @@ for reshaping the data into wide format and prepare the data filter.
 }
 \details{
 Values for arguments \code{param}, \code{label}, \code{unit}, \code{time} and \code{value} will be guessed if not provided.
+(Only available with usage of 'file'; for 'data' all columns have to be specified explicitly.)
 Guess will be the first of the following options that matches a column name (exact match).
 
 \describe{
 \item{\code{param}}{\code{PARAMCD}, \verb{**TESTCD}, with \verb{**} reflecting the two letter domain abbrevation (e.g. \code{LB})}
 \item{\code{label}}{substring of \code{param} with trailing \code{CD} removed}
 \item{\code{time}}{\code{AVISIT}, \code{VISIT}}
-\item{\code{value}}{\code{AVAL}, \verb{**STRESN}, \verb{**ORRES}, with \verb{**} reflecting the two letter domain abbrevation}
+\item{\code{value}}{\code{AVAL}, \verb{**STRESN}, \verb{**ORRES} for numeric values,
+\code{AVALC}, \verb{**STRESC}, \verb{**ORRES} for character values,
+with \verb{**} reflecting the two letter domain abbrevation}
 \item{\code{unit}}{\code{AVALU}, \verb{**STRESU}, \verb{**ORRESU}, with \verb{**} reflecting the two letter domain abbrevation}
 }
 

@@ -34,6 +34,7 @@
 #' A list containing the following 
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 #' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
+#' \item{`data_info`}{a list containing the number of subjects `nsubj` and columns `ncol` in the data after applying `filter`}
 #' \item{`type`}{character string \code{adsl}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
 #' \item{`filter`}{subset of \code{filter} that yields non-empty result when applied individually (using \code{\link{check_filter}()}}
 #' \item{`select`}{the suggested list of columns to select from the data set} 
@@ -394,14 +395,29 @@
   flag_table <- adsl %>% 
     dplyr::select(tidyselect::any_of(c(id, flags)))
   
+  # ... data info ####
+  
+  data_info <- list(
+    nsubj = adsl %>% 
+      {if(length(actual_filter) > 0){ 
+        dplyr::filter(., !!! rlang::parse_exprs(actual_filter))
+      }else{.}} %>% 
+      dplyr::select(tidyselect::all_of(id)) %>% 
+      dplyr::n_distinct(),
+    ncol  = dict %>% 
+      dplyr::filter(selected) %>% 
+      nrow()
+  )
+  
   # ... output object ####  
 
   out <- list(
-    file    = file,
-    md5     = md5,
-    size    = size, 
-    data    = NULL,
-    type    = "adsl",
+    file      = file,
+    md5       = md5,
+    size      = size, 
+    data      = NULL,
+    data_info = data_info,
+    type      = "adsl",
     
     filter        = actual_filter,
     select        = select_list,

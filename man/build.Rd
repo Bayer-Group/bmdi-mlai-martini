@@ -4,21 +4,10 @@
 \alias{build}
 \title{Build the feature matrix from various sources according to a specification object}
 \usage{
-build(spec, filter = NULL, keep = NULL, drop = NULL, join = dplyr::inner_join)
+build(spec, join = dplyr::inner_join)
 }
 \arguments{
 \item{spec}{a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)}
-
-\item{filter}{a character vector of conditions to be passed to \code{dplyr::filter()},
-e.g. regarding visits, treatment arms or parameters. Defaults to NULL. Only applied, if \code{spec} is not provided.}
-
-\item{keep}{character vector defining the subset of data sets in the given \code{path} to create
-the specification for (e.g. \code{c('adsl', 'advs'))}). If both \code{keep} and \code{drop} are specified,
-\code{keep} overrides \code{drop}. Defaults to NULL. Only applied, if \code{spec} is not provided.}
-
-\item{drop}{character vector defining a subset of data sets in the given \code{path} to
-be excluded from the list of specifications (e.g. \code{'adqseq5d')}). Defaults to NULL.
-Only applied, if \code{spec} is not provided.}
 
 \item{join}{either function to join data sets (e.g. \code{dplyr::full_join()} or a character (vector) giving the names
 of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}}
