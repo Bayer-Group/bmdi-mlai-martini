@@ -42,6 +42,7 @@
 #' A list containing the following 
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 #' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
+#' \item{`data_info`}{a list containing the number of subjects `nsubj` and variables `nvar` in the data after applying `filter`}
 #' \item{`type`}{character string \code{bds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
 #' \item{`filter`}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}()})}
 #' \item{`id`}{passing unchanged input}  
@@ -255,12 +256,22 @@ adam_spec_bds <- function(
   # remove bds data set label automatically created by haven::read_sas()
   attr(dict, 'label') <- NULL
  
+  # create data info ####
+  
+  data_info <- list(
+    nsubj = bds %>% 
+      dplyr::filter(!!! rlang::parse_exprs(actual_filter)) %>% 
+      dplyr::select(tidyselect::all_of(id)) %>% 
+      dplyr::n_distinct(),
+    nvar  = dict %>% nrow()
+  )
  
   # OUTPUT ####
  
   out <- list(
     file      = file,
     data      = NULL,
+    data_info = data_info,
     md5       = md5,
     size      = size, 
     type      = "bds",

@@ -8,28 +8,21 @@ print.martini_spec <- function(x){
     "\n"
   )
   
-  txt_sum <- c("name", "type", "size", "ncol") %>% 
+  txt_sum <- c("name", "type", "size", "nsubj", "nvar") %>% 
     rlang::set_names() %>% 
     tibble::as_tibble_row() %>% 
     dplyr::bind_rows(
       purrr::imap_dfr(x, ~{
         
-        # determine number of resulting COL number in wide data set by number of (selected) ROWS from dict
-        ncol <- .x$dict %>%  
-          {if('selected' %in% names(.)){
-            dplyr::filter(., selected)
-          }else{.} 
-          } %>% 
-          nrow()
-        
         tibble::tibble(
-          name = .y, 
-          type = .x$type,  
-          size = ifelse(
+          name  = .y, 
+          type  = .x$type,  
+          size  = ifelse(
             is.null(.x$size), 
             NA_character_, 
             .x$size %>% fs::as_fs_bytes() %>% as.character()),
-          ncol = as.character(ncol)
+          nsubj = as.character(.x$data_info$nsubj),
+          nvar  = as.character(.x$data_info$nvar)
         )
       })
     ) %>% 
@@ -38,7 +31,7 @@ print.martini_spec <- function(x){
       ~crayon::col_align(.x, align = 'left' , width = max(nchar(.x), na.rm = TRUE))
     ) %>% 
     dplyr::mutate_at(
-      c('size', 'ncol'),
+      c('size', 'nsubj', 'nvar'),
       ~crayon::col_align(.x, align = 'right', width = max(nchar(.x), na.rm = TRUE))
     ) %>% 
     
