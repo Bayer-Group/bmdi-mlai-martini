@@ -55,6 +55,7 @@ adam_spec <- function(
   add_bds     = NULL 
 ){
   
+  
   # identify type for selected files in path (adsl/bds/occds) #####
   file_info <- adam_domain_type(path, keep, drop, quiet = FALSE) %>% 
     {
@@ -66,6 +67,18 @@ adam_spec <- function(
       }else{.} 
     } %>%    
     dplyr::filter(type != "none")
+  
+  if(!is.null(add_bds) && any(!add_bds %in% file_info$domain)){
+    
+    usethis::ui_oops(paste0(
+      '\nThe following domain(s) specified in ', '`add_bds`',
+      ' were not found in ', '`path`', ':\n  ',
+      paste(setdiff(add_bds, file_info$domain), collapse = ', ') %>% 
+        crayon::bold() %>%  
+        crayon::blue()
+    ))
+  }
+  
   
   spec <- list()
   

@@ -5,7 +5,7 @@ test_that("adam_spec", {
   ads_path <- test_path('sas/')
   
   # create prepare specification
-  ads_spec <- martini::adam_spec(ads_path)
+  ads_spec <- adam_spec(ads_path)
   
   # TEST object structure ####
   
@@ -23,6 +23,9 @@ test_that("adam_spec", {
   
   ads_spec_add <- adam_spec(ads_path, add_bds = "adlb_miss")
   
-  # TODO finish test (check list names?)
-  
+  testthat::expect_setequal(
+    names(ads_spec) %>% c("adlb_miss"),
+    names(ads_spec_add)
+  )
+
 })
