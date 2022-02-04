@@ -123,6 +123,12 @@ adam_spec <- function(
     
   }
   
+  # filter messages ####
+  
+  info_filter(spec, filter = filter)
+  
+  # output ####
+  
   class(spec) <- c("martini_spec", class(spec))
   
   spec

@@ -32,22 +32,20 @@ info_filter <- function(
     missing <- filter %>% setdiff(applied %>% unlist() %>% unique())
   }    
   
-  # output ####
+  # build messages ####
   
-  print_msg <- ''
+  msg_discarded <- NULL
+  msg_applied   <- NULL
+  
   # discarded filters
   if(!is.null(filter)){
     if(length(missing)>0){
-      print_msg <- paste(print_msg, 
-        paste0(
-         '\nThe following filter(s) could not be applied, please double check \n  - ',
-         paste(missing, collapse = '\n  - '),
-         '\n'
-        )
-      )
-    }else{
-      print_msg <- paste(print_msg, 
-         '\nEach filter was applied at least once.\n'
+      msg_discarded <- paste0(
+        crayon::blue('Please double check!') %>% crayon::bold(),
+        '\n',
+        'The following filter(s) could not be applied to any of the data sets',
+        '\n  - ', paste(missing, collapse = '\n  - '),
+        '\n\n'
       )
     }
   }
@@ -58,20 +56,39 @@ info_filter <- function(
       name   = names(applied), 
       filter = purrr::map_chr(applied, ~paste(.x, collapse = ', '))
     ) %>%  
+      mutate(filter = case_when(
+        filter == '' ~  '<none>',
+        TRUE ~ filter)
+      ) %>% 
       mutate_at('name', ~crayon::col_align(paste0(.x, ':'), width = max(nchar(.x))+1)) %>% 
       unite(txt, name, filter, sep = ' ') %>% 
-      pull(txt) %>%  paste(collapse = '\n  - ')
+      pull(txt) %>% paste(collapse = '\n  - ')
     
-    print_msg <- paste(print_msg,
-      paste0(
-        '\nThe following filter(s) could be applied \n  - ',
-        txt_applied,
-        '\n\n'
-      )
+    msg_applied <- paste0(
+      '\nThe following filter(s) could be applied \n  - ',
+      txt_applied,
+      '\n\n'
     )
   }
   
-  usethis::ui_info(print_msg)
+  # output messages ####
+  
+  if(!is.null(msg_discarded)){
+    
+    usethis::ui_oops(msg_discarded)
+    
+  } else if (!is.null(filter) && is.null(msg_discarded)){
+    
+    usethis::ui_done('\nEach filter was applied at least once.\n')
+    
+  }
+  
+  if(!is.null(msg_applied)){
+    
+    usethis::ui_done(msg_applied)
+    
+  }
+
   
   
   # any_error? 
