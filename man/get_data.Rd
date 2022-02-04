@@ -7,11 +7,11 @@
 get_data(ml_obj, type = c("prep", "raw"), split_id = NULL)
 }
 \arguments{
+\item{ml_obj}{ml object as returned by \code{\link{prepare_ml}()}}
+
 \item{type}{either 'prep' or 'raw', determining which state of the data should be extracted. Defaults to \code{prep}.}
 
 \item{split_id}{Add column indicating split origin (train/test). Omitted if NULL (default)}
-
-\item{dml}{ml object as returned by \code{\link{prepare_ml}()}}
 }
 \value{
 result of \code{dplyr::bind_rows()} of data sets in \code{ml_obj} of the chosen type, either with or without an added \code{train_test} column.

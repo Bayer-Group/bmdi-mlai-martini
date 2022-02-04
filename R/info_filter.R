@@ -26,7 +26,7 @@ info_filter <- function(
   
   
   # compute ####
-  applied <- spec %>% map('filter')
+  applied <- spec %>% purrr::map('filter')
   
   if(!is.null(filter)){ 
     missing <- filter %>% setdiff(applied %>% unlist() %>% unique())
@@ -56,13 +56,13 @@ info_filter <- function(
       name   = names(applied), 
       filter = purrr::map_chr(applied, ~paste(.x, collapse = ', '))
     ) %>%  
-      mutate(filter = case_when(
+      dplyr::mutate(filter = dplyr::case_when(
         filter == '' ~  '<none>',
         TRUE ~ filter)
       ) %>% 
-      mutate_at('name', ~crayon::col_align(paste0(.x, ':'), width = max(nchar(.x))+1)) %>% 
-      unite(txt, name, filter, sep = ' ') %>% 
-      pull(txt) %>% paste(collapse = '\n  - ')
+      dplyr::mutate_at('name', ~crayon::col_align(paste0(.x, ':'), width = max(nchar(.x))+1)) %>% 
+      tidyr::unite(txt, name, filter, sep = ' ') %>% 
+      dplyr::pull(txt) %>% paste(collapse = '\n  - ')
     
     msg_applied <- paste0(
       '\nThe following filter(s) could be applied \n  - ',

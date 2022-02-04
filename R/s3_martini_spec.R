@@ -1,6 +1,6 @@
 #' @exportS3Method 
 
-print.martini_spec <- function(x){
+print.martini_spec <- function(x, ...){
   
   txt_print <- c(
     "\n",
