@@ -58,7 +58,7 @@ info_filter <- function(
     ) %>%  
       dplyr::mutate(filter = dplyr::case_when(
         filter == '' ~  '<none>',
-        TRUE ~ filter)
+        TRUE ~ stringr::str_squish(filter))
       ) %>% 
       dplyr::mutate_at('name', ~crayon::col_align(paste0(.x, ':'), width = max(nchar(.x))+1)) %>% 
       tidyr::unite(txt, name, filter, sep = ' ') %>% 
