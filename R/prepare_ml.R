@@ -17,7 +17,8 @@
 #' @param outcome_name if NULL (default), the first column that's not `.id` is chosen for outcome_name
 #' and the outcome_type is guessed to be either classification or regression.
 #' One may also provide a single character giving the name of the outcome column OR 
-#' a vector of length two giving the column names for the 'time' and 'status' data in survival analysis,
+#' a named vector of length two giving the column names for the 'time' and 'status' data in survival analysis, i.e. 
+#' `c(.time = "<time-coln>", .status = "<status-coln>")`,
 #' where `.time` is numeric and `.status` is binary with 0 coding for censored, and 1 coding for event.
 #' Currently, only right-censoring is supported. Please note, that survival will never be guessed.
 #' @param level_order level order for a classification outcome. Default \code{NULL} keeps the natural order (only used for classification).
