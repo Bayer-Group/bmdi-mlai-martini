@@ -195,7 +195,7 @@ prepare_ml <- function(
     usethis::ui_info(paste0(
       "Based on the outcome distribution, ", length(id_outlier),
       ifelse(length(id_outlier)>1, " observations were "," observation was "),
-      "identified as outlier and removed from the outcome data prior to data splitting and preprocessing.\n"
+      "identified as outlier and removed from the outcome data prior to data splitting and preprocessing.\n\n"
     ))
   }
   
@@ -203,7 +203,7 @@ prepare_ml <- function(
     usethis::ui_info(paste0(
       length(na_outcome),
       ifelse(length(na_outcome)>1, " observations were "," observation was "),
-      "removed from the outcome data prior to data splitting and preprocessing due to missingness.\n"
+      "removed from the outcome data prior to data splitting and preprocessing due to missingness.\n\n"
     ))
   }
   
