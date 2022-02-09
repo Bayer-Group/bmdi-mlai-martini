@@ -58,7 +58,7 @@ prepare_ml_outcome <- function(
     if(needs_guessing){
       usethis::ui_info( paste0(
         crayon::silver('The outcome object you provided has multiple options. The following option was chosen: \n'), # MARTINI chose: \n'), 
-        '\t' , crayon::magenta( outcome_name)     , '\n'
+        '  ' , crayon::magenta( outcome_name)     , '\n\n'
       ))
     } 
     
