@@ -39,7 +39,6 @@ Imports:
     haven,
     janitor,
     labelled,
-    e1071,
     rsample,
     readr,
     fs
