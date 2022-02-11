@@ -100,9 +100,9 @@
     dplyr::mutate(source = 'SL') %>% 
     dplyr::mutate(type   = 'adsl')
   
-   labs  <- dict$label
-   clmns <- dict$param
-   clmns_num <- {adsl %>%  dplyr::select_if(is.numeric) %>% names()}
+  labs  <- dict$label
+  clmns <- dict$param
+  clmns_num <- {adsl %>%  dplyr::select_if(is.numeric) %>% names()}
   
   # define black list (column names that are always excluded) ####
   black_list <- c(
@@ -216,14 +216,38 @@
     # check column is actually numeric
     intersect(clmns_num)
   
-  if(length(num_only > 0)){
-    lab_lev <- dplyr::bind_rows(
-      lab_lev,
-      tibble::tibble(
-        lab = num_only,
-        lev = num_only
-      )
+  if(length(num_only) > 0){
+    
+    # non-integer candidates 
+    no_integer <- adsl %>% 
+      dplyr::select_if( ~{readr::guess_parser(.x, guess_integer = TRUE) != 'integer'} ) %>% 
+      names() 
+      
+    # candidates with too many levels (potentially numeric values)
+    # TODO threshold as parameter?
+    thres_fct <- min(nrow(adsl)/2, 50)
+    
+    too_many_levels <- num_only %>% 
+      purrr::map_lgl(~{
+        adsl[[.x]] %>% dplyr::n_distinct() %>% {. > thres_fct}
+      }) %>% 
+      which() %>% 
+      num_only[.]
+    
+    num_only <- setdiff(
+      num_only, 
+      c(too_many_levels, no_integer)
     )
+    
+    if(length(num_only) > 0){
+      lab_lev <- dplyr::bind_rows(
+        lab_lev,
+        tibble::tibble(
+          lab = num_only,
+          lev = num_only
+        )
+      )
+    }
   }
   
   # create list of factor levels
@@ -288,7 +312,7 @@
 
   if("RANDDT" %in% colnames(adsl)){
     # also check it's not constant (e.g. all NA in IA)
-    if(adsl %>%  dplyr::pull(RANDDT) %>% dplyr::n_distinct() %>%  {.>1}){
+    if(adsl %>%  dplyr::pull(RANDDT) %>% dplyr::n_distinct() %>% {.>1}){
 
     adsl_cor_randdt <- adsl %>%
       dplyr::select(-tidyselect::all_of(all_FL)) %>% 
