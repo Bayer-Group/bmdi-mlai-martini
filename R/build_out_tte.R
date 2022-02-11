@@ -29,6 +29,10 @@
 #' A tibble with column `.id` and either an additional character column `.out` for the binarized version 
 #' or with the addition of the pair `.time` and `.status` for tte outcomes.
 #' 
+#' Observations with missing values in either `.time` or `.status` will be removed. 
+#' In this case, a notification with the number of removed observations will be printed to the console.
+#' 
+#' 
 #' Note that sample sizes may differ for binarization and tte outcome, as subjects are dropped if the observed time is censored and below `cut`.
 #' 
 #' @export
@@ -75,9 +79,8 @@ build_out_tte <- function(
   # ... columns ####
   columns_used <- purrr::list_modify(columns_used, !!!columns)
   
-  # OUTPUT  ####
-  # ... general prep ####
-  data %>% 
+  # filter and prepare tte data ####
+  data_prep <- data %>% 
     dplyr::filter(!!! rlang::parse_exprs(filter)) %>% 
     {if(!is.null(columns_used$status)){
       dplyr::mutate(., .status =     !!rlang::sym(columns_used$status))
@@ -87,8 +90,23 @@ build_out_tte <- function(
     dplyr::rename(
       .id   = !!rlang::sym(columns_used$id),
       .time = !!rlang::sym(columns_used$time)
-    ) %>% 
-
+    )
+  
+  id_na <- data_prep %>% 
+    dplyr::filter(is.na(.time) | is.na(.status)) %>% 
+    dplyr::pull(.id)
+  
+  if (length(id_na) > 0){
+    
+    usethis::ui_info(paste0(
+      length(id_na), " rows were removed due to missings.\n"
+    ))
+    
+  }
+  
+  # OUTPUT ####
+  out <- data_prep %>% 
+    dplyr::filter(!is.na(.time) & !is.na(.status)) %>% 
     # ... binarization (optional) ####
     { if(!is.null(cut)){ 
         dplyr::mutate(.,
@@ -96,7 +114,8 @@ build_out_tte <- function(
             # censored within cut -> drop
             .time <= cut & .status == 0 ~ NA_character_,
             .time <= cut & .status == 1 ~ paste0("event",    " in first ", ifelse(cut == 1, '', cut), " ", unit, "(s)"),
-            .time >  cut                ~ paste0("no event", " in first ", ifelse(cut == 1, '', cut), " ", unit, "(s)")
+            .time >  cut                ~ paste0("no event", " in first ", ifelse(cut == 1, '', cut), " ", unit, "(s)"),
+            TRUE                        ~ NA_character_
           )) %>% 
         dplyr::filter(!is.na(.out)) %>% 
         dplyr::select(-.time, -.status)
@@ -114,6 +133,8 @@ build_out_tte <- function(
       ),
       .strict = FALSE
     )
+  
+  out
   
 }
 
