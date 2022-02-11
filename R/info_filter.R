@@ -37,9 +37,13 @@ info_filter <- function(
   msg_discarded <- NULL
   msg_applied   <- NULL
   
+  plane <- list()
+  
   # discarded filters
   if(!is.null(filter)){
     if(length(missing)>0){
+      tibble_discarded <- as_tibble(missing)
+      
       msg_discarded <- paste0(
         crayon::blue('Please double check!') %>% crayon::bold(),
         '\n',
@@ -48,18 +52,22 @@ info_filter <- function(
         '\n\n'
       )
     }
+  }else{
+    tibble_discarded <- NULL
   }
   
   # applied filters
   if(length(applied %>% unlist() %>% unique()) > 0){ 
-    txt_applied <- tibble::tibble(
+    tibble_applied <- tibble::tibble(
       name   = names(applied), 
       filter = purrr::map_chr(applied, ~paste(.x, collapse = ', '))
     ) %>%  
       dplyr::mutate(filter = dplyr::case_when(
         filter == '' ~  '<none>',
         TRUE ~ stringr::str_squish(filter))
-      ) %>% 
+      ) 
+    
+    txt_applied <- tibble_applied %>% 
       dplyr::mutate_at('name', ~crayon::col_align(paste0(.x, ':'), width = max(nchar(.x))+1)) %>% 
       tidyr::unite(txt, name, filter, sep = ' ') %>% 
       dplyr::pull(txt) %>% paste(collapse = '\n  - ')
@@ -69,6 +77,9 @@ info_filter <- function(
       txt_applied,
       '\n\n'
     )
+    
+  }else{
+    tibble_applied <- NULL
   }
   
   # output messages ####
@@ -89,7 +100,15 @@ info_filter <- function(
     
   }
 
+  #msgs <- paste(msg_applied, msg_discarded, collapse = '\n')
   
+  
+  plane <- list(
+    discarded = tibble_discarded,
+    applied   = tibble_applied
+  )
+  
+  return(invisible(plane))
   
   # any_error? 
   #error_lgl <- individual %>%  map('is_error') %>%  unlist()
