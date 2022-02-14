@@ -118,8 +118,18 @@ print.martini_spec <- function(x, ...){
   
   purrr::walk(txt_print, cat)
   
-  if(!is.null(attr(x, 'filter'))) cat(crayon::silver("\n  Filter information\n"))
-  info_filter(x, attr(x, 'filter'))
+  res_info <- suppressMessages(info_filter(x, attr(x, 'filter')))
+  
+  if(res_info %>% as.character() %>% nchar() %>% {. > 0}){
+    cat(crayon::silver("\n  Filter information \n"))
+    
+    if(!is.null(attr(x, 'filter'))){
+      cat(crayon::silver("  (list of non-applicable filters based on filters passed to `adam_spec()`) \n"))
+    }  
+    info_filter(x, attr(x, 'filter'))
+  }  
+  
+ 
   
   
   
