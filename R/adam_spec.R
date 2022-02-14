@@ -137,13 +137,17 @@ adam_spec <- function(
   }
   
   # filter messages ####
-  # TODO remove filter info attr once moved to print method
-  res_info_fltr <- info_filter(spec, filter = filter)
+  info_filter(spec, filter = filter)
+  
+  
+  # remove filter info attr once moved to print method
+  #res_info_fltr <- info_filter(spec, filter = filter)
+  #attr(spec, 'info_filter') <-  res_info_fltr
   
   # output ####
   
   class(spec) <- c("martini_spec", class(spec))
-  attr(spec, 'info_filter') <-  res_info_fltr
+  attr(spec, 'filter') <- filter
   spec
   
 }

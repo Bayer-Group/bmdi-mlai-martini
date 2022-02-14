@@ -115,6 +115,12 @@ print.martini_spec <- function(x, ...){
     
   }
   
+  
   purrr::walk(txt_print, cat)
+  
+  if(!is.null(attr(x, 'filter'))) cat(crayon::silver("\n  Filter information\n"))
+  info_filter(x, attr(x, 'filter'))
+  
+  
   
 }

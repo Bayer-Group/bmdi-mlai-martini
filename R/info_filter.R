@@ -37,8 +37,6 @@ info_filter <- function(
   msg_discarded <- NULL
   msg_applied   <- NULL
   
-  plane <- list()
-  
   # discarded filters
   if(!is.null(filter)){
     if(length(missing)>0){
@@ -100,15 +98,7 @@ info_filter <- function(
     
   }
 
-  #msgs <- paste(msg_applied, msg_discarded, collapse = '\n')
-  
-  
-  plane <- list(
-    discarded = tibble_discarded,
-    applied   = tibble_applied
-  )
-  
-  return(invisible(plane))
+  #return(invisible(plane))
   
   # any_error? 
   #error_lgl <- individual %>%  map('is_error') %>%  unlist()
