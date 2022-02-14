@@ -13,7 +13,6 @@
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
-#' @export
 
 info_filter <- function(
   spec, 
@@ -88,7 +87,7 @@ info_filter <- function(
     
   } else if (!is.null(filter) && is.null(msg_discarded)){
     
-    usethis::ui_done('\nEach filter was applied at least once.\n')
+    usethis::ui_done('\nEach filter may be applied at least once.\n')
     
   }
   
