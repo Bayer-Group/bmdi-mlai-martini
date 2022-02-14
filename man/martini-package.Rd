@@ -6,9 +6,7 @@
 \alias{martini-package}
 \title{martini: BMDI MLAI pipeline - Prepare Module}
 \description{
-Prepare module of the BMDI MLAI pipeline. It contains functions to conveniently
-  transform a set of ADaM data sets (adsl, bds and occds) into a data object that can be used
-  for machine learning, e.g. using the BMDI MLAI pipeline.
+Prepare module of the BMDI MLAI pipeline. It contains functions to conveniently transform a set of ADaM data sets (adsl, bds and occds) into a data object that can be used for machine learning, e.g. using the BMDI MLAI pipeline.
 }
 \seealso{
 Useful links:
