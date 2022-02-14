@@ -24,6 +24,12 @@ adjust_spec <- function(
 ){
   
   mod <- list(...)
+  
+  if('filter' %in% names(mod)){
+    usethis::ui_todo(paste(
+      'Please specify all required filters in `adam_spec()` to ensure proper filter checks.'
+    ))
+  }
 
   if (!append){
     
