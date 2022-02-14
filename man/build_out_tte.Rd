@@ -34,6 +34,9 @@ build_out_tte(
 A tibble with column \code{.id} and either an additional character column \code{.out} for the binarized version
 or with the addition of the pair \code{.time} and \code{.status} for tte outcomes.
 
+Observations with missing values in either \code{.time} or \code{.status} will be removed.
+In this case, a notification with the number of removed observations will be printed to the console.
+
 Note that sample sizes may differ for binarization and tte outcome, as subjects are dropped if the observed time is censored and below \code{cut}.
 }
 \description{

@@ -77,7 +77,8 @@ check_filter <- function(
         )
       }
     }
-    # TODO: individual message filters
+    # TODO: individual message filters 
+    # currently only info they where not applied, without discrimination of yields-empty or throws-error)
     
     }else{
       
