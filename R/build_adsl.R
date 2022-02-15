@@ -10,8 +10,14 @@ build_adsl <- function(
   
   # check/import data ####
   
-  md5 <- tools::md5sum(spec$file) %>%  as.character()
-
+  md5 <- NULL
+  
+  if (!(is.na(spec$md5)||is.null(spec$md5))){
+    md5 <- spec$md5
+  } else if (!(is.na(spec$file)||is.null(spec$file))) {
+    md5 <- tools::md5sum(spec$file) %>% as.character()
+  }
+  
   if(is.null(spec$data)){
     
     # ... no data attached ####

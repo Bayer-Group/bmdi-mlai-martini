@@ -21,8 +21,13 @@ build_bds <- function(
     values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
   }
   
+  md5 <- NULL
   
-  md5 <- tools::md5sum(spec$file) %>% as.character()
+  if (!(is.na(spec$md5)||is.null(spec$md5))){
+    md5 <- spec$md5
+  } else if (!(is.na(spec$file)||is.null(spec$file))) {
+    md5 <- tools::md5sum(spec$file) %>% as.character()
+  }
   
   if(is.null(spec$data)){
     
