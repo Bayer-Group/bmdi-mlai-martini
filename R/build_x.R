@@ -19,7 +19,7 @@
 #' \item{\code{dict}}{a tibble listing the distinct combinations of columns
 #' \code{param}, \code{label}, \code{unit}, \code{time}, \code{column}, \code{source} (if provided).} 
 #' \item{\code{source}}{a list passing the \code{file} slot from the given \code{spec} that the created data set is based
-#'  upon along with the md5 checksum of this file}
+#'  upon along with the md5 checksum of this file if `file` was provided, NULL otherwise}
 #' \item{`flag_table`}{`build_adsl()` only. flag table is passed from `spec$flag_table` slot}
 #' }
 #' 
