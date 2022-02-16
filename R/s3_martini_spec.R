@@ -120,7 +120,7 @@ print.martini_spec <- function(x, ...){
   
   res_info <- info_filter(x, attr(x, 'filter'), quiet = TRUE)
 
-  if(res_info %>% map_lgl(~!is.null(.x)) %>% any()){
+  if(res_info %>% purrr::map_lgl(~!is.null(.x)) %>% any()){
     cat(crayon::silver("\n  Filter information \n"))
     
     if(!is.null(attr(x, 'filter'))){

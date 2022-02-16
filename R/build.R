@@ -120,7 +120,7 @@ build <- function(
     source_lst <- .x[["source"]]
     
     # file and md5 are NULL if spec was built from data instead of file
-    if(source_lst %>% map_lgl(is.null) %>% all()){
+    if(source_lst %>% purrr::map_lgl(is.null) %>% all()){
       source_tbl <- tibble(file = NA_character_, md5 = NA_character_)
     }else{
       source_tbl <- .x[["source"]] %>% tibble::as_tibble_row()
