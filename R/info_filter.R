@@ -103,12 +103,6 @@ info_filter <- function(
       
     }
   }
-  
-  if(!is.null(msg_applied)){
-    
-    usethis::ui_done(msg_applied)
-    
-  }
 
 
   # any_error? 
