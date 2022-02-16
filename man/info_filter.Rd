@@ -4,13 +4,15 @@
 \alias{info_filter}
 \title{Extract filter info from a spec object}
 \usage{
-info_filter(spec, filter = NULL)
+info_filter(spec, filter = NULL, quiet = FALSE)
 }
 \arguments{
 \item{spec}{spec object as returned by \code{\link{adam_spec}()}}
 
 \item{filter}{if not NULL (default), applied filters are compared against a reference set,
 identifying filters that cannot be applied to the data without an error}
+
+\item{quiet}{if TRUE instead of printing message to console, return list with messages on applied and discarded filters. defaults to FALSE.}
 }
 \value{
 List of applied filters by data set is printed to the console.
