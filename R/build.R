@@ -117,8 +117,17 @@ build <- function(
   
   # ... source  #### 
   prepped_source <- purrr::imap(built_data, ~{
-    .x[["source"]] %>% 
-      tibble::as_tibble_row() %>% 
+    
+    source_lst <- .x[["source"]]
+    
+    # file and md5 are NULL if spec was built from data instead of file
+    if(source_lst %>% purrr::map_lgl(is.null) %>% all()){
+      source_tbl <- tibble(file = NA_character_, md5 = NA_character_)
+    }else{
+      source_tbl <- .x[["source"]] %>% tibble::as_tibble_row()
+    }
+    
+    source_tbl %>% 
       dplyr::mutate(spec_id = .y, .before = 1)
   }) %>% 
     purrr::reduce(dplyr::bind_rows) 
