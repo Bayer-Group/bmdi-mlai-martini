@@ -5,6 +5,7 @@
 #' @param spec spec object as returned by \code{\link{adam_spec}()}
 #' @param filter if not NULL (default), applied filters are compared against a reference set, 
 #' identifying filters that cannot be applied to the data without an error
+#' @param quiet if TRUE instead of printing message to console, return list with messages on applied and discarded filters. defaults to FALSE.
 #'
 #' @return 
 #' List of applied filters by data set is printed to the console. 
@@ -17,7 +18,8 @@
 
 info_filter <- function(
   spec, 
-  filter = NULL
+  filter = NULL,
+  quiet  = FALSE
   
   # filter <- c("ITTFL  = 'Y'", "ITTFL  == 'Y'", "AVISIT == 'Baseline'", "MHOCCUR != 'N'"  , "MHSTDY < 0 | is.na(MHSTDY)")
   ){
@@ -73,14 +75,30 @@ info_filter <- function(
   
   # output messages ####
   
-  if(!is.null(msg_discarded)){
+  if(quiet){
+    plane <- list( 
+      discarded = msg_discarded,
+      applied   = msg_applied
+    )
+    return(invisible(plane))
     
-    usethis::ui_oops(msg_discarded)
+  }else{
     
-  } else if (!is.null(filter) && is.null(msg_discarded)){
-    
-    usethis::ui_done('\nEach filter was applied at least once.\n')
-    
+    if(!is.null(msg_discarded)){
+      
+      usethis::ui_oops(msg_discarded)
+      
+    } else if (!is.null(filter) && is.null(msg_discarded)){
+      
+      usethis::ui_done('\nEach filter may be applied at least once.\n')
+      
+    }
+
+    if(!is.null(msg_applied)){
+      cat('\n')
+      usethis::ui_done(msg_applied)
+      
+    }
   }
   
   if(!is.null(msg_applied)){
@@ -89,8 +107,7 @@ info_filter <- function(
     
   }
 
-  
-  
+
   # any_error? 
   #error_lgl <- individual %>%  map('is_error') %>%  unlist()
   #if(any(error_lgl)){ 

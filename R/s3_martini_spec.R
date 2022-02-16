@@ -117,4 +117,16 @@ print.martini_spec <- function(x, ...){
   
   purrr::walk(txt_print, cat)
   
+  res_info <- info_filter(x, attr(x, 'filter'), quiet = TRUE)
+
+  if(res_info %>% map_lgl(~!is.null(.x)) %>% any()){
+    cat(crayon::silver("\n  Filter information \n"))
+    
+    if(!is.null(attr(x, 'filter'))){
+      cat(crayon::silver("  (list of non-applicable filters based on filters passed to `adam_spec()`) \n"))
+    }  
+    info_filter(x, attr(x, 'filter'))
+  }  
+  
+
 }
