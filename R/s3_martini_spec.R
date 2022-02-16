@@ -115,6 +115,7 @@ print.martini_spec <- function(x, ...){
     
   }
   
+  
   purrr::walk(txt_print, cat)
   
   res_info <- info_filter(x, attr(x, 'filter'), quiet = TRUE)
@@ -128,5 +129,4 @@ print.martini_spec <- function(x, ...){
     info_filter(x, attr(x, 'filter'))
   }  
   
-
 }

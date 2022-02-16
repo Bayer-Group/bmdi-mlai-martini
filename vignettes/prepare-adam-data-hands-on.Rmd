@@ -69,6 +69,7 @@ as well as the final output object (`martini_ml_class`) for further use in the
 
 <!-- The full process is described in a lot more detail in the "under the hood" vignette of the package, where    -->
 
+***
 
 # High-level concept
 
@@ -254,7 +255,8 @@ The structure of the top level entries depends on the type of the corresponding 
 Among other steps, `adam_spec()` will
 
 * generate md5 checksums 
-* identify data sets that can be processed automatically (by matching file names against an internal library). 
+* identify data sets that can be processed automatically (by matching file names against an internal library)
+* check applicability of provided filters
 * create a parameter dictionary 
 
 In general, this automatically created specification may be used with the subsequent workflow, however, in practice, it will be modified by the user to match specific requirements.
@@ -292,7 +294,13 @@ ads_spec$adsl$drop_list %>% names()
 
 **Filters**
 
-The `filter` argument takes a character vector of valid filter expressions. A filter will be applied to a particular data set only if its application yields a non-empty tibble (i.e. no error thrown, at least one row is selected). Common filters may be based on visit or treatment information, as well as flags indicating analysis sets. If a filter should be applied to only one particular ads domain and not considered for the other domains, just add the respective `ADSNAME` column, e.g. `"ADSNAME == 'ADVS' & AVISIT == 'Visit 1'"`.
+The `filter` argument takes a character vector of expressions to be passed to `dplyr::filter()`. 
+A filter will be applied to a particular data set only if its (individual) application yields a non-empty tibble (i.e. no error thrown, at least one row is selected). 
+In addition, the function will throw a message, if the combination of all valid filters 
+would yield a empty data set. 
+
+Common filters may be based on visit or treatment information, as well as flags indicating analysis sets.
+If a filter should be applied to only one particular ads domain and not considered for the other domains, just add the respective `ADSNAME` column (for standard data sets), e.g. `"ADSNAME == 'ADVS' & AVISIT == 'Visit 1'"`.
 
 The `pre_study` argument allows to conveniently reduce occurrence data sets (e.g. medical history records) to data that is available at baseline based on the study day.
 
@@ -328,18 +336,23 @@ ads_spec <- adam_spec(
 )
 ```
 
+An overview of applied and discarded filters from the filters provided to 
+`\link{adam_spec}()` is printed to the console when calling `\link{adam_spec}()`
+as well as when printing the object to the console. 
+The filter set that was originally provided to `\link{adam_spec}()` is stored in the `filter` attribute of the resulting object. 
+Note that the print will only refer to this initial filter set and ignore any manual adjustments. We strongly advise to not change filters using spec adjustments but only by rerunning `\link{adam_spec}()` to assure proper checks.
+
+Always double check the filters that were not applied, typically it is due to
+
+* typos 
+* misspecified filter expressions (e.g. `=` instead of `==`)
+* targeted domain no longer included in the analysis
 
 
-Filters will not be applied to a data set, if it would raise an error. 
-Use `\link{filter_info}()` to get an overview of applied and discarded filters:
-
-```{r info_filter}
-info_filter(ads_spec)
-info_filter(
-  ads_spec,
-  filter = filters
-)
+```{r}
+ads_spec
 ```
+
 ***
 
 **`add_bds`**
@@ -496,6 +509,9 @@ martini_spec %>%
   )
   
 ```
+
+As mentioned above, although it is possible to overwrite the filter entries of individual specs, we strongly advise against it since it undermines the filter check implemented in `\link{adam_spec}()`. 
+
 
 ***
 

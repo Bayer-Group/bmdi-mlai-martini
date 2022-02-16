@@ -23,7 +23,7 @@ build_bds <- function(
   
   md5 <- NULL
   
-  if (!(is.na(spec$md5)||is.null(spec$md5))){
+  if (!(is.null(spec$md5))){
     md5 <- spec$md5
   } else if (!(is.na(spec$file)||is.null(spec$file))) {
     md5 <- tools::md5sum(spec$file) %>% as.character()

@@ -14,7 +14,6 @@
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
-#' @export
 
 info_filter <- function(
   spec, 
@@ -42,9 +41,6 @@ info_filter <- function(
   # discarded filters
   if(!is.null(filter)){
     if(length(missing)>0){
-      
-      #tibble_discarded <- tibble::as_tibble(missing)
-      
       msg_discarded <- paste0(
         crayon::blue('Please double check!') %>% crayon::bold(),
         '\n',
@@ -57,14 +53,16 @@ info_filter <- function(
   
   # applied filters
   if(length(applied %>% unlist() %>% unique()) > 0){ 
-    txt_applied <- tibble::tibble(
+    tibble_applied <- tibble::tibble(
       name   = names(applied), 
       filter = purrr::map_chr(applied, ~paste(.x, collapse = ', '))
     ) %>%  
       dplyr::mutate(filter = dplyr::case_when(
         filter == '' ~  '<none>',
         TRUE ~ stringr::str_squish(filter))
-      ) %>% 
+      ) 
+    
+    txt_applied <- tibble_applied %>% 
       dplyr::mutate_at('name', ~crayon::col_align(paste0(.x, ':'), width = max(nchar(.x))+1)) %>% 
       tidyr::unite(txt, name, filter, sep = ' ') %>% 
       dplyr::pull(txt) %>% paste(collapse = '\n  - ')
@@ -74,6 +72,7 @@ info_filter <- function(
       txt_applied,
       '\n\n'
     )
+    
   }
   
   # output messages ####
@@ -96,23 +95,12 @@ info_filter <- function(
       usethis::ui_done('\nEach filter may be applied at least once.\n')
       
     }
-
+    
     if(!is.null(msg_applied)){
       cat('\n')
       usethis::ui_done(msg_applied)
       
     }
   }
-
-
-  # any_error? 
-  #error_lgl <- individual %>%  map('is_error') %>%  unlist()
-  #if(any(error_lgl)){ 
-  #  filter_error <- error_lgl %>% which(.) %>%  names()
-  #  usethis::ui_info(paste0(
-  #    'The following filter(s) could not be applied, please double check \n  - ',
-  #    paste(filter_error, collapse = '\n  - ')
-  #  ))
-  #}
   
 }

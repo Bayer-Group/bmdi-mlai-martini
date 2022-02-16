@@ -81,7 +81,7 @@ prepare_ml_vars <- function(
         dplyr::group_by(paramcd) %>% 
         dplyr::mutate(min_aval = min(aval)) %>% 
         dplyr::filter(min_aval > 0) %>% 
-        dplyr::summarise(skew = e1071::skewness(aval, na.rm = TRUE), .groups = "drop") %>% 
+        dplyr::summarise(skew = skw(aval, na.rm = TRUE), .groups = "drop") %>% 
         dplyr::filter(skew > thres_log ) %>% 
         dplyr::pull(paramcd) %>% 
         setdiff(vars_count)
