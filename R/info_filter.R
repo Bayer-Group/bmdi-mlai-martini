@@ -42,6 +42,9 @@ info_filter <- function(
   # discarded filters
   if(!is.null(filter)){
     if(length(missing)>0){
+      
+      #tibble_discarded <- tibble::as_tibble(missing)
+      
       msg_discarded <- paste0(
         crayon::blue('Please double check!') %>% crayon::bold(),
         '\n',
