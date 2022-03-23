@@ -33,7 +33,8 @@
 #' For file names 'adae.sas7bdat', 'adcm.sas7bdat' and 'admh.sas7bdat', values for
 #' arguments \code{label} and \code{time} will be guessed if not provided. 
 #' Please refer to \code{adam_guess()} for details on guessing procedure.  
-#' Function will escape if one of label or value are neither provided nor can be guessed.
+#' Function will exit if \code{label} is neither provided nor can be guessed.
+#' If a pre-study filter is requested, the function will escape if \code{time} is neither provided nor can be guessed. 
 #' Note that the original values in the \code{label} column will end up being the parameter labels, 
 #' not the parameters in the ML feature matrix. These might be modified later using \code{make.names()} or the like in \code{prepare_ml()}.
 #' 
@@ -64,7 +65,6 @@ adam_spec_occds <- function(
   md5        <- tools::md5sum(file) %>%  as.character()
   size       <- fs::file_size(file)
   
-  guesses    <- adam_guess(file)
   coln_occds <- colnames(occds)
   domain     <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
     tail(1) %>% 
@@ -95,8 +95,11 @@ adam_spec_occds <- function(
   }
   
   
+  
   # GUESS label ####
   if (is.null(label)){
+    
+    guesses    <- adam_guess(file)
     
     label <- guesses$label %>% 
       intersect(coln_occds) %>% 
@@ -111,6 +114,7 @@ adam_spec_occds <- function(
   
   # GUESS time ####
   if (is.null(time) && pre_study){
+    guesses    <- adam_guess(file)
     
     time <- guesses$time %>% 
       intersect(coln_occds) %>% 
