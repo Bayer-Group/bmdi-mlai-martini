@@ -67,20 +67,27 @@ prepare_ml_split <- function(
       
       # split raw data
       .x$data_raw$train <- .x$data_raw$train %>% dplyr::filter(!! rlang::sym(by) == .y)
-      .x$data_raw$test  <- .x$data_raw$test  %>% dplyr::filter(!! rlang::sym(by) == .y)
+      if(!is.null(.x$data_raw$test)){
+        .x$data_raw$test  <- .x$data_raw$test %>% dplyr::filter(!! rlang::sym(by) == .y)
+      }else{.x$data_raw$test <- NULL}
       
       # add removal step to end of recipe, to remove 'by' after all prep steps are conducted
       .x$prep_recipe <- .x$prep_recipe %>% 
         recipes::step_rm(tidyselect::any_of(vars_remove), trained = TRUE, removals = vars_remove)
       
       .x$data_prep$train <- recipes::bake(.x$prep_recipe, new_data = .x$data_raw$train)
-      .x$data_prep$test  <- recipes::bake(.x$prep_recipe, new_data = .x$data_raw$test )
+      if(!is.null(.x$data_prep$test)){
+       .x$data_prep$test  <- recipes::bake(.x$prep_recipe, new_data = .x$data_raw$test )
+      }else{.x$data_prep$test  <- NULL}
       
       # split object contains raw data only (no removal of 'by' required)
-      .x$split$data <- .x$split$data %>% 
-        dplyr::filter(!! rlang::sym(by) ==.y) 
+      if(!is.null(.x$split)){
+        .x$split$data <- .x$split$data %>% 
+          dplyr::filter(!! rlang::sym(by) ==.y) 
       
-      .x$split$in_id  <- which( .x$split$data$.id %in% .x$data_raw$train$.id)
+        .x$split$in_id  <- which( .x$split$data$.id %in% .x$data_raw$train$.id)
+      } 
+      
       
       .x
       
