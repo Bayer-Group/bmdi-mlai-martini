@@ -179,6 +179,7 @@ adam_domain_type <- function(
           ' to add bds-type data.\n'
         )
       ))
+      cat('\n')
     }
       
     attr(file_info, 'unknown_domains') <- doms_ignored
