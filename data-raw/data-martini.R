@@ -13,7 +13,7 @@ filters  <- c(
   # only baseline data
   "AVISIT == 'Baseline'",
   # some MH entries have a Y/N coding (but not all)
-  "MHOCCUR != 'N'"
+  "MHOCCUR == 'Y' | is.na(MHOCCUR)"
 )
 
 martini_spec <- adam_spec(ads_path, filter = filters, attach_data = TRUE, pre_study = TRUE)
@@ -58,8 +58,17 @@ b["BPSYS"]                    <-  0.1
 b["HB"]                       <-  0.7
 b[".trt_TRT"]                 <- -0.5
 
-# intercept
-b0 <- -.5
+# intercept for linear model
+lm_b0 <- 0
+
+# case probability (for classification)
+prob_case <- .5
+
+# intercept for logistic model
+logistic_b0 <- -log(1/prob_case-1)
+
+# effect multiplicator for logistic model
+logistic_mult_b <- 1.5
 
 # ... simulate outcome ####
 
@@ -68,14 +77,14 @@ set.seed(1841)
 ## ... ... classification ####
 martini_outc_class <- tibble::tibble(
   X %>% dplyr::select(.id),
-  .out = rbinom(n = nrow(X), size = 1, prob = 1/(1 + exp(- b0 - as.matrix(X) %*% b)))
+  .out = rbinom(n = nrow(X), size = 1, prob = 1/(1 + exp(- logistic_b0 - as.matrix(X) %*% (logistic_mult_b * b))))
 ) %>% 
   dplyr::mutate(.out = factor(.out, labels = c("no event", "event")))
 
 ## ... ... regression ####
 martini_outc_regr <- tibble::tibble(
   X %>% dplyr::select(.id),
-  .out = (b0 + as.matrix(X) %*% b + rnorm(nrow(X), sd = 0.4)) %>% 
+  .out = (lm_b0 + as.matrix(X) %*% b + rnorm(nrow(X), sd = 0.4)) %>% 
     round(2) %>% 
     .[,1]
 )
