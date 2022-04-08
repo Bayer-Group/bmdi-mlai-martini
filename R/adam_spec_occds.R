@@ -8,13 +8,13 @@
 #' @param file the path of the sas file to process
 #' @param id name of id column to be kept and used for merge of data sets
 #' @param label name of the column that identifies the occurrence labels. Defaults to NULL, will be guessed if not set (see Details). 
-#' @param time name of the column that is used for time filtering. Defaults to NULL, will be guessed if not set (see Details).
-#' @param value optional value column (e.g. AE severity). Defaults to NULL, which leads to an Y/N coding of the event
+#' @param time name of the column that is used for time filtering (if required via \code{pre_study} argument). Defaults to NULL, will be guessed if not set (see Details).
+#' @param value optional value column (e.g. AE severity). Defaults to NULL, which leads to an Y/N coding of the event.
 #' @param valuen optional numeric coding column for `value`. Defaults to NULL, ignored if `value` is NULL.
 #' @param filter character vector of filters to be applied to the bds data set. 
 #' Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL. 
-#' @param count  boolean, defaults to FALSE. 
-#' @param pre_study  boolean. filter the data set to pre_study observations based on non-negative values in `time`
+#' @param count boolean, defaults to FALSE. 
+#' @param pre_study boolean. filter the data set to pre_study observations based on non-negative values in `time`
 #' @param attach_data boolean. attach the imported raw data in \code{data} slot of output object
 #' 
 #' @return 
@@ -31,9 +31,10 @@
 #' 
 #' @details 
 #' For file names 'adae.sas7bdat', 'adcm.sas7bdat' and 'admh.sas7bdat', values for
-#' arguments \code{label} and \code{time} will be guessed if not provided. 
+#' arguments \code{label} will be guessed if not provided, the same goes for \code{time} if `pre_study=TRUE`. 
 #' Please refer to \code{adam_guess()} for details on guessing procedure.  
-#' Function will escape if one of label or value are neither provided nor can be guessed.
+#' Function will exit if \code{label} is neither provided nor can be guessed.
+#' If a pre-study filter is requested, the function will escape if \code{time} is neither provided nor can be guessed. 
 #' Note that the original values in the \code{label} column will end up being the parameter labels, 
 #' not the parameters in the ML feature matrix. These might be modified later using \code{make.names()} or the like in \code{prepare_ml()}.
 #' 
@@ -64,7 +65,6 @@ adam_spec_occds <- function(
   md5        <- tools::md5sum(file) %>%  as.character()
   size       <- fs::file_size(file)
   
-  guesses    <- adam_guess(file)
   coln_occds <- colnames(occds)
   domain     <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
     tail(1) %>% 
@@ -95,8 +95,11 @@ adam_spec_occds <- function(
   }
   
   
+  
   # GUESS label ####
   if (is.null(label)){
+    
+    guesses    <- adam_guess(file)
     
     label <- guesses$label %>% 
       intersect(coln_occds) %>% 
@@ -111,6 +114,7 @@ adam_spec_occds <- function(
   
   # GUESS time ####
   if (is.null(time) && pre_study){
+    guesses    <- adam_guess(file)
     
     time <- guesses$time %>% 
       intersect(coln_occds) %>% 

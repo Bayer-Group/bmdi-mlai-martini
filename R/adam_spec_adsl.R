@@ -100,9 +100,9 @@
     dplyr::mutate(source = 'SL') %>% 
     dplyr::mutate(type   = 'adsl')
   
-  labs  <- dict$label
-  clmns <- dict$param
-  clmns_num <- {adsl %>%  dplyr::select_if(is.numeric) %>% names()}
+   labs  <- dict$label
+   clmns <- dict$param
+   clmns_num <- {adsl %>%  dplyr::select_if(is.numeric) %>% names()}
   
   # define black list (column names that are always excluded) ####
   black_list <- c(
@@ -192,6 +192,8 @@
     dplyr::distinct() %>% 
     # only keep guessed pairs if the column guessed as numeric code is actually numeric
     dplyr::filter(lev %in% clmns_num)
+  
+  
   
   # keep list of all num codes for later use
   all_num_codes <- all_lab_lev$lev
