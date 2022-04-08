@@ -51,12 +51,16 @@ X <- recipes::juice(rec) %>%
 
 b <- ncol(X) %>% numeric() %>% setNames(colnames(X))
 
-b["int"]                      <-  0.5
-b["atrial_fibrillation_yes"]  <-  0.2
-b["angina_pectoris_yes"]      <-  1.5
-b["BPSYS"]                    <-  0.1
-b["HB"]                       <-  0.7
-b[".trt_TRT"]                 <- -0.5
+beta <- c(
+  # interaction
+  "int"                     =  0.5,
+  # main effect
+  "atrial_fibrillation_yes" =  0.2,
+  "angina_pectoris_yes"     =  1.5,
+  "BPSYS"                   =  0.1,
+  "HB"                      =  0.7,
+  ".trt_TRT"                = -0.5
+)
 
 # intercept
 b0 <- -.5
@@ -66,24 +70,35 @@ b0 <- -.5
 set.seed(1841)
 
 ## ... ... classification ####
-martini_outc_class <- tibble::tibble(
-  X %>% dplyr::select(.id),
-  .out = rbinom(n = nrow(X), size = 1, prob = 1/(1 + exp(- b0 - as.matrix(X) %*% b)))
-) %>% 
-  dplyr::mutate(.out = factor(.out, labels = c("no event", "event")))
+martini_outc_class <- martini:::simulate_outcome(
+  X, beta,
+  type       = "classification",
+  ctrl_class = list(prob_ev = .4, mult_beta = 1.5)
+)
 
 ## ... ... regression ####
-martini_outc_regr <- tibble::tibble(
-  X %>% dplyr::select(.id),
-  .out = (b0 + as.matrix(X) %*% b + rnorm(nrow(X), sd = 0.4)) %>% 
-    round(2) %>% 
-    .[,1]
+martini_outc_regr <- martini:::simulate_outcome(
+  X, beta,
+  type       = "regression",
+  ctrl_class = list(b0 = 0, sd = .4)
+)
+
+## ... ... survival ####
+martini_outc_surv <- martini:::simulate_outcome(
+  X, beta,
+  type      = "survival",
+  ctrl_surv = list(surv_mean = 180,
+                   cens_mean = 180,
+                   cens_max  = 270,
+                   mult_beta = 1.5,
+                   int       = TRUE)
 )
 
 # ... export ####
 
 usethis::use_data(martini_outc_class, overwrite = TRUE)
-usethis::use_data(martini_outc_regr, overwrite = TRUE)
+usethis::use_data(martini_outc_regr,  overwrite = TRUE)
+usethis::use_data(martini_outc_surv,  overwrite = TRUE)
 
 # ML OBJECT ####
 
@@ -114,8 +129,22 @@ martini_ml_regr <- prepare_ml(
   seed                = 2231
 )
 
+## ... survival ####
+
+martini_ml_surv <- prepare_ml(
+  feature             = martini_feat,
+  outcome             = martini_outc_surv,
+  outcome_name        = c(".time" = ".time", ".status" = ".status"),
+  strata_trt          = TRUE, 
+  prep_step_dummy     = FALSE,
+  prep_step_normalize = FALSE,
+  vars_imp_ignore     = ".trt",
+  seed                = 2231
+)
+
 # ... export ####
 
 usethis::use_data(martini_ml_class, overwrite = TRUE)
-usethis::use_data(martini_ml_regr, overwrite = TRUE)
+usethis::use_data(martini_ml_regr,  overwrite = TRUE)
+usethis::use_data(martini_ml_surv,  overwrite = TRUE)
 
