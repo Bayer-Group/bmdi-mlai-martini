@@ -79,7 +79,6 @@ logistic_mult_b <- 1.5
 set.seed(1841)
 
 ## ... ... classification ####
-<<<<<<< HEAD
 martini_outc_class <- martini:::simulate_outcome(
   X, beta,
   type       = "classification",
@@ -102,20 +101,6 @@ martini_outc_surv <- martini:::simulate_outcome(
                    cens_max  = 270,
                    mult_beta = 1.5,
                    int       = TRUE)
-=======
-martini_outc_class <- tibble::tibble(
-  X %>% dplyr::select(.id),
-  .out = rbinom(n = nrow(X), size = 1, prob = 1/(1 + exp(- logistic_b0 - as.matrix(X) %*% (logistic_mult_b * b))))
-) %>% 
-  dplyr::mutate(.out = factor(.out, labels = c("no event", "event")))
-
-## ... ... regression ####
-martini_outc_regr <- tibble::tibble(
-  X %>% dplyr::select(.id),
-  .out = (lm_b0 + as.matrix(X) %*% b + rnorm(nrow(X), sd = 0.4)) %>% 
-    round(2) %>% 
-    .[,1]
->>>>>>> 552ba9915b2607b0f1a0ff47ad926481259c1e0e
 )
 
 # ... export ####
