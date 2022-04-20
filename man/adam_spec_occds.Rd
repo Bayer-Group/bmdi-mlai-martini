@@ -24,9 +24,9 @@ adam_spec_occds(
 
 \item{label}{name of the column that identifies the occurrence labels. Defaults to NULL, will be guessed if not set (see Details).}
 
-\item{time}{name of the column that is used for time filtering. Defaults to NULL, will be guessed if not set (see Details).}
+\item{time}{name of the column that is used for time filtering (if required via \code{pre_study} argument). Defaults to NULL, will be guessed if not set (see Details).}
 
-\item{value}{optional value column (e.g. AE severity). Defaults to NULL, which leads to an Y/N coding of the event}
+\item{value}{optional value column (e.g. AE severity). Defaults to NULL, which leads to an Y/N coding of the event.}
 
 \item{valuen}{optional numeric coding column for \code{value}. Defaults to NULL, ignored if \code{value} is NULL.}
 
@@ -59,9 +59,10 @@ data into wide format and prepare the data filter.
 }
 \details{
 For file names 'adae.sas7bdat', 'adcm.sas7bdat' and 'admh.sas7bdat', values for
-arguments \code{label} and \code{time} will be guessed if not provided.
+arguments \code{label} will be guessed if not provided, the same goes for \code{time} if \code{pre_study=TRUE}.
 Please refer to \code{adam_guess()} for details on guessing procedure.
-Function will escape if one of label or value are neither provided nor can be guessed.
+Function will exit if \code{label} is neither provided nor can be guessed.
+If a pre-study filter is requested, the function will escape if \code{time} is neither provided nor can be guessed.
 Note that the original values in the \code{label} column will end up being the parameter labels,
 not the parameters in the ML feature matrix. These might be modified later using \code{make.names()} or the like in \code{prepare_ml()}.
 }

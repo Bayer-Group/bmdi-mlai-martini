@@ -27,6 +27,7 @@ it into a valid file name and possibly adding a time extension, if multiple time
 \item{\code{type}}{adam data type of the source data (adsl, bds or occds)}
 \item{\code{unit}}{parameter unit (if applicable)}
 \item{\code{time}}{measurement time point (if applicable)}
+\item{\code{spec_id}}{name of the corresponding spec entry (if applicable)}
 }}
 \item{\code{source}}{file path and md5 checksums of the source data sets}
 }
