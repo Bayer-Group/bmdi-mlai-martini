@@ -27,6 +27,7 @@
 #'   \item{`type`}{adam data type of the source data (adsl, bds or occds)}
 #'   \item{`unit`}{parameter unit (if applicable)}
 #'   \item{`time`}{measurement time point (if applicable)}
+#'   \item{`spec_id`}{name of the corresponding spec entry (if applicable)}
 #' }}
 #' \item{`source`}{file path and md5 checksums of the source data sets}
 #' 
@@ -71,9 +72,9 @@ build <- function(
     
   # ... handle duplicate variable names across domains/sources ####
   rename_dupes <- purrr::imap_dfr(built_data, ~{
-    .x[['data']] %>% names() %>% tibble::as_tibble_col() %>% dplyr::mutate(domain = .y)
+    .x[['data']] %>% names() %>% tibble::as_tibble_col() %>% dplyr::mutate(spec_id = .y)
   })  %>% 
-    tidyr::unite(new_name, value, domain, sep = '_', remove = FALSE) %>% 
+    tidyr::unite(new_name, value, spec_id, sep = '_', remove = FALSE) %>% 
     dplyr::rename('old_name' = 'value') %>% 
     dplyr::add_count(old_name) %>% 
     dplyr::filter(n > 1) %>% 
@@ -83,15 +84,17 @@ build <- function(
     
     out <- .x
     
+    out[['dict']] <- out[['dict']] %>% mutate(spec_id = .y)
+    
     rename_y <- rename_dupes %>% 
-      dplyr::filter(domain == .y) %>% 
+      dplyr::filter(spec_id == .y) %>% 
       dplyr::select(new_name, old_name) %>% 
       tibble::deframe()
     
     if(length(rename_y) > 0){
       out[['data']] <- out[['data']] %>% dplyr::rename(tidyselect::any_of(rename_y))
       out[['dict']] <- out[['dict']] %>% 
-        dplyr::left_join(rename_dupes, by = c("column" = "old_name")) %>% 
+        dplyr::left_join(rename_dupes, by = c("column" = "old_name", "spec_id")) %>% 
         dplyr::mutate(column = dplyr::case_when(
           !is.na(new_name) ~ new_name,
           TRUE             ~ column
