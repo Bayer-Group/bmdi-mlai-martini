@@ -11,12 +11,12 @@ test_that("adam_spec", {
   
   testthat::expect_length(
     ads_spec,
-    2
+    3
   )
   
   testthat::expect_named(
     ads_spec,
-    c("adsl", "adlb")
+    c("adsl", "adlb", "advs")
   )
   
   # TEST add_bds argument ####

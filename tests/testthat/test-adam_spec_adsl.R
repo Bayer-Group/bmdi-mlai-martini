@@ -12,25 +12,25 @@ test_that("adam_spec_adsl", {
   # ... column selection ####
   testthat::expect_setequal(
     ads_spec_adsl$select,
-    c("SUBJID", "TRT01A", "AGEGR01", "SEX", "RACE", "AGE")
+    c("SUBJID", "TRT01A", "AGEGR01", "SEX", "RACE", "AGE", "BMI")
   )
   
   # ... drop list ####
   
   # ... ... date time ####
-  testthat::expect_equal(
+  testthat::expect_setequal(
     ads_spec_adsl$drop_list$datetime,
     c("RANDDT")
   )
   
   # ... ... numeric codes ####
-  testthat::expect_equal(
+  testthat::expect_setequal(
     ads_spec_adsl$drop_list$numcode,
-    c("AGEGR01N", "SEXN", "RACEN")
+    c("TRT01PN", "TRT01AN", "AGEGR01N", "SEXN", "RACEN")
   )
   
   # ... ... redundancies ####
-  testthat::expect_equal(
+  testthat::expect_setequal(
     ads_spec_adsl$drop_list$redundancy,
     c("UASR", "USUBJID", "RANDDT", "TRT01P")
   )
