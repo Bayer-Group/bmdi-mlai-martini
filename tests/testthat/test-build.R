@@ -56,3 +56,28 @@ test_that("build() correctly passes parameters to build_bds()", {
   
 })
 
+test_that("build() correctly builds the dictionary", {
+  
+  path_test <- testthat::test_path("sas")
+  
+  data_build <- path_test %>% 
+    adam_spec(
+      keep        = c('adsl', 'advs'),
+      filter      = c("AVISIT == 'Baseline'"),
+      attach_data = TRUE
+    ) %>% 
+    build()
+  
+  # all columns of feature matrix (minus '.id') included in dictionary and vice versa
+  expect_setequal(
+    attr(data_build, "dict")[["column"]],
+    data_build %>% names() %>% setdiff(".id")
+  )
+  
+  # no duplicated entries in the dictionary
+  expect_false(
+    any(duplicated(attr(data_build, "dict")[["column"]]))
+  )
+  
+})
+
