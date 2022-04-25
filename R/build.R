@@ -78,7 +78,8 @@ build <- function(
     dplyr::rename('old_name' = 'value') %>% 
     dplyr::add_count(old_name) %>% 
     dplyr::filter(n > 1) %>% 
-    dplyr::filter(! old_name %in% c('.id'))
+    dplyr::filter(! old_name %in% c('.id')) %>% 
+    dplyr::select(-n)
   
   built_data <- purrr::imap(built_data, ~{
     
