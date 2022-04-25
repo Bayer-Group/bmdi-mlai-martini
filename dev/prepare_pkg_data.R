@@ -48,7 +48,9 @@ adsl <- tibble(
     # ... RACE
     RACE     = sample(c(race_levs, NA_character_), 
                       size = n, replace = TRUE, prob = c(0.7, 0.1, 0.15, 0.05)),
-    RACEN    = factor(RACE, levels = race_levs) %>%   as.integer()
+    RACEN    = factor(RACE, levels = race_levs) %>%   as.integer(),
+    # ... BMI (added later)
+    BMI      = NA_real_,
   ) %>% 
   
   # ... AGE  
@@ -60,7 +62,8 @@ adsl <- tibble(
   mutate_at('AGEGR01',  ~ fct_recode(.x, !!! age_levs ) %>%  as.character() ) %>%  
   
   # combined column
-  unite(UASR, USUBJID, AGE, RACE, SEX, sep = '/', remove = FALSE)
+  unite(UASR, USUBJID, AGE, RACE, SEX, sep = '/', remove = FALSE) %>% 
+  select(ADSNAME, STUDYID, SUBJID, USUBJID, everything())
 
 
 
@@ -83,6 +86,7 @@ adsl_labels <- list(
   SEXN     = "Sex (N)",
   RACE     = "Race",
   RACEN    = "Race (N)",
+  BMI      = "Body Mass Index (kg/m2) at baseline",
   UASR     = "Unique Subject Identifier/Age/Sex/Race"
 )
 
@@ -94,11 +98,7 @@ adsl_labels <- adsl_labels %>%
   unlist() %>% 
   enframe(name = "column", value = "label")
 
-write_csv(adsl,        "dev/data/prep_pkg_study/adsl.csv", na = "")
-write_csv(adsl_labels, "dev/data/prep_pkg_study/adsl_labels.csv")
-
 # ADVS ----
-
 
 r <- tribble(
   ~BMI,  ~BPDIA, ~HR,    ~BPSYS, ~WEIGHT,
@@ -186,7 +186,8 @@ advs <- advs_pre %>%
   ungroup() %>% 
   mutate(CHG    = AVAL - BASE) %>% 
   mutate(R2BASE = AVAL / BASE) %>% 
-  mutate(ADSNAME = "ADVS", .before = 1)
+  mutate(ADSNAME = "ADVS", .before = 1) %>% 
+  select(ADSNAME, STUDYID, SUBJID, USUBJID, everything())
 
 
 # define labels ####
@@ -212,9 +213,6 @@ advs <- advs %>%
 advs_labels <- advs_labels %>% 
   unlist() %>% 
   enframe(name = "column", value = "label")
-
-write_csv(advs,        "dev/data/prep_pkg_study/advs.csv", na = "")
-write_csv(advs_labels, "dev/data/prep_pkg_study/advs_labels.csv")
 
 
 # ADLB ----
@@ -311,7 +309,8 @@ adlb <- adlb_pre %>%
   ungroup() %>% 
   mutate(CHG    = AVAL - BASE) %>% 
   mutate(R2BASE = AVAL / BASE) %>% 
-  mutate(ADSNAME = "adlb", .before = 1)
+  mutate(ADSNAME = "adlb", .before = 1) %>% 
+  select(ADSNAME, STUDYID, SUBJID, USUBJID, everything())
 
 
 # define labels ####
@@ -337,10 +336,6 @@ adlb <- adlb %>%
 adlb_labels <- adlb_labels %>% 
   unlist() %>% 
   enframe(name = "column", value = "label")
-
-write_csv(adlb,        "dev/data/prep_pkg_study/adlb.csv", na = "")
-write_csv(adlb_labels, "dev/data/prep_pkg_study/adlb_labels.csv")
-
 
 
 # admh -----
@@ -380,7 +375,8 @@ admh <- crossing(SUBJID = adsl$SUBJID, lev) %>%
       sample(c(0, NA_real_), size = n(), replace = TRUE, prob = c(.7, .3))
   ) %>% 
   left_join(adsl %>% select(STUDYID, SUBJID, USUBJID), ., by = "SUBJID") %>% 
-  mutate(ADSNAME = "ADMH", .before = 1)
+  mutate(ADSNAME = "ADMH", .before = 1) %>% 
+  select(ADSNAME, STUDYID, SUBJID, USUBJID, everything())
 
 # define labels ####
 admh_labels <- list(
@@ -401,6 +397,29 @@ admh <- admh %>%
 admh_labels <- admh_labels %>% 
   unlist() %>% 
   enframe(name = "column", value = "label")
+
+# UPDATES ----
+
+adsl <- adsl %>% 
+  left_join(
+    advs %>% 
+      filter(AVISIT == "Baseline", PARAMCD == "BMI") %>% 
+      select(SUBJID, AVAL),
+    by = "SUBJID"
+  ) %>% 
+  mutate(BMI = AVAL) %>% 
+  select(-AVAL)
+
+# EXPORT ----
+
+write_csv(adsl,        "dev/data/prep_pkg_study/adsl.csv", na = "")
+write_csv(adsl_labels, "dev/data/prep_pkg_study/adsl_labels.csv")
+
+write_csv(advs,        "dev/data/prep_pkg_study/advs.csv", na = "")
+write_csv(advs_labels, "dev/data/prep_pkg_study/advs_labels.csv")
+
+write_csv(adlb,        "dev/data/prep_pkg_study/adlb.csv", na = "")
+write_csv(adlb_labels, "dev/data/prep_pkg_study/adlb_labels.csv")
 
 write_csv(admh,        "dev/data/prep_pkg_study/admh.csv", na = "")
 write_csv(admh_labels, "dev/data/prep_pkg_study/admh_labels.csv")

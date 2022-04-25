@@ -16,4 +16,5 @@ SEX,Sex
 SEXN,Sex (N)
 RACE,Race
 RACEN,Race (N)
+BMI,Body Mass Index (kg/m2) at baseline
 UASR,Unique Subject Identifier/Age/Sex/Race

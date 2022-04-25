@@ -16,13 +16,10 @@ filters  <- c(
   "MHOCCUR == 'Y' | is.na(MHOCCUR)"
 )
 
-martini_spec <- adam_spec(ads_path, filter = filters, attach_data = TRUE, pre_study = TRUE)
-
-martini_spec$admh$count <- FALSE
-martini_spec$admh$label <- "MHDECOD"
-
-martini_spec$adsl$select <- martini_spec$adsl$select %>% 
-  stringr::str_subset("^AGEGR", negate = TRUE)
+martini_spec <- adam_spec(ads_path, filter = filters, attach_data = TRUE, pre_study = TRUE) %>% 
+  adjust_adsl(drop = "AGEGR01") %>% 
+  adjust_adsl(drop = "BMI") %>% 
+  adjust_spec("admh", count = FALSE, label = "MHDECOD")
 
 usethis::use_data(martini_spec, overwrite = TRUE)
 
