@@ -50,7 +50,7 @@ Suggests:
     MASS,
     testthat
 VignetteBuilder: knitr
-BugReports: https://by-gitlab.de.bayer.cnb/EQYKG/batcave/-/issues
+BugReports: https://gitlab.bayer.com/ahrensmaike/martini_prep/-/issues/new
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
