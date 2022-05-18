@@ -87,6 +87,23 @@ test_that("prepared data in split objects contains all variables except for the 
   
 })
 
+test_that("by variable removed from formulae", {
+  
+  split_by_regex <- c(split_by, paste0(split_by, "_", split_levs)) %>% 
+    paste0('\\b', ., '\\b') %>% 
+    paste(collapse = '|')
+  
+  expect_false(
+    map(d_ml_split, 'prep_recipe') %>% 
+      map(formula) %>% 
+      map(~stringr::str_detect(rlang::f_text(.x), split_by_regex)) %>% 
+      unlist() %>% 
+      any()
+  )
+    
+}
+)
+
 test_that("subjects split is correct", {
   
   subj_split <- d_ml_split %>% 

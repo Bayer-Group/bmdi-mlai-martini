@@ -73,8 +73,11 @@ prepare_ml_split <- function(
       
       # add removal step to end of recipe, to remove 'by' after all prep steps are conducted
       .x$prep_recipe <- .x$prep_recipe %>% 
-        recipes::step_rm(tidyselect::any_of(vars_remove), trained = TRUE, removals = vars_remove)
-      
+        recipes::step_rm(tidyselect::any_of(vars_remove), removals = vars_remove) %>% 
+        prep()
+        # from ?prep(): Also, if a recipe has been trained using prep() and then steps are added, prep() will only update the new operations. 
+        
+        
       .x$data_prep$train <- recipes::bake(.x$prep_recipe, new_data = .x$data_raw$train)
       if(!is.null(.x$data_prep$test)){
        .x$data_prep$test  <- recipes::bake(.x$prep_recipe, new_data = .x$data_raw$test )
