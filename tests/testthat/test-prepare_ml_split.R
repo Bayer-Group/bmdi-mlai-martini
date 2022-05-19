@@ -89,6 +89,8 @@ test_that("prepared data in split objects contains all variables except for the 
 
 test_that("by variable removed from formulae", {
   
+  split_levs <- d_ml$data_raw$train[[split_by]] %>% levels()
+  
   split_by_regex <- c(split_by, paste0(split_by, "_", split_levs)) %>% 
     paste0('\\b', ., '\\b') %>% 
     paste(collapse = '|')
