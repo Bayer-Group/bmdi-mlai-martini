@@ -46,8 +46,6 @@ adjust_adsl <- function(
     
   }
   
-  spec[[id]][["adjustments"]] <- list(add = add, drop = drop)
-  
   spec[[id]][["select"]] <- c(spec[[id]][["select"]], add) %>% 
     unique() %>% 
     setdiff(drop)
