@@ -26,14 +26,23 @@ adjust_adsl <- function(
 
   if (!id %in% names(spec)) usethis::ui_stop(
     crayon::magenta(
-      paste0("No spec with the id ",usethis::ui_code(id), " available.") 
+      paste0("No spec with the id ", usethis::ui_code(id), " available.") 
     )
   )
   
   if ("dict" %in% names(spec[[id]])){
     
-    add  <- intersect(spec[[id]][["dict"]][["param"]], add)
-    drop <- intersect(spec[[id]][["dict"]][["param"]], drop)
+    params <- spec[[id]][["dict"]][["param"]]
+    
+    add    <- intersect(params, add)
+    drop   <- intersect(params, drop)
+    
+    spec[[id]][["dict"]] <- spec[[id]][["dict"]] %>% 
+      dplyr::mutate(selected = dplyr::case_when(
+        param %in% add  ~ TRUE,
+        param %in% drop ~ FALSE,
+        TRUE            ~ selected
+      ))
     
   }
   
