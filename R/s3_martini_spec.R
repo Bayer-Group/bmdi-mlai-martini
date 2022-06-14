@@ -2,6 +2,21 @@
 
 print.martini_spec <- function(x, ...){
   
+  # modified?
+  # if so:
+  #   if data complete -> update data_info
+  #   else             -> notify user, data_info might be outdated after adjustments 
+  # 
+  
+  # if(attr(x, 'modified')){
+  #   #  COMBAK
+  #    #TODO
+  #   #NOTE outdated
+  # }
+  # 
+  #  
+
+  
   txt_print <- c(
     "\n",
     crayon::silver("  Content"),
@@ -118,7 +133,14 @@ print.martini_spec <- function(x, ...){
   
   purrr::walk(txt_print, cat)
   
-  res_info <- info_filter(x, attr(x, 'filter'), quiet = TRUE)
+  # combine original filter set used to build the spec with potentially added filters during spec adjustment (not recommended)
+  all_filters <- c(
+    # filter argument passed from adam_spec() call
+    attr(x, 'filter'), 
+    # actual filters
+    map( x, 'filter') %>% unlist() 
+    ) %>% unique()
+  res_info    <- info_filter(x, all_filters, quiet = TRUE)
 
   if(res_info %>% purrr::map_lgl(~!is.null(.x)) %>% any()){
     cat(crayon::silver("\n  Filter information \n"))

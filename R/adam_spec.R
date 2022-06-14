@@ -147,7 +147,13 @@ adam_spec <- function(
   # output ####
   
   class(spec) <- c("martini_spec", class(spec))
-  attr(spec, 'filter') <- filter
+  
+  attr(spec, 'filter')   <- filter
+   
+  attr(spec, 'filter_ok')    <- TRUE
+  attr(spec, 'data_info_ok') <- TRUE
+  
+  
   spec
   
 }
