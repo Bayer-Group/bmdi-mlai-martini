@@ -2,21 +2,6 @@
 
 print.martini_spec <- function(x, ...){
   
-  # modified?
-  # if so:
-  #   if data complete -> update data_info
-  #   else             -> notify user, data_info might be outdated after adjustments 
-  # 
-  
-  # if(attr(x, 'modified')){
-  #   #  COMBAK
-  #    #TODO
-  #   #NOTE outdated
-  # }
-  # 
-  #  
-
-  
   txt_print <- c(
     "\n",
     crayon::silver("  Content"),
@@ -66,7 +51,7 @@ print.martini_spec <- function(x, ...){
   
   names_bds <- names(types)[which(types == 'bds')] %>% rlang::set_names()
   
-  if(any( purrr::map_chr(x, "type")== "bds")){
+  if(any( purrr::map_chr(x, "type") == "bds")){
 
     bds_keys  <- c("param", "value", "unit", "time")
     
@@ -130,7 +115,21 @@ print.martini_spec <- function(x, ...){
     
   }
   
-  
+  if(!attr(x, 'data_info_ok')| !attr(x, 'filter_ok')){
+       not_ok <- ''
+       if(!attr(x, 'data_info_ok')) not_ok <- c(not_ok, 'content')
+       if(!attr(x, 'filter_ok'))    not_ok <- c(not_ok, 'filter')
+       
+        cat(usethis::ui_warn(crayon::bgMagenta(crayon::white(
+      paste0(
+        ifelse(!is.null(data_id), paste0(data_id, ': '), ''), 
+        'The ', 
+        paste(not_ok ,collapse = ' and '),
+        ' info shown might be outdated due to adjustments to the adam_spec() object.', 
+        'Re-run adam_spec() with data attached to enable updating. \n\n'
+      )))
+    )
+    )}
   purrr::walk(txt_print, cat)
   
   # combine original filter set used to build the spec with potentially added filters during spec adjustment (not recommended)
@@ -145,9 +144,9 @@ print.martini_spec <- function(x, ...){
   if(res_info %>% purrr::map_lgl(~!is.null(.x)) %>% any()){
     cat(crayon::silver("\n  Filter information \n"))
     
-    if(!is.null(attr(x, 'filter'))){
-      cat(crayon::silver("  (list of non-applicable filters based on filters passed to `adam_spec()`) \n"))
-    }  
+    #if(!is.null(attr(x, 'filter'))){
+    #  cat(crayon::silver("  (list of non-applicable filters based on filters passed to `adam_spec()`) \n"))
+    #}  
     info_filter(x, attr(x, 'filter'))
   }  
   

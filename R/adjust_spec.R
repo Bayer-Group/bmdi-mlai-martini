@@ -30,7 +30,7 @@ adjust_spec <- function(
       'Please specify all required filters in `adam_spec()` to ensure proper filter checks.'
     ))
     
-    attributes(spec, 'modified_filter') <- TRUE
+    attributes(spec, 'filter_ok') <- TRUE
     
   }
 
@@ -52,7 +52,7 @@ adjust_spec <- function(
   
   if('filter' %in% names(mod)){
 
-    attributes(spec, 'modified_filter') <- TRUE
+    attributes(spec, 'filter_ok') <- TRUE
     
     if(is.null(spec[[id]][["data"]])){
       

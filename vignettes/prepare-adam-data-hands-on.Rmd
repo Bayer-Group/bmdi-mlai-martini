@@ -412,6 +412,13 @@ Two helper function are available that allow for easy modification of the _spec_
 * `adjust_adsl()` specifically allows to add/drop variables from adsl to the automated selection
 * `adjust_spec()` is a general helper to adjust/set any spec entry
 
+Where possible, it is recommended to use these helpers as they will trigger an
+update of both the filter and content info that is printed to thee console when inspecting a spec object.
+Note, that both updates are only possible if the `attach_data` argument of `adam_spec()` was set to `TRUE`.
+
+
+
+
 ***
 
 ### `adjust_adsl()`

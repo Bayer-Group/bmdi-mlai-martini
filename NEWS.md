@@ -4,5 +4,7 @@
 
 # martini 0.3.4
 
-* Added a `NEWS.md` file to track changes to the package.  
-* Dictionary (if available) is updated if variables are added/dropped with `adjust_adsl()`.  
+* Added a `NEWS.md` file to track changes to the package.
+* Dictionary (if available) is updated if variables are added/dropped with `adjust_adsl()`.
+* If data is attached to the spec object, usage of `adjust_adsl()` and `adjust_spec()` will 
+update the data_info and filter check attributes shown by the print method  
