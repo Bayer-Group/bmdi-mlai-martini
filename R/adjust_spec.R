@@ -24,15 +24,6 @@ adjust_spec <- function(
 ){
   
   mod <- list(...)
-  
-  if('filter' %in% names(mod)){
-    usethis::ui_todo(paste(
-      'Please specify all required filters in `adam_spec()` to ensure proper filter checks.'
-    ))
-    
-    attributes(spec, 'filter_ok') <- TRUE
-    
-  }
 
   if (!append){
     
@@ -50,52 +41,36 @@ adjust_spec <- function(
     
   }
   
-  if('filter' %in% names(mod)){
+  # update data_info and filters if possible
+  if(!is.null(spec[[id]][["data"]])){
 
-    attributes(spec, 'filter_ok') <- TRUE
-    
-    if(is.null(spec[[id]][["data"]])){
-      
-      usethis::ui_todo(paste(
-        'Please specify all required filters in `adam_spec()` to ensure proper filter checks.'
-      ))
-      
-    }else{
+    if('filter' %in% names(mod)){
       
       # re-check filters
       keep_filter   <- check_filter(spec[[id]][["data"]], spec[[id]][["filter"]], data_id = id)$individual %>% 
         purrr::map_lgl("keep") %>% 
         as.logical()
       spec[[id]][["filter"]] <- spec[[id]][["filter"]][keep_filter]
-      
     }
     
-  }
-  
-  # update data info
-  if(is.null(spec[[id]][["data"]])){
+    # COMBAK adjust dict 
     
-    attr(spec, 'data_info_ok') <- TRUE
+    # update data info
+    spec[[id]][["data_info"]] <- data_info(spec[[id]])
     
   }else{
+    # else message
+    attr(spec, 'data_info_ok') <- FALSE
     
-    # TODO refactor - used in all adam_spec_*() functions
+    if('filter' %in% names(mod)){
       
-    spec[[id]][["data_info"]] <- with(spec[[id]], 
-      list(
-        nsubj = data %>% 
-          {if(length(filter) > 0){ 
-            dplyr::filter(., !!! rlang::parse_exprs(filter))
-          }else{.}} %>% 
-          dplyr::select(tidyselect::all_of(id)) %>% 
-          dplyr::n_distinct(),
-        ncol  = dict %>% 
-          {if(type == "adsl"){
-            dplyr::filter(., selected)
-          }else{.}} %>% 
-          nrow()
-      )
-    )
+      usethis::ui_todo(paste(
+        'Please specify all required filters in `adam_spec()` to ensure proper filter checks.'
+      ))
+      
+      attr(spec, 'filter_ok') <- FALSE
+      
+    }
     
   }
 

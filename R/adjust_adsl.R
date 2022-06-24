@@ -50,6 +50,9 @@ adjust_adsl <- function(
     unique() %>% 
     setdiff(drop)
   
+  # update data info
+  spec[[id]][["data_info"]] <- data_info(spec[[id]])
+  
   spec
   
 }
