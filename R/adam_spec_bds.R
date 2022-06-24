@@ -263,7 +263,7 @@ adam_spec_bds <- function(
   attr(dict, 'label') <- NULL
  
   # create data info ####
-  
+  # TODO replace using data_info()
   data_info <- list(
     nsubj = bds %>% 
       {if(length(actual_filter) > 0){ 

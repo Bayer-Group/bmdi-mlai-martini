@@ -167,7 +167,7 @@ adam_spec_occds <- function(
   }
   
   # create data info ####
-  
+  # TODO replace using data_info()
   data_info <- list(
     nsubj = occds %>% 
       {if(length(actual_filter) > 0){ 

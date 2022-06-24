@@ -145,14 +145,13 @@ adam_spec <- function(
   #attr(spec, 'info_filter') <-  res_info_fltr
   
   # output ####
-  
+  # TODO later attribute martini_spec kept for list subsets
   class(spec) <- c("martini_spec", class(spec))
   
-  attr(spec, 'filter')   <- filter
+  attr(spec, 'filter')       <- filter
    
   attr(spec, 'filter_ok')    <- TRUE
   attr(spec, 'data_info_ok') <- TRUE
-  
   
   spec
   
