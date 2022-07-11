@@ -128,7 +128,16 @@ test_that("build_bds works", {
     c(target_nrow, target_ncol)
   )
   
-    
-    
+  # ... test conversion to factor/numeric
+  spec_conv <- ads_spec_adlb
+  spec_conv$data <- spec_conv$data %>% 
+    mutate(AVALC = as.character(AVAL)) %>% 
+    mutate(AVALC = case_when(
+      PARAMCD == 'LAB1' ~ LETTERS[AVAL],
+      TRUE ~ AVALC
+    ))
+  spec_conv$value <- 'AVALC'
+  build_conv      <- martini:::build_bds(spec = spec_conv)  
+  expect_true(all(c('factor', 'numeric') %in% (build_conv$data %>% select(-.id) %>% map_chr(class)) ))
     
 })

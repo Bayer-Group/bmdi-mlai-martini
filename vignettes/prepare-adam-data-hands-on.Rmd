@@ -519,6 +519,29 @@ As mentioned above, although it is possible to overwrite the filter entries of i
 
 ### Further adaptations
 
+
+**Value column for bds type data**
+
+In order to create a wide data set from bds type data, the main operation is the application of `tidyr::pivot_wider()`. 
+`adam_spec` will guess the appropriate columns to use for `names_from` and `values_from` (if not provided) and store them in the list entries `param` and `value` of the respective spec entry, respectively, e.g. `param = PARAMCD` and `value = AVAL`.
+
+Please do check the entries before moving on to `build()` to ensure correct handling of variable types. 
+
+For some domains, variables may differ in type, i.e. while some are numeric (and `AVAL`) should be used, others might be available in character format (e.g. high/low, where `AVALC`). Appropriate handling depends on the exact data structure:
+
+ * If `AVALC` also contains the numeric values, `build()` is able to handle variables differently based on their (guessed) type, i.e. convert character values from `AVALC` to either factors or numerics based on observed values. 
+ * If `AVALC` and `AVAL` contain complementary information (`AVALC` missing values for numeric variables):
+    * create new (character) column combining `AVALC` and `AVAL` and adjust attached data and spec entry `value` accordingly
+    * create two disjoint spec entries for the same data set: filtering for numeric and character variables, respectively, by setting filters manually (e.g. based on PARAMCD) and choosing the appropriate value column for each subset
+
+
+
+
+
+
+
+
+
 **Change existing data** 
 
 If any manual changes need to be made to the data sets themselves, the `attach_data` parameter of `ads_spec()` needs to be set to `TRUE`. 
