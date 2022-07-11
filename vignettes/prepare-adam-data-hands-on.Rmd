@@ -513,7 +513,7 @@ martini_spec %>%
 
 As mentioned above, although it is possible to overwrite the filter entries of individual specs, we strongly advise against it since it undermines the filter check implemented in `\link{adam_spec}()`. 
 
-<!-- TODO explain label for count FALSe in occds by checking freq distribution of columns  -->
+<!-- TODO explain label for count FALSE in occds by checking freq distribution of columns  -->
 
 ***
 

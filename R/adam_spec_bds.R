@@ -32,7 +32,7 @@
 #'   \item{`time`}{`AVISIT`, `VISIT`}
 #'   \item{`value`}{`AVAL`, `**STRESN`, `**ORRES` for numeric values, 
 #'   `AVALC`, `**STRESC`, `**ORRES` for character values,
-#'    with `**` reflecting the two letter domain abbrevation}
+#'    with `**` reflecting the two letter domain abbreviation}
 #'   \item{`unit`}{`AVALU`, `**STRESU`, `**ORRESU`, with `**` reflecting the two letter domain abbrevation}
 #' }
 #' 
