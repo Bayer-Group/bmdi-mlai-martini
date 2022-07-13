@@ -136,6 +136,7 @@ test_that("build_bds works", {
       PARAMCD == 'LAB1' ~ LETTERS[AVAL],
       TRUE ~ AVALC
     ))
+  
   spec_conv$value <- 'AVALC'
   build_conv      <- martini:::build_bds(spec = spec_conv)  
   expect_true(all(c('factor', 'numeric') %in% (build_conv$data %>% select(-.id) %>% map_chr(class)) ))

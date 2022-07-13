@@ -1,6 +1,6 @@
 #' Simulate outcome for MLAI pipeline
 #'
-#' Simulate regression, classification  or survival outcome based on
+#' Simulate regression, classification or survival outcome based on
 #' feature matrix and effect vector
 #'
 #' @param X Prepared feature matrix (as tibble or matrix) with standardized and 
