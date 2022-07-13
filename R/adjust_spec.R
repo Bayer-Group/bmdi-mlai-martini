@@ -53,13 +53,32 @@ adjust_spec <- function(
       spec[[id]][["filter"]] <- spec[[id]][["filter"]][keep_filter]
     }
     
-    # COMBAK adjust dict 
+    if(spec[[id]][['type']] != 'adsl'){
+      
+      # adjust dict 
+      label_sel <- spec[[id]][["data"]] %>% 
+        {if(length(spec[[id]][["filter"]]) > 0){       
+          dplyr::filter(., !!! rlang::parse_exprs(spec[[id]][["filter"]]))
+        }else{.}
+        } %>% 
+        dplyr::pull(spec[[id]][['label']]) %>% 
+        unique()
+      
+      spec[[id]][["dict"]] <- spec[[id]][["dict"]] %>% 
+        dplyr::mutate(selected = (label %in% label_sel))
+      
+    }
+    
+    # COMBAK refactor. rerun dict build after label/param adjustment.
+    #   
+    # 
+    
     
     # update data info
     spec[[id]][["data_info"]] <- data_info(spec[[id]])
     
   }else{
-    # else message
+    # if not data attached: message
     attr(spec, 'data_info_ok') <- FALSE
     
     if('filter' %in% names(mod)){
@@ -72,6 +91,15 @@ adjust_spec <- function(
       
     }
     
+    if(any(c('param', 'label') %in% names(mod))) {
+      
+      usethis::ui_todo(paste(
+        'Please specify all key columns (such as param, label) in `adam_spec()` to obtain an accurate dictionary.'
+      ))
+      
+      attr(spec, 'filter_ok') <- FALSE
+      
+    }
   }
 
   spec

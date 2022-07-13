@@ -233,6 +233,10 @@ adam_spec_bds <- function(
     }
   })
   
+  #
+  
+  if(is.null(col_select[['label']])) col_select[['label']] <- col_select[['param']]
+  
   # filter check ####
   
   # only filter that individually yield non-empty tibbles are kept
@@ -259,27 +263,24 @@ adam_spec_bds <- function(
     dplyr::mutate(source = domain) %>% 
     dplyr::mutate(type   = 'bds') 
  
+  param_sel <- bds %>% 
+    {if(length(actual_filter) > 0){       
+      dplyr::filter(., !!! rlang::parse_exprs(actual_filter))
+      }else{.}
+    } %>% 
+    dplyr::pull(col_select[['param']]) %>% 
+    unique()
+  
+  dict <- dict %>% dplyr::mutate(selected = param %in% param_sel)
+  
   # remove bds data set label automatically created by haven::read_sas()
   attr(dict, 'label') <- NULL
- 
-  # create data info ####
-  # TODO replace using data_info()
-  data_info <- list(
-    nsubj = bds %>% 
-      {if(length(actual_filter) > 0){ 
-        dplyr::filter(., !!! rlang::parse_exprs(actual_filter))
-      }else{.}} %>% 
-      dplyr::select(tidyselect::all_of(id)) %>% 
-      dplyr::n_distinct(),
-    ncol  = dict %>% nrow()
-  )
  
   # OUTPUT ####
  
   out <- list(
     file      = file,
-    data      = NULL,
-    data_info = data_info,
+    data      = bds,
     md5       = md5,
     size      = size, 
     type      = "bds",
@@ -297,8 +298,13 @@ adam_spec_bds <- function(
       ))
     )
 
-  if(attach_data){
-    out$data <- bds
+  # create data info ####
+  out$data_info <- data_info(out)
+  
+  if(!attach_data){
+    # only keep data, if 'attach_data = TRUE'
+    # (was needed to create data info)
+    out$data <- NULL
   }
   
   out

@@ -85,7 +85,7 @@ print.martini_spec <- function(x, ...){
   
   names_occds <- names(types)[which(types == 'occds')] %>% rlang::set_names()
   
-  if(any( purrr::map_chr(x, "type")== "occds")){
+  if(any(purrr::map_chr(x, "type") == "occds")){
     
     occds_keys  <- c("label", "value", "valuen", "count", "time")
     
@@ -96,7 +96,7 @@ print.martini_spec <- function(x, ...){
         purrr::imap_dfr(names_occds, ~{c(name = .y, x[[.x]][occds_keys] %>% unlist())})
       ) %>% 
       dplyr::mutate_all(
-        ~crayon::col_align(.x, align = 'left' , width = max(nchar(.x), na.rm = TRUE))
+        ~crayon::col_align(.x, align = 'left', width = max(nchar(.x), na.rm = TRUE))
       ) %>% 
       tidyr::unite(col = "x", tidyselect::everything(), sep = " ") %>% 
       dplyr::pull(x) %>% 
@@ -124,8 +124,8 @@ print.martini_spec <- function(x, ...){
       paste0(
         ifelse(!is.null(data_id), paste0(data_id, ': '), ''), 
         'The ', 
-        paste(not_ok ,collapse = ' and '),
-        ' info shown might be outdated due to adjustments to the adam_spec() object.', 
+        paste(not_ok, collapse = ' and '),
+        ' info shown might be outdated due to adjustments to the spec object.', 
         'Re-run adam_spec() with data attached to enable updating. \n\n'
       )))
     )
@@ -144,9 +144,6 @@ print.martini_spec <- function(x, ...){
   if(res_info %>% purrr::map_lgl(~!is.null(.x)) %>% any()){
     cat(crayon::silver("\n  Filter information \n"))
     
-    #if(!is.null(attr(x, 'filter'))){
-    #  cat(crayon::silver("  (list of non-applicable filters based on filters passed to `adam_spec()`) \n"))
-    #}  
     info_filter(x, attr(x, 'filter'))
   }  
   
