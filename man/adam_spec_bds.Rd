@@ -77,7 +77,7 @@ Guess will be the first of the following options that matches a column name (exa
 \item{\code{time}}{\code{AVISIT}, \code{VISIT}}
 \item{\code{value}}{\code{AVAL}, \verb{**STRESN}, \verb{**ORRES} for numeric values,
 \code{AVALC}, \verb{**STRESC}, \verb{**ORRES} for character values,
-with \verb{**} reflecting the two letter domain abbrevation}
+with \verb{**} reflecting the two letter domain abbreviation}
 \item{\code{unit}}{\code{AVALU}, \verb{**STRESU}, \verb{**ORRESU}, with \verb{**} reflecting the two letter domain abbrevation}
 }
 

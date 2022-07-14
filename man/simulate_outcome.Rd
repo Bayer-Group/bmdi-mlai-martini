@@ -59,7 +59,7 @@ classification outcome or columns \code{.id}, \code{.time} and \code{.status} fo
 outcome.
 }
 \description{
-Simulate regression, classification  or survival outcome based on
+Simulate regression, classification or survival outcome based on
 feature matrix and effect vector
 }
 \section{Authors}{

@@ -1,5 +1,6 @@
 #' @rdname build_x
 #'
+utils::globalVariables(c("guess", "var"))
 
 # (see 'build_x.R' for documentation details)
 
