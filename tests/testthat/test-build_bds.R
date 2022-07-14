@@ -1,4 +1,3 @@
-library(dplyr)
 
 test_that("build_bds works", {
   
@@ -8,7 +7,7 @@ test_that("build_bds works", {
   file_adlb_miss   <- testthat::test_path("sas/adlb_miss.sas7bdat")
   file_adlb_rename <- testthat::test_path("sas/adlb_rename.sas7bdat")
   
-  ads_spec_adlb <- martini:::adam_spec_bds(file_adlb, attach_data = TRUE)
+  ads_spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE)
   
   #  duplicate handling ####
   
@@ -26,7 +25,7 @@ test_that("build_bds works", {
     unique()
   
   # create comp for direct comparison of ref and test 
-  comp <- martini:::build_bds(spec = ads_spec_adlb)$data %>% 
+  comp <- build_bds(spec = ads_spec_adlb)$data %>% 
     dplyr::select(tidyselect::all_of(c(".id", dupl))) %>% 
     tidyr::pivot_longer(-.id, names_to = "PARAMCD", values_to = "AVAL") %>% 
     dplyr::left_join(ref, by = c(".id" = "SUBJID", "PARAMCD"))
@@ -38,15 +37,15 @@ test_that("build_bds works", {
   
   # test duplicate message ####
   
-  expect_message(martini:::build_bds(spec = ads_spec_adlb))
+  expect_message(build_bds(spec = ads_spec_adlb))
   
   spec_nodupes <- ads_spec_adlb
   spec_nodupes$data <- spec_nodupes$data %>% dplyr::distinct(SUBJID, PARAMCD, AVISIT, .keep_all = TRUE)
   
-  expect_silent(martini:::build_bds(spec = spec_nodupes))
+  expect_silent(build_bds(spec = spec_nodupes))
   
   # test  values_fn and arrange ####
-  spec_arrange <- martini:::adam_spec_bds(file_adlb, attach_data = TRUE)
+  spec_arrange <- adam_spec_bds(file_adlb, attach_data = TRUE)
   
   # create duplicated data set:
   # the records with later (original) Date are all integers,
@@ -64,7 +63,7 @@ test_that("build_bds works", {
   
   # ...test values_fn parameter ####
   
-  lb_valuefn_def <- martini:::build_bds(
+  lb_valuefn_def <- build_bds(
     spec_arrange
   )$data %>% 
     select(-.id) %>% 
@@ -129,7 +128,7 @@ test_that("build_bds works", {
   )
   
   # ... test conversion to factor/numeric
-  spec_conv <- ads_spec_adlb
+  spec_conv <- adam_spec_bds(file_adlb, attach_data = TRUE)
   spec_conv$data <- spec_conv$data %>% 
     mutate(AVALC = as.character(AVAL)) %>% 
     mutate(AVALC = case_when(
@@ -138,7 +137,7 @@ test_that("build_bds works", {
     ))
   
   spec_conv$value <- 'AVALC'
-  build_conv      <- martini:::build_bds(spec = spec_conv)  
-  expect_true(all(c('factor', 'numeric') %in% (build_conv$data %>% select(-.id) %>% map_chr(class)) ))
+  build_conv      <- build_bds(spec = spec_conv)  
+  expect_true(all(c('factor', 'numeric') %in% (build_conv$data %>% select(-.id) %>% map_chr(class))))
     
 })
