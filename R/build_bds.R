@@ -122,24 +122,23 @@ build_bds <- function(
       values_fn   = values_fn
     ) 
   
-  
   # transform all created columns according to guessed type (char to factor, num as numeric)
   # guess types
   var_types <- bds_wide %>% 
-    dplyr::select(bds_pivot %>% pull('.key') %>% unique()) %>% 
-    map_chr(guess_parser) %>% 
-    enframe('var', 'guess') 
+    dplyr::select(bds_pivot %>% dplyr::pull('.key') %>% unique()) %>% 
+    purrr::map_chr(readr::guess_parser) %>% 
+    tibble::enframe('var', 'guess') 
   char2fct <- var_types %>% 
-    filter(guess == 'character') %>% 
-    pull(var)
+    dplyr::filter(guess == 'character') %>% 
+    dplyr::pull(var)
   char2num <- var_types %>% 
-    filter(guess == 'double') %>% 
-    pull(var)
+    dplyr::filter(guess == 'double') %>% 
+    dplyr::pull(var)
   
   bds_wide <- bds_wide %>% 
     dplyr::mutate_at(char2fct, factor) %>%  
     {if(spec$spec_id == 'adegf'){
-      dplyr::mutate_at(., char2fct, ~ fct_explicit_na(., na_level = 'missing'))
+      dplyr::mutate_at(., char2fct, ~ forcats::fct_explicit_na(., na_level = 'missing'))
     }else{.}
     } %>% 
     dplyr::mutate_at(char2num, as.numeric)
