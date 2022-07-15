@@ -1,0 +1,45 @@
+```{r}
+library(tidyverse)
+```
+
+```{r, eval=FALSE}
+devtools::install_github("iqis/rty")
+```
+
+```{r}
+api  <- '<yourAPI>'
+# https://artifactory.bayer.com/ui/admin/artifactory/user_profile
+```
+
+
+```{r}
+repo <- "bmdi_martini"
+
+# set repo details and credentials
+rty::set_repo(
+  rty::repo(
+    name = repo,
+    root = "https://artifactory.bayer.com/artifactory/"
+  )
+)
+
+rty::set_cred(rty::api_key(api))
+
+rty_profile <- rty::profile(
+  rty::get_repo(), 
+  rty::get_cred()
+)
+```
+
+
+```{r}
+# Deploy a package to artifactory
+rty::deploy(
+  "../../martini_0.4.0.tar.gz", 
+  rty_profile
+)
+```
+
+
+
+
