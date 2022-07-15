@@ -30,27 +30,12 @@ adjust_adsl <- function(
     )
   )
   
-  if ("dict" %in% names(spec[[id]])){
-    
-    params <- spec[[id]][["dict"]][["param"]]
-    
-    add    <- intersect(params, add)
-    drop   <- intersect(params, drop)
-    
-    spec[[id]][["dict"]] <- spec[[id]][["dict"]] %>% 
-      dplyr::mutate(selected = dplyr::case_when(
-        param %in% add  ~ TRUE,
-        param %in% drop ~ FALSE,
-        TRUE            ~ selected
-      ))
-    
-  }
-  
   spec[[id]][["select"]] <- c(spec[[id]][["select"]], add) %>% 
     unique() %>% 
     setdiff(drop)
   
-  # update data info
+  # update dict and data_info
+  spec[[id]][['dict']]      <- create_dict(spec[[id]])
   spec[[id]][["data_info"]] <- data_info(spec[[id]])
   
   spec

@@ -47,34 +47,14 @@ adjust_spec <- function(
     if('filter' %in% names(mod)){
       
       # re-check filters
-      keep_filter   <- check_filter(spec[[id]][["data"]], spec[[id]][["filter"]], data_id = id)$individual %>% 
+      keep_filter <- check_filter(spec[[id]][["data"]], spec[[id]][["filter"]], data_id = id)$individual %>% 
         purrr::map_lgl("keep") %>% 
         as.logical()
       spec[[id]][["filter"]] <- spec[[id]][["filter"]][keep_filter]
     }
     
-    if(spec[[id]][['type']] != 'adsl'){
-      
-      # adjust dict 
-      label_sel <- spec[[id]][["data"]] %>% 
-        {if(length(spec[[id]][["filter"]]) > 0){       
-          dplyr::filter(., !!! rlang::parse_exprs(spec[[id]][["filter"]]))
-        }else{.}
-        } %>% 
-        dplyr::pull(spec[[id]][['label']]) %>% 
-        unique()
-      
-      spec[[id]][["dict"]] <- spec[[id]][["dict"]] %>% 
-        dplyr::mutate(selected = (label %in% label_sel))
-      
-    }
-    
-    # COMBAK refactor. rerun dict build after label/param adjustment.
-    #   
-    # 
-    
-    
-    # update data info
+    # update dict and data_info
+    spec[[id]][['dict']]      <- create_dict(spec[[id]])
     spec[[id]][["data_info"]] <- data_info(spec[[id]])
     
   }else{

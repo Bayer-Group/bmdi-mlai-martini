@@ -141,29 +141,6 @@ adam_spec_occds <- function(
     as.logical()
   actual_filter <- filter[keep_filter]
 
-  
-  # dictionary   ####
-  
-  # use unfiltered data 
-  dict  <- occds %>% 
-    dplyr::select(label = !! rlang::sym(label)) %>% 
-    dplyr::distinct() %>%
-    dplyr::mutate(source = domain) %>% 
-    dplyr::mutate(type   = 'occds') 
-  
-  label_sel <- occds %>% 
-    {if(length(actual_filter) > 0){       
-      dplyr::filter(., !!! rlang::parse_exprs(actual_filter))
-      }else{.}
-    } %>% 
-    dplyr::pull(!! rlang::sym(label)) %>% 
-    unique()
-  
-  dict <- dict %>% dplyr::mutate(selected = label %in% label_sel)
-  
-  # remove occds data set label automatically created by haven::read_sas()
-  attr(dict, 'label') <- NULL
-  
   # collect key columns ####
   col_select <- c(label = label)
   if(!is.null(value)) {
@@ -187,15 +164,17 @@ adam_spec_occds <- function(
     id        = id,
     filter    = actual_filter,
     count     = count,
-    dict      = dict,
     spec_id   = domain
   ) %>% 
     append(
       col_select %>% as.list()
     )
   
-  # create data info ####
+  # create data info and dictionary####
+  out$dict <- create_dict(out)
   out$data_info <- data_info(out)
+  
+
   
   if(!attach_data){
     # only keep data, if 'attach_data = TRUE'

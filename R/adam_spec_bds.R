@@ -244,38 +244,8 @@ adam_spec_bds <- function(
     purrr::map_lgl("keep") %>% 
     as.logical()
   actual_filter <- filter[keep_filter]
- 
-  # dictionary ####
   
-  # use unfiltered data 
-  dict  <- bds %>% 
-    dplyr::select( tidyselect::any_of(
-      col_select[c('param', 'label', 'unit')] %>% unlist() %>% na.omit() 
-    )) %>% 
-    {if (!is.na(col_select[['unit']])){
-      dplyr::group_by(., across(-unit)) %>% 
-      tidyr::fill(unit, .direction = "downup") %>% 
-      dplyr::ungroup()
-    } else {
-      .
-    }} %>% 
-    dplyr::distinct() %>%
-    dplyr::mutate(source = domain) %>% 
-    dplyr::mutate(type   = 'bds') 
- 
-  param_sel <- bds %>% 
-    {if(length(actual_filter) > 0){       
-      dplyr::filter(., !!! rlang::parse_exprs(actual_filter))
-      }else{.}
-    } %>% 
-    dplyr::pull(col_select[['param']]) %>% 
-    unique()
   
-  dict <- dict %>% dplyr::mutate(selected = param %in% param_sel)
-  
-  # remove bds data set label automatically created by haven::read_sas()
-  attr(dict, 'label') <- NULL
- 
   # OUTPUT ####
  
   out <- list(
@@ -285,7 +255,6 @@ adam_spec_bds <- function(
     size      = size, 
     type      = "bds",
     filter    = actual_filter,
-    dict      = dict,
     spec_id   = domain
   ) %>% 
     append(
@@ -298,9 +267,11 @@ adam_spec_bds <- function(
       ))
     )
 
-  # create data info ####
+  # create data_info and dict  ####
+  out$dict      <- create_dict(out)
   out$data_info <- data_info(out)
   
+
   if(!attach_data){
     # only keep data, if 'attach_data = TRUE'
     # (was needed to create data info)
