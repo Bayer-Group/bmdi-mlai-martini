@@ -11,12 +11,12 @@ test_that("function handles missing outcome label", {
     tibble::as_tibble_col(target_label_in_dict) %>% 
     dplyr::mutate(.id = 1:dplyr::n(), .before = 1)
   
-  prep_res <- martini:::prepare_ml_outcome(
+  prep_res <- prepare_ml_outcome(
     outcome
   )
   
   # label in dictionary = column name
-  testthat::expect_equal(prep_res$outcome_label[['.out']], target_label_in_dict)
+  expect_equal(prep_res$outcome_label[['.out']], target_label_in_dict)
   
 })
 

@@ -1,7 +1,6 @@
 test_that("adam_domain_type works", {
   
   # test setup  ####
-  library(tibble)
   ads_path <- test_path('sas/')
   
   

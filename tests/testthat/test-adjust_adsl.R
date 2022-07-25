@@ -1,7 +1,5 @@
 test_that("adjust_adsl", {
   
-  library(martini)
-  
   select_orig <- martini_spec[["adsl"]][["select"]]
   
   add  <- "AGEGR01"

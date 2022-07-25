@@ -1,11 +1,5 @@
 testthat::test_that("strata_trt works", {
-  
-  require(tibble)
-  require(dplyr)
-  require(tidyr)
-  require(purrr)
-  require(martini)
-  
+
   # test stratification WITH and WITHOUT added treatment
   
   trt_groups <- c('PLA', 'trt1', 'trt2')
@@ -23,7 +17,7 @@ testthat::test_that("strata_trt works", {
       rep('event',    9)), 
       length.out = n_total) 
   )
-  d_raw <- inner_join(d_out, d_feat) %>% 
+  d_raw <- inner_join(d_out, d_feat, by = ".id") %>% 
     unite(trt.out, .trt, .out, remove = FALSE)
   prop_tot_event_trt <- d_raw %>% 
     pull(trt.out) %>% 

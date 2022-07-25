@@ -1,8 +1,4 @@
 
-require(martini)
-require(purrr)
-require(dplyr)
-
 # reference object
 d_ml <- prepare_ml(
   feature = martini_feat,

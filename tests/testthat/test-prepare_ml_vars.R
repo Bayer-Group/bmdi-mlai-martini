@@ -1,7 +1,5 @@
 testthat::test_that("prepare_ml_vars() works", {
  
-  library(readr)
-  # require(tidyverse)
   n <- 27
   set.seed(1909)
   

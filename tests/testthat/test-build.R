@@ -1,8 +1,3 @@
-
-library(dplyr)
-library(purrr)
-library(tibble)
-
 test_that("build() correctly passes parameters to build_bds()", {
   
   path_test <- testthat::test_path("sas")
@@ -26,13 +21,14 @@ test_that("build() correctly passes parameters to build_bds()", {
     arrange   = NULL
   )
   
-  data_build_bds <- martini:::build_bds(spec_arrange$adlb)$data
+  data_build_bds <- build_bds(spec_arrange$adlb)$data
   
   data_build <- build(spec_arrange)
   
-  expect_equivalent(
+  expect_equal(
     data_build %>% select(all_of(data_build_bds %>% names())),
-    data_build_bds
+    data_build_bds,
+    ignore_attr = TRUE
   )
   
   # check if 'arrange' is correctly passed ####
@@ -45,13 +41,14 @@ test_that("build() correctly passes parameters to build_bds()", {
     arrange   = c("desc(Date)")
   )
   
-  data_build_bds <- martini:::build_bds(spec_arrange$adlb)$data
+  data_build_bds <- build_bds(spec_arrange$adlb)$data
   
   data_build <- build(spec_arrange)
   
-  expect_equivalent(
+  expect_equal(
     data_build %>% select(all_of(data_build_bds %>% names())),
-    data_build_bds
+    data_build_bds,
+    ignore_attr = TRUE
   )
   
 })
