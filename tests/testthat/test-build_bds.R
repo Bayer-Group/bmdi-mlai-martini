@@ -1,6 +1,7 @@
 
 test_that("build_bds works", {
   
+  # TODO structure build_bds expectations in different tests
   # TEST setup ####
   
   file_adlb        <- testthat::test_path("sas/adlb.sas7bdat")

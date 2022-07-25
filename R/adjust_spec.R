@@ -23,6 +23,8 @@ adjust_spec <- function(
   append = FALSE
 ){
   
+  # TODO WS input checks: class(spec), empty spec?, empty dots = mod
+  
   mod <- list(...)
 
   if (!append){

@@ -8,6 +8,7 @@
 #   })
 
 # test area ####
+#TODO WS write tests in test area in formal tests in test file adam_guess
 if(FALSE){
   file <- "../../../adcm.sas7bdat"
   

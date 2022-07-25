@@ -9,6 +9,8 @@ test_that("adam_spec_adsl", {
   
   # TEST adsl prepare specification ####
   
+  # TODO: write list of expectations along with data set creation, save to fixtures/adam_spec_expects.rds
+  # TODO data creation script move from dev to somewhere more sensible 
   # ... column selection ####
   expect_setequal(
     ads_spec_adsl$select,

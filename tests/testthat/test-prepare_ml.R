@@ -1,5 +1,7 @@
 testthat::test_that("strata_trt works", {
 
+  # TODO WS rewrite 
+  
   # test stratification WITH and WITHOUT added treatment
   
   trt_groups <- c('PLA', 'trt1', 'trt2')
@@ -10,6 +12,7 @@ testthat::test_that("strata_trt works", {
     .trt = rep(trt_groups, length.out = n_total),
     cont = rnorm(n_total)
   )
+  
   d_out <- tibble(
     .id  = 1:n_total,
     .out = rep(c(
@@ -17,6 +20,7 @@ testthat::test_that("strata_trt works", {
       rep('event',    9)), 
       length.out = n_total) 
   )
+  
   d_raw <- inner_join(d_out, d_feat, by = ".id") %>% 
     unite(trt.out, .trt, .out, remove = FALSE)
   prop_tot_event_trt <- d_raw %>% 
@@ -56,7 +60,7 @@ testthat::test_that("strata_trt works", {
       table() %>% 
       {./sum(.)} %>%  
       round(2) %>% 
-      as.data.frame.table() %>%  as_tibble() %>%  
+      as.data.frame.table() %>% as_tibble() %>%  
       pivot_wider(names_from = '.', values_from = Freq) %>% 
       mutate(set = set, .before = 1)
   }
@@ -85,7 +89,7 @@ testthat::test_that("strata_trt works", {
   comp_strata_trt <- prop_out_trt %>%  
     mutate_if(is.numeric, ~ abs(.x - .x[set == 'total'])) %>% 
     dplyr::filter(set != 'total') %>% 
-    nest(e=contains('event')) %>% 
+    nest(e = contains('event')) %>% 
     mutate(sum_e = map_dbl(e, sum)) %>% 
     group_by(strata_trt) %>% 
     mutate(sum_e = sum(sum_e)) %>% 

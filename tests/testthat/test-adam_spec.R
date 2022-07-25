@@ -12,6 +12,7 @@ test_that("adam_spec", {
   testthat::expect_length(
     ads_spec,
     3
+    #TODO WS remove hard-coding list.files(ads_path), filter look up table, nrow
   )
   
   testthat::expect_named(

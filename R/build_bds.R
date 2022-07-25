@@ -12,7 +12,7 @@ build_bds <- function(
   )
 ){
   
-  ##
+  ## TODO input check spec
 
   # use duplicated controls from 'dupl_ctrl' argument over duplicated controls in 'spec', if not NULL
   values_fn <- c(dupl_ctrl$values_fn, spec$dupl_ctrl$values_fn) %>% .[[1]]
@@ -69,7 +69,7 @@ build_bds <- function(
     {if(length(spec$filter) > 0){ 
        filter_txt <- paste( 
          '(',
-         paste(  spec$filter, collapse= ') & (' ),
+         paste(  spec$filter, collapse = ') & ('),
          ')'
        ) 
        dplyr::filter(., !! rlang::parse_expr(filter_txt))
@@ -84,7 +84,7 @@ build_bds <- function(
   # check if multiple time points are present after subsetting
   n_time <- ifelse(
     ! is.na(spec$time),
-    bds %>%  dplyr::pull(spec$time) %>% dplyr::n_distinct(),
+    bds %>% dplyr::pull(spec$time) %>% dplyr::n_distinct(),
     1
   )
   if(n_time > 1){

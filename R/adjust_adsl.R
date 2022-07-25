@@ -30,6 +30,15 @@ adjust_adsl <- function(
     )
   )
   
+  if ("dict" %in% names(spec[[id]])){
+    # intersect with param column from dict instead of data, to work independent of data attached
+    add  <- intersect(spec[[id]][["dict"]][["param"]], add)
+    drop <- intersect(spec[[id]][["dict"]][["param"]], drop)
+    
+  }
+  
+  spec[[id]][["adjustments"]] <- list(add = add, drop = drop)
+  
   spec[[id]][["select"]] <- c(spec[[id]][["select"]], add) %>% 
     unique() %>% 
     setdiff(drop)

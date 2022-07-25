@@ -1,5 +1,5 @@
 
-test_that("check freq works", {
+test_that("check_freq works", {
   
   n     <- 100
   thres <- n/10  

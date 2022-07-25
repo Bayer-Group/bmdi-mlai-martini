@@ -1,6 +1,6 @@
 test_that("build() correctly passes parameters to build_bds()", {
   
-  path_test <- testthat::test_path("sas")
+  path_test <- test_path("sas")
   
   spec_dupl <- adam_spec(path_test, keep = c('adsl', 'adlb'), attach_data = TRUE)
   
@@ -31,7 +31,7 @@ test_that("build() correctly passes parameters to build_bds()", {
     ignore_attr = TRUE
   )
   
-  # check if 'arrange' is correctly passed ####
+  # check if 'arrange' is correctly passed from build to build_bds() ####
   
   spec_arrange <- spec_dupl
   
