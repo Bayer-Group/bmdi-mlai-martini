@@ -20,7 +20,7 @@ get_data <- function(
   split_id = NULL
   ){
   
-  type <- match.arg(type)
+  type <- rlang::arg_match(type)
   
   d_type <- ml_obj[[paste0('data_', type)]]
   

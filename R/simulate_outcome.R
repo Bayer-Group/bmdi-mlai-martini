@@ -63,7 +63,7 @@ simulate_outcome <- function(
   
 ){
 
-  type <- match.arg(type)
+  type <- rlang::arg_match(type)
 
   b <- ncol(X) %>% 
     numeric() %>% 
