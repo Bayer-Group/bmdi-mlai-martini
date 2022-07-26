@@ -80,19 +80,25 @@
   
   # check input ####
   if (!id %in% colnames(adsl)){
-    cli::cli_abort(cli::cli_bullets(c(
-     'x' = "Can't find column {.arg id} in the data set.",
-     '*' = "Please call {.code names(adsl)} to check for valid inputs."
-    )))
+    cli::cli_abort(
+      c(
+       'x' = "Can't find column {.var {id}} in the data set.",
+       '*' = "Please check the data for valid inputs to {.arg id}."
+      )
+    )
   }
   
   if (!is.null(trt)){
     if (!trt %in% colnames(adsl)) {
-      cli::cli_abort(cli::cli_bullets(c(
-        'x' = "Can't find column {.arg trt} in the data set.",
-        '*' = "Please call {.code names(adsl)} to check for valid inputs."
-      )))  
+      cli::cli_abort(
+        cli::cli_bullets(c(
+          'x' = "Can't find column {.arg trt} in the data set.",
+          '*' = "Please call {.code names(adsl)} to check for valid inputs."
+        )),
+        call = call
+      )  
     }
+  }
   
   # fix labels (no label = empty string) ####
   labelled::var_label(adsl) <- labelled::var_label(adsl) %>% 
