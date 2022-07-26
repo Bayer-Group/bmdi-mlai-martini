@@ -478,7 +478,7 @@ prepare_ml <- function(
         cor(d_test, d_ref, method = "pearson") %>% 
           as.data.frame() %>% 
           tibble::rownames_to_column() %>% 
-          dplyr::filter(abs(!!sym(.x)) > thres_corr) %>% 
+          dplyr::filter(abs(!!rlang::sym(.x)) > thres_corr) %>% 
           dplyr::pull(rowname)
       })
     
@@ -780,8 +780,8 @@ if(FALSE){
       length.out = n_total) 
   )
   
-  d_raw <- inner_join(outcome, feature) %>% 
-    unite(trt.out, .trt, .out, remove = FALSE)
+  d_raw <- dplyr::inner_join(outcome, feature) %>% 
+    tidyr::unite(trt.out, .trt, .out, remove = FALSE)
   prop_tot_event_trt <- d_raw %>% 
     pull(trt.out) %>% 
     table %>% 

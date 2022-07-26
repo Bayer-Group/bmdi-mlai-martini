@@ -4,7 +4,7 @@ test_that("adam_spec", {
   
   ads_path <- test_path('sas/')
   
-  # create prepare specification
+  # create prep specification
   ads_spec <- adam_spec(ads_path)
   
   # TEST object structure ####
@@ -29,4 +29,14 @@ test_that("adam_spec", {
     names(ads_spec_add)
   )
 
+})
+
+test_that("adam_spec snapshots", {
+  
+  ads_path <- test_path('sas/')
+  
+  expect_snapshot(
+    adam_spec(ads_path)
+  )
+  
 })

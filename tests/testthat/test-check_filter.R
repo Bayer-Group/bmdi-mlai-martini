@@ -6,7 +6,7 @@ testthat::test_that("check_filter() works", {
   
   expect_equal(
     check_filter(mtcars, test_filter)$individual %>% 
-      map_lgl("keep") %>% 
+      purrr::map_lgl("keep") %>% 
       as.logical(),
     c(TRUE, FALSE, FALSE)
   )

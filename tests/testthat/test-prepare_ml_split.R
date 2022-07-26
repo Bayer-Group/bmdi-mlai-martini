@@ -35,7 +35,7 @@ test_that("prepared data in split objects contains all variables except for the 
   var_ref <- d_ml$data_prep$train %>% 
     names()
   
-  var_split <- map(d_ml_split, ~{
+  var_split <- purrr::map(d_ml_split, ~{
     
     .x$data_prep$train %>% 
       names()
@@ -65,7 +65,7 @@ test_that("prepared data in split objects contains all variables except for the 
   var_ref <- d_ml_nodummy$data_prep$train %>% 
     names()
   
-  var_split <- map(d_ml_nodummy_split, ~{
+  var_split <- purrr::map(d_ml_nodummy_split, ~{
     
     .x$data_prep$train %>% 
       names()
@@ -92,9 +92,9 @@ test_that("by variable removed from formulae", {
     paste(collapse = '|')
   
   expect_false(
-    map(d_ml_split, 'prep_recipe') %>% 
-      map(formula) %>% 
-      map(~stringr::str_detect(rlang::f_text(.x), split_by_regex)) %>% 
+    purrr::map(d_ml_split, 'prep_recipe') %>% 
+      purrr::map(formula) %>% 
+      purrr::map(~stringr::str_detect(rlang::f_text(.x), split_by_regex)) %>% 
       unlist() %>% 
       any()
   )
@@ -105,21 +105,21 @@ test_that("by variable removed from formulae", {
 test_that("subjects split is correct", {
   
   subj_split <- d_ml_split %>% 
-    imap(~{
+    purrr::imap(~{
       .x[["data_raw"]] %>% 
-        imap_dfr(~{.x %>% mutate(.split_split = .y)}) %>% 
-        mutate(.group_split = .y) %>% 
-        select(.id, .group_split, .split_split)
+        purrr::imap_dfr(~{.x %>% dplyr::mutate(.split_split = .y)}) %>% 
+        dplyr::mutate(.group_split = .y) %>% 
+        dplyr::select(.id, .group_split, .split_split)
     }) %>% 
-    reduce(bind_rows)
+    purrr::reduce(dplyr::bind_rows)
     
   subj_orig <- d_ml$data_raw %>% 
-    imap_dfr(~{.x %>% mutate(.split_orig = .y)}) %>% 
-    select(all_of(c(".id", ".group_orig" = split_by, ".split_orig"))) %>% 
-    mutate(.group_orig = as.character(.group_orig))
+    purrr::imap_dfr(~{.x %>% dplyr::mutate(.split_orig = .y)}) %>% 
+    dplyr::select(tidyselect::all_of(c(".id", ".group_orig" = split_by, ".split_orig"))) %>% 
+    dplyr::mutate(.group_orig = as.character(.group_orig))
     
   subj_comp <- subj_orig %>% 
-    left_join(subj_split, by = ".id")
+    dplyr::left_join(subj_split, by = ".id")
   
   expect_equal(
     subj_comp$.group_split,
@@ -127,7 +127,7 @@ test_that("subjects split is correct", {
   )
   
   # exclude NAs of the splitting variable in the original data
-  subj_comp_nona <- subj_comp %>% filter(!is.na(.group_split))
+  subj_comp_nona <- subj_comp %>% dplyr::filter(!is.na(.group_split))
   
   expect_equal(
     subj_comp_nona$.split_split,
