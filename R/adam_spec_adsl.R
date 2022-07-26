@@ -80,12 +80,19 @@
   
   # check input ####
   if (!id %in% colnames(adsl)){
-    usethis::ui_stop(paste0("Provided 'id' column ", id, " not present in the data set.\n"))
-    }
+    cli::cli_abort(cli::cli_bullets(c(
+     'x' = "Can't find column {.arg id} in the data set.",
+     '*' = "Please call {.code names(adsl)} to check for valid inputs."
+    )))
+  }
+  
   if (!is.null(trt)){
     if (!trt %in% colnames(adsl)) {
-      usethis::ui_stop(paste0("Provided 'trt' column ", trt, " not present in the data set.\n"))}
-  }
+      cli::cli_abort(cli::cli_bullets(c(
+        'x' = "Can't find column {.arg trt} in the data set.",
+        '*' = "Please call {.code names(adsl)} to check for valid inputs."
+      )))  
+    }
   
   # fix labels (no label = empty string) ####
   labelled::var_label(adsl) <- labelled::var_label(adsl) %>% 
