@@ -49,14 +49,14 @@ build_bds <- function(
     bds_full <- spec$data
   }
 
-  col_select <- spec[c("param",  "time" ,  "value",  "unit",   "label" )] %>% 
+  col_select <- spec[c("param", "time", "value", "unit", "label")] %>% 
     unlist() %>% na.omit() %>% as.character()
   
   # COMBAK
   
   # use duplicated controls from 'dupl_ctrl' argument over duplicated controls in 'spec', if not NULL
-  values_fn <- c(dupl_ctrl$values_fn, spec$dupl_ctrl$values_fn) %>% .[[1]]
-  arrange   <- c(dupl_ctrl$arrange,   spec$dupl_ctrl$arrange)   %>% .[[1]]
+  values_fn <- dupl_ctrl$values_fn %||% spec$dupl_ctrl$values_fn
+  arrange   <- dupl_ctrl$arrange   %||% spec$dupl_ctrl$arrange
   
   if (is.null(values_fn)){
     values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
@@ -78,8 +78,7 @@ build_bds <- function(
       }else{.}
     } %>% 
     dplyr::filter(! is.na(!! rlang::sym(spec$value))) %>% 
-    dplyr::select(tidyselect::any_of(c(spec$id, col_select))) %>% 
-    dplyr::rename(`.id` = spec$id) # 
+    dplyr::select(tidyselect::any_of(c(`.id` = spec$id, col_select))) 
   
  
   # prior to pivoting, create key column (PARAM or PARAM/TIME)

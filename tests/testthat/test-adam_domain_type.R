@@ -7,7 +7,7 @@ test_that("adam_domain_type works", {
   # print look-up table ####
   # TODO WS check if adam_domain_type takes file not just path and if it always returns tibble (empty and path), then remove test
   testthat::expect_true(
-    adam_domain_type() %>% is_tibble()
+    adam_domain_type() %>% tibble::is_tibble()
   )
   
   testthat::expect_setequal(

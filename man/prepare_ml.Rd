@@ -29,7 +29,7 @@ prepare_ml(
   vars_fct_expl_na = NULL,
   vars_ordinalscore = NULL,
   vars_keep_corr = NULL,
-  one_hot = TRUE,
+  one_hot = NULL,
   log_base = exp(1),
   outlier_remove = FALSE,
   outlier_ctrl = list(coef = 3),
