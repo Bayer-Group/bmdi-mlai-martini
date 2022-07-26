@@ -14,14 +14,6 @@ build_bds <- function(
   
   ## TODO input check spec
 
-  # use duplicated controls from 'dupl_ctrl' argument over duplicated controls in 'spec', if not NULL
-  values_fn <- c(dupl_ctrl$values_fn, spec$dupl_ctrl$values_fn) %>% .[[1]]
-  arrange   <- c(dupl_ctrl$arrange,   spec$dupl_ctrl$arrange)   %>% .[[1]]
-
-  if (is.null(values_fn)){
-    values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
-  }
-  
   md5 <- NULL
   
   if (!(is.null(spec$md5))){
@@ -59,6 +51,16 @@ build_bds <- function(
 
   col_select <- spec[c("param",  "time" ,  "value",  "unit",   "label" )] %>% 
     unlist() %>% na.omit() %>% as.character()
+  
+  # COMBAK
+  
+  # use duplicated controls from 'dupl_ctrl' argument over duplicated controls in 'spec', if not NULL
+  values_fn <- c(dupl_ctrl$values_fn, spec$dupl_ctrl$values_fn) %>% .[[1]]
+  arrange   <- c(dupl_ctrl$arrange,   spec$dupl_ctrl$arrange)   %>% .[[1]]
+  
+  if (is.null(values_fn)){
+    values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
+  }
   
 
   bds <- bds_full %>% 
