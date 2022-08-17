@@ -41,6 +41,8 @@ prepare_ml_vars <- function(
     vars_count <- NA
   } else {
     vars_count <- NULL
+    
+    # TODO simplify using type_convert(guess_integer = TRUE)
     vars_integer <- data %>%  
       dplyr::select(-tidyselect::any_of(remove)) %>% 
       dplyr::mutate_if(is.factor, as.character) %>% 

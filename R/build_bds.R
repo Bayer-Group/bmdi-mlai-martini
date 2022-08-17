@@ -62,52 +62,27 @@ build_bds <- function(
     values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
   }
   
-
-  bds <- bds_full %>% 
-    {if(!is.null(arrange)){ 
-      dplyr::arrange(., !!! rlang::parse_exprs(arrange))
-    }else{.}
-    } %>%
-    {if(length(spec$filter) > 0){ 
-       filter_txt <- paste( 
-         '(',
-         paste(  spec$filter, collapse = ') & ('),
-         ')'
-       ) 
-       dplyr::filter(., !! rlang::parse_expr(filter_txt))
-      }else{.}
-    } %>% 
-    dplyr::filter(! is.na(!! rlang::sym(spec$value))) %>% 
-    dplyr::select(tidyselect::any_of(c(`.id` = spec$id, col_select))) 
-  
- 
-  # prior to pivoting, create key column (PARAM or PARAM/TIME)
-  # check if multiple time points are present after subsetting
-  n_time <- ifelse(
-    ! is.na(spec$time),
-    bds %>% dplyr::pull(spec$time) %>% dplyr::n_distinct(),
-    1
+  pivot_input <- pivot_prepare_bds(
+    bds_full  = bds_full,
+    filter    = spec$filter,
+    arrange   = arrange,
+    value     = spec$value, 
+    param     = spec$param, 
+    time      = spec$time,
+    id        = spec$id,
+    values_fn = values_fn
+    #,  single_row = TRUE
   )
-  if(n_time > 1){
-    bds <- bds %>% 
-      tidyr::unite(.key, spec$param, spec$time, remove = FALSE, sep = '_') %>% 
-      dplyr::mutate(.key = stringr::str_replace_all(.key, '[:punct:]|[:space:]', '_'))
-  }else{
-    bds <- bds %>% 
-      dplyr::mutate('.key' = stringr::str_replace_all( !! rlang::sym(spec$param), '[:punct:]|[:space:]', '_'))
-  }
-
+  
+  
   # pivot   ####
+  bds_pivot <- pivot_input$data
   
-  bds_pivot <- bds %>% 
-    dplyr::select(tidyselect::all_of(c(spec$value, '.key', '.id'))) %>% 
-    dplyr::filter(.key != "")
-  
-  # check for duplicates
+    # check for duplicates
   any_dupes <- bds_pivot %>% 
-    dplyr::count(.id, .key) %>% 
+    dplyr::count(spec$id, !!! rlang::syms(pivot_input$names_from)) %>% 
     dplyr::pull(n) %>% 
-    {. > 1} %>% 
+    magrittr::is_greater_than(1) %>% 
     any()
   
   if (any_dupes){
@@ -117,22 +92,20 @@ build_bds <- function(
     )))
   }
   
-  bds_wide <- bds_pivot %>% 
-    tidyr::pivot_wider(
-      names_from  = '.key', 
-      values_from = spec$value,
-      values_fn   = values_fn
-    ) 
+  bds_wide <- do.call(pivot_wider, pivot_input)
+  
   
   # transform all created columns according to guessed type (char to factor, num as numeric)
   # guess types
   var_types <- bds_wide %>% 
-    dplyr::select(bds_pivot %>% dplyr::pull('.key') %>% unique()) %>% 
+    dplyr::select(-tidyselect::any_of(colnames(bds_pivot))) %>% 
     purrr::map_chr(readr::guess_parser) %>% 
     tibble::enframe('var', 'guess') 
+  
   char2fct <- var_types %>% 
     dplyr::filter(guess == 'character') %>% 
     dplyr::pull(var)
+  
   char2num <- var_types %>% 
     dplyr::filter(guess == 'double') %>% 
     dplyr::pull(var)
@@ -145,6 +118,14 @@ build_bds <- function(
     } %>% 
     dplyr::mutate_at(char2num, as.numeric)
     
+  # rename to standardized column names ####
+  renaming <- c(
+    '.id' = spec$id  
+  )
+  
+  bds_wide <- bds_wide %>% 
+    dplyr::rename(tidyselect::any_of(renaming))
+  
   
   # dictionary ####
   # overwrite dictionary from spec
@@ -156,15 +137,17 @@ build_bds <- function(
     spec$spec_id <- 'user'
   }
     
-  dict <- bds %>% 
+  # COMBAK .key nonexistent, param and time columns modified (stringr clean up in refactor) 
+  dict <- bds_pivot %>% 
     dplyr::select(tidyselect::any_of(
       c("param" = spec$param, 
         "label" = spec$label,
         "unit"  = spec$unit, 
-        "time"  = spec$time, 
-        '.key') %>% na.omit)) %>% 
+        "time"  = spec$time 
+        #'.key'
+      ) %>% na.omit)) %>% 
     dplyr::distinct() %>% 
-    dplyr::rename('column' = '.key') %>% 
+    #dplyr::rename('column' = '.key') %>% 
     dplyr::mutate(source = spec$spec_id) %>% 
     dplyr::mutate(type   = 'bds') 
   
