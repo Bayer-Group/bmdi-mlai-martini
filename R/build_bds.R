@@ -18,7 +18,7 @@ build_bds <- function(
   
   if (!(is.null(spec$md5))){
     md5 <- spec$md5
-  } else if (!(is.na(spec$file)||is.null(spec$file))) {
+  } else if (!(is.na(spec$file) || is.null(spec$file))) {
     md5 <- tools::md5sum(spec$file) %>% as.character()
   }
   
@@ -36,7 +36,7 @@ build_bds <- function(
       bds_full <- haven::read_sas(file_name) %>% 
         dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
       
-      if( md5 != spec$md5){
+      if(md5 != spec$md5){
         usethis::ui_info(crayon::silver(
           paste0('\t',  spec$spec_id, 
                  ': The spec was created from a file with a different md5 checksum. \n'))
@@ -52,17 +52,18 @@ build_bds <- function(
   col_select <- spec[c("param", "time", "value", "unit", "label")] %>% 
     unlist() %>% na.omit() %>% as.character()
   
-  # COMBAK
   
-  # use duplicated controls from 'dupl_ctrl' argument over duplicated controls in 'spec', if not NULL
+  # deduce values_fn will be done in pivot_prepare_bds
+  # use duplicated control parameters from 'dupl_ctrl' argument in build_bds()
+  # over duplicated controls in 'spec', if not NULL
   values_fn <- dupl_ctrl$values_fn %||% spec$dupl_ctrl$values_fn
   arrange   <- dupl_ctrl$arrange   %||% spec$dupl_ctrl$arrange
   
-  if (is.null(values_fn)){
+  if(is.null(values_fn)){
     values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
   }
   
-  pivot_input <- pivot_prepare_bds(
+  pivot_prepare <- pivot_prepare_bds(
     bds_full  = bds_full,
     filter    = spec$filter,
     arrange   = arrange,
@@ -76,7 +77,8 @@ build_bds <- function(
   
   
   # pivot   ####
-  bds_pivot <- pivot_input$data
+  pivot_input <- pivot_prepare$pivot_args
+  bds_pivot   <- pivot_input$data
   
     # check for duplicates
   any_dupes <- bds_pivot %>% 
@@ -92,7 +94,7 @@ build_bds <- function(
     )))
   }
   
-  bds_wide <- do.call(pivot_wider, pivot_input)
+  bds_wide <- do.call(tidyr::pivot_wider, pivot_input)
   
   
   # transform all created columns according to guessed type (char to factor, num as numeric)
@@ -147,7 +149,8 @@ build_bds <- function(
         #'.key'
       ) %>% na.omit)) %>% 
     dplyr::distinct() %>% 
-    #dplyr::rename('column' = '.key') %>% 
+    dplyr::mutate_at(pivot_input$names_from, pivot_prepare$clean_fn) %>% 
+    tidyr::unite(column, pivot_input$names_from, remove = FALSE, sep = pivot_input$names_sep) %>% 
     dplyr::mutate(source = spec$spec_id) %>% 
     dplyr::mutate(type   = 'bds') 
   
@@ -162,6 +165,113 @@ build_bds <- function(
   
   
 }
+
+
+#' Prepare bds data for pivoting step in build
+#'
+#'Preparation of dataset bds_full as well as parameters to be passed to pivot_wider
+#' in build_bds to allow for appropriate unit testing
+#'
+#' @param bds_full original bds-type data set
+#' @param filter subsetting
+#' @param arrange 
+#' @param value,param,time
+#' @param id additional columns to reduce data set to actual columns required for pivoting
+#' @param values_fn,names_sep simply written to the `pivot_args` output for the sake of completeness 
+#' @param clean_fn
+#'
+#' @return
+#' A list containing the pivot_wider arguments (pivot_args) as well as the function
+#'  to clean column names (clean_fn). The `pivot_args` list includes the prepared data set (filtered, arranged) 
+#'  as well as pivot_wider params (key(s), value, values_fn, names_sep)
+#' 
+#' @details 
+#' Data preparation of bds_full for pivoting includes filtering and arranging
+#' the data set before relevant columns are selected and renamed using `clean_fn` (`param`, `time` only)
+#' If the prepared data set has more than one level in the `time` column, 
+#' names_from will be a vector of the form `c(param, time)`
+#'
+
+
+pivot_prepare_bds <- function(
+    # COMBAK add spec argument and deduce values_fn, wurrently done in build bds
+    # then TEST IF values_fn in pivot_args is correct
+    # spec 
+    bds_full,
+    filter,
+    arrange,
+    value, 
+    param, 
+    time,
+    id,
+    clean_fn = ~ stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_'), 
+    values_fn, 
+    names_sep = '_'
+    #,  single_row = TRUE
+){
+  
+  pivot_input <- list(
+    # values that do not need to be determined, revisit later
+    values_from = value,
+    values_fn   = values_fn,
+    names_sep   = names_sep
+  )
+  
+  # filter (and arrange) data set ####
+  
+  # columns to keep after filtering and arranging
+  col_select <- c(value, param, time, id)
+  
+  bds <- bds_full %>% 
+    
+    {if(length(filter) > 0){ 
+      dplyr::filter(., !!! rlang::parse_exprs(filter))
+    }else{.}
+    } %>% 
+    # TODO  reconsider, may lead to undocumented parameter exclusion if only NAs are present 
+    #       (instead of documented by prepare_ml())
+    dplyr::filter(! is.na(!! rlang::sym(value))) %>% 
+    dplyr::filter(stringr::str_squish(param) != "") %>% 
+    
+    {if(!is.null(arrange)){ 
+      dplyr::arrange(., !!! rlang::parse_exprs(arrange)) 
+    }else{.}
+    } %>% 
+    
+    dplyr::select(tidyselect::any_of(col_select)) %>% 
+    # clean up columns potentially used for column names after pivoting
+    dplyr::mutate(
+      dplyr::across(
+        tidyselect::any_of(c(time, param)),
+        clean_fn  
+      )
+    )
+  
+  
+  # names_from / multiple (?) time points ####
+  # check if multiple time points are present after subsetting
+  n_time <- ifelse(
+    ! is.na(time),
+    bds %>% dplyr::pull(time) %>% dplyr::n_distinct(),
+    1
+  )
+  # TODO Later: adjust for single_row argument
+  if(n_time > 1){
+    names_from <- c(param, time)
+  } else {
+    names_from <- param
+    bds        <- bds %>% dplyr::select(-time)
+  }
+  pivot_input$data        <- bds
+  pivot_input$names_from  <- names_from
+  
+  list(
+    pivot_args = pivot_input,
+    clean_fn   = clean_fn
+  )
+}
+
+
 
 # test area ####
 if(FALSE){

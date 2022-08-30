@@ -1,4 +1,35 @@
 
+test_that("build_bds duplicate handling works", {
+  file_adlb     <- testthat::test_path("sas/adlb.sas7bdat")
+  ads_spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE)
+  
+
+  # test duplicate message ####
+  
+  expect_message(build_bds(spec = ads_spec_adlb))
+  
+  spec_nodupes      <- ads_spec_adlb
+  spec_nodupes$data <- spec_nodupes$data %>% dplyr::distinct(SUBJID, PARAMCD, AVISIT, .keep_all = TRUE)
+  
+  expect_silent(build_bds(spec = spec_nodupes))
+  
+}
+)
+
+test_that("pivot_prepare_bds works", {
+  # TODO names_from argument deduced correctly based on n_levels of time after filtering
+  
+  # TODO values_fn deduced correctly (move spec and if... to pivot_prepare_bds)
+  
+  
+})
+
+test_that("dict matches data set", {
+  # TODO colnames have to match dict entries 1:1
+  
+  
+})
+
 test_that("build_bds works", {
   
   # TODO structure build_bds expectations in different tests
@@ -6,13 +37,15 @@ test_that("build_bds works", {
   
   file_adlb        <- testthat::test_path("sas/adlb.sas7bdat")
   file_adlb_miss   <- testthat::test_path("sas/adlb_miss.sas7bdat")
-  file_adlb_rename <- testthat::test_path("sas/adlb_rename.sas7bdat")
   
   ads_spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE)
   
   #  duplicate handling ####
   
-  # reference data set with duplicates replaced by mean value
+  # reference data set with duplicates replaced by mean value?
+  #   if values_fn is not specified, ie NULL, it is set to
+  #   mean if all(is.numeric(x)), na.omit(x)[1] otherwise
+
   ref <- ads_spec_adlb$data %>% 
     dplyr::group_by(SUBJID, PARAMCD, AVISIT) %>% 
     dplyr::filter(dplyr::n()>1) %>% 
@@ -35,15 +68,6 @@ test_that("build_bds works", {
     comp$AVAL,
     comp$REF
   )
-  
-  # test duplicate message ####
-  
-  expect_message(build_bds(spec = ads_spec_adlb))
-  
-  spec_nodupes <- ads_spec_adlb
-  spec_nodupes$data <- spec_nodupes$data %>% dplyr::distinct(SUBJID, PARAMCD, AVISIT, .keep_all = TRUE)
-  
-  expect_silent(build_bds(spec = spec_nodupes))
   
   # test  values_fn and arrange ####
   spec_arrange <- adam_spec_bds(file_adlb, attach_data = TRUE)
@@ -127,18 +151,22 @@ test_that("build_bds works", {
     build_bds(ads_spec_adlb)$data %>% dim(),
     c(target_nrow, target_ncol)
   )
+})
+
+
+test_that("build_bds conversion to factor/numeric from AVALC", {
+  file_adlb <- testthat::test_path("sas/adlb.sas7bdat")
+  spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE)
   
-  # ... test conversion to factor/numeric
-  spec_conv <- adam_spec_bds(file_adlb, attach_data = TRUE)
-  spec_conv$data <- spec_conv$data %>% 
+  spec_adlb$data <- spec_adlb$data %>% 
     mutate(AVALC = as.character(AVAL)) %>% 
     mutate(AVALC = case_when(
       PARAMCD == 'LAB1' ~ LETTERS[AVAL],
       TRUE ~ AVALC
     ))
   
-  spec_conv$value <- 'AVALC'
-  build_conv      <- build_bds(spec = spec_conv)  
-  expect_true(all(c('factor', 'numeric') %in% (build_conv$data %>% select(-.id) %>% map_chr(class))))
+  spec_adlb$value <- 'AVALC'
+  build_adlb      <- build_bds(spec = spec_adlb)  
+  expect_true(all(c('factor', 'numeric') %in% (build_adlb$data %>% select(-.id) %>% map_chr(class))))
     
 })
