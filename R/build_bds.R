@@ -9,10 +9,15 @@ build_bds <- function(
   dupl_ctrl = list(
     values_fn = NULL,
     arrange   = NULL
+  ),
+  names_ctrl = list(
+    clean_fn  = ~ stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_'), 
+    names_sep = '_'
   )
 ){
   
   ## TODO input check spec
+  # stopifnot("martini_spec" %in% class(spec) )
 
   md5 <- NULL
   
@@ -48,41 +53,24 @@ build_bds <- function(
   }else {
     bds_full <- spec$data
   }
-
-  col_select <- spec[c("param", "time", "value", "unit", "label")] %>% 
-    unlist() %>% na.omit() %>% as.character()
   
-  
-  # deduce values_fn will be done in pivot_prepare_bds
-  # use duplicated control parameters from 'dupl_ctrl' argument in build_bds()
-  # over duplicated controls in 'spec', if not NULL
-  values_fn <- dupl_ctrl$values_fn %||% spec$dupl_ctrl$values_fn
-  arrange   <- dupl_ctrl$arrange   %||% spec$dupl_ctrl$arrange
-  
-  if(is.null(values_fn)){
-    values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
-  }
-  
-  pivot_prepare <- pivot_prepare_bds(
+  pivot_input <- pivot_prepare_bds(
     bds_full  = bds_full,
-    filter    = spec$filter,
-    arrange   = arrange,
-    value     = spec$value, 
-    param     = spec$param, 
-    time      = spec$time,
-    id        = spec$id,
-    values_fn = values_fn
+    spec      = spec,
+    values_fn = dupl_ctrl$values_fn,
+    arrange   = dupl_ctrl$arrange,
+    clean_fn  = names_ctrl$clean_fn, 
+    names_sep = names_ctrl$names_sep
     #,  single_row = TRUE
   )
   
   
   # pivot   ####
-  pivot_input <- pivot_prepare$pivot_args
-  bds_pivot   <- pivot_input$data
+  bds_pivot <- pivot_input$data
   
     # check for duplicates
   any_dupes <- bds_pivot %>% 
-    dplyr::count(spec$id, !!! rlang::syms(pivot_input$names_from)) %>% 
+    dplyr::count(!!! rlang::syms(c(spec$id, pivot_input$names_from))) %>% 
     dplyr::pull(n) %>% 
     magrittr::is_greater_than(1) %>% 
     any()
@@ -141,16 +129,20 @@ build_bds <- function(
     
   # COMBAK .key nonexistent, param and time columns modified (stringr clean up in refactor) 
   dict <- bds_pivot %>% 
+    dplyr::mutate_at(pivot_input$names_from, names_ctrl$clean_fn) %>% 
+    tidyr::unite(column, pivot_input$names_from, 
+      remove = FALSE, 
+      sep    = names_ctrl$names_sep
+    ) %>% 
     dplyr::select(tidyselect::any_of(
       c("param" = spec$param, 
         "label" = spec$label,
         "unit"  = spec$unit, 
-        "time"  = spec$time 
-        #'.key'
-      ) %>% na.omit)) %>% 
+        "time"  = spec$time ,
+        "column"
+      ) %>% na.omit())
+    ) %>% 
     dplyr::distinct() %>% 
-    dplyr::mutate_at(pivot_input$names_from, pivot_prepare$clean_fn) %>% 
-    tidyr::unite(column, pivot_input$names_from, remove = FALSE, sep = pivot_input$names_sep) %>% 
     dplyr::mutate(source = spec$spec_id) %>% 
     dplyr::mutate(type   = 'bds') 
   
@@ -194,25 +186,36 @@ build_bds <- function(
 
 
 pivot_prepare_bds <- function(
-    # COMBAK add spec argument and deduce values_fn, wurrently done in build bds
+    # COMBAK add spec argument and deduce values_fn, currently done in build bds
     # then TEST IF values_fn in pivot_args is correct
-    # spec 
+    
     bds_full,
-    filter,
-    arrange,
-    value, 
-    param, 
-    time,
-    id,
-    clean_fn = ~ stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_'), 
-    values_fn, 
+    spec, 
+    # filter,
+    # value, 
+    # param, 
+    # time,
+    # id,
+    values_fn = NULL,
+    arrange   = NULL,
+    clean_fn  = ~ stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_'), 
     names_sep = '_'
     #,  single_row = TRUE
 ){
   
+  
+  # use duplicated control parameters from 'dupl_ctrl' argument in build_bds()
+  # over duplicated controls in 'spec', if not NULL
+  values_fn <- values_fn %||% spec$dupl_ctrl$values_fn
+  arrange   <- arrange   %||% spec$dupl_ctrl$arrange
+  
+  if(is.null(values_fn)){
+    values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
+  }
+  
   pivot_input <- list(
-    # values that do not need to be determined, revisit later
-    values_from = value,
+    id_cols     = spec$id,
+    values_from = spec$value,
     values_fn   = values_fn,
     names_sep   = names_sep
   )
@@ -220,18 +223,19 @@ pivot_prepare_bds <- function(
   # filter (and arrange) data set ####
   
   # columns to keep after filtering and arranging
-  col_select <- c(value, param, time, id)
+  col_select <- spec[c("param", "time", "value", "id", "label", "unit")] %>% 
+    unlist() %>% na.omit() %>% as.character()
   
   bds <- bds_full %>% 
     
-    {if(length(filter) > 0){ 
-      dplyr::filter(., !!! rlang::parse_exprs(filter))
+    {if(length(spec$filter) > 0){ 
+      dplyr::filter(., !!! rlang::parse_exprs(spec$filter))
     }else{.}
     } %>% 
     # TODO  reconsider, may lead to undocumented parameter exclusion if only NAs are present 
     #       (instead of documented by prepare_ml())
-    dplyr::filter(! is.na(!! rlang::sym(value))) %>% 
-    dplyr::filter(stringr::str_squish(param) != "") %>% 
+    dplyr::filter(! is.na(!! rlang::sym(spec$value))) %>% 
+    dplyr::filter(stringr::str_squish(spec$param) != "") %>% 
     
     {if(!is.null(arrange)){ 
       dplyr::arrange(., !!! rlang::parse_exprs(arrange)) 
@@ -242,7 +246,7 @@ pivot_prepare_bds <- function(
     # clean up columns potentially used for column names after pivoting
     dplyr::mutate(
       dplyr::across(
-        tidyselect::any_of(c(time, param)),
+        tidyselect::any_of(c(spec$time, spec$param)),
         clean_fn  
       )
     )
@@ -251,24 +255,22 @@ pivot_prepare_bds <- function(
   # names_from / multiple (?) time points ####
   # check if multiple time points are present after subsetting
   n_time <- ifelse(
-    ! is.na(time),
-    bds %>% dplyr::pull(time) %>% dplyr::n_distinct(),
+    ! is.na(spec$time),
+    bds %>% dplyr::pull(spec$time) %>% dplyr::n_distinct(),
     1
   )
   # TODO Later: adjust for single_row argument
   if(n_time > 1){
-    names_from <- c(param, time)
+    names_from <- c(spec$param, spec$time)
   } else {
-    names_from <- param
-    bds        <- bds %>% dplyr::select(-time)
+    names_from <- spec$param
+    bds        <- bds %>% dplyr::select(-spec$time)
   }
   pivot_input$data        <- bds
   pivot_input$names_from  <- names_from
   
-  list(
-    pivot_args = pivot_input,
-    clean_fn   = clean_fn
-  )
+  pivot_input
+  
 }
 
 

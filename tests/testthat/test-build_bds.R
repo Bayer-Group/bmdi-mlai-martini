@@ -1,6 +1,6 @@
 
 test_that("build_bds duplicate handling works", {
-  file_adlb     <- testthat::test_path("sas/adlb.sas7bdat")
+  file_adlb     <- test_path("sas/adlb.sas7bdat")
   ads_spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE)
   
 
@@ -9,24 +9,100 @@ test_that("build_bds duplicate handling works", {
   expect_message(build_bds(spec = ads_spec_adlb))
   
   spec_nodupes      <- ads_spec_adlb
-  spec_nodupes$data <- spec_nodupes$data %>% dplyr::distinct(SUBJID, PARAMCD, AVISIT, .keep_all = TRUE)
+  spec_nodupes$data <- spec_nodupes$data %>% 
+    dplyr::distinct(SUBJID, PARAMCD, AVISIT, .keep_all = TRUE)
   
+  # pivot_prepare_bds(, )
   expect_silent(build_bds(spec = spec_nodupes))
-  
-}
-)
-
-test_that("pivot_prepare_bds works", {
-  # TODO names_from argument deduced correctly based on n_levels of time after filtering
-  
-  # TODO values_fn deduced correctly (move spec and if... to pivot_prepare_bds)
-  
   
 })
 
-test_that("dict matches data set", {
-  # TODO colnames have to match dict entries 1:1
+test_that("pivot_prepare_bds - values_fn deduced correctly", {
   
+  file_adlb <- test_path("sas/adlb.sas7bdat")
+  spec      <- adam_spec_bds(file_adlb, attach_data = TRUE)
+  
+  spec$values_fn <- mean
+  
+  target_fn <- median
+  
+  actual_fn <- pivot_prepare_bds(
+    bds_full  = spec$data,
+    spec      = spec,
+    values_fn = target_fn
+  )[["values_fn"]]
+  
+  expect_equal(target_fn, actual_fn)
+
+})
+
+test_that("pivot_prepare_bds - names_from argument deduced correctly", {
+  
+  file_adlb <- test_path("sas/adlb.sas7bdat")
+  spec      <- adam_spec_bds(file_adlb, attach_data = TRUE)
+  
+  time_single <- spec$data[[spec$time]] %>% head(1)
+  
+  spec_single <- adam_spec_bds(
+    file_adlb,
+    attach_data = TRUE,
+    filter      = c(paste0(spec$time, " == '", time_single, "'"))
+  )
+  spec_multi  <- adam_spec_bds(
+    file_adlb,
+    attach_data = TRUE
+  )
+  
+  pivot_single <- pivot_prepare_bds(
+    bds_full  = spec_single$data,
+    spec      = spec_single
+  )
+  
+  pivot_multi <- pivot_prepare_bds(
+    bds_full  = spec_multi$data,
+    spec      = spec_multi
+  )
+  
+  expect_setequal(
+    pivot_single$names_from,
+    spec$param
+  )
+  
+  expect_setequal(
+    pivot_multi$names_from,
+    c(spec$param, spec$time)
+  )
+  
+})
+
+test_that("build_bds - dict matches data set", {
+  # TODO colnames have to match dict entries 1:1
+  file_adlb <- test_path("sas/adlb.sas7bdat")
+  
+  time_single <- spec$data[[spec$time]] %>% head(1)
+  
+  spec_single <- adam_spec_bds(
+    file_adlb,
+    attach_data = TRUE,
+    filter      = c(paste0(spec$time, " == '", time_single, "'"))
+  )
+  spec_multi  <- adam_spec_bds(
+    file_adlb,
+    attach_data = TRUE
+  )
+  
+  bds_wide_single <- build_bds(spec_single)
+  bds_wide_multi  <- build_bds(spec_multi)
+  
+  expect_setequal(
+    names(bds_wide_single$data) %>% setdiff(c(".id")),
+    bds_wide_single$dict$column
+  )
+  
+  expect_setequal(
+    names(bds_wide_multi$data) %>% setdiff(c(".id")),
+    bds_wide_multi$dict$column
+  )
   
 })
 
@@ -35,8 +111,8 @@ test_that("build_bds works", {
   # TODO structure build_bds expectations in different tests
   # TEST setup ####
   
-  file_adlb        <- testthat::test_path("sas/adlb.sas7bdat")
-  file_adlb_miss   <- testthat::test_path("sas/adlb_miss.sas7bdat")
+  file_adlb        <- test_path("sas/adlb.sas7bdat")
+  file_adlb_miss   <- test_path("sas/adlb_miss.sas7bdat")
   
   ads_spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE)
   
@@ -64,7 +140,7 @@ test_that("build_bds works", {
     tidyr::pivot_longer(-.id, names_to = "PARAMCD", values_to = "AVAL") %>% 
     dplyr::left_join(ref, by = c(".id" = "SUBJID", "PARAMCD"))
   
-  testthat::expect_equal( # expect_identical
+  expect_equal( # expect_identical
     comp$AVAL,
     comp$REF
   )
