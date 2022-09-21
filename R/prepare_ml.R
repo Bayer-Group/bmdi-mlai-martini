@@ -290,10 +290,14 @@ prepare_ml <- function(
   
   train_prop_valid <- c(0.5, 1)
   if (!dplyr::between(train_prop, train_prop_valid[1], train_prop_valid[2])){
-    usethis::ui_stop(paste0(
-      "The provided training proportion 'train_prop' is outside [",
-      train_prop_valid[1], ", ", train_prop_valid[2], "]. Please check!"
-    ))
+    
+    cli::cli_abort(c(
+      "The provided training proportion {.code train_prop} is expected to fall within 
+        [{train_prop_valid[1]};{train_prop_valid[2]}]",
+        "x" = "You've supplied {train_prop}."
+      )
+    )
+    
   } 
   
   if (train_prop < 1){
