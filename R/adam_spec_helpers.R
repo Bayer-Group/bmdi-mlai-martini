@@ -5,6 +5,8 @@
 #' @return
 #'
 #'
+#' TODO error in with() due to roxygen update? check fails
+#' COMBAK error in with() due to roxygen update? check fails
 #' TODO complete docu
 
 create_dict <- function(spec_entry){
@@ -18,7 +20,7 @@ create_dict <- function(spec_entry){
        '*' = 'Rerun {.fn adam_spec} with {.code attach_data = TRUE}.'
     ))
     
- }
+  }
   # not exported; no extra checks on spec_entry's list structure and entries
   
   
