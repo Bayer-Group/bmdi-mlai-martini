@@ -66,11 +66,16 @@ prepare_ml_outcome <- function(
   } else { # outcome_name is provided
     
     # do columns exist?  
-    purrr::walk( outcome_name, ~  if(! .x %in% colnames(outcome) ){ 
-      usethis::ui_stop( paste0(
-        'The column ', .x, ' is not present in the outcome data set. ', 
-        'Please correct input of column_name or let the function choose from existing columns (regression and classification only).\n'))
-    } )
+    clmn_miss <- setdiff(outcome_name, colnames(outcome))    
+    
+    if(length(clmn_miss) > 0){
+      cli::cli_abort(c(
+        'i' = 'You selected {.code {outcome_name}} as the column{?s} defining your outcome.',
+        'x' = '{.code {clmn_miss}} {?is/are} not present in the data set {.arg outcome}.',
+        '*' = 'Please correct the input of {.arg column_name}.' # or let {.fn prepare_ml_outcome} choose from existing columns (regression and classification only).'
+      ))
+    }
+    
     
     # check number of provided outcome columns
     if(length(outcome_name) > 2 ){ 

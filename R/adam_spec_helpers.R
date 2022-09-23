@@ -10,9 +10,15 @@
 create_dict <- function(spec_entry){
   
   # input checks
+  
   if(is.null(spec_entry$data)){
-    usethis::ui_stop("No data attached. Dictionary can't be created.")
-  }
+    cli::cli_abort( c(
+       'i' = 'Dictionary creation requires data to be attached to the spec object.',
+       'x' = 'No data is attached.',
+       '*' = 'Rerun {.fn adam_spec} with {.code attach_data = TRUE}.'
+    ))
+    
+ }
   # not exported; no extra checks on spec_entry's list structure and entries
   
   
