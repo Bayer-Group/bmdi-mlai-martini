@@ -23,10 +23,15 @@ check_freq <- function(
   thres = 10
 ){
   
+  # TODO replace by checking for ml_object class once defined
   is_ml <- !is.data.frame(x)
   
   data  <- x
-  if(is_ml) data <- data$data_prep$train
+  if(is_ml) {data <- data$data_prep$train}
+  
+  if(is.null(data)){
+    cli::cli_abort("Please check your input. Currently NULL.")
+  }
   
   d_fct <- data %>% 
     dplyr::select_if(is.factor)
