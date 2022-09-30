@@ -110,8 +110,14 @@ adam_spec_bds <- function(
     # check if required columns are provided by user
     missing_params <- purrr::map_lgl(list(param = param, value = value, id = id), is.null) %>% which() %>% names()
     
-    if (length(missing_params)>0){
-      usethis::ui_stop(paste0(paste(usethis::ui_code(missing_params), collapse = ", "), " need(s) to be provided.\n"))
+    if(length(missing_params) > 0){
+      cli::cli_abort(c(
+       'i' = "{missing_params} {?is/are} required parameter{?s} for specification of bds-type data when a {.code data} is provided instead of {.file}.",
+       'x' = "Information to create the spec for {.code spec$spec_id} is incomplete.",
+       '*' = 'Please provide the column names to use for {missing_params} in order to create the spec.'
+      )
+      )
+     # usethis::ui_stop(paste0(paste(usethis::ui_code(missing_params), collapse = ", "), " need(s) to be provided.\n"))
     }
     
     # set 'domain' to default, if not provided
@@ -122,11 +128,20 @@ adam_spec_bds <- function(
     # ... if 'file' is used ####
     
     if (!file.exists(file)){
-      usethis::ui_stop(paste0(usethis::ui_code("file"), " not found."))
+      cli::cli_abort(c(
+       "{.fn adam_spec_bds} could not create a spec from the provided file." ,
+       'x' = "The following file could not be found: {.path {file}}")
+      )
     }
     
     if (tools::file_ext(file) != "sas7bdat") {
-      usethis::ui_stop(paste0(usethis::ui_code("file"), " is not of type 'sas7bdat'."))
+      cli::cli_abort(c(
+        "{.fn adam_spec_bds} expects a sas7bdat file to read, but was provided {.path {file}}.",
+        'x' = 'The provided file is not of type sas7bdat, but {tools::file_ext(file)}.',
+        '*' = 'Please check your input or attach a data set instead.'
+      ))
+      
+      #usethis::ui_stop(paste0(usethis::ui_code("file"), " is not of type 'sas7bdat'."))
     }
     
     # ... ... import data ####
@@ -138,8 +153,7 @@ adam_spec_bds <- function(
     
     
     # ... ... identify domain ####
-    domain <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
-      tail(1) %>% 
+    domain <- basename(file) %>% 
       stringr::str_remove_all('^ad|[.]sas7bdat$') %>% 
       stringr::str_to_upper()
     
@@ -214,20 +228,43 @@ adam_spec_bds <- function(
       
     }
     
-    # ... ... ... 'id' (input parameter with default, not guessed) ####
-    
-    if (!id %in% coln_bds){
-      usethis::ui_stop(
-        paste0("AD", domain, ": The ", usethis::ui_code("id"), " column '", id, "' is not present in the data set.\n")
-      )
-    }
     
   }
 
   # column check ####
+  # covers both cases: data or file provided
+
+  # 'id' (input parameter with default, not guessed) ####
+  if (!id %in% coln_bds){
+    
+    cli::cli_abort(c(
+      "{.fn adam_spec_bds} could not create a spec for domain {.code {domain}} from {.path {file}}.",
+      'x' = "The {.code id} column {.code {id}} is not present in the data set.",
+      '*' = "Please provide a valid input to use as {.code id}." 
+    ))
+    
+  }
+  
+  # selected columns not present in bds
+  miss_clmn <- setdiff(col_select %>% unlist(), coln_bds)
+  
+  if(length(miss_clmn) > 0){
+    
+    miss_arg_values <- miss_clmn %>% paste(names(.), "=", .)
+    miss_arg_names  <- names(miss_clmn)
+    
+    cli::cli_abort(c(
+      'i' = 'You provided the column{?s} {.code {miss_arg_values}} for the spec creation.',
+      'x' = 'The column{?s} {.code {miss_clmn}} {?is/are} not present in the data set.',
+      '*' = 'Please correct the input of {.arg miss_arg_names}.'
+    ))
+    
+  }
+  
   
   purrr::iwalk(col_select, ~{
     if (!is.null(.x) && (length(intersect(.x, coln_bds)) == 0)) {
+      
       usethis::ui_stop(crayon::silver(paste0(
         "The ", usethis::ui_code(.y), " column '", .x, "' is not available in the data set.\n")))
     }

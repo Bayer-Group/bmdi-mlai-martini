@@ -65,7 +65,7 @@ prepare_ml_outcome <- function(
     
   } else { # outcome_name is provided
     
-    # do columns exist?  
+    # do(es) selected column(s) exist?  
     clmn_miss <- setdiff(outcome_name, colnames(outcome))    
     
     if(length(clmn_miss) > 0){
