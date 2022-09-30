@@ -7,7 +7,7 @@ utils::globalVariables(c("guess", "var"))
 build_bds <- function(
   spec,
   dupl_ctrl = list(
-    values_fn = as.list(args(tidyr::pivot_wider))$values_fn,
+    values_fn = NULL,
     arrange   = NULL
   ),
   names_ctrl = list(
@@ -86,6 +86,7 @@ build_bds <- function(
   
   # check for duplicates
   # TODO move duplicate check and msg into pivot_prepare_bds()
+  # and clarify that pivot_wider() defaults are used, if values_fn is NULL
   any_dupes <- bds_pivot %>% 
     dplyr::count(!!! rlang::syms(c(spec$id, pivot_input$names_from))) %>% 
     dplyr::pull(n) %>% 
