@@ -7,7 +7,7 @@ utils::globalVariables(c("guess", "var"))
 build_bds <- function(
   spec,
   dupl_ctrl = list(
-    values_fn = NULL,
+    values_fn = as.list(args(tidyr::pivot_wider))$values_fn,
     arrange   = NULL
   ),
   names_ctrl = list(
@@ -42,14 +42,30 @@ build_bds <- function(
         dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
       
       if(md5 != spec$md5){
-        usethis::ui_info(crayon::silver(
-          paste0('\t',  spec$spec_id, 
-                 ': The spec was created from a file with a different md5 checksum. \n'))
-        )
+
+        # TODO refactor - warning is also used in other build_*() functions
+        cli::cli_warn(c(
+          "i" = "The spec entry {.code {spec$spec_id}} was created from a file with a 
+          different md5 checksum than the one that is provided in the {.arg file}
+          entry of the spec.",
+          "*" = "Check the provided file path or consider recreating the spec."
+        ))
+        
       }  
       
       
-    }else return(NULL)
+    }else{
+      
+      # TODO refactor - warning is also used in other build_*() functions
+      cli::cli_warn(c(
+        "{.fn build_adsl} expects a sas7bdat file to read, but was provided {.path {file_name}}.",
+        "i" = "The provided file in the spec entry {.code {spec$spec_id}} is not of type sas7bdat, but {file_ext}.",
+        "i" = "No data set was built from spec entry {.code {spec$spec_id}} and NULL was returned.",
+        "*" = "Please check your input or attach the data set instead."
+      ))
+      
+      return(NULL)
+    }
   }else {
     bds_full <- spec$data
   }
@@ -68,7 +84,8 @@ build_bds <- function(
   # pivot   ####
   bds_pivot <- pivot_input$data
   
-    # check for duplicates
+  # check for duplicates
+  # TODO move duplicate check and msg into pivot_prepare_bds()
   any_dupes <- bds_pivot %>% 
     dplyr::count(!!! rlang::syms(c(spec$id, pivot_input$names_from))) %>% 
     dplyr::pull(n) %>% 
@@ -76,10 +93,12 @@ build_bds <- function(
     any()
   
   if (any_dupes){
+    
     usethis::ui_info(crayon::silver(paste0(
       'Duplicates were identified in ', usethis::ui_value(spec$spec_id), '.\n',  
       'Please refer to the documentation of ', usethis::ui_code('dupl_ctrl'), ' for details.\n'
     )))
+    
   }
   
   bds_wide <- do.call(tidyr::pivot_wider, pivot_input)
@@ -127,7 +146,6 @@ build_bds <- function(
     spec$spec_id <- 'user'
   }
     
-  # COMBAK .key nonexistent, param and time columns modified (stringr clean up in refactor) 
   dict <- bds_pivot %>% 
     dplyr::mutate_at(pivot_input$names_from, names_ctrl$clean_fn) %>% 
     tidyr::unite(column, pivot_input$names_from, 

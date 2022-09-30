@@ -36,9 +36,14 @@ build_adsl <- function(
       
     } else {
       
-      usethis::ui_info(crayon::silver(
-        paste0('\t build_adsl() expects a sas7bdat file to read. Please check your input or attach the data in the respective spec slot. \n'))
-      )
+      # TODO refactor - warning is also used in other build_*() functions
+      cli::cli_warn(c(
+        "{.fn build_adsl} expects a sas7bdat file to read, but was provided {.path {file_name}}.",
+        "i" = "The provided file in the spec entry {.code {spec$spec_id}} is not of type sas7bdat, but {file_ext}.",
+        "i" = "No data set was built from spec entry {.code {spec$spec_id}} and NULL was returned.",
+        "*" = "Please check your input or attach the data set instead."
+      ))
+      
       return(NULL)
       
     }
@@ -49,10 +54,16 @@ build_adsl <- function(
     adsl_full <- spec$data %>% 
       dplyr::mutate_if(is.character,  ~ dplyr::na_if(., ""))
     
-    if( md5 != spec$md5){
-      usethis::ui_info(crayon::silver(
-        paste0('\t',  spec$spec_id, ': The spec was created from a file with a different md5 checksum. \n'))
-      )
+    if(md5 != spec$md5){
+      
+      # TODO refactor - warning is also used in other build_*() functions
+      cli::cli_warn(c(
+        "i" = "The spec entry {.code {spec$spec_id}} was created from a file with a 
+        different md5 checksum than the one that is provided in the {.arg file}
+        entry of the spec.",
+        "*" = "Check the provided file path or consider recreating the spec."
+      ))
+
     }  
     
   }
