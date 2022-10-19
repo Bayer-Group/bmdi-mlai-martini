@@ -49,7 +49,7 @@
 #' which `thres_lump` is passed as parameter `threshold`. Defaults to 0.05.
 #' @param one_hot boolean. passed to \code{recipes::step_dummy()} to choose one hot encoding over dummy encoding
 #' @param vars_imp_ignore variables that shall not be imputed can be specified in \code{vars_imp_ignore}
-#' (vector of column names, e.g. \code{vars_imp_ignore = '.trt'}). 
+#' (vector of column names, defaults to \code{vars_imp_ignore = '.trt'}). 
 #' Observations with missing values in these variables will be removed. Removal is documented in `removed$rows`.
 #' @param vars_fct_expl_na column names of factors for which NAs should be treated as an explicit factor level. Defaults to NULL.
 #' @param vars_keep_corr choose these variables over other options when removing variables due to high correlation in \code{recipes::step_corr()}. See \code{recipes::step_rm()} below for details. 
@@ -89,7 +89,7 @@
 #' It does not mean that missing values in these variables have been or will be imputed. 
 #' For more details on this matter please refer to the documentation of tidymodels and the 
 #' difference in \code{prep()} and \code{bake()}, in particular. 
-#' For example, the treatment variables will most likely be given in \code{vars_imp_ignore} to prevent any imputations; 
+#' For example, \code{vars_imp_ignore} includes the standard treatment variable \code{.trt} by default to prevent any imputations; 
 #' however, it will be listed in the variable set of the \code{prep()}ped recipe. Don't panic. #rtfm.
 #' 
 #' 
@@ -157,7 +157,7 @@ prepare_ml <- function(
   thres_nzv_freq      = 95/5, 
   thres_nzv_unique    = 10,
   
-  vars_imp_ignore     = NULL,
+  vars_imp_ignore     = c(".trt"),
   vars_fct_expl_na    = NULL,
   vars_ordinalscore   = NULL,
   vars_keep_corr      = NULL,
