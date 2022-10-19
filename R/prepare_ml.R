@@ -579,9 +579,7 @@ prepare_ml <- function(
   names(prep_steps) <- prep_steps %>% 
     purrr::map_chr(~{
       attr(.x, "class")[[1]][1] %>% 
-        stringr::str_remove("^step_") %>% 
-        # keep naming consistent with prep_params object
-        stringr::str_replace("^rm$", "imp_ignore")
+        stringr::str_remove("^step_")
     })
   
   # create list of removed columns per step for output object
@@ -592,10 +590,13 @@ prepare_ml <- function(
     # set empty 'removal' slots (=vector of length 0) to NULL
     purrr::map(~{if(length(.x) > 0) .x})
 
-   # imp.ignore is returned as named vector 
-  if("imp_ignore" %in% names(removed_columns)){
-     removed_columns$imp_ignore <- removed_columns$imp_ignore %>%  as.character()
-   }
+  # 'rm' is returned as named vector 
+  if("rm" %in% names(removed_columns)){
+    removed_columns$imp_ignore <- removed_columns$rm %>% 
+      as.character() %>% 
+      setdiff(vars_exclude_corr)
+    removed_columns$keep_corr <- vars_exclude_corr
+  }
   
   # DOCUMENT PREP PARAMETER SETTINGS ####
   # NOTE TEMP text slots will be removed once documentation is fully available
@@ -633,8 +634,8 @@ prepare_ml <- function(
     ),  
     
     vars_keep_corr = list(
-      value = vars_exclude_corr,
-      text  = ifelse(prep_step_corr && !is.null (vars_exclude_corr),
+      value = ifelse(!is.null(vars_keep_corr), vars_keep_corr, NA),
+      text  = ifelse(prep_step_corr && !is.null(vars_exclude_corr),
                      'Variable selection in recipes::step_corr() was adjusted according to "vars_keep_corr"',
                      'No variables were excluded specifically due to high correlation with the variables in "vars_keep_corr"')
     ),
