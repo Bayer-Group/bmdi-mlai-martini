@@ -179,7 +179,7 @@ prepare_ml <- function(
     cli::cli_inform(c(
       "You set {.arg prep_step_dummy = TRUE}.",
       "i" = "This preparation step uses dummy-coding based on reference level by 
-      default, i.e. {.arg one_hot = FALSE} (see {.code ?recipes::step_dummy} for details}.",
+      default, i.e. {.arg one_hot = FALSE} (see {.fn ?recipes::step_dummy} for details}.",
       "*" = "Depending on your chosen ML technique consider setting {.arg one_hot = TRUE}."
     ))
   }
