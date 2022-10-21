@@ -25,7 +25,7 @@ prepare_ml(
   thres_imp = 0.8,
   thres_nzv_freq = 95/5,
   thres_nzv_unique = 10,
-  vars_imp_ignore = NULL,
+  vars_imp_ignore = c(".trt"),
   vars_fct_expl_na = NULL,
   vars_ordinalscore = NULL,
   vars_keep_corr = NULL,
@@ -89,7 +89,7 @@ variables will be removed.}
 \code{thres_nzv_freq = 95/5)} and \code{thres_nzv_unique = 10}}
 
 \item{vars_imp_ignore}{variables that shall not be imputed can be specified in \code{vars_imp_ignore}
-(vector of column names, e.g. \code{vars_imp_ignore = '.trt'}).
+(vector of column names, defaults to \code{vars_imp_ignore = '.trt'}).
 Observations with missing values in these variables will be removed. Removal is documented in \code{removed$rows}.}
 
 \item{vars_fct_expl_na}{column names of factors for which NAs should be treated as an explicit factor level. Defaults to NULL.}
@@ -153,11 +153,17 @@ Please refer to the Details section for more information.
 \details{
 The following order of recipe steps for data preparation will be applied (if no recipe is provided).
 The variable sets that a particular step function will be applied to are determined based on user input
-and output of the function \code{\link{prepare_ml_vars}()}, respectively. Further details on particular steps are given below.
+and output of the function \code{\link{prepare_ml_vars}()}, respectively.
+Further details on particular steps are given below.
 \itemize{
 \item drop variables e.g. not meeting the minimum threshold for non-missing data proportion (\code{step_rm()}) or for variable removal related to the \code{vars_keep_corr} parameter (see below).
 \item remove observations with missing data in outcome (\code{step_naomit()})
-\item knn imputation on variables with missing values that are not explicitly excluded from imputation (\code{step_impute_knn()})
+\item knn imputation on variables with missing values that are not explicitly
+excluded from imputation (\code{vars_imp_ignore}). Please note, that missing
+values can still occur after imputation if a large majority (or all) of the
+imputing variables are also missing (see \code{?recipes::step_impute_knn()}).
+Related subjects/observations will be removed to obtain a complete data set
+and listed in removed$rows of the output object.
 \item omit observations with remaining missing values (i.e. in variables that were excluded from imputation and not dropped before) (\code{step_naomit()})
 \item removal of near-zero variance variables (\code{step_nzv()})
 \item log-transformation (\code{step_log()})
@@ -180,7 +186,7 @@ The variables listed for this step are the ones that are \strong{used} for the i
 It does not mean that missing values in these variables have been or will be imputed.
 For more details on this matter please refer to the documentation of tidymodels and the
 difference in \code{prep()} and \code{bake()}, in particular.
-For example, the treatment variables will most likely be given in \code{vars_imp_ignore} to prevent any imputations;
+For example, \code{vars_imp_ignore} includes the standard treatment variable \code{.trt} by default to prevent any imputations;
 however, it will be listed in the variable set of the \code{prep()}ped recipe. Don't panic. #rtfm.
 }
 \section{Authors}{
