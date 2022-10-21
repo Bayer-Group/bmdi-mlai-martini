@@ -21,4 +21,11 @@
         name param   value unit  time  
         adlb PARAMCD AVAL  AVALU AVISIT
         advs PARAMCD AVAL  AVALU AVISIT
+      
+        Filter information 
+    Message <rlang_message>
+      ! 1 filter could not be applied to any of the data sets:
+        - TRUE
+      * Please double check and adjust or remove from `filter` argument as applicable
+        and rerun.
 

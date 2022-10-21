@@ -2,17 +2,18 @@ test_that("build_out_tte works", {
   
   cut  <- 20
   unit <- 'days'
-  data <- tribble(
+  data <- tibble::tribble(
     ~SUBJID, ~AVAL, ~CNSR,
       10001, 10,    0,
       10002, 30,    0,
       10003, 10,    1,
       10004, 40,    1
   ) %>% 
-    mutate(PARAMCD = 'A') %>% 
-    bind_rows(
+    dplyr::mutate(PARAMCD = 'A') %>% 
+    dplyr::bind_rows(
       .,
-      mutate(., PARAMCD = 'B') %>% mutate(CNSR = 1 - CNSR)
+      dplyr::mutate(., PARAMCD = 'B') %>% 
+        dplyr::mutate(CNSR = 1 - CNSR)
     )
   
   # discard subjects censored before cut
