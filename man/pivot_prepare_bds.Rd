@@ -16,15 +16,15 @@ pivot_prepare_bds(
 \arguments{
 \item{bds_full}{original bds-type data set}
 
+\item{spec}{Top level entry of an object of class \code{martini_spec}.}
+
 \item{values_fn, names_sep}{simply written to the \code{pivot_args} output for the sake of completeness}
 
-\item{arrange}{}
+\item{arrange}{expression to be passed to \code{dplyr::arrange()} before
+pivoting. Relevant in case of duplicates and if \code{values_fn} is
+sensitive to the order of values to aggregate}
 
-\item{clean_fn}{}
-
-\item{filter}{subsetting}
-
-\item{id}{additional columns to reduce data set to actual columns required for pivoting}
+\item{clean_fn}{function to clean column names after pivoting}
 }
 \value{
 A list containing the pivot_wider arguments (pivot_args) as well as the function
@@ -41,3 +41,8 @@ the data set before relevant columns are selected and renamed using \code{clean_
 If the prepared data set has more than one level in the \code{time} column,
 names_from will be a vector of the form \code{c(param, time)}
 }
+\section{Authors}{
+
+Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+}
+

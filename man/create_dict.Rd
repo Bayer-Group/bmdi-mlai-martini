@@ -10,8 +10,14 @@ create_dict(spec_entry)
 \item{spec_entry}{Top level entry of an object of class \code{martini_spec}.}
 }
 \value{
-TODO complete docu
+the dictionary
 }
 \description{
 Title
 }
+\section{Authors}{
+
+Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+TODO complete docu
+}
+
