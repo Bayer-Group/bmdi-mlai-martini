@@ -63,11 +63,17 @@
 #'
 #' The following order of recipe steps for data preparation will be applied (if no recipe is provided).
 #' The variable sets that a particular step function will be applied to are determined based on user input 
-#' and output of the function \code{\link{prepare_ml_vars}()}, respectively. Further details on particular steps are given below.
+#' and output of the function \code{\link{prepare_ml_vars}()}, respectively.
+#' Further details on particular steps are given below.
 #' 
 #' * drop variables e.g. not meeting the minimum threshold for non-missing data proportion (`step_rm()`) or for variable removal related to the `vars_keep_corr` parameter (see below).  
 #' * remove observations with missing data in outcome (`step_naomit()`)
-#' * knn imputation on variables with missing values that are not explicitly excluded from imputation (`step_impute_knn()`)
+#' * knn imputation on variables with missing values that are not explicitly 
+#' excluded from imputation (`vars_imp_ignore`). Please note, that missing 
+#' values can still occur after imputation if a large majority (or all) of the 
+#' imputing variables are also missing (see `?recipes::step_impute_knn()`).
+#' Related subjects/observations will be removed to obtain a complete data set 
+#' and listed in removed$rows of the output object.
 #' * omit observations with remaining missing values (i.e. in variables that were excluded from imputation and not dropped before) (`step_naomit()`)
 #' * removal of near-zero variance variables (`step_nzv()`)
 #' * log-transformation (`step_log()`)
@@ -500,11 +506,11 @@ prepare_ml <- function(
         d_ref <- d_train_nocorr %>% 
           dplyr::select(tidyselect::all_of(.x))
         
-        d_test <- d_train_nocorr %>% 
+        d_check <- d_train_nocorr %>% 
           dplyr::select_if(is.numeric) %>% 
           dplyr::select(-tidyselect::any_of(c(.x, ".id")))
         
-        cor(d_test, d_ref, method = "pearson") %>% 
+        cor(d_check, d_ref, method = "pearson") %>% 
           as.data.frame() %>% 
           tibble::rownames_to_column() %>% 
           dplyr::filter(abs(!!rlang::sym(.x)) > thres_corr) %>% 
