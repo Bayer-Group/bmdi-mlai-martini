@@ -5,8 +5,6 @@
 #' @return
 #'
 #'
-#' TODO error in with() due to roxygen update? check fails
-#' COMBAK error in with() due to roxygen update? check fails
 #' TODO complete docu
 
 create_dict <- function(spec_entry){
@@ -148,21 +146,3 @@ data_info <- function(spec_entry){
   
 }
 
-
-with(spec_entry, {
-  data %>% 
-    dplyr::select( tidyselect::any_of(
-      c(param, label, unit) %>% na.omit() 
-    )) %>% 
-    {if (!is.na(unit)){
-      dplyr::group_by(., dplyr::across(-unit)) %>% 
-        tidyr::fill(unit, .direction = "downup") %>% 
-        dplyr::ungroup()
-    } else {
-      .
-    }} %>% 
-    dplyr::distinct() %>%
-    dplyr::mutate(source = spec_id) %>% 
-    dplyr::mutate(type   = type) %>%  
-    print()
-})
