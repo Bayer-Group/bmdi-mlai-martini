@@ -1,6 +1,5 @@
 #' @rdname build_x
 #'
-utils::globalVariables(c("guess", "var"))
 
 # (see 'build_x.R' for documentation details)
 
@@ -184,12 +183,13 @@ build_bds <- function(
 #' in build_bds to allow for appropriate unit testing
 #'
 #' @param bds_full original bds-type data set
-#' @param filter subsetting
-#' @param arrange 
-#' @param value,param,time
-#' @param id additional columns to reduce data set to actual columns required for pivoting
+#' @param spec Top level entry of an object of class `martini_spec`.
+#' @param arrange expression to be passed to \code{dplyr::arrange()} before
+#' pivoting. Relevant in case of duplicates and if \code{values_fn} is
+#'  sensitive to the order of values to aggregate
 #' @param values_fn,names_sep simply written to the `pivot_args` output for the sake of completeness 
-#' @param clean_fn
+#' @param clean_fn function to clean column names after pivoting 
+#' 
 #'
 #' @return
 #' A list containing the pivot_wider arguments (pivot_args) as well as the function
@@ -202,19 +202,15 @@ build_bds <- function(
 #' If the prepared data set has more than one level in the `time` column, 
 #' names_from will be a vector of the form `c(param, time)`
 #'
-
+#' @section Authors:
+#' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 
 pivot_prepare_bds <- function(
     # COMBAK add spec argument and deduce values_fn, currently done in build bds
     # then TEST IF values_fn in pivot_args is correct
     
     bds_full,
-    spec, 
-    # filter,
-    # value, 
-    # param, 
-    # time,
-    # id,
+    spec, # actually a spec entry, called spec for convenience in build_bds
     values_fn = NULL,
     arrange   = NULL,
     clean_fn  = ~ stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_'), 
