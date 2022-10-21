@@ -1,3 +1,10 @@
+# martini 0.4.2
+
+* improved messaging (wip)
+* updated docu
+* switched to testthat 3e and updated tests
+* some refactoring
+
 # martini 0.4.1
 
 ## Breaking changes
