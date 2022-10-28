@@ -512,7 +512,7 @@ prepare_ml <- function(
           dplyr::select_if(is.numeric) %>% 
           dplyr::select(-tidyselect::any_of(c(.x, ".id")))
         
-        cor(d_test, d_ref, method = corr_method, use = cor_use) %>% 
+        cor(d_check, d_ref, method = corr_method, use = cor_use) %>% 
           as.data.frame() %>% 
           tibble::rownames_to_column() %>% 
           dplyr::filter(abs(!!rlang::sym(.x)) > thres_corr) %>% 
