@@ -3,10 +3,10 @@
 #' @param spec_entry Top level entry of an object of class `martini_spec`.
 #'
 #' @return
+#' the dictionary
 #'
-#'
-#' TODO error in with() due to roxygen update? check fails
-#' COMBAK error in with() due to roxygen update? check fails
+#' @section Authors:
+#' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' TODO complete docu
 
 create_dict <- function(spec_entry){
@@ -43,18 +43,24 @@ create_dict <- function(spec_entry){
       
       dict  <- data %>% 
         dplyr::select( tidyselect::any_of(
-          c(param, label, unit) %>% na.omit() 
+          # determine combinations of only param, label and unit to handle randomly missing unit entries
+          # same unit should be filled across timepoints
+          c("param" = param, "label" = label, unit) %>% na.omit() 
         )) %>% 
         {if (!is.na(unit)){
-          dplyr::group_by(., dplyr::across(-unit)) %>% 
+          dplyr::group_by(., dplyr::across(-tidyselect::any_of(c("param", "label")))) %>% 
             tidyr::fill(unit, .direction = "downup") %>% 
-            dplyr::ungroup()
+            dplyr::ungroup() %>% 
+            dplyr::rename("unit" = unit)
         } else {
           .
         }} %>% 
         dplyr::distinct() %>%
         dplyr::mutate(source = spec_id) %>% 
         dplyr::mutate(type   = type) 
+      
+      # for consistent dict structure: add NA columns for time and/or unit if missing
+      if(is.na(unit)) dict <- dict %>% dplyr::mutate(unit = NA_character_)
       
       param_sel <- data %>% 
         {if(length(filter) > 0){       
@@ -103,9 +109,12 @@ create_dict <- function(spec_entry){
 #' @param spec_entry Top level entry of an object of class `martini_spec`.
 #'
 #' @return
+#' list with entries `nsubj` and `ncol` giving
+#' the number of distinct values in the .id column and the (approximate)
+#' number of columns derived from the data set, respectively.
 #' 
-#' @examples
-#' data_info(martini_spec$adsl)
+#' @section Authors:
+#' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 
 # TODO complete docu
 
@@ -148,21 +157,3 @@ data_info <- function(spec_entry){
   
 }
 
-
-with(spec_entry, {
-  data %>% 
-    dplyr::select( tidyselect::any_of(
-      c(param, label, unit) %>% na.omit() 
-    )) %>% 
-    {if (!is.na(unit)){
-      dplyr::group_by(., dplyr::across(-unit)) %>% 
-        tidyr::fill(unit, .direction = "downup") %>% 
-        dplyr::ungroup()
-    } else {
-      .
-    }} %>% 
-    dplyr::distinct() %>%
-    dplyr::mutate(source = spec_id) %>% 
-    dplyr::mutate(type   = type) %>%  
-    print()
-})

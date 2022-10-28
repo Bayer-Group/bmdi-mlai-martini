@@ -137,7 +137,7 @@ print.martini_spec <- function(x, ...){
     # filter argument passed from adam_spec() call
     attr(x, 'filter'), 
     # actual filters
-    map( x, 'filter') %>% unlist() 
+    purrr::map( x, 'filter') %>% unlist() 
     ) %>% unique()
   res_info    <- info_filter(x, all_filters, quiet = TRUE)
 

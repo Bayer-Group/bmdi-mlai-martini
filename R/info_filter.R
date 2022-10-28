@@ -66,7 +66,7 @@ info_filter <- function(
       tidyr::unite(txt, name, filter, sep = ' ') %>% 
       dplyr::pull(txt)
     
-    msg_applied <- paste0(
+    msg_applied <- c(
       "v" = "{length(txt_applied)} filter{?s} could be applied:",
       rlang::set_names(paste0("- ", txt_applied), " ")
     )

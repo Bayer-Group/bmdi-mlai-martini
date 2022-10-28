@@ -10,7 +10,7 @@ prepare_ml_vars(
   thres_log = NULL,
   thres_lump = NULL,
   thres_imp = NULL,
-  remove = c(".id", ".out", ".status", ".time", ".trt")
+  remove = c(".id", ".out", ".status", ".time")
 )
 }
 \arguments{

@@ -11,6 +11,11 @@
 #' \item{\code{arrange}} expression passed to \code{arrange()} optional sorting of data set prior to pivoting, 
 #' e.g. in order to select the first/last value by date. defaults to NULL. 
 #' }
+#' @param names_ctrl bds only. A list with two entries handling cleaning and renaming of columns after pivoting
+#' \itemize{
+#' \item{\code{clean_fn}} defaults to `stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_')`.
+#' \item{\code{names_sep}} defaults to '_' 
+#' }
 #'
 #' @return 
 #' A list with the following entries

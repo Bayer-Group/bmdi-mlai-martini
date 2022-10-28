@@ -1,6 +1,5 @@
 #' @rdname build_x
 #'
-utils::globalVariables(c("guess", "var"))
 
 # (see 'build_x.R' for documentation details)
 
@@ -166,13 +165,16 @@ build_bds <- function(
 #' in build_bds to allow for appropriate unit testing
 #'
 #' @param bds_full original bds-type data set
-#' @param spec
-#' @param filter subsetting
-#' @param arrange 
-#' @param value,param,time
-#' @param id additional columns to reduce data set to actual columns required for pivoting
-#' @param values_fn,names_sep simply written to the `pivot_args` output for the sake of completeness 
-#' @param clean_fn
+#' @param spec Top level entry of an object of class `martini_spec`.
+#' @param values_fn function to control duplicate handling in \code{pivot wider()}. 
+#' See docu of \code{build_bds()} for details.
+#' @param arrange expression to be passed to \code{dplyr::arrange()} before
+#' pivoting. Relevant in case of duplicates and if \code{values_fn} is
+#'  sensitive to the order of values to aggregate.
+#' @param clean_fn function to clean future column names (after pivoting), defaults to 
+#' `~ stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_')`
+#' @param names_sep to be passed to \code{pivot wider()}. defaults to `_`.
+#' 
 #'
 #' @return
 #' A list containing the pivot_wider arguments (pivot_args) as well as the function
@@ -185,19 +187,15 @@ build_bds <- function(
 #' If the prepared data set has more than one level in the `time` column, 
 #' names_from will be a vector of the form `c(param, time)`
 #'
-
+#' @section Authors:
+#' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 
 pivot_prepare_bds <- function(
     # COMBAK add spec argument and deduce values_fn, currently done in build bds
     # then TEST IF values_fn in pivot_args is correct
     
     bds_full,
-    spec, 
-    # filter,
-    # value, 
-    # param, 
-    # time,
-    # id,
+    spec, # actually a spec entry, called spec for convenience in build_bds
     values_fn = NULL,
     arrange   = NULL,
     clean_fn  = ~ stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_'), 

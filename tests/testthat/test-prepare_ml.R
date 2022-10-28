@@ -56,13 +56,13 @@ testthat::test_that("strata_trt works", {
   
   # distribution of combined stratum variable trt_out
   smmry_reshape <- function(x, set = NA_character_){
-    pull(x, trt.out) %>% 
+    dplyr::pull(x, trt.out) %>% 
       table() %>% 
       {./sum(.)} %>%  
       round(2) %>% 
       as.data.frame.table() %>% tibble::as_tibble() %>%  
-      pivot_wider(names_from = '.', values_from = Freq) %>% 
-      mutate(set = set, .before = 1)
+      tidyr::pivot_wider(names_from = '.', values_from = Freq) %>% 
+      dplyr::mutate(set = set, .before = 1)
   }
   
   prop_out_trt <- list(
@@ -70,18 +70,18 @@ testthat::test_that("strata_trt works", {
     total   = d_raw %>% smmry_reshape(set = 'total') ,
     
     out_trt = res_out_trt %>% 
-      map(~ unite(., trt.out, .trt, .out, remove = FALSE) %>% 
+      purrr::map(~ tidyr::unite(., trt.out, .trt, .out, remove = FALSE) %>% 
             smmry_reshape) %>% 
-      bind_rows(.id = 'set') %>% 
-      mutate(strata_trt = TRUE, .after = set),
+      dplyr::bind_rows(.id = 'set') %>% 
+      dplyr::mutate(strata_trt = TRUE, .after = set),
     
     out     = res_out     %>% 
-      map(~ unite(., trt.out, .trt, .out, remove = FALSE) %>% 
+      purrr::map(~ tidyr::unite(., trt.out, .trt, .out, remove = FALSE) %>% 
             smmry_reshape)  %>% 
-      bind_rows(.id = 'set') %>% 
-      mutate(strata_trt = FALSE, .after = set)
+      dplyr::bind_rows(.id = 'set') %>% 
+      dplyr::mutate(strata_trt = FALSE, .after = set)
   ) %>% 
-    purrr::reduce(bind_rows)
+    purrr::reduce(dplyr::bind_rows)
   
   # prop_out_trt
   
@@ -90,7 +90,7 @@ testthat::test_that("strata_trt works", {
     dplyr::mutate_if(is.numeric, ~ abs(.x - .x[set == 'total'])) %>% 
     dplyr::filter(set != 'total') %>% 
     tidyr::nest(e = dplyr::contains('event')) %>% 
-    dplyr::mutate(sum_e = map_dbl(e, sum)) %>% 
+    dplyr::mutate(sum_e = purrr::map_dbl(e, sum)) %>% 
     dplyr::group_by(strata_trt) %>% 
     dplyr::mutate(sum_e = sum(sum_e)) %>% 
     dplyr::ungroup() %>% 
@@ -112,11 +112,11 @@ testthat::test_that("keep_vars_corr works", {
   
   n <- 20
   p <- 5
-  R <- rep(1,p) %>% diag()
+  R <- rep(1, p) %>% diag()
   R[2,1] <- R[1,2] <- 0.95
   
   
-  d_feat <- MASS::mvrnorm(n = n, mu = rep(0,p), Sigma = R) %>% 
+  d_feat <- MASS::mvrnorm(n = n, mu = rep(0, p), Sigma = R) %>% 
     as.data.frame() %>% 
     tibble::as_tibble() %>% 
     dplyr::mutate(.id = 1:n)

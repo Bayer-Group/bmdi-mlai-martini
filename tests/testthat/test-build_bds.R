@@ -78,6 +78,7 @@ test_that("pivot_prepare_bds - names_from argument deduced correctly", {
 test_that("build_bds - dict matches data set", {
   # TODO colnames have to match dict entries 1:1
   file_adlb <- test_path("sas/adlb.sas7bdat")
+  spec      <- adam_spec_bds(file_adlb, attach_data = TRUE)
   
   time_single <- spec$data[[spec$time]] %>% head(1)
   
@@ -156,9 +157,9 @@ test_that("build_bds works", {
   # -> last and desc(Date): all integer 
   
   spec_arrange$data <- spec_arrange$data %>% 
-    mutate(AVAL = AVAL + .5) %>% 
-    mutate(Date = as.Date('2021-01-01')) %>% 
-    bind_rows(spec_arrange$data %>% mutate(Date = as.Date('2021-06-01')))
+    dplyr::mutate(AVAL = AVAL + .5) %>% 
+    dplyr::mutate(Date = as.Date('2021-01-01')) %>% 
+    dplyr::bind_rows(spec_arrange$data %>% dplyr::mutate(Date = as.Date('2021-06-01')))
   
   
   
@@ -167,7 +168,7 @@ test_that("build_bds works", {
   lb_valuefn_def <- build_bds(
     spec_arrange
   )$data %>% 
-    select(-.id) %>% 
+    dplyr::select(-.id) %>% 
     unlist()
   
   expect_true(
@@ -177,10 +178,10 @@ test_that("build_bds works", {
   lb_valuefn_custom <- build_bds(
     spec_arrange,
     dupl_ctrl = list( 
-      values_fn = function(x){last(x)}
+      values_fn = function(x){dplyr::last(x)}
     )
     )$data%>% 
-    select(-.id) %>% 
+    dplyr::select(-.id) %>% 
     unlist() 
     
   expect_true(
@@ -192,11 +193,11 @@ test_that("build_bds works", {
   lb_valuefn_arrange <- build_bds(
     spec_arrange,
     dupl_ctrl = list( 
-      values_fn = function(x){last(x)},
+      values_fn = function(x){dplyr::last(x)},
       arrange = c("desc(Date)")
     )
   )$data %>% 
-    select(-.id) %>% 
+    dplyr::select(-.id) %>% 
     unlist() 
   
   expect_true(
@@ -212,13 +213,13 @@ test_that("build_bds works", {
   
   target_nrow <- ads_spec_adlb$data %>%
     dplyr::filter(!! rlang::parse_expr(ads_spec_adlb$filter)) %>% 
-    pull(ads_spec_adlb$id) %>% 
-    n_distinct()
+    dplyr::pull(ads_spec_adlb$id) %>% 
+    dplyr::n_distinct()
   
   target_ncol <- ads_spec_adlb$data %>%
-    filter(!! rlang::parse_expr(ads_spec_adlb$filter)) %>% 
-    select(any_of(c(ads_spec_adlb[c('time', 'param')] %>% unlist()))) %>% 
-    distinct() %>% 
+    dplyr::filter(!! rlang::parse_expr(ads_spec_adlb$filter)) %>% 
+    dplyr::select(tidyselect::any_of(c(ads_spec_adlb[c('time', 'param')] %>% unlist()))) %>% 
+    dplyr::distinct() %>% 
     nrow() %>% 
     {.+1} # subj id
     
@@ -235,14 +236,16 @@ test_that("build_bds conversion to factor/numeric from AVALC", {
   spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE)
   
   spec_adlb$data <- spec_adlb$data %>% 
-    mutate(AVALC = as.character(AVAL)) %>% 
-    mutate(AVALC = case_when(
+    dplyr::mutate(AVALC = as.character(AVAL)) %>% 
+    dplyr::mutate(AVALC = dplyr::case_when(
       PARAMCD == 'LAB1' ~ LETTERS[AVAL],
       TRUE ~ AVALC
     ))
   
   spec_adlb$value <- 'AVALC'
   build_adlb      <- build_bds(spec = spec_adlb)  
-  expect_true(all(c('factor', 'numeric') %in% (build_adlb$data %>% select(-.id) %>% map_chr(class))))
+  expect_true(
+    all(c('factor', 'numeric') %in%
+      (build_adlb$data %>% dplyr::select(-.id) %>% purrr::map_chr(class))))
     
 })

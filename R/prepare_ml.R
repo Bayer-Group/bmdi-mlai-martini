@@ -63,11 +63,17 @@
 #'
 #' The following order of recipe steps for data preparation will be applied (if no recipe is provided).
 #' The variable sets that a particular step function will be applied to are determined based on user input 
-#' and output of the function \code{\link{prepare_ml_vars}()}, respectively. Further details on particular steps are given below.
+#' and output of the function \code{\link{prepare_ml_vars}()}, respectively.
+#' Further details on particular steps are given below.
 #' 
 #' * drop variables e.g. not meeting the minimum threshold for non-missing data proportion (`step_rm()`) or for variable removal related to the `vars_keep_corr` parameter (see below).  
 #' * remove observations with missing data in outcome (`step_naomit()`)
-#' * knn imputation on variables with missing values that are not explicitly excluded from imputation (`step_impute_knn()`)
+#' * knn imputation on variables with missing values that are not explicitly 
+#' excluded from imputation (`vars_imp_ignore`). Please note, that missing 
+#' values can still occur after imputation if a large majority (or all) of the 
+#' imputing variables are also missing (see `?recipes::step_impute_knn()`).
+#' Related subjects/observations will be removed to obtain a complete data set 
+#' and listed in removed$rows of the output object.
 #' * omit observations with remaining missing values (i.e. in variables that were excluded from imputation and not dropped before) (`step_naomit()`)
 #' * removal of near-zero variance variables (`step_nzv()`)
 #' * log-transformation (`step_log()`)
@@ -179,7 +185,7 @@ prepare_ml <- function(
     cli::cli_inform(c(
       "You set {.arg prep_step_dummy = TRUE}.",
       "i" = "This preparation step uses dummy-coding based on reference level by 
-      default, i.e. {.arg one_hot = FALSE} (see {.code ?recipes::step_dummy} for details}.",
+      default, i.e. {.arg one_hot = FALSE} (see {.fn ?recipes::step_dummy} for details}.",
       "*" = "Depending on your chosen ML technique consider setting {.arg one_hot = TRUE}."
     ))
   }
@@ -502,7 +508,7 @@ prepare_ml <- function(
         d_ref <- d_train_nocorr %>% 
           dplyr::select(tidyselect::all_of(.x))
         
-        d_test <- d_train_nocorr %>% 
+        d_check <- d_train_nocorr %>% 
           dplyr::select_if(is.numeric) %>% 
           dplyr::select(-tidyselect::any_of(c(.x, ".id")))
         
@@ -582,9 +588,7 @@ prepare_ml <- function(
   names(prep_steps) <- prep_steps %>% 
     purrr::map_chr(~{
       attr(.x, "class")[[1]][1] %>% 
-        stringr::str_remove("^step_") %>% 
-        # keep naming consistent with prep_params object
-        stringr::str_replace("^rm$", "imp_ignore")
+        stringr::str_remove("^step_")
     })
   
   # create list of removed columns per step for output object
@@ -595,10 +599,13 @@ prepare_ml <- function(
     # set empty 'removal' slots (=vector of length 0) to NULL
     purrr::map(~{if(length(.x) > 0) .x})
 
-   # imp.ignore is returned as named vector 
-  if("imp_ignore" %in% names(removed_columns)){
-     removed_columns$imp_ignore <- removed_columns$imp_ignore %>%  as.character()
-   }
+  # 'rm' is returned as named vector 
+  if("rm" %in% names(removed_columns)){
+    removed_columns$imp_ignore <- removed_columns$rm %>% 
+      as.character() %>% 
+      setdiff(vars_exclude_corr)
+    removed_columns$keep_corr <- vars_exclude_corr
+  }
   
   # DOCUMENT PREP PARAMETER SETTINGS ####
   # NOTE TEMP text slots will be removed once documentation is fully available
@@ -636,8 +643,8 @@ prepare_ml <- function(
     ),  
     
     vars_keep_corr = list(
-      value = vars_exclude_corr,
-      text  = ifelse(prep_step_corr && !is.null (vars_exclude_corr),
+      value = ifelse(!is.null(vars_keep_corr), vars_keep_corr, NA),
+      text  = ifelse(prep_step_corr && !is.null(vars_exclude_corr),
                      'Variable selection in recipes::step_corr() was adjusted according to "vars_keep_corr"',
                      'No variables were excluded specifically due to high correlation with the variables in "vars_keep_corr"')
     ),

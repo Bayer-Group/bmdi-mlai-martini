@@ -147,8 +147,11 @@
   all_date_times <- c(all_dates, all_times) %>% unique()
   
   # transform date and time to character
+  # (caution: mutate() deletes column labels)
+  labs_adsl <- labelled::var_label(adsl)
   adsl <- adsl %>% 
-    dplyr::mutate_at(unique(c(all_dates, all_times)), as.character)
+    dplyr::mutate_at(unique(c(all_dates, all_times)), as.character) %>% 
+    labelled::set_variable_labels(.labels = labs_adsl, .strict = TRUE)
   
   # ... identify pairs of categorical/numerical columns ####
   
