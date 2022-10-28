@@ -381,6 +381,8 @@ prepare_ml <- function(
   
   
   # RECIPE ####
+  corr_method <- "pearson"
+  cor_use     <- "pairwise.complete.obs"
   
   if (is.null(prep_recipe)){
     
@@ -434,8 +436,8 @@ prepare_ml <- function(
         # ... ... remove highly correlated variables ####
       {if(prep_step_corr){
         recipes::step_corr(., recipes::all_numeric(), -recipes::all_outcomes(), 
-                           threshold = thres_corr, method = "pearson",
-                           use = "pairwise.complete.obs")
+                           threshold = thres_corr, method = corr_method,
+                           use = cor_use)
       }else{.}
       } %>%  
         
@@ -504,7 +506,7 @@ prepare_ml <- function(
           dplyr::select_if(is.numeric) %>% 
           dplyr::select(-tidyselect::any_of(c(.x, ".id")))
         
-        cor(d_test, d_ref, method = "pearson") %>% 
+        cor(d_test, d_ref, method = corr_method, use = cor_use) %>% 
           as.data.frame() %>% 
           tibble::rownames_to_column() %>% 
           dplyr::filter(abs(!!rlang::sym(.x)) > thres_corr) %>% 
@@ -575,6 +577,7 @@ prepare_ml <- function(
   # extract prep step information
   prep_steps <- rcp_prep$steps
   
+  
   # set names
   names(prep_steps) <- prep_steps %>% 
     purrr::map_chr(~{
@@ -610,7 +613,7 @@ prepare_ml <- function(
                             ifelse(dplyr::near(log_base, exp(1)), 'e', log_base),
                             ') if e1071::skewness() > ',  thres_log,
                             '. Variables that are assumed to be count variables were excluded from the transformation (see thres_count for details).'),
-                     'No variables were logtransformed.')
+                     'No variables were log transformed.')
     ),
     
     # ... log trafo excluded (integer with low number of values) ####
