@@ -84,24 +84,6 @@ build_bds <- function(
   # pivot   ####
   bds_pivot <- pivot_input$data
   
-  # check for duplicates
-  # TODO move duplicate check and msg into pivot_prepare_bds()
-  # and clarify that pivot_wider() defaults are used, if values_fn is NULL
-  any_dupes <- bds_pivot %>% 
-    dplyr::count(!!! rlang::syms(c(spec$id, pivot_input$names_from))) %>% 
-    dplyr::pull(n) %>% 
-    magrittr::is_greater_than(1) %>% 
-    any()
-  
-  if (any_dupes){
-    
-    usethis::ui_info(crayon::silver(paste0(
-      'Duplicates were identified in ', usethis::ui_value(spec$spec_id), '.\n',  
-      'Please refer to the documentation of ', usethis::ui_code('dupl_ctrl'), ' for details.\n'
-    )))
-    
-  }
-  
   bds_wide <- do.call(tidyr::pivot_wider, pivot_input)
   
   
@@ -184,6 +166,7 @@ build_bds <- function(
 #' in build_bds to allow for appropriate unit testing
 #'
 #' @param bds_full original bds-type data set
+#' @param spec
 #' @param filter subsetting
 #' @param arrange 
 #' @param value,param,time
@@ -228,16 +211,11 @@ pivot_prepare_bds <- function(
   values_fn <- values_fn %||% spec$dupl_ctrl$values_fn
   arrange   <- arrange   %||% spec$dupl_ctrl$arrange
   
-  if(is.null(values_fn)){
-    values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
-  }
+  # if(is.null(values_fn)){
+  #   values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
+  # }
   
-  pivot_input <- list(
-    id_cols     = spec$id,
-    values_from = spec$value,
-    values_fn   = values_fn,
-    names_sep   = names_sep
-  )
+
   
   # filter (and arrange) data set ####
   
@@ -285,8 +263,47 @@ pivot_prepare_bds <- function(
     names_from <- spec$param
     bds        <- bds %>% dplyr::select(-spec$time)
   }
-  pivot_input$data        <- bds
-  pivot_input$names_from  <- names_from
+  
+  # check for duplicates
+  # TODO move duplicate check and msg into pivot_prepare_bds()
+  # and clarify that pivot_wider() defaults are used, if values_fn is NULL
+  clmn_dupl <- c(spec$id, names_from)
+  
+  any_dupes <- bds %>% 
+    dplyr::count(!!! rlang::syms(clmn_dupl)) %>% 
+    dplyr::pull(n) %>% 
+    magrittr::is_greater_than(1) %>% 
+    any()
+  
+  if(any_dupes){
+    
+    msg_dupl <- c(
+      'Duplicates wrt {.code {clmn_dupl}} were identified in {.arg {spec$spec_id}}.'
+    )
+    
+    if(is.null(values_fn)){
+      msg_dupl <- c(msg_dupl,
+        '*' = 'Please refer to the {.fn build_bds} documentation of {.code dupl_ctrl} for details on duplicate handling.'            
+      )
+      
+      values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
+    }else{
+      msg_dupl <- c(msg_dupl, 
+      'v' = 'The duplicate handling was applied as specified.')
+    }
+    
+    cli::cli_inform(msg_dupl)
+  
+  }
+  
+  pivot_input <- list(
+    data        = bds,
+    id_cols     = spec$id,
+    values_from = spec$value,
+    names_from  = names_from,
+    values_fn   = values_fn,
+    names_sep   = names_sep
+  )
   
   pivot_input
   
