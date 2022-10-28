@@ -300,9 +300,10 @@ ads_spec$adsl$drop_list %>% names()
 The `filter` argument takes a character vector of expressions to be passed to `dplyr::filter()`. 
 A filter will be applied to a particular data set only if its (individual) application yields a non-empty tibble (i.e. no error thrown, at least one row is selected). 
 In addition, the function will throw a message, if the combination of all valid filters 
-would yield a empty data set. 
+would yield an empty data set. 
 
-Common filters may be based on visit or treatment information, as well as flags indicating analysis sets.
+Common filters may be based on visit or treatment information,
+as well as flags indicating analysis sets.
 If a filter should be applied to only one particular ads domain and not considered for the other domains, just add the respective `ADSNAME` column (for standard data sets), e.g. `"ADSNAME == 'ADVS' & AVISIT == 'Visit 1'"`.
 
 The `pre_study` argument allows to conveniently reduce occurrence data sets (e.g. medical history records) to data that is available at baseline based on the study day.
@@ -360,9 +361,11 @@ ads_spec
 
 **`add_bds`**
 
-`adam_spec()` will print a list of domains that are not processed automatically, which are the ones that are not included in the internal package library of domains and corresponding data types.
+`adam_spec()` will print a list of domains that are not processed automatically,
+which are the ones that are not included in the internal package library of domains and corresponding data types.
 
-You may use the `add_bds` argument of `adam_spec()` to force them being treated as bds data sets. For these added data sets, it is particularly important to check the automated column selection (in the resulting spec object) and adjust as needed using `adjust_spec()`.
+You may use the `add_bds` argument of `adam_spec()` to force them being treated 
+as bds data sets. For these added data sets, it is particularly important to check the automated column selection (in the resulting spec object) and adjust as needed using `adjust_spec()`.
 
 ```{r, eval = FALSE}
 ads_spec <- adam_spec(
@@ -382,7 +385,9 @@ ads_spec
 Use `keep/drop` arguments in `adam_spec()` to select/deselect particular data sets in the folder `path` for your analysis. 
 Only selected files will be read in order to create a specification, so these parameters directly impact run time.
 
-An example for a reasonable exclusion of a data set would be e.g. a data set on biomarkers that were measured only for a small subpopulation (by default, data sets are combined using `inner_join()`, but it's a parameter to `build()`).
+An example for a reasonable exclusion of a data set would be e.g. 
+a data set on biomarkers that were measured only for a small subpopulation 
+(by default, data sets are combined using `inner_join()`, but it's a parameter to `build()`).
 
 
 ***

@@ -141,7 +141,6 @@ adam_spec_bds <- function(
         '*' = 'Please check your input or attach a data set instead.'
       ))
       
-      #usethis::ui_stop(paste0(usethis::ui_code("file"), " is not of type 'sas7bdat'."))
     }
     
     # ... ... import data ####

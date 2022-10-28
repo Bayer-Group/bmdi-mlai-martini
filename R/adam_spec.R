@@ -4,21 +4,26 @@
 #' `r lifecycle::badge('maturing')`
 #' 
 #' \code{\link{adam_spec}()} is a wrapper for the `adam_spec_*()` functions.
-#' It creates a list of specifications on how to extract and process data from adam data sets in a given location. 
+#' It creates a list of specifications on how to extract and process data from 
+#' adam data sets in a given location. 
 #' The resulting list can be passed to \code{\link{build}()}, where the 
 #' created specs are applied and the generated data sets are combined into a single wide format data set.  
 #'
-#' @param path path to a directory containing ads files
+#' @param path path to a directory containing ads files in .sas7bdat format
 #' @param filter a character vector of conditions to be passed to \code{dplyr::filter()}, 
 #' e.g. regarding visits, treatment arms or parameters. Defaults to NULL.
-#' @param keep character vector defining the subset of data sets in the given \code{path} to create the specification for (e.g. \code{c('adsl', 'advs'))}).
-#'  If both \code{keep} and \code{drop} are specified, \code{keep} overrides \code{drop}. Defaults to NULL.
-#' @param drop character vector defining a subset of data sets in the given \code{path} to be 
-#' excluded from the list of specifications (e.g. \code{'adqseq5d')}). Defaults to NULL.
-#' @param attach_data boolean indicating whether the imported raw data is included in the output. Defaults to FALSE.
-#' @param id,trt id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()} for details).
-#' @param pre_study boolean. Include only pre-study events from occurrence data sets (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.
-#' @param add_bds character vector of domain names of type bds that are not included in the package library of ADaM types (yet), but should be processed as per usual, e.g. 'adfapr' 
+#' @param keep, drop character vectors controlling the subset of data sets in the given \code{path} 
+#' to create the specification for (e.g. \code{c('adsl', 'advs'))}).
+#'  If both \code{keep} and \code{drop} are specified, only \code{keep} will be used.
+#'  Both default to NULL, which means that all (known) domains are included.
+#' @param attach_data boolean indicating whether the imported raw data is included in 
+#' the output. Defaults to FALSE.
+#' @param id,trt id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()} 
+#' for details).
+#' @param pre_study boolean. Include only pre-study events from occurrence data sets 
+#' (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.
+#' @param add_bds character vector of domain names of type bds that are not included 
+#' in the package library of ADaM types (yet), but should be processed as per usual, e.g. 'adfapr' 
 #' 
 #' @details 
 #' \code{adam_spec()} matches file names in the given path against an internal library
