@@ -191,8 +191,6 @@ build_bds <- function(
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 
 pivot_prepare_bds <- function(
-    # COMBAK add spec argument and deduce values_fn, currently done in build bds
-    # then TEST IF values_fn in pivot_args is correct
     
     bds_full,
     spec, # actually a spec entry, called spec for convenience in build_bds
@@ -284,10 +282,11 @@ pivot_prepare_bds <- function(
         '*' = 'Please refer to the {.fn build_bds} documentation of {.code dupl_ctrl} for details on duplicate handling.'            
       )
       
-      values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
+      values_fn <- values_fn_default
     }else{
       msg_dupl <- c(msg_dupl, 
-      'v' = 'The duplicate handling was applied as specified.')
+        'v' = 'The duplicate handling was applied as specified.'
+      )
     }
     
     cli::cli_inform(msg_dupl)
@@ -307,33 +306,19 @@ pivot_prepare_bds <- function(
   
 }
 
+#' Default duplicate handling
+#'
+#' @param x vector to be summarized into a single value of the same type
+#'
+#' @return
+#' one-dimensional vector of the same type as `x`
 
-
-# test area ####
-if(FALSE){
-  # 'real_world_data/adsl/99999/adsl.sas7bdat'
-  #study <- c(99999, 99999, 99999)[3]
-  
-  #file = paste0('real_world_data/99999/',
-  #              c('adqseq5d', 'advs', 'adegf')[3],'.sas7bdat')
-  
-  file =  '../adegf.sas7bdat'
-  id = 'SUBJID'
-  param  =  NULL
-  label  = NULL
-  unit   = NULL # AVALU, xxSTRESU, xxORESSU
-  time   = NULL 
-  value  = NULL #c(AVAL, CHG)
-  filter = 'AVISIT == Screening'
-  spec_0 <- adam_spec_bds(file = file, id = id, filter = filter,
-                          param = param, unit = unit, time = time)
-  spec <- spec_0
-  
-  spec_  <- spec_0
-  spec_c <- spec_
-  spec_c$value <- 'AVALC'
-  
-  spec <- spec_c
-  
+values_fn_default <- function(x){
+  ifelse(
+    all(is.numeric(x)),
+    mean(x, na.rm = TRUE),
+    na.omit(x)[1]
+  )
 }
+
 
