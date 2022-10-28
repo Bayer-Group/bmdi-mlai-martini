@@ -12,20 +12,24 @@
       
       
         Content
-        name type size nsubj ncol
-        adsl adsl 128K   320    7
-        adlb bds  128K     5    3
-        advs bds  448K   289    5
+        name type  size nsubj ncol
+        adsl adsl  128K   320    7
+        adlb bds   128K     5    3
+        advs bds   448K   289    5
+        admh occds 192K   320    2
       
         Key columns used in bds-type data sets
         name param   value unit  time  
         adlb PARAMCD AVAL  AVALU AVISIT
         advs PARAMCD AVAL  AVALU AVISIT
       
+        Key columns used in occds-type data sets
+        name label  value valuen count time
+        admh MHHLGT NA    NA     TRUE  NA  
+      
         Filter information 
     Message <rlang_message>
       ! 1 filter could not be applied to any of the data sets:
         - TRUE
-      * Please double check and adjust or remove from `filter` argument as applicable
-        and rerun.
+      * Please double check and adjust or remove from `filter` argument as applicable and rerun.
 

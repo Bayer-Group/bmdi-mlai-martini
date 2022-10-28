@@ -14,7 +14,7 @@ test_that("adam_spec_bds works", {
       file  = file_adlb,
       id    = 'USUBJID'         
     ),
-    regexp = 'id' 
+    regexp = '`id`' 
   )
   
   # ... column cannot be guessed ####
@@ -23,19 +23,19 @@ test_that("adam_spec_bds works", {
   )
   
   # ... provide non-standard column name ####
-  testthat::expect_type(
-    adam_spec_bds(
-      file  = file_adlb_rename,
-      param = 'MARTINI'
-    ),
-    'list'
+  ns_param <- 'MARTINI'
+  ns_spec  <- adam_spec_bds(
+    file  = file_adlb_rename,
+    param = ns_param
+  )
+  testthat::expect_equal(
+    ns_spec[['param']],
+    ns_param
   )
   
   # TEST 'data' parameter ####
   
-  spec_bds_file <- adam_spec_bds(
-    file  = file_adlb
-  )
+  spec_bds_file <- adam_spec_bds(file = file_adlb)
   
   spec_bds_data <- adam_spec_bds(
     data   = haven::read_sas(file_adlb),
