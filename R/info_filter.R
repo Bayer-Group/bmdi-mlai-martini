@@ -41,13 +41,12 @@ info_filter <- function(
   # discarded filters
   if(!is.null(filter)){
     if(length(missing)>0){
-      msg_discarded <- paste0(
-        crayon::blue('Please double check!') %>% crayon::bold(),
-        '\n',
-        'The following filter(s) could not be applied to any of the data sets',
-        '\n  - ', paste(missing, collapse = '\n  - '),
-        '\n\n'
+      msg_discarded <- c(
+        "!" = "{length(missing)} filter{?s} could not be applied to any of the data sets:",
+        rlang::set_names(paste0("- ", missing), " "),
+        "*" = "Please double check and adjust or remove from {.arg filter} argument as applicable and rerun."
       )
+      
     }
   }
   
@@ -65,12 +64,11 @@ info_filter <- function(
     txt_applied <- tibble_applied %>% 
       dplyr::mutate_at('name', ~crayon::col_align(paste0(.x, ':'), width = max(nchar(.x))+1)) %>% 
       tidyr::unite(txt, name, filter, sep = ' ') %>% 
-      dplyr::pull(txt) %>% paste(collapse = '\n  - ')
+      dplyr::pull(txt)
     
-    msg_applied <- paste0(
-      '\nThe following filter(s) could be applied \n  - ',
-      txt_applied,
-      '\n\n'
+    msg_applied <- c(
+      "v" = "{length(txt_applied)} filter{?s} could be applied:",
+      rlang::set_names(paste0("- ", txt_applied), " ")
     )
     
   }
@@ -88,17 +86,17 @@ info_filter <- function(
     
     if(!is.null(msg_discarded)){
       
-      usethis::ui_oops(msg_discarded)
+      cli::cli_inform(msg_discarded)
       
     } else if (!is.null(filter) && is.null(msg_discarded)){
       
-      usethis::ui_done('\nEach filter may be applied at least once.\n')
+      cli::cli_inform(c('v' = 'Each filter may be applied at least once.'))
       
     }
     
     if(!is.null(msg_applied)){
-      cat('\n')
-      usethis::ui_done(msg_applied)
+      
+      cli::cli_inform(msg_applied)
       
     }
   }

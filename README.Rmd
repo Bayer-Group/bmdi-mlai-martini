@@ -1,0 +1,44 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# martini
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+martini is the data preparation module of the BMDI MLAI pipeline.
+The goal of martini is to enable the creation of a machine learning ready data set for use with the substream modules.
+
+## Installation
+
+You can install the development version of martini like so:
+
+```{r}
+devtools::install_git()
+```
+
+<!-- # TODO -->
+<!-- or from artifactory -->
+
+## Example
+
+Please refer to the 'hands-on' vignette in the package 
+
+
+
+```{r}
+vignette('hands-on', package = 'martini')
+```
+

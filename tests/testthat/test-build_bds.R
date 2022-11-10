@@ -1,17 +1,128 @@
 
+test_that("build_bds duplicate handling works", {
+  file_adlb     <- test_path("sas/adlb.sas7bdat")
+  ads_spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE)
+  
+
+  # test duplicate message ####
+  
+  expect_message(build_bds(spec = ads_spec_adlb))
+  
+  spec_nodupes      <- ads_spec_adlb
+  spec_nodupes$data <- spec_nodupes$data %>% 
+    dplyr::distinct(SUBJID, PARAMCD, AVISIT, .keep_all = TRUE)
+  
+  # pivot_prepare_bds(, )
+  expect_silent(build_bds(spec = spec_nodupes))
+  
+})
+
+test_that("pivot_prepare_bds - values_fn deduced correctly", {
+  
+  file_adlb <- test_path("sas/adlb.sas7bdat")
+  spec      <- adam_spec_bds(file_adlb, attach_data = TRUE)
+  
+  spec$values_fn <- mean
+  
+  target_fn <- median
+  
+  actual_fn <- pivot_prepare_bds(
+    bds_full  = spec$data,
+    spec      = spec,
+    values_fn = target_fn
+  )[["values_fn"]]
+  
+  expect_equal(target_fn, actual_fn)
+
+})
+
+test_that("pivot_prepare_bds - names_from argument deduced correctly", {
+  
+  file_adlb <- test_path("sas/adlb.sas7bdat")
+  spec      <- adam_spec_bds(file_adlb, attach_data = TRUE)
+  
+  time_single <- spec$data[[spec$time]] %>% head(1)
+  
+  spec_single <- adam_spec_bds(
+    file_adlb,
+    attach_data = TRUE,
+    filter      = c(paste0(spec$time, " == '", time_single, "'"))
+  )
+  spec_multi  <- adam_spec_bds(
+    file_adlb,
+    attach_data = TRUE
+  )
+  
+  pivot_single <- pivot_prepare_bds(
+    bds_full  = spec_single$data,
+    spec      = spec_single
+  )
+  
+  pivot_multi <- pivot_prepare_bds(
+    bds_full  = spec_multi$data,
+    spec      = spec_multi
+  )
+  
+  expect_setequal(
+    pivot_single$names_from,
+    spec$param
+  )
+  
+  expect_setequal(
+    pivot_multi$names_from,
+    c(spec$param, spec$time)
+  )
+  
+})
+
+test_that("build_bds - dict matches data set", {
+  # TODO colnames have to match dict entries 1:1
+  file_adlb <- test_path("sas/adlb.sas7bdat")
+  spec      <- adam_spec_bds(file_adlb, attach_data = TRUE)
+  
+  time_single <- spec$data[[spec$time]] %>% head(1)
+  
+  spec_single <- adam_spec_bds(
+    file_adlb,
+    attach_data = TRUE,
+    filter      = c(paste0(spec$time, " == '", time_single, "'"))
+  )
+  spec_multi  <- adam_spec_bds(
+    file_adlb,
+    attach_data = TRUE
+  )
+  
+  bds_wide_single <- build_bds(spec_single)
+  bds_wide_multi  <- build_bds(spec_multi)
+  
+  expect_setequal(
+    names(bds_wide_single$data) %>% setdiff(c(".id")),
+    bds_wide_single$dict$column
+  )
+  
+  expect_setequal(
+    names(bds_wide_multi$data) %>% setdiff(c(".id")),
+    bds_wide_multi$dict$column
+  )
+  
+})
+
 test_that("build_bds works", {
   
+  # TODO structure build_bds expectations in different tests
   # TEST setup ####
   
-  file_adlb        <- testthat::test_path("sas/adlb.sas7bdat")
-  file_adlb_miss   <- testthat::test_path("sas/adlb_miss.sas7bdat")
-  file_adlb_rename <- testthat::test_path("sas/adlb_rename.sas7bdat")
+  file_adlb        <- test_path("sas/adlb.sas7bdat")
+  file_adlb_miss   <- test_path("sas/adlb_miss.sas7bdat")
   
   ads_spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE)
   
   #  duplicate handling ####
   
-  # reference data set with duplicates replaced by mean value
+  # reference data set with duplicates replaced by mean value?
+  #   if values_fn is not specified, ie NULL, it is set to
+  #   mean if all(is.numeric(x)), na.omit(x)[1] otherwise
+
   ref <- ads_spec_adlb$data %>% 
     dplyr::group_by(SUBJID, PARAMCD, AVISIT) %>% 
     dplyr::filter(dplyr::n()>1) %>% 
@@ -30,19 +141,10 @@ test_that("build_bds works", {
     tidyr::pivot_longer(-.id, names_to = "PARAMCD", values_to = "AVAL") %>% 
     dplyr::left_join(ref, by = c(".id" = "SUBJID", "PARAMCD"))
   
-  testthat::expect_equal( # expect_identical
+  expect_equal( # expect_identical
     comp$AVAL,
     comp$REF
   )
-  
-  # test duplicate message ####
-  
-  expect_message(build_bds(spec = ads_spec_adlb))
-  
-  spec_nodupes <- ads_spec_adlb
-  spec_nodupes$data <- spec_nodupes$data %>% dplyr::distinct(SUBJID, PARAMCD, AVISIT, .keep_all = TRUE)
-  
-  expect_silent(build_bds(spec = spec_nodupes))
   
   # test  values_fn and arrange ####
   spec_arrange <- adam_spec_bds(file_adlb, attach_data = TRUE)
@@ -55,9 +157,9 @@ test_that("build_bds works", {
   # -> last and desc(Date): all integer 
   
   spec_arrange$data <- spec_arrange$data %>% 
-    mutate(AVAL = AVAL + .5) %>% 
-    mutate(Date = as.Date('2021-01-01')) %>% 
-    bind_rows(spec_arrange$data %>% mutate(Date = as.Date('2021-06-01')))
+    dplyr::mutate(AVAL = AVAL + .5) %>% 
+    dplyr::mutate(Date = as.Date('2021-01-01')) %>% 
+    dplyr::bind_rows(spec_arrange$data %>% dplyr::mutate(Date = as.Date('2021-06-01')))
   
   
   
@@ -66,7 +168,7 @@ test_that("build_bds works", {
   lb_valuefn_def <- build_bds(
     spec_arrange
   )$data %>% 
-    select(-.id) %>% 
+    dplyr::select(-.id) %>% 
     unlist()
   
   expect_true(
@@ -76,10 +178,10 @@ test_that("build_bds works", {
   lb_valuefn_custom <- build_bds(
     spec_arrange,
     dupl_ctrl = list( 
-      values_fn = function(x){last(x)}
+      values_fn = function(x){dplyr::last(x)}
     )
     )$data%>% 
-    select(-.id) %>% 
+    dplyr::select(-.id) %>% 
     unlist() 
     
   expect_true(
@@ -91,11 +193,11 @@ test_that("build_bds works", {
   lb_valuefn_arrange <- build_bds(
     spec_arrange,
     dupl_ctrl = list( 
-      values_fn = function(x){last(x)},
+      values_fn = function(x){dplyr::last(x)},
       arrange = c("desc(Date)")
     )
   )$data %>% 
-    select(-.id) %>% 
+    dplyr::select(-.id) %>% 
     unlist() 
   
   expect_true(
@@ -111,13 +213,13 @@ test_that("build_bds works", {
   
   target_nrow <- ads_spec_adlb$data %>%
     dplyr::filter(!! rlang::parse_expr(ads_spec_adlb$filter)) %>% 
-    pull(ads_spec_adlb$id) %>% 
-    n_distinct()
+    dplyr::pull(ads_spec_adlb$id) %>% 
+    dplyr::n_distinct()
   
   target_ncol <- ads_spec_adlb$data %>%
-    filter(!! rlang::parse_expr(ads_spec_adlb$filter)) %>% 
-    select(any_of(c(ads_spec_adlb[c('time', 'param')] %>% unlist()))) %>% 
-    distinct() %>% 
+    dplyr::filter(!! rlang::parse_expr(ads_spec_adlb$filter)) %>% 
+    dplyr::select(tidyselect::any_of(c(ads_spec_adlb[c('time', 'param')] %>% unlist()))) %>% 
+    dplyr::distinct() %>% 
     nrow() %>% 
     {.+1} # subj id
     
@@ -126,18 +228,24 @@ test_that("build_bds works", {
     build_bds(ads_spec_adlb)$data %>% dim(),
     c(target_nrow, target_ncol)
   )
+})
+
+
+test_that("build_bds conversion to factor/numeric from AVALC", {
+  file_adlb <- testthat::test_path("sas/adlb.sas7bdat")
+  spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE)
   
-  # ... test conversion to factor/numeric
-  spec_conv <- adam_spec_bds(file_adlb, attach_data = TRUE)
-  spec_conv$data <- spec_conv$data %>% 
-    mutate(AVALC = as.character(AVAL)) %>% 
-    mutate(AVALC = case_when(
+  spec_adlb$data <- spec_adlb$data %>% 
+    dplyr::mutate(AVALC = as.character(AVAL)) %>% 
+    dplyr::mutate(AVALC = dplyr::case_when(
       PARAMCD == 'LAB1' ~ LETTERS[AVAL],
       TRUE ~ AVALC
     ))
   
-  spec_conv$value <- 'AVALC'
-  build_conv      <- build_bds(spec = spec_conv)  
-  expect_true(all(c('factor', 'numeric') %in% (build_conv$data %>% select(-.id) %>% map_chr(class))))
+  spec_adlb$value <- 'AVALC'
+  build_adlb      <- build_bds(spec = spec_adlb)  
+  expect_true(
+    all(c('factor', 'numeric') %in%
+      (build_adlb$data %>% dplyr::select(-.id) %>% purrr::map_chr(class))))
     
 })

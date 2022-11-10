@@ -49,7 +49,7 @@
 #' which `thres_lump` is passed as parameter `threshold`. Defaults to 0.05.
 #' @param one_hot boolean. passed to \code{recipes::step_dummy()} to choose one hot encoding over dummy encoding
 #' @param vars_imp_ignore variables that shall not be imputed can be specified in \code{vars_imp_ignore}
-#' (vector of column names, e.g. \code{vars_imp_ignore = '.trt'}). 
+#' (vector of column names, defaults to \code{vars_imp_ignore = '.trt'}). 
 #' Observations with missing values in these variables will be removed. Removal is documented in `removed$rows`.
 #' @param vars_fct_expl_na column names of factors for which NAs should be treated as an explicit factor level. Defaults to NULL.
 #' @param vars_keep_corr choose these variables over other options when removing variables due to high correlation in \code{recipes::step_corr()}. See \code{recipes::step_rm()} below for details. 
@@ -63,11 +63,17 @@
 #'
 #' The following order of recipe steps for data preparation will be applied (if no recipe is provided).
 #' The variable sets that a particular step function will be applied to are determined based on user input 
-#' and output of the function \code{\link{prepare_ml_vars}()}, respectively. Further details on particular steps are given below.
+#' and output of the function \code{\link{prepare_ml_vars}()}, respectively.
+#' Further details on particular steps are given below.
 #' 
 #' * drop variables e.g. not meeting the minimum threshold for non-missing data proportion (`step_rm()`) or for variable removal related to the `vars_keep_corr` parameter (see below).  
 #' * remove observations with missing data in outcome (`step_naomit()`)
-#' * knn imputation on variables with missing values that are not explicitly excluded from imputation (`step_impute_knn()`)
+#' * knn imputation on variables with missing values that are not explicitly 
+#' excluded from imputation (`vars_imp_ignore`). Please note, that missing 
+#' values can still occur after imputation if a large majority (or all) of the 
+#' imputing variables are also missing (see `?recipes::step_impute_knn()`).
+#' Related subjects/observations will be removed to obtain a complete data set 
+#' and listed in removed$rows of the output object.
 #' * omit observations with remaining missing values (i.e. in variables that were excluded from imputation and not dropped before) (`step_naomit()`)
 #' * removal of near-zero variance variables (`step_nzv()`)
 #' * log-transformation (`step_log()`)
@@ -89,7 +95,7 @@
 #' It does not mean that missing values in these variables have been or will be imputed. 
 #' For more details on this matter please refer to the documentation of tidymodels and the 
 #' difference in \code{prep()} and \code{bake()}, in particular. 
-#' For example, the treatment variables will most likely be given in \code{vars_imp_ignore} to prevent any imputations; 
+#' For example, \code{vars_imp_ignore} includes the standard treatment variable \code{.trt} by default to prevent any imputations; 
 #' however, it will be listed in the variable set of the \code{prep()}ped recipe. Don't panic. #rtfm.
 #' 
 #' 
@@ -157,12 +163,12 @@ prepare_ml <- function(
   thres_nzv_freq      = 95/5, 
   thres_nzv_unique    = 10,
   
-  vars_imp_ignore     = NULL,
+  vars_imp_ignore     = c(".trt"),
   vars_fct_expl_na    = NULL,
   vars_ordinalscore   = NULL,
   vars_keep_corr      = NULL,
   
-  one_hot             = TRUE,
+  one_hot             = NULL,
   
   log_base            = exp(1),
   outlier_remove      = FALSE,
@@ -171,6 +177,18 @@ prepare_ml <- function(
   quiet               = FALSE
   
 ){
+  
+  #
+  
+  if(prep_step_dummy && is.null(one_hot)){
+    one_hot <- FALSE
+    cli::cli_inform(c(
+      "You set {.arg prep_step_dummy = TRUE}.",
+      "i" = "This preparation step uses dummy-coding based on reference level by 
+      default, i.e. {.arg one_hot = FALSE} (see {.fn ?recipes::step_dummy} for details}.",
+      "*" = "Depending on your chosen ML technique consider setting {.arg one_hot = TRUE}."
+    ))
+  }
   
   # OUTCOME ####
   
@@ -269,14 +287,28 @@ prepare_ml <- function(
   d_raw <- outcome %>%
     dplyr::inner_join(feature, by = ".id") 
   
+  if(nrow(d_raw) == 0){
+    cli::cli_abort(c(
+      "x" = "There are no common values in {.code .id} columns of {.arg outcome} and {.arg feature}.",
+      "*" = "{.arg outcome}: {sort(head(outcome$.id))}",
+      "*" = "{.arg feature}: {sort(head(feature$.id))}",
+      ">" = "Please check your id columns."
+      
+    ))
+  }
+  
   # DATA SPLIT ####
   
   train_prop_valid <- c(0.5, 1)
   if (!dplyr::between(train_prop, train_prop_valid[1], train_prop_valid[2])){
-    usethis::ui_stop(paste0(
-      "The provided training proportion 'train_prop' is outside [",
-      train_prop_valid[1], ", ", train_prop_valid[2], "]. Please check!"
-    ))
+    
+    cli::cli_abort(c(
+      "The provided training proportion {.code train_prop} is expected to fall within 
+        [{train_prop_valid[1]};{train_prop_valid[2]}]",
+        "x" = "You've supplied {train_prop}."
+      )
+    )
+    
   } 
   
   if (train_prop < 1){
@@ -309,7 +341,7 @@ prepare_ml <- function(
           'Argument strata_trt was set to TRUE but will be ignored.')))
       }else{
         d_raw <- d_raw %>% 
-          dplyr::mutate(.strata = paste0(.strata, .trt , sep='_'))
+          dplyr::mutate(.strata = paste0(.strata, .trt , sep = '_'))
       }  
     }
     
@@ -324,7 +356,9 @@ prepare_ml <- function(
 
     d_train_raw  <- rsample::training(d_split) 
     d_test_raw   <- rsample::testing( d_split) 
+    
   }else{
+    
     d_split     <- NULL
     d_train_raw <- d_raw
     d_test_raw  <- NULL
@@ -372,69 +406,70 @@ prepare_ml <- function(
       recipes::update_role(.id, new_role = "ID") %>% 
       
       # ... ... omit observations with missing endpoint ####
-    recipes::step_naomit(recipes::all_outcomes()) %>% 
+      recipes::step_naomit(recipes::all_outcomes()) %>% 
       
       # ... ... imputation ####
-    {if(prep_step_knnimpute){
-      recipes::step_impute_knn(., tidyselect::any_of(vars_imp), -recipes::all_outcomes(), -recipes::has_role("ID")) }else{.}
-    } %>% 
-      
-      # ... ... omit observations with missing data in variables ignored in imputation ####
-    recipes::step_naomit(recipes::all_predictors()) %>% 
-      
-      # ... ... near zero variance ####
-    recipes::step_nzv(recipes::all_predictors(),
-                      freq_cut = thres_nzv_freq, unique_cut = thres_nzv_unique
-    ) %>% 
-      
-      # ... ... log transformation ####
-    {if(prep_step_log && length(vars_log)>0){
-      recipes::step_log(., tidyselect::any_of(vars_log), base = log_base) 
-    }else{.}
-    }  %>%
-      
-      # ... ... normalization ####
-    {if(prep_step_normalize){
-      recipes::step_normalize(., 
-                              recipes::all_numeric(), -recipes::all_outcomes(), -recipes::has_role("ID"),
-                              # exclude vars identified as counts (previously excluded from logtrafo as well)
-                              -tidyselect::any_of(vars_count),
-      )
-    }else{.}
-    }  %>% 
-      
-      # ... ... remove highly correlated variables ####
-    {if(prep_step_corr){
-      recipes::step_corr(., recipes::all_numeric(), -recipes::all_outcomes(), 
-                         threshold = thres_corr, method = "pearson",
-                         use = "pairwise.complete.obs")
-    }else{.}
-    } %>%  
-      
-      # ... ... lump factors ####
-    recipes::step_other(., 
-                        recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
-                        -tidyselect::any_of(vars_nolump),
-                        threshold = thres_lump, other = level_other) %>%  
-      
-      # ... ... factor handling ####
-    {if(! is.null(vars_ordinalscore)){
-      recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )
-    }else{.}
-    } %>%  
-      
-      #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
-      # ... .. dummy coding ####
-    {if(prep_step_dummy){
-      recipes::step_dummy(.,  recipes::all_nominal(), - recipes::all_outcomes(), - recipes::has_role("ID")  , 
-                          one_hot = one_hot) 
-    }else{.} 
+      {if(prep_step_knnimpute){
+        recipes::step_impute_knn(., tidyselect::any_of(vars_imp), -recipes::all_outcomes(), -recipes::has_role("ID")) }else{.}
+      } %>% 
+        
+        # ... ... omit observations with missing data in variables ignored in imputation ####
+      recipes::step_naomit(recipes::all_predictors()) %>% 
+        
+        # ... ... near zero variance ####
+      recipes::step_nzv(recipes::all_predictors(),
+                        freq_cut = thres_nzv_freq, unique_cut = thres_nzv_unique
+      ) %>% 
+        
+        # ... ... log transformation ####
+      {if(prep_step_log && length(vars_log)>0){
+        recipes::step_log(., tidyselect::any_of(vars_log), base = log_base) 
+      }else{.}
+      }  %>%
+        
+        # ... ... normalization ####
+      {if(prep_step_normalize){
+        recipes::step_normalize(., 
+                                recipes::all_numeric(), -recipes::all_outcomes(), -recipes::has_role("ID"),
+                                # exclude vars identified as counts (previously excluded from logtrafo as well)
+                                -tidyselect::any_of(vars_count),
+        )
+      }else{.}
+      }  %>% 
+        
+        # ... ... remove highly correlated variables ####
+      {if(prep_step_corr){
+        recipes::step_corr(., recipes::all_numeric(), -recipes::all_outcomes(), 
+                           threshold = thres_corr, method = "pearson",
+                           use = "pairwise.complete.obs")
+      }else{.}
+      } %>%  
+        
+        # ... ... lump factors ####
+      recipes::step_other(
+        ., 
+        recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
+        -tidyselect::any_of(vars_nolump),
+        threshold = thres_lump, other = level_other) %>%  
+        
+        # ... ... factor handling ####
+      {if(! is.null(vars_ordinalscore)){
+        recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )
+      }else{.}
+      } %>%  
+        
+        #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
+        # ... .. dummy coding ####
+      {if(prep_step_dummy){
+        recipes::step_dummy(.,  recipes::all_nominal(), - recipes::all_outcomes(), - recipes::has_role("ID")  , 
+                            one_hot = one_hot) 
+      }else{.} 
     }
     
     
-  } else {
-    rcp <- prep_recipe
-  }
+    } else {
+      rcp <- prep_recipe
+    }
   
   # ... prep recipe ####
   rcp_prep <- rcp %>%
@@ -471,14 +506,14 @@ prepare_ml <- function(
         d_ref <- d_train_nocorr %>% 
           dplyr::select(tidyselect::all_of(.x))
         
-        d_test <- d_train_nocorr %>% 
+        d_check <- d_train_nocorr %>% 
           dplyr::select_if(is.numeric) %>% 
           dplyr::select(-tidyselect::any_of(c(.x, ".id")))
         
-        cor(d_test, d_ref, method = "pearson") %>% 
+        cor(d_check, d_ref, method = "pearson") %>% 
           as.data.frame() %>% 
           tibble::rownames_to_column() %>% 
-          dplyr::filter(abs(!!sym(.x)) > thres_corr) %>% 
+          dplyr::filter(abs(!!rlang::sym(.x)) > thres_corr) %>% 
           dplyr::pull(rowname)
       })
     
@@ -488,7 +523,7 @@ prepare_ml <- function(
     
     assign(
       'vars_exclude', 
-      c(vars_exclude,  vars_exclude_corr %>% unlist() %>% as.character()),
+      c(vars_exclude, vars_exclude_corr %>% unlist() %>% as.character()),
       envir = env_rm
     ) 
     
@@ -550,9 +585,7 @@ prepare_ml <- function(
   names(prep_steps) <- prep_steps %>% 
     purrr::map_chr(~{
       attr(.x, "class")[[1]][1] %>% 
-        stringr::str_remove("^step_") %>% 
-        # keep naming consistent with prep_params object
-        stringr::str_replace("^rm$", "imp_ignore")
+        stringr::str_remove("^step_")
     })
   
   # create list of removed columns per step for output object
@@ -563,10 +596,13 @@ prepare_ml <- function(
     # set empty 'removal' slots (=vector of length 0) to NULL
     purrr::map(~{if(length(.x) > 0) .x})
 
-   # imp.ignore is returned as named vector 
-  if("imp_ignore" %in% names(removed_columns)){
-     removed_columns$imp_ignore <- removed_columns$imp_ignore %>%  as.character()
-   }
+  # 'rm' is returned as named vector 
+  if("rm" %in% names(removed_columns)){
+    removed_columns$imp_ignore <- removed_columns$rm %>% 
+      as.character() %>% 
+      setdiff(vars_exclude_corr)
+    removed_columns$keep_corr <- vars_exclude_corr
+  }
   
   # DOCUMENT PREP PARAMETER SETTINGS ####
   # NOTE TEMP text slots will be removed once documentation is fully available
@@ -604,8 +640,8 @@ prepare_ml <- function(
     ),  
     
     vars_keep_corr = list(
-      value = vars_exclude_corr,
-      text  = ifelse(prep_step_corr && !is.null (vars_exclude_corr),
+      value = ifelse(!is.null(vars_keep_corr), vars_keep_corr, NA),
+      text  = ifelse(prep_step_corr && !is.null(vars_exclude_corr),
                      'Variable selection in recipes::step_corr() was adjusted according to "vars_keep_corr"',
                      'No variables were excluded specifically due to high correlation with the variables in "vars_keep_corr"')
     ),
@@ -645,13 +681,17 @@ prepare_ml <- function(
     prep_params <- append(
       prep_params, 
       list(
-        value = ifelse(outlier_remove,
-                       unlist(outlier_ctrl), NA ),
-        text  = ifelse(outlier_remove,
-                       paste0("Based on the outcome distribution, observations outside the interval ",
-                              '[q25 - ', outlier_ctrl$coef, '*iqr; ',  
-                              'q75 + ', outlier_ctrl$coef, '*iqr] were removed prior to data splitting and preprocessing.'),
-                       NA)
+        value = ifelse(
+          outlier_remove,
+          unlist(outlier_ctrl), 
+          NA),
+        text  = ifelse(
+          outlier_remove,
+          paste0("Based on the outcome distribution, observations outside the interval ",
+            '[q25 - ', outlier_ctrl$coef, '*iqr; ',  
+             'q75 + ', outlier_ctrl$coef, '*iqr] were removed prior to data splitting and preprocessing.'
+          ),
+          NA)
       )
     )
   } 
@@ -780,8 +820,8 @@ if(FALSE){
       length.out = n_total) 
   )
   
-  d_raw <- inner_join(outcome, feature) %>% 
-    unite(trt.out, .trt, .out, remove = FALSE)
+  d_raw <- dplyr::inner_join(outcome, feature) %>% 
+    tidyr::unite(trt.out, .trt, .out, remove = FALSE)
   prop_tot_event_trt <- d_raw %>% 
     pull(trt.out) %>% 
     table %>% 

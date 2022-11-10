@@ -141,19 +141,6 @@ adam_spec_occds <- function(
     as.logical()
   actual_filter <- filter[keep_filter]
 
-  
-  # dictionary   ####
-  
-  # use unfiltered data 
-  dict  <- occds %>% 
-    dplyr::select( label = !!rlang::sym(label) ) %>% 
-    dplyr::distinct() %>%
-    dplyr::mutate(source = domain) %>% 
-    dplyr::mutate(type   = 'occds') 
-  
-  # remove occds data set label automatically created by haven::read_sas()
-  attr(dict, 'label') <- NULL
-  
   # collect key columns ####
   col_select <- c(label = label)
   if(!is.null(value)) {
@@ -166,40 +153,33 @@ adam_spec_occds <- function(
     }
   }
   
-  # create data info ####
-  
-  data_info <- list(
-    nsubj = occds %>% 
-      {if(length(actual_filter) > 0){ 
-        dplyr::filter(., !!! rlang::parse_exprs(actual_filter))
-      }else{.}} %>% 
-      dplyr::select(tidyselect::all_of(id)) %>% 
-      dplyr::n_distinct(),
-    ncol  = dict %>% nrow()
-  )
-  
   # output ####
   
   out <- list(
     file      = file,
     md5       = md5,
     size      = size, 
-    data      = NULL,
-    data_info = data_info,
+    data      = occds,
     type      = "occds",
     id        = id,
     filter    = actual_filter,
     count     = count,
-    dict      = dict,
     spec_id   = domain
   ) %>% 
     append(
       col_select %>% as.list()
     )
   
+  # create data info and dictionary####
+  out$dict <- create_dict(out)
+  out$data_info <- data_info(out)
   
-  if(attach_data){
-    out$data <- occds
+
+  
+  if(!attach_data){
+    # only keep data, if 'attach_data = TRUE'
+    # (was needed to create data info)
+    out$data <- NULL
   }
   
   out

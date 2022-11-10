@@ -1,20 +1,15 @@
-
-library(dplyr)
-library(purrr)
-library(tibble)
-
 test_that("build() correctly passes parameters to build_bds()", {
   
-  path_test <- testthat::test_path("sas")
+  path_test <- test_path("sas")
   
   spec_dupl <- adam_spec(path_test, keep = c('adsl', 'adlb'), attach_data = TRUE)
   
   # introduce duplicates (select by Date):
   # spec_dupl$adlb$data values are all integers
   spec_dupl$adlb$data <- spec_dupl$adlb$data %>%
-    mutate(AVAL = AVAL + .5) %>% 
-    mutate(Date = as.Date('2021-01-01')) %>% 
-    bind_rows(spec_dupl$adlb$data %>% mutate(Date = as.Date('2021-06-01')))
+    dplyr::mutate(AVAL = AVAL + .5) %>% 
+    dplyr::mutate(Date = as.Date('2021-01-01')) %>% 
+    dplyr::bind_rows(spec_dupl$adlb$data %>% dplyr::mutate(Date = as.Date('2021-06-01')))
 
   # check if 'values_fn' is correctly passed ####
   
@@ -26,16 +21,17 @@ test_that("build() correctly passes parameters to build_bds()", {
     arrange   = NULL
   )
   
-  data_build_bds <- martini:::build_bds(spec_arrange$adlb)$data
+  data_build_bds <- build_bds(spec_arrange$adlb)$data
   
   data_build <- build(spec_arrange)
   
-  expect_equivalent(
-    data_build %>% select(all_of(data_build_bds %>% names())),
-    data_build_bds
+  expect_equal(
+    data_build %>% dplyr::select(tidyselect::all_of(data_build_bds %>% names())),
+    data_build_bds,
+    ignore_attr = TRUE
   )
   
-  # check if 'arrange' is correctly passed ####
+  # check if 'arrange' is correctly passed from build to build_bds() ####
   
   spec_arrange <- spec_dupl
   
@@ -45,13 +41,14 @@ test_that("build() correctly passes parameters to build_bds()", {
     arrange   = c("desc(Date)")
   )
   
-  data_build_bds <- martini:::build_bds(spec_arrange$adlb)$data
+  data_build_bds <- build_bds(spec_arrange$adlb)$data
   
   data_build <- build(spec_arrange)
   
-  expect_equivalent(
-    data_build %>% select(all_of(data_build_bds %>% names())),
-    data_build_bds
+  expect_equal(
+    data_build %>% dplyr::select(tidyselect::all_of(data_build_bds %>% names())),
+    data_build_bds,
+    ignore_attr = TRUE
   )
   
 })

@@ -1,7 +1,7 @@
 
 # MISSING OUTCOME LABEL  ####
 
-test_that("function handles missing outcome label", {
+test_that("prepare_ml_outcome handles missing outcome label", {
   
   # classification ####
   set.seed(1719)
@@ -11,12 +11,12 @@ test_that("function handles missing outcome label", {
     tibble::as_tibble_col(target_label_in_dict) %>% 
     dplyr::mutate(.id = 1:dplyr::n(), .before = 1)
   
-  prep_res <- martini:::prepare_ml_outcome(
+  prep_res <- prepare_ml_outcome(
     outcome
   )
   
   # label in dictionary = column name
-  testthat::expect_equal(prep_res$outcome_label[['.out']], target_label_in_dict)
+  expect_equal(prep_res$outcome_label[['.out']], target_label_in_dict)
   
 })
 
@@ -33,7 +33,7 @@ test_that("outcome preparation works (NA removal)", {
   )
   
   # NA removal
-  testthat::expect_equal(prep_res$outcome %>%  nrow, 9)
+  expect_equal(prep_res$outcome %>%  nrow, 9)
   
 })
 
@@ -51,6 +51,7 @@ test_that("outcome preparation works (outlier removal for regression)", {
     outlier_ctrl   = list(coef = 3)
   )
   
+  # TODO remove hardcoding from test prepare_ml_outcome(), 1 and 9
   testthat::expect_equal(
     prep_res$id_outlier,
     1

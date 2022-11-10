@@ -23,10 +23,15 @@ check_freq <- function(
   thres = 10
 ){
   
+  # TODO replace by checking for ml_object class once defined
   is_ml <- !is.data.frame(x)
   
   data  <- x
-  if(is_ml) data <- data$data_prep$train
+  if(is_ml) {data <- data$data_prep$train}
+  
+  if(is.null(data)){
+    cli::cli_abort("Please check your input. Currently NULL.")
+  }
   
   d_fct <- data %>% 
     dplyr::select_if(is.factor)
@@ -62,19 +67,22 @@ check_freq <- function(
     
   }
   
-  usethis::ui_info(paste0(
-    "Data contains ", length(risky), " factor(s) with less than ", usethis::ui_value(thres), 
-    ' observations in at least one class',
-    ifelse(
-     !is_ml, 
-     '.', 
-     ' which may cause downstream problems. Changing the seed for test/train split and/or the modelling may solve potential issues.'
-    ),
-     
-    '\n\nThe following ', ifelse(length(risky)==1, 'factor has','factors have') , ' low frequencies in at least one class: \n',
-    paste(risky, collapse = ", ")
-  ))
   
+ # build message with details about number and names of potentially problematic factors
+  mess <- c(
+    paste0(
+      "Data contains {length(risky)} factor{?s} with less than {thres} observations in at least one class",
+    
+      ifelse(
+        !is_ml, 
+        '.', 
+        ' which may cause downstream problems. Changing the seed for test/train split and/or the modelling may solve potential issues.'
+      )
+    ),
+    
+    'i' = 'The following factor{?s} {?has/have} low frequencies in at least one class: \n{risky}'
+  )
+  cli::cli_inform(mess)
   
   d_fct %>% 
     dplyr::select(tidyselect::any_of(risky)) %>% 

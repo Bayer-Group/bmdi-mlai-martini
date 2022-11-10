@@ -1,58 +1,61 @@
-Package: martini
 Type: Package
+Package: martini
 Title: BMDI MLAI pipeline - Prepare Module
-Version: 0.4.0
-Authors@R: c(
-    person("Ahrens", "Maike", 
-      email   = "maike.ahrens.ext@bayer.com", 
-      role    = c("aut", "cre"),
-      comment = c(CWID = "ahrensmaike")
-      ),
-    person("Voss", "Sebastian", 
-      email   = "sebastian.voss.ext@bayer.com", 
-      role    = c("aut"),
-      comment = c(CWID = "svoss09")
-    )
-  )
-Description: Prepare module of the BMDI MLAI pipeline. It contains functions to conveniently
-  transform a set of ADaM data sets (adsl, bds and occds) into a data object that can be used
-  for machine learning, e.g. using the BMDI MLAI pipeline.
+Version: 0.4.2
+Authors@R: 
+    c(person(given = "Ahrens",
+             family = "Maike",
+             role = c("aut", "cre"),
+             email = "maike.ahrens.ext@bayer.com",
+             comment = c(CWID = "ahrensmaike")),
+      person(given = "Voss",
+             family = "Sebastian",
+             role = "aut",
+             email = "sebastian.voss.ext@bayer.com",
+             comment = c(CWID = "svoss09")))
+Description: Prepare module of the BMDI MLAI pipeline. It contains
+    functions to conveniently transform a set of ADaM data sets (adsl, bds
+    and occds) into a data object that can be used for machine learning,
+    e.g. using the BMDI MLAI pipeline.
+License: GPL-3
+BugReports: https://gitlab.bayer.com/ahrensmaike/martini_prep/-/issues/new
 Depends:
     R (>= 3.6)
 Imports:
-    stats,
-    utils,
-    magrittr,
-    rlang,
-    dplyr (>= 1.0.0),
-    tibble,
-    tidyr (>= 1.0.0),
-    tidyselect (>= 1.0.0),
-    forcats,
-    purrr,
-    stringr,
-    tools,
-    recipes (>= 0.1.16),
-    usethis,
-    crayon,
     assertive.types,
+    cli,
+    crayon,
+    dplyr (>= 1.0.0),
+    forcats,
+    fs,
     haven,
     janitor,
     labelled,
-    rsample,
+    magrittr,
+    purrr,
     readr,
-    fs
+    recipes (>= 0.1.16),
+    rlang,
+    rsample,
+    stats,
+    stringr,
+    tibble,
+    tidyr (>= 1.0.0),
+    tidyselect (>= 1.0.0),
+    tools,
+    usethis,
+    utils
 Suggests:
-    knitr,
-    rmarkdown,
     here,
+    knitr,
     lifecycle,
     MASS,
-    testthat
-VignetteBuilder: knitr
-BugReports: https://gitlab.bayer.com/ahrensmaike/martini_prep/-/issues/new
-License: GPL-3
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
+Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1

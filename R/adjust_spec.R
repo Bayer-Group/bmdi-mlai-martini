@@ -23,13 +23,9 @@ adjust_spec <- function(
   append = FALSE
 ){
   
-  mod <- list(...)
+  # TODO WS input checks: class(spec), empty spec?, empty dots = mod
   
-  if('filter' %in% names(mod)){
-    usethis::ui_todo(paste(
-      'Please specify all required filters in `adam_spec()` to ensure proper filter checks.'
-    ))
-  }
+  mod <- list(...)
 
   if (!append){
     
@@ -47,6 +43,47 @@ adjust_spec <- function(
     
   }
   
+  # update data_info and filters if possible
+  if(!is.null(spec[[id]][["data"]])){
+
+    if('filter' %in% names(mod)){
+      
+      # re-check filters
+      keep_filter <- check_filter(spec[[id]][["data"]], spec[[id]][["filter"]], data_id = id)$individual %>% 
+        purrr::map_lgl("keep") %>% 
+        as.logical()
+      spec[[id]][["filter"]] <- spec[[id]][["filter"]][keep_filter]
+    }
+    
+    # update dict and data_info
+    spec[[id]][['dict']]      <- create_dict(spec[[id]])
+    spec[[id]][["data_info"]] <- data_info(spec[[id]])
+    
+  }else{
+    # if not data attached: message
+    attr(spec, 'data_info_ok') <- FALSE
+    
+    if('filter' %in% names(mod)){
+      
+      usethis::ui_todo(paste(
+        'Please specify all required filters in `adam_spec()` to ensure proper filter checks.'
+      ))
+      
+      attr(spec, 'filter_ok') <- FALSE
+      
+    }
+    
+    if(any(c('param', 'label') %in% names(mod))) {
+      
+      usethis::ui_todo(paste(
+        'Please specify all key columns (such as param, label) in `adam_spec()` to obtain an accurate dictionary.'
+      ))
+      
+      attr(spec, 'filter_ok') <- FALSE
+      
+    }
+  }
+
   spec
   
 }

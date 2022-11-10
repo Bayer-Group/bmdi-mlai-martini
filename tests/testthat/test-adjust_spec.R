@@ -1,5 +1,8 @@
 test_that("adjust_spec works", {
   
+  # TODO WS one expectation pair may be discarded, both using the same code in adjust_spec
+  # TODO WS testing our function or just modify_list, append and if/else?
+  
   # value ####
   
   mod_md5 <- "martini"
@@ -43,7 +46,6 @@ test_that("adjust_spec works", {
   )
   
   # ...append ####
-  
   expect_setequal(
     martini_spec %>% 
       adjust_spec(mod_id, factor_levels = mod_fct, append = TRUE) %>% 

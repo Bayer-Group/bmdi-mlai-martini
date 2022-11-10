@@ -1,18 +1,19 @@
 test_that("adam_domain_type works", {
   
   # test setup  ####
-  library(tibble)
   ads_path <- test_path('sas/')
   
   
   # print look-up table ####
+  # TODO WS check if adam_domain_type takes file not just path and if it always returns tibble (empty and path), then remove test
   testthat::expect_true(
-    adam_domain_type() %>% is_tibble()
+    adam_domain_type() %>% tibble::is_tibble()
   )
   
   testthat::expect_setequal(
     adam_domain_type() %>% names(),
     c('domain', 'adam_spec_*')
+    # TODO WS rename column to type to match output of adam_domain_type(path)
   )
   
   # mapped types tibble ####
@@ -35,6 +36,8 @@ test_that("adam_domain_type works", {
 # test area ####
 if(FALSE){
   
+  # TODO clean test-adam_domain_type test area
+  # COMBAK clean test-adam_domain_type test area
   paths <- paste0('../../../',
                   c('', 'adcm.sas7bdat'))
   

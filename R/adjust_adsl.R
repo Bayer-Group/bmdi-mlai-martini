@@ -26,12 +26,12 @@ adjust_adsl <- function(
 
   if (!id %in% names(spec)) usethis::ui_stop(
     crayon::magenta(
-      paste0("No spec with the id ",usethis::ui_code(id), " available.") 
+      paste0("No spec with the id ", usethis::ui_code(id), " available.") 
     )
   )
   
   if ("dict" %in% names(spec[[id]])){
-    
+    # intersect with param column from dict instead of data, to work independent of data attached
     add  <- intersect(spec[[id]][["dict"]][["param"]], add)
     drop <- intersect(spec[[id]][["dict"]][["param"]], drop)
     
@@ -42,6 +42,10 @@ adjust_adsl <- function(
   spec[[id]][["select"]] <- c(spec[[id]][["select"]], add) %>% 
     unique() %>% 
     setdiff(drop)
+  
+  # update dict and data_info
+  spec[[id]][['dict']]      <- create_dict(spec[[id]])
+  spec[[id]][["data_info"]] <- data_info(spec[[id]])
   
   spec
   

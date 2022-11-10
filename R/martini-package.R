@@ -5,8 +5,9 @@
 # roxygen namespace tags. Modify with care!
 ## usethis namespace: start
 #' @importFrom magrittr %>%
-#' @importFrom utils head tail
+#' @importFrom rlang %||%
 #' @importFrom stats na.omit na.exclude quantile as.formula
+#' @importFrom utils head tail
 ## usethis namespace: end
 utils::globalVariables(c(
   "domain", "type", "param", "label", "value", "name", "spec_id",
@@ -15,6 +16,7 @@ utils::globalVariables(c(
   "any_na", "aval", "min_aval", "n_dist", "paramcd", "skew",
   "RANDDT", 'RANDNO',
   ".strata", "number",
+  "guess", "var",
   "new_name", "old_name", "n",
-  "txt"
+  "txt", "data_id"
 ))

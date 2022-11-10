@@ -10,7 +10,12 @@
 \usage{
 build_adsl(spec)
 
-build_bds(spec, dupl_ctrl = list(values_fn = NULL, arrange = NULL))
+build_bds(
+  spec,
+  dupl_ctrl = list(values_fn = NULL, arrange = NULL),
+  names_ctrl = list(clean_fn = ~stringr::str_replace_all(.x, "[:punct:]|[:space:]", "_"),
+    names_sep = "_")
+)
 
 build_occds(spec)
 }
@@ -22,6 +27,12 @@ build_occds(spec)
 \item{\code{values_fn}} function to handle duplicates in pivoting step. see details section for default.
 \item{\code{arrange}} expression passed to \code{arrange()} optional sorting of data set prior to pivoting,
 e.g. in order to select the first/last value by date. defaults to NULL.
+}}
+
+\item{names_ctrl}{bds only. A list with two entries handling cleaning and renaming of columns after pivoting
+\itemize{
+\item{\code{clean_fn}} defaults to \code{stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_')}.
+\item{\code{names_sep}} defaults to '_'
 }}
 }
 \value{

@@ -36,15 +36,19 @@ prepare_ml_split <- function(
   var_names_raw <- ml_obj$data_raw$train %>% names()
   
   if(!by %in% var_names_raw){
-    usethis::ui_stop(
-      paste0("'", by, "' could not be found in the raw data.")
-    )
+    cli::cli_abort(c(
+      "Variable {.code by} needs to be a column in the raw data of the ml object.",
+      'x' = 'You provided {.code by = {by}} which could not be found.'
+    ))
   }
   
   if(! is.factor(ml_obj$data_raw$train[[by]])){
-    usethis::ui_stop(
-      paste0("'", by, "' is not a factor.")
-    )
+    
+    cli::cli_abort(c(
+      "Variable {.code by} needs to be a factor in the raw data of the ml object.",
+      'x' = 'You provided {.code by = {by}} of class {.cls {class(ml_obj$data_raw$train[[by]])}}.'
+    ))
+    
   }
   
   levs  <- ml_obj$data_raw$train[[by]] %>% levels()

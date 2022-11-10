@@ -85,7 +85,7 @@ build <- function(
     
     out <- .x
     
-    out[['dict']] <- out[['dict']] %>% mutate(spec_id = .y)
+    out[['dict']] <- out[['dict']] %>% dplyr::mutate(spec_id = .y)
     
     rename_y <- rename_dupes %>% 
       dplyr::filter(spec_id == .y) %>% 
