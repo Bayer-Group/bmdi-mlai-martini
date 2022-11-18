@@ -22,7 +22,7 @@ adam_spec(
 \item{filter}{a character vector of conditions to be passed to \code{dplyr::filter()},
 e.g. regarding visits, treatment arms or parameters. Defaults to NULL.}
 
-\item{keep, }{drop character vectors controlling the subset of data sets in the given \code{path}
+\item{keep, drop}{character vectors controlling the subset of data sets in the given \code{path}
 to create the specification for (e.g. \code{c('adsl', 'advs'))}).
 If both \code{keep} and \code{drop} are specified, only \code{keep} will be used.
 Both default to NULL, which means that all (known) domains are included.}
