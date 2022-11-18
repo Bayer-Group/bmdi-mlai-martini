@@ -153,6 +153,7 @@ adam_spec <- function(
   # TODO later attribute martini_spec kept for list subsets
   class(spec) <- c("martini_spec", class(spec))
   
+  # NOTE attribute will not be explicitly created, if filter is NULL
   attr(spec, 'filter')       <- filter
    
   attr(spec, 'filter_ok')    <- TRUE

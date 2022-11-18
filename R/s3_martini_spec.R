@@ -135,7 +135,7 @@ print.martini_spec <- function(x, ...){
   # combine original filter set used to build the spec with potentially added filters during spec adjustment (not recommended)
   all_filters <- c(
     # filter argument passed from adam_spec() call
-    attr(x, 'filter'), 
+    attr(x, 'filter', exact = TRUE), 
     # actual filters
     purrr::map( x, 'filter') %>% unlist() 
     ) %>% unique()
@@ -144,7 +144,7 @@ print.martini_spec <- function(x, ...){
   if(res_info %>% purrr::map_lgl(~!is.null(.x)) %>% any()){
     cat(crayon::silver("\n  Filter information \n"))
     
-    info_filter(x, attr(x, 'filter'))
+    info_filter(x, attr(x, 'filter', exact = TRUE))
   }  
   
 }
