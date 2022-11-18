@@ -9,7 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%", 
+  eval = FALSE
 )
 ```
 
@@ -25,8 +26,12 @@ The goal of martini is to enable the creation of a machine learning ready data s
 
 You can install the development version of martini like so:
 
-```{r}
-devtools::install_git()
+```{r, eval=FALSE}
+devtools::install_git(
+  "https://gitlab.bayer.com/ahrensmaike/martini_prep.git",
+  dependencies    = TRUE,
+  build_vignettes = TRUE
+)
 ```
 
 <!-- # TODO -->

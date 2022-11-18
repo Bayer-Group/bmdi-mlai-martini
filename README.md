@@ -1,25 +1,34 @@
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # martini
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of martini is to ...
+martini is the data preparation module of the BMDI MLAI pipeline. The
+goal of martini is to enable the creation of a machine learning ready
+data set for use with the substream modules.
 
 ## Installation
 
 You can install the development version of martini like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+devtools::install_git(
+  "https://gitlab.bayer.com/ahrensmaike/martini_prep.git",
+  dependencies    = TRUE,
+  build_vignettes = TRUE
+)
 ```
+
+<!-- # TODO -->
+<!-- or from artifactory -->
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Please refer to the ‘hands-on’ vignette in the package
 
 ``` r
-library(martini)
-## basic example code
+vignette('hands-on', package = 'martini')
 ```
-
