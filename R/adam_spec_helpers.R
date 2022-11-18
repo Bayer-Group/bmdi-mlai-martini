@@ -98,6 +98,7 @@ create_dict <- function(spec_entry){
   attr(dict, 'label') <- NULL
   
   dict
+  # TODO write test 'create_dict'
 }
 
 
