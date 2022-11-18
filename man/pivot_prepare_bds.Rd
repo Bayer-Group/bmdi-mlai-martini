@@ -18,13 +18,17 @@ pivot_prepare_bds(
 
 \item{spec}{Top level entry of an object of class \code{martini_spec}.}
 
-\item{values_fn, names_sep}{simply written to the \code{pivot_args} output for the sake of completeness}
+\item{values_fn}{function to control duplicate handling in \code{pivot wider()}.
+See docu of \code{build_bds()} for details.}
 
 \item{arrange}{expression to be passed to \code{dplyr::arrange()} before
 pivoting. Relevant in case of duplicates and if \code{values_fn} is
-sensitive to the order of values to aggregate}
+sensitive to the order of values to aggregate.}
 
-\item{clean_fn}{function to clean column names after pivoting}
+\item{clean_fn}{function to clean future column names (after pivoting), defaults to
+\code{~ stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_')}}
+
+\item{names_sep}{to be passed to \code{pivot wider()}. defaults to \verb{_}.}
 }
 \value{
 A list containing the pivot_wider arguments (pivot_args) as well as the function

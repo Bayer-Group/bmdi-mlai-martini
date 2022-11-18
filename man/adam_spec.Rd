@@ -17,24 +17,27 @@ adam_spec(
 )
 }
 \arguments{
-\item{path}{path to a directory containing ads files}
+\item{path}{path to a directory containing ads files in .sas7bdat format}
 
 \item{filter}{a character vector of conditions to be passed to \code{dplyr::filter()},
 e.g. regarding visits, treatment arms or parameters. Defaults to NULL.}
 
-\item{keep}{character vector defining the subset of data sets in the given \code{path} to create the specification for (e.g. \code{c('adsl', 'advs'))}).
-If both \code{keep} and \code{drop} are specified, \code{keep} overrides \code{drop}. Defaults to NULL.}
+\item{keep, }{drop character vectors controlling the subset of data sets in the given \code{path}
+to create the specification for (e.g. \code{c('adsl', 'advs'))}).
+If both \code{keep} and \code{drop} are specified, only \code{keep} will be used.
+Both default to NULL, which means that all (known) domains are included.}
 
-\item{drop}{character vector defining a subset of data sets in the given \code{path} to be
-excluded from the list of specifications (e.g. \code{'adqseq5d')}). Defaults to NULL.}
+\item{pre_study}{boolean. Include only pre-study events from occurrence data sets
+(see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.}
 
-\item{pre_study}{boolean. Include only pre-study events from occurrence data sets (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.}
+\item{attach_data}{boolean indicating whether the imported raw data is included in
+the output. Defaults to FALSE.}
 
-\item{attach_data}{boolean indicating whether the imported raw data is included in the output. Defaults to FALSE.}
+\item{id, trt}{id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()}
+for details).}
 
-\item{id, trt}{id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()} for details).}
-
-\item{add_bds}{character vector of domain names of type bds that are not included in the package library of ADaM types (yet), but should be processed as per usual, e.g. 'adfapr'}
+\item{add_bds}{character vector of domain names of type bds that are not included
+in the package library of ADaM types (yet), but should be processed as per usual, e.g. 'adfapr'}
 }
 \value{
 \code{adam_spec()} returns named list of specifications that can be passed to the \code{\link{build}()} function.
@@ -46,7 +49,8 @@ of the \verb{adam_spec_*()} for a detailed description of the output object.
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
 
 \code{\link{adam_spec}()} is a wrapper for the \verb{adam_spec_*()} functions.
-It creates a list of specifications on how to extract and process data from adam data sets in a given location.
+It creates a list of specifications on how to extract and process data from
+adam data sets in a given location.
 The resulting list can be passed to \code{\link{build}()}, where the
 created specs are applied and the generated data sets are combined into a single wide format data set.
 }
