@@ -26,10 +26,4 @@
         Key columns used in occds-type data sets
         name label  value valuen count time
         admh MHHLGT NA    NA     TRUE  NA  
-      
-        Filter information 
-    Message <rlang_message>
-      ! 1 filter could not be applied to any of the data sets:
-        - TRUE
-      * Please double check and adjust or remove from `filter` argument as applicable and rerun.
 
