@@ -6,7 +6,7 @@ testthat::test_that("prepare_ml_vars() works", {
   data <- tibble::tibble(
     count     = sample(0:3, size = n, replace = TRUE),
     count_dbl = as.double(count),
-    log       = rnorm(n) %>% exp(),
+    log       = rnorm(n-1) %>% exp() %>% c(NA),
     nolump    = sample(c("a", "b"), size = n-1, replace = TRUE) %>% c("c") %>% factor(),
     imp       = rnorm(n-1) %>% c(NA),
     exclude   = rep(NA, n-2) %>% c("a", "b") %>% factor(),

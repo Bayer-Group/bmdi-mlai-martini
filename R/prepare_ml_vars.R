@@ -78,8 +78,12 @@ prepare_ml_vars <- function(
     if (any(purrr::map_lgl(data, is.numeric))){
       vars_log <- data %>% 
         dplyr::select_if(is.numeric) %>% 
-        tidyr::pivot_longer(-tidyselect::any_of(remove), 
-                            names_to = "paramcd", values_to = "aval") %>% 
+        tidyr::pivot_longer(
+          -tidyselect::any_of(remove), 
+          names_to       = "paramcd",
+          values_to      = "aval",
+          values_drop_na = TRUE
+        ) %>% 
         dplyr::group_by(paramcd) %>% 
         dplyr::mutate(min_aval = min(aval)) %>% 
         dplyr::filter(min_aval > 0) %>% 
