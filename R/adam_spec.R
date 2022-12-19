@@ -62,7 +62,7 @@ adam_spec <- function(
   
   
   # identify type for selected files in path (adsl/bds/occds) #####
-  file_info <- adam_domain_type(path, keep, drop, quiet = FALSE) %>% 
+  file_info <- adam_domain_type(path, keep, drop, add_bds = add_bds, quiet = FALSE) %>% 
     {
       if(!is.null(add_bds)){ 
         dplyr::mutate(., type = dplyr::case_when(

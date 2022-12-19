@@ -6,6 +6,8 @@
 #' @param path ads path to the file of interest
 #' @param keep only keep the domains provided, e.g. \code{keep = 'adsl'}
 #' @param drop exclude the domains provided, e.g. \code{drop = 'adxb'} 
+#' @param add_bds character vector of domain names of type bds that are not included in the package library of ADaM types (yet), 
+#' but should be processed as per usual, e.g. 'adfapr'
 #' @param quiet whether to suppress printing info on unknown domains to the console, defaults to \code{TRUE}
 #' 
 #' @details
@@ -40,10 +42,11 @@
 #' @export 
 
 adam_domain_type <- function(
-  path  = NULL , 
-  keep  = NULL, 
-  drop  = NULL,
-  quiet = TRUE
+  path    = NULL , 
+  keep    = NULL, 
+  drop    = NULL,
+  add_bds = NULL,
+  quiet   = TRUE
   ){
   
   # define look-up table ####
@@ -164,7 +167,8 @@ adam_domain_type <- function(
     # doms_ignored: domains without match in look-up table  ####
     doms_ignored <- file_info %>% 
       dplyr::filter(type == "none") %>% 
-      dplyr::pull(domain)
+      dplyr::pull(domain) %>% 
+      setdiff(add_bds)
       
     if(length(doms_ignored) > 0 && !quiet){
       cat('\n')
