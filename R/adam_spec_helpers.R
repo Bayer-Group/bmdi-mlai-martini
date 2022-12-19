@@ -29,7 +29,7 @@ create_dict <- function(spec_entry){
     if(type == "adsl"){
       
       labelled::var_label(data)  %>%
-        # fix labels (no label = empty string (already done in spec creation, just to be safe)
+        # fix labels (no label = empty string (already done in spec creation, just to be safe))
         purrr::imap(~{
           if(is.null(.x)){.y}else{.x}}
         ) %>% 
@@ -47,7 +47,7 @@ create_dict <- function(spec_entry){
           # same unit should be filled across timepoints
           c("param" = param, "label" = label, unit) %>% na.omit() 
         )) %>% 
-        {if (!is.na(unit)){
+        {if (!is.null(unit)){
           dplyr::group_by(., dplyr::across(-tidyselect::any_of(c("param", "label")))) %>% 
             tidyr::fill(unit, .direction = "downup") %>% 
             dplyr::ungroup() %>% 
@@ -60,7 +60,7 @@ create_dict <- function(spec_entry){
         dplyr::mutate(type   = type) 
       
       # for consistent dict structure: add NA columns for time and/or unit if missing
-      if(is.na(unit)) dict <- dict %>% dplyr::mutate(unit = NA_character_)
+      if(is.null(unit)) dict <- dict %>% dplyr::mutate(unit = NA_character_)
       
       param_sel <- data %>% 
         {if(length(filter) > 0){       
