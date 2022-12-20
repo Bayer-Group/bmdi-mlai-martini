@@ -1,4 +1,4 @@
-# martini (development version)
+# martini 0.4.3
 
 * update of example data sets
 * minor bug fixes related to incomplete bds data sets (e.g. missing units)
