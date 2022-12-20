@@ -13,12 +13,14 @@ testthat::test_that("prepare_ml_vars() works", {
     .out      = log
   )
   
+  thres_log <- skw(data$log, na.rm = TRUE)/2
+  
   testthat::expect_equal(
     
     prepare_ml_vars(
       data,
       thres_count = 4,
-      thres_log   = 1.5,
+      thres_log   = thres_log,
       thres_lump  = 0.05,
       thres_imp   = 0.9
     ),
@@ -27,7 +29,7 @@ testthat::test_that("prepare_ml_vars() works", {
       count   = c("count", "count_dbl"), 
       log     = "log", 
       nolump  = "nolump", 
-      imp     = "imp", 
+      imp     = c( "log", "imp"),
       exclude = "exclude"
     )
     
