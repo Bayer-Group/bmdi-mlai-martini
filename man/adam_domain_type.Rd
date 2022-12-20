@@ -4,7 +4,13 @@
 \alias{adam_domain_type}
 \title{Identify the data set type of ads files by file name}
 \usage{
-adam_domain_type(path = NULL, keep = NULL, drop = NULL, quiet = TRUE)
+adam_domain_type(
+  path = NULL,
+  keep = NULL,
+  drop = NULL,
+  add_bds = NULL,
+  quiet = TRUE
+)
 }
 \arguments{
 \item{path}{ads path to the file of interest}
@@ -12,6 +18,9 @@ adam_domain_type(path = NULL, keep = NULL, drop = NULL, quiet = TRUE)
 \item{keep}{only keep the domains provided, e.g. \code{keep = 'adsl'}}
 
 \item{drop}{exclude the domains provided, e.g. \code{drop = 'adxb'}}
+
+\item{add_bds}{character vector of domain names of type bds that are not included in the package library of ADaM types (yet),
+but should be processed as per usual, e.g. 'adfapr'}
 
 \item{quiet}{whether to suppress printing info on unknown domains to the console, defaults to \code{TRUE}}
 }

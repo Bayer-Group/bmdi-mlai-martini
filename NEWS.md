@@ -1,3 +1,8 @@
+# martini (development version)
+
+* update of example data sets
+* minor bug fixes related to incomplete bds data sets (e.g. missing units)
+
 # martini 0.4.2
 
 * improved messaging (wip)
