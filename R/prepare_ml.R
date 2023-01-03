@@ -474,6 +474,10 @@ prepare_ml <- function(
     }
   
   # ... prep recipe ####
+  
+  # TODO not used in the if statement that modifies the recipe
+  # and prepped again after the if statement
+  # carefully check if both are needed
   rcp_prep <- rcp %>%
     {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE)} %>%
     purrr::pluck("result")
@@ -535,6 +539,10 @@ prepare_ml <- function(
   rcp_prep <- rcp %>% 
     {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE, training = d_train_raw)} %>% 
     purrr::pluck("result")
+  
+  # TODO set 'skip = FALSE' in step_naomit after the recipe is prepped 
+  # (switched to TRUE by recipes::prep? unexpected behavior?)
+  # check new parameters 'retain' and 'log_changes' in 'prep()'
   
   # training data
   d_train <- rcp_prep %>% recipes::juice()
