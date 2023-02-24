@@ -413,6 +413,11 @@
   ) %>% 
     setdiff(drop_list %>% unlist() %>% unique())
   
+  # ... complete drop list
+  drop_list$other <- colnames(adsl) %>% 
+    setdiff(selected)
+    
+  
   # ... check filter ####
   # only filter that individually yield non-empty tibbles are kept
   keep_filter   <- check_filter(adsl, filter, data_id = 'adsl')$individual %>% 
