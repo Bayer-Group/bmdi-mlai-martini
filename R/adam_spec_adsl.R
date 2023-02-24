@@ -130,24 +130,8 @@
   # identify columns ####
   
   # ... identify date and time columns ####
-  
-  # identify date by variable type...
-  date_auto <- purrr::map_lgl(adsl, assertive.types::is_date) %>% which() %>% names()
-  # ...and label
-  date_lab  <- purrr::map_lgl(
-    labelled::var_label(adsl), 
-    ~ stringr::str_detect(stringr::str_to_lower(.x), 'year|month|day|date|time')) %>% 
-    which()
-  
-  all_dates <- c(date_auto, names(date_lab))
-  
-  # identify time variables
-  all_times <- purrr::map_lgl(
-    adsl, ~{any(class(.) %in% c("difftime", "hms", "Period", "POSIXct", "POSIXt", "Date"))}
-  ) %>% which() %>% names()
-  
-  all_date_times <- c(all_dates, all_times) %>% unique()
-  
+  all_date_times <- adsl_identify_dttm(adsl)
+ 
   # transform date and time to character
   # (caution: mutate() deletes column labels)
   labs_adsl <- labelled::var_label(adsl)
@@ -292,7 +276,7 @@
   
   # ... identify combined columns (e.g. age/sex/race) ####
   
-  all_slash <- labs %>% stringr::str_subset('/' )
+  all_slash <- labs %>% stringr::str_subset('/')
   ind       <- all_slash %>%  
     stringr::str_split('/') %>% 
     purrr::map_lgl( ~ { all(.x %in% labs)})
@@ -374,23 +358,17 @@
   all_redundants <- c(redundant_id, redundant_trt) %>% unique()
   
   # ... all numerics ####
-  # candidates for select, will be intersected with numeric codes
+  # candidates for select, 
+  # TODO will be intersected with numeric codes
   all_numerics <- adsl %>% 
     dplyr::select_if(is.numeric) %>% 
     colnames() 
   
-  # ... empty columns ####
-  empties <- setdiff( 
-    adsl %>% colnames(),
-    adsl %>% janitor::remove_empty(which = 'cols') %>%  colnames()
-  )
+  # ... empty/constant columns ####
+  res_janitor <- adsl_identify_janitor(adsl)
   
-  # ... constant columns ####
-  constants <- setdiff( 
-    adsl %>% colnames(),
-    adsl %>% janitor::remove_constant(na.rm = TRUE) %>% colnames()
-  ) %>% 
-    setdiff(empties)
+  constants <- res_janitor$constants
+  empties   <- res_janitor$empties
   
   # collect output ####
   
@@ -512,3 +490,83 @@ if(FALSE){
   
 }
 
+
+# helper ####
+ 
+ 
+#' identify/categorize columns from adsl
+#'
+#' family of helper functions to identify 
+#' @param adsl data set in which to identify date time columns
+#' @param dict tibble with column names and labels
+#' 
+#' @return character vector of column names in `adsl` that were
+#' identified as candidates for a given category
+#' 
+#' @value
+#' 
+#' Columns meeting the following criteria are returned
+#' 
+#' `adsl_identify_dttm()`:  `assertive.types::is_date()` is TRUE, 
+#' the label contains strings 'year', 'month', 'day', 'date' or 'time'
+#'  (not case sensitive), class is one of 'difftime', 
+#'  'hms', 'Period', 'POSIXct', 'POSIXt', 'Date'
+#' 
+#'  `adsl_identify_janitor()`: idenification via 
+#'  `janitor::remove_empty(which = 'cols')`, `janitor::remove_constant(na.rm = TRUE)`
+#' 
+#' @rdname adsl_identify
+#' @section Authors: 
+#' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+ 
+NULL
+ 
+ 
+#' @rdname adsl_identify 
+adsl_identify_dttm <- function(
+    adsl
+  ){
+  
+  # identify date by variable type...
+  date_auto <- purrr::map_lgl(adsl, assertive.types::is_date) %>% which() %>% names()
+  # ...and label
+  date_lab  <- purrr::map_lgl(
+    labelled::var_label(adsl), 
+    ~ stringr::str_detect(stringr::str_to_lower(.x), 'year|month|day|date|time')) %>% 
+    which()
+  
+  all_dates <- c(date_auto, names(date_lab))
+  
+  # identify time variables
+  all_times <- purrr::map_lgl(
+    adsl, ~{any(class(.) %in% c("difftime", "hms", "Period", "POSIXct", "POSIXt", "Date"))}
+  ) %>% which() %>% names()
+  
+  all_date_times <- c(all_dates, all_times) %>% unique()
+  all_date_times
+  
+}
+ 
+#' @rdname adsl_identify 
+adsl_identify_janitor <- function(
+    adsl
+    ){
+  
+    empties <- setdiff( 
+      adsl %>% colnames(),
+      adsl %>% janitor::remove_empty(which = 'cols') %>% colnames()
+    )
+    
+    # ... constant columns ####
+    constants <- setdiff( 
+      adsl %>% colnames(),
+      adsl %>% janitor::remove_constant(na.rm = TRUE) %>% colnames()
+    ) %>% 
+      setdiff(empties)
+    
+    tibble::lst(
+      empties,
+      constants
+    )
+    
+}
