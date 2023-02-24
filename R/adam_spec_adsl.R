@@ -137,143 +137,35 @@
   # (caution: mutate() deletes column labels)
   labs_adsl <- labelled::var_label(adsl)
   adsl <- adsl %>% 
-    dplyr::mutate_at(unique(c(all_dates, all_times)), as.character) %>% 
+    dplyr::mutate_at(all_date_times, as.character) %>% 
     labelled::set_variable_labels(.labels = labs_adsl, .strict = TRUE)
   
   # ... identify pairs of categorical/numerical columns ####
   
   # ... ... flags ####
-  # naming convention   xxxFN -> xxxFL
-  all_FL <- c(
-    adsl %>% dplyr::select_if(is.numeric) %>% names() %>% stringr::str_subset('FN$'),
-    # TODO check if suffix 'FN' + numeric is exclusively allowed for Flags, otherwise, condition above may catch too much
-    clmns[stringr::str_to_upper(labs) %>% stringr::str_detect('\\bFLAG\\b')]
-  ) %>% 
-    unique()
+
+  # NOTE automated detection may yield false positives and false negatives
   
-  flags <- c(all_FL, stringr::str_replace(all_FL, 'FN$', 'FL')) %>% 
-    unique() %>% 
-    sort() %>% 
-    intersect(clmns)
-  
-  # NOTE automated detection may not catch all flags
-  
-  
+  flags <- adsl_identify_flags(
+    adsl,
+    dict       = dict,
+    dict_param = "param",
+    dict_label = "label"
+  )
+
   # ... ... categoricals with numeric code ####
+
+  res_factors <- adsl_identify_factors(
+    adsl,
+    id         = id,
+    clmn_flag  = flags, 
+    dict       = dict,
+    dict_param = "param",
+    dict_label = "label"
+  )
   
-  
-  # identify columns to keep...
-  # columns with additional numeric code
-  clmn_mod     <- paste0(clmns, 'N')
-  clmn_ind_lab <- clmn_mod %in% clmns
-  clmn_cat     <- clmns[clmn_ind_lab]
-  # corresponding columns with numeric code (to be used for level order, then dropped)
-  clmn_num     <- clmn_mod[clmn_ind_lab]
-  
-  # if column name of categorical already has maximum length of 8 characters, the rule above does not apply
-  # analogous search by labels:
-  lab_mod <- paste(labs, '(N)')
-  lab_ind <- lab_mod %in% labs
-  lab_cat <- labs[lab_ind]
-  lab_num <- lab_mod[lab_ind]
-  
-  # mapping of columns to keep (labels) and columns to use for level order
-  all_lab_lev <- dplyr::bind_rows(
-    tibble::tibble(
-      lab = clmn_cat,
-      lev = clmn_num
-    ),
-    tibble::tibble(
-      lab = dict %>%
-        dplyr::slice(match(lab_cat, dict %>%  dplyr::pull(label))) %>%  
-        dplyr::pull(param),
-      lev = dict %>%
-        dplyr::slice(match(lab_num, dict %>%  dplyr::pull(label))) %>% 
-        dplyr::pull(param)
-    )
-  ) %>% 
-    dplyr::distinct() %>% 
-    # only keep guessed pairs if the column guessed as numeric code is actually numeric
-    dplyr::filter(lev %in% clmns_num)
-  
-  
-  
-  # keep list of all num codes for later use
-  all_num_codes <- all_lab_lev$lev
-  # all_num_codes <- c(
-  #   all_lab_lev$lev,
-  #   dict %>% dplyr::filter(stringr::str_detect(label, "\\(N\\)$")) %>% dplyr::pull(param)
-  # ) %>% unique()
-  
-  # reduce to pairs for which level order needs to be extracted
-  lab_lev <- all_lab_lev  %>% 
-    dplyr::filter(!lab %in% flags) %>% 
-    dplyr::filter(lab != id) %>% 
-    dplyr::filter(lev != id)
-  
-  # account for 'numeric coding only without matching categorical'
-  num_only <- dict %>% 
-    # start with potential num codes judging by label suffix
-    dplyr::filter(stringr::str_detect(label, "\\(N\\)$")) %>% 
-    dplyr::pull(param) %>% 
-    # remove those for which pairs were identified (in lab_lev)
-    setdiff(all_lab_lev$lev) %>% 
-    # check column is actually numeric
-    intersect(clmns_num)
-  
-  if(length(num_only) > 0){
-    
-    # non-integer candidates 
-    no_integer <- adsl %>% 
-      dplyr::select_if( ~{readr::guess_parser(.x, guess_integer = TRUE) != 'integer'} ) %>% 
-      names() 
-      
-    # candidates with too many levels (potentially numeric values)
-    # TODO threshold as parameter?
-    thres_fct <- min(nrow(adsl)/2, 50)
-    
-    too_many_levels <- num_only %>% 
-      purrr::map_lgl(~{
-        adsl[[.x]] %>% dplyr::n_distinct() %>% {. > thres_fct}
-      }) %>% 
-      which() %>% 
-      num_only[.]
-    
-    num_only <- setdiff(
-      num_only, 
-      c(too_many_levels, no_integer)
-    )
-    
-    if(length(num_only) > 0){
-      lab_lev <- dplyr::bind_rows(
-        lab_lev,
-        tibble::tibble(
-          lab = num_only,
-          lev = num_only
-        )
-      )
-    }
-  }
-  
-  # create list of factor levels
-  lev_list <- list()
-  for(r in 1:nrow(lab_lev)){
-    lev  <- rlang::sym(lab_lev[r,] %>% dplyr::pull(lev))
-    lab  <- rlang::sym(lab_lev[r,] %>% dplyr::pull(lab))
-    
-    levs <- adsl %>% 
-      dplyr::select(lab_lev[r,] %>% as.character()) %>% 
-      dplyr::distinct() %>% 
-      dplyr::arrange(!! lev) %>% 
-      dplyr::pull(!! lab) %>% 
-      na.exclude()
-    
-    levs_label          <- attr(levs, "label") 
-    attributes(levs)    <- NULL
-    attr(levs, "label") <- levs_label
-    
-    lev_list[[lab]] <- levs
-  }
+  lev_list      <- res_factors$lev_list
+  all_num_codes <- res_factors$all_num_codes
   
   # ... identify combined columns (e.g. age/sex/race) ####
   
@@ -281,7 +173,7 @@
 
   # ... identify redundants for id and trt ####
   
-  all_redundants <- adsl_identify_redundants(adsl, dict = dict, id = id, trt = trt, clmn_flag = all_FL)
+  all_redundants <- adsl_identify_redundants(adsl, id = id, trt = trt, clmn_flag = flags)
   
   # ... all numerics ####
   # candidates for select, 
@@ -326,7 +218,7 @@
   
   # ... complete drop list
   drop_list$other <- colnames(adsl) %>% 
-    setdiff(selected)
+    setdiff(select_list)
     
   
   # ... check filter ####
@@ -606,3 +498,163 @@ adsl_identify_redundants <- function(
   c(redundant_id, redundant_trt) %>% unique()
   
 }
+
+#' @rdname adsl_identify
+
+adsl_identify_flags <- function(
+  adsl,     
+  dict, 
+  dict_param = "param", 
+  dict_label = "label"
+){
+  
+  labs  <- dict[[dict_label]]
+  clmns <- dict[[dict_param]]
+  
+  # flag naming convention: xxxFN (numeric) + xxxFL (character)
+  
+  # TODO check if suffix 'FN' + numeric is exclusively allowed for Flags, otherwise, condition above may catch too much
+  all_fn <- adsl %>% dplyr::select_if(is.numeric) %>% names() %>% stringr::str_subset('FN$')
+  # NOTE from experience, if either is missing, it is xxxFL, not xxxFN
+  #all_fl <- adsl %>% dplyr::select_if(is.character) %>% names() %>% stringr::str_subset('FL$')
+  all_lab_flag <- clmns[stringr::str_to_upper(labs) %>% stringr::str_detect('\\bFLAG\\b')]
+
+  c(
+    all_fn, stringr::str_replace(all_fn, 'FN$', 'FL'),
+    #all_fl, stringr::str_replace(all_fl, 'FL$', 'FN'),
+    all_lab_flag
+  ) %>% 
+    unique() %>% 
+    sort() %>% 
+    intersect(clmns)
+  
+}
+
+#' @rdname adsl_identify
+
+adsl_identify_factors <- function(
+    adsl,
+    id,
+    clmn_flag,
+    dict, 
+    dict_param = "param", 
+    dict_label = "label"
+){
+  
+  labs  <- dict[[dict_label]]
+  clmns <- dict[[dict_param]]
+  
+  clmns_num <- adsl %>% dplyr::select_if(is.numeric) %>% names()
+  
+  # identify columns to keep...
+  # columns with additional numeric code
+  clmn_mod     <- paste0(clmns, 'N')
+  clmn_ind_lab <- clmn_mod %in% clmns
+  clmn_cat     <- clmns[clmn_ind_lab]
+  # corresponding columns with numeric code (to be used for level order, then dropped)
+  clmn_num     <- clmn_mod[clmn_ind_lab]
+  
+  # if column name of categorical already has maximum length of 8 characters, the rule above does not apply
+  # analogous search by labels:
+  lab_mod <- paste(labs, '(N)')
+  lab_ind <- lab_mod %in% labs
+  lab_cat <- labs[lab_ind]
+  lab_num <- lab_mod[lab_ind]
+  
+  # mapping of columns to keep (labels) and columns to use for level order
+  all_lab_lev <- dplyr::bind_rows(
+    tibble::tibble(
+      lab = clmn_cat,
+      lev = clmn_num
+    ),
+    tibble::tibble(
+      lab = dict %>%
+        dplyr::slice(match(lab_cat, dict %>%  dplyr::pull(!!rlang::sym(dict_label)))) %>%  
+        dplyr::pull(!!rlang::sym(dict_param)),
+      lev = dict %>%
+        dplyr::slice(match(lab_num, dict %>%  dplyr::pull(!!rlang::sym(dict_label)))) %>% 
+        dplyr::pull(!!rlang::sym(dict_param))
+    )
+  ) %>% 
+    dplyr::distinct() %>% 
+    # only keep guessed pairs if the column guessed as numeric code is actually numeric
+    dplyr::filter(lev %in% clmns_num)
+  
+  # reduce to pairs for which level order needs to be extracted
+  lab_lev <- all_lab_lev  %>% 
+    dplyr::filter(!lab %in% clmn_flag) %>% 
+    dplyr::filter(lab != id) %>% 
+    dplyr::filter(lev != id)
+  
+  # account for 'numeric coding only without matching categorical'
+  num_only <- dict %>% 
+    # start with potential num codes judging by label suffix
+    dplyr::filter(stringr::str_detect(label, "\\(N\\)$")) %>% 
+    dplyr::pull(param) %>% 
+    # remove those for which pairs were identified (in lab_lev)
+    setdiff(all_lab_lev$lev) %>% 
+    # check column is actually numeric
+    intersect(clmns_num)
+  
+  if(length(num_only) > 0){
+    
+    # non-integer candidates 
+    no_integer <- adsl %>% 
+      dplyr::select_if( ~{readr::guess_parser(.x, guess_integer = TRUE) != 'integer'} ) %>% 
+      names() 
+    
+    # candidates with too many levels (potentially numeric values)
+    # TODO threshold as parameter?
+    thres_fct <- min(nrow(adsl)/2, 50)
+    
+    too_many_levels <- num_only %>% 
+      purrr::map_lgl(~{
+        adsl[[.x]] %>% dplyr::n_distinct() %>% {. > thres_fct}
+      }) %>% 
+      which() %>% 
+      num_only[.]
+    
+    num_only <- setdiff(
+      num_only, 
+      c(too_many_levels, no_integer)
+    )
+    
+    if(length(num_only) > 0){
+      lab_lev <- dplyr::bind_rows(
+        lab_lev,
+        tibble::tibble(
+          lab = num_only,
+          lev = num_only
+        )
+      )
+    }
+  }
+  
+  # create list of factor levels
+  lev_list <- list()
+  for(r in 1:nrow(lab_lev)){
+    lev  <- rlang::sym(lab_lev[r,] %>% dplyr::pull(lev))
+    lab  <- rlang::sym(lab_lev[r,] %>% dplyr::pull(lab))
+    
+    levs <- adsl %>% 
+      dplyr::select(lab_lev[r,] %>% as.character()) %>% 
+      dplyr::distinct() %>% 
+      dplyr::arrange(!! lev) %>% 
+      dplyr::pull(!! lab) %>% 
+      na.exclude()
+    
+    levs_label          <- attr(levs, "label") 
+    attributes(levs)    <- NULL
+    attr(levs, "label") <- levs_label
+    
+    lev_list[[lab]] <- levs
+  }
+  
+  tibble::lst(
+    all_num_codes = all_lab_lev$lev,
+    lev_list
+  )
+  
+}
+
+
