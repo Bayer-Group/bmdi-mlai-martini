@@ -117,7 +117,7 @@
   
    labs  <- dict$label
    clmns <- dict$param
-   clmns_num <- {adsl %>%  dplyr::select_if(is.numeric) %>% names()}
+   clmns_num <- {adsl %>% dplyr::select_if(is.numeric) %>% names()}
   
   # define black list (column names that are always excluded) ####
   black_list <- c(
@@ -280,7 +280,7 @@
 
   # ... identify redundants for id and trt ####
   
-  all_redundants <- adsl_identify_redundants(adsl, dict = dict, id = id, clmn_flag = all_FL)
+  all_redundants <- adsl_identify_redundants(adsl, dict = dict, id = id, trt = trt, clmn_flag = all_FL)
   
   # ... all numerics ####
   # candidates for select, 
@@ -427,6 +427,10 @@ if(FALSE){
 #' family of helper functions to identify 
 #' @param adsl data set in which to identify date time columns
 #' @param dict tibble with column names and labels
+#' @param dict_label,dict_param column names in dict for the label and column 
+#' name, resp., defaulting to `label` and `param`, resp.
+#' @param id,trt user-selected column names for ID and treatment column
+#' @param clmn_flag (redundants only) character vector of names identified as flags
 #' 
 #' @return character vector of column names in `adsl` that were
 #' identified as candidates for a given category
@@ -440,8 +444,11 @@ if(FALSE){
 #'  (not case sensitive), class is one of 'difftime', 
 #'  'hms', 'Period', 'POSIXct', 'POSIXt', 'Date'
 #' 
-#'  `adsl_identify_janitor()`: idenification via 
+#'  `adsl_identify_janitor()`: identification via 
 #'  `janitor::remove_empty(which = 'cols')`, `janitor::remove_constant(na.rm = TRUE)`
+#' 
+#' 
+#' `adsl_identify_redundants()`: redundant columns to selected trt and id columns
 #' 
 #' @rdname adsl_identify
 #' @section Authors: 
@@ -523,7 +530,11 @@ adsl_identify_combined <- function(
 
 #' @rdname adsl_identify
 
-adsl_identify_redundants <- function(adsl, dict, id, clmn_flag){
+adsl_identify_redundants <- function(
+    adsl, 
+    id, 
+    trt, 
+    clmn_flag){
   
   # ... ... ids ####
   
@@ -554,10 +565,10 @@ adsl_identify_redundants <- function(adsl, dict, id, clmn_flag){
   
   if("RANDDT" %in% colnames(adsl)){
     # also check it's not constant (e.g. all NA in IA)
-    if(adsl %>%  dplyr::pull(RANDDT) %>% dplyr::n_distinct() %>% {.>1}){
+    if(adsl %>% dplyr::pull(RANDDT) %>% dplyr::n_distinct() %>% {. > 1}){
       
       adsl_cor_randdt <- adsl %>%
-        dplyr::select(-tidyselect::all_of(all_FL)) %>% 
+        dplyr::select(-tidyselect::all_of(clmn_flag)) %>% 
         dplyr::mutate(RANDDT = as.Date(RANDDT) %>% as.numeric()) %>% 
         dplyr::select_if(is.numeric) %>% 
         janitor::remove_constant(na.rm = TRUE)
