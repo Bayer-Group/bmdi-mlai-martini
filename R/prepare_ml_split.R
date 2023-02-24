@@ -3,7 +3,7 @@
 #' @description 
 #' `r lifecycle::badge('maturing')`
 #' 
-#' \code{prepare_ml_split()} allows to split a \code{\link{prepare_ml}} object by a factor variable, e.g. treatment. 
+#' \code{prepare_ml_split()} allows to split a \code{\link{prepare_ml}()} object by a factor variable, e.g. treatment. 
 #' This approach is preferable over independent preparations of each data part if 
 #' comparability of resulting models is required (e.g. between treatment groups or studies).
 #' Note that the data preparation recipe is trained on the complete data set 

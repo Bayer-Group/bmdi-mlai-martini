@@ -276,86 +276,11 @@
   
   # ... identify combined columns (e.g. age/sex/race) ####
   
-  all_slash <- labs %>% stringr::str_subset('/')
-  ind       <- all_slash %>%  
-    stringr::str_split('/') %>% 
-    purrr::map_lgl( ~ { all(.x %in% labs)})
-  
-  all_comb <- all_slash[ind]
-  all_comb_columns <- dict %>% dplyr::filter(labs %in% all_comb) %>% dplyr::pull(param)
-  
-  
+  all_comb_columns <- adsl_identify_combined(adsl, dict = dict)
+
   # ... identify redundants for id and trt ####
   
-  # ... ... ids ####
-  
-  # transform all variables into numerics to enable correlation computation
-  # sorting by id and using fct_inorder to assess monotonous association of id column with remaining data set
-  # (excluding previously identified flags, as they might introduce zero variance issues)
-  # -> identifies all character id columns (also those with a different order as 'id')
-  # and all numeric id columns with the same order as 'id'
-  adsl_cor_id <- adsl %>%
-    dplyr::select(-tidyselect::all_of(all_FL)) %>% 
-    dplyr::arrange(tidyselect::all_of(id)) %>% 
-    dplyr::mutate_if(~!is.numeric(.), ~{
-      factor(.x) %>% 
-        forcats::fct_inorder() %>% 
-        as.numeric()
-    }) %>% 
-    janitor::remove_constant(na.rm = TRUE)
-  
-  # correlations with 'id'
-  cors_id <- stats::cor(adsl_cor_id, adsl_cor_id[, id], method = "spearman", use = 'pairwise.complete.obs') %>% 
-    as.data.frame() %>% 
-    tibble::rownames_to_column("name") %>% 
-    tibble::as_tibble() %>% 
-    dplyr::rename(value = tidyselect::all_of(id))
-  
-  # potential remaining numeric id columns are identified by monotonous relation with randomization date
-  cors_randdt <- NULL
-
-  if("RANDDT" %in% colnames(adsl)){
-    # also check it's not constant (e.g. all NA in IA)
-    if(adsl %>%  dplyr::pull(RANDDT) %>% dplyr::n_distinct() %>% {.>1}){
-
-    adsl_cor_randdt <- adsl %>%
-      dplyr::select(-tidyselect::all_of(all_FL)) %>% 
-      dplyr::mutate(RANDDT = as.Date(RANDDT) %>% as.numeric()) %>% 
-      dplyr::select_if(is.numeric) %>% 
-      janitor::remove_constant(na.rm = TRUE)
-    
-    cors_randdt <- stats::cor(
-        adsl_cor_randdt,
-        adsl_cor_randdt[, "RANDDT"],
-        method = "spearman",
-        use    = 'pairwise.complete.obs'
-      ) %>% 
-      as.data.frame() %>% 
-      tibble::rownames_to_column("name") %>% 
-      tibble::as_tibble() %>% 
-      dplyr::rename(value = tidyselect::all_of("RANDDT"))
-  }}
-  
-  redundant_id <- cors_id %>% 
-    dplyr::bind_rows(cors_randdt) %>% 
-    dplyr::filter(dplyr::near(value, 1)) %>% 
-    dplyr::pull(name) %>% 
-    setdiff(id)
-
-  # randomization number (standard name = RANDNO) can not be identified by algorithm
-  if ("RANDNO" %in% colnames(adsl)) redundant_id <- c(redundant_id, "RANDNO")
-  
-  # ... ... treatment ####
-  
-  # match standard treatment column names against actual data
-  trt_adam <- intersect(
-    c("TRT01A", "ARMCD", "ARM", "ACTARM", "ACTARMCD", "TRT01P", "TR01PG1", "TR02PG1", "TR01AG1", "TR02AG1"),
-    colnames(adsl)
-  )
-
-  redundant_trt <- setdiff(trt_adam, trt)
-  
-  all_redundants <- c(redundant_id, redundant_trt) %>% unique()
+  all_redundants <- adsl_identify_redundants(adsl, dict = dict, id = id, clmn_flag = all_FL)
   
   # ... all numerics ####
   # candidates for select, 
@@ -466,6 +391,9 @@
   
 }
 
+ 
+ 
+
 # test area####
 if(FALSE){
   
@@ -557,7 +485,6 @@ adsl_identify_janitor <- function(
       adsl %>% janitor::remove_empty(which = 'cols') %>% colnames()
     )
     
-    # ... constant columns ####
     constants <- setdiff( 
       adsl %>% colnames(),
       adsl %>% janitor::remove_constant(na.rm = TRUE) %>% colnames()
@@ -569,4 +496,103 @@ adsl_identify_janitor <- function(
       constants
     )
     
+}
+
+
+#' @rdname adsl_identify
+
+adsl_identify_combined <- function(
+    adsl, 
+    dict,
+    dict_label = "label",
+    dict_param = "param"
+  ){
+  
+  all_slash <- dict[[dict_label]] %>% stringr::str_subset('/')
+  ind       <- all_slash %>%  
+    stringr::str_split('/') %>% 
+    purrr::map_lgl(~{all(.x %in% dict[[dict_label]])})
+  
+  all_comb <- all_slash[ind]
+  
+  dict %>% 
+    dplyr::filter(!!rlang::sym(dict_label) %in% all_comb) %>% 
+    dplyr::pull(!!rlang::sym(dict_param))
+  
+}
+
+#' @rdname adsl_identify
+
+adsl_identify_redundants <- function(adsl, dict, id, clmn_flag){
+  
+  # ... ... ids ####
+  
+  # transform all variables into numerics to enable correlation computation
+  # sorting by id and using fct_inorder to assess monotonous association of id column with remaining data set
+  # (excluding previously identified flags, as they might introduce zero variance issues)
+  # -> identifies all character id columns (also those with a different order as 'id')
+  # and all numeric id columns with the same order as 'id'
+  adsl_cor_id <- adsl %>%
+    dplyr::select(-tidyselect::all_of(clmn_flag)) %>% 
+    dplyr::arrange(tidyselect::all_of(id)) %>% 
+    dplyr::mutate_if(~!is.numeric(.), ~{
+      factor(.x) %>% 
+        forcats::fct_inorder() %>% 
+        as.numeric()
+    }) %>% 
+    janitor::remove_constant(na.rm = TRUE)
+  
+  # correlations with 'id'
+  cors_id <- stats::cor(adsl_cor_id, adsl_cor_id[, id], method = "spearman", use = 'pairwise.complete.obs') %>% 
+    as.data.frame() %>% 
+    tibble::rownames_to_column("name") %>% 
+    tibble::as_tibble() %>% 
+    dplyr::rename(value = tidyselect::all_of(id))
+  
+  # potential remaining numeric id columns are identified by monotonous relation with randomization date
+  cors_randdt <- NULL
+  
+  if("RANDDT" %in% colnames(adsl)){
+    # also check it's not constant (e.g. all NA in IA)
+    if(adsl %>%  dplyr::pull(RANDDT) %>% dplyr::n_distinct() %>% {.>1}){
+      
+      adsl_cor_randdt <- adsl %>%
+        dplyr::select(-tidyselect::all_of(all_FL)) %>% 
+        dplyr::mutate(RANDDT = as.Date(RANDDT) %>% as.numeric()) %>% 
+        dplyr::select_if(is.numeric) %>% 
+        janitor::remove_constant(na.rm = TRUE)
+      
+      cors_randdt <- stats::cor(
+        adsl_cor_randdt,
+        adsl_cor_randdt[, "RANDDT"],
+        method = "spearman",
+        use    = 'pairwise.complete.obs'
+      ) %>% 
+        as.data.frame() %>% 
+        tibble::rownames_to_column("name") %>% 
+        tibble::as_tibble() %>% 
+        dplyr::rename(value = tidyselect::all_of("RANDDT"))
+    }}
+  
+  redundant_id <- cors_id %>% 
+    dplyr::bind_rows(cors_randdt) %>% 
+    dplyr::filter(dplyr::near(value, 1)) %>% 
+    dplyr::pull(name) %>% 
+    setdiff(id)
+  
+  # randomization number (standard name = RANDNO) can not be identified by algorithm
+  if ("RANDNO" %in% colnames(adsl)) redundant_id <- c(redundant_id, "RANDNO")
+  
+  # ... ... treatment ####
+  
+  # match standard treatment column names against actual data
+  trt_adam <- intersect(
+    c("TRT01A", "ARMCD", "ARM", "ACTARM", "ACTARMCD", "TRT01P", "TR01PG1", "TR02PG1", "TR01AG1", "TR02AG1"),
+    colnames(adsl)
+  )
+  
+  redundant_trt <- setdiff(trt_adam, trt)
+  
+  c(redundant_id, redundant_trt) %>% unique()
+  
 }
