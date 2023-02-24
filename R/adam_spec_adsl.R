@@ -292,14 +292,7 @@
   
   # ... identify combined columns (e.g. age/sex/race) ####
   
-  all_slash <- labs %>% stringr::str_subset('/' )
-  ind       <- all_slash %>%  
-    stringr::str_split('/') %>% 
-    purrr::map_lgl( ~ { all(.x %in% labs)})
-  
-  all_comb <- all_slash[ind]
-  all_comb_columns <- dict %>% dplyr::filter(labs %in% all_comb) %>% dplyr::pull(param)
-  
+  all_comb_columns <- adsl_identify_combined(adsl, dict = dict)
   
   # ... identify redundants for id and trt ####
   
@@ -482,6 +475,26 @@
   out
   
 }
+
+ 
+ 
+#' @rdname adsl_identify
+
+adsl_identify_combined <- function(adsl, dict, dict_label = "label", dict_param = "param"){
+  
+  all_slash <- dict[[dict_label]] %>% stringr::str_subset('/')
+  ind       <- all_slash %>%  
+    stringr::str_split('/') %>% 
+    purrr::map_lgl(~{all(.x %in% dict[[dict_label]])})
+  
+  all_comb <- all_slash[ind]
+  
+  dict %>% 
+    dplyr::filter(!!rlang::sym(dict_label) %in% all_comb) %>% 
+    dplyr::pull(!!rlang::sym(dict_label))
+   
+}
+ 
 
 # test area####
 if(FALSE){
