@@ -115,9 +115,10 @@
     dplyr::mutate(source = 'SL') %>% 
     dplyr::mutate(type   = 'adsl')
   
-   labs  <- dict$label
-   clmns <- dict$param
-   clmns_num <- {adsl %>% dplyr::select_if(is.numeric) %>% names()}
+  # TODO check, if still needed after refactoring into 'adsl_identify_*()'
+  labs  <- dict$label
+  clmns <- dict$param
+  clmns_num <- {adsl %>% dplyr::select_if(is.numeric) %>% names()}
   
   # define black list (column names that are always excluded) ####
   black_list <- c(
