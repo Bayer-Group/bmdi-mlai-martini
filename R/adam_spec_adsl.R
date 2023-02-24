@@ -459,9 +459,8 @@ NULL
  
  
 #' @rdname adsl_identify 
-adsl_identify_dttm <- function(
-    adsl
-  ){
+
+adsl_identify_dttm <- function(adsl){
   
   # identify date by variable type...
   date_auto <- purrr::map_lgl(adsl, assertive.types::is_date) %>% which() %>% names()
@@ -478,15 +477,13 @@ adsl_identify_dttm <- function(
     adsl, ~{any(class(.) %in% c("difftime", "hms", "Period", "POSIXct", "POSIXt", "Date"))}
   ) %>% which() %>% names()
   
-  all_date_times <- c(all_dates, all_times) %>% unique()
-  all_date_times
+  c(all_dates, all_times) %>% unique()
   
 }
  
 #' @rdname adsl_identify 
-adsl_identify_janitor <- function(
-    adsl
-    ){
+
+adsl_identify_janitor <- function(adsl){
   
     empties <- setdiff( 
       adsl %>% colnames(),
@@ -510,11 +507,11 @@ adsl_identify_janitor <- function(
 #' @rdname adsl_identify
 
 adsl_identify_combined <- function(
-    adsl, 
-    dict,
-    dict_label = "label",
-    dict_param = "param"
-  ){
+  adsl, 
+  dict,
+  dict_label = "label",
+  dict_param = "param"
+){
   
   all_slash <- dict[[dict_label]] %>% stringr::str_subset('/')
   ind       <- all_slash %>%  
@@ -532,10 +529,11 @@ adsl_identify_combined <- function(
 #' @rdname adsl_identify
 
 adsl_identify_redundants <- function(
-    adsl, 
-    id, 
-    trt, 
-    clmn_flag){
+  adsl, 
+  id, 
+  trt, 
+  clmn_flag
+){
   
   # ... ... ids ####
   
