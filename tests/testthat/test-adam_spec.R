@@ -7,7 +7,7 @@ test_that("adam_spec add_bds ", {
   ads_spec     <- adam_spec(ads_path)
   ads_spec_add <- adam_spec(ads_path, add_bds = add_name)
   
-  testthat::expect_setequal(
+  expect_setequal(
     names(ads_spec) %>% c(add_name),
     names(ads_spec_add)
   )
@@ -27,7 +27,7 @@ test_that("adam_spec keep/drop hierarchy ", {
   
   ads_spec <- adam_spec(ads_path, keep = domains_keep, drop = domains_drop)
 
-  testthat::expect_setequal(
+  expect_setequal(
     names(ads_spec),
     domains_keep
   )
@@ -48,12 +48,14 @@ test_that("adam_spec snapshots", {
     ads_spec
   )
   
-  # remove class to avoid print method 
-  ads_spec_list <- ads_spec
-  class(ads_spec_list) <- NULL
+  ads_spec_mod <- ads_spec
+  # remove file path information (will be a different tmp folder each time the test is run)
+  for (i in seq_along(ads_spec_mod)) ads_spec_mod[[i]]$file <- NULL 
+  # remove class to avoid print method
+  class(ads_spec_mod) <- NULL
   
   expect_snapshot(
-    ads_spec_list
+    ads_spec_mod
   )
   
 })

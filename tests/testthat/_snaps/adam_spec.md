@@ -23,12 +23,9 @@
 ---
 
     Code
-      ads_spec_list
+      ads_spec_mod
     Output
       $adsl
-      $adsl$file
-      [1] "/home/sebastian_voss_ext/martini_prep/tests/testthat/sas/adsl.sas7bdat"
-      
       $adsl$md5
       [1] "e1299ff8b6023ea1492c4e152c40234d"
       
@@ -158,9 +155,6 @@
       
       
       $adlb
-      $adlb$file
-      [1] "/home/sebastian_voss_ext/martini_prep/tests/testthat/sas/adlb.sas7bdat"
-      
       $adlb$md5
       [1] "a93bacf954d8bd2ce31732ece8f46e00"
       
@@ -219,9 +213,6 @@
       
       
       $advs
-      $advs$file
-      [1] "/home/sebastian_voss_ext/martini_prep/tests/testthat/sas/advs.sas7bdat"
-      
       $advs$md5
       [1] "268a148a18b06e794a168349b06d8d60"
       
@@ -282,9 +273,6 @@
       
       
       $admh
-      $admh$file
-      [1] "/home/sebastian_voss_ext/martini_prep/tests/testthat/sas/admh.sas7bdat"
-      
       $admh$md5
       [1] "0b5961115aad87b07cadc224eccc8742"
       
