@@ -328,7 +328,7 @@ if(FALSE){
 #' @return character vector of column names in `adsl` that were
 #' identified as candidates for a given category
 #' 
-#' @value
+#' @details
 #' 
 #' Columns meeting the following criteria are returned
 #' 
@@ -343,10 +343,10 @@ if(FALSE){
 #' 
 #' `adsl_identify_redundants()`: redundant columns to selected trt and id columns
 #' 
-#' @rdname adsl_identify
 #' @section Authors: 
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
- 
+#' 
+#' @name adsl_identify
 NULL
  
  
