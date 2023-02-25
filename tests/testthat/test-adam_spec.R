@@ -41,9 +41,19 @@ test_that("adam_spec snapshots", {
   skip_on_ci()
   
   ads_path <- test_path('sas/')
+  ads_spec <- adam_spec(ads_path)
+  
+  # console output (print method)
+  expect_snapshot(
+    ads_spec
+  )
+  
+  # remove class to avoid print method 
+  ads_spec_list <- ads_spec
+  class(ads_spec_list) <- NULL
   
   expect_snapshot(
-    adam_spec(ads_path)
+    ads_spec_list
   )
   
 })
