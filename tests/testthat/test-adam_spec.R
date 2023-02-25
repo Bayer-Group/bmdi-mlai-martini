@@ -49,13 +49,20 @@ test_that("adam_spec snapshots", {
   )
   
   ads_spec_mod <- ads_spec
-  # remove file path information (will be a different tmp folder each time the test is run)
-  for (i in seq_along(ads_spec_mod)) ads_spec_mod[[i]]$file <- NULL 
   # remove class to avoid print method
   class(ads_spec_mod) <- NULL
+  # remove file path information (will be a different tmp file path each time the test is run)
+  hide_file_path <- function(x){
+    ifelse(
+      # contained in every temp file path
+      stringr::str_detect(x, "tests/testthat/"),
+      "<REDACTED>", x
+    )
+  }
   
   expect_snapshot(
-    ads_spec_mod
+    ads_spec_mod, transform = hide_file_path
   )
-  
+
+
 })
