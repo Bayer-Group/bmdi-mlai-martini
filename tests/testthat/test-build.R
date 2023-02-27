@@ -85,7 +85,15 @@ test_that("build snapshots", {
   
   ads_path  <- test_path('sas/')
   ads_build <- ads_path %>% 
-    adam_spec(filter = "AVISIT == 'Baseline'", attach_data = TRUE) %>% 
+    adam_spec(
+      filter = c(
+        "ITTFL == 'Y'",
+        "AVISIT == 'Baseline'",
+        "ADSNAME == 'ADLB' & AVISIT == 'Visit 1'",
+        "ABLFL == 'Y'"
+      ),
+      attach_data = TRUE
+    ) %>% 
     build(join = "adsl")
   
   # remove source path info for snapshot
