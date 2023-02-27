@@ -148,3 +148,83 @@ testthat::test_that("keep_vars_corr works", {
   )
   
 })
+
+test_that("prepare_ml snapshots", {
+  
+  skip_on_ci()
+  
+  ads_path  <- test_path('sas/')
+  ads_build <- ads_path %>% 
+    adam_spec(
+      filter = c(
+        "AVISIT == 'Baseline'",
+        "ADSNAME == 'ADLB' & AVISIT == 'Visit 1'",
+        "ABLFL == 'Y'"
+      ),
+      attach_data = TRUE
+    ) %>% 
+    build(join = "adsl")
+  
+  # classification ####
+  
+  ads_ml_class <- prepare_ml(
+    feature             = ads_build,
+    outcome             = martini_outc_class,
+    outcome_name        = ".out",
+    level_order         = c("event", "no event"),
+    strata_trt          = TRUE, 
+    prep_step_dummy     = FALSE,
+    prep_step_normalize = FALSE,
+    vars_imp_ignore     = ".trt",
+    seed                = 2231
+  )
+  
+  # remove file path information in console output (will be a different tmp file path each time the test is run)
+  ads_ml_class$source <- NULL
+  
+  expect_snapshot(
+    ads_ml_class
+  )
+  
+  # regression ####
+  
+  ads_ml_regr <- prepare_ml(
+    feature             = ads_build,
+    outcome             = martini_outc_regr,
+    outcome_name        = ".out",
+    strata_trt          = TRUE, 
+    prep_step_dummy     = FALSE,
+    prep_step_normalize = FALSE,
+    vars_imp_ignore     = ".trt",
+    seed                = 2231
+  )
+  
+  # remove file path information in console output (will be a different tmp file path each time the test is run)
+  ads_ml_regr$source <- NULL
+  
+  expect_snapshot(
+    ads_ml_regr
+  )
+  
+  # time-to-event ####
+  
+  ads_ml_surv <- prepare_ml(
+    feature             = ads_build,
+    outcome             = martini_outc_surv,
+    outcome_name        = c(".time" = ".time", ".status" = ".status"),
+    strata_trt          = TRUE, 
+    prep_step_dummy     = FALSE,
+    prep_step_normalize = FALSE,
+    vars_imp_ignore     = ".trt",
+    seed                = 2231
+  )
+  
+  # remove file path information in console output (will be a different tmp file path each time the test is run)
+  ads_ml_surv$source <- NULL
+  
+  expect_snapshot(
+    ads_ml_surv
+  )
+  
+})
+
