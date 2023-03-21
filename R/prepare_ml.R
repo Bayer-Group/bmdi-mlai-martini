@@ -540,9 +540,19 @@ prepare_ml <- function(
     {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE, training = d_train_raw)} %>% 
     purrr::pluck("result")
   
-  # TODO set 'skip = FALSE' in step_naomit after the recipe is prepped 
-  # (switched to TRUE by recipes::prep? unexpected behavior?)
+  # TODO 
   # check new parameters 'retain' and 'log_changes' in 'prep()'
+  
+  # identify naomit step from recipe
+  number_naomit <- rcp_prep %>% 
+    recipes::tidy() %>% 
+    dplyr::filter(type == 'naomit') %>% 
+    dplyr::pull(number)
+  
+  # prep and train
+  purrr::walk(number_naomit, ~{
+    rcp_prep$steps[[.x]]$skip <<- FALSE
+  })
   
   # training data
   d_train <- rcp_prep %>% recipes::juice()
