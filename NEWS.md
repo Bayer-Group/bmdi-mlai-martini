@@ -1,3 +1,10 @@
+# martini 0.5.0
+
+* fixed package data sets. Update of {recipes} package introduced NAs in prepared ML data, which were now removed.
+* some refactoring
+* speed improvements in prepare_ml()
+* added some tests
+
 # martini 0.4.3
 
 * update of example data sets
