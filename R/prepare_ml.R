@@ -508,7 +508,7 @@ prepare_ml <- function(
       rcp_prep_nocorr$steps[[.x]]$skip    <<- FALSE
     })
     
-    d_train_nocor <- rcp_prep_nocorr %>%
+    d_train_nocorr <- rcp_prep_nocorr %>%
       recipes::bake(new_data = d_train_raw)
     
     # for all variables that need to be kept, identify highly correlated variables from d_train_nocorr
