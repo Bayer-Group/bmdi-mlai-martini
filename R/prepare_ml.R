@@ -492,9 +492,23 @@ prepare_ml <- function(
     rcp_nocorr <- rcp
     rcp_nocorr$steps[[number_corr]]$skip <- TRUE
     
-    d_train_nocorr <- rcp_nocorr %>% 
+    rcp_prep_nocorr <- rcp_nocorr %>% 
       {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE, training = d_train_raw)} %>% 
-      purrr::pluck("result") %>% 
+      purrr::pluck("result")
+    
+    # identify naomit step from recipe
+    number_naomit <- rcp_prep_nocorr %>% 
+      recipes::tidy() %>% 
+      dplyr::filter(type == 'naomit') %>% 
+      dplyr::pull(number)
+    
+    # prep and train
+    purrr::walk(number_naomit, ~{
+      rcp_prep_nocorr$steps[[.x]]$columns <<- unname(rcp_prep_nocorr$steps[[.x]]$columns)
+      rcp_prep_nocorr$steps[[.x]]$skip    <<- FALSE
+    })
+    
+    d_train_nocor <- rcp_prep_nocorr %>%
       recipes::bake(new_data = d_train_raw)
     
     # for all variables that need to be kept, identify highly correlated variables from d_train_nocorr
