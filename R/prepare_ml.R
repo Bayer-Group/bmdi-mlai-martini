@@ -485,16 +485,16 @@ prepare_ml <- function(
   vars_exclude_corr <- NULL
    
   # modify recipe if corr step is applied and given var set should be kept
-   if(prep_step_corr &&
-      !is.null(vars_keep_corr)
-      ){
-     
-     # identify corr step from recipe
-     number_corr <- rcp %>% 
-       recipes::tidy() %>% 
-       dplyr::filter(type == 'corr') %>% 
-       dplyr::pull(number)
-     
+  if(prep_step_corr &&
+     !is.null(vars_keep_corr)
+  ){
+    
+    # identify corr step from recipe
+    number_corr <- rcp %>% 
+      recipes::tidy() %>% 
+      dplyr::filter(type == 'corr') %>% 
+      dplyr::pull(number)
+    
     # prep and train
     rcp_nocorr <- rcp
     rcp_nocorr$steps[[number_corr]]$skip <- TRUE
