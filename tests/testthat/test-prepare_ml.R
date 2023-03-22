@@ -1,3 +1,5 @@
+
+
 testthat::test_that("strata_trt works", {
 
   # TODO WS rewrite 
@@ -167,7 +169,7 @@ test_that("prepare_ml snapshots", {
     ) %>% 
     build(join = "adsl")
   
-  # classification ####
+# classification ####
   
   ads_ml_class <- prepare_ml(
     feature             = ads_build,
@@ -188,7 +190,9 @@ test_that("prepare_ml snapshots", {
     ads_ml_class
   )
   
-  # regression ####
+  
+  
+# regression ####
   
   ads_ml_regr <- prepare_ml(
     feature             = ads_build,
@@ -208,7 +212,9 @@ test_that("prepare_ml snapshots", {
     ads_ml_regr
   )
   
-  # time-to-event ####
+  
+
+# time-to-event ####
   
   ads_ml_surv <- prepare_ml(
     feature             = ads_build,
@@ -230,6 +236,7 @@ test_that("prepare_ml snapshots", {
   
 })
 
+# General ####
 testthat::test_that('row removal works', {
   
   # create minimal data set with NA and set prep_step_knnimpute = FALSE
@@ -272,3 +279,39 @@ testthat::test_that('row removal works', {
   )
     
 })
+
+
+# set prep ml params ####
+
+if(FALSE){
+  
+  outcome_name = NULL
+  level_order  = NULL
+  prep_recipe  = NULL
+  seed         = NULL
+  
+  prep_step_normalize = TRUE
+  prep_step_knnimpute = TRUE
+  prep_step_log       = TRUE
+  prep_step_corr      = TRUE
+  prep_step_dummy     = TRUE
+  strata_trt          = FALSE
+  one_hot = FALSE
+  
+  thres_log           = 2
+  thres_count         = 10
+  thres_corr          = 0.8
+  thres_lump          = 0.05
+  thres_imp           = 0.8
+  thres_nzv_freq      = 95/5
+  thres_nzv_unique    = 10
+  
+  vars_imp_ignore     = NULL
+  vars_fct_expl_na    = NULL
+  vars_ordinalscore   = NULL
+  
+  one_hot             = TRUE
+  
+  outlier_remove      = FALSE
+  outlier_ctrl        = list(coef = 3)
+}
