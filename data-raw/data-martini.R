@@ -1,5 +1,5 @@
 
-library(martini)
+devtools::load()
 
 # ADS SPEC ####
 
@@ -148,9 +148,37 @@ martini_ml_surv <- prepare_ml(
   seed                = 2231
 )
 
+# ... check changes ####
+
+cur_pkg_data <- function(x){
+  
+  e <- new.env()
+  load(paste0("data/", x, ".rda"), envir = e)
+  e[[x]]
+  
+}
+
+purrr::walk(c(
+  "martini_ml_class",
+  "martini_ml_regr",
+  "martini_ml_surv"
+), ~{
+  waldo::compare(
+    get(.x),
+    cur_pkg_data(.x),
+    ignore_formula_env = TRUE
+  ) %>% print()
+})
+
 # ... export ####
 
-usethis::use_data(martini_ml_class, overwrite = TRUE)
-usethis::use_data(martini_ml_regr,  overwrite = TRUE)
-usethis::use_data(martini_ml_surv,  overwrite = TRUE)
+if(FALSE){
+  
+  # NOTE only run, if changes are as expected
+  usethis::use_data(martini_ml_class, overwrite = TRUE)
+  usethis::use_data(martini_ml_regr,  overwrite = TRUE)
+  usethis::use_data(martini_ml_surv,  overwrite = TRUE)
+  
+}
+
 
