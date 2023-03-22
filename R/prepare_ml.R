@@ -474,13 +474,6 @@ prepare_ml <- function(
     }
   
   # ... prep recipe ####
-  
-  # TODO not used in the if statement that modifies the recipe
-  # and prepped again after the if statement
-  # carefully check if both are needed
-  rcp_prep <- rcp %>%
-    {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE)} %>%
-    purrr::pluck("result")
 
   vars_exclude_corr <- NULL
    
