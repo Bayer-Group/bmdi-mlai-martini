@@ -544,7 +544,8 @@ prepare_ml <- function(
   
   # prep and train
   purrr::walk(number_naomit, ~{
-    rcp_prep$steps[[.x]]$skip <<- FALSE
+    rcp_prep$steps[[.x]]$columns <<- unname(rcp_prep$steps[[.x]]$columns)
+    rcp_prep$steps[[.x]]$skip    <<- FALSE
   })
   
   # training data
