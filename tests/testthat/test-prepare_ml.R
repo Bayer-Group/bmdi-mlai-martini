@@ -148,3 +148,48 @@ testthat::test_that("keep_vars_corr works", {
   )
   
 })
+
+
+testthat::test_that('row removal works', {
+  
+  # create minimal data set with NA and set prep_step_knnimpute = FALSE
+  # to imitate incomplete imputation
+  
+  n_total  <- 10
+  n_remove <- 1
+  
+  set.seed(955)
+  d_feat <- tibble::tibble(
+    .id  = 1:n_total,
+    .trt = sample(c('A', 'B'), n_total, replace = TRUE),
+    cont  = c(rnorm(n_total-n_remove), rep(NA, n_remove))
+  )
+  
+  d_out <- tibble::tibble(
+    .id  = 1:n_total,
+    .out = sample(c('out1', 'out2'), n_total, replace = TRUE),
+  )
+  
+  res_out <- prepare_ml(
+    feature    = d_feat,
+    outcome    = d_out, 
+    prep_step_knnimpute = FALSE
+  ) 
+  
+  # observation deleted from prepped data set
+  testthat::expect_equal(
+    res_out %>% martini::get_data(type = 'prep') %>% nrow(),
+    n_total - n_remove
+  )
+  
+  # documented id in na_feature
+  testthat::expect_equal(
+    res_out$removed$rows$na_feature,
+    res_out %>% 
+      martini::get_data(type = 'raw') %>% 
+      filter(is.na(cont)) %>% 
+      pull(.id) 
+  )
+  
+})
+
