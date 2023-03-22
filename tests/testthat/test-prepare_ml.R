@@ -274,8 +274,8 @@ testthat::test_that('row removal works', {
     res_out$removed$rows$na_feature,
     res_out %>% 
       martini::get_data(type = 'raw') %>% 
-      filter(is.na(cont)) %>% 
-      pull(.id) 
+      dplyr::filter(is.na(cont)) %>% 
+      dplyr::pull(.id) 
   )
     
 })
