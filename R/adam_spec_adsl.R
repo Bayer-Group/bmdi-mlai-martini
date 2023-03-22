@@ -436,7 +436,7 @@ adsl_identify_redundants <- function(
   # and all numeric id columns with the same order as 'id'
   adsl_cor_id <- adsl %>%
     dplyr::select(-tidyselect::all_of(clmn_flag)) %>% 
-    dplyr::arrange(tidyselect::all_of(id)) %>% 
+    dplyr::arrange(!!rlang::sym(id)) %>% 
     dplyr::mutate_if(~!is.numeric(.), ~{
       factor(.x) %>% 
         forcats::fct_inorder() %>% 
