@@ -4,7 +4,7 @@
 #'
 #' @param ml_obj ml object as returned by \code{\link{prepare_ml}()}
 #' @param type either 'prep' or 'raw', determining which state of the data should be extracted. Defaults to `prep`.
-#' @param split_id Add column indicating split origin (train/test). Omitted if NULL (default)
+#' @param split_id column name (character). Add column indicating split origin (train/test). Omitted if NULL (default)
 #'
 #' @return 
 #' result of `dplyr::bind_rows()` of data sets in `ml_obj` of the chosen type, either with or without an added `train_test` column.

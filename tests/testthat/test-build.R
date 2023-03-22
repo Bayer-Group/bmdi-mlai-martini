@@ -78,3 +78,31 @@ test_that("build() correctly builds the dictionary", {
   
 })
 
+
+test_that("build snapshots", {
+  
+  skip_on_ci()
+  
+  ads_path  <- test_path('sas/')
+  ads_build <- ads_path %>% 
+    adam_spec(
+      filter = c(
+        "ITTFL == 'Y'",
+        "AVISIT == 'Baseline'",
+        "ADSNAME == 'ADLB' & AVISIT == 'Visit 1'",
+        "ABLFL == 'Y'"
+      ),
+      attach_data = TRUE
+    ) %>% 
+    build(join = "adsl")
+  
+  # remove source path info for snapshot
+  # (will be a different temp path, each time the test is run)
+  attr(ads_build, "source") <- NULL
+  
+  # snapshot output value (in json2)
+  expect_snapshot_value(
+    ads_build, style = "json2"
+  )
+  
+})
