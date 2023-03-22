@@ -49,9 +49,9 @@ create_dict <- function(spec_entry){
         )) %>% 
         {if (!is.null(unit)){
           dplyr::group_by(., dplyr::across(-tidyselect::any_of(c("param", "label")))) %>% 
-            tidyr::fill(unit, .direction = "downup") %>% 
+            tidyr::fill(tidyselect::any_of(unit), .direction = "downup") %>% 
             dplyr::ungroup() %>% 
-            dplyr::rename("unit" = unit)
+            dplyr::rename(tidyselect::any_of(c("unit" = unit)))
         } else {
           .
         }} %>% 
