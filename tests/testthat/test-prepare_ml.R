@@ -1,6 +1,5 @@
 
-
-testthat::test_that("strata_trt works", {
+test_that("strata_trt works", {
 
   # TODO WS rewrite 
   
@@ -169,7 +168,7 @@ test_that("prepare_ml snapshots", {
     ) %>% 
     build(join = "adsl")
   
-# classification ####
+  # classification ####
   
   ads_ml_class <- prepare_ml(
     feature             = ads_build,
@@ -186,52 +185,53 @@ test_that("prepare_ml snapshots", {
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_class$source <- NULL
   
-  expect_snapshot(
-    ads_ml_class
-  )
+  
+   expect_snapshot(
+     ads_ml_class %>% capture_output_lines(print = TRUE)
+   )
   
   
   
-# regression ####
-  
+ # regression ####
+
   ads_ml_regr <- prepare_ml(
     feature             = ads_build,
     outcome             = martini_outc_regr,
     outcome_name        = ".out",
-    strata_trt          = TRUE, 
+    strata_trt          = TRUE,
     prep_step_dummy     = FALSE,
     prep_step_normalize = FALSE,
     vars_imp_ignore     = ".trt",
     seed                = 2231
   )
-  
+
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_regr$source <- NULL
-  
+
   expect_snapshot(
-    ads_ml_regr
+    ads_ml_regr %>% capture_output_lines(print = TRUE)
   )
-  
-  
+
+
 
 # time-to-event ####
-  
+
   ads_ml_surv <- prepare_ml(
     feature             = ads_build,
     outcome             = martini_outc_surv,
     outcome_name        = c(".time" = ".time", ".status" = ".status"),
-    strata_trt          = TRUE, 
+    strata_trt          = TRUE,
     prep_step_dummy     = FALSE,
     prep_step_normalize = FALSE,
     vars_imp_ignore     = ".trt",
     seed                = 2231
   )
-  
+
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_surv$source <- NULL
-  
+
   expect_snapshot(
-    ads_ml_surv
+    ads_ml_surv  %>% capture_output_lines(print = TRUE)
   )
   
 })
