@@ -1,7 +1,7 @@
 Type: Package
 Package: martini
 Title: BMDI MLAI pipeline - Prepare Module
-Version: 0.5.0.9000
+Version: 0.5.0
 Authors@R: 
     c(person(given = "Ahrens",
              family = "Maike",

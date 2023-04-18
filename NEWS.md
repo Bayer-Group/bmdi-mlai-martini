@@ -2,7 +2,7 @@
 
 * fixed package data sets. Update of {recipes} package introduced NAs in prepared ML data, which were now removed.
 * some refactoring
-* speed improvements in prepare_ml()
+* speed improvements in prepare_ml() (affects imputation seed)
 * added some tests
 
 # martini 0.4.3
