@@ -112,7 +112,7 @@
        8  10008 Y    
        9  10009 Y    
       10  10010 Y    
-      # ... with 310 more rows
+      # i 310 more rows
       
       $adsl$drop_list
       $adsl$drop_list$drop
