@@ -1,6 +1,4 @@
-
-
-testthat::test_that("strata_trt works", {
+test_that("strata_trt works", {
 
   # TODO WS rewrite 
   
@@ -169,7 +167,7 @@ test_that("prepare_ml snapshots", {
     ) %>% 
     build(join = "adsl")
   
-# classification ####
+  # classification ####
   
   ads_ml_class <- prepare_ml(
     feature             = ads_build,
@@ -190,9 +188,7 @@ test_that("prepare_ml snapshots", {
     ads_ml_class
   )
   
-  
-  
-# regression ####
+  # regression ####
   
   ads_ml_regr <- prepare_ml(
     feature             = ads_build,
@@ -212,9 +208,7 @@ test_that("prepare_ml snapshots", {
     ads_ml_regr
   )
   
-  
-
-# time-to-event ####
+  # time-to-event ####
   
   ads_ml_surv <- prepare_ml(
     feature             = ads_build,
@@ -236,7 +230,6 @@ test_that("prepare_ml snapshots", {
   
 })
 
-# General ####
 testthat::test_that('row removal works', {
   
   # create minimal data set with NA and set prep_step_knnimpute = FALSE
