@@ -192,6 +192,7 @@ prepare_ml <- function(
   
   # OUTCOME ####
   
+  #COMBAK account for .rmtime renaming in prepare_ml_outcome (necessary for merge)
   outcome_prep <- prepare_ml_outcome(
     outcome        = outcome,
     outcome_name   = outcome_name,
@@ -284,8 +285,15 @@ prepare_ml <- function(
   
   # MERGE OUTCOME AND FEATURE  ####
   
+  #COMBAK check merge for rm case
   d_raw <- outcome %>%
-    dplyr::inner_join(feature, by = ".id") 
+    dplyr::inner_join(
+      feature, 
+      by = intersect(
+        c(".id", ".rmtime"), 
+        intersect(c(colnames(outcome), colnames(feature)))
+      )
+    )
   
   if(nrow(d_raw) == 0){
     cli::cli_abort(c(

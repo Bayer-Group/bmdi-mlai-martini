@@ -78,13 +78,18 @@ build_bds <- function(
     names_sep = names_ctrl$names_sep
     #,  single_row = TRUE
   )
-  
-  
+
   # pivot   ####
   bds_pivot <- pivot_input$data
   
-  bds_wide <- do.call(tidyr::pivot_wider, pivot_input)
+  bds_wide <- do.call(tidyr::pivot_wider, pivot_input) %>% 
+    {if(spec$rm && !is.null(spec$time)){
+      dplyr::rename(., tidyselect::any_of(c(".rmtime" = spec$time)))
+    }else{
+      .
+    }}
   
+  # TODO message if rm = TRUE and spec$time is NULL
   
   # transform all created columns according to guessed type (char to factor, num as numeric)
   # guess types
@@ -243,27 +248,36 @@ pivot_prepare_bds <- function(
         clean_fn  
       )
     )
-  
-  
+
   # names_from / multiple (?) time points ####
   # check if multiple time points are present after subsetting
+  # TODO refactor(spec$time, bds, spec$param, spec$rm)
   n_time <- ifelse(
     ! is.na(spec$time),
-    bds %>% dplyr::pull(spec$time) %>% dplyr::n_distinct(),
+    bds %>% dplyr::pull(!!rlang::sym(spec$time)) %>% dplyr::n_distinct(),
     1
   )
-  # TODO Later: adjust for single_row argument
-  if(n_time > 1){
-    names_from <- c(spec$param, spec$time)
-  } else {
-    names_from <- spec$param
-    bds        <- bds %>% dplyr::select(-spec$time)
+
+  names_from <- spec$param
+  
+  if(n_time > 1 && !spec$rm){
+    # build variable names from param and time, if not in RM setting
+    names_from <- c(names_from, spec$time)
+  }
+  if(n_time == 1){
+    # delete time column if only one timepoint was detected, irrespective of RM
+    bds        <- bds %>% dplyr::select(-tidyselect::any_of(spec$time))
+  }
+  # - end fct
+  
+  id_cols <- spec$id
+  
+  if(n_time > 1 && spec$rm){
+    id_cols <- c(id_cols, spec$time)
   }
   
-  # check for duplicates
-  # TODO move duplicate check and msg into pivot_prepare_bds()
-  # and clarify that pivot_wider() defaults are used, if values_fn is NULL
-  clmn_dupl <- c(spec$id, names_from)
+  # check for duplicates ####
+  clmn_dupl <- c(id_cols, names_from)
   
   any_dupes <- bds %>% 
     dplyr::count(!!! rlang::syms(clmn_dupl)) %>% 
@@ -295,7 +309,7 @@ pivot_prepare_bds <- function(
   
   pivot_input <- list(
     data        = bds,
-    id_cols     = spec$id,
+    id_cols     = id_cols,
     values_from = spec$value,
     names_from  = names_from,
     values_fn   = values_fn,
