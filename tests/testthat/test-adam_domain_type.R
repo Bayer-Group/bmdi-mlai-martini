@@ -37,7 +37,6 @@ test_that("adam_domain_type works", {
 if(FALSE){
   
   # TODO clean test-adam_domain_type test area
-  # COMBAK clean test-adam_domain_type test area
   paths <- paste0('../../../',
                   c('', 'adcm.sas7bdat'))
   
