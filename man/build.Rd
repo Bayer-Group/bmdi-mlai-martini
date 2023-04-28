@@ -4,13 +4,15 @@
 \alias{build}
 \title{Build the feature matrix from various sources according to a specification object}
 \usage{
-build(spec, join = dplyr::inner_join)
+build(spec, join = dplyr::inner_join, rm = FALSE)
 }
 \arguments{
 \item{spec}{a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)}
 
 \item{join}{either function to join data sets (e.g. \code{dplyr::full_join()} or a character (vector) giving the names
 of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}}
+
+\item{rm}{boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an additional \code{.rmtime} column is prepared.}
 }
 \value{
 \code{build()} returns a wide data set with one row per subject and standardized column names for the subject id (\code{.id})

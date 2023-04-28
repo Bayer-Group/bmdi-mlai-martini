@@ -15,13 +15,12 @@ prepare_ml_outcome(
 \arguments{
 \item{outcome}{tibble containing \code{.id} column and the outcome of interest}
 
-\item{outcome_name}{if NULL (default), the first column that's not \code{.id} is chosen for outcome_name
-and the outcome_type is guessed to be either classification or regression.
-One may also provide a single character giving the name of the outcome column OR
-a named vector of length two giving the column names for the 'time' and 'status' data in survival analysis, i.e.
-\code{c(.time = "<time-coln>", .status = "<status-coln>")},
-where \code{.time} is numeric and \code{.status} is binary with 0 coding for censored, and 1 coding for event.
-Currently, only right-censoring is supported. Please note, that survival will never be guessed.}
+\item{outcome_name}{single character giving the name of the outcome for regression or classification.
+For survival and repeated measurements analysis (classification or regression), resp.,
+a named vector of length two needs to be specified,
+\code{c(.time = "<time-coln>", .status = "<status-coln>")} for survival and
+\code{c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")} for repeated measurements, resp.
+See Details section.}
 
 \item{level_order}{Level order for a classification outcome. \code{NULL} keeps the natural order (only used for classification).}
 
@@ -32,20 +31,35 @@ in \code{outlier_ctrl} (only used for regression).}
 the boxplot outlier coefficient \code{coef}, which defaults to 3.}
 }
 \value{
-A list with the following slots
+A list with the following entries
 
 \item{outcome}{The outcome data set containing only the id and one or two columns
-with standardized column names (\code{.out} for regression or classification, \code{.time} and \code{.status} for survival).}
+with standardized column names (\code{.out} for regression or classification
+(with an additional \code{.rmtime} column in case of repeated measurements), \code{.time} and \code{.status} for survival).}
 \item{outcome_name}{Named vector with the original name(s) of the outcome variable(s).}
 \item{outcome_label}{Named vector with the labels(s) of the outcome variable(s). If the columns of \code{outcome} do not contain labels,
 the column name is used instead.}
-\item{outcome_mode}{The outcome mode (\code{regression}, \code{classification} or \code{survival}.}
+\item{outcome_mode}{The outcome mode (\code{regression}, \code{classification} or \code{survival},
+\code{outcome_mode} is guessed to be either classification or regression if a single column was specified as
+outcome based on the class of the column.}
 \item{outcome_dict}{Dictionary tibble for the outcome variable(s). If no label was provided for the selected columns, the column name will be reused as label in the dictionary.}
 \item{na_outcome}{The IDs of NAs in \code{outcome}.}
 \item{id_outlier}{The IDs of removed outliers.}
 }
 \description{
 Prepares an ML ready outcome data set (used in \code{\link{prepare_ml}})
+}
+\details{
+Specification of \code{outcome_name} for survival analysis or repeated measurements:
+For survival analysis, specify column names for 'time' and 'status' of the \code{Surv} object: \code{c(.time = "<time-coln>", .status = "<status-coln>")},
+where \code{.time} is numeric and \code{.status} is binary with 0 coding for censored, and 1 coding for event.
+Currently, only right-censoring is supported.
+
+For repeated measurements, specify \code{outcome_name} as \code{c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")}.
+The outcome mode will be guessed as regression or classification according to the type of the column specified in \code{.out}.
+
+If \code{outcome_name = NULL} (default), the first column that's not \code{.id} is chosen for \code{outcome_name}
+and the outcome mode is guessed accordingly. Thus, neither survival nor repeated measurement analysis will ever be guessed.
 }
 \section{Authors}{
 

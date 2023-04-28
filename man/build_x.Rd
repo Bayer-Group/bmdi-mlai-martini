@@ -38,7 +38,7 @@ e.g. in order to select the first/last value by date. defaults to NULL.
 \value{
 A list with the following entries
 \itemize{
-\item{\code{data}}{a tibble in wide format which one row per \code{id}}
+\item{\code{data}}{a tibble in wide format with one row per \code{id}}
 \item{\code{dict}}{a tibble listing the distinct combinations of columns
 \code{param}, \code{label}, \code{unit}, \code{time}, \code{column}, \code{source} (if provided).}
 \item{\code{source}}{a list passing the \code{file} slot from the given \code{spec} that the created data set is based

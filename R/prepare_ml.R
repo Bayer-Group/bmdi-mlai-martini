@@ -14,18 +14,18 @@
 #' @param feature feature matrix in wide format, e.g. output object of \code{\link{build}()}, 
 #' i.e. containing \code{.id} column and predictors
 #' @param outcome tibble containing \code{.id} column and the outcome of interest, \code{\link{prepare_ml_outcome}()}
-#' @param outcome_name if NULL (default), the first column that's not `.id` is chosen for outcome_name
-#' and the outcome_type is guessed to be either classification or regression.
-#' One may also provide a single character giving the name of the outcome column OR 
-#' a named vector of length two giving the column names for the 'time' and 'status' data in survival analysis, i.e. 
-#' `c(.time = "<time-coln>", .status = "<status-coln>")`,
-#' where `.time` is numeric and `.status` is binary with 0 coding for censored, and 1 coding for event.
-#' Currently, only right-censoring is supported. Please note, that survival will never be guessed.
+#' @param outcome_name single character giving the name of the outcome for regression or classification.
+#' For survival and repeated measurements analysis (classification or regression), resp.,
+#' a named vector of length two needs to be specified, 
+#' `c(.time = "<time-coln>", .status = "<status-coln>")` for survival and 
+#' `c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")` for repeated measurements, resp. 
+#' See Details section.
 #' @param level_order level order for a classification outcome. Default \code{NULL} keeps the natural order (only used for classification).
 #' @param prep_recipe a custom, pre-defined \code{recipes::recipe()} may be provided for data preparation. Defaults to NULL, yielding a data-driven preparation. 
 #' please refer to the details section to learn about the individual recipe steps.
 #' @param train_prop the proportion of data to be used for the training set. Has to be in \[0.5;1.0\]. Defaults to 3/4, keeping a quarter of the data for testing.
-#' @param strata_trt boolean. Expand default stratum variable (\code{.out} for classification, \code{.stratum} for tte, \code{NULL} for regression) by trt (if character, else ignored). Defaults to FALSE.
+#' @param strata_trt boolean. Expand default stratum variable (\code{.out} for classification, \code{.status} for tte, \code{NULL} for regression)
+#' by trt (if character, else ignored). Defaults to FALSE, but is highly recommended to be set to TRUE.
 #' @param seed optionally set a seed before the data splitting. 
 #' @param prep_step_knnimpute,prep_step_log,prep_step_normalize,prep_step_corr,prep_step_dummy logicals determining 
 #' whether or not the corresponding step function should be included in the recipe, 
@@ -66,7 +66,9 @@
 #' and output of the function \code{\link{prepare_ml_vars}()}, respectively.
 #' Further details on particular steps are given below.
 #' 
-#' * drop variables e.g. not meeting the minimum threshold for non-missing data proportion (`step_rm()`) or for variable removal related to the `vars_keep_corr` parameter (see below).  
+#' * drop variables e.g. not meeting the minimum threshold for non-missing 
+#' data proportion (`step_rm()`) or for variable removal related
+#'  to the `vars_keep_corr` parameter (see below).  
 #' * remove observations with missing data in outcome (`step_naomit()`)
 #' * knn imputation on variables with missing values that are not explicitly 
 #' excluded from imputation (`vars_imp_ignore`). Please note, that missing 
@@ -95,8 +97,27 @@
 #' It does not mean that missing values in these variables have been or will be imputed. 
 #' For more details on this matter please refer to the documentation of tidymodels and the 
 #' difference in \code{prep()} and \code{bake()}, in particular. 
-#' For example, \code{vars_imp_ignore} includes the standard treatment variable \code{.trt} by default to prevent any imputations; 
-#' however, it will be listed in the variable set of the \code{prep()}ped recipe. Don't panic. #rtfm.
+#' For example, \code{vars_imp_ignore} includes the standard treatment variable
+#'  \code{.trt} by default to prevent any imputations; 
+#' however, it will be listed in the variable set of the \code{prep()}ped
+#' recipe (for older versions of `recipes` package). Don't panic. #rtfm.
+#' 
+#' For repeated measurement analyses, all observations of the same `.id`
+#' will end up the either in the training or test set (using `rsample::group_initial_split()`).
+#' Note that the strata argument will be ignored (with a warning) for versions below 1.1.1.
+#' Currently, grouping is not accounted for in missing value imputation yet.
+#' 
+#' Specification of `outcome_name` for survival analysis or repeated measurements:
+#' For survival analysis, specify column names for 'time' and 'status' of the `Surv` object: `c(.time = "<time-coln>", .status = "<status-coln>")`,
+#' where `.time` is numeric and `.status` is binary with 0 coding for censored, and 1 coding for event.
+#' Currently, only right-censoring is supported. 
+#' 
+#' For repeated measurements, specify `outcome_name` as `c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")`. 
+#' The outcome mode will be guessed as regression or classification according to the type of the column specified in `.out`. 
+#' 
+#' If `outcome_name = NULL` (default), the first column in `outcome` that's not `.id` is chosen for `outcome_name`
+#' and the outcome mode is guessed accordingly. Thus, neither survival nor repeated measurement analysis will ever be guessed.
+#' 
 #' 
 #' 
 #' @return 
@@ -285,14 +306,25 @@ prepare_ml <- function(
   
   # MERGE OUTCOME AND FEATURE  ####
   
+  clmn_by <- intersect(
+    c(".id", ".rmtime"), 
+    intersect(colnames(outcome), colnames(feature))
+  )
+  
+  if(!all.equal(
+    outcome[clmn_by] %>% purrr::map_chr(class) %>% unname(),
+    feature[clmn_by] %>% purrr::map_chr(class) %>% unname()
+  )){
+    usethis::ui_stop(paste0(
+      'Column(s) used for joining `outcome` and `feature` are not of the same type.'
+    ))
+  }
+  
   #COMBAK check merge for rm case
   d_raw <- outcome %>%
     dplyr::inner_join(
       feature, 
-      by = intersect(
-        c(".id", ".rmtime"), 
-        intersect(c(colnames(outcome), colnames(feature)))
-      )
+      by = clmn_by
     )
   
   if(nrow(d_raw) == 0){
@@ -353,11 +385,32 @@ prepare_ml <- function(
       }  
     }
     
-    d_split <- d_raw %>%
-      rsample::initial_split(
-        strata = tidyselect::all_of('.strata'), 
-        prop   = train_prop
-      )
+    if(!c(".rmtime") %in% names(d_raw)){
+      
+      d_split <- d_raw %>%
+        rsample::initial_split(
+          strata = tidyselect::all_of('.strata'), 
+          prop   = train_prop
+        )
+      
+    }else{
+     strata_ignored <- packageVersion('rsample') %>%
+       package_version() %>% 
+       {. < '1.1.1'}
+      
+     if(strata_ignored){cli::cli_warn(paste(
+       'Please update `rsample` to version 1.1.1 or higher',
+       'to enable stratified sampling in `rsample::group_initial_split()`'
+      ))}
+       
+      d_split <- d_raw %>%
+        rsample::group_initial_split(
+          prop   = train_prop,
+          group  = ".id",
+          strata = tidyselect::all_of('.strata')  # ignored if rsample < '1.1.1'
+        )
+      
+    }
     
     # remove the strata variable '.strata' after splitting
     d_split$data <- d_split$data %>% dplyr::select(-tidyselect::any_of(c('.strata')))
@@ -401,6 +454,7 @@ prepare_ml <- function(
   if (is.null(prep_recipe)){
     
     # ... formula ####
+    # TODO check, if dieffernet formula is needed for repeated measurements
     if(outcome_mode %in% c('regression', 'classification')){
       the_formula <- as.formula(".out ~ .")
     }else{
@@ -413,7 +467,7 @@ prepare_ml <- function(
     # e.g. exclude variable before imputation, nzv and log before normalize 
     rcp <- recipes::recipe(the_formula, data = d_train_raw) %>% 
       recipes::step_rm(tidyselect::any_of(vars_exclude)) %>% 
-      recipes::update_role(.id, new_role = "ID") %>% 
+      recipes::update_role(tidyselect::any_of(c(".id", ".rmtime")), new_role = "ID") %>% 
       
       # ... ... omit observations with missing endpoint ####
       recipes::step_naomit(recipes::all_outcomes()) %>% 
@@ -794,6 +848,8 @@ prepare_ml <- function(
       cols = removed_columns
     )
   )
+  
+  # TODO add attribute to indicate repeated measurements data
   
   prep_output
   
