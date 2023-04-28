@@ -78,6 +78,7 @@ prepare_ml_outcome <- function(
     
     
     # check number of provided outcome columns
+    # still true for rm
     if(length(outcome_name) > 2 ){ 
       usethis::ui_stop('Please check input for outcome_name. No more than two columns might be selected.')
     }else if( length(outcome_name) == 2 ){
@@ -86,7 +87,7 @@ prepare_ml_outcome <- function(
       names_valid  <- {sort(names(outcome_name)) == c('.status', '.time')} %>%  all()
       if(!names_valid)  usethis::ui_stop('For survival analysis, please provide vector with names .status and .time for outcome_name.')
       
-      status_valid <- outcome[, outcome_name['.status']] %>% dplyr::pull() %>%  { . %in% c(0,1) } %>%  all() 
+      status_valid <- outcome[, outcome_name['.status']] %>% dplyr::pull() %>% { . %in% c(0,1) } %>% all() 
       if(!status_valid) usethis::ui_stop('status may only contain values 0 and 1.')
       # stops if NAs are present
       
