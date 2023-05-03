@@ -14,7 +14,8 @@ build_bds(
   spec,
   dupl_ctrl = list(values_fn = NULL, arrange = NULL),
   names_ctrl = list(clean_fn = ~stringr::str_replace_all(.x, "[:punct:]|[:space:]", "_"),
-    names_sep = "_")
+    names_sep = "_"),
+  rm = FALSE
 )
 
 build_occds(spec)
@@ -34,11 +35,14 @@ e.g. in order to select the first/last value by date. defaults to NULL.
 \item{\code{clean_fn}} defaults to \code{stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_')}.
 \item{\code{names_sep}} defaults to '_'
 }}
+
+\item{rm}{bds only. boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an
+additional \code{.rmtime} column is prepared. Only used, if \code{is.null(spec$rm)}.}
 }
 \value{
 A list with the following entries
 \itemize{
-\item{\code{data}}{a tibble in wide format which one row per \code{id}}
+\item{\code{data}}{a tibble in wide format with one row per \code{id}}
 \item{\code{dict}}{a tibble listing the distinct combinations of columns
 \code{param}, \code{label}, \code{unit}, \code{time}, \code{column}, \code{source} (if provided).}
 \item{\code{source}}{a list passing the \code{file} slot from the given \code{spec} that the created data set is based

@@ -274,6 +274,36 @@ test_that('row removal works', {
     
 })
 
+test_that('repeated measurement implementation works', {
+  
+  ads_build <- martini_spec %>% 
+    adjust_spec(id = "adlb", filter = "") %>% 
+    build(rm = TRUE)
+  
+  outcome_regr <- martini_spec$adlb$data %>% 
+    dplyr::filter(PARAMCD == "HDL") %>% 
+    dplyr::rename(tidyselect::all_of(c(".id" = "SUBJID"))) %>% 
+    dplyr::mutate(AVISIT = forcats::fct_reorder(AVISIT, AVISITN))
+  
+  ml_regr <- prepare_ml(
+    feature             = ads_build,
+    outcome             = outcome_regr,
+    outcome_name        = c(".rmtime" = "AVISIT", ".out" = "AVAL"),
+    strata_trt          = TRUE,
+    prep_step_dummy     = FALSE,
+    prep_step_normalize = FALSE,
+    vars_imp_ignore     = ".trt",
+    seed                = 1825
+  )
+  
+  id_training <- unique(ml_regr$data_raw$train$.id)
+  id_test     <- unique(ml_regr$data_raw$test$.id)
+  
+  expect_length(intersect(id_training, id_test), 0)
+  
+  expect_true('.rmtime' %in% colnames(ml_regr$data_raw$train))
+  
+})
 
 # set prep ml params ####
 
