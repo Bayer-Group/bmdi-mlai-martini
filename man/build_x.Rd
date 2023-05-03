@@ -14,7 +14,8 @@ build_bds(
   spec,
   dupl_ctrl = list(values_fn = NULL, arrange = NULL),
   names_ctrl = list(clean_fn = ~stringr::str_replace_all(.x, "[:punct:]|[:space:]", "_"),
-    names_sep = "_")
+    names_sep = "_"),
+  rm = FALSE
 )
 
 build_occds(spec)
@@ -34,6 +35,9 @@ e.g. in order to select the first/last value by date. defaults to NULL.
 \item{\code{clean_fn}} defaults to \code{stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_')}.
 \item{\code{names_sep}} defaults to '_'
 }}
+
+\item{rm}{bds only. boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an
+additional \code{.rmtime} column is prepared. Only used, if \code{is.null(spec$rm)}.}
 }
 \value{
 A list with the following entries

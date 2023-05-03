@@ -142,7 +142,7 @@
 #' and the log-transformation and available from the \code{dict} slot, NULL if no such attribute is defined.
 #' 
 #' The \code{source} slot simply passes the \code{source} attribute of \code{feature}, NULL if no such attribute is defined.
-#' If \code{\link{build}()} from the \code{MLAIprepare} package was used to generate \code{feature}, 
+#' If \code{\link{build}()} from the \code{martini} package was used to generate \code{feature}, 
 #' this attribute lists the full paths of the files that were used in data generation of \code{feature}. 
 #' 
 #' ## Data preparation and documentation
@@ -394,7 +394,7 @@ prepare_ml <- function(
         )
       
     }else{
-     strata_ignored <- packageVersion('rsample') %>%
+     strata_ignored <- utils::packageVersion('rsample') %>%
        package_version() %>% 
        {. < '1.1.1'}
       

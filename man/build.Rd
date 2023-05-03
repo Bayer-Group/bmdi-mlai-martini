@@ -12,7 +12,8 @@ build(spec, join = dplyr::inner_join, rm = FALSE)
 \item{join}{either function to join data sets (e.g. \code{dplyr::full_join()} or a character (vector) giving the names
 of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}}
 
-\item{rm}{boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an additional \code{.rmtime} column is prepared.}
+\item{rm}{boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an additional \code{.rmtime} column
+is prepared. (experimental.)}
 }
 \value{
 \code{build()} returns a wide data set with one row per subject and standardized column names for the subject id (\code{.id})

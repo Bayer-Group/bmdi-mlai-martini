@@ -16,6 +16,8 @@
 #' \item{\code{clean_fn}} defaults to `stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_')`.
 #' \item{\code{names_sep}} defaults to '_' 
 #' }
+#' @param rm bds only. boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an 
+#' additional `.rmtime` column is prepared. Only used, if \code{is.null(spec$rm)}.
 #'
 #' @return 
 #' A list with the following entries

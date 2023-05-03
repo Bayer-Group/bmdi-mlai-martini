@@ -12,12 +12,15 @@ build_bds <- function(
   names_ctrl = list(
     clean_fn  = ~ stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_'), 
     names_sep = '_'
-  )
+  ),
+  rm = FALSE
 ){
   
   ## TODO input check spec
   # stopifnot("martini_spec" %in% class(spec) )
 
+  if(is.null(spec[["rm"]])) spec[["rm"]] <- rm
+  
   md5 <- NULL
   
   if (!(is.null(spec$md5))){
@@ -81,7 +84,7 @@ build_bds <- function(
 
   # pivot   ####
   bds_pivot <- pivot_input$data
-  
+
   bds_wide <- do.call(tidyr::pivot_wider, pivot_input) %>% 
     {if(spec$rm && !is.null(spec$time)){
       dplyr::rename(., tidyselect::any_of(c(".rmtime" = spec$time)))
@@ -166,7 +169,7 @@ build_bds <- function(
 
 #' Prepare bds data for pivoting step in build
 #'
-#'Preparation of dataset bds_full as well as parameters to be passed to pivot_wider
+#' Preparation of dataset bds_full as well as parameters to be passed to pivot_wider
 #' in build_bds to allow for appropriate unit testing
 #'
 #' @param bds_full original bds-type data set
@@ -179,6 +182,8 @@ build_bds <- function(
 #' @param clean_fn function to clean future column names (after pivoting), defaults to 
 #' `~ stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_')`
 #' @param names_sep to be passed to \code{pivot wider()}. defaults to `_`.
+#' @param rm boolean. defaults to FALSE. if TRUE, pivoting for a repeated measurement feature matrix with an 
+#' additional `.rmtime` column is prepared. Only used, if \code{is.null(spec$rm)}.
 #' 
 #'
 #' @return
@@ -202,7 +207,8 @@ pivot_prepare_bds <- function(
     values_fn = NULL,
     arrange   = NULL,
     clean_fn  = ~ stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_'), 
-    names_sep = '_'
+    names_sep = '_',
+    rm        = FALSE
     #,  single_row = TRUE
 ){
   
@@ -216,7 +222,7 @@ pivot_prepare_bds <- function(
   #   values_fn <- function(x) {ifelse(all(is.numeric(x)), mean(x, na.rm = TRUE), na.omit(x)[1])}
   # }
   
-
+  if(is.null(spec[["rm"]])) spec[["rm"]] <- rm
   
   # filter (and arrange) data set ####
   

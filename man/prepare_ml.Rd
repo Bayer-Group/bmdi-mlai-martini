@@ -127,7 +127,7 @@ The dictionary available as an attribute of \code{feature} is updated with infor
 and the log-transformation and available from the \code{dict} slot, NULL if no such attribute is defined.
 
 The \code{source} slot simply passes the \code{source} attribute of \code{feature}, NULL if no such attribute is defined.
-If \code{\link{build}()} from the \code{MLAIprepare} package was used to generate \code{feature},
+If \code{\link{build}()} from the \code{martini} package was used to generate \code{feature},
 this attribute lists the full paths of the files that were used in data generation of \code{feature}.
 }
 

@@ -9,7 +9,8 @@
 #' @param spec a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)
 #' @param join either function to join data sets (e.g. \code{dplyr::full_join()} or a character (vector) giving the names
 #' of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}
-#' @param rm boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an additional `.rmtime` column is prepared.
+#' @param rm boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an additional `.rmtime` column 
+#' is prepared. (experimental.)
 #'
 #' @return
 #' 
