@@ -1,4 +1,8 @@
-# martini (development version)
+# martini 0.5.1
+
+* Added experimental parameter `rm` in `build()` to allow for the preparation of a 
+wide data set suitable for repeated measurement outcomes 
+(one row is a subject at a specific time point)
 
 # martini 0.5.0
 
