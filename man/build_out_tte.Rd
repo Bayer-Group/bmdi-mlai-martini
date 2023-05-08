@@ -17,7 +17,7 @@ build_out_tte(
 \arguments{
 \item{data}{adtte-like tibble, e.g. output of haven::read_sas('adtte.sas7bdat')}
 
-\item{file}{path to adam-like tte data set, e.g. files/adtte.sas7bdat, ignored if data is provided}
+\item{file}{path to AdaM-like tte data set, e.g. files/adtte.sas7bdat, ignored if data is provided}
 
 \item{filter}{character vector to be applied to the data set (e.g. to select PARAMCD or subset to particular population)}
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec.R
 \name{adam_spec}
 \alias{adam_spec}
-\title{Creating a specification for building a wide format data set from adam data}
+\title{Creating a specification for building a wide format data set from AdaM data}
 \usage{
 adam_spec(
   path,
@@ -13,6 +13,7 @@ adam_spec(
   attach_data = FALSE,
   id = "SUBJID",
   trt = "TRT01A",
+  format_file = NULL,
   add_bds = NULL
 )
 }
@@ -36,6 +37,9 @@ the output. Defaults to FALSE.}
 \item{id, trt}{id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()}
 for details).}
 
+\item{format_file}{if NULL (default) adam_spec will try and use a \code{.sas7bcat}file found in \code{path} as argument to \code{haven::read_sas}'s
+to\code{catalog_file} argument}
+
 \item{add_bds}{character vector of domain names of type bds that are not included
 in the package library of ADaM types (yet), but should be processed as per usual, e.g. 'adfapr'}
 }
@@ -50,7 +54,7 @@ of the \verb{adam_spec_*()} for a detailed description of the output object.
 
 \code{\link{adam_spec}()} is a wrapper for the \verb{adam_spec_*()} functions.
 It creates a list of specifications on how to extract and process data from
-adam data sets in a given location.
+AdaM data sets in a given location.
 The resulting list can be passed to \code{\link{build}()}, where the
 created specs are applied and the generated data sets are combined into a single wide format data set.
 }

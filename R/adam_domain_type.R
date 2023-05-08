@@ -1,7 +1,7 @@
 #' Identify the data set type of ads files by file name
 #' 
 #' Files are read from the given \code{path} and file names are matched
-#' to their corresponding adam data type (ads, bds or occds) using a look up table. 
+#' to their corresponding AdaM data type (ads, bds or occds) using a look up table. 
 #'
 #' @param path ads path to the file of interest
 #' @param keep only keep the domains provided, e.g. \code{keep = 'adsl'}
@@ -30,7 +30,7 @@
 #' 
 #' \item{file}{File path of the individual selected files}
 #' \item{type}{File type: *adsl*, *bds*, *occds* or *none* (if no matches are found in the look up table, see \code{adam_domain_type()})}
-#' \item{domain}{Name of the adam domain, i.e. the file name without its extension}
+#' \item{domain}{Name of the AdaM domain, i.e. the file name without its extension}
 #' 
 #' If unknown domains are found in \code{path} that cannot be matched to a type, 
 #' these can be found in the \code{unknown_domains} attribute of the outcome table. 

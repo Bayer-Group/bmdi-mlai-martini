@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec_bds.R
 \name{adam_spec_bds}
 \alias{adam_spec_bds}
-\title{Create specification object for adam data sets of type 'bds'}
+\title{Create specification object for AdaM data sets of type 'bds'}
 \usage{
 adam_spec_bds(
   file = NULL,
@@ -51,7 +51,7 @@ A list containing the following
 \item{\code{file}, \code{md5}}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 \item{\code{data}}{the raw data set if \code{attach_data}, NULL otherwise}
 \item{\code{data_info}}{a list containing the number of subjects \code{nsubj} and columns \code{ncol} in the data after applying \code{filter}}
-\item{\code{type}}{character string \code{bds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+\item{\code{type}}{character string \code{bds}, generally giving the type of AdaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
 \item{\code{filter}}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}()})}
 \item{\code{id}}{passing unchanged input}
 \item{\code{param}, \code{label}, \code{value}, \code{unit}, \code{time}}{names of the key columns to be used in \code{\link{build_bds}()} for reshaping}
@@ -72,13 +72,13 @@ Values for arguments \code{param}, \code{label}, \code{unit}, \code{time} and \c
 Guess will be the first of the following options that matches a column name (exact match).
 
 \describe{
-\item{\code{param}}{\code{PARAMCD}, \verb{**TESTCD}, with \verb{**} reflecting the two letter domain abbrevation (e.g. \code{LB})}
+\item{\code{param}}{\code{PARAMCD}, \verb{**TESTCD}, with \verb{**} reflecting the two letter domain abbreviation (e.g. \code{LB})}
 \item{\code{label}}{substring of \code{param} with trailing \code{CD} removed}
 \item{\code{time}}{\code{AVISIT}, \code{VISIT}}
 \item{\code{value}}{\code{AVAL}, \verb{**STRESN}, \verb{**ORRES} for numeric values,
 \code{AVALC}, \verb{**STRESC}, \verb{**ORRES} for character values,
 with \verb{**} reflecting the two letter domain abbreviation}
-\item{\code{unit}}{\code{AVALU}, \verb{**STRESU}, \verb{**ORRESU}, with \verb{**} reflecting the two letter domain abbrevation}
+\item{\code{unit}}{\code{AVALU}, \verb{**STRESU}, \verb{**ORRESU}, with \verb{**} reflecting the two letter domain abbreviation}
 }
 
 Function will escape if one of \code{param} or \code{value} are neither provided nor can be guessed. The other columns are optional.

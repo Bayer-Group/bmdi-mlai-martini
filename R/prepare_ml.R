@@ -126,7 +126,7 @@
 #' 
 #' \code{prepare_ml()} produces a list that contains the data set both with (\code{data_prep}) and 
 #' without (\code{data_raw}) applying the specified ML preparation steps. 
-#' Both versions are splitted in \code{train} and \code{test} set.
+#' Both versions are split in \code{train} and \code{test} set.
 #' In addition, \code{split} contains the combined \code{rsample::initial_split()} object that 
 #' the \code{train} and \code{test} data was extracted from. Depending on the programming workflow, 
 #' one might be more convenient to use than the other.

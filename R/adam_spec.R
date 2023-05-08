@@ -1,11 +1,11 @@
-#' Creating a specification for building a wide format data set from adam data
+#' Creating a specification for building a wide format data set from AdaM data
 #' 
 #' @description 
 #' `r lifecycle::badge('maturing')`
 #' 
 #' \code{\link{adam_spec}()} is a wrapper for the `adam_spec_*()` functions.
 #' It creates a list of specifications on how to extract and process data from 
-#' adam data sets in a given location. 
+#' AdaM data sets in a given location. 
 #' The resulting list can be passed to \code{\link{build}()}, where the 
 #' created specs are applied and the generated data sets are combined into a single wide format data set.  
 #'

@@ -1,4 +1,4 @@
-#' Create specification object for adam data sets of type 'adsl'
+#' Create specification object for AdaM data sets of type 'adsl'
 #' 
 #' Given a file containing an adsl data set, \code{\link{adam_spec_adsl}()} will create a specification 
 #' object for use in \code{\link{build_adsl}()} to actually create a subset of 
@@ -35,7 +35,7 @@
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 #' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
 #' \item{`data_info`}{a list containing the number of subjects `nsubj` and columns `ncol` in the data after applying `filter`}
-#' \item{`type`}{character string \code{adsl}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+#' \item{`type`}{character string \code{adsl}, generally giving the type of AdaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
 #' \item{`filter`}{subset of \code{filter} that yields non-empty result when applied individually (using \code{\link{check_filter}()}}
 #' \item{`select`}{the suggested list of columns to select from the data set} 
 #' \item{`factor_levels`}{a list column pairs factor/factorN to determine factor level order} 

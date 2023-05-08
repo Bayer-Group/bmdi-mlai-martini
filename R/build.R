@@ -25,7 +25,7 @@
 #'   it into a valid file name and possibly adding a time extension, if multiple time points are considered for a particular parameter.}
 #'   \item{`label`}{parameter label}
 #'   \item{`source`}{source id provided by the specification object. If created with \code{\link{adam_spec}()}, this is the name of the domain.}
-#'   \item{`type`}{adam data type of the source data (adsl, bds or occds)}
+#'   \item{`type`}{AdaM data type of the source data (adsl, bds or occds)}
 #'   \item{`unit`}{parameter unit (if applicable)}
 #'   \item{`time`}{measurement time point (if applicable)}
 #'   \item{`spec_id`}{name of the corresponding spec entry (if applicable)}

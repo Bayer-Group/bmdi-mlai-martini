@@ -168,7 +168,10 @@ ads_spec$adsl$factor_levels$TRT01A <- ads_spec$adsl$factor_levels$TRT01A %>% na.
  
 **change data** 
 
-If any manual changes need to be made to the data sets themselves, the `attach_data` parameter of `ads_spec()` needs to be set to `TRUE`. In this case, top level entry of `spec` will have a `data` slot where the data set is stored and used by the `ads_build()` function. Jsut like the other slots, it may be adjusted by the user in an intermediate step as shown in the following.
+If any manual changes need to be made to the data sets themselves,
+the `attach_data` parameter of `ads_spec()` needs to be set to `TRUE`. 
+In this case, top level entry of `spec` will have a `data` slot where 
+the data set is stored and used by the `ads_build()` function. Just like the other slots, it may be adjusted by the user in an intermediate step as shown in the following.
 
 
 

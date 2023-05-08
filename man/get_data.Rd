@@ -17,7 +17,7 @@ get_data(ml_obj, type = c("prep", "raw"), split_id = NULL)
 result of \code{dplyr::bind_rows()} of data sets in \code{ml_obj} of the chosen type, either with or without an added \code{train_test} column.
 }
 \description{
-Combine splitted data (training and test, if available) from either prepared or raw data
+Combine split data (training and test, if available) from either prepared or raw data
 }
 \section{Authors}{
 

@@ -1,4 +1,4 @@
-#' Create specification object for adam data sets of type 'bds'
+#' Create specification object for AdaM data sets of type 'bds'
 #' 
 #' Given a file containing a bds data set (e.g. adlb or advs), \code{\link{adam_spec_bds}()} will create a specification 
 #' object for use in \code{\link{build_bds}()} to prepare the data to be used in machine learning. 
@@ -27,13 +27,13 @@
 #' Guess will be the first of the following options that matches a column name (exact match).
 #' 
 #' \describe{
-#'   \item{`param`}{`PARAMCD`, `**TESTCD`, with `**` reflecting the two letter domain abbrevation (e.g. `LB`)}
+#'   \item{`param`}{`PARAMCD`, `**TESTCD`, with `**` reflecting the two letter domain abbreviation (e.g. `LB`)}
 #'   \item{`label`}{substring of `param` with trailing `CD` removed}
 #'   \item{`time`}{`AVISIT`, `VISIT`}
 #'   \item{`value`}{`AVAL`, `**STRESN`, `**ORRES` for numeric values, 
 #'   `AVALC`, `**STRESC`, `**ORRES` for character values,
 #'    with `**` reflecting the two letter domain abbreviation}
-#'   \item{`unit`}{`AVALU`, `**STRESU`, `**ORRESU`, with `**` reflecting the two letter domain abbrevation}
+#'   \item{`unit`}{`AVALU`, `**STRESU`, `**ORRESU`, with `**` reflecting the two letter domain abbreviation}
 #' }
 #' 
 #' Function will escape if one of `param` or `value` are neither provided nor can be guessed. The other columns are optional.
@@ -43,7 +43,7 @@
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 #' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
 #' \item{`data_info`}{a list containing the number of subjects `nsubj` and columns `ncol` in the data after applying `filter`}
-#' \item{`type`}{character string \code{bds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+#' \item{`type`}{character string \code{bds}, generally giving the type of AdaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
 #' \item{`filter`}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}()})}
 #' \item{`id`}{passing unchanged input}  
 #' \item{`param`, `label`, `value`, `unit`, `time`}{names of the key columns to be used in \code{\link{build_bds}()} for reshaping}

@@ -1,4 +1,4 @@
-#' Create specification object for adam data sets of type `occds`
+#' Create specification object for AdaM data sets of type `occds`
 #'
 #' Given a file containing a occds data set (e.g. admh or adcm), \code{\link{adam_spec_occds}()}
 #' will create a specification object for use in \code{\link{build_occds}()} to prepare the data 
@@ -22,7 +22,7 @@
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 #' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
 #' \item{`data_info`}{a list containing the number of subjects `nsubj` and columns `ncol` in the data after applying `filter`}
-#' \item{`type`}{character string \code{occds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+#' \item{`type`}{character string \code{occds}, generally giving the type of AdaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
 #' \item{`filter`}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}())}}
 #' \item{`id`}{passing unchanged input}  
 #' \item{`label`, `value`, `valuen`}{names of the key columns to be used in \code{\link{build_occds}()} for reshaping}

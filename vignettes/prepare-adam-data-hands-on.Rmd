@@ -485,7 +485,7 @@ ads_spec$adsl$select <- ads_spec$adsl$select %>%
 The `spec` object is a nested list, with a data set/domain id on the top level with the entries required for building the wide data set in nested lists.
 Instead of adjusting/setting these entries in individual steps, one may also use the `adjust_spec()` helper function. 
 
-In particular, this allows convenient factor handlings, where one may 
+In particular, this allows convenient factor handling, where one may 
 
 * set factor level order to adjust the order in all corresponding outputs
 * specify variables that should be treated as factors with the given factor level order. This may come in useful for variables that could not be detected as factors automatically (e.g. either code or decode missing). 
@@ -718,7 +718,7 @@ ml_data <- prepare_ml(
 ```
 
 Please refer to the help pages of `prepare_ml()` for information on the
-required structure of `outcome` for single vs repreated measurement outcomes.
+required structure of `outcome` for single vs repeated measurement outcomes.
 
 
 
@@ -772,11 +772,12 @@ Description of the `d_ml` entries (taken from `martini::prepare_ml()` documentat
 
 ### Data sets
 
-`prepare_ml()` produces a list that contains the data set both with (`data_prep`) and without (`data_raw`) applying the specified ML preparation steps. Both versions are splitted in `train` and `test` set. 
+`prepare_ml()` produces a list that contains the data set both with (`data_prep`) and without (`data_raw`) applying the specified ML preparation steps. 
+Both versions are split in `train` and `test` set. 
 In addition, `split` contains the combined `rsample::initial_split()` object that the `train` and `test` data was extracted from. 
 Depending on the programming workflow, one might be more convenient to use than the other. 
 
-For convenient extraction of the full, i.e. unsplitted, data set, one may use `get_data():
+For convenient extraction of the full, i.e. unsplit, data set, one may use `get_data():
 
 ```{r}
 # by default, prepared data is extracted
