@@ -108,27 +108,27 @@
       if(is.null(.x)){.y}else{.x}}
     ) 
   
-  # create column dict (name <-> label)  ####
-  dict <- labelled::var_label(adsl) %>% 
-    tibble::enframe(name = 'param', value = 'label') %>% 
-    dplyr::mutate(label  = purrr::map_chr(label, ~ .x[[1]])) %>% 
-    dplyr::mutate(source = 'SL') %>% 
-    dplyr::mutate(type   = 'adsl')
+  # dict creation (name <-> label)  ####
+  dict <- adsl_dict(adsl)
+  
+  # dict <- labelled::var_label(adsl) %>% 
+  #   tibble::enframe(name = 'param', value = 'label') %>% 
+  #   dplyr::mutate(label  = purrr::map_chr(label, ~ .x[[1]])) %>% 
+  #   dplyr::mutate(source = 'SL') %>% 
+  #   dplyr::mutate(type   = 'adsl')
   
   # TODO check, if still needed after refactoring into 'adsl_identify_*()'
-  labs  <- dict$label
-  clmns <- dict$param
-  clmns_num <- {adsl %>% dplyr::select_if(is.numeric) %>% names()}
+  #labs  <- dict$label
+  #clmns <- dict$param
+  #clmns_num <- {adsl %>% dplyr::select_if(is.numeric) %>% names()}
   
-  # define black list (column names that are always excluded) ####
-  black_list <- c(
-    "RANDNO",
-    "ADSNAME", "STUDYID",
-    "SITEID" , "SITENAM", 
-    "INVID"  , "INVNAM"
-  )
+  # identify columns to drop ####
+  # identify_res <- adsl_identify(
+  #   adsl,
+  #   id  = id,
+  #   trt = trt
+  # )
   
-  # identify columns ####
   
   # ... identify date and time columns ####
   all_date_times <- adsl_identify_dttm(adsl)
@@ -146,7 +146,7 @@
 
   # NOTE automated detection may yield false positives and false negatives
   
-  flags <- adsl_identify_flags(
+  flags <- adsl_identify_flag(
     adsl,
     dict       = dict,
     dict_param = "param",
@@ -155,7 +155,7 @@
 
   # ... ... categoricals with numeric code ####
 
-  res_factors <- adsl_identify_factors(
+  res_factors <- adsl_identify_factor(
     adsl,
     id         = id,
     clmn_flag  = flags, 
@@ -173,7 +173,7 @@
 
   # ... identify redundants for id and trt ####
   
-  all_redundants <- adsl_identify_redundants(adsl, id = id, trt = trt, clmn_flag = flags)
+  all_redundants <- adsl_identify_redundant(adsl, id = id, trt = trt, clmn_flag = flags)
   
   # ... all numerics ####
   # candidates for select, 
@@ -183,10 +183,19 @@
     colnames() 
   
   # ... empty/constant columns ####
-  res_janitor <- adsl_identify_janitor(adsl)
+  res_janitor <- adsl_identify_constant(adsl)
   
   constants <- res_janitor$constants
   empties   <- res_janitor$empties
+  
+  
+  # define black list (column names that are always excluded) ####
+  black_list <- c(
+    "RANDNO",
+    "ADSNAME", "STUDYID",
+    "SITEID" , "SITENAM", 
+    "INVID"  , "INVNAM"
+  )
   
   # collect output ####
   
@@ -294,10 +303,7 @@ if(FALSE){
   require(haven)
   require(labelled)
   
-  # 'real_world_data/adsl/99999/adsl.sas7bdat'
-  study <- c(99999)[1]#  , 99999, 99999)[3]
-  # file  <- paste0('real_world_data/adsl/', study, '/adsl.sas7bdat')
-  file <-  paste0('data/', study, '/ads/adsl.sas7bdat')
+  file <-  paste0('tests/', 'testthat', '/sas/adsl.sas7bdat')
   
   id   = 'SUBJID'
   trt  = NULL
@@ -430,11 +436,11 @@ adsl_identify <- function(
 #'  (not case sensitive), class is one of 'difftime', 
 #'  'hms', 'Period', 'POSIXct', 'POSIXt', 'Date'
 #' 
-#'  `adsl_identify_janitor()`: identification via 
+#'  `adsl_identify_constant()`: identification via 
 #'  `janitor::remove_empty(which = 'cols')`, `janitor::remove_constant(na.rm = TRUE)`
 #' 
 #' 
-#' `adsl_identify_redundants()`: redundant columns to selected trt and id columns
+#' `adsl_identify_redundant()`: redundant columns to selected trt and id columns
 #' 
 #' @section Authors: 
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
@@ -445,15 +451,23 @@ NULL
  
 #' @rdname adsl_identify 
 
-adsl_identify_dttm <- function(adsl){
+adsl_identify_dttm <- function(
+    adsl
+  ){
   
   # identify date by variable type...
   date_auto <- purrr::map_lgl(adsl, assertive.types::is_date) %>% which() %>% names()
+  
   # ...and label
-  date_lab  <- purrr::map_lgl(
-    labelled::var_label(adsl), 
-    ~ stringr::str_detect(stringr::str_to_lower(.x), 'year|month|day|date|time')) %>% 
-    which()
+  no_labels <- labelled::var_label(adsl) %>% purrr::compact() %>% purrr::is_empty()
+  if(no_labels){
+    date_lab <- character()
+  }else{
+    date_lab  <- purrr::map_lgl(
+      labelled::var_label(adsl), 
+      ~ stringr::str_detect(stringr::str_to_lower(.x), 'year|month|day|date|time')) %>% 
+      which()
+  }
   
   all_dates <- c(date_auto, names(date_lab))
   
@@ -468,24 +482,28 @@ adsl_identify_dttm <- function(adsl){
  
 #' @rdname adsl_identify 
 
-adsl_identify_janitor <- function(adsl){
+adsl_identify_constant <- function(
+    adsl,
+    empties = TRUE
+  ){
   
+  constants <- setdiff( 
+    adsl %>% colnames(),
+    adsl %>% janitor::remove_constant(na.rm = TRUE) %>% colnames()
+  ) %>% 
+    setdiff(empties)
+  
+  out <- tibble::lst(constants)
+  
+  if(empties){
     empties <- setdiff( 
       adsl %>% colnames(),
       adsl %>% janitor::remove_empty(which = 'cols') %>% colnames()
     )
-    
-    constants <- setdiff( 
-      adsl %>% colnames(),
-      adsl %>% janitor::remove_constant(na.rm = TRUE) %>% colnames()
-    ) %>% 
-      setdiff(empties)
-    
-    tibble::lst(
-      empties,
-      constants
-    )
-    
+    out$empties <- empties
+  }
+  
+  out
 }
 
 
@@ -493,10 +511,15 @@ adsl_identify_janitor <- function(adsl){
 
 adsl_identify_combined <- function(
   adsl, 
-  dict,
+  dict       = NULL,
   dict_label = "label",
   dict_param = "param"
 ){
+  
+  # Only works based on column label (column name if label is missing, which would not contain '/')
+  # TODO LATER rewriteto actually using column values to identify combinations
+  
+  if(!is.null(dict)) stopifnot(c(dict_label, dict_param) %in% names(dict))
   
   all_slash <- dict[[dict_label]] %>% stringr::str_subset('/')
   ind       <- all_slash %>%  
