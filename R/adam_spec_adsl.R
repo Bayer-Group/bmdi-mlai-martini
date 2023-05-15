@@ -311,28 +311,6 @@
  
  
 
-# test area####
-if(FALSE){
-  
-  require(tidyverse)
-  require(haven)
-  require(labelled)
-  
-  file <-  paste0('tests/', 'testthat', '/sas/adsl.sas7bdat')
-  
-  id   = 'SUBJID'
-  trt  = NULL
-  keep = NULL
-  drop = NULL
-  
-  filter = c("FASFL == 'Y'", "AGE < 80", "GENDER == 'female'")
-  attach_data = TRUE
-  
-  spec <- adam_spec_adsl(file = file, id = id, filter = filter, attach_data = attach_data)
-  
-}
-
-
 # helper ####
  
 #' create adsl dictionary from column labels/names

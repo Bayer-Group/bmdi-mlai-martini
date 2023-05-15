@@ -13,7 +13,6 @@ adam_spec(
   attach_data = FALSE,
   id = "SUBJID",
   trt = "TRT01A",
-  format_file = NULL,
   add_bds = NULL
 )
 }
@@ -36,9 +35,6 @@ the output. Defaults to FALSE.}
 
 \item{id, trt}{id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()}
 for details).}
-
-\item{format_file}{if NULL (default) adam_spec will try and use a \code{.sas7bcat}file found in \code{path} as argument to \code{haven::read_sas}'s
-to\code{catalog_file} argument}
 
 \item{add_bds}{character vector of domain names of type bds that are not included
 in the package library of ADaM types (yet), but should be processed as per usual, e.g. 'adfapr'}

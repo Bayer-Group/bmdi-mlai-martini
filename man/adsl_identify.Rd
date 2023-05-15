@@ -3,50 +3,65 @@
 \name{adsl_identify}
 \alias{adsl_identify}
 \alias{adsl_identify_dttm}
-\alias{adsl_identify_janitor}
+\alias{adsl_identify_constant}
 \alias{adsl_identify_combined}
-\alias{adsl_identify_redundants}
-\alias{adsl_identify_flags}
-\alias{adsl_identify_factors}
+\alias{adsl_identify_redundant}
+\alias{adsl_identify_flag}
+\alias{adsl_identify_factor}
 \title{identify/categorize columns from adsl}
 \usage{
 adsl_identify_dttm(adsl)
 
-adsl_identify_janitor(adsl)
+adsl_identify_constant(adsl)
 
-adsl_identify_combined(adsl, dict, dict_label = "label", dict_param = "param")
+adsl_identify_combined(
+  adsl,
+  dict = NULL,
+  dict_label = "label",
+  dict_param = "param"
+)
 
-adsl_identify_redundants(adsl, id, trt, clmn_flag)
+adsl_identify_redundant(adsl, id, trt, clmn_flag)
 
-adsl_identify_flags(adsl, dict, dict_param = "param", dict_label = "label")
+adsl_identify_flag(adsl, dict, dict_param = "param", dict_label = "label")
 
-adsl_identify_factors(
+adsl_identify_factor(
   adsl,
   id,
-  clmn_flag,
+  clmn_flag = NULL,
   dict,
   dict_param = "param",
   dict_label = "label"
 )
 }
 \arguments{
-\item{adsl}{data set in which to identify date time columns}
+\item{adsl}{adsl-like data set in which to identify particular columns of interest}
 
-\item{dict}{tibble with column names and labels}
+\item{dict, dict_param, dict_label}{dict is \code{tibble} as created by \code{adsl_dict()}
+where \code{dict_param} and \code{dict_label} indicate the columns in \code{dict}
+containing for parameter names (column names of \code{adsl}) and labels, resp.}
 
-\item{dict_label, dict_param}{column names in dict for the label and column
-name, resp., defaulting to \code{label} and \code{param}, resp.}
+\item{id, trt}{user-selected column names in \code{adsl} for ID and treatment column,
+defaulting to \code{SUBJID} and \code{TRT01A}, resp.}
 
-\item{id, trt}{user-selected column names for ID and treatment column}
+\item{clmn_flag}{(factor and redundants only) character vector of names identified as flags}
 
-\item{clmn_flag}{(redundants only) character vector of names identified as flags}
+\item{type}{character vector determining the categories of column types to identify.
+defaults all possible categories:
+\code{dttm}, \code{constant}, \code{combined}, \code{flag}, \code{factor}, \code{redundant}}
+
+\item{empty}{logical indicating whether empty columns should be listed}
+
+\item{black_list}{character vector of columns that should be dropped for
+most analyses, see details.}
 }
 \value{
-character vector of column names in \code{adsl} that were
-identified as candidates for a given category
+list with two top level entries, where \code{to_remove} is a list of
+column names from \code{adsl} that were identified as candidates for a given category
+and \code{lev_list} a \code{list} required to set factor level orders.
 }
 \description{
-family of helper functions to identify
+family of helper functions to identify columns to drop from adsl data set
 }
 \details{
 Columns meeting the following criteria are returned
@@ -56,10 +71,16 @@ the label contains strings 'year', 'month', 'day', 'date' or 'time'
 (not case sensitive), class is one of 'difftime',
 'hms', 'Period', 'POSIXct', 'POSIXt', 'Date'
 
-\code{adsl_identify_janitor()}: identification via
+\code{adsl_identify_constant()}: identification via
 \code{janitor::remove_empty(which = 'cols')}, \code{janitor::remove_constant(na.rm = TRUE)}
 
-\code{adsl_identify_redundants()}: redundant columns to selected trt and id columns
+\code{adsl_identify_redundant()}: redundant columns to selected trt and id columns
+
+\code{adsl_identify_combined()}: if labels (from dict) contain '/'
+and all parts are column names themselves
+
+By default, \code{black_list} contains \code{RANDNO}, \code{ADSNAME}, \code{STUDYID},
+\code{SITEID}, \code{SITENAM}, \code{INVID}, \code{INVNAM}.
 }
 \section{Authors}{
 
