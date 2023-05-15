@@ -454,7 +454,7 @@ prepare_ml <- function(
   if (is.null(prep_recipe)){
     
     # ... formula ####
-    # TODO check, if dieffernet formula is needed for repeated measurements
+    # TODO check, if different formula is needed for repeated measurements
     if(outcome_mode %in% c('regression', 'classification')){
       the_formula <- as.formula(".out ~ .")
     }else{
