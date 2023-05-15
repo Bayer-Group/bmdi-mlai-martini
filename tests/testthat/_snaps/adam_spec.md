@@ -140,11 +140,10 @@
       [1] "ADSNAME" "STUDYID" "ITTFL"  
       
       $adsl$drop_list$blacklist
-      [1] "RANDNO"  "ADSNAME" "STUDYID" "SITEID"  "SITENAM" "INVID"   "INVNAM" 
+      [1] "ADSNAME" "STUDYID"
       
       $adsl$drop_list$other
-       [1] "ADSNAME"  "STUDYID"  "USUBJID"  "UASR"     "ITTFL"    "TRT01P"  
-       [7] "TRT01PN"  "TRT01AN"  "RANDDT"   "AGEGR01N" "SEXN"     "RACEN"   
+      character(0)
       
       
       $adsl$id
