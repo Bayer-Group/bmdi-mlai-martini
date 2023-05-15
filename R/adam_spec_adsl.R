@@ -227,7 +227,8 @@
   
   # ... complete drop list
   drop_list$other <- colnames(adsl) %>% 
-    setdiff(select_list)
+    setdiff(select_list) %>% 
+    setdiff(drop_list)
     
   
   # ... check filter ####
