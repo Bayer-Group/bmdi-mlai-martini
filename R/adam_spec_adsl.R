@@ -314,6 +314,99 @@ if(FALSE){
 
 # helper ####
  
+ #' @rdname adsl_identify
+ adsl_dict <- function(
+    adsl,
+    param = 'param',
+    label = 'label'
+  ){
+  
+  labelled::var_label(adsl) %>% 
+    unlist() %>% 
+    tibble::enframe(name = param, value = label) %>% 
+    dplyr::mutate(source = 'SL') %>% 
+    dplyr::mutate(type   = 'adsl')
+ }
+ 
+ #' @rdname adsl_identify
+ 
+adsl_identify <- function(
+    adsl,
+    dict = NULL,
+    type = c(
+      # adsl only
+      'dttm', 'constant', 
+      # using dict
+      'combined', 'flag',
+      # using flag results
+      'factor', 'redundant'
+    ),
+    
+    dict_label = "label", 
+    dict_param = "param", 
+    id         = 'SUBJID',
+    trt        = 'TRT01A'
+    
+    ){
+
+  # input checks
+  stopifnot(c(id, trt) %in% names(adsl))
+  if(!is.null(dict)) stopifnot(c(dict_label, dict_param) %in% names(dict))
+  
+  type <- rlang::arg_match(type, multiple = TRUE) %>% 
+    purrr::set_names()
+  
+  # factor detection makes use of identified flag columns
+  # print(type)
+  if('factor' %in% type){type %>% {c(., 'flag')} %>% purrr::set_names() %>% unique()}
+  print(type)
+  
+  if(is.null(dict)) {
+    dict <- adsl_dict(
+      adsl,
+      label = dict_label,
+      param = dict_param
+    )
+  }
+  
+  all_args <- as.list(environment())
+
+  # TODO rewrite if flag %in% type -> compute  first, add clmn_flag = out$flag 
+  # to all_args and map over everything but flag
+  out <- purrr::map(type[! names(type) %in% c('factor', 'redundant')] , ~{
+    fct_name <- paste0('adsl_identify_', .x)
+    fct_args <- formals(fct_name) %>% names()
+    
+    use_args <- all_args  %>% 
+      magrittr::extract(fct_args) %>% 
+      purrr::compact()
+    
+    do.call(
+      fct_name,
+      use_args
+    )
+  }) %>%
+    purrr::flatten() 
+
+  if('factor' %in% type){
+   out$factor <- do.call(
+     adsl_identify_factor,
+      tibble::lst(adsl, id, dict, dict_label, dict_param, clmn_flag = out$flag)
+    )[['all_num_codes']]
+  }
+  
+  if('redundant' %in% type){
+    out$redundant <- do.call(
+      adsl_identify_factor,
+      tibble::lst(adsl, id, trt, clmn_flag = out$flag)
+    )
+  }
+  
+  out
+}
+  
+# adsl_identify(adsl) 
+ 
  
 #' identify/categorize columns from adsl
 #'
@@ -420,7 +513,7 @@ adsl_identify_combined <- function(
 
 #' @rdname adsl_identify
 
-adsl_identify_redundants <- function(
+adsl_identify_redundant <- function(
   adsl, 
   id, 
   trt, 
@@ -445,7 +538,11 @@ adsl_identify_redundants <- function(
     janitor::remove_constant(na.rm = TRUE)
   
   # correlations with 'id'
-  cors_id <- stats::cor(adsl_cor_id, adsl_cor_id[, id], method = "spearman", use = 'pairwise.complete.obs') %>% 
+  cors_id <- stats::cor(
+      adsl_cor_id, adsl_cor_id[, id], 
+      method = "spearman", 
+      use = 'pairwise.complete.obs'
+    ) %>% 
     as.data.frame() %>% 
     tibble::rownames_to_column("name") %>% 
     tibble::as_tibble() %>% 
@@ -501,7 +598,7 @@ adsl_identify_redundants <- function(
 
 #' @rdname adsl_identify
 
-adsl_identify_flags <- function(
+adsl_identify_flag <- function(
   adsl,     
   dict, 
   dict_param = "param", 
@@ -532,10 +629,10 @@ adsl_identify_flags <- function(
 
 #' @rdname adsl_identify
 
-adsl_identify_factors <- function(
+adsl_identify_factor <- function(
     adsl,
     id,
-    clmn_flag,
+    clmn_flag = NULL,
     dict, 
     dict_param = "param", 
     dict_label = "label"
@@ -582,7 +679,9 @@ adsl_identify_factors <- function(
   
   # reduce to pairs for which level order needs to be extracted
   lab_lev <- all_lab_lev  %>% 
-    dplyr::filter(!lab %in% clmn_flag) %>% 
+    {if(!is.null(clmn_flag)){
+      dplyr::filter(., !lab %in% clmn_flag) 
+    }else{.}} %>% 
     dplyr::filter(lab != id) %>% 
     dplyr::filter(lev != id)
   
