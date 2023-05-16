@@ -385,6 +385,8 @@
  #' @name adsl_identify
  NULL
  
+ #' @rdname adsl_identify 
+ 
  adsl_identify <- function(
     adsl,
     dict = NULL,
@@ -408,7 +410,7 @@
       "SITEID" , "SITENAM", 
       "INVID"  , "INVNAM"
     )
-    ){
+  ){
 
   # input checks
   stopifnot(c(id, trt) %in% names(adsl))
@@ -448,22 +450,22 @@
       fct_name,
       use_args
     )
-  }) %>%
-    purrr::flatten() 
+  })
 
   if('factor' %in% type){
     res_fct <- do.call(
       adsl_identify_factor,
       tibble::lst(adsl, id, dict, dict_label, dict_param, clmn_flag = to_remove$flag)
     )
-   to_remove$factor <- res_fct[['all_num_codes']]
+    # NOTE factors should not be in the 'to_remove' entry
+    to_remove$factor <- res_fct[['all_num_codes']]
    
   }else{
     res_fct <- NULL
   }
   
   if('redundant' %in% type){
-   to_remove$redundant <- do.call(
+    to_remove$redundant <- do.call(
       adsl_identify_redundant,
       tibble::lst(adsl, id, trt, clmn_flag = to_remove$flag)
     )
@@ -473,7 +475,7 @@
   
   to_remove$black_list <- intersect(black_list, colnames(adsl))
   
-  out <- tibble::lst(to_remove, lev_list = res_fct$lev_list)
+  tibble::lst(to_remove, lev_list = res_fct$lev_list)
 }
   
 
@@ -493,10 +495,13 @@ adsl_identify_dttm <- function(
   if(no_labels){
     date_lab <- character()
   }else{
-    date_lab  <- purrr::map_lgl(
-      labelled::var_label(adsl), 
-      ~ stringr::str_detect(stringr::str_to_lower(.x), 'year|month|day|date|time')) %>% 
-      which()
+    date_lab  <- purrr::map_lgl(labelled::var_label(adsl), ~{
+      if(!is.null(.x)){
+        stringr::str_detect(stringr::str_to_lower(.x), 'year|month|day|date|time')
+      }else{
+        FALSE
+      }
+    }) %>% which()
   }
   
   all_dates <- c(date_auto, names(date_lab))
@@ -608,6 +613,7 @@ adsl_identify_redundant <- function(
         dplyr::select_if(is.numeric) %>% 
         janitor::remove_constant(na.rm = TRUE)
       
+      # NOTE causes 'zero-sd' warning. use quietly?
       cors_randdt <- stats::cor(
         adsl_cor_randdt,
         adsl_cor_randdt[, "RANDDT"],

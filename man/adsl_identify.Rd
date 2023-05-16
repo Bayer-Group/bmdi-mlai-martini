@@ -10,6 +10,17 @@
 \alias{adsl_identify_factor}
 \title{identify/categorize columns from adsl}
 \usage{
+adsl_identify(
+  adsl,
+  dict = NULL,
+  type = c("dttm", "constant", "combined", "flag", "factor", "redundant"),
+  dict_label = "label",
+  dict_param = "param",
+  id = "SUBJID",
+  trt = "TRT01A",
+  black_list = c("RANDNO", "ADSNAME", "STUDYID", "SITEID", "SITENAM", "INVID", "INVNAM")
+)
+
 adsl_identify_dttm(adsl)
 
 adsl_identify_constant(adsl)
@@ -41,19 +52,19 @@ adsl_identify_factor(
 where \code{dict_param} and \code{dict_label} indicate the columns in \code{dict}
 containing for parameter names (column names of \code{adsl}) and labels, resp.}
 
-\item{id, trt}{user-selected column names in \code{adsl} for ID and treatment column,
-defaulting to \code{SUBJID} and \code{TRT01A}, resp.}
-
-\item{clmn_flag}{(factor and redundants only) character vector of names identified as flags}
-
 \item{type}{character vector determining the categories of column types to identify.
 defaults all possible categories:
 \code{dttm}, \code{constant}, \code{combined}, \code{flag}, \code{factor}, \code{redundant}}
 
-\item{empty}{logical indicating whether empty columns should be listed}
+\item{id, trt}{user-selected column names in \code{adsl} for ID and treatment column,
+defaulting to \code{SUBJID} and \code{TRT01A}, resp.}
 
 \item{black_list}{character vector of columns that should be dropped for
 most analyses, see details.}
+
+\item{clmn_flag}{(factor and redundants only) character vector of names identified as flags}
+
+\item{empty}{logical indicating whether empty columns should be listed}
 }
 \value{
 list with two top level entries, where \code{to_remove} is a list of
