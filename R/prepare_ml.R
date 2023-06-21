@@ -152,7 +152,7 @@
 #' giving bare \code{value} slots, as well as a verbose description in \code{text}.
 #' \code{removed} gives a list of removed \code{rows} and \code{columns} along with the information
 #'  on why/in which recipe step the data was removed.
-#' 
+#' \code{call} the function call
 #' 
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
@@ -465,7 +465,15 @@ prepare_ml <- function(
     # ... write recipe ####
     # Note that order is important when building the recipe,
     # e.g. exclude variable before imputation, nzv and log before normalize 
+    
+    # TODO rewrite recipe using new step fcts:
+    # recipes::step_filter_missing() remove variables that have too many missing values.
+    # recipes::step_impute_bag()
+    # recipes::step_lincomb()
+    # recipes::step_zv()
+    
     rcp <- recipes::recipe(the_formula, data = d_train_raw) %>% 
+      
       recipes::step_rm(tidyselect::any_of(vars_exclude)) %>% 
       recipes::update_role(tidyselect::any_of(c(".id", ".rmtime")), new_role = "ID") %>% 
       
@@ -807,7 +815,10 @@ prepare_ml <- function(
       )
   }
   
-  
+  #seed_txt <- NULL
+  # TODO test call
+  the_call <- match.call()
+  the_seed <- eval(the_call$seed)
   
   # OUTPUT #### 
   
@@ -846,6 +857,11 @@ prepare_ml <- function(
     removed = list(
       rows = removed_rows,
       cols = removed_columns
+    ),
+    
+    call = list(
+      call = the_call, 
+      seed = the_seed
     )
   )
   
@@ -856,39 +872,3 @@ prepare_ml <- function(
 }
 
 
-
-
-# test area ####
-if(FALSE){
-  # feature 
-  # outcome 
-  outcome_name = NULL
-  level_order  = NULL
-  prep_recipe  = NULL
-  seed         = NULL
-  
-  prep_step_normalize = TRUE
-  prep_step_knnimpute = TRUE
-  prep_step_log       = TRUE
-  prep_step_corr      = TRUE
-  prep_step_dummy     = TRUE
-  strata_trt          = FALSE
-  one_hot = FALSE
-  
-  thres_log           = 2
-  thres_count         = 10
-  thres_corr          = 0.8
-  thres_lump          = 0.05
-  thres_imp           = 0.8
-  thres_nzv_freq      = 95/5
-  thres_nzv_unique    = 10
-  
-  vars_imp_ignore     = NULL
-  vars_fct_expl_na    = NULL
-  vars_ordinalscore   = NULL
-  
-  one_hot             = TRUE
-  
-  outlier_remove      = FALSE
-  outlier_ctrl        = list(coef = 3)
-}
