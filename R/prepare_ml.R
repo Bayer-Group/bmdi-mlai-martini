@@ -152,7 +152,8 @@
 #' giving bare \code{value} slots, as well as a verbose description in \code{text}.
 #' \code{removed} gives a list of removed \code{rows} and \code{columns} along with the information
 #'  on why/in which recipe step the data was removed.
-#' \code{call} the function call
+#' \code{input} a list giving the {{martini}} \code{packageVersion} and a 
+#' list of (most) input parameters, including the seed used 
 #' 
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
@@ -199,7 +200,8 @@ prepare_ml <- function(
   
 ){
   
-  #
+  # save all input args
+  all_args <- as.list(environment())
   
   if(prep_step_dummy && is.null(one_hot)){
     one_hot <- FALSE
@@ -815,10 +817,6 @@ prepare_ml <- function(
       )
   }
   
-  #seed_txt <- NULL
-  # TODO test call
-  the_call <- match.call()
-  the_seed <- eval(the_call$seed)
   
   # OUTPUT #### 
   
@@ -859,9 +857,12 @@ prepare_ml <- function(
       cols = removed_columns
     ),
     
-    call = list(
-      call = the_call, 
-      seed = the_seed
+    input = list(
+      martini = utils::packageVersion('martini'), 
+      args = all_args %>% 
+        # TODO usage conditional by installed purrr version
+        magrittr::inset(c('outcome', 'feature', 'outcome_name', 'quiet'), NULL)
+        # purrr::discard_at()
     )
   )
   
