@@ -6,7 +6,7 @@
 #' identification of noise and redundancies in the data and the selection of a potentially meaningful
 #' set of columns (returned in \code{select}) and redundancies in the data. 
 #' 
-#' @param file the path of the sas file to process
+#' @param file the path of the sas(7bdat) or rds file to process
 #' @param id name of id (e.g. SUBJIDN, SUBJID) column to keep.
 #' Highly redundant variables will not be included in the suggested set of columns returned in \code{select} (see Details).
 #' @param trt column to be used as the treatment variable. All other predefined treatment variables (see Details) are added
@@ -72,10 +72,17 @@
 
   # TODO adam_spec_adsl() - refactor everything!!!
    
+  file_ext <- tools::file_ext(file) 
+   
   # read adsl ####
-  
-  adsl <- haven::read_sas(file) %>% 
-    dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+  adsl <- if(file_ext == 'sas7bdat'){
+    haven::read_sas(file) %>% 
+      dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+  }else if(file_ext == 'rds'){
+    readRDS(file)
+  }else{
+    stop('Only sas7bdat and rds data supported.')
+  }
   
   md5  <- tools::md5sum(file) %>% as.character()
   size <- fs::file_size(file)

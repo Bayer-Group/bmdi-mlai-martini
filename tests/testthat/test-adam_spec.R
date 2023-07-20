@@ -65,3 +65,36 @@ test_that("adam_spec snapshots", {
 
 
 })
+
+
+test_that("adam_spec rds/sas selection works", {
+  
+  ads_path <- test_path('sas/file_ext_test')
+  
+  # create prep specification
+  spec_sas_only   <- adam_spec(ads_path, file_ext = 'sas7bdat')
+  spec_rds_only   <- adam_spec(ads_path, file_ext = 'rds')
+  
+  
+  expect_true(spec_rds_only %>% purrr::map_chr(~{.x$file %>% purrr::map_chr(tools::file_ext)}) %>% {. == 'rds'}      %>% all())
+  expect_true(spec_sas_only %>% purrr::map_chr(~{.x$file %>% purrr::map_chr(tools::file_ext)}) %>% {. == 'sas7bdat'} %>% all())
+  
+  # selection does not affect resulting spec object
+  spec_rds_sas     <- adam_spec(ads_path, file_ext = c('rds', 'sas7bdat'))
+  spec_rds_sas %>% purrr::map_chr('file') %>% purrr::map_chr(tools::file_ext)
+  
+  spec_sas_rds     <- adam_spec(ads_path, file_ext = c('sas7bdat', 'rds'))
+  
+  purrr::map_dfc( list(sas_rds = spec_sas_rds, rds_sas = spec_rds_sas), ~{
+    .x %>% purrr::map_chr('file') %>% basename()
+  }) %>% 
+    dplyr::mutate(domain = sas_rds %>% tools::file_path_sans_ext(), .before = 1) %>% 
+    dplyr::mutate_at(c('sas_rds', 'rds_sas'), tools::file_ext)
+  
+  # no difference with different file ext preference 
+  expect_equal(spec_rds_sas, spec_rds_sas)
+  
+  
+})
+  
+  

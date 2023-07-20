@@ -5,7 +5,7 @@
 #' to be used in machine learning. The main task is to collect the key columns for reshaping the 
 #' data into wide format and prepare the data filter.     
 #'
-#' @param file the path of the sas file to process
+#' @param file the path of the sas(7bdat) or rds file to process
 #' @param id name of id column to be kept and used for merge of data sets
 #' @param label name of the column that identifies the occurrence labels. Defaults to NULL, will be guessed if not set (see Details). 
 #' @param time name of the column that is used for time filtering (if required via \code{pre_study} argument). Defaults to NULL, will be guessed if not set (see Details).
@@ -58,17 +58,24 @@ adam_spec_occds <- function(
   
   
   # READ occds ####
-  occds      <- haven::read_sas(file) %>% 
-    dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
-
+  file_ext <- tools::file_ext(file) 
+  
+  occds <- if(file_ext == 'sas7bdat'){
+    haven::read_sas(file) %>% 
+      dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+  }else if(file_ext == 'rds'){
+    readRDS(file)
+  }else{
+    stop('Only sas7bdat and rds data supported.')
+  }
   
   md5        <- tools::md5sum(file) %>%  as.character()
   size       <- fs::file_size(file)
   
   coln_occds <- colnames(occds)
-  domain     <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
-    tail(1) %>% 
-    stringr::str_remove_all('^ad|[.]sas7bdat$') %>% 
+  domain     <- basename(file) %>% 
+    tools::file_path_sans_ext() %>% 
+    stringr::str_remove_all('^ad') %>% 
     stringr::str_to_upper()
   
   # check input validity ####

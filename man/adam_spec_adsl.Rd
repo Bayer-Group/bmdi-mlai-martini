@@ -15,7 +15,7 @@ adam_spec_adsl(
 )
 }
 \arguments{
-\item{file}{the path of the sas file to process}
+\item{file}{the path of the sas(7bdat) or rds file to process}
 
 \item{id}{name of id (e.g. SUBJIDN, SUBJID) column to keep.
 Highly redundant variables will not be included in the suggested set of columns returned in \code{select} (see Details).}

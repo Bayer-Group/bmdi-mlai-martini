@@ -6,7 +6,7 @@
 #' for reshaping the data into wide format and prepare the data filter.
 #' 
 #' @param data tibble with the data for which the specification is created
-#' @param file the path of the sas file to process, ignored if data is provided
+#' @param file the path of the sas(7bdat) or rds file to process, ignored if data is provided
 #' @param id name of id column to be kept and used for merge of data sets
 #' @param param name of the column that identifies the parameter. Defaults to NULL, will be guessed if not set (see Details).
 #' @param label name of the column that gives column labels. Defaults to NULL.
@@ -134,17 +134,27 @@ adam_spec_bds <- function(
       )
     }
     
-    if (tools::file_ext(file) != "sas7bdat") {
+    if (!tools::file_ext(file) %in% c("sas7bdat", "rds")) {
       cli::cli_abort(c(
-        "{.fn adam_spec_bds} expects a sas7bdat file to read, but was provided {.path {file}}.",
-        'x' = 'The provided file is not of type sas7bdat, but {tools::file_ext(file)}.',
+        "{.fn adam_spec_bds} expects a sas7bdat or rds file to read, but was provided {.path {file}}.",
+        'x' = 'The provided file is of type {tools::file_ext(file)}.',
         '*' = 'Please check your input or attach a data set instead.'
       ))
       
     }
     
     # ... ... import data ####
-    bds      <- haven::read_sas(file) %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+    file_ext <- tools::file_ext(file) 
+    
+    bds <- if(file_ext == 'sas7bdat'){
+      haven::read_sas(file) %>% 
+        dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+    }else if(file_ext == 'rds'){
+      readRDS(file)
+    }else{
+      stop('Only sas7bdat and rds data supported.')
+    }
+    
     coln_bds <- colnames(bds)
     
     md5  <- tools::md5sum(file) %>% as.character()
@@ -153,7 +163,8 @@ adam_spec_bds <- function(
     
     # ... ... identify domain ####
     domain <- basename(file) %>% 
-      stringr::str_remove_all('^ad|[.]sas7bdat$') %>% 
+      stringr::str_remove_all('^ad') %>% 
+      tools::file_path_sans_ext() %>% 
       stringr::str_to_upper()
     
     dom <- stringr::str_sub(domain, 1, 2) # used in e.g. EGTEST (instead of EGFTEST)

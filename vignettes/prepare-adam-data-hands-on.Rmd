@@ -52,13 +52,17 @@ The automated part of the preparation workflow is handled by the three main func
 <!-- * `ads_build()` -->
 <!-- * `prepare_ml()` -->
 
-The package was developed in the clinical context which is reflected in the default settings and specifics of both the main and helper functions. This vignette is solely focused on the standard clinical setting. 
-However, the functions may also be used with more general data sets, please refer to the individual help pages for full details.
+The package was developed in the clinical context which is reflected in the 
+default settings and specifics of both the main and helper functions. 
+This vignette is solely focused on the standard clinical setting. 
+However, the functions may also be used with more general data sets, 
+please refer to the individual help pages for full details.
 
 **Vignette**
 
 This vignette serves as a hands-on tutorial on the usage of the `MARTINIprep` package. 
-It clearly outlines the required steps to get from an ads folder to a machine-learning data set, listing a number of commonly required adaptations along the way. 
+It clearly outlines the required steps to get from an ads folder to a 
+machine learning data set, listing a number of commonly required adaptations along the way. 
 <!-- gives valuable advice -->
 
 The package comes with a number of example data sets, ranging from raw sas data sets to be read in, 
@@ -66,7 +70,9 @@ to data objects representing intermediate steps (e.g. `martini_spec`, `martini_f
 as well as the final output object (`martini_ml_class`) for further use in the 
 <!-- TODO additional data package to include multiple endpoints? Cover only classification here-->
 <!-- TODO adjust package names-->
-`MARTINImodtune` and/or `MARTINIreport` modules of the pipeline.
+<!-- `MARTINImodtune` and/or `MARTINIreport` -->
+
+modules of the pipeline. 
 
 
 <!-- The full process is described in a lot more detail in the "under the hood" vignette of the package, where    -->
@@ -75,7 +81,9 @@ as well as the final output object (`martini_ml_class`) for further use in the
 
 # High-level concept
 
-In the (admittedly unrealistic) case that no manual adaptations have to be made to the data contained in the ADaM data sets included in the analysis, the full preparation could be accomplished by running the composed command
+In the (admittedly unrealistic) case that no manual adaptations have to be made 
+to the data contained in the ADaM data sets included in the analysis,
+the full preparation could be accomplished by running the composed command
 
 ```{r, eval = FALSE}
 path %>% 
@@ -84,8 +92,10 @@ path %>%
   prepare_ml(outcome = outcome_data)
 ```
 
-where `path` would be defined as the location where the ADaM data sets are stored in `.sas7bdat` format. 
-The chart below highlights the main workflow and lists related helper functions (mostly internal).
+where `path` would be defined as the location where the ADaM data sets
+are stored in `.sas7bdat` format. 
+The chart below highlights the main workflow and lists related
+helper functions (mostly internal).
 
 
 ```{r, out.width='100%', eval = TRUE, echo = FALSE, fig.cap = 'Overview of `MARTINIprep` functions. The basic workflow from ads path to ML data object is accomplished by the main functions (turquoise), which make use of the (mostly internal) helper functions shown below. '}
@@ -100,20 +110,32 @@ knitr::include_graphics('img/martini-high-level.png')
 
 # Outcome preparation
 
-It is recommended to clearly define the outcome of interest and prepare the _outcome_ data set independently from the feature engineering process. 
-The outcome data set may contain information on different endpoints in a single tibble, with one row per `id` and the different outcomes in the columns.
-In practice, separate data sets for each outcome are preferable for large studies, considering the potentially higher preparation times.
-For time-to-event data, each endpoint is described by two columns (representing time and status, resp.). 
+It is recommended to clearly define the outcome of interest and prepare 
+the _outcome_ data set independently from the feature engineering process. 
+The outcome data set may contain information on different endpoints in a single tibble, 
+with one row per `id` and the different outcomes in the columns.
+In practice, separate data sets for each outcome are preferable for large studies,
+considering the potentially higher preparation times.
+For time-to-event data, each endpoint is described by two columns
+(representing time and status, resp.). 
 
-Since the analysis of survival endpoints is computationally much more expensive than for classification, the latter may be used for initial runs 
-by using a dichotomized version of the endpoint (i.e. event yes/no in given time frame). When binarizing time-to-event endpoints, please pay attention 
-to the study duration (potentially reduce to subjects with minimum time under observation) and the resulting outcome distribution (highly unbalanced data, low event rate?).
+Since the analysis of survival endpoints is computationally much more expensive
+than for classification, the latter may be used for initial runs 
+by using a dichotomized version of the endpoint (i.e. event yes/no in given time frame). 
+When binarizing time-to-event endpoints, please pay attention 
+to the study duration (potentially reduce to subjects with minimum time 
+under observation) and the resulting outcome distribution 
+(highly unbalanced data, low event rate?).
 
-The package comes with two exemplary outcome data sets, one for classification, one for a regression problem. 
-Both are two column tibbles with an `.id` and an `.out` column, where in the classification example shown below, the `.out` variable is a factor with two levels (event/no event). 
+The package comes with two exemplary outcome data sets,
+one for classification, one for a regression problem. 
+Both are two column tibbles with an `.id` and an `.out` column, 
+where in the classification example shown below,
+the `.out` variable is a factor with two levels (event/no event). 
 
 For survival, the outcome information would be coded in two separate columns, e.g. `days` and `event`.
-Note that for the specification of the outcome names for `prepare_ml()`, a named vector is expected in the survival case, e.g. `outcome_names = c(.time = 'days', .status = 'event')`.
+Note that for the specification of the outcome names for `prepare_ml()`,
+a named vector is expected in the survival case, e.g. `outcome_names = c(.time = 'days', .status = 'event')`.
 
 
 ```{r}
@@ -129,11 +151,15 @@ Please note that currently, only binary classification is fully supported by the
 
 ## Time-to-event preparation
 
-For convenience, the package also provides `build_out_tte()`, which allows to prepare a tte-based outcome for further use with `prepare_ml()`.
-Starting from either `file` (specifying the path to an ADaM `adtte.sas7bdat`) or an already existing `data` object with the same structure, 
+For convenience, the package also provides `build_out_tte()`, 
+which allows to prepare a tte-based outcome for further use with `prepare_ml()`.
+Starting from either `file` (specifying the path to an ADaM `adtte.sas7bdat`) 
+or an already existing `data` object with the same structure, 
 the user has the option to prepare either a tte outcome or a binarized version. 
-In the latter case, a duration of interest has to be specified in `cut` and the resulting endpoint translates to e.g. `event in first 2 years (yes/no)`. 
-Make sure, that the scale of `cut` matches the scale of the time column, i.e. if `AVAL` is in days, `cut` has to be in days, no conversion is done internally.
+In the latter case, a duration of interest has to be specified in `cut` 
+and the resulting endpoint translates to e.g. `event in first 2 years (yes/no)`. 
+Make sure, that the scale of `cut` matches the scale of the time column, 
+i.e. if `AVAL` is in days, `cut` has to be in days, no conversion is done internally.
 `cut` is provided as numeric, not object of class duration.
 
 ```{r}
@@ -150,22 +176,29 @@ build_out_tte(
 )
 ```
 
-Please note, that while the full population will be used for tte outcomes, the population for the binarized version is subsetted: Patients are discarded, if a censored event was recorded with a time below the cutoff of interest (here 2 years). If a patient has not been observed for the duration of `cut`, there is no information on whether or not an event occurred within `cut`.
+Please note, that while the full population will be used for tte outcomes, 
+the population for the binarized version is subsetted: Patients are discarded, 
+if a censored event was recorded with a time below the cutoff of interest 
+(here 2 years). If a patient has not been observed for the duration of `cut`,
+there is no information on whether or not an event occurred within `cut`.
 
 
 ***
 
 # Example study MARTINI 
 
-This package comes with an example study containing three data sets in `.sas7bdat` format, covering the three different ADaM data types:
+This package comes with an example study containing three data sets in 
+`.sas7bdat` format, covering the three different ADaM data types:
 
 * adsl (adsl, wide format)
 * advs (bds, long format)
 * admh (occds, long format)
 
-These data sets will be used to illustrate how to make manual adaptations in order to customize the preparation process to a particular analysis and research task.  
+These data sets will be used to illustrate how to make manual adaptations 
+in order to customize the preparation process to a particular analysis and research task.  
 
-In addition to these raw data sets, the following data sets are available as examples for the intermediate data sets produced during the preparation process:
+In addition to these raw data sets, the following data sets are available 
+as examples for the intermediate data sets produced during the preparation process:
 
 * **`martini_spec`** result of `adam_spec()` applied to ads folder 
 * **`martini_feat`** result of `build()`, a wide data set containing information of all selected domains
@@ -175,14 +208,17 @@ In addition to these raw data sets, the following data sets are available as exa
 
 
 
-We will focus on the description of the main functions, but each package function (exported or not) has its own help page, so feel free to learn more about the detailed functionality on the individual pages. 
+We will focus on the description of the main functions, 
+but each package function (exported or not) has its own help page, 
+so feel free to learn more about the detailed functionality on the individual pages. 
 <!-- TODO or the 'MARTINI in depth' vignette -->
 
 ***
 
 # Getting started
 
-In the setting of clinical studies, we assume that a set of analysis data sets (ads) is stored in `.sas7bdat` format in a single folder `path`. 
+In the setting of clinical studies, we assume that a set of analysis 
+data sets (ads) is stored in `.sas7bdat` format in a single folder `path`. 
 
 After specifying the folder location
 
@@ -194,17 +230,21 @@ path <- system.file(
 )
 ```
 
-you may check beforehand which data sets can be processed automatically to make sure, all information of interest can be incorporated in the analysis. 
+you may check beforehand which data sets can be processed automatically 
+to make sure, all information of interest can be incorporated in the analysis. 
 Running
 
 ```{r}
 adam_domain_type(path)
 ```
 
-returns a tibble with the name of the domain, its mapped ADaM data types (occds/adsl/bds) along with the full file path. 
-For domains with `type=='none'` no mapping information is available (yet) and the data set would not be processed automatically.
+returns a tibble with the name of the domain, its mapped ADaM data types
+(occds/adsl/bds) along with the full file path. 
+For domains with `type=='none'` no mapping information is available (yet) 
+and the data set would not be processed automatically.
 
-In case a particular domain is required for your analysis but not included in the current list, please get in touch with the package maintainers 
+In case a particular domain is required for your analysis but not included 
+in the current list, please get in touch with the package maintainers 
 (<a href="mailto:sebastian.voss.ext@bayer.com">Sebastian Voss</a>, 
 <a href="mailto:maike.ahrens.ext@bayer.com">Maike Ahrens</a>).
 <!-- TODO add details on:
@@ -245,15 +285,21 @@ If applicable, the following information will be provided
   * data sets that could not be processed automatically
   * assessment of the filter applicability 
 * `build()`  
-  * bds-type data sets with duplicate measures will be reported. Duplicates _may_ be indicative of missing filters (e.g. ABLFL == 1), thus resulting in incorrect data preparation. Check back with the information on filters applied to the respective data set. 
+  * bds-type data sets with duplicate measures will be reported. 
+  Duplicates _may_ be indicative of missing filters (e.g. ABLFL == 1),
+  thus resulting in incorrect data preparation.
+  Check back with the information on filters applied to the respective data set. 
 
 ***
 
 # `adam_spec()`
 
-The `adam_spec()` function creates a _preprocessing specification_ in the form of a list from a given `path`.
-Each entry contains the required information to extract relevant records from a particular data set and reshape the data into wide format. 
-The structure of the top level entries depends on the type of the corresponding data set (adsl/bds/occds).
+The `adam_spec()` function creates a _preprocessing specification_ in the 
+form of a list from a given `path`.
+Each entry contains the required information to extract relevant records 
+from a particular data set and reshape the data into wide format. 
+The structure of the top level entries depends on the type of the 
+corresponding data set (adsl/bds/occds).
 
 Among other steps, `adam_spec()` will
 
@@ -262,10 +308,12 @@ Among other steps, `adam_spec()` will
 * check applicability of provided filters
 * create a parameter dictionary 
 
-In general, this automatically created specification may be used with the subsequent workflow, however, in practice, it will be modified by the user to match specific requirements.
+In general, this automatically created specification may be used with 
+the subsequent workflow, however, in practice, it will be modified by the user to match specific requirements.
 
 
-Printing the spec object to the console will provide information on data set size, derived numbers of columns and subjects (after filter application).
+Printing the spec object to the console will provide information on data set size, 
+derived numbers of columns and subjects (after filter application).
 
 ```{r adam_spec, eval = TRUE}
 ads_spec <- adam_spec(path)
@@ -280,9 +328,12 @@ ads_spec %>% str(max.level = 1)
 
 **adsl column selection**
 
-In contrast to occds and bds type data, an automated column selection is required for the wide format adsl data sets.  
+In contrast to occds and bds type data, an automated column selection 
+is required for the wide format adsl data sets.  
 
-Reasons for column exclusion are documented in the `drop_list` entry of the corresponding spec entry. Exclusion criteria include, but are not limited to datetime/duration-related columns or analysis set flags.
+Reasons for column exclusion are documented in the `drop_list` entry of 
+the corresponding spec entry. Exclusion criteria include, 
+but are not limited to datetime/duration-related columns or analysis set flags.
 
 ```{r}
 ads_spec$adsl$drop_list %>% names()
@@ -298,15 +349,19 @@ ads_spec$adsl$drop_list %>% names()
 **Filters**
 
 The `filter` argument takes a character vector of expressions to be passed to `dplyr::filter()`. 
-A filter will be applied to a particular data set only if its (individual) application yields a non-empty tibble (i.e. no error thrown, at least one row is selected). 
+A filter will be applied to a particular data set only if its (individual) 
+application yields a non-empty tibble (i.e. no error thrown, at least one row is selected). 
 In addition, the function will throw a message, if the combination of all valid filters 
 would yield an empty data set. 
 
 Common filters may be based on visit or treatment information,
 as well as flags indicating analysis sets.
-If a filter should be applied to only one particular ads domain and not considered for the other domains, just add the respective `ADSNAME` column (for standard data sets), e.g. `"ADSNAME == 'ADVS' & AVISIT == 'Visit 1'"`.
+If a filter should be applied to only one particular ads domain and not 
+considered for the other domains, just add the respective `ADSNAME` column 
+(for standard data sets), e.g. `"ADSNAME == 'ADVS' & AVISIT == 'Visit 1'"`.
 
-The `pre_study` argument allows to conveniently reduce occurrence data sets (e.g. medical history records) to data that is available at baseline based on the study day.
+The `pre_study` argument allows to conveniently reduce occurrence data sets 
+(e.g. medical history records) to data that is available at baseline based on the study day.
 
 Filters have to be adjusted for the data at hand, find below a list of exemplary filters:
 
@@ -343,8 +398,11 @@ ads_spec <- adam_spec(
 An overview of applied and discarded filters from the filters provided to 
 `\link{adam_spec}()` is printed to the console when calling `\link{adam_spec}()`
 as well as when printing the object to the console. 
-The filter set that was originally provided to `\link{adam_spec}()` is stored in the `filter` attribute of the resulting object. 
-Note that the print will only refer to this initial filter set and ignore any manual adjustments. We strongly advise to not change filters using spec adjustments but only by rerunning `\link{adam_spec}()` to assure proper checks.
+The filter set that was originally provided to `\link{adam_spec}()` is stored 
+in the `filter` attribute of the resulting object. 
+Note that the print will only refer to this initial filter set and ignore any manual adjustments. 
+We strongly advise to not change filters using spec adjustments
+but only by rerunning `\link{adam_spec}()` to assure proper checks.
 
 Always double check the filters that were not applied, typically it is due to
 
@@ -362,10 +420,13 @@ ads_spec
 **`add_bds`**
 
 `adam_spec()` will print a list of domains that are not processed automatically,
-which are the ones that are not included in the internal package library of domains and corresponding data types.
+which are the ones that are not included in the internal package
+library of domains and corresponding data types.
 
 You may use the `add_bds` argument of `adam_spec()` to force them being treated 
-as bds data sets. For these added data sets, it is particularly important to check the automated column selection (in the resulting spec object) and adjust as needed using `adjust_spec()`.
+as bds data sets. For these added data sets, it is particularly important 
+to check the automated column selection (in the resulting spec object) 
+and adjust as needed using `adjust_spec()`.
 
 ```{r, eval = FALSE}
 ads_spec <- adam_spec(
@@ -382,8 +443,10 @@ ads_spec
 
 **Domain selection**
 
-Use `keep/drop` arguments in `adam_spec()` to select/deselect particular data sets in the folder `path` for your analysis. 
-Only selected files will be read in order to create a specification, so these parameters directly impact run time.
+Use `keep/drop` arguments in `adam_spec()` to select/deselect particular 
+data sets in the folder `path` for your analysis. 
+Only selected files will be read in order to create a specification, 
+so these parameters directly impact run time.
 
 An example for a reasonable exclusion of a data set would be e.g. 
 a data set on biomarkers that were measured only for a small subpopulation 
@@ -394,9 +457,13 @@ a data set on biomarkers that were measured only for a small subpopulation
 
 **Attach data**
 
-In order to create a data set specification, the data set has to be read first which may take a considerable amount of time for large files. For a more time-efficient usage, the data sets may be stored directly in the `ads_spec` object from where the actual execution of the preparation will be conducted. 
+In order to create a data set specification, the data set has to be read first
+which may take a considerable amount of time for large files.
+For a more time-efficient usage, the data sets may be stored directly in the 
+`ads_spec` object from where the actual execution of the preparation will be conducted. 
 
-In the current implementation, if changes to any of the data sets shall be made (see below), all data sets have to be attached. 
+In the current implementation, if changes to any of the data sets shall 
+be made (see below), all data sets have to be attached. 
 
 
 ```{r}
@@ -406,7 +473,26 @@ ads_spec <- adam_spec(
 )
 ```
 
+***
 
+**Using rds data**
+
+For martini version >=0.5.1, not only \code{sas7bdat} files but also data in rds
+format may be used (see \code{file_ext} argument in \code{adam_spec()}).
+
+If for instance, only particular treatment groups or visits are considered for an analysis , 
+filtering the original \code{sas7bdat} data sets and storing them as \code{rds}, may speed up
+the data preparation significantly for larger data sets.
+
+Suppose all domains of interest are available in a subset/filtered version and 
+stored as \code{rds} data in \code{path}.
+
+```{r}
+ads_spec <- adam_spec(
+  path, 
+  file_ext = 'rds'
+)
+```
 
 ***
 

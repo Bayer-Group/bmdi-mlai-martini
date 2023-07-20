@@ -18,7 +18,7 @@ adam_spec_occds(
 )
 }
 \arguments{
-\item{file}{the path of the sas file to process}
+\item{file}{the path of the sas(7bdat) or rds file to process}
 
 \item{id}{name of id column to be kept and used for merge of data sets}
 

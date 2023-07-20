@@ -1,8 +1,7 @@
 test_that("adam_domain_type works", {
   
   # test setup  ####
-  ads_path <- test_path('sas/')
-  
+  ads_path <- test_path('sas') #/file_ext_test')
   
   # print look-up table ####
   # TODO WS check if adam_domain_type takes file not just path and if it always returns tibble (empty and path), then remove test
@@ -19,15 +18,13 @@ test_that("adam_domain_type works", {
   # mapped types tibble ####
   expect_setequal(
     names(adam_domain_type(ads_path)),
-    c('domain', 'type', 'file')
+    c('domain', 'type', 'file_ext', 'file')
   )
   
   expect_equal(
     nrow(adam_domain_type(ads_path)),
-    list.files(ads_path) %>% length()
+    list.files(ads_path, pattern = '[.](rds|sas7bdat)$') %>% length()
   )
-  
-  
   
 })
 

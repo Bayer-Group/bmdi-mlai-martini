@@ -20,7 +20,7 @@ adam_spec_bds(
 )
 }
 \arguments{
-\item{file}{the path of the sas file to process, ignored if data is provided}
+\item{file}{the path of the sas(7bdat) or rds file to process, ignored if data is provided}
 
 \item{data}{tibble with the data for which the specification is created}
 

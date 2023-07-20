@@ -138,6 +138,8 @@ this attribute lists the full paths of the files that were used in data generati
 giving bare \code{value} slots, as well as a verbose description in \code{text}.
 \code{removed} gives a list of removed \code{rows} and \code{columns} along with the information
 on why/in which recipe step the data was removed.
+\code{input} a list giving the {{martini}} \code{packageVersion} and a
+list of (most) input parameters, including the seed used
 }
 }
 \description{

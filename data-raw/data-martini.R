@@ -1,5 +1,5 @@
 
-devtools::load()
+devtools::load_all()
 
 # ADS SPEC ####
 
@@ -182,3 +182,20 @@ if(FALSE){
 }
 
 
+# ... rds files ####
+
+if(FALSE){
+  
+# path to the sas-files of the test data sets
+ads_path <- system.file("tests/testthat/sas", package = "martini")
+if(ads_path == "") ads_path <- "tests/testthat/sas"
+
+ads_path %>% 
+  list.files(full.names = TRUE) %>% 
+  purrr::walk(~{
+    data <- haven::read_sas(.x)
+    saveRDS(data, here::here(ads_path, basename(.x) %>% tools::file_path_sans_ext() %>% paste0('.rds')))
+  })
+
+
+}

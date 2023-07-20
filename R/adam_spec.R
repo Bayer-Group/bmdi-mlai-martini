@@ -24,12 +24,25 @@
 #' (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.
 #' @param add_bds character vector of domain names of type bds that are not included 
 #' in the package library of ADaM types (yet), but should be processed as per usual, e.g. 'adfapr' 
+#' @param file_ext only rds and sas7bdat data sets are allowed (e.g. \code{file_ext = 'rds'}). User may select
+#' only sas7bdat, only rds or set a priorization rule (\code{file_ext = c('rds', 'sas7bdat')}, see Details).
+#' Defaults to c('rds', 'sas7bdat'), i.e. rds if available, sas7bdat else.
 #' 
 #' @details 
 #' \code{adam_spec()} matches file names in the given path against an internal library
 #' to decide on which `adam_spec_*()` function to use for which data set.
 #' Only files in the library will be processed, the rest will be ignored. Names of unprocessed files will be printed to the console.
 #' For those, specifications may be created manually using the appropriate `adam_spec_*()` function and appended to the specification list created by \code{adam_*_spec()}. 
+#' 
+#' By specifying e.g. \code{file_ext = 'rds'}, only rds data will be considered 
+#' for building the specification. To use only sas7bdat, analogously specify 
+#' by file extension \code{file_ext = 'sas7bdat'}.
+#' Preferred file types can be specified using a character vector 
+#' \code{file_ext = c('rds', 'sas7bdat')}: If the same file name is found in 
+#' \code{path} with both extensions, the file with the former extension is used, 
+#' the one with the latter ignored. For unambiguous file names (either only sas7bdat or only rds) 
+#' both are used.
+#'
 #'
 #' Individual filters are only applied if the resulting data set has a positive number of rows (ignoring those causing errors or yielding a 0-row data set). 
 #'
@@ -57,9 +70,12 @@ adam_spec <- function(
   attach_data = FALSE,
   id          = "SUBJID",
   trt         = "TRT01A",
-  add_bds     = NULL 
+  add_bds     = NULL,
+  file_ext    = c('rds', 'sas7bdat')
 ){
   
+  file_ext <- rlang::arg_match(file_ext, c('rds', 'sas7bdat'), multiple = TRUE)
+  stopifnot(length(file_ext) > 0)
   
   # identify type for selected files in path (adsl/bds/occds) #####
   file_info <- adam_domain_type(path, keep, drop, add_bds = add_bds, quiet = FALSE) %>% 
@@ -71,7 +87,11 @@ adam_spec <- function(
         ))
       }else{.} 
     } %>%    
-    dplyr::filter(type != "none")
+    dplyr::filter(type != "none") %>% 
+    dplyr::mutate(file_ext_fct = factor(file_ext, levels = !!file_ext)) %>% 
+    dplyr::filter(!is.na(file_ext_fct)) %>% 
+    dplyr::arrange(file_ext_fct) %>% 
+    dplyr::distinct(domain, .keep_all = TRUE)
   
   if(!is.null(add_bds) && any(!add_bds %in% file_info$domain)){
     
