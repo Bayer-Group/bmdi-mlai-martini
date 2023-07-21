@@ -285,7 +285,7 @@ prepare_ml <- function(
     dplyr::mutate_if(is.factor, ~ forcats::fct_relabel(., ~stringr::str_replace_all(., renaming) )) %>% 
     # add explicit NAs to selected factor variables (optional)
     {if(!is.null(vars_fct_expl_na)){
-      dplyr::mutate_at(., vars_fct_expl_na, ~forcats::fct_explicit_na(.x, na_level = "missing"))
+      dplyr::mutate_at(., vars_fct_expl_na, ~ fct_na_to_level(.x, level = "missing"))
     }else{.}
     }
   
