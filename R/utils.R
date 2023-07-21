@@ -18,3 +18,24 @@ skw <- function(x, na.rm = FALSE){
   y
 } 
 
+
+#' create alias for fct_explicit_na and fct_na_value_to_level based on
+#' available forcats version
+#'
+#' @param f A factor (or character vector)
+#' @param level Level to use for missing values: this is what NAs will be changed to
+#'
+#' @return a factor 
+#'
+
+fct_na_to_level <- function(f, level){
+  
+  v_forcats <- packageVersion('forcats')
+  
+  if(v_forcats < as.package_version('1.0.0')){
+    forcats::fct_explicit_na(f, na_level = level)
+  }else{
+    forcats::fct_na_value_to_level(f, level = level)
+  }
+  
+}
