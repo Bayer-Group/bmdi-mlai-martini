@@ -753,12 +753,13 @@ adsl_identify_factor <- function(
     # remove those for which pairs were identified (in lab_lev)
     setdiff(all_lab_lev$lev) %>% 
     # check column is actually numeric
-    intersect(clmns_num)
+    intersect(clmns_num) 
   
   if(length(num_only) > 0){
     
     # non-integer candidates 
     no_integer <- adsl %>% 
+      dplyr::select(any_of(num_only)) %>% 
       dplyr::select_if( ~{readr::guess_parser(.x, guess_integer = TRUE) != 'integer'} ) %>% 
       names() 
     
