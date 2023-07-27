@@ -620,13 +620,13 @@ adsl_identify_redundant <- function(
         dplyr::select_if(is.numeric) %>% 
         janitor::remove_constant(na.rm = TRUE)
       
-      # NOTE causes 'zero-sd' warning. use quietly?
-      cors_randdt <- stats::cor(
+      # NOTE stats::cor causes 'zero-sd' warning. use quietly
+      cors_randdt <- cor_quiet( #stats::cor(
         adsl_cor_randdt,
         adsl_cor_randdt[, "RANDDT"],
         method = "spearman",
         use    = 'pairwise.complete.obs'
-      ) %>% 
+      ) %>% magrittr::extract('result') %>% 
         as.data.frame() %>% 
         tibble::rownames_to_column("name") %>% 
         tibble::as_tibble() %>% 

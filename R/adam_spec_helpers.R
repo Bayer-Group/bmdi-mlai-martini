@@ -158,3 +158,6 @@ data_info <- function(spec_entry){
   
 }
 
+
+cor_quiet <- purrr::quietly(stats::cor)
+
