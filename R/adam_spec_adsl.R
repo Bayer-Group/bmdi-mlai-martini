@@ -413,7 +413,7 @@
     
     black_list = c(
       "RANDNO",
-      "ADSNAME", "STUDYID",
+      #"ADSNAME", "STUDYID",
       "SITEID" , "SITENAM", 
       "INVID"  , "INVNAM"
     )
