@@ -39,3 +39,62 @@ fct_na_to_level <- function(f, level){
   }
   
 }
+
+
+
+#' qsave mlobj and data.table() dictionary
+#'
+#' @param d_ml result of prepare_ml() 
+#' @param file_prefix defaults to "mlai_mlobj_"
+#' @param path,file_id used to build file path for result to be written to
+#' @param show_list show DT of dictionary, default true
+#'
+#' @return
+#' invisibly returns file path that results is `qs::qsave()`d to, build as path, file_prefix, file_id.
+#' shows `DT::datatable()` of dictionary if `show_list = TRUE`
+#' 
+#' @export
+#'
+#'
+list_and_export <- function(
+    d_ml,
+    file_prefix = "mlai_mlobj_",
+    file_id,
+    path,
+    show_list = TRUE
+){
+  
+  res_path <- file.path(
+    path,
+    paste0(file_prefix, file_id, ".qs")
+  )
+  
+  qs::qsave(
+    d_ml, 
+    res_path
+  )
+  
+  if(show_list){
+    
+    d_ml$dict %>% 
+      filter(column %in% colnames(d_ml$data_prep$train)) %>% 
+      mutate(source = factor(source)) %>% 
+      DT::datatable(
+        rownames = FALSE,
+        filter = "top",
+        selection = "single",
+        extensions = c("Buttons"),
+        options = list(
+          lengthMenu = c(10,25,50),
+          pageLength = 10,
+          dom        = "lfrtBpi",
+          scrollX    = TRUE,
+          buttons    = list("excel")
+        )
+      )
+    
+  }
+  
+  invisible(res_path)
+}
+
