@@ -341,7 +341,7 @@
  #' `adsl_identify_combined()`: if labels (from dict) contain '/' 
  #' and all parts are column names themselves
  #' 
- #' By default, `black_list` contains `RANDNO`, `ADSNAME`, `STUDYID`, 
+ #' By default, `black_list` contains `RANDNO`, 
  #' `SITEID`, `SITENAM`, `INVID`, `INVNAM`.
  #' 
  #' @section Authors: 
