@@ -163,34 +163,6 @@
   # ... ... flags
 
   
-  # flags <- adsl_identify_flag(
-  #   adsl,
-  #   dict       = dict,
-  #   dict_param = "param",
-  #   dict_label = "label"
-  # )
-
-  # ... ... categoricals with numeric code
-
-  # res_factors <- adsl_identify_factor(
-  #   adsl,
-  #   id         = id,
-  #   clmn_flag  = flags, 
-  #   dict       = dict,
-  #   dict_param = "param",
-  #   dict_label = "label"
-  # )
-  
-  # lev_list      <- res_factors$lev_list
-  # all_num_codes <- res_factors$all_num_codes
-  
-  # ... identify combined columns (e.g. age/sex/race)
-  
-  # all_comb_columns <- adsl_identify_combined(adsl, dict = dict)
-
-  # ... identify redundants for id and trt
-  
-  # all_redundants <- adsl_identify_redundant(adsl, id = id, trt = trt, clmn_flag = flags)
   
   # identify all numerics ####
   # candidates for select, 
@@ -199,20 +171,6 @@
     dplyr::select_if(is.numeric) %>% 
     colnames() 
   
-  # # ... empty/constant columns
-  # res_janitor <- adsl_identify_constant(adsl)
-  # 
-  # constants <- res_janitor$constant
-  # empties   <- res_janitor$empty
-  # 
-  
-  # define black list (column names that are always excluded)
-  # black_list <- c(
-  #   "RANDNO",
-  #   "ADSNAME", "STUDYID",
-  #   "SITEID" , "SITENAM", 
-  #   "INVID"  , "INVNAM"
-  # )
   
   # collect output ####
   
@@ -413,7 +371,7 @@
     
     black_list = c(
       "RANDNO",
-      "ADSNAME", "STUDYID",
+      #"ADSNAME", "STUDYID",
       "SITEID" , "SITENAM", 
       "INVID"  , "INVNAM"
     )
