@@ -340,92 +340,108 @@ prepare_ml <- function(
   }
   
   # DATA SPLIT ####
-  
-  train_prop_valid <- c(0.5, 1)
-  if (!dplyr::between(train_prop, train_prop_valid[1], train_prop_valid[2])){
-    
-    cli::cli_abort(c(
-      "The provided training proportion {.code train_prop} is expected to fall within 
-        [{train_prop_valid[1]};{train_prop_valid[2]}]",
-        "x" = "You've supplied {train_prop}."
-      )
+  data_split_res <- do.call(
+    prepare_ml_data_split,
+    tibble::lst(train_prop, 
+        seed, 
+        d_raw,
+        outcome_mode,
+        strata_trt
     )
-    
-  } 
+  ) 
   
-  if (train_prop < 1){
-    if(!is.null(seed))  set.seed(seed)
-    
-    # create a new column .strata for stratified splitting by outcome
-    d_raw <- d_raw %>% 
-      {if(outcome_mode == "classification"){
-         dplyr::mutate(., .strata = .out)
-      }else{.}
-      } %>% 
-      
-      {if(outcome_mode == "survival"){
-        dplyr::mutate(., .strata = .status)
-      }else{.}
-      } %>% 
-      
-      # no outcome stratification for regression, but create the column
-      # anyways to make it extendable by strata_trt = TRUE
-      {if(outcome_mode == "regression"){
-         dplyr::mutate(., .strata = '')
-      }else{.}
-      }
-    
-    # extend strata variable by treatment
-    if(strata_trt){
-      if(! '.trt' %in% colnames(d_raw)){
-        usethis::ui_info(crayon::silver(paste(
-          'No treatment variable was detected in the data set.', 
-          'Argument strata_trt was set to TRUE but will be ignored.')))
-      }else{
-        d_raw <- d_raw %>% 
-          dplyr::mutate(.strata = paste0(.strata, .trt , sep = '_'))
-      }  
-    }
-    
-    if(!c(".rmtime") %in% names(d_raw)){
-      
-      d_split <- d_raw %>%
-        rsample::initial_split(
-          strata = tidyselect::all_of('.strata'), 
-          prop   = train_prop
-        )
-      
-    }else{
-     strata_ignored <- utils::packageVersion('rsample') %>%
-       package_version() %>% 
-       {. < '1.1.1'}
-      
-     if(strata_ignored){cli::cli_warn(paste(
-       'Please update `rsample` to version 1.1.1 or higher',
-       'to enable stratified sampling in `rsample::group_initial_split()`'
-      ))}
-       
-      d_split <- d_raw %>%
-        rsample::group_initial_split(
-          prop   = train_prop,
-          group  = ".id",
-          strata = tidyselect::all_of('.strata')  # ignored if rsample < '1.1.1'
-        )
-      
-    }
-    
-    # remove the strata variable '.strata' after splitting
-    d_split$data <- d_split$data %>% dplyr::select(-tidyselect::any_of(c('.strata')))
-
-    d_train_raw  <- rsample::training(d_split) 
-    d_test_raw   <- rsample::testing( d_split) 
-    
-  }else{
-    
-    d_split     <- NULL
-    d_train_raw <- d_raw
-    d_test_raw  <- NULL
-  }
+  d_split     <- data_split_res$d_split
+  d_train_raw <- data_split_res$d_train_raw
+  d_test_raw  <- data_split_res$d_test_raw
+  
+  # if(FALSE){ 
+  #   train_prop_valid <- c(0.5, 1)
+  #   if (!dplyr::between(train_prop, train_prop_valid[1], train_prop_valid[2])){
+  #     
+  #     cli::cli_abort(c(
+  #       "The provided training proportion {.code train_prop} is expected to fall within 
+  #         [{train_prop_valid[1]};{train_prop_valid[2]}]",
+  #         "x" = "You've supplied {train_prop}."
+  #       )
+  #     )
+  #     
+  #   } 
+  #   
+  #   if (train_prop < 1){
+  #     if(!is.null(seed))  set.seed(seed)
+  #     
+  #     # create a new column .strata for stratified splitting by outcome
+  #     d_raw <- d_raw %>% 
+  #       {if(outcome_mode == "classification"){
+  #          dplyr::mutate(., .strata = .out)
+  #       }else{.}
+  #       } %>% 
+  #       
+  #       {if(outcome_mode == "survival"){
+  #         dplyr::mutate(., .strata = .status)
+  #       }else{.}
+  #       } %>% 
+  #       
+  #       # no outcome stratification for regression, but create the column
+  #       # anyways to make it extendable by strata_trt = TRUE
+  #       {if(outcome_mode == "regression"){
+  #          dplyr::mutate(., .strata = '')
+  #       }else{.}
+  #       }
+  #     
+  #     # extend strata variable by treatment
+  #     if(strata_trt){
+  #       if(! '.trt' %in% colnames(d_raw)){
+  #         usethis::ui_info(crayon::silver(paste(
+  #           'No treatment variable was detected in the data set.', 
+  #           'Argument strata_trt was set to TRUE but will be ignored.')))
+  #       }else{
+  #         d_raw <- d_raw %>% 
+  #           dplyr::mutate(.strata = paste0(.strata, .trt , sep = '_'))
+  #       }  
+  #     }
+  #     
+  #     if(!c(".rmtime") %in% names(d_raw)){
+  #       
+  #       d_split <- d_raw %>%
+  #         rsample::initial_split(
+  #           strata = tidyselect::all_of('.strata'), 
+  #           prop   = train_prop
+  #         )
+  #       
+  #     }else{
+  #      strata_ignored <- utils::packageVersion('rsample') %>%
+  #        package_version() %>% 
+  #        {. < '1.1.1'}
+  #       
+  #      if(strata_ignored){cli::cli_warn(paste(
+  #        'Please update `rsample` to version 1.1.1 or higher',
+  #        'to enable stratified sampling in `rsample::group_initial_split()`'
+  #       ))}
+  #        
+  #       d_split <- d_raw %>%
+  #         rsample::group_initial_split(
+  #           prop   = train_prop,
+  #           group  = ".id",
+  #           strata = tidyselect::all_of('.strata')  # ignored if rsample < '1.1.1'
+  #         )
+  #       
+  #     }
+  #     
+  #     # remove the strata variable '.strata' after splitting
+  #     d_split$data <- d_split$data %>% dplyr::select(-tidyselect::any_of(c('.strata')))
+  # 
+  #     d_train_raw  <- rsample::training(d_split) 
+  #     d_test_raw   <- rsample::testing( d_split) 
+  #     
+  #   }else{
+  #     
+  #     d_split     <- NULL
+  #     d_train_raw <- d_raw
+  #     d_test_raw  <- NULL
+  #   }
+  # }
+  
   
   #  RECIPE PREP ####
   # derive variable lists for steps
@@ -871,6 +887,113 @@ prepare_ml <- function(
   
   prep_output
   
+}
+
+
+
+prepare_ml_data_split <- function(
+    train_prop,
+    seed = NULL,
+    
+    d_raw,
+    outcome_mode,
+    strata_trt
+    
+){
+  
+  train_prop_valid <- c(0.5, 1)
+  
+  if (!dplyr::between(train_prop, train_prop_valid[1], train_prop_valid[2])){
+    
+    cli::cli_abort(c(
+      "The provided training proportion {.code train_prop} is expected to fall within 
+        [{train_prop_valid[1]};{train_prop_valid[2]}]",
+      "x" = "You've supplied {train_prop}."
+    )
+    )
+    
+  } 
+  
+  if (train_prop < 1){
+    if(!is.null(seed))  set.seed(seed)
+    
+    # create a new column .strata for stratified splitting by outcome
+    d_raw <- d_raw %>% 
+      {if(outcome_mode == "classification"){
+        dplyr::mutate(., .strata = .out)
+      }else{.}
+      } %>% 
+      
+      {if(outcome_mode == "survival"){
+        dplyr::mutate(., .strata = .status)
+      }else{.}
+      } %>% 
+      
+      # no outcome stratification for regression, but create the column
+      # anyways to make it extendable by strata_trt = TRUE
+      {if(outcome_mode == "regression"){
+        dplyr::mutate(., .strata = '')
+      }else{.}
+      }
+    
+    # extend strata variable by treatment
+    if(strata_trt){
+      if(! '.trt' %in% colnames(d_raw)){
+        usethis::ui_info(crayon::silver(paste(
+          'No treatment variable was detected in the data set.', 
+          'Argument strata_trt was set to TRUE but will be ignored.')))
+      }else{
+        d_raw <- d_raw %>% 
+          dplyr::mutate(.strata = paste0(.strata, .trt , sep = '_'))
+      }  
+    }
+    
+    if(!c(".rmtime") %in% names(d_raw)){
+      
+      d_split <- d_raw %>%
+        rsample::initial_split(
+          strata = tidyselect::all_of('.strata'), 
+          prop   = train_prop
+        )
+      
+    }else{
+      
+      strata_ignored <- utils::packageVersion('rsample') %>%
+        package_version() %>% 
+        {. < '1.1.1'}
+      
+      if(strata_ignored){cli::cli_warn(paste(
+        'Please update `rsample` to version 1.1.1 or higher',
+        'to enable stratified sampling in `rsample::group_initial_split()`'
+      ))}
+      
+      d_split <- d_raw %>%
+        rsample::group_initial_split(
+          prop   = train_prop,
+          group  = ".id",
+          strata = tidyselect::all_of('.strata')  # ignored if rsample < '1.1.1'
+        )
+      
+    }
+    
+    # remove the strata variable '.strata' after splitting
+    d_split$data <- d_split$data %>% dplyr::select(-tidyselect::any_of(c('.strata')))
+    
+    d_train_raw  <- rsample::training(d_split) 
+    d_test_raw   <- rsample::testing( d_split) 
+    
+  }else{
+    
+    d_split     <- NULL
+    d_train_raw <- d_raw
+    d_test_raw  <- NULL
+  }
+  
+  tibble::lst(
+    d_split, 
+    d_train_raw, 
+    d_test_raw
+  )
 }
 
 
