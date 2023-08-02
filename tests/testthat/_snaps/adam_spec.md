@@ -145,7 +145,7 @@
       
       
       $adsl$drop_list$blacklist
-      [1] "ADSNAME" "STUDYID"
+      character(0)
       
       $adsl$drop_list$other
       character(0)

@@ -39,3 +39,23 @@ fct_na_to_level <- function(f, level){
   }
   
 }
+
+
+get_default <- function(
+    fun, 
+    arg = NULL,
+    unlist = TRUE, 
+    unname = TRUE
+  ){
+  
+  # pmatch arg to out names
+  out <- args(fun) %>% as.list() %>% purrr::compact()  # freq_cut default in step_nzv is call 95/5
+  if(!is.null(arg)) out <- out %>% purrr::keep_at(arg) 
+  out <- purrr::map(out, ~{if(is.call(.x)) eval(.x) else .x})
+  
+  if(unlist) out <- unlist(out)
+  if(unname) out <- unname(out)
+  
+  out 
+  
+}
