@@ -163,34 +163,6 @@
   # ... ... flags
 
   
-  # flags <- adsl_identify_flag(
-  #   adsl,
-  #   dict       = dict,
-  #   dict_param = "param",
-  #   dict_label = "label"
-  # )
-
-  # ... ... categoricals with numeric code
-
-  # res_factors <- adsl_identify_factor(
-  #   adsl,
-  #   id         = id,
-  #   clmn_flag  = flags, 
-  #   dict       = dict,
-  #   dict_param = "param",
-  #   dict_label = "label"
-  # )
-  
-  # lev_list      <- res_factors$lev_list
-  # all_num_codes <- res_factors$all_num_codes
-  
-  # ... identify combined columns (e.g. age/sex/race)
-  
-  # all_comb_columns <- adsl_identify_combined(adsl, dict = dict)
-
-  # ... identify redundants for id and trt
-  
-  # all_redundants <- adsl_identify_redundant(adsl, id = id, trt = trt, clmn_flag = flags)
   
   # identify all numerics ####
   # candidates for select, 
@@ -199,20 +171,6 @@
     dplyr::select_if(is.numeric) %>% 
     colnames() 
   
-  # # ... empty/constant columns
-  # res_janitor <- adsl_identify_constant(adsl)
-  # 
-  # constants <- res_janitor$constant
-  # empties   <- res_janitor$empty
-  # 
-  
-  # define black list (column names that are always excluded)
-  # black_list <- c(
-  #   "RANDNO",
-  #   "ADSNAME", "STUDYID",
-  #   "SITEID" , "SITENAM", 
-  #   "INVID"  , "INVNAM"
-  # )
   
   # collect output ####
   
@@ -383,7 +341,7 @@
  #' `adsl_identify_combined()`: if labels (from dict) contain '/' 
  #' and all parts are column names themselves
  #' 
- #' By default, `black_list` contains `RANDNO`, `ADSNAME`, `STUDYID`, 
+ #' By default, `black_list` contains `RANDNO`, 
  #' `SITEID`, `SITENAM`, `INVID`, `INVNAM`.
  #' 
  #' @section Authors: 
@@ -413,7 +371,7 @@
     
     black_list = c(
       "RANDNO",
-      "ADSNAME", "STUDYID",
+      #"ADSNAME", "STUDYID",
       "SITEID" , "SITENAM", 
       "INVID"  , "INVNAM"
     )
@@ -620,13 +578,13 @@ adsl_identify_redundant <- function(
         dplyr::select_if(is.numeric) %>% 
         janitor::remove_constant(na.rm = TRUE)
       
-      # NOTE causes 'zero-sd' warning. use quietly?
-      cors_randdt <- stats::cor(
+      # NOTE stats::cor causes 'zero-sd' warning. use quietly
+      cors_randdt <- cor_quiet( #stats::cor(
         adsl_cor_randdt,
         adsl_cor_randdt[, "RANDDT"],
         method = "spearman",
         use    = 'pairwise.complete.obs'
-      ) %>% 
+      ) %>% magrittr::extract('result') %>% 
         as.data.frame() %>% 
         tibble::rownames_to_column("name") %>% 
         tibble::as_tibble() %>% 
@@ -753,12 +711,13 @@ adsl_identify_factor <- function(
     # remove those for which pairs were identified (in lab_lev)
     setdiff(all_lab_lev$lev) %>% 
     # check column is actually numeric
-    intersect(clmns_num)
+    intersect(clmns_num) 
   
   if(length(num_only) > 0){
     
     # non-integer candidates 
     no_integer <- adsl %>% 
+      dplyr::select(any_of(num_only)) %>% 
       dplyr::select_if( ~{readr::guess_parser(.x, guess_integer = TRUE) != 'integer'} ) %>% 
       names() 
     

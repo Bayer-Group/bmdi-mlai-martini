@@ -473,6 +473,7 @@ prepare_ml <- function(
     # recipes::step_impute_bag()
     # recipes::step_lincomb()
     # recipes::step_zv()
+    # recipe() %>% check_range(x, warn = TRUE)
     
     rcp <- recipes::recipe(the_formula, data = d_train_raw) %>% 
       

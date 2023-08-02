@@ -18,7 +18,7 @@ adsl_identify(
   dict_param = "param",
   id = "SUBJID",
   trt = "TRT01A",
-  black_list = c("RANDNO", "ADSNAME", "STUDYID", "SITEID", "SITENAM", "INVID", "INVNAM")
+  black_list = c("RANDNO", "SITEID", "SITENAM", "INVID", "INVNAM")
 )
 
 adsl_identify_dttm(adsl)
@@ -90,7 +90,7 @@ the label contains strings 'year', 'month', 'day', 'date' or 'time'
 \code{adsl_identify_combined()}: if labels (from dict) contain '/'
 and all parts are column names themselves
 
-By default, \code{black_list} contains \code{RANDNO}, \code{ADSNAME}, \code{STUDYID},
+By default, \code{black_list} contains \code{RANDNO},
 \code{SITEID}, \code{SITENAM}, \code{INVID}, \code{INVNAM}.
 }
 \section{Authors}{
