@@ -30,7 +30,7 @@ skw <- function(x, na.rm = FALSE){
 
 fct_na_to_level <- function(f, level){
   
-  v_forcats <- packageVersion('forcats')
+  v_forcats <- utils::packageVersion('forcats')
   
   if(v_forcats < as.package_version('1.0.0')){
     forcats::fct_explicit_na(f, na_level = level)

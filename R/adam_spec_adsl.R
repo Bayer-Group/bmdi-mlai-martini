@@ -315,7 +315,6 @@
  #' `dttm`, `constant`, `combined`, `flag`, `factor`, `redundant`
  #' @param id,trt user-selected column names in `adsl` for ID and treatment column,
  #' defaulting to `SUBJID` and `TRT01A`, resp.
- #' @param empty logical indicating whether empty columns should be listed
  #' @param clmn_flag (factor and redundants only) character vector of names identified as flags
  #' @param black_list character vector of columns that should be dropped for 
  #' most analyses, see details.
@@ -375,6 +374,7 @@
       "SITEID" , "SITENAM", 
       "INVID"  , "INVNAM"
     )
+    
   ){
 
   # input checks
@@ -717,7 +717,7 @@ adsl_identify_factor <- function(
     
     # non-integer candidates 
     no_integer <- adsl %>% 
-      dplyr::select(any_of(num_only)) %>% 
+      dplyr::select(tidyselect::any_of(num_only)) %>% 
       dplyr::select_if( ~{readr::guess_parser(.x, guess_integer = TRUE) != 'integer'} ) %>% 
       names() 
     
