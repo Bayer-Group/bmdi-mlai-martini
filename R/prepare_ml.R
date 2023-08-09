@@ -641,6 +641,7 @@ prepare_ml <- function(
   # compute test data
   if (train_prop < 1){
     d_test  <- rcp_prep %>% 
+      recipes::check_range(recipes::all_numeric(), slack_prop = 0.1) %>% 
       {purrr::quietly(recipes::bake)(., d_test_raw)} %>% 
       purrr::pluck("result")
   } else {
