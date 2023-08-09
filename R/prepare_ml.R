@@ -617,7 +617,13 @@ prepare_ml <- function(
   
   # prep recipe
   rcp_prep <- rcp %>% 
-    {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE, training = d_train_raw)} %>% 
+    {purrr::quietly(recipes::prep)(., 
+      strings_as_factors = FALSE, 
+      training           = d_train_raw,
+      log_changes        = TRUE,
+      fresh              = TRUE
+      )
+    } %>% 
     purrr::pluck("result")
   
   # TODO 
