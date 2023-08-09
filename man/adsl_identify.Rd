@@ -63,8 +63,6 @@ defaulting to \code{SUBJID} and \code{TRT01A}, resp.}
 most analyses, see details.}
 
 \item{clmn_flag}{(factor and redundants only) character vector of names identified as flags}
-
-\item{empty}{logical indicating whether empty columns should be listed}
 }
 \value{
 list with two top level entries, where \code{to_remove} is a list of

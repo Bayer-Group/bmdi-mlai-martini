@@ -112,7 +112,7 @@ build_bds <- function(
   bds_wide <- bds_wide %>% 
     dplyr::mutate_at(char2fct, factor) %>%  
     {if(spec$spec_id == 'adegf'){
-      dplyr::mutate_at(., char2fct, ~ forcats::fct_explicit_na(., na_level = 'missing'))
+      dplyr::mutate_at(., char2fct, ~ fct_na_to_level(., level = 'missing'))
     }else{.}
     } %>% 
     dplyr::mutate_at(char2num, as.numeric)

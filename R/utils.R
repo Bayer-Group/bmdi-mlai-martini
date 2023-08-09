@@ -30,10 +30,10 @@ skw <- function(x, na.rm = FALSE){
 
 fct_na_to_level <- function(f, level){
   
-  v_forcats <- packageVersion('forcats')
+  v_forcats <- utils::packageVersion('forcats')
   
   if(v_forcats < as.package_version('1.0.0')){
-    forcats::fct_explicit_na(f, na_level = level)
+    forcats::fct_explicit_na(f, level = level)
   }else{
     forcats::fct_na_value_to_level(f, level = level)
   }
@@ -96,3 +96,23 @@ list_and_export <- function(
   invisible(res_path)
 }
 
+
+
+get_default <- function(
+    fun, 
+    arg = NULL,
+    unlist = TRUE, 
+    unname = TRUE
+  ){
+  
+  # pmatch arg to out names
+  out <- args(fun) %>% as.list() %>% purrr::compact()  # freq_cut default in step_nzv is call 95/5
+  if(!is.null(arg)) out <- out %>% purrr::keep_at(arg) 
+  out <- purrr::map(out, ~{if(is.call(.x)) eval(.x) else .x})
+  
+  if(unlist) out <- unlist(out)
+  if(unname) out <- unname(out)
+  
+  out 
+  
+}

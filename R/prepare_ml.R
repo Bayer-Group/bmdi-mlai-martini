@@ -340,306 +340,63 @@ prepare_ml <- function(
   }
   
   # DATA SPLIT ####
-  
-  train_prop_valid <- c(0.5, 1)
-  if (!dplyr::between(train_prop, train_prop_valid[1], train_prop_valid[2])){
-    
-    cli::cli_abort(c(
-      "The provided training proportion {.code train_prop} is expected to fall within 
-        [{train_prop_valid[1]};{train_prop_valid[2]}]",
-        "x" = "You've supplied {train_prop}."
-      )
+  data_split_res <- do.call(
+    prepare_ml_data_split,
+    tibble::lst(
+      train_prop, 
+      seed, 
+      data = d_raw,
+      outcome_mode,
+      strata_trt
     )
-    
-  } 
+  ) 
   
-  if (train_prop < 1){
-    if(!is.null(seed))  set.seed(seed)
-    
-    # create a new column .strata for stratified splitting by outcome
-    d_raw <- d_raw %>% 
-      {if(outcome_mode == "classification"){
-         dplyr::mutate(., .strata = .out)
-      }else{.}
-      } %>% 
-      
-      {if(outcome_mode == "survival"){
-        dplyr::mutate(., .strata = .status)
-      }else{.}
-      } %>% 
-      
-      # no outcome stratification for regression, but create the column
-      # anyways to make it extendable by strata_trt = TRUE
-      {if(outcome_mode == "regression"){
-         dplyr::mutate(., .strata = '')
-      }else{.}
-      }
-    
-    # extend strata variable by treatment
-    if(strata_trt){
-      if(! '.trt' %in% colnames(d_raw)){
-        usethis::ui_info(crayon::silver(paste(
-          'No treatment variable was detected in the data set.', 
-          'Argument strata_trt was set to TRUE but will be ignored.')))
-      }else{
-        d_raw <- d_raw %>% 
-          dplyr::mutate(.strata = paste0(.strata, .trt , sep = '_'))
-      }  
-    }
-    
-    if(!c(".rmtime") %in% names(d_raw)){
-      
-      d_split <- d_raw %>%
-        rsample::initial_split(
-          strata = tidyselect::all_of('.strata'), 
-          prop   = train_prop
-        )
-      
-    }else{
-     strata_ignored <- utils::packageVersion('rsample') %>%
-       package_version() %>% 
-       {. < '1.1.1'}
-      
-     if(strata_ignored){cli::cli_warn(paste(
-       'Please update `rsample` to version 1.1.1 or higher',
-       'to enable stratified sampling in `rsample::group_initial_split()`'
-      ))}
-       
-      d_split <- d_raw %>%
-        rsample::group_initial_split(
-          prop   = train_prop,
-          group  = ".id",
-          strata = tidyselect::all_of('.strata')  # ignored if rsample < '1.1.1'
-        )
-      
-    }
-    
-    # remove the strata variable '.strata' after splitting
-    d_split$data <- d_split$data %>% dplyr::select(-tidyselect::any_of(c('.strata')))
-
-    d_train_raw  <- rsample::training(d_split) 
-    d_test_raw   <- rsample::testing( d_split) 
-    
-  }else{
-    
-    d_split     <- NULL
-    d_train_raw <- d_raw
-    d_test_raw  <- NULL
-  }
+  d_train_raw <- data_split_res$d_train_raw
+  d_test_raw  <- data_split_res$d_test_raw
   
-  #  RECIPE PREP ####
-  # derive variable lists for steps
+  #  RECIPE ####
   
-  vars <- prepare_ml_vars(
-    data             = d_train_raw,
-    thres_count      = thres_count,
-    thres_log        = thres_log,
-    thres_lump       = thres_lump,
-    thres_imp        = thres_imp
+  rcp_output <- prepare_ml_recipe(
+    
+    data  = d_train_raw,
+    prep_recipe  = prep_recipe,
+    
+    corr_method = "pearson",
+    corr_use    = "pairwise.complete.obs",
+    
+    thres_list = tibble::lst(
+      thres_log,
+      thres_count,
+      thres_corr,
+      thres_lump,
+      thres_imp,
+      thres_nzv_freq, 
+      thres_nzv_unique
+    ),
+    
+    step_list = tibble::lst(
+      prep_step_normalize,
+      prep_step_knnimpute,
+      prep_step_log,
+      prep_step_corr,
+      prep_step_dummy
+    ),
+    
+    vars_imp_ignore     = vars_imp_ignore,
+    vars_fct_expl_na    = vars_fct_expl_na,
+    vars_ordinalscore   = vars_ordinalscore,
+    vars_keep_corr      = vars_keep_corr,
+    
+    level_other = level_other, # 'other'
+    one_hot     = one_hot,
+    log_base    = log_base
+    
   )
-  
-  
-  vars_count   <- vars$count   
-  vars_log     <- vars$log   
-  vars_nolump  <- vars$nolump 
-  vars_exclude <- vars$exclude  
-  
-  # var %in% 'vars_imp_ignore' : rows with missing values are dropped
-  # else if thres_imp is not met vars are dropped
-  vars_imp     <- vars$imp %>% setdiff(vars_imp_ignore) 
-  
-  
-  # RECIPE ####
-  corr_method <- "pearson"
-  cor_use     <- "pairwise.complete.obs"
-  
-  if (is.null(prep_recipe)){
-    
-    # ... formula ####
-    # TODO check, if different formula is needed for repeated measurements
-    if(outcome_mode %in% c('regression', 'classification')){
-      the_formula <- as.formula(".out ~ .")
-    }else{
-      #the_formula <- as.formula("Surv(time = .time, event = .status, type = 'right') ~ .")
-      the_formula <-  as.formula('.time + .status ~ .') # best guess...
-    }  
-    
-    # ... write recipe ####
-    # Note that order is important when building the recipe,
-    # e.g. exclude variable before imputation, nzv and log before normalize 
-    
-    # TODO rewrite recipe using new step fcts:
-    # recipes::step_filter_missing() remove variables that have too many missing values.
-    # recipes::step_impute_bag()
-    # recipes::step_lincomb()
-    # recipes::step_zv()
-    # recipe() %>% check_range(x, warn = TRUE)
-    
-    rcp <- recipes::recipe(the_formula, data = d_train_raw) %>% 
-      
-      recipes::step_rm(tidyselect::any_of(vars_exclude)) %>% 
-      recipes::update_role(tidyselect::any_of(c(".id", ".rmtime")), new_role = "ID") %>% 
-      
-      # ... ... omit observations with missing endpoint ####
-      recipes::step_naomit(recipes::all_outcomes()) %>% 
-      
-      # ... ... imputation ####
-      {if(prep_step_knnimpute){
-        recipes::step_impute_knn(., tidyselect::any_of(vars_imp), -recipes::all_outcomes(), -recipes::has_role("ID")) }else{.}
-      } %>% 
-        
-        # ... ... omit observations with missing data in variables ignored in imputation ####
-      recipes::step_naomit(recipes::all_predictors()) %>% 
-        
-        # ... ... near zero variance ####
-      recipes::step_nzv(recipes::all_predictors(),
-                        freq_cut = thres_nzv_freq, unique_cut = thres_nzv_unique
-      ) %>% 
-        
-        # ... ... log transformation ####
-      {if(prep_step_log && length(vars_log)>0){
-        recipes::step_log(., tidyselect::any_of(vars_log), base = log_base) 
-      }else{.}
-      }  %>%
-        
-        # ... ... normalization ####
-      {if(prep_step_normalize){
-        recipes::step_normalize(., 
-                                recipes::all_numeric(), -recipes::all_outcomes(), -recipes::has_role("ID"),
-                                # exclude vars identified as counts (previously excluded from logtrafo as well)
-                                -tidyselect::any_of(vars_count),
-        )
-      }else{.}
-      }  %>% 
-        
-        # ... ... remove highly correlated variables ####
-      {if(prep_step_corr){
-        recipes::step_corr(., recipes::all_numeric(), -recipes::all_outcomes(), 
-                           threshold = thres_corr, method = corr_method,
-                           use = cor_use)
-      }else{.}
-      } %>%  
-        
-        # ... ... lump factors ####
-      recipes::step_other(
-        ., 
-        recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
-        -tidyselect::any_of(vars_nolump),
-        threshold = thres_lump, other = level_other) %>%  
-        
-        # ... ... factor handling ####
-      {if(! is.null(vars_ordinalscore)){
-        recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )
-      }else{.}
-      } %>%  
-        
-        #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
-        # ... .. dummy coding ####
-      {if(prep_step_dummy){
-        recipes::step_dummy(.,  recipes::all_nominal(), - recipes::all_outcomes(), - recipes::has_role("ID")  , 
-                            one_hot = one_hot) 
-      }else{.} 
-    }
-    
-    
-    } else {
-      rcp <- prep_recipe
-    }
-  
-  # ... prep recipe ####
 
-  vars_exclude_corr <- NULL
-   
-  # modify recipe if corr step is applied and given var set should be kept
-  if(prep_step_corr &&
-     !is.null(vars_keep_corr)
-  ){
-    
-    # identify corr step from recipe
-    number_corr <- rcp %>% 
-      recipes::tidy() %>% 
-      dplyr::filter(type == 'corr') %>% 
-      dplyr::pull(number)
-    
-    # prep and train
-    rcp_nocorr <- rcp
-    rcp_nocorr$steps[[number_corr]]$skip <- TRUE
-    
-    rcp_prep_nocorr <- rcp_nocorr %>% 
-      {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE, training = d_train_raw)} %>% 
-      purrr::pluck("result")
-    
-    # identify naomit step from recipe
-    number_naomit <- rcp_prep_nocorr %>% 
-      recipes::tidy() %>% 
-      dplyr::filter(type == 'naomit') %>% 
-      dplyr::pull(number)
-    
-    # prep and train
-    purrr::walk(number_naomit, ~{
-      rcp_prep_nocorr$steps[[.x]]$columns <<- unname(rcp_prep_nocorr$steps[[.x]]$columns)
-      rcp_prep_nocorr$steps[[.x]]$skip    <<- FALSE
-    })
-    
-    d_train_nocorr <- rcp_prep_nocorr %>%
-      recipes::bake(new_data = d_train_raw)
-    
-    # for all variables that need to be kept, identify highly correlated variables from d_train_nocorr
-    vars_exclude_corr <- vars_keep_corr %>% 
-      rlang::set_names() %>% 
-      purrr::map(~{
-        
-        d_ref <- d_train_nocorr %>% 
-          dplyr::select(tidyselect::all_of(.x))
-        
-        d_check <- d_train_nocorr %>% 
-          dplyr::select_if(is.numeric) %>% 
-          dplyr::select(-tidyselect::any_of(c(.x, ".id")))
-        
-        cor(d_check, d_ref, method = corr_method, use = cor_use) %>% 
-          as.data.frame() %>% 
-          tibble::rownames_to_column() %>% 
-          dplyr::filter(abs(!!rlang::sym(.x)) > thres_corr) %>% 
-          dplyr::pull(rowname)
-      })
-    
-    # modify removal step in original recipe to add vars_exclude_corr
-    number_rm <- rcp %>% recipes::tidy() %>% dplyr::filter(type == 'rm') %>% dplyr::pull(number)
-    env_rm    <- rcp$steps[[number_rm]]$terms[[1]] %>% attr(which = '.Environment') 
-    
-    assign(
-      'vars_exclude', 
-      c(vars_exclude, vars_exclude_corr %>% unlist() %>% as.character()),
-      envir = env_rm
-    ) 
-    
-  }
-  
-  # prep recipe
-  rcp_prep <- rcp %>% 
-    {purrr::quietly(recipes::prep)(., 
-      strings_as_factors = FALSE, 
-      training           = d_train_raw,
-      log_changes        = TRUE,
-      fresh              = TRUE
-      )
-    } %>% 
-    purrr::pluck("result")
-  
-  # TODO 
-  # check new parameters 'retain' and 'log_changes' in 'prep()'
-  
-  # identify naomit step from recipe
-  number_naomit <- rcp_prep %>% 
-    recipes::tidy() %>% 
-    dplyr::filter(type == 'naomit') %>% 
-    dplyr::pull(number)
-  
-  # prep and train
-  purrr::walk(number_naomit, ~{
-    rcp_prep$steps[[.x]]$columns <<- unname(rcp_prep$steps[[.x]]$columns)
-    rcp_prep$steps[[.x]]$skip    <<- FALSE
-  })
+  rcp_prep <- rcp_output$rcp_prep
+  vars     <- rcp_output$vars
+  steps    <- rcp_output$steps
+  thres    <- rcp_output$thres
   
   # training data
   d_train <- rcp_prep %>% recipes::juice()
@@ -709,9 +466,10 @@ prepare_ml <- function(
   if("rm" %in% names(removed_columns)){
     removed_columns$imp_ignore <- removed_columns$rm %>% 
       as.character() %>% 
-      setdiff(vars_exclude_corr)
-    removed_columns$keep_corr <- vars_exclude_corr
+      setdiff(vars$vars_exclude_corr)
+    removed_columns$keep_corr <- vars$vars_exclude_corr
   }
+  
   
   # DOCUMENT PREP PARAMETER SETTINGS ####
   # NOTE TEMP text slots will be removed once documentation is fully available
@@ -720,37 +478,37 @@ prepare_ml <- function(
     
     # ... log trafo  ####
     thres_log  = list(
-      value = ifelse(prep_step_log, thres_log, NA),
-      text  = ifelse(prep_step_log,
+      value = ifelse(steps$prep_step_log, thres$thres_log, NA),
+      text  = ifelse(steps$prep_step_log,
                      paste0('Variables were log transformed (base ', 
                             ifelse(dplyr::near(log_base, exp(1)), 'e', log_base),
-                            ') if e1071::skewness() > ',  thres_log,
+                            ') if e1071::skewness() > ',  thres$thres_log,
                             '. Variables that are assumed to be count variables were excluded from the transformation (see thres_count for details).'),
                      'No variables were log transformed.')
     ),
     
     # ... log trafo excluded (integer with low number of values) ####
     thres_count  = list(
-      value = ifelse( length(vars_log) > 0 && length(vars_count) > 0, 
-                      thres_count, NA_real_),
-      text  = ifelse(length(vars_log) > 0 && length(vars_count) > 0,
+      value = ifelse( length(vars$vars_log) > 0 && length(vars$vars_count) > 0, 
+                      thres$thres_count, NA_real_),
+      text  = ifelse(length(vars$vars_log) > 0 && length(vars$vars_count) > 0,
                      paste0('Variables were excluded from log transformation if they are integer coded 
-                             and have ', thres_count, 'distinct values.'),
+                             and have ', thres$thres_count, 'distinct values.'),
                      'Not applicable.')
     ),
     
     
     # ... correlated variables ####
     thres_corr  = list(
-      value = ifelse(prep_step_corr, thres_corr, NA),
-      text  = ifelse(prep_step_corr,
-                     paste0('The applied cutoff for removal of variables due to high correlations was ',  thres_corr,'.'),
+      value = ifelse(steps$prep_step_corr, thres$thres_corr, NA),
+      text  = ifelse(steps$prep_step_corr,
+                     paste0('The applied cutoff for removal of variables due to high correlations was ',  thres$thres_corr,'.'),
                      'No variables were removed for reasons of high correlation.')
     ),  
     
     vars_keep_corr = list(
-      value = ifelse(!is.null(vars_keep_corr), vars_keep_corr, NA),
-      text  = ifelse(prep_step_corr && !is.null(vars_exclude_corr),
+      value = ifelse(!is.null(vars$vars_keep_corr), vars$vars_keep_corr, NA),
+      text  = ifelse(steps$prep_step_corr && !is.null(vars$vars_exclude_corr),
                      'Variable selection in recipes::step_corr() was adjusted according to "vars_keep_corr"',
                      'No variables were excluded specifically due to high correlation with the variables in "vars_keep_corr"')
     ),
@@ -758,26 +516,26 @@ prepare_ml <- function(
     
     # ... lump factor levels (always applied) ####
     thres_lump = list(
-      value = thres_lump,
-      text  = paste0('Low frequency factor levels were lumped using recipes::step_other(threshold = ', thres_lump, '). ')  
+      value = thres$thres_lump,
+      text  = paste0('Low frequency factor levels were lumped using recipes::step_other(threshold = ', thres$thres_lump, '). ')  
     ),
     
     # ... imputation/missing values  ####
     ## imputation/dropping of variables based on available probability
     imp_ignore = list(
-      value = ifelse(prep_step_knnimpute, thres_imp, NA),
-      text  = ifelse(prep_step_knnimpute,
+      value = ifelse(steps$prep_step_knnimpute, thres$thres_imp, NA),
+      text  = ifelse(steps$prep_step_knnimpute,
                      paste0('Variables were dropped if the proportion of available data was less than ', 
-                            thres_imp*100, '%.')  ,
+                            thres$thres_imp*100, '%.')  ,
                      'No imputation was done on the feature matrix.')
     ),
     
     # ... nzv ####
     nzv = list(
-      value = list(freq_cut = thres_nzv_freq, unique_cut = thres_nzv_unique),
+      value = list(freq_cut = thres$thres_nzv_freq, unique_cut = thres$thres_nzv_unique),
       text  = paste0('Highly sparse and unbalanced variables were dropped using ',  
-                     'recipes::step_nzv(freq_cut = ', round(thres_nzv_freq) ,
-                     ', unique_cut = ', thres_nzv_unique, ').'
+                     'recipes::step_nzv(freq_cut = ', round(thres$thres_nzv_freq) ,
+                     ', unique_cut = ', thres$thres_nzv_unique, ').'
       )
     )
     
@@ -808,7 +566,7 @@ prepare_ml <- function(
   
   # DICT ####
   # prevent error in joining logtr column
-  if(is.null(vars_log)) vars_log <- NA_character_
+  if(is.null(vars$vars_log)) vars$vars_log <- NA_character_
   the_dict <- NULL
   if(!is.null(attr(feature, "dict"))){
     the_dict <- dplyr::bind_rows(
@@ -818,7 +576,7 @@ prepare_ml <- function(
       dplyr::left_join(
         ., 
         tibble::tibble(
-          param = vars_log,
+          param = vars$vars_log,
           logtr = "Y"
         ),
         by = c("param")
@@ -840,8 +598,6 @@ prepare_ml <- function(
       train = d_train,
       test  = d_test 
     ),
-    
-    split = d_split,
     
     outcome = list(
       name = list('regression'     = '.out', 
@@ -878,6 +634,124 @@ prepare_ml <- function(
   
   prep_output
   
+}
+
+
+
+#' split data in train and test
+#'
+#' @param data data to split
+#' @param train_prop proportion to use for training split, must be in (0.5, 1]
+#' @param seed defaults to NULL
+#' @param outcome_mode used in stratification
+#' @param strata_trt logical
+#'
+#' @return
+#' a named list containing 
+#' 
+prepare_ml_data_split <- function(
+    
+  data, 
+  train_prop,
+  strata_trt,
+  
+  seed = NULL,
+  outcome_mode
+    
+){
+  
+  train_prop_valid <- c(0.5, 1)
+  
+  if (!dplyr::between(train_prop, train_prop_valid[1], train_prop_valid[2])){
+    
+    cli::cli_abort(c(
+      "The provided training proportion {.code train_prop} is expected to fall within 
+        [{train_prop_valid[1]};{train_prop_valid[2]}]",
+      "x" = "You've supplied {train_prop}."
+    )
+    )
+    
+  } 
+  
+  if (train_prop < 1){
+    if(!is.null(seed))  set.seed(seed)
+    
+    # create a new column .strata for stratified splitting by outcome
+    data <- data %>% 
+      {if(outcome_mode == "classification"){
+        dplyr::mutate(., .strata = .out)
+      }else{.}
+      } %>% 
+      
+      {if(outcome_mode == "survival"){
+        dplyr::mutate(., .strata = .status)
+      }else{.}
+      } %>% 
+      
+      # no outcome stratification for regression, but create the column
+      # anyways to make it extendable by strata_trt = TRUE
+      {if(outcome_mode == "regression"){
+        dplyr::mutate(., .strata = '')
+      }else{.}
+      }
+    
+    # extend strata variable by treatment
+    if(strata_trt){
+      if(! '.trt' %in% colnames(data)){
+        usethis::ui_info(crayon::silver(paste(
+          'No treatment variable was detected in the data set.', 
+          'Argument strata_trt was set to TRUE but will be ignored.')))
+      }else{
+        data <- data %>% 
+          dplyr::mutate(.strata = paste0(.strata, .trt , sep = '_'))
+      }  
+    }
+    
+    if(!c(".rmtime") %in% names(data)){
+      
+      d_split <- data %>%
+        rsample::initial_split(
+          strata = tidyselect::all_of('.strata'), 
+          prop   = train_prop
+        )
+      
+    }else{
+      
+      strata_ignored <- utils::packageVersion('rsample') %>%
+        package_version() %>% 
+        {. < '1.1.1'}
+      
+      if(strata_ignored){cli::cli_warn(paste(
+        'Please update `rsample` to version 1.1.1 or higher',
+        'to enable stratified sampling in `rsample::group_initial_split()`'
+      ))}
+      
+      d_split <- data %>%
+        rsample::group_initial_split(
+          prop   = train_prop,
+          group  = ".id",
+          strata = tidyselect::all_of('.strata')  # ignored if rsample < '1.1.1'
+        )
+      
+    }
+    
+    # remove the strata variable '.strata' after splitting
+    d_split$data <- d_split$data %>% dplyr::select(-tidyselect::any_of(c('.strata')))
+    
+    d_train_raw  <- rsample::training(d_split) 
+    d_test_raw   <- rsample::testing( d_split) 
+    
+  }else{
+    
+    d_split     <- NULL
+    d_train_raw <- data
+    d_test_raw  <- NULL
+  }
+  
+  tibble::lst(
+    d_train_raw, 
+    d_test_raw
+  )
 }
 
 

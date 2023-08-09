@@ -1,5 +1,8 @@
 # martini (development version)
 
+* prepare_ml output object no longer contains redundant slot for split object
+
+
 # martini 0.5.1
 
 * Added experimental parameter `rm` in `build()` to allow for the preparation of a 
