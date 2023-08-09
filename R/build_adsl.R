@@ -112,14 +112,23 @@ build_adsl <- function(
   # update dictionary   ####
   if(!is.null(spec$dict)){
     dict <- spec$dict %>% 
-      # treatment variable was renamed to standard name
-      dplyr::filter(param %in% c(spec$trt, colnames(adsl))) %>% 
+      
+      # treatment variable was renamed to standard name '.trt' (same for '.id')
+      dplyr::filter(param %in% c(spec$trt, spec$id, colnames(adsl))) %>% 
       {if (!is.null(spec$trt)){
         dplyr::mutate(., param = dplyr::case_when(
           param == spec$trt ~ ".trt",
           TRUE              ~ param
         ))
-      } else {.}} %>% 
+      } else {.}
+      } %>% 
+      {if (!is.null(spec$id)){
+        dplyr::mutate(., param = dplyr::case_when(
+          param == spec$id ~ ".id",
+          TRUE              ~ param
+        ))
+      } else {.}
+      } %>% 
       dplyr::mutate(column = param) %>% 
       dplyr::select(-selected)
     
@@ -135,7 +144,7 @@ build_adsl <- function(
         label = dplyr::case_when(
             !is.na(labs) ~ labs,
             TRUE ~ param),
-        source = spec$spec_id ,
+        source = spec$spec_id,
         type   = 'adsl'
       )  
     
@@ -151,17 +160,4 @@ build_adsl <- function(
   
 }
 
-
-# test area ####
-if(FALSE){
-
-  file  <- '../adsl.sas7bdat'
-  
-  id = 'SUBJID'
-  trt = NULL
-  filter = c("FAS == 'Y'", "AGE < 80", "GENDER == 'female'")
-  
-  spec <- adam_spec_adsl(file = file, id = id, trt = trt, filter = filter)
-  
-}
 
