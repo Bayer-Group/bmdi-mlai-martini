@@ -144,6 +144,7 @@ build <- function(
   # ... data ####
   # identify subjects from selected data sets to filter prepped_join
   # (if join is not a fct)
+  # TODO warn if built data has 0 rows (e.g. by mal-adapted spec)
   if(! is.function(join)){
     if(any(join %in% names(built_data) )) {
       join_ids <- purrr::map(built_data[join %>%  intersect(names(built_data))], ~.[['data']]) %>% 

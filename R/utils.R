@@ -43,7 +43,7 @@ fct_na_to_level <- function(f, level){
 
 
 #' qsave mlobj and data.table() dictionary
-#'
+#' 
 #' @param d_ml result of prepare_ml() 
 #' @param file_prefix defaults to "mlai_mlobj_"
 #' @param path,file_id used to build file path for result to be written to
@@ -53,8 +53,6 @@ fct_na_to_level <- function(f, level){
 #' invisibly returns file path that results is `qs::qsave()`d to, build as path, file_prefix, file_id.
 #' shows `DT::datatable()` of dictionary if `show_list = TRUE`
 #' 
-#' @export
-#'
 #'
 list_and_export <- function(
     d_ml,

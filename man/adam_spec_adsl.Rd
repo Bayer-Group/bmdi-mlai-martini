@@ -66,7 +66,7 @@ set of columns (returned in \code{select}) and redundancies in the data.
 \item{\emph{Subject id}}{Non-numeric columns are recoded as numeric, based on the order in which they appear in the data
 (sorted by \code{id}). All columns with a perfect Spearman correlation to \code{id} are considered redundant and added to
 the \code{drop_list}. In addition, all numeric columns with a perfect Spearman correlation to RANDDT (if available in the data)
-are also added to the \code{drop_list}, as well as RANDNO (if present in data.}
+are also added to the \code{drop_list}, as well as RANDNO (if present in data).}
 \item{\emph{Treatment variable}}{The predefined list of treatment variables is TRT01A, ARMCD, ARM, ACTARM, ACTARMCD, TRT01P, TR01PG1, TR02PG1, TR01AG1, TR02AG1.
 No more than one of these variables will be returned in \code{select}. Note that the chosen treatment representing
 variable will be renamed to the standard '.trt' in \code{\link{build_adsl}()}.}
