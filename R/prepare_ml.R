@@ -313,8 +313,8 @@ prepare_ml <- function(
     intersect(colnames(outcome), colnames(feature))
   )
   
-  if(!all.equal(
-    outcome[clmn_by] %>% purrr::map_chr(class) %>% unname(),
+  if(!all(
+    outcome[clmn_by] %>% purrr::map_chr(class) %>% unname() ==
     feature[clmn_by] %>% purrr::map_chr(class) %>% unname()
   )){
     usethis::ui_stop(paste0(
