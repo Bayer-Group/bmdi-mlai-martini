@@ -203,7 +203,7 @@ prepare_ml_outcome <- function(
     
     # with c = outlier_ctrl$coef, exclude observations outside [q25 - c*iqr;  q75 + c*iqr]
     q   <- quantile(outcome$.out, probs = c(0.25, 0.75), names = FALSE, na.rm = TRUE)
-    loq <- q + c(-1,1) * abs(outlier_ctrl$coef[1]) * diff(q)
+    loq <- q + c(-1, 1) * abs(outlier_ctrl$coef[1]) * diff(q)
     is_outlier <- !dplyr::between(outcome$.out, loq[1], loq[2])
     
     id_outlier <- outcome$.id[which(is_outlier)]

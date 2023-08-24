@@ -146,30 +146,30 @@ prepare_ml_recipe <- function(
       recipes::update_role(tidyselect::any_of(c(".id", ".rmtime")), new_role = "ID") %>% 
       
       # ... ... omit observations with missing endpoint ####
-    recipes::step_naomit(recipes::all_outcomes()) %>% 
+      recipes::step_naomit(recipes::all_outcomes()) %>% 
       
       # ... ... imputation ####
-    {if(step_used$prep_step_knnimpute){
-      recipes::step_impute_knn(., tidyselect::any_of(vars_imp), -recipes::all_outcomes(), -recipes::has_role("ID")) }else{.}
-    } %>% 
+      {if(step_used$prep_step_knnimpute){
+        recipes::step_impute_knn(., tidyselect::any_of(vars_imp), -recipes::all_outcomes(), -recipes::has_role("ID")) }else{.}
+      } %>% 
       
       # ... ... omit observations with missing data in variables ignored in imputation ####
-    recipes::step_naomit(recipes::all_predictors()) %>% 
+      recipes::step_naomit(recipes::all_predictors()) %>% 
       
       # ... ... near zero variance ####
-    recipes::step_nzv(recipes::all_predictors(),
-      freq_cut   = thres_used$thres_nzv_freq, 
-      unique_cut = thres_used$thres_nzv_unique
-    ) %>% 
+      recipes::step_nzv(recipes::all_predictors(),
+        freq_cut   = thres_used$thres_nzv_freq, 
+        unique_cut = thres_used$thres_nzv_unique
+      ) %>% 
       
       # ... ... log transformation ####
-    {if(step_used$prep_step_log && length(vars_log)>0){
-      recipes::step_log(., tidyselect::any_of(vars_log), base = log_base) 
-    }else{.}
-    }  %>%
+      {if(step_used$prep_step_log && length(vars_log)>0){
+        recipes::step_log(., tidyselect::any_of(vars_log), base = log_base) 
+      }else{.}
+      }  %>%
       
       # ... ... normalization ####
-    {if(step_used$prep_step_normalize){
+      {if(step_used$prep_step_normalize){
       recipes::step_normalize(., 
                               recipes::all_numeric(), -recipes::all_outcomes(), -recipes::has_role("ID"),
                               # exclude vars identified as counts (previously excluded from logtrafo as well)
@@ -200,7 +200,7 @@ prepare_ml_recipe <- function(
     } %>%  
       
       #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
-      # ... .. dummy coding ####
+      # ... ... dummy coding ####
     {if(step_used$prep_step_dummy){
       recipes::step_dummy(.,  recipes::all_nominal(), - recipes::all_outcomes(), - recipes::has_role("ID")  , 
                           one_hot = one_hot) 
