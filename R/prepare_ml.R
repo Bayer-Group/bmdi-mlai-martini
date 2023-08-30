@@ -253,21 +253,59 @@ prepare_ml <- function(
   
   # ... define renaming vector ####
   # order matters!
-  renaming <- c(
-    '<= |<=' = 'less_than_',  
-    '> '  = 'over_',
-    '< '  = 'under_',
-    ' - ' = '_to_',  
-    '>= |>=' = 'at_least_', 
-    '<'   = 'under_' ,
-    '>'   = 'over_',
-    ' years|years' = '_y',
-    '%'   = 'pct',
-    '[[:punct:]]|[[:space:]]' = '_',
-    '_+'  = '_',
-    '_$' = ''
-  )
+  # renaming <- c(
+  #   '<= |<=' = 'less_than_',  
+  #   '> '  = 'over_',
+  #   '< '  = 'under_',
+  #   ' - ' = '_to_',  
+  #   '>= |>=' = 'at_least_', 
+  #   '<'   = 'under_' ,
+  #   '>'   = 'over_',
+  #   ' years|years' = '_y',
+  #   '%'   = 'pct',
+  #   '[[:punct:]]|[[:space:]]' = '_',
+  #   '_+'  = '_',
+  #   '_$' = ''
+  # )
   
+  # 
+  # # ... intersect 'vars_fct_expl_na' with factor columns ####
+  # if (!is.null(vars_fct_expl_na)){
+  #   vars_fct_expl_na <- feature %>% 
+  #     dplyr::select_if(is.factor) %>% 
+  #     colnames() %>% 
+  #     intersect(vars_fct_expl_na)
+  #   # catch special case 'no factors in feature'
+  #   if (length(vars_fct_expl_na) == 0) vars_fct_expl_na <- NULL
+  # }
+  # 
+  # # ... transform all character columns into factors (strips labels) ####
+  # feature <- feature %>%
+  #   # TODO do NOT convert .id
+  #   dplyr::mutate_if(is.character, factor) %>% 
+  #   dplyr::mutate_if(is.factor, ~ forcats::fct_relabel(., ~ stringr::str_replace_all(., renaming) )) %>% 
+  #   # add explicit NAs to selected factor variables (optional)
+  #   {if(!is.null(vars_fct_expl_na)){
+  #     dplyr::mutate_at(., vars_fct_expl_na, ~ fct_na_to_level(.x, level = "missing"))
+  #   }else{.}
+  #   }
+  # 
+  # # ... identify columns with 'Other' level ####
+  # level_other <- "other"
+  # 
+  # vars_with_other <- feature %>% 
+  #   purrr::map_lgl(~{any(stringr::str_to_lower(.) == stringr::str_to_lower(level_other))}) %>% 
+  #   which() %>% 
+  #   names()
+  # 
+  # if(length(vars_with_other) > 0){
+  #   feature <- feature %>% 
+  #     dplyr::mutate_at(vars_with_other, ~{
+  #       if (stringr::str_to_title(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_title(level_other))
+  #       if (stringr::str_to_upper(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_upper(level_other))
+  #       if (stringr::str_to_lower(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_lower(level_other))
+  #     })
+  # }
   
   # ... intersect 'vars_fct_expl_na' with factor columns ####
   if (!is.null(vars_fct_expl_na)){
@@ -279,32 +317,13 @@ prepare_ml <- function(
     if (length(vars_fct_expl_na) == 0) vars_fct_expl_na <- NULL
   }
   
-  # ... transform all character columns into factors (strips labels) ####
-  feature <- feature %>% 
-    dplyr::mutate_if(is.character, factor) %>% 
-    dplyr::mutate_if(is.factor, ~ forcats::fct_relabel(., ~stringr::str_replace_all(., renaming) )) %>% 
-    # add explicit NAs to selected factor variables (optional)
-    {if(!is.null(vars_fct_expl_na)){
-      dplyr::mutate_at(., vars_fct_expl_na, ~ fct_na_to_level(.x, level = "missing"))
-    }else{.}
-    }
+  level_other <- 'other'
+  feature <- prepare_ml_feature(
+    feature, 
+    vars_fct_expl_na = vars_fct_expl_na,
+    level_other      = level_other
+  )
   
-  # ... identify columns with 'Other' level ####
-  level_other <- "other"
-  
-  vars_with_other <- feature %>% 
-    purrr::map_lgl(~{any(stringr::str_to_lower(.) == stringr::str_to_lower(level_other))}) %>% 
-    which() %>% 
-    names()
-  
-  if(length(vars_with_other) > 0){
-    feature <- feature %>% 
-      dplyr::mutate_at(vars_with_other, ~{
-        if (stringr::str_to_title(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_title(level_other))
-        if (stringr::str_to_upper(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_upper(level_other))
-        if (stringr::str_to_lower(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_lower(level_other))
-      })
-  }
   
   # MERGE OUTCOME AND FEATURE  ####
   
@@ -358,7 +377,7 @@ prepare_ml <- function(
   
   rcp_output <- prepare_ml_recipe(
     
-    data  = d_train_raw,
+    data         = d_train_raw,
     prep_recipe  = prep_recipe,
     
     corr_method = "pearson",
@@ -404,7 +423,7 @@ prepare_ml <- function(
   # compute test data
   if (train_prop < 1){
     d_test  <- rcp_prep %>% 
-      recipes::check_range(recipes::all_numeric(), slack_prop = 0.1) %>% 
+      #recipes::check_range(recipes::all_numeric(), slack_prop = 0.1) %>% 
       {purrr::quietly(recipes::bake)(., d_test_raw)} %>% 
       purrr::pluck("result")
   } else {

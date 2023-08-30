@@ -150,3 +150,97 @@ prepare_ml_vars <- function(
   
 }
 
+
+#' consistent renaming of character vectors/factor levels
+#'
+#' @param x character vector
+#'
+#' @return
+#' list with the updated x, obtained from call `stringr::str_replace_all(x, replacement)`,
+#' where replacement is returned as separate same-name list entry
+#' 
+#' @export
+#'
+prepare_replace <- function(
+    x
+){
+  
+  # TODO parametrize later with checks
+  replacement = NULL
+  
+  if(is.null(replacement)){
+    # order matters!
+    replacement <- c(
+      '<= |<=' = 'less_than_',
+      '> '  = 'over_',
+      '< '  = 'under_',
+      ' - ' = '_to_',
+      '>= |>=' = 'at_least_',
+      '<'   = 'under_' ,
+      '>'   = 'over_',
+      ' years|years' = '_y',
+      '%'   = 'pct',
+      '[[:punct:]]|[[:space:]]' = '_',
+      '_+'  = '_',
+      '_$' = ''
+    )}
+  
+  tibble::lst(
+    x  = stringr::str_replace_all(x, replacement),
+    replacement
+  )
+  
+}
+
+
+#' prep feature matrix 
+#'
+#' @param feature 
+#'
+#' @return updated feature matrix
+#'
+#' @export
+#' 
+prepare_ml_feature <- function(
+  feature,
+  vars_fct_expl_na = NULL,
+  level_other = NULL
+){
+  
+  # TODO !! move to recipe
+
+  char_columns <- feature %>% dplyr::select_if(is.character) %>% names()
+  
+  # ... transform all character columns into factors (strips labels) ####
+  feature <- feature %>%
+    dplyr::mutate_at(setdiff(char_columns, '.id'), factor) %>% 
+    dplyr::mutate_if(is.factor, ~ forcats::fct_relabel(., ~ prepare_replace(.)$x)) %>% 
+    # add explicit NAs to selected factor variables (optional)
+    {if(!is.null(vars_fct_expl_na)){
+      dplyr::mutate_at(., vars_fct_expl_na, ~ fct_na_to_level(.x, level = "missing"))
+    }else{.}
+    }
+  
+  
+  # consistent handling of factors with level other ####
+  if(!is.null(level_other)){
+  # ... identify columns with `level_other` level (e.g. 'Other', case insensitive)
+  vars_with_other <- feature %>% 
+    purrr::map_lgl(~{any(stringr::str_to_lower(.) == stringr::str_to_lower(level_other))}) %>% 
+    which() %>% 
+    names()
+  
+  if(length(vars_with_other) > 0){
+    feature <- feature %>% 
+      dplyr::mutate_at(vars_with_other, ~{
+        if (stringr::str_to_title(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_title(level_other))
+        if (stringr::str_to_upper(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_upper(level_other))
+        if (stringr::str_to_lower(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_lower(level_other))
+      })
+  }
+  }
+  
+  feature
+  
+}
+
