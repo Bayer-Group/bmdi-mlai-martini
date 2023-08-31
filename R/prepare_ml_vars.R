@@ -208,12 +208,10 @@ prepare_ml_feature <- function(
 ){
   
   # TODO !! move to recipe
-
-  char_columns <- feature %>% dplyr::select_if(is.character) %>% names()
   
   # ... transform all character columns into factors (strips labels) ####
   feature <- feature %>%
-    dplyr::mutate_at(setdiff(char_columns, '.id'), factor) %>% 
+    dplyr::mutate(dplyr::across(tidyselect::where(is.character) & !.id, factor)) %>% 
     dplyr::mutate_if(is.factor, ~ forcats::fct_relabel(., ~ prepare_replace(.)$x)) %>% 
     # add explicit NAs to selected factor variables (optional)
     {if(!is.null(vars_fct_expl_na)){
