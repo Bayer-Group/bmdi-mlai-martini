@@ -4,7 +4,7 @@
 \alias{prepare_ml_feature}
 \title{prep feature matrix}
 \usage{
-prepare_ml_feature(feature, vars_fct_expl_na = NULL, level_other = NULL)
+prepare_ml_feature(feature, vars_fct_expl_na = NULL, level_other = "other")
 }
 \arguments{
 \item{feature}{}
