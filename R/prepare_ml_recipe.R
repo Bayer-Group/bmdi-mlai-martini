@@ -136,9 +136,13 @@ prepare_ml_recipe <- function(
       recipes::update_role(tidyselect::any_of(c(".id", ".rmtime")), new_role = "ID") %>% 
 
       # ... ... make clean levels ####
+      recipes::step_mutate_at(recipes::all_string_predictors(), fn = factor) %>% 
+    
       recipes::step_mutate_at(
-        recipes::all_nominal_predictors(), 
-        fn = ~ {prepare_replace(.x)$x %>% factor()}
+        recipes::all_factor_predictors(), 
+        fn = ~{prepare_replace(.x)$x}
+       # fn = ~ forcats::fct_relabel(., ~ prepare_replace(.)$x)) %>% 
+       #   ~ {prepare_replace(.x)$x}
       ) %>% 
       
       # ... ... add explicit NAs to selected factor variables (optional) ####

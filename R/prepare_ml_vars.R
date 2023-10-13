@@ -134,7 +134,7 @@ prepare_ml_vars <- function(
 #' @export
 #'
 prepare_replace <- function(
-    x
+    x = NULL
 ){
   
   # TODO parametrize later with checks
@@ -158,64 +158,15 @@ prepare_replace <- function(
     )}
   
   tibble::lst(
-    x  = stringr::str_replace_all(x, replacement),
+    x  = forcats::fct_relabel(x, ~ stringr::str_replace_all(.x, replacement)),
     replacement
   )
   
 }
 
 
-#' prep feature matrix 
-#'
-#' @param feature 
-#'
-#' @return updated feature matrix
-#'
-#' @export
-#' 
-prepare_ml_feature <- function(
-  feature,
-  vars_fct_expl_na = NULL,
-  level_other = 'other'
-){
-  
-  # TODO !! move to recipe
-  
-  # ... transform all character columns into factors (strips labels) ####
-  feature <- feature %>%
-    dplyr::mutate(dplyr::across(tidyselect::where(is.character) & !.id, factor)) %>% 
-    dplyr::mutate_if(is.factor, ~ forcats::fct_relabel(., ~ prepare_replace(.)$x)) %>% 
-    # add explicit NAs to selected factor variables (optional)
-    {if(!is.null(vars_fct_expl_na)){
-      dplyr::mutate_at(., vars_fct_expl_na, ~ fct_na_to_level(.x, level = "missing"))
-    }else{.}
-    }
-  
-  
-  # consistent handling of factors with level other ####
-  if(!is.null(level_other)){
-  # ... identify columns with `level_other` level (e.g. 'Other', case insensitive)
-  vars_with_other <- feature %>% 
-    purrr::map_lgl(~{any(stringr::str_to_lower(.) == stringr::str_to_lower(level_other))}) %>% 
-    which() %>% 
-    names()
-  
-  if(length(vars_with_other) > 0){
-    feature <- feature %>% 
-      dplyr::mutate_at(vars_with_other, ~{
-        if (stringr::str_to_title(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_title(level_other))
-        if (stringr::str_to_upper(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_upper(level_other))
-        if (stringr::str_to_lower(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_lower(level_other))
-      })
-  }
-  }
-  
-  feature
-  
-}
-
-
 # consistent handling of factors with level other ####
+# TODO docu
 
 prepare_ml_other <- function(
     x,

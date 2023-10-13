@@ -4,7 +4,7 @@
 \alias{prepare_replace}
 \title{consistent renaming of character vectors/factor levels}
 \usage{
-prepare_replace(x)
+prepare_replace(x = NULL)
 }
 \arguments{
 \item{x}{character vector}

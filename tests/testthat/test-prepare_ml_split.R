@@ -1,17 +1,16 @@
 
-# reference object
-d_ml <- prepare_ml(
-  feature = martini_feat,
-  outcome = martini_outc_class, 
-  seed    = 1314
-)
-
-# split object
-split_by   <- "RACE"
-d_ml_split <- prepare_ml_split(d_ml, by = split_by)
-
-
 test_that("prepare_ml_split creates the same structure than prepare_ml", {
+  
+  # reference object
+  d_ml <- prepare_ml(
+    feature = martini_feat,
+    outcome = martini_outc_class, 
+    seed    = 1314
+  )
+  
+  # split object
+  split_by   <- "RACE"
+  d_ml_split <- prepare_ml_split(d_ml, by = split_by)
   
   d_ml_split <- prepare_ml_split(d_ml)
   
@@ -28,6 +27,17 @@ test_that("prepare_ml_split creates the same structure than prepare_ml", {
 
 test_that("prepared data in split objects contains all variables except for the split variable", {
 
+  # reference object
+  d_ml <- prepare_ml(
+    feature = martini_feat,
+    outcome = martini_outc_class, 
+    seed    = 1314
+  )
+  
+  # split object
+  split_by   <- "RACE"
+  d_ml_split <- prepare_ml_split(d_ml, by = split_by)
+  
   # one-hot encoding (default) ####
   
   split_levs <- d_ml$data_raw$train[[split_by]] %>% levels()
@@ -85,6 +95,17 @@ test_that("prepared data in split objects contains all variables except for the 
 
 test_that("by variable removed from formulae", {
   
+  # reference object
+  d_ml <- prepare_ml(
+    feature = martini_feat,
+    outcome = martini_outc_class, 
+    seed    = 1314
+  )
+  
+  # split object
+  split_by   <- "RACE"
+  d_ml_split <- prepare_ml_split(d_ml, by = split_by)
+  
   split_levs <- d_ml$data_raw$train[[split_by]] %>% levels()
   
   split_by_regex <- c(split_by, paste0(split_by, "_", split_levs)) %>% 
@@ -103,6 +124,17 @@ test_that("by variable removed from formulae", {
 )
 
 test_that("subjects split is correct", {
+  
+  # reference object
+  d_ml <- prepare_ml(
+    feature = martini_feat,
+    outcome = martini_outc_class, 
+    seed    = 1314
+  )
+  
+  # split object
+  split_by   <- "RACE"
+  d_ml_split <- prepare_ml_split(d_ml, by = split_by)
   
   subj_split <- d_ml_split %>% 
     purrr::imap(~{
