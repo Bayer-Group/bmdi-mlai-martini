@@ -183,7 +183,7 @@ prepare_ml_feature <- function(
   # ... transform all character columns into factors (strips labels) ####
   feature <- feature %>%
     dplyr::mutate(dplyr::across(tidyselect::where(is.character) & !.id, factor)) %>% 
-    dplyr::mutate_if(is.factor, ~ forcats::fct_relabel(., ~ prepare_replace(.)$x)) %>% 
+    dplyr::mutate_if(is.factor, ~{prepare_replace(.x)$x}) %>% 
     # add explicit NAs to selected factor variables (optional)
     {if(!is.null(vars_fct_expl_na)){
       dplyr::mutate_at(., vars_fct_expl_na, ~ fct_na_to_level(.x, level = "missing"))
