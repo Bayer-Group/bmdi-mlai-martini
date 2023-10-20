@@ -1,5 +1,5 @@
 test_that("strata_trt works", {
-
+  # "strata_trt works" ####
   # TODO WS rewrite 
   
   # test stratification WITH and WITHOUT added treatment
@@ -106,8 +106,9 @@ test_that("strata_trt works", {
 })
 
 
-testthat::test_that("keep_vars_corr works", {
-
+testthat::test_that("vars_keep_corr works", {
+# vars_keep_corr works ####
+  
   set.seed(1492)
   
   n <- 20
@@ -151,87 +152,9 @@ testthat::test_that("keep_vars_corr works", {
 
 
 
-test_that("prepare_ml snapshots", {
-  withr::local_options(width = 80)
-                       
-  skip_on_ci()
-  
-  ads_path  <- test_path('sas/')
-  ads_build <- ads_path %>% 
-    adam_spec(
-      filter = c(
-        "AVISIT == 'Baseline'",
-        "ADSNAME == 'ADLB' & AVISIT == 'Visit 1'",
-        "ABLFL == 'Y'"
-      ),
-      attach_data = TRUE
-    ) %>% 
-    build(join = "adsl")
-  
-  # classification ####
-  
-  ads_ml_class <- prepare_ml(
-    feature             = ads_build,
-    outcome             = martini_outc_class,
-    outcome_name        = ".out",
-    level_order         = c("event", "no event"),
-    strata_trt          = TRUE, 
-    prep_step_dummy     = FALSE,
-    prep_step_normalize = FALSE,
-    vars_imp_ignore     = ".trt",
-    seed                = 2231
-  )
-  
-  # remove file path information in console output (will be a different tmp file path each time the test is run)
-  ads_ml_class$source <- NULL
-  
-  expect_snapshot(
-   ads_ml_class %>% purrr::modify_tree(leaf = tibble_to_JSON)
-  )
-  
-  # regression ####
-
-  ads_ml_regr <- prepare_ml(
-    feature             = ads_build,
-    outcome             = martini_outc_regr,
-    outcome_name        = ".out",
-    strata_trt          = TRUE,
-    prep_step_dummy     = FALSE,
-    prep_step_normalize = FALSE,
-    vars_imp_ignore     = ".trt",
-    seed                = 2231
-  )
-
-  # remove file path information in console output (will be a different tmp file path each time the test is run)
-  ads_ml_regr$source <- NULL
-
-  expect_snapshot(
-    ads_ml_regr %>% purrr::modify_tree(leaf = tibble_to_JSON)
-  )
-
-  # time-to-event ####
-
-  ads_ml_surv <- prepare_ml(
-    feature             = ads_build,
-    outcome             = martini_outc_surv,
-    outcome_name        = c(".time" = ".time", ".status" = ".status"),
-    strata_trt          = TRUE,
-    prep_step_dummy     = FALSE,
-    prep_step_normalize = FALSE,
-    vars_imp_ignore     = ".trt",
-    seed                = 2231
-  )
-
-  # remove file path information in console output (will be a different tmp file path each time the test is run)
-  ads_ml_surv$source <- NULL
-
-  expect_snapshot(
-    ads_ml_surv  %>% purrr::modify_tree(leaf = tibble_to_JSON)
-  )
-  
-})
 
 test_that('row removal works', {
+  # row removal works ####
   
   # create minimal data set with NA and set prep_step_knnimpute = FALSE
   # to imitate incomplete imputation
@@ -275,6 +198,7 @@ test_that('row removal works', {
 })
 
 test_that('repeated measurement implementation works', {
+  #'repeated measurement implementation works'  ####
   
   ads_build <- martini_spec %>% 
     adjust_spec(id = "adlb", filter = "") %>% 
@@ -305,37 +229,90 @@ test_that('repeated measurement implementation works', {
   
 })
 
-# set prep ml params ####
 
-if(FALSE){
+test_that("prepare_ml snapshots",{
+  # prepare_ml snapshots ####                 
   
-  outcome_name = NULL
-  level_order  = NULL
-  prep_recipe  = NULL
-  seed         = NULL
+  withr::local_options(width = 80)
   
-  prep_step_normalize = TRUE
-  prep_step_knnimpute = TRUE
-  prep_step_log       = TRUE
-  prep_step_corr      = TRUE
-  prep_step_dummy     = TRUE
-  strata_trt          = FALSE
-  one_hot = FALSE
+  skip_on_ci()
+  skip_if_not_installed("jsonlite")
   
-  thres_log           = 2
-  thres_count         = 10
-  thres_corr          = 0.8
-  thres_lump          = 0.05
-  thres_imp           = 0.8
-  thres_nzv_freq      = 95/5
-  thres_nzv_unique    = 10
   
-  vars_imp_ignore     = NULL
-  vars_fct_expl_na    = NULL
-  vars_ordinalscore   = NULL
+  ads_path  <- test_path('sas/')
+  ads_build <- ads_path %>% 
+    adam_spec(
+      filter = c(
+        "AVISIT == 'Baseline'",
+        "ADSNAME == 'ADLB' & AVISIT == 'Visit 1'",
+        "ABLFL == 'Y'"
+      ),
+      attach_data = TRUE
+    ) %>% 
+    build(join = "adsl")
   
-  one_hot             = TRUE
+  # classification ####
   
-  outlier_remove      = FALSE
-  outlier_ctrl        = list(coef = 3)
-}
+  ads_ml_class <- prepare_ml(
+    feature             = ads_build,
+    outcome             = martini_outc_class,
+    outcome_name        = ".out",
+    level_order         = c("event", "no event"),
+    strata_trt          = TRUE, 
+    prep_step_dummy     = FALSE,
+    prep_step_normalize = FALSE,
+    vars_imp_ignore     = ".trt",
+    seed                = 2231
+  )
+  
+  # remove file path information in console output (will be a different tmp file path each time the test is run)
+  ads_ml_class$source <- NULL
+  
+  expect_snapshot(
+    ads_ml_class %>% purrr::modify_tree(leaf = tibble_to_JSON)
+  )
+  
+  
+  # regression ####
+  
+  ads_ml_regr <- prepare_ml(
+    feature             = ads_build,
+    outcome             = martini_outc_regr,
+    outcome_name        = ".out",
+    strata_trt          = TRUE,
+    prep_step_dummy     = FALSE,
+    prep_step_normalize = FALSE,
+    vars_imp_ignore     = ".trt",
+    seed                = 2231
+  )
+  
+  # remove file path information in console output (will be a different tmp file path each time the test is run)
+  ads_ml_regr$source <- NULL
+  
+  expect_snapshot(
+    ads_ml_regr %>% purrr::modify_tree(leaf = tibble_to_JSON)
+  )
+  
+  # time-to-event ####
+  
+  ads_ml_surv <- prepare_ml(
+    feature             = ads_build,
+    outcome             = martini_outc_surv,
+    outcome_name        = c(".time" = ".time", ".status" = ".status"),
+    strata_trt          = TRUE,
+    prep_step_dummy     = FALSE,
+    prep_step_normalize = FALSE,
+    vars_imp_ignore     = ".trt",
+    seed                = 2231
+  )
+  
+  # remove file path information in console output (will be a different tmp file path each time the test is run)
+  ads_ml_surv$source <- NULL
+  
+  expect_snapshot(
+    ads_ml_surv  %>% purrr::modify_tree(leaf = tibble_to_JSON)
+  )
+  
+})
+
+
