@@ -7614,7 +7614,7 @@
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "WHITE",
+          "RACE": "ASIAN",
           "AGE": 51,
           "BMI_advs": 27.2,
           "BPDIA": 69,
@@ -7809,7 +7809,7 @@
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "WHITE",
+          "RACE": "ASIAN",
           "AGE": 58,
           "BMI_advs": 38,
           "BPDIA": 68,
@@ -9539,6 +9539,20 @@
       character(0)
       
       
+      
+      $high_corr
+      [
+        {
+          "x": "BMI_adsl",
+          "y": "BMI_advs",
+          "r": 1
+        },
+        {
+          "x": "BMI_advs",
+          "y": "BMI_adsl",
+          "r": 1
+        }
+      ] 
       
       $input
       $input$martini
@@ -19172,6 +19186,20 @@
       character(0)
       
       
+      
+      $high_corr
+      [
+        {
+          "x": "BMI_adsl",
+          "y": "BMI_advs",
+          "r": 1
+        },
+        {
+          "x": "BMI_advs",
+          "y": "BMI_adsl",
+          "r": 1
+        }
+      ] 
       
       $input
       $input$martini
@@ -29383,6 +29411,20 @@
       character(0)
       
       
+      
+      $high_corr
+      [
+        {
+          "x": "BMI_adsl",
+          "y": "BMI_advs",
+          "r": 1
+        },
+        {
+          "x": "BMI_advs",
+          "y": "BMI_adsl",
+          "r": 1
+        }
+      ] 
       
       $input
       $input$martini

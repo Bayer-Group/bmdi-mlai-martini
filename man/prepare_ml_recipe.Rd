@@ -45,6 +45,7 @@ a named list with entries containing
 \item info on steps included in the recipe
 \item a list of relevant variables
 \item a list of thresholds used
+\item \code{high_corr} a tibble listing correlations above \code{thres_corr}. \code{NULL} if \code{step_list$prep_step_corr = FALSE}.
 }
 }
 \description{

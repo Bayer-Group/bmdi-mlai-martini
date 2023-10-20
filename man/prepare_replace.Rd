@@ -4,11 +4,7 @@
 \alias{prepare_replace}
 \title{consistent renaming of character vectors/factor levels}
 \usage{
-<<<<<<< HEAD
-prepare_replace(x)
-=======
 prepare_replace(x = NULL)
->>>>>>> 718adf69a48e691e9ad94351f18dbf17115686bf
 }
 \arguments{
 \item{x}{character vector}

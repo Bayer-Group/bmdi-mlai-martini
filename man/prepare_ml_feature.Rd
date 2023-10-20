@@ -4,21 +4,22 @@
 \alias{prepare_ml_feature}
 \title{prep feature matrix}
 \usage{
-<<<<<<< HEAD
-prepare_ml_feature(feature, vars_fct_expl_na = NULL, level_other = NULL)
-}
-\arguments{
-\item{feature}{}
-=======
 prepare_ml_feature(feature, vars_fct_expl_na = NULL, level_other = "other")
 }
 \arguments{
 \item{feature}{feature tibble}
->>>>>>> 718adf69a48e691e9ad94351f18dbf17115686bf
+
+\item{vars_fct_expl_na}{defaults to NULL}
+
+\item{level_other}{defaults to 'other'}
 }
 \value{
 updated feature matrix
 }
 \description{
 prep feature matrix
+}
+\details{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+Deprecated since update in \code{prepare_ml()} as of martini 0.6.0
 }

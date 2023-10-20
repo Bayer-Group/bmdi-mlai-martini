@@ -19,5 +19,6 @@ utils::globalVariables(c(
   "guess", "var",
   "new_name", "old_name", "n",
   "txt", "data_id", 
-  "file_ext_fct"
+  "file_ext_fct",
+  'r', 'role', 'variable', 'x', 'y'
 ))
