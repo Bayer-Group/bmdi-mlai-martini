@@ -167,17 +167,22 @@ prepare_replace <- function(
 #' prep feature matrix 
 #'
 #' @param feature feature tibble
+#' @param vars_fct_expl_na defaults to NULL
+#' @param level_other defaults to 'other'
 #'
+#' @details 
+#' `r lifecycle::badge('deprecated')`
+#' Deprecated since update in \code{prepare_ml()} as of martini 0.6.0
+#' 
 #' @return updated feature matrix
 #'
-#' @export
 #' 
 prepare_ml_feature <- function(
     feature,
     vars_fct_expl_na = NULL,
     level_other = 'other'
 ){
-  
+
   # TODO !! remove. not needed in prepare_ml() anymore, but still used within a project as standalone function
   
   # ... transform all character columns into factors (strips labels) ####
