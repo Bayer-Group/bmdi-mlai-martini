@@ -152,6 +152,7 @@
 #' giving bare \code{value} slots, as well as a verbose description in \code{text}.
 #' \code{removed} gives a list of removed \code{rows} and \code{columns} along with the information
 #'  on why/in which recipe step the data was removed.
+#' \code{high_corr} a tibble listing correlations above \code{thres_corr}. \code{NULL} if \code{prep_step_corr = FALSE}.
 #' \code{input} a list giving the {{martini}} \code{packageVersion} and a 
 #' list of (most) input parameters, including the seed used 
 #' 
@@ -406,10 +407,11 @@ prepare_ml <- function(
     
   )
 
-  rcp_prep <- rcp_output$rcp_prep
-  vars     <- rcp_output$vars
-  steps    <- rcp_output$steps
-  thres    <- rcp_output$thres
+  rcp_prep  <- rcp_output$rcp_prep
+  vars      <- rcp_output$vars
+  steps     <- rcp_output$steps
+  thres     <- rcp_output$thres
+  high_corr <- rcp_output$high_corr
   
   # training data
   d_train <- rcp_prep %>% recipes::juice()
@@ -633,6 +635,8 @@ prepare_ml <- function(
       rows = removed_rows,
       cols = removed_columns
     ),
+    
+    high_corr = high_corr,
     
     input = list(
       martini = utils::packageVersion('martini'), 

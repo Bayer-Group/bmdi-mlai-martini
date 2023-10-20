@@ -24,6 +24,7 @@ Depends:
 Imports:
     assertive.types,
     cli,
+    corrr,
     crayon,
     dplyr (>= 1.0.0),
     forcats,
@@ -47,6 +48,7 @@ Imports:
     utils
 Suggests:
     here,
+    jsonlite,
     knitr,
     lifecycle,
     MASS,

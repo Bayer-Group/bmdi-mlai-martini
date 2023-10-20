@@ -15,10 +15,13 @@
 #'
 #' @return
 #' a named list with entries containing
+#' 
 #' * the prepared recipe
 #' * info on steps included in the recipe
 #' * a list of relevant variables
 #' * a list of thresholds used
+#' * \code{high_corr} a tibble listing correlations above \code{thres_corr}. \code{NULL} if \code{step_list$prep_step_corr = FALSE}.
+
 #' 
 #' @seealso \code{\link{prepare_ml}()}
 #' 
@@ -165,7 +168,7 @@ prepare_ml_recipe <- function(
       }else{.}} %>% 
       
       # ... ... omit observations with missing endpoint ####
-      recipes::step_naomit(recipes::all_outcomes()) %>% 
+      recipes::step_naomit(recipes::all_outcomes(), skip = FALSE) %>% 
       
       # ... ... imputation ####
       {if(step_used$prep_step_knnimpute){
@@ -176,7 +179,7 @@ prepare_ml_recipe <- function(
       }else{.}} %>% 
       
       # ... ... omit observations with missing data in variables ####
-      recipes::step_naomit(recipes::all_predictors()) %>% 
+      recipes::step_naomit(recipes::all_predictors(), skip = FALSE) %>% 
       
       # ... ... (near) zero variance ####
       recipes::step_zv(recipes::all_predictors()) %>% 
@@ -237,12 +240,13 @@ prepare_ml_recipe <- function(
     rcp <- prep_recipe
   }
   
-  # ... prep recipe ####
   
-  # modify recipe if corr step is applied and given var set should be kept
-  if(step_used$prep_step_corr &&
-     !is.null(vars_keep_corr)
-  ){
+  corr_tibble <- NULL
+  
+  # modify recipe to omit corr step,  is applied and given var set should be kept
+  if(step_used$prep_step_corr){
+    
+    # determine correlation structure to identify correlated groups ####
     
     # TODO throws error if vars_keep_corr is not present in data set
     
@@ -257,10 +261,16 @@ prepare_ml_recipe <- function(
     rcp_nocorr$steps[[number_corr]]$skip <- TRUE
     
     rcp_prep_nocorr <- rcp_nocorr %>% 
+      # NOTE suppress warnings from gower_topn(), used in recipes::step_impute_knn
+      # this function skips constant columns (desired behavior) and throws a warning (not desired in our case)
+      # TODO suppress only the warning mentioned above ("skipping variable with zero..."),
+      # but show other warnings
+      # (used multiple times in the package)
       {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE, training = data)} %>% 
       purrr::pluck("result")
     
-    # identify naomit step from recipe and set skip to FALSE
+    # identify naomit step from recipe and make sure that skip = FALSE
+    # (always set to TRUE, when the recipe is prepped)
     number_naomit <- rcp_prep_nocorr %>% 
       recipes::tidy() %>% 
       dplyr::filter(type == 'naomit') %>% 
@@ -273,52 +283,61 @@ prepare_ml_recipe <- function(
     })
     
     d_train_nocorr <- rcp_prep_nocorr %>%
-      recipes::bake(new_data = data)
+      {purrr::quietly(recipes::bake)(., new_data = data)} %>% 
+      purrr::pluck('result')
     
-    # for all variables that need to be kept, identify highly correlated variables from d_train_nocorr
-    vars_rm_corr <- vars_keep_corr %>% 
-      rlang::set_names() %>% 
-      purrr::map(~{
-        
-        d_ref <- d_train_nocorr %>% 
-          dplyr::select(tidyselect::all_of(.x))
-        
-        d_check <- d_train_nocorr %>% 
-          dplyr::select_if(is.numeric) %>% 
-          dplyr::select(-tidyselect::any_of(c(.x, ".id")))
-        
-        cor(d_check, d_ref, method = corr_method, use = corr_use) %>% 
-          as.data.frame() %>% 
-          tibble::rownames_to_column() %>% 
-          dplyr::filter(abs(!!rlang::sym(.x)) > thres_used$thres_corr) %>% 
-          dplyr::pull(rowname)
-      }) %>% 
-      unlist() %>% 
-      as.character()
+    # for all (numeric) variables identify highly correlated variables from d_train_nocorr
+    corr_tibble <- corrr::correlate(
+      d_train_nocorr %>% 
+        dplyr::select(tidyselect::any_of(
+          rcp_prep_nocorr$var_info %>% 
+            dplyr::filter(role == "predictor") %>% 
+            dplyr::pull(variable)
+        )) %>% 
+        dplyr::select_if(is.numeric),
+      method = corr_method, 
+      use    = corr_use,
+      quiet  = TRUE
+    ) %>% 
+      # corrr::shave() %>% repeats, but convenient for filtering
+      corrr::stretch(na.rm = TRUE) %>%  
+      dplyr::filter(r > thres_used$thres_corr)
+   
     
-    # modify removal step in original recipe to add vars_rm_corr
-    number_rm <- rcp %>% recipes::tidy() %>% dplyr::filter(type == 'rm') %>% dplyr::pull(number)
-    env_rm    <- rcp$steps[[number_rm]]$terms[[1]] %>% attr(which = '.Environment') 
-    
-    assign('vars_rm_corr', vars_rm_corr, envir = env_rm) 
+    if(!is.null(vars_keep_corr)){
+      
+      vars_rm_corr <- corr_tibble %>%  
+        dplyr::filter(x %in% vars_keep_corr) %>% 
+        dplyr::pull(y) %>% 
+        unique()
+      
+      # modify removal step in original recipe to add vars_rm_corr
+      number_rm <- rcp %>% recipes::tidy() %>% dplyr::filter(type == 'rm') %>% dplyr::pull(number)
+      env_rm    <- rcp$steps[[number_rm]]$terms[[1]] %>% attr(which = '.Environment') 
+      
+      assign('vars_rm_corr', vars_rm_corr, envir = env_rm) 
+      
+    }
     
   }
   
-  # prep recipe
+  # ... prep recipe ####
+  # must be prepped at the very end, since corr step modifies removal step
   rcp_prep <- rcp %>% 
     {purrr::quietly(recipes::prep)(., 
-      strings_as_factors = FALSE,
-      training           = data
-     #, log_changes        = TRUE,
-     #  fresh              = TRUE
-     # retain
+                                   strings_as_factors = FALSE,
+                                   training           = data
+                                   #, log_changes        = TRUE,
+                                   #  fresh              = TRUE
+                                   # retain
     )} %>% 
     purrr::pluck("result")
   # TODO 
   # check new parameters 'retain' and 'log_changes' in 'prep()'
-  
+   
 
-  # identify naomit step from recipe
+  # identify naomit step from recipe and make sure that skip = FALSE
+  # (see ?recipes::step_naomit)
   number_naomit <- rcp_prep %>% 
     recipes::tidy() %>% 
     dplyr::filter(type == 'naomit') %>% 
@@ -341,6 +360,7 @@ prepare_ml_recipe <- function(
       vars_nolump,
       vars_ordinalscore
     ),
+    high_corr = corr_tibble,
     steps = step_used,
     thres = thres_used
   )
