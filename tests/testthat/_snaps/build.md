@@ -29,7 +29,7 @@
             "row.names": {
               "type": "integer",
               "attributes": {},
-              "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+              "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
             },
             "class": {
               "type": "character",
@@ -41,37 +41,37 @@
             {
               "type": "character",
               "attributes": {},
-              "value": [".trt", "AGE", "AGEGR01", "SEX", "RACE", "BMI_adsl", "LAB1", "LAB2", "LAB3", "BMI_advs", "BPDIA", "BPSYS", "HR", "WEIGHT", "cardiac_arrhythmias", "coronary_artery_disorders"]
+              "value": [".id", ".trt", "AGE", "AGEGR01", "SEX", "RACE", "BMI_adsl", "LAB1", "LAB2", "LAB3", "BMI_advs", "BPDIA", "BPSYS", "HR", "WEIGHT", "cardiac_arrhythmias", "coronary_artery_disorders"]
             },
             {
               "type": "character",
               "attributes": {},
-              "value": ["Actual Treatment for Period 01", "Age", "Age Group 01", "Sex", "Race", "Body Mass Index (kg/m2) at baseline (adsl)", "Laboratory 1", "Laboratory 2", "Laboratory 3", "Body Mass Index (advs)", "Diastolic Blood Pressure", "Systolic Blood Pressure", "Heart Rate", "Weight", "Cardiac arrhythmias", "Coronary artery disorders"]
+              "value": ["Subject Identifier for the Study", "Actual Treatment for Period 01", "Age", "Age Group 01", "Sex", "Race", "Body Mass Index (kg/m2) at baseline (adsl)", "Laboratory 1", "Laboratory 2", "Laboratory 3", "Body Mass Index (advs)", "Diastolic Blood Pressure", "Systolic Blood Pressure", "Heart Rate", "Weight", "Cardiac arrhythmias", "Coronary artery disorders"]
             },
             {
               "type": "character",
               "attributes": {},
-              "value": ["SL", "SL", "SL", "SL", "SL", "SL", "LB", "LB", "LB", "VS", "VS", "VS", "VS", "VS", "MH", "MH"]
+              "value": ["SL", "SL", "SL", "SL", "SL", "SL", "SL", "LB", "LB", "LB", "VS", "VS", "VS", "VS", "VS", "MH", "MH"]
             },
             {
               "type": "character",
               "attributes": {},
-              "value": ["adsl", "adsl", "adsl", "adsl", "adsl", "adsl", "bds", "bds", "bds", "bds", "bds", "bds", "bds", "bds", "occds", "occds"]
+              "value": ["adsl", "adsl", "adsl", "adsl", "adsl", "adsl", "adsl", "bds", "bds", "bds", "bds", "bds", "bds", "bds", "bds", "occds", "occds"]
             },
             {
               "type": "character",
               "attributes": {},
-              "value": [".trt", "AGE", "AGEGR01", "SEX", "RACE", "BMI_adsl", "LAB1", "LAB2", "LAB3", "BMI_advs", "BPDIA", "BPSYS", "HR", "WEIGHT", "cardiac_arrhythmias", "coronary_artery_disorders"]
+              "value": [".id", ".trt", "AGE", "AGEGR01", "SEX", "RACE", "BMI_adsl", "LAB1", "LAB2", "LAB3", "BMI_advs", "BPDIA", "BPSYS", "HR", "WEIGHT", "cardiac_arrhythmias", "coronary_artery_disorders"]
             },
             {
               "type": "character",
               "attributes": {},
-              "value": ["adsl", "adsl", "adsl", "adsl", "adsl", "adsl", "adlb", "adlb", "adlb", "advs", "advs", "advs", "advs", "advs", "admh", "admh"]
+              "value": ["adsl", "adsl", "adsl", "adsl", "adsl", "adsl", "adsl", "adlb", "adlb", "adlb", "advs", "advs", "advs", "advs", "advs", "admh", "admh"]
             },
             {
               "type": "character",
               "attributes": {},
-              "value": [null, null, null, null, null, null, "unit1", "unit2", "unit3", "kg/m2", "mmHg", "mmHg", "beats/min", "kg", null, null]
+              "value": [null, null, null, null, null, null, null, "unit1", "unit2", "unit3", "kg/m2", "mmHg", "mmHg", "beats/min", "kg", null, null]
             }
           ]
         }

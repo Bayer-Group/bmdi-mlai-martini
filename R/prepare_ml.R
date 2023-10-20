@@ -318,12 +318,6 @@ prepare_ml <- function(
   }
   
   level_other <- 'other'
-  feature <- prepare_ml_feature(
-    feature, 
-    vars_fct_expl_na = vars_fct_expl_na,
-    level_other      = level_other
-  )
-  
   
   # MERGE OUTCOME AND FEATURE  ####
   

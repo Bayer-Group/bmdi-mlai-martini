@@ -75,8 +75,8 @@ list_and_export <- function(
   if(show_list){
     
     d_ml$dict %>% 
-      filter(column %in% colnames(d_ml$data_prep$train)) %>% 
-      mutate(source = factor(source)) %>% 
+      dplyr::filter(column %in% colnames(d_ml$data_prep$train)) %>% 
+      dplyr::mutate(source = factor(source)) %>% 
       DT::datatable(
         rownames = FALSE,
         filter = "top",

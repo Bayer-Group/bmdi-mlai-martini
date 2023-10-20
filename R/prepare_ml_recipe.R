@@ -41,7 +41,7 @@ prepare_ml_recipe <- function(
   vars_ordinalscore   = NULL,
   vars_keep_corr      = NULL,
   
-  level_other, # 'other'
+  level_other,
   one_hot,
   log_base
   
@@ -100,21 +100,15 @@ prepare_ml_recipe <- function(
     data        = data,
     thres_count = thres_used$thres_count,
     thres_log   = thres_used$thres_log,
-    thres_lump  = thres_used$thres_lump,
-    thres_imp   = thres_used$thres_imp
+    thres_lump  = thres_used$thres_lump
   )
-  
   
   vars_count   <- vars$count   
   vars_log     <- vars$log   
-  vars_nolump  <- vars$nolump 
-  vars_exclude <- vars$exclude  
+  vars_nolump  <- vars$nolump
   
-  # var %in% 'vars_imp_ignore' : rows with missing values are dropped
-  # else if thres_imp is not met vars are dropped
-  vars_imp     <- vars$imp %>% setdiff(vars_imp_ignore) 
-  
-  
+  # placeholder for recipe, will be filled later
+  vars_rm_corr <- NULL
   
   # RECIPE ####
   
@@ -125,8 +119,7 @@ prepare_ml_recipe <- function(
     if(".out" %in% names(data)){
       the_formula <- as.formula(".out ~ .")
     }else{
-      #the_formula <- as.formula("Surv(time = .time, event = .status, type = 'right') ~ .")
-      the_formula <-  as.formula('.time + .status ~ .') # best guess...
+      the_formula <- as.formula('.time + .status ~ .') # best guess...
     }  
     
     # ... write recipe ####
@@ -134,34 +127,61 @@ prepare_ml_recipe <- function(
     # e.g. exclude variable before imputation, nzv and log before normalize 
     
     # TODO rewrite recipe using new step fcts:
-    # recipes::step_filter_missing() remove variables that have too many missing values.
     # recipes::step_impute_bag()
     # recipes::step_lincomb()
-    # recipes::step_zv()
-    # recipe() %>% check_range(x, warn = TRUE)
+    # recipes::check_range() (did not work on the first try, can not handle NA?)
     
     rcp <- recipes::recipe(the_formula, data = data) %>% 
       
-      recipes::step_rm(tidyselect::any_of(vars_exclude)) %>% 
       recipes::update_role(tidyselect::any_of(c(".id", ".rmtime")), new_role = "ID") %>% 
+
+      # ... ... make clean levels ####
+      recipes::step_mutate_at(recipes::all_string_predictors(), fn = factor) %>% 
+    
+      recipes::step_mutate_at(
+        recipes::all_factor_predictors(), 
+        fn = ~{prepare_replace(.x)$x}
+       # fn = ~ forcats::fct_relabel(., ~ prepare_replace(.)$x)) %>% 
+       #   ~ {prepare_replace(.x)$x}
+      ) %>% 
+      
+      # ... ... add explicit NAs to selected factor variables (optional) ####
+      {if(!is.null(vars_fct_expl_na)){
+        recipes::step_mutate_at(., vars_fct_expl_na, ~ fct_na_to_level(.x, level = "missing"))
+      }else{.}} %>% 
+      
+      # ... ... consistent handling of factors with level other ####
+      recipes::step_mutate_at(
+        recipes::all_factor_predictors(), 
+        fn = ~ {prepare_ml_other(.x)}
+      ) %>% 
+      
+      # ... ... remove variables that are correlated to 'vars_keep_corr' ####
+      recipes::step_rm(tidyselect::any_of(vars_rm_corr)) %>% 
+    
+      # ... ... exclude variables with too many missings ####
+      {if(thres_used$thres_imp>0){
+        recipes::step_filter_missing(., recipes::all_predictors(), threshold = 1-thres_used$thres_imp)
+      }else{.}} %>% 
       
       # ... ... omit observations with missing endpoint ####
       recipes::step_naomit(recipes::all_outcomes()) %>% 
       
       # ... ... imputation ####
       {if(step_used$prep_step_knnimpute){
-        recipes::step_impute_knn(., tidyselect::any_of(vars_imp), -recipes::all_outcomes(), -recipes::has_role("ID")) }else{.}
-      } %>% 
+        recipes::step_impute_knn(., recipes::all_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
+          # simple imputation for values that could not be imputed by knn
+          recipes::step_impute_median(recipes::all_numeric_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
+          recipes::step_impute_mode(recipes::all_nominal_predictors(), -tidyselect::any_of(vars_imp_ignore))
+      }else{.}} %>% 
       
-      # ... ... avoid omitting ###
-      recipes::step_impute_median(recipes::all_numeric(), -recipes::all_outcomes(), -recipes::has_role("ID")) %>% 
-      recipes::step_impute_mode(  recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID")) %>% 
-      
-      # ... ... omit observations with missing data in variables ignored in imputation ####
+      # ... ... omit observations with missing data in variables ####
       recipes::step_naomit(recipes::all_predictors()) %>% 
       
-      # ... ... near zero variance ####
-      recipes::step_nzv(recipes::all_predictors(),
+      # ... ... (near) zero variance ####
+      recipes::step_zv(recipes::all_predictors()) %>% 
+      recipes::step_nzv(
+        recipes::all_predictors(),
         freq_cut   = thres_used$thres_nzv_freq, 
         unique_cut = thres_used$thres_nzv_unique
       ) %>% 
@@ -169,56 +189,55 @@ prepare_ml_recipe <- function(
       # ... ... log transformation ####
       {if(step_used$prep_step_log && length(vars_log)>0){
         recipes::step_log(., tidyselect::any_of(vars_log), base = log_base) 
-      }else{.}
-      }  %>%
+      }else{.}} %>%
       
       # ... ... normalization ####
       {if(step_used$prep_step_normalize){
-      recipes::step_normalize(., 
-                              recipes::all_numeric(), -recipes::all_outcomes(), -recipes::has_role("ID"),
-                              # exclude vars identified as counts (previously excluded from logtrafo as well)
-                              -tidyselect::any_of(vars_count),
-      )
-    }else{.}
-    }  %>% 
-      
+        recipes::step_normalize(
+          ., 
+          recipes::all_numeric(), -recipes::all_outcomes(), -recipes::has_role("ID"),
+          # exclude vars identified as counts (previously excluded from logtrafo as well)
+          -tidyselect::any_of(vars_count),
+        )
+      }else{.}} %>% 
+        
       # ... ... remove highly correlated variables ####
-    {if(step_used$prep_step_corr){
-      recipes::step_corr(., recipes::all_numeric(), -recipes::all_outcomes(), 
-                         threshold = thres_used$thres_corr, method = corr_method,
-                         use = corr_use)
-    }else{.}
-    } %>%  
-      
+      {if(step_used$prep_step_corr){
+        recipes::step_corr(
+          ., 
+          recipes::all_numeric(), -recipes::all_outcomes(), 
+          threshold = thres_used$thres_corr, method = corr_method,
+          use = corr_use
+        )
+      }else{.}} %>%  
+        
       # ... ... lump factors ####
-    recipes::step_other(
-      ., 
-      recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"),
-      -tidyselect::any_of(vars_nolump),
-      threshold = thres_used$thres_lump, other = level_other) %>%  
-      
+      recipes::step_other(
+        ., 
+        recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID"), -tidyselect::any_of(vars_nolump),
+        threshold = thres_used$thres_lump, other = level_other
+      ) %>%  
+        
       # ... ... factor handling ####
-    {if(! is.null(vars_ordinalscore)){
-      recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )
-    }else{.}
-    } %>%  
-      
+      {if(! is.null(vars_ordinalscore)){
+        recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )
+      }else{.}} %>%  
+        
       #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
       # ... ... dummy coding ####
-    {if(step_used$prep_step_dummy){
-      recipes::step_dummy(.,  recipes::all_nominal(), - recipes::all_outcomes(), - recipes::has_role("ID")  , 
-                          one_hot = one_hot) 
-    }else{.} 
-    }
-    
+      {if(step_used$prep_step_dummy){
+        recipes::step_dummy(
+          .,  
+          recipes::all_nominal(), - recipes::all_outcomes(), - recipes::has_role("ID")  , 
+          one_hot = one_hot
+        ) 
+      }else{.}} 
     
   } else {
     rcp <- prep_recipe
   }
   
   # ... prep recipe ####
-  
-  vars_exclude_corr <- NULL
   
   # modify recipe if corr step is applied and given var set should be kept
   if(step_used$prep_step_corr &&
@@ -257,7 +276,7 @@ prepare_ml_recipe <- function(
       recipes::bake(new_data = data)
     
     # for all variables that need to be kept, identify highly correlated variables from d_train_nocorr
-    vars_exclude_corr <- vars_keep_corr %>% 
+    vars_rm_corr <- vars_keep_corr %>% 
       rlang::set_names() %>% 
       purrr::map(~{
         
@@ -273,17 +292,15 @@ prepare_ml_recipe <- function(
           tibble::rownames_to_column() %>% 
           dplyr::filter(abs(!!rlang::sym(.x)) > thres_used$thres_corr) %>% 
           dplyr::pull(rowname)
-      })
+      }) %>% 
+      unlist() %>% 
+      as.character()
     
-    # modify removal step in original recipe to add vars_exclude_corr
+    # modify removal step in original recipe to add vars_rm_corr
     number_rm <- rcp %>% recipes::tidy() %>% dplyr::filter(type == 'rm') %>% dplyr::pull(number)
     env_rm    <- rcp$steps[[number_rm]]$terms[[1]] %>% attr(which = '.Environment') 
     
-    assign(
-      'vars_exclude', 
-      c(vars_exclude, vars_exclude_corr %>% unlist() %>% as.character()),
-      envir = env_rm
-    ) 
+    assign('vars_rm_corr', vars_rm_corr, envir = env_rm) 
     
   }
   
@@ -317,7 +334,6 @@ prepare_ml_recipe <- function(
     rcp_prep,
     vars = tibble::lst(
       vars_count,
-      vars_exclude,
       vars_fct_expl_na,
       vars_imp_ignore,
       vars_keep_corr,

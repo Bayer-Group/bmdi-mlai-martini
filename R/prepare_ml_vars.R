@@ -7,7 +7,6 @@
 #' @param thres_count used to detect integer columns with up to \code{thres_count} distinct values (might be excluded from further processing, e.g. log & normalization) 
 #' @param thres_log threshold for log transformation
 #' @param thres_lump proportion threshold for factor lumping; used to detect factors with exactly one level having a relative frequency below \code{thres_lump}
-#' @param thres_imp proportion threshold used to detect variables with non-missing proportion up to \code{thres_imp}
 #' @param remove columns to be excluded from all identified sets; defaults to c(".id", ".out", ".status", ".time")
 #'
 #' @return 
@@ -18,8 +17,6 @@
 #' \item{count}{assumed to be counts}
 #' \item{log}{to be log transformed as the skewness exceeds \code{thres_log}}
 #' \item{nolump}{to be excluded from lumping}
-#' \item{imp}{to be imputed}
-#' \item{exclude}{to be excluded from the data as the proportion of missing values exceeds \code{thres_imp}}
 #'
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
@@ -31,7 +28,6 @@ prepare_ml_vars <- function(
   thres_count      = NULL,
   thres_log        = NULL, 
   thres_lump       = NULL,
-  thres_imp        = NULL,
   remove           = c(".id", ".out", ".status", ".time")
 
 ){
@@ -68,7 +64,6 @@ prepare_ml_vars <- function(
     }
     if (length(vars_count) == 0) vars_count <- NULL
   }
-
   
   # vars_log: identify skewed parameters -> logtrafo later in recipe  ####
   if (is.null(thres_log)){
@@ -110,8 +105,6 @@ prepare_ml_vars <- function(
       if (length(vars_nolump) == 0) vars_nolump <- NULL
     }
   }
-
-  
   
   # imputation/exclusion based on proportion available ####
   # ... prop_available: calculate proportion of missing values per column ####
@@ -119,32 +112,11 @@ prepare_ml_vars <- function(
     purrr::map_dbl(~ mean(!is.na(.))) %>% 
     tibble::enframe()
   
-  # ... vars_imp:     missing values will be knn imputed ####
-  # ... vars_exclude: variables with a large number of missing values are excluded ####
-  if (is.null(thres_imp)){
-    vars_imp     <- NA
-    vars_exclude <- NA
-  } else {
-    vars_imp <- prop_available %>% 
-      dplyr::filter(value >= thres_imp & value < 1) %>% 
-      dplyr::pull(name) %>% 
-      setdiff(remove)
-    vars_exclude <- prop_available %>% 
-      dplyr::filter(value < thres_imp) %>% 
-      dplyr::pull(name) %>% 
-      setdiff(remove)
-    if (length(vars_imp    ) == 0) vars_imp     <- NULL
-    if (length(vars_exclude) == 0) vars_exclude <- NULL
-  }
-
-
   # output ####
   list(
     count    = vars_count,
     log      = vars_log,
-    nolump   = vars_nolump,
-    imp      = vars_imp,
-    exclude  = vars_exclude
+    nolump   = vars_nolump
   )
   
   
@@ -162,7 +134,7 @@ prepare_ml_vars <- function(
 #' @export
 #'
 prepare_replace <- function(
-    x
+    x = NULL
 ){
   
   # TODO parametrize later with checks
@@ -186,35 +158,32 @@ prepare_replace <- function(
     )}
   
   tibble::lst(
-    x  = stringr::str_replace_all(x, replacement),
+    x  = forcats::fct_relabel(x, ~ stringr::str_replace_all(.x, replacement)),
     replacement
   )
   
 }
 
-
 #' prep feature matrix 
 #'
-#' @param feature 
+#' @param feature feature tibble
 #'
 #' @return updated feature matrix
 #'
 #' @export
 #' 
 prepare_ml_feature <- function(
-  feature,
-  vars_fct_expl_na = NULL,
-  level_other = NULL
+    feature,
+    vars_fct_expl_na = NULL,
+    level_other = 'other'
 ){
   
-  # TODO !! move to recipe
-
-  char_columns <- feature %>% dplyr::select_if(is.character) %>% names()
+  # TODO !! remove. not needed in prepare_ml() anymore, but still used within a project as standalone function
   
   # ... transform all character columns into factors (strips labels) ####
   feature <- feature %>%
-    dplyr::mutate_at(setdiff(char_columns, '.id'), factor) %>% 
-    dplyr::mutate_if(is.factor, ~ forcats::fct_relabel(., ~ prepare_replace(.)$x)) %>% 
+    dplyr::mutate(dplyr::across(tidyselect::where(is.character) & !.id, factor)) %>% 
+    dplyr::mutate_if(is.factor, ~{prepare_replace(.x)$x}) %>% 
     # add explicit NAs to selected factor variables (optional)
     {if(!is.null(vars_fct_expl_na)){
       dplyr::mutate_at(., vars_fct_expl_na, ~ fct_na_to_level(.x, level = "missing"))
@@ -224,23 +193,77 @@ prepare_ml_feature <- function(
   
   # consistent handling of factors with level other ####
   if(!is.null(level_other)){
-  # ... identify columns with `level_other` level (e.g. 'Other', case insensitive)
-  vars_with_other <- feature %>% 
-    purrr::map_lgl(~{any(stringr::str_to_lower(.) == stringr::str_to_lower(level_other))}) %>% 
-    which() %>% 
-    names()
-  
-  if(length(vars_with_other) > 0){
-    feature <- feature %>% 
-      dplyr::mutate_at(vars_with_other, ~{
-        if (stringr::str_to_title(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_title(level_other))
-        if (stringr::str_to_upper(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_upper(level_other))
-        if (stringr::str_to_lower(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_lower(level_other))
-      })
-  }
+    # ... identify columns with `level_other` level (e.g. 'Other', case insensitive)
+    vars_with_other <- feature %>% 
+      purrr::map_lgl(~{any(stringr::str_to_lower(.) == stringr::str_to_lower(level_other))}) %>% 
+      which() %>% 
+      names()
+    
+    if(length(vars_with_other) > 0){
+      feature <- feature %>% 
+        dplyr::mutate_at(vars_with_other, ~{
+          if (stringr::str_to_title(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_title(level_other))
+          if (stringr::str_to_upper(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_upper(level_other))
+          if (stringr::str_to_lower(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_lower(level_other))
+        })
+    }
   }
   
   feature
   
 }
+
+
+# consistent handling of factors with level other ####
+# TODO docu
+
+prepare_ml_other <- function(
+    x,
+    level_other = 'other'
+    
+){
+  
+  if(! is.factor(x) ){
+    return(x)
+  } else{
+  
+    if(!is.null(level_other)){
+      
+      levs <- levels(x)
+      
+      # ... identify columns with `level_other` level (e.g. 'Other', case insensitive)
+      has_other <- stringr::str_to_lower(level_other) %in% stringr::str_to_lower(levs)
+      
+      other_rename <- c(
+        stringr::str_to_title(level_other),
+        stringr::str_to_upper(level_other),
+        stringr::str_to_lower(level_other)
+      ) %>%  
+        intersect(levs) %>% 
+        rlang::set_names(level_other)
+      
+      x <- forcats::fct_recode(x, !!! other_rename)
+      
+    }
+    
+    x
+  # if(!is.null(level_other)){
+  #   # ... identify columns with `level_other` level (e.g. 'Other', case insensitive)
+  #   vars_with_other <- feature %>% 
+  #     purrr::map_lgl(~{any(stringr::str_to_lower(.) == stringr::str_to_lower(level_other))}) %>% 
+  #     which() %>% 
+  #     names()
+  #   
+  #   if(length(vars_with_other) > 0){
+  #     feature <- feature %>% 
+  #       dplyr::mutate_at(vars_with_other, ~{
+  #         if (stringr::str_to_title(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_title(level_other))
+  #         if (stringr::str_to_upper(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_upper(level_other))
+  #         if (stringr::str_to_lower(level_other) %in% levels(.x)) forcats::fct_recode(.x, !!sym(level_other) := stringr::str_to_lower(level_other))
+  #       })
+  #   }
+  # }
+  } 
+}
+
 

@@ -152,7 +152,8 @@ testthat::test_that("keep_vars_corr works", {
 
 
 test_that("prepare_ml snapshots", {
-  
+  withr::local_options(width = 80)
+                       
   skip_on_ci()
   
   ads_path  <- test_path('sas/')
@@ -184,9 +185,8 @@ test_that("prepare_ml snapshots", {
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_class$source <- NULL
   
-  
   expect_snapshot(
-    ads_ml_class %>% capture_output_lines(print = TRUE)
+   ads_ml_class %>% purrr::modify_tree(leaf = tibble_to_JSON)
   )
   
   # regression ####
@@ -206,7 +206,7 @@ test_that("prepare_ml snapshots", {
   ads_ml_regr$source <- NULL
 
   expect_snapshot(
-    ads_ml_regr %>% capture_output_lines(print = TRUE)
+    ads_ml_regr %>% purrr::modify_tree(leaf = tibble_to_JSON)
   )
 
   # time-to-event ####
@@ -226,7 +226,7 @@ test_that("prepare_ml snapshots", {
   ads_ml_surv$source <- NULL
 
   expect_snapshot(
-    ads_ml_surv  %>% capture_output_lines(print = TRUE)
+    ads_ml_surv  %>% purrr::modify_tree(leaf = tibble_to_JSON)
   )
   
 })
