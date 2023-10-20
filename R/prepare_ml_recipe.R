@@ -153,6 +153,10 @@ prepare_ml_recipe <- function(
         recipes::step_impute_knn(., tidyselect::any_of(vars_imp), -recipes::all_outcomes(), -recipes::has_role("ID")) }else{.}
       } %>% 
       
+      # ... ... avoid omitting ###
+      recipes::step_impute_median(recipes::all_numeric(), -recipes::all_outcomes(), -recipes::has_role("ID")) %>% 
+      recipes::step_impute_mode(  recipes::all_nominal(), -recipes::all_outcomes(), -recipes::has_role("ID")) %>% 
+      
       # ... ... omit observations with missing data in variables ignored in imputation ####
       recipes::step_naomit(recipes::all_predictors()) %>% 
       
@@ -221,6 +225,8 @@ prepare_ml_recipe <- function(
      !is.null(vars_keep_corr)
   ){
     
+    # TODO throws error if vars_keep_corr is not present in data set
+    
     # identify corr step from recipe
     number_corr <- rcp %>% 
       recipes::tidy() %>% 
@@ -235,7 +241,7 @@ prepare_ml_recipe <- function(
       {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE, training = data)} %>% 
       purrr::pluck("result")
     
-    # identify naomit step from recipe
+    # identify naomit step from recipe and set skip to FALSE
     number_naomit <- rcp_prep_nocorr %>% 
       recipes::tidy() %>% 
       dplyr::filter(type == 'naomit') %>% 
