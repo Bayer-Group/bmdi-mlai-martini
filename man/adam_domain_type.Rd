@@ -29,7 +29,7 @@ A tibble with one row for each matched \code{.sas7bdat} file in the specified fo
 
 \item{file}{File path of the individual selected files}
 \item{type}{File type: \emph{adsl}, \emph{bds}, \emph{occds} or \emph{none} (if no matches are found in the look up table, see \code{adam_domain_type()})}
-\item{domain}{Name of the adam domain, i.e. the file name without its extension}
+\item{domain}{Name of the AdaM domain, i.e. the file name without its extension}
 
 If unknown domains are found in \code{path} that cannot be matched to a type,
 these can be found in the \code{unknown_domains} attribute of the outcome table.
@@ -37,7 +37,7 @@ In addition, a message is printed to the console, unless \code{quiet} is set to 
 }
 \description{
 Files are read from the given \code{path} and file names are matched
-to their corresponding adam data type (ads, bds or occds) using a look up table.
+to their corresponding AdaM data type (ads, bds or occds) using a look up table.
 }
 \details{
 The derived information is e.g. used to determine which version of \verb{adam_spec_*()} and \verb{build_*()}

@@ -10,7 +10,8 @@ pivot_prepare_bds(
   values_fn = NULL,
   arrange = NULL,
   clean_fn = ~stringr::str_replace_all(.x, "[:punct:]|[:space:]", "_"),
-  names_sep = "_"
+  names_sep = "_",
+  rm = FALSE
 )
 }
 \arguments{
@@ -29,6 +30,9 @@ sensitive to the order of values to aggregate.}
 \code{~ stringr::str_replace_all(.x, '[:punct:]|[:space:]', '_')}}
 
 \item{names_sep}{to be passed to \code{pivot wider()}. defaults to \verb{_}.}
+
+\item{rm}{boolean. defaults to FALSE. if TRUE, pivoting for a repeated measurement feature matrix with an
+additional \code{.rmtime} column is prepared. Only used, if \code{is.null(spec$rm)}.}
 }
 \value{
 A list containing the pivot_wider arguments (pivot_args) as well as the function

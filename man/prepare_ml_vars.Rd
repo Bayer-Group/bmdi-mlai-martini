@@ -9,7 +9,6 @@ prepare_ml_vars(
   thres_count = NULL,
   thres_log = NULL,
   thres_lump = NULL,
-  thres_imp = NULL,
   remove = c(".id", ".out", ".status", ".time")
 )
 }
@@ -22,8 +21,6 @@ prepare_ml_vars(
 
 \item{thres_lump}{proportion threshold for factor lumping; used to detect factors with exactly one level having a relative frequency below \code{thres_lump}}
 
-\item{thres_imp}{proportion threshold used to detect variables with non-missing proportion up to \code{thres_imp}}
-
 \item{remove}{columns to be excluded from all identified sets; defaults to c(".id", ".out", ".status", ".time")}
 }
 \value{
@@ -33,8 +30,6 @@ NA if required thresholds were not defined; NULL if no variables meet the corres
 \item{count}{assumed to be counts}
 \item{log}{to be log transformed as the skewness exceeds \code{thres_log}}
 \item{nolump}{to be excluded from lumping}
-\item{imp}{to be imputed}
-\item{exclude}{to be excluded from the data as the proportion of missing values exceeds \code{thres_imp}}
 }
 \description{
 Identify variable sets from input matrix that might require extra steps in data preparation,

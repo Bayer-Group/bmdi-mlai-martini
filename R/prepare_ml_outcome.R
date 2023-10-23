@@ -3,30 +3,43 @@
 #' Prepares an ML ready outcome data set (used in \code{\link{prepare_ml}})
 #'
 #' @param outcome tibble containing \code{.id} column and the outcome of interest
-#' @param outcome_name if NULL (default), the first column that's not `.id` is chosen for outcome_name
-#' and the outcome_type is guessed to be either classification or regression.
-#' One may also provide a single character giving the name of the outcome column OR 
-#' a named vector of length two giving the column names for the 'time' and 'status' data in survival analysis, i.e. 
-#' `c(.time = "<time-coln>", .status = "<status-coln>")`,
-#' where `.time` is numeric and `.status` is binary with 0 coding for censored, and 1 coding for event.
-#' Currently, only right-censoring is supported. Please note, that survival will never be guessed.
+#' @param outcome_name single character giving the name of the outcome for regression or classification.
+#' For survival and repeated measurements analysis (classification or regression), resp.,
+#' a named vector of length two needs to be specified, 
+#' `c(.time = "<time-coln>", .status = "<status-coln>")` for survival and 
+#' `c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")` for repeated measurements, resp. 
+#' See Details section. 
 #' @param level_order Level order for a classification outcome. \code{NULL} keeps the natural order (only used for classification).
 #' @param outlier_remove Remove outliers in a regression outcome based on the 'boxplot definition'. The outlier coefficient can be modified
 #' in \code{outlier_ctrl} (only used for regression).
 #' @param outlier_ctrl Control list for the outlier removal, if \code{outlier_remove} is \code{TRUE}. Currently, the list contains only
 #' the boxplot outlier coefficient \code{coef}, which defaults to 3.
 #' 
+#' @details 
+#' Specification of `outcome_name` for survival analysis or repeated measurements:
+#' For survival analysis, specify column names for 'time' and 'status' of the `Surv` object: `c(.time = "<time-coln>", .status = "<status-coln>")`,
+#' where `.time` is numeric and `.status` is binary with 0 coding for censored, and 1 coding for event.
+#' Currently, only right-censoring is supported. 
+#' 
+#' For repeated measurements, specify `outcome_name` as `c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")`. 
+#' The outcome mode will be guessed as regression or classification according to the type of the column specified in `.out`. 
+#' 
+#' If `outcome_name = NULL` (default), the first column that's not `.id` is chosen for `outcome_name`
+#' and the outcome mode is guessed accordingly. Thus, neither survival nor repeated measurement analysis will ever be guessed.
 #' 
 #' @return 
 #' 
-#' A list with the following slots
+#' A list with the following entries
 #' 
 #' \item{outcome}{The outcome data set containing only the id and one or two columns 
-#' with standardized column names (\code{.out} for regression or classification, \code{.time} and \code{.status} for survival).}
+#' with standardized column names (\code{.out} for regression or classification
+#' (with an additional `.rmtime` column in case of repeated measurements), \code{.time} and \code{.status} for survival).}
 #' \item{outcome_name}{Named vector with the original name(s) of the outcome variable(s).}
 #' \item{outcome_label}{Named vector with the labels(s) of the outcome variable(s). If the columns of \code{outcome} do not contain labels,
 #' the column name is used instead.}
-#' \item{outcome_mode}{The outcome mode (\code{regression}, \code{classification} or \code{survival}.}
+#' \item{outcome_mode}{The outcome mode (\code{regression}, \code{classification} or \code{survival}, 
+#' `outcome_mode` is guessed to be either classification or regression if a single column was specified as
+#'  outcome based on the class of the column.}
 #' \item{outcome_dict}{Dictionary tibble for the outcome variable(s). If no label was provided for the selected columns, the column name will be reused as label in the dictionary.}
 #' \item{na_outcome}{The IDs of NAs in \code{outcome}.}
 #' \item{id_outlier}{The IDs of removed outliers.}
@@ -78,43 +91,67 @@ prepare_ml_outcome <- function(
     
     
     # check number of provided outcome columns
-    if(length(outcome_name) > 2 ){ 
+    # still true for rm
+    if( length(outcome_name) > 2 ){ 
       usethis::ui_stop('Please check input for outcome_name. No more than two columns might be selected.')
-    }else if( length(outcome_name) == 2 ){
+    }
+    
+    if( length(outcome_name) == 2 ){
       # check column names and types for survival  
       
-      names_valid  <- {sort(names(outcome_name)) == c('.status', '.time')} %>%  all()
-      if(!names_valid)  usethis::ui_stop('For survival analysis, please provide vector with names .status and .time for outcome_name.')
+      names_valid_surv <- {sort(names(outcome_name)) == c('.status', '.time')}   %>% all()
+      names_valid_rm   <- {sort(names(outcome_name)) == c('.out',    '.rmtime')} %>% all()
       
-      status_valid <- outcome[, outcome_name['.status']] %>% dplyr::pull() %>%  { . %in% c(0,1) } %>%  all() 
-      if(!status_valid) usethis::ui_stop('status may only contain values 0 and 1.')
-      # stops if NAs are present
+      if(!(names_valid_rm || names_valid_surv)){
+        
+        usethis::ui_stop(paste(
+          'For survival analysis, please provide vector with names .status and .time for outcome_name.', '\n',
+          'For repeated measurement analysis, please provide vector with names .out and .rmtime for outcome_name.'
+        ))
+        
+      }
       
-      time_valid   <- outcome[, outcome_name['.time'  ]] %>% dplyr::pull() %>%  is.numeric()
-      if(!time_valid)   usethis::ui_stop('Please check type of time column.')
+      if(names_valid_surv){
+        
+        status_valid <- outcome[, outcome_name['.status']] %>% dplyr::pull() %>% { . %in% c(0,1) } %>% all() 
+        if(!status_valid) usethis::ui_stop('status may only contain values 0 and 1.')
+        # stops if NAs are present
+        
+        time_valid   <- outcome[, outcome_name['.time'  ]] %>% dplyr::pull() %>%  is.numeric()
+        if(!time_valid)   usethis::ui_stop('Please check type of time column.')
+        
+        # sort by name
+        outcome_name <- outcome_name[ c('.time', '.status')]
+        
+      }
       
-      # sort by name
-      outcome_name <- outcome_name[ c('.time', '.status')]
+      if(names_valid_rm){
+        
+        # sort by name
+        outcome_name <- outcome_name[ c('.rmtime', '.out')]
+        
+      }
+
     }  
-  } # -> outcome_name is set, either of length one or two
+  }
+  
+  if( length(outcome_name) == 1 ){
+    # for consistency
+    names(outcome_name) <- '.out'
+  }
   
   
   # outcome_mode ####
-  if(length(outcome_name) == 2){
+  if(c('.time') %in% names(outcome_name)){
     outcome_mode <- 'survival'
   }else{ 
     outcome_mode <- ifelse(
-      is.numeric(outcome[[outcome_name]])
-      && dplyr::n_distinct(outcome[[outcome_name]]) > 5,
+      is.numeric(outcome[[outcome_name[[".out"]]]])
+      && dplyr::n_distinct(outcome[[outcome_name[[".out"]]]]) > 5,
       "regression", 
       "classification"
     )
   }  
-  
-  # for consistency, add name if mode != survival
-  if(outcome_mode != 'survival'){
-    names(outcome_name) <- '.out'
-  }
   
   # outcome_label ####
   # extract label(s) of outcome before potentially mutating to factor (classification)
@@ -166,7 +203,7 @@ prepare_ml_outcome <- function(
     
     # with c = outlier_ctrl$coef, exclude observations outside [q25 - c*iqr;  q75 + c*iqr]
     q   <- quantile(outcome$.out, probs = c(0.25, 0.75), names = FALSE, na.rm = TRUE)
-    loq <- q + c(-1,1) * abs(outlier_ctrl$coef[1]) * diff(q)
+    loq <- q + c(-1, 1) * abs(outlier_ctrl$coef[1]) * diff(q)
     is_outlier <- !dplyr::between(outcome$.out, loq[1], loq[2])
     
     id_outlier <- outcome$.id[which(is_outlier)]

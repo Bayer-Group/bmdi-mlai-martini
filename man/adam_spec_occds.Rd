@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec_occds.R
 \name{adam_spec_occds}
 \alias{adam_spec_occds}
-\title{Create specification object for adam data sets of type \code{occds}}
+\title{Create specification object for AdaM data sets of type \code{occds}}
 \usage{
 adam_spec_occds(
   file,
@@ -18,7 +18,7 @@ adam_spec_occds(
 )
 }
 \arguments{
-\item{file}{the path of the sas file to process}
+\item{file}{the path of the sas(7bdat) or rds file to process}
 
 \item{id}{name of id column to be kept and used for merge of data sets}
 
@@ -44,7 +44,7 @@ A list containing the following
 \item{\code{file}, \code{md5}}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 \item{\code{data}}{the raw data set if \code{attach_data}, NULL otherwise}
 \item{\code{data_info}}{a list containing the number of subjects \code{nsubj} and columns \code{ncol} in the data after applying \code{filter}}
-\item{\code{type}}{character string \code{occds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+\item{\code{type}}{character string \code{occds}, generally giving the type of AdaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
 \item{\code{filter}}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}())}}
 \item{\code{id}}{passing unchanged input}
 \item{\code{label}, \code{value}, \code{valuen}}{names of the key columns to be used in \code{\link{build_occds}()} for reshaping}

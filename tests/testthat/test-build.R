@@ -68,7 +68,7 @@ test_that("build() correctly builds the dictionary", {
   # all columns of feature matrix (minus '.id') included in dictionary and vice versa
   expect_setequal(
     attr(data_build, "dict")[["column"]],
-    data_build %>% names() %>% setdiff(".id")
+    data_build %>% names()
   )
   
   # no duplicated entries in the dictionary

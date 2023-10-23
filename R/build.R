@@ -9,7 +9,8 @@
 #' @param spec a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)
 #' @param join either function to join data sets (e.g. \code{dplyr::full_join()} or a character (vector) giving the names
 #' of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}
-#' 
+#' @param rm boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an additional `.rmtime` column 
+#' is prepared. (experimental.)
 #'
 #' @return
 #' 
@@ -24,7 +25,7 @@
 #'   it into a valid file name and possibly adding a time extension, if multiple time points are considered for a particular parameter.}
 #'   \item{`label`}{parameter label}
 #'   \item{`source`}{source id provided by the specification object. If created with \code{\link{adam_spec}()}, this is the name of the domain.}
-#'   \item{`type`}{adam data type of the source data (adsl, bds or occds)}
+#'   \item{`type`}{AdaM data type of the source data (adsl, bds or occds)}
 #'   \item{`unit`}{parameter unit (if applicable)}
 #'   \item{`time`}{measurement time point (if applicable)}
 #'   \item{`spec_id`}{name of the corresponding spec entry (if applicable)}
@@ -48,7 +49,8 @@
 
 build <- function(
   spec, 
-  join        = dplyr::inner_join
+  join = dplyr::inner_join,
+  rm   = FALSE
 ){
   
   # add names to the spec if none are provided
@@ -57,6 +59,9 @@ build <- function(
   for (i in 1:length(spec)){
     if(is.null(spec[[i]]$"spec_id")) {
       spec[[i]]$"spec_id" <- names(spec)[i]
+    }
+    if(spec[[i]]$type == "bds") {
+      spec[[i]][["rm"]] <- rm
     }
   }
   
@@ -139,6 +144,7 @@ build <- function(
   # ... data ####
   # identify subjects from selected data sets to filter prepped_join
   # (if join is not a fct)
+  # TODO warn if built data has 0 rows (e.g. by mal-adapted spec)
   if(! is.function(join)){
     if(any(join %in% names(built_data) )) {
       join_ids <- purrr::map(built_data[join %>%  intersect(names(built_data))], ~.[['data']]) %>% 
@@ -155,11 +161,25 @@ build <- function(
   # combine and filter
   prepped_join <- purrr::map(built_data, 'data') %>% 
     {if(is.function(join)){
-      purrr::reduce(., join, by = '.id') 
+      purrr::reduce(., function(x1, x2){
+        join(
+          x1, x2,  
+          by = intersect(intersect(colnames(x1), colnames(x2)), c('.id', '.rmtime')),
+          multiple = "all"
+        )
+      })
+      #purrr::reduce(., join, by = '.id') 
     }else{
-      purrr::reduce(., dplyr::full_join, by = '.id') %>% 
+      purrr::reduce(., function(x1, x2){
+        dplyr::full_join(
+          x1, x2,  
+          by = intersect(intersect(colnames(x1), colnames(x2)), c('.id', '.rmtime')),
+          multiple = "all"
+        )
+      }) %>% 
         dplyr::filter(!! rlang::parse_expr(join_filter))  
-    }}
+    }} %>% 
+    dplyr::select(tidyselect::any_of(c(".id", ".trt", ".rmtime")), tidyselect::everything())
   
   # NOTE 
   # extract all occds columns for explicit factor na
@@ -174,7 +194,7 @@ build <- function(
       if(is.numeric(.x)){
         tidyr::replace_na(.x, replace = 0L )
       }else{
-        forcats::fct_explicit_na(.x, na_level = 'no') %>% 
+        fct_na_to_level(.x, level = 'no') %>% 
           forcats::fct_shift(n = -1)
       }  
     }) %>% 
@@ -187,17 +207,3 @@ build <- function(
   out
   
 }
-
-# test area ####
-if(FALSE){
-  
-  path <- "data/99999/ads"
-  filter <- c("SEX == 'F'", "AVISIT == 'BASELINE'")
-  keep <- c("adsl", "adxb")  
-  wide <- build(path = path, keep = keep)
-  
-}
-
-
-
-

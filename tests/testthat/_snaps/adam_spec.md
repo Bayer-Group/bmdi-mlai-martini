@@ -134,17 +134,21 @@
       [1] "ITTFL"
       
       $adsl$drop_list$empty
-      character(0)
+      NULL
       
       $adsl$drop_list$constant
+      $adsl$drop_list$constant$constant
       [1] "ADSNAME" "STUDYID" "ITTFL"  
       
+      $adsl$drop_list$constant$empty
+      character(0)
+      
+      
       $adsl$drop_list$blacklist
-      [1] "RANDNO"  "ADSNAME" "STUDYID" "SITEID"  "SITENAM" "INVID"   "INVNAM" 
+      character(0)
       
       $adsl$drop_list$other
-       [1] "ADSNAME"  "STUDYID"  "USUBJID"  "UASR"     "ITTFL"    "TRT01P"  
-       [7] "TRT01PN"  "TRT01AN"  "RANDDT"   "AGEGR01N" "SEXN"     "RACEN"   
+      character(0)
       
       
       $adsl$id

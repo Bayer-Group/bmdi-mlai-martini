@@ -1,4 +1,4 @@
-#' Create specification object for adam data sets of type 'bds'
+#' Create specification object for AdaM data sets of type 'bds'
 #' 
 #' Given a file containing a bds data set (e.g. adlb or advs), \code{\link{adam_spec_bds}()} will create a specification 
 #' object for use in \code{\link{build_bds}()} to prepare the data to be used in machine learning. 
@@ -6,7 +6,7 @@
 #' for reshaping the data into wide format and prepare the data filter.
 #' 
 #' @param data tibble with the data for which the specification is created
-#' @param file the path of the sas file to process, ignored if data is provided
+#' @param file the path of the sas(7bdat) or rds file to process, ignored if data is provided
 #' @param id name of id column to be kept and used for merge of data sets
 #' @param param name of the column that identifies the parameter. Defaults to NULL, will be guessed if not set (see Details).
 #' @param label name of the column that gives column labels. Defaults to NULL.
@@ -27,13 +27,13 @@
 #' Guess will be the first of the following options that matches a column name (exact match).
 #' 
 #' \describe{
-#'   \item{`param`}{`PARAMCD`, `**TESTCD`, with `**` reflecting the two letter domain abbrevation (e.g. `LB`)}
+#'   \item{`param`}{`PARAMCD`, `**TESTCD`, with `**` reflecting the two letter domain abbreviation (e.g. `LB`)}
 #'   \item{`label`}{substring of `param` with trailing `CD` removed}
 #'   \item{`time`}{`AVISIT`, `VISIT`}
 #'   \item{`value`}{`AVAL`, `**STRESN`, `**ORRES` for numeric values, 
 #'   `AVALC`, `**STRESC`, `**ORRES` for character values,
 #'    with `**` reflecting the two letter domain abbreviation}
-#'   \item{`unit`}{`AVALU`, `**STRESU`, `**ORRESU`, with `**` reflecting the two letter domain abbrevation}
+#'   \item{`unit`}{`AVALU`, `**STRESU`, `**ORRESU`, with `**` reflecting the two letter domain abbreviation}
 #' }
 #' 
 #' Function will escape if one of `param` or `value` are neither provided nor can be guessed. The other columns are optional.
@@ -43,7 +43,7 @@
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 #' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
 #' \item{`data_info`}{a list containing the number of subjects `nsubj` and columns `ncol` in the data after applying `filter`}
-#' \item{`type`}{character string \code{bds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+#' \item{`type`}{character string \code{bds}, generally giving the type of AdaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
 #' \item{`filter`}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}()})}
 #' \item{`id`}{passing unchanged input}  
 #' \item{`param`, `label`, `value`, `unit`, `time`}{names of the key columns to be used in \code{\link{build_bds}()} for reshaping}
@@ -134,17 +134,27 @@ adam_spec_bds <- function(
       )
     }
     
-    if (tools::file_ext(file) != "sas7bdat") {
+    if (!tools::file_ext(file) %in% c("sas7bdat", "rds")) {
       cli::cli_abort(c(
-        "{.fn adam_spec_bds} expects a sas7bdat file to read, but was provided {.path {file}}.",
-        'x' = 'The provided file is not of type sas7bdat, but {tools::file_ext(file)}.',
+        "{.fn adam_spec_bds} expects a sas7bdat or rds file to read, but was provided {.path {file}}.",
+        'x' = 'The provided file is of type {tools::file_ext(file)}.',
         '*' = 'Please check your input or attach a data set instead.'
       ))
       
     }
     
     # ... ... import data ####
-    bds      <- haven::read_sas(file) %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+    file_ext <- tools::file_ext(file) 
+    
+    bds <- if(file_ext == 'sas7bdat'){
+      haven::read_sas(file) %>% 
+        dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+    }else if(file_ext == 'rds'){
+      readRDS(file)
+    }else{
+      stop('Only sas7bdat and rds data supported.')
+    }
+    
     coln_bds <- colnames(bds)
     
     md5  <- tools::md5sum(file) %>% as.character()
@@ -153,7 +163,8 @@ adam_spec_bds <- function(
     
     # ... ... identify domain ####
     domain <- basename(file) %>% 
-      stringr::str_remove_all('^ad|[.]sas7bdat$') %>% 
+      stringr::str_remove_all('^ad') %>% 
+      tools::file_path_sans_ext() %>% 
       stringr::str_to_upper()
     
     dom <- stringr::str_sub(domain, 1, 2) # used in e.g. EGTEST (instead of EGFTEST)

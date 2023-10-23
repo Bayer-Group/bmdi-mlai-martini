@@ -1,7 +1,7 @@
 Type: Package
 Package: martini
 Title: BMDI MLAI pipeline - Prepare Module
-Version: 0.5.0
+Version: 0.6.0
 Authors@R: 
     c(person(given = "Ahrens",
              family = "Maike",
@@ -24,6 +24,7 @@ Depends:
 Imports:
     assertive.types,
     cli,
+    corrr,
     crayon,
     dplyr (>= 1.0.0),
     forcats,
@@ -47,11 +48,13 @@ Imports:
     utils
 Suggests:
     here,
+    jsonlite,
     knitr,
     lifecycle,
     MASS,
     rmarkdown,
-    testthat (>= 3.1.0)
+    testthat (>= 3.1.0),
+    withr
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3

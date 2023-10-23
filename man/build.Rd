@@ -4,13 +4,16 @@
 \alias{build}
 \title{Build the feature matrix from various sources according to a specification object}
 \usage{
-build(spec, join = dplyr::inner_join)
+build(spec, join = dplyr::inner_join, rm = FALSE)
 }
 \arguments{
 \item{spec}{a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)}
 
 \item{join}{either function to join data sets (e.g. \code{dplyr::full_join()} or a character (vector) giving the names
 of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}}
+
+\item{rm}{boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an additional \code{.rmtime} column
+is prepared. (experimental.)}
 }
 \value{
 \code{build()} returns a wide data set with one row per subject and standardized column names for the subject id (\code{.id})
@@ -24,7 +27,7 @@ the data are provided in the attributes of the returned object.
 it into a valid file name and possibly adding a time extension, if multiple time points are considered for a particular parameter.}
 \item{\code{label}}{parameter label}
 \item{\code{source}}{source id provided by the specification object. If created with \code{\link{adam_spec}()}, this is the name of the domain.}
-\item{\code{type}}{adam data type of the source data (adsl, bds or occds)}
+\item{\code{type}}{AdaM data type of the source data (adsl, bds or occds)}
 \item{\code{unit}}{parameter unit (if applicable)}
 \item{\code{time}}{measurement time point (if applicable)}
 \item{\code{spec_id}}{name of the corresponding spec entry (if applicable)}

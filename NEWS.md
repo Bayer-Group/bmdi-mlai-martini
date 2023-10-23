@@ -1,3 +1,23 @@
+# martini 0.6.0
+
+* in rare cases, samples could end up being removed from training data set 
+due to incomplete imputation from `recipes::step_impute_knn()`. 
+For this edge case, additional imputation steps were added to ensure full data set 
+usage for training (`recipes::step_impute_median` for numerics and `recipes::step_impute_mode` for factors.)
+
+* update example objects, since \link{`prepare_ml()`} output object 
+  * has new entry high_corr for more transparency on feature dropping for correlation (`recipes::step_corr()`) 
+  * no longer contains redundant slot for split object
+ 
+* improved handling of independent data sets for prediction
+* improved test suite
+
+# martini 0.5.1
+
+* Added experimental parameter `rm` in `build()` to allow for the preparation of a 
+wide data set suitable for repeated measurement outcomes 
+(one row is a subject at a specific time point)
+
 # martini 0.5.0
 
 * fixed package data sets. Update of {recipes} package introduced NAs in prepared ML data, which were now removed.

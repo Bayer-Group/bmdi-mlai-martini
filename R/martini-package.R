@@ -18,5 +18,7 @@ utils::globalVariables(c(
   ".strata", "number",
   "guess", "var",
   "new_name", "old_name", "n",
-  "txt", "data_id"
+  "txt", "data_id", 
+  "file_ext_fct",
+  'r', 'role', 'variable', 'x', 'y'
 ))

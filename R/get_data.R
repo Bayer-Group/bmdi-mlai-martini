@@ -1,6 +1,6 @@
 #' Extract data from an ml object
 #' 
-#' Combine splitted data (training and test, if available) from either prepared or raw data
+#' Combine split data (training and test, if available) from either prepared or raw data
 #'
 #' @param ml_obj ml object as returned by \code{\link{prepare_ml}()}
 #' @param type either 'prep' or 'raw', determining which state of the data should be extracted. Defaults to `prep`.

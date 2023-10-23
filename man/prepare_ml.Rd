@@ -42,13 +42,12 @@ i.e. containing \code{.id} column and predictors}
 
 \item{outcome}{tibble containing \code{.id} column and the outcome of interest, \code{\link{prepare_ml_outcome}()}}
 
-\item{outcome_name}{if NULL (default), the first column that's not \code{.id} is chosen for outcome_name
-and the outcome_type is guessed to be either classification or regression.
-One may also provide a single character giving the name of the outcome column OR
-a named vector of length two giving the column names for the 'time' and 'status' data in survival analysis, i.e.
-\code{c(.time = "<time-coln>", .status = "<status-coln>")},
-where \code{.time} is numeric and \code{.status} is binary with 0 coding for censored, and 1 coding for event.
-Currently, only right-censoring is supported. Please note, that survival will never be guessed.}
+\item{outcome_name}{single character giving the name of the outcome for regression or classification.
+For survival and repeated measurements analysis (classification or regression), resp.,
+a named vector of length two needs to be specified,
+\code{c(.time = "<time-coln>", .status = "<status-coln>")} for survival and
+\code{c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")} for repeated measurements, resp.
+See Details section.}
 
 \item{level_order}{level order for a classification outcome. Default \code{NULL} keeps the natural order (only used for classification).}
 
@@ -57,7 +56,8 @@ please refer to the details section to learn about the individual recipe steps.}
 
 \item{train_prop}{the proportion of data to be used for the training set. Has to be in [0.5;1.0]. Defaults to 3/4, keeping a quarter of the data for testing.}
 
-\item{strata_trt}{boolean. Expand default stratum variable (\code{.out} for classification, \code{.stratum} for tte, \code{NULL} for regression) by trt (if character, else ignored). Defaults to FALSE.}
+\item{strata_trt}{boolean. Expand default stratum variable (\code{.out} for classification, \code{.status} for tte, \code{NULL} for regression)
+by trt (if character, else ignored). Defaults to FALSE, but is highly recommended to be set to TRUE.}
 
 \item{seed}{optionally set a seed before the data splitting.}
 
@@ -112,7 +112,7 @@ for details on how outliers are removed from outcome variables. \code{outlier_re
 
 \code{prepare_ml()} produces a list that contains the data set both with (\code{data_prep}) and
 without (\code{data_raw}) applying the specified ML preparation steps.
-Both versions are splitted in \code{train} and \code{test} set.
+Both versions are split in \code{train} and \code{test} set.
 In addition, \code{split} contains the combined \code{rsample::initial_split()} object that
 the \code{train} and \code{test} data was extracted from. Depending on the programming workflow,
 one might be more convenient to use than the other.
@@ -127,7 +127,7 @@ The dictionary available as an attribute of \code{feature} is updated with infor
 and the log-transformation and available from the \code{dict} slot, NULL if no such attribute is defined.
 
 The \code{source} slot simply passes the \code{source} attribute of \code{feature}, NULL if no such attribute is defined.
-If \code{\link{build}()} from the \code{MLAIprepare} package was used to generate \code{feature},
+If \code{\link{build}()} from the \code{martini} package was used to generate \code{feature},
 this attribute lists the full paths of the files that were used in data generation of \code{feature}.
 }
 
@@ -138,6 +138,9 @@ this attribute lists the full paths of the files that were used in data generati
 giving bare \code{value} slots, as well as a verbose description in \code{text}.
 \code{removed} gives a list of removed \code{rows} and \code{columns} along with the information
 on why/in which recipe step the data was removed.
+\code{high_corr} a tibble listing correlations above \code{thres_corr}. \code{NULL} if \code{prep_step_corr = FALSE}.
+\code{input} a list giving the {{martini}} \code{packageVersion} and a
+list of (most) input parameters, including the seed used
 }
 }
 \description{
@@ -156,7 +159,9 @@ The variable sets that a particular step function will be applied to are determi
 and output of the function \code{\link{prepare_ml_vars}()}, respectively.
 Further details on particular steps are given below.
 \itemize{
-\item drop variables e.g. not meeting the minimum threshold for non-missing data proportion (\code{step_rm()}) or for variable removal related to the \code{vars_keep_corr} parameter (see below).
+\item drop variables e.g. not meeting the minimum threshold for non-missing
+data proportion (\code{step_rm()}) or for variable removal related
+to the \code{vars_keep_corr} parameter (see below).
 \item remove observations with missing data in outcome (\code{step_naomit()})
 \item knn imputation on variables with missing values that are not explicitly
 excluded from imputation (\code{vars_imp_ignore}). Please note, that missing
@@ -186,8 +191,26 @@ The variables listed for this step are the ones that are \strong{used} for the i
 It does not mean that missing values in these variables have been or will be imputed.
 For more details on this matter please refer to the documentation of tidymodels and the
 difference in \code{prep()} and \code{bake()}, in particular.
-For example, \code{vars_imp_ignore} includes the standard treatment variable \code{.trt} by default to prevent any imputations;
-however, it will be listed in the variable set of the \code{prep()}ped recipe. Don't panic. #rtfm.
+For example, \code{vars_imp_ignore} includes the standard treatment variable
+\code{.trt} by default to prevent any imputations;
+however, it will be listed in the variable set of the \code{prep()}ped
+recipe (for older versions of \code{recipes} package). Don't panic. #rtfm.
+
+For repeated measurement analyses, all observations of the same \code{.id}
+will end up the either in the training or test set (using \code{rsample::group_initial_split()}).
+Note that the strata argument will be ignored (with a warning) for versions below 1.1.1.
+Currently, grouping is not accounted for in missing value imputation yet.
+
+Specification of \code{outcome_name} for survival analysis or repeated measurements:
+For survival analysis, specify column names for 'time' and 'status' of the \code{Surv} object: \code{c(.time = "<time-coln>", .status = "<status-coln>")},
+where \code{.time} is numeric and \code{.status} is binary with 0 coding for censored, and 1 coding for event.
+Currently, only right-censoring is supported.
+
+For repeated measurements, specify \code{outcome_name} as \code{c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")}.
+The outcome mode will be guessed as regression or classification according to the type of the column specified in \code{.out}.
+
+If \code{outcome_name = NULL} (default), the first column in \code{outcome} that's not \code{.id} is chosen for \code{outcome_name}
+and the outcome mode is guessed accordingly. Thus, neither survival nor repeated measurement analysis will ever be guessed.
 }
 \section{Authors}{
 

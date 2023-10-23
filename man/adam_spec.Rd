@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec.R
 \name{adam_spec}
 \alias{adam_spec}
-\title{Creating a specification for building a wide format data set from adam data}
+\title{Creating a specification for building a wide format data set from AdaM data}
 \usage{
 adam_spec(
   path,
@@ -13,7 +13,8 @@ adam_spec(
   attach_data = FALSE,
   id = "SUBJID",
   trt = "TRT01A",
-  add_bds = NULL
+  add_bds = NULL,
+  file_ext = c("rds", "sas7bdat")
 )
 }
 \arguments{
@@ -38,6 +39,10 @@ for details).}
 
 \item{add_bds}{character vector of domain names of type bds that are not included
 in the package library of ADaM types (yet), but should be processed as per usual, e.g. 'adfapr'}
+
+\item{file_ext}{only rds and sas7bdat data sets are allowed (e.g. \code{file_ext = 'rds'}). User may select
+only sas7bdat, only rds or set a priorization rule (\code{file_ext = c('rds', 'sas7bdat')}, see Details).
+Defaults to c('rds', 'sas7bdat'), i.e. rds if available, sas7bdat else.}
 }
 \value{
 \code{adam_spec()} returns named list of specifications that can be passed to the \code{\link{build}()} function.
@@ -50,7 +55,7 @@ of the \verb{adam_spec_*()} for a detailed description of the output object.
 
 \code{\link{adam_spec}()} is a wrapper for the \verb{adam_spec_*()} functions.
 It creates a list of specifications on how to extract and process data from
-adam data sets in a given location.
+AdaM data sets in a given location.
 The resulting list can be passed to \code{\link{build}()}, where the
 created specs are applied and the generated data sets are combined into a single wide format data set.
 }
@@ -59,6 +64,15 @@ created specs are applied and the generated data sets are combined into a single
 to decide on which \verb{adam_spec_*()} function to use for which data set.
 Only files in the library will be processed, the rest will be ignored. Names of unprocessed files will be printed to the console.
 For those, specifications may be created manually using the appropriate \verb{adam_spec_*()} function and appended to the specification list created by \code{adam_*_spec()}.
+
+By specifying e.g. \code{file_ext = 'rds'}, only rds data will be considered
+for building the specification. To use only sas7bdat, analogously specify
+by file extension \code{file_ext = 'sas7bdat'}.
+Preferred file types can be specified using a character vector
+\code{file_ext = c('rds', 'sas7bdat')}: If the same file name is found in
+\code{path} with both extensions, the file with the former extension is used,
+the one with the latter ignored. For unambiguous file names (either only sas7bdat or only rds)
+both are used.
 
 Individual filters are only applied if the resulting data set has a positive number of rows (ignoring those causing errors or yielding a 0-row data set).
 

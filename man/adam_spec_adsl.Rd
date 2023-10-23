@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec_adsl.R
 \name{adam_spec_adsl}
 \alias{adam_spec_adsl}
-\title{Create specification object for adam data sets of type 'adsl'}
+\title{Create specification object for AdaM data sets of type 'adsl'}
 \usage{
 adam_spec_adsl(
   file,
@@ -15,7 +15,7 @@ adam_spec_adsl(
 )
 }
 \arguments{
-\item{file}{the path of the sas file to process}
+\item{file}{the path of the sas(7bdat) or rds file to process}
 
 \item{id}{name of id (e.g. SUBJIDN, SUBJID) column to keep.
 Highly redundant variables will not be included in the suggested set of columns returned in \code{select} (see Details).}
@@ -35,7 +35,7 @@ A list containing the following
 \item{\code{file}, \code{md5}}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 \item{\code{data}}{the raw data set if \code{attach_data}, NULL otherwise}
 \item{\code{data_info}}{a list containing the number of subjects \code{nsubj} and columns \code{ncol} in the data after applying \code{filter}}
-\item{\code{type}}{character string \code{adsl}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+\item{\code{type}}{character string \code{adsl}, generally giving the type of AdaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
 \item{\code{filter}}{subset of \code{filter} that yields non-empty result when applied individually (using \code{\link{check_filter}()}}
 \item{\code{select}}{the suggested list of columns to select from the data set}
 \item{\code{factor_levels}}{a list column pairs factor/factorN to determine factor level order}
@@ -66,7 +66,7 @@ set of columns (returned in \code{select}) and redundancies in the data.
 \item{\emph{Subject id}}{Non-numeric columns are recoded as numeric, based on the order in which they appear in the data
 (sorted by \code{id}). All columns with a perfect Spearman correlation to \code{id} are considered redundant and added to
 the \code{drop_list}. In addition, all numeric columns with a perfect Spearman correlation to RANDDT (if available in the data)
-are also added to the \code{drop_list}, as well as RANDNO (if present in data.}
+are also added to the \code{drop_list}, as well as RANDNO (if present in data).}
 \item{\emph{Treatment variable}}{The predefined list of treatment variables is TRT01A, ARMCD, ARM, ACTARM, ACTARMCD, TRT01P, TR01PG1, TR02PG1, TR01AG1, TR02AG1.
 No more than one of these variables will be returned in \code{select}. Note that the chosen treatment representing
 variable will be renamed to the standard '.trt' in \code{\link{build_adsl}()}.}

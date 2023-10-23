@@ -1,7 +1,7 @@
 #' Identify the data set type of ads files by file name
 #' 
 #' Files are read from the given \code{path} and file names are matched
-#' to their corresponding adam data type (ads, bds or occds) using a look up table. 
+#' to their corresponding AdaM data type (ads, bds or occds) using a look up table. 
 #'
 #' @param path ads path to the file of interest
 #' @param keep only keep the domains provided, e.g. \code{keep = 'adsl'}
@@ -30,7 +30,7 @@
 #' 
 #' \item{file}{File path of the individual selected files}
 #' \item{type}{File type: *adsl*, *bds*, *occds* or *none* (if no matches are found in the look up table, see \code{adam_domain_type()})}
-#' \item{domain}{Name of the adam domain, i.e. the file name without its extension}
+#' \item{domain}{Name of the AdaM domain, i.e. the file name without its extension}
 #' 
 #' If unknown domains are found in \code{path} that cannot be matched to a type, 
 #' these can be found in the \code{unknown_domains} attribute of the outcome table. 
@@ -52,39 +52,33 @@ adam_domain_type <- function(
   # define look-up table ####
   # library of data sets to be processed automatically
   
-  type_adsl <- c("adsl") %>% 
-    paste0(".sas7bdat$") 
+  file_ext <- c('[.]sas7bdat$', '[.]rds$')
   
-  type_bds <- c(   
-    paste0( c(  
-      "adegf", "adpc",
-      "adlb", "advs", 
-      "adxb", "adxl",
-      "adfapr",
-      "adxkpa",
-      "adxksl",
-      "admicro",
-      "adtrr",
-      "adxt",
-      "adqskccq", "adqsnyha", 'adqseq5d', 'adqspad', 'adqswimp', 'adqsqolb', 'adqssgrq'
-    ) , 
-    ".sas7bdat$"),
-    "adqs.*[.]sas7bdat$" )
-  
-  type_occds <- c("adae", "adcm", "admh", "adxa") %>% 
-    paste0(".sas7bdat$")
+  type_list <- list(
+    adsl  = c("adsl"),
+    bds   = c("adegf", "adpc",
+             "adlb", "advs", 
+             "adxb", "adxl",
+             "adfapr",
+             "adxkpa",
+             "adxksl",
+             "admicro",
+             "adtrr",
+             "adxt",
+             "adqskccq", "adqsnyha", 'adqseq5d', 'adqspad', 'adqswimp', 'adqsqolb', 'adqssgrq',
+             "adqs.*"),
+    occds = c("adae", "adcm", "admh", "adxa")
+  ) 
   
   ads_library <- dplyr::bind_rows(
-    tibble::tibble(domain = type_adsl)  %>% dplyr::mutate(`adam_spec_*` = 'adsl' ),
-    tibble::tibble(domain = type_bds)   %>% dplyr::mutate(`adam_spec_*` = 'bds'  ),
-    tibble::tibble(domain = type_occds) %>% dplyr::mutate(`adam_spec_*` = 'occds') 
-  )  %>%  
-    dplyr::mutate_at('domain',~  stringr::str_remove_all(.x, '(\\[.\\]|[.])sas7bdat\\$'))
+    tibble::tibble(domain = type_list$adsl)  %>% dplyr::mutate(`adam_spec_*` = 'adsl' ),
+    tibble::tibble(domain = type_list$bds)   %>% dplyr::mutate(`adam_spec_*` = 'bds'  ),
+    tibble::tibble(domain = type_list$occds) %>% dplyr::mutate(`adam_spec_*` = 'occds') 
+  )  
   
-  type_adsl  <- type_adsl  %>% paste(collapse = "|")
-  type_bds   <- type_bds   %>% paste(collapse = "|")
-  type_occds <- type_occds %>% paste(collapse = "|")
-  
+  type_list_regex <- type_list %>% 
+    purrr::map(~{paste0(rep(.x, each = length(file_ext)), file_ext) %>% 
+        paste(collapse = "|")})
   
   # EITHER return look-up table  ####
   if(is.null(path)){ 
@@ -103,38 +97,31 @@ adam_domain_type <- function(
     }
       
     # ... determine all file paths, file names ####
-    all_files <- list.files(path, pattern = ".sas7bdat$", full.names = TRUE, recursive = TRUE)
+    all_files <- list.files(path, pattern = paste(file_ext, collapse = '|'), full.names = TRUE, recursive = FALSE)
     
     # length(all_files) == 0 -> 'path' might be a single file
     
     
     if (length(all_files) == 0) all_files <- path
     
-    file_name  <- stringr::str_split(all_files, '/|\\\\')  %>%  
-      purrr::map( ~ .[length(.)]) %>% 
-      unlist()
+    file_name  <- basename(all_files)
     
-    # ... determine types and domains from look-up table defined above ####
-    all_types <- purrr::map_chr(file_name, ~{
-      if (       stringr::str_detect(., type_adsl )){ "adsl"
-      } else if (stringr::str_detect(., type_bds  )){ "bds"
-      } else if (stringr::str_detect(., type_occds)){ "occds"
-      } else {                                        "none"
-      }
-    })
-    
-    all_doms  <- stringr::str_split( all_files, '/|\\\\')  %>%  
-      purrr::map( ~ .[length(.)]) %>% 
-      unlist() %>%
-        stringr::str_remove('.sas7bdat')
-      
+
     # ... file_info: create full mapping table ####
     file_info <- tibble::tibble(
-      "file"   = all_files,
-      "domain" = all_doms,
-      "type"   = all_types
+      file = all_files
+    ) %>% 
+    # ... determine types and domains from look-up table defined above ####
+    dplyr::mutate(
+      domain = basename(file) %>% tools::file_path_sans_ext(),
+      type   = dplyr::case_when(
+        stringr::str_detect(basename(file), type_list_regex$adsl ) ~ "adsl",
+        stringr::str_detect(basename(file), type_list_regex$bds  ) ~ "bds",
+        stringr::str_detect(basename(file), type_list_regex$occds) ~ "occds",
+        TRUE ~ "none"
+      ), 
+      file_ext = tools::file_ext(file)
     )
-      
       
     # ... check selection options ###
     if( !is.null(keep) && !is.null(drop) ){
@@ -145,11 +132,11 @@ adam_domain_type <- function(
       
     if (!is.null(keep)){
         # strip file extension, in case the user provided the file name instead of domain
-        keep      <- stringr::str_remove(keep, '.sas7bdat$')
+        keep      <- stringr::str_remove(keep, paste(file_ext, collapse = '|'))
         file_info <- file_info %>% dplyr::filter( domain %in% keep)
     } else {
       if(!is.null(drop)){
-        drop      <- stringr::str_remove(drop, '.sas7bdat$')
+        drop      <- stringr::str_remove(drop, paste(file_ext, collapse = '|'))
         file_info <- file_info %>% dplyr::filter(!domain %in% drop)
       }
     }

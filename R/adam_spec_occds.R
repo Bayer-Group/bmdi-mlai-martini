@@ -1,11 +1,11 @@
-#' Create specification object for adam data sets of type `occds`
+#' Create specification object for AdaM data sets of type `occds`
 #'
 #' Given a file containing a occds data set (e.g. admh or adcm), \code{\link{adam_spec_occds}()}
 #' will create a specification object for use in \code{\link{build_occds}()} to prepare the data 
 #' to be used in machine learning. The main task is to collect the key columns for reshaping the 
 #' data into wide format and prepare the data filter.     
 #'
-#' @param file the path of the sas file to process
+#' @param file the path of the sas(7bdat) or rds file to process
 #' @param id name of id column to be kept and used for merge of data sets
 #' @param label name of the column that identifies the occurrence labels. Defaults to NULL, will be guessed if not set (see Details). 
 #' @param time name of the column that is used for time filtering (if required via \code{pre_study} argument). Defaults to NULL, will be guessed if not set (see Details).
@@ -22,7 +22,7 @@
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 #' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
 #' \item{`data_info`}{a list containing the number of subjects `nsubj` and columns `ncol` in the data after applying `filter`}
-#' \item{`type`}{character string \code{occds}, generally giving the type of adam data set processed (\code{adsl}/\code{bds}/\code{occds})}
+#' \item{`type`}{character string \code{occds}, generally giving the type of AdaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
 #' \item{`filter`}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}())}}
 #' \item{`id`}{passing unchanged input}  
 #' \item{`label`, `value`, `valuen`}{names of the key columns to be used in \code{\link{build_occds}()} for reshaping}
@@ -58,17 +58,24 @@ adam_spec_occds <- function(
   
   
   # READ occds ####
-  occds      <- haven::read_sas(file) %>% 
-    dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
-
+  file_ext <- tools::file_ext(file) 
+  
+  occds <- if(file_ext == 'sas7bdat'){
+    haven::read_sas(file) %>% 
+      dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+  }else if(file_ext == 'rds'){
+    readRDS(file)
+  }else{
+    stop('Only sas7bdat and rds data supported.')
+  }
   
   md5        <- tools::md5sum(file) %>%  as.character()
   size       <- fs::file_size(file)
   
   coln_occds <- colnames(occds)
-  domain     <- stringr::str_split( file, '/|\\\\') [[1]] %>%  
-    tail(1) %>% 
-    stringr::str_remove_all('^ad|[.]sas7bdat$') %>% 
+  domain     <- basename(file) %>% 
+    tools::file_path_sans_ext() %>% 
+    stringr::str_remove_all('^ad') %>% 
     stringr::str_to_upper()
   
   # check input validity ####
