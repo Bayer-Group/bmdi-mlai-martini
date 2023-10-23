@@ -1,4 +1,4 @@
-# martini (development version)
+# martini 0.6.0
 
 * in rare cases, samples could end up being removed from training data set 
 due to incomplete imputation from `recipes::step_impute_knn()`. 
