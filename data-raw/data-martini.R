@@ -164,8 +164,8 @@ purrr::walk(c(
   "martini_ml_surv"
 ), ~{
   waldo::compare(
-    get(.x),
     cur_pkg_data(.x),
+    get(.x),
     ignore_formula_env = TRUE
   ) %>% print()
 })
