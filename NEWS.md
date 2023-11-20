@@ -5,10 +5,11 @@ due to incomplete imputation from `recipes::step_impute_knn()`.
 For this edge case, additional imputation steps were added to ensure full data set 
 usage for training (`recipes::step_impute_median` for numerics and `recipes::step_impute_mode` for factors.)
 
-* update example objects, since \link{`prepare_ml()`} output object 
+* update example objects, since `\link{prepare_ml}()` output object 
   * has new entry high_corr for more transparency on feature dropping for correlation (`recipes::step_corr()`) 
   * no longer contains redundant slot for split object
- 
+
+* variables that are defined in `\link{prepare_ml}()`'s `vars_keep_corr` but not present in data set are ignored (previously an error was thrown)
 * improved handling of independent data sets for prediction
 * improved test suite
 
