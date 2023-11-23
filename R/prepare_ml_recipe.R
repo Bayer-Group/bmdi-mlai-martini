@@ -301,7 +301,7 @@ prepare_ml_recipe <- function(
     ) %>% 
       # corrr::shave() %>% repeats, but convenient for filtering
       corrr::stretch(na.rm = TRUE) %>%  
-      dplyr::filter(r > thres_used$thres_corr)
+      dplyr::filter(abs(r) > thres_used$thres_corr)
    
     
     if(!is.null(vars_keep_corr)){
