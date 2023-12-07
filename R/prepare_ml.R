@@ -481,8 +481,9 @@ prepare_ml <- function(
   if("rm" %in% names(removed_columns)){
     removed_columns$imp_ignore <- removed_columns$rm %>% 
       as.character() %>% 
-      setdiff(vars$vars_exclude_corr)
-    removed_columns$keep_corr <- vars$vars_exclude_corr
+      setdiff(vars$vars_rm_corr)
+    
+    removed_columns$keep_corr <- vars$vars_rm_corr
   }
   
   
