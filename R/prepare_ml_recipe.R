@@ -160,8 +160,11 @@ prepare_ml_recipe <- function(
       ) %>% 
       
       # ... ... remove variables that are correlated to 'vars_keep_corr' ####
-      recipes::step_rm(tidyselect::any_of(vars_rm_corr)) %>% 
-    
+      # helper step - only used in combination with 'step_corr()'
+      {if(step_used$prep_step_corr){
+        recipes::step_rm(., tidyselect::any_of(vars_rm_corr))
+      }else{.}} %>% 
+      
       # ... ... exclude variables with too many missings ####
       {if(thres_used$thres_imp>0){
         recipes::step_filter_missing(., recipes::all_predictors(), threshold = 1-thres_used$thres_imp)
@@ -231,7 +234,7 @@ prepare_ml_recipe <- function(
       {if(step_used$prep_step_dummy){
         recipes::step_dummy(
           .,  
-          recipes::all_nominal(), - recipes::all_outcomes(), - recipes::has_role("ID")  , 
+          recipes::all_nominal(), - recipes::all_outcomes(), - recipes::has_role("ID"), 
           one_hot = one_hot
         ) 
       }else{.}} 
@@ -247,8 +250,6 @@ prepare_ml_recipe <- function(
   if(step_used$prep_step_corr){
     
     # determine correlation structure to identify correlated groups ####
-    
-    # TODO throws error if vars_keep_corr is not present in data set
     
     # identify corr step from recipe
     number_corr <- rcp %>% 
@@ -325,11 +326,11 @@ prepare_ml_recipe <- function(
   # must be prepped at the very end, since corr step modifies removal step
   rcp_prep <- rcp %>% 
     {purrr::quietly(recipes::prep)(., 
-                                   strings_as_factors = FALSE,
-                                   training           = data
-                                   #, log_changes        = TRUE,
-                                   #  fresh              = TRUE
-                                   # retain
+      strings_as_factors = FALSE,
+      training           = data
+      #, log_changes        = TRUE,
+      #  fresh              = TRUE
+      # retain
     )} %>% 
     purrr::pluck("result")
   # TODO 
@@ -356,6 +357,7 @@ prepare_ml_recipe <- function(
       vars_fct_expl_na,
       vars_imp_ignore,
       vars_keep_corr,
+      
       vars_log,
       vars_nolump,
       vars_ordinalscore

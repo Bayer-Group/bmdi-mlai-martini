@@ -108,36 +108,40 @@ test_that("strata_trt works", {
 
 testthat::test_that("vars_keep_corr works", {
 # vars_keep_corr works ####
-  
-  set.seed(1492)
-  
+
   n <- 20
   p <- 5
   R <- rep(1, p) %>% diag()
   R[2,1] <- R[1,2] <- 0.95
+  # choose one of V1, V2
+  col_to_keep <- 'V2'
+  R[4,3] <- R[3,4] <- 0.95 # no preference, check with current seed which is discarded
   
+  withr::with_seed(1492, {
+    
+    d_feat <- MASS::mvrnorm(n = n, mu = rep(0, p), Sigma = R) %>% 
+      as.data.frame() %>% 
+      tibble::as_tibble() %>% 
+      dplyr::mutate(.id = 1:n)
+    
+    d_out <- tibble::tibble(
+      .id  = 1:n,
+      .out = rnorm(n)
+    )
+    
+  })
   
-  d_feat <- MASS::mvrnorm(n = n, mu = rep(0, p), Sigma = R) %>% 
-    as.data.frame() %>% 
-    tibble::as_tibble() %>% 
-    dplyr::mutate(.id = 1:n)
-  
-  d_out <- tibble::tibble(
-    .id  = 1:n,
-    .out = rnorm(n)
-  )
-  
-  
-  col_to_keep <- 'V1'
   d_ml0 <- prepare_ml(
-    feature = d_feat,
-    outcome = d_out
+    feature    = d_feat,
+    outcome    = d_out, 
+    train_prop = 1
   )
   
   d_ml1 <- prepare_ml(
     feature        = d_feat,
     outcome        = d_out,
-    vars_keep_corr = col_to_keep
+    vars_keep_corr = col_to_keep, 
+    train_prop     = 1
   )
   
   cols_0 <- d_ml0$data_prep$train %>% names()
@@ -146,6 +150,11 @@ testthat::test_that("vars_keep_corr works", {
   testthat::expect_true(
     !  col_to_keep %in% cols_0 
     && col_to_keep %in% cols_1 
+  )
+  
+  testthat::expect_setequal(
+    d_ml1$removed$cols$corr,
+    c('V1', 'V4') # V4 seed dependent, either V4 or V3
   )
   
 })

@@ -123,8 +123,12 @@ The slot \code{outcome} contains a list giving \code{name}, the standardized nam
 output column in the data sets ( \code{.out} for regression/classification, \code{.time} and \code{.status}
 for survival, as well as a \code{mode}, character string of the outcome mode \code{regression/classification/survival}
 
-The dictionary available as an attribute of \code{feature} is updated with information on the outcome variable
-and the log-transformation and available from the \code{dict} slot, NULL if no such attribute is defined.
+The dictionary available as an attribute of \code{feature} is updated with information on the outcome variable,
+any log-transformation as well as alternative labels (\code{label2}, \code{label3})
+indicating correlated variable groups e.g. HB (HCT), where HB is kept for the analysis,
+HCT was dropped due to absolute correlation above \code{thres_corr}.
+Dictionary is available from the \code{dict} slot,
+NULL if no such attribute is defined.
 
 The \code{source} slot simply passes the \code{source} attribute of \code{feature}, NULL if no such attribute is defined.
 If \code{\link{build}()} from the \code{martini} package was used to generate \code{feature},
