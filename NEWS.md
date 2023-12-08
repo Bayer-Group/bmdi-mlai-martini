@@ -1,3 +1,5 @@
+# martini (development version)
+
 # martini 0.6.1
 
 * updated output of correlation handling (`removals$cols` structure and addition of alternative labels in dictionary)
@@ -13,7 +15,7 @@ usage for training (`recipes::step_impute_median()` for numerics and `recipes::s
   * has new entry high_corr for more transparency on feature dropping for correlation (`recipes::step_corr()`) 
   * no longer contains redundant slot for split object
 
-* variables that are defined in `\link{prepare_ml}()`'s `vars_keep_corr` but not present in data set are ignored (previously an error was thrown)
+* variables that are defined in `prepare_ml()`'s `vars_keep_corr` but not present in data set are ignored (previously an error was thrown)
 * improved handling of independent data sets for prediction
 * improved test suite
 
