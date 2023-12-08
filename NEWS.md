@@ -1,13 +1,15 @@
-# martini (development version)
+# martini 0.6.1
+
+* updated output of correlation handling (`removals$cols` structure and addition of alternative labels in dictionary)
 
 # martini 0.6.0
 
 * in rare cases, samples could end up being removed from training data set 
 due to incomplete imputation from `recipes::step_impute_knn()`. 
 For this edge case, additional imputation steps were added to ensure full data set 
-usage for training (`recipes::step_impute_median` for numerics and `recipes::step_impute_mode` for factors.)
+usage for training (`recipes::step_impute_median()` for numerics and `recipes::step_impute_mode()` for factors.)
 
-* update example objects, since \link{`prepare_ml()`} output object 
+* update example objects, since `prepare_ml()` output object 
   * has new entry high_corr for more transparency on feature dropping for correlation (`recipes::step_corr()`) 
   * no longer contains redundant slot for split object
  
