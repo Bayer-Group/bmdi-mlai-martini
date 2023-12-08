@@ -9265,7 +9265,9 @@
           "param": ".out",
           "column": ".out",
           "source": "user_outcome",
-          "label": ".out"
+          "label": ".out",
+          "label2": ".out",
+          "label3": ".out"
         },
         {
           "param": ".id",
@@ -9273,7 +9275,9 @@
           "source": "SL",
           "label": "Subject Identifier for the Study",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": ".id",
+          "label3": "Subject Identifier for the Study"
         },
         {
           "param": ".trt",
@@ -9281,7 +9285,9 @@
           "source": "SL",
           "label": "Actual Treatment for Period 01",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": ".trt",
+          "label3": "Actual Treatment for Period 01"
         },
         {
           "param": "AGE",
@@ -9289,7 +9295,9 @@
           "source": "SL",
           "label": "Age",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "AGE",
+          "label3": "Age"
         },
         {
           "param": "AGEGR01",
@@ -9297,7 +9305,9 @@
           "source": "SL",
           "label": "Age Group 01",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "AGEGR01",
+          "label3": "Age Group 01"
         },
         {
           "param": "SEX",
@@ -9305,7 +9315,9 @@
           "source": "SL",
           "label": "Sex",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "SEX",
+          "label3": "Sex"
         },
         {
           "param": "RACE",
@@ -9313,7 +9325,9 @@
           "source": "SL",
           "label": "Race",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "RACE",
+          "label3": "Race"
         },
         {
           "param": "BMI_adsl",
@@ -9321,7 +9335,9 @@
           "source": "SL",
           "label": "Body Mass Index (kg/m2) at baseline (adsl)",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "BMI_adsl (BMI_advs)",
+          "label3": "Body Mass Index (kg/m2) at baseline (adsl) (Body Mass Index (advs))"
         },
         {
           "param": "LAB1",
@@ -9330,7 +9346,9 @@
           "label": "Laboratory 1",
           "type": "bds",
           "spec_id": "adlb",
-          "unit": "unit1"
+          "unit": "unit1",
+          "label2": "LAB1",
+          "label3": "Laboratory 1"
         },
         {
           "param": "LAB2",
@@ -9339,7 +9357,9 @@
           "label": "Laboratory 2",
           "type": "bds",
           "spec_id": "adlb",
-          "unit": "unit2"
+          "unit": "unit2",
+          "label2": "LAB2",
+          "label3": "Laboratory 2"
         },
         {
           "param": "LAB3",
@@ -9348,7 +9368,9 @@
           "label": "Laboratory 3",
           "type": "bds",
           "spec_id": "adlb",
-          "unit": "unit3"
+          "unit": "unit3",
+          "label2": "LAB3",
+          "label3": "Laboratory 3"
         },
         {
           "param": "BMI_advs",
@@ -9357,7 +9379,9 @@
           "label": "Body Mass Index (advs)",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "kg/m2"
+          "unit": "kg/m2",
+          "label2": "BMI_advs (BMI_adsl)",
+          "label3": "Body Mass Index (advs) (Body Mass Index (kg/m2) at baseline (adsl))"
         },
         {
           "param": "BPDIA",
@@ -9366,7 +9390,9 @@
           "label": "Diastolic Blood Pressure",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "mmHg"
+          "unit": "mmHg",
+          "label2": "BPDIA",
+          "label3": "Diastolic Blood Pressure"
         },
         {
           "param": "BPSYS",
@@ -9375,7 +9401,9 @@
           "label": "Systolic Blood Pressure",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "mmHg"
+          "unit": "mmHg",
+          "label2": "BPSYS",
+          "label3": "Systolic Blood Pressure"
         },
         {
           "param": "HR",
@@ -9384,7 +9412,9 @@
           "label": "Heart Rate",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "beats/min"
+          "unit": "beats/min",
+          "label2": "HR",
+          "label3": "Heart Rate"
         },
         {
           "param": "WEIGHT",
@@ -9393,7 +9423,9 @@
           "label": "Weight",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "kg"
+          "unit": "kg",
+          "label2": "WEIGHT",
+          "label3": "Weight"
         },
         {
           "param": "cardiac_arrhythmias",
@@ -9401,7 +9433,9 @@
           "source": "MH",
           "label": "Cardiac arrhythmias",
           "type": "occds",
-          "spec_id": "admh"
+          "spec_id": "admh",
+          "label2": "cardiac_arrhythmias",
+          "label3": "Cardiac arrhythmias"
         },
         {
           "param": "coronary_artery_disorders",
@@ -9409,7 +9443,9 @@
           "source": "MH",
           "label": "Coronary artery disorders",
           "type": "occds",
-          "spec_id": "admh"
+          "spec_id": "admh",
+          "label2": "coronary_artery_disorders",
+          "label3": "Coronary artery disorders"
         }
       ] 
       
@@ -9520,9 +9556,6 @@
       
       
       $removed$cols
-      $removed$cols$rm
-      NULL
-      
       $removed$cols$filter_missing
       [1] "LAB1" "LAB2" "LAB3"
       
@@ -9534,9 +9567,6 @@
       
       $removed$cols$corr
       [1] "BMI_adsl"
-      
-      $removed$cols$imp_ignore
-      character(0)
       
       
       
@@ -9556,7 +9586,7 @@
       
       $input
       $input$martini
-      [1] '0.5.1.9000'
+      [1] '0.6.0.9000'
       
       $input$args
       $input$args$level_order
@@ -18906,7 +18936,9 @@
           "param": ".out",
           "column": ".out",
           "source": "user_outcome",
-          "label": ".out"
+          "label": ".out",
+          "label2": ".out",
+          "label3": ".out"
         },
         {
           "param": ".id",
@@ -18914,7 +18946,9 @@
           "source": "SL",
           "label": "Subject Identifier for the Study",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": ".id",
+          "label3": "Subject Identifier for the Study"
         },
         {
           "param": ".trt",
@@ -18922,7 +18956,9 @@
           "source": "SL",
           "label": "Actual Treatment for Period 01",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": ".trt",
+          "label3": "Actual Treatment for Period 01"
         },
         {
           "param": "AGE",
@@ -18930,7 +18966,9 @@
           "source": "SL",
           "label": "Age",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "AGE",
+          "label3": "Age"
         },
         {
           "param": "AGEGR01",
@@ -18938,7 +18976,9 @@
           "source": "SL",
           "label": "Age Group 01",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "AGEGR01",
+          "label3": "Age Group 01"
         },
         {
           "param": "SEX",
@@ -18946,7 +18986,9 @@
           "source": "SL",
           "label": "Sex",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "SEX",
+          "label3": "Sex"
         },
         {
           "param": "RACE",
@@ -18954,7 +18996,9 @@
           "source": "SL",
           "label": "Race",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "RACE",
+          "label3": "Race"
         },
         {
           "param": "BMI_adsl",
@@ -18962,7 +19006,9 @@
           "source": "SL",
           "label": "Body Mass Index (kg/m2) at baseline (adsl)",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "BMI_adsl (BMI_advs)",
+          "label3": "Body Mass Index (kg/m2) at baseline (adsl) (Body Mass Index (advs))"
         },
         {
           "param": "LAB1",
@@ -18971,7 +19017,9 @@
           "label": "Laboratory 1",
           "type": "bds",
           "spec_id": "adlb",
-          "unit": "unit1"
+          "unit": "unit1",
+          "label2": "LAB1",
+          "label3": "Laboratory 1"
         },
         {
           "param": "LAB2",
@@ -18980,7 +19028,9 @@
           "label": "Laboratory 2",
           "type": "bds",
           "spec_id": "adlb",
-          "unit": "unit2"
+          "unit": "unit2",
+          "label2": "LAB2",
+          "label3": "Laboratory 2"
         },
         {
           "param": "LAB3",
@@ -18989,7 +19039,9 @@
           "label": "Laboratory 3",
           "type": "bds",
           "spec_id": "adlb",
-          "unit": "unit3"
+          "unit": "unit3",
+          "label2": "LAB3",
+          "label3": "Laboratory 3"
         },
         {
           "param": "BMI_advs",
@@ -18998,7 +19050,9 @@
           "label": "Body Mass Index (advs)",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "kg/m2"
+          "unit": "kg/m2",
+          "label2": "BMI_advs (BMI_adsl)",
+          "label3": "Body Mass Index (advs) (Body Mass Index (kg/m2) at baseline (adsl))"
         },
         {
           "param": "BPDIA",
@@ -19007,7 +19061,9 @@
           "label": "Diastolic Blood Pressure",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "mmHg"
+          "unit": "mmHg",
+          "label2": "BPDIA",
+          "label3": "Diastolic Blood Pressure"
         },
         {
           "param": "BPSYS",
@@ -19016,7 +19072,9 @@
           "label": "Systolic Blood Pressure",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "mmHg"
+          "unit": "mmHg",
+          "label2": "BPSYS",
+          "label3": "Systolic Blood Pressure"
         },
         {
           "param": "HR",
@@ -19025,7 +19083,9 @@
           "label": "Heart Rate",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "beats/min"
+          "unit": "beats/min",
+          "label2": "HR",
+          "label3": "Heart Rate"
         },
         {
           "param": "WEIGHT",
@@ -19034,7 +19094,9 @@
           "label": "Weight",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "kg"
+          "unit": "kg",
+          "label2": "WEIGHT",
+          "label3": "Weight"
         },
         {
           "param": "cardiac_arrhythmias",
@@ -19042,7 +19104,9 @@
           "source": "MH",
           "label": "Cardiac arrhythmias",
           "type": "occds",
-          "spec_id": "admh"
+          "spec_id": "admh",
+          "label2": "cardiac_arrhythmias",
+          "label3": "Cardiac arrhythmias"
         },
         {
           "param": "coronary_artery_disorders",
@@ -19050,7 +19114,9 @@
           "source": "MH",
           "label": "Coronary artery disorders",
           "type": "occds",
-          "spec_id": "admh"
+          "spec_id": "admh",
+          "label2": "coronary_artery_disorders",
+          "label3": "Coronary artery disorders"
         }
       ] 
       
@@ -19167,9 +19233,6 @@
       
       
       $removed$cols
-      $removed$cols$rm
-      NULL
-      
       $removed$cols$filter_missing
       [1] "LAB1" "LAB2" "LAB3"
       
@@ -19181,9 +19244,6 @@
       
       $removed$cols$corr
       [1] "BMI_adsl"
-      
-      $removed$cols$imp_ignore
-      character(0)
       
       
       
@@ -19203,7 +19263,7 @@
       
       $input
       $input$martini
-      [1] '0.5.1.9000'
+      [1] '0.6.0.9000'
       
       $input$args
       $input$args$level_order
@@ -29131,13 +29191,17 @@
           "param": ".time",
           "column": ".time",
           "source": "user_outcome",
-          "label": ".time"
+          "label": ".time",
+          "label2": ".time",
+          "label3": ".time"
         },
         {
           "param": ".status",
           "column": ".status",
           "source": "user_outcome",
-          "label": ".status"
+          "label": ".status",
+          "label2": ".status",
+          "label3": ".status"
         },
         {
           "param": ".id",
@@ -29145,7 +29209,9 @@
           "source": "SL",
           "label": "Subject Identifier for the Study",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": ".id",
+          "label3": "Subject Identifier for the Study"
         },
         {
           "param": ".trt",
@@ -29153,7 +29219,9 @@
           "source": "SL",
           "label": "Actual Treatment for Period 01",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": ".trt",
+          "label3": "Actual Treatment for Period 01"
         },
         {
           "param": "AGE",
@@ -29161,7 +29229,9 @@
           "source": "SL",
           "label": "Age",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "AGE",
+          "label3": "Age"
         },
         {
           "param": "AGEGR01",
@@ -29169,7 +29239,9 @@
           "source": "SL",
           "label": "Age Group 01",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "AGEGR01",
+          "label3": "Age Group 01"
         },
         {
           "param": "SEX",
@@ -29177,7 +29249,9 @@
           "source": "SL",
           "label": "Sex",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "SEX",
+          "label3": "Sex"
         },
         {
           "param": "RACE",
@@ -29185,7 +29259,9 @@
           "source": "SL",
           "label": "Race",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "RACE",
+          "label3": "Race"
         },
         {
           "param": "BMI_adsl",
@@ -29193,7 +29269,9 @@
           "source": "SL",
           "label": "Body Mass Index (kg/m2) at baseline (adsl)",
           "type": "adsl",
-          "spec_id": "adsl"
+          "spec_id": "adsl",
+          "label2": "BMI_adsl (BMI_advs)",
+          "label3": "Body Mass Index (kg/m2) at baseline (adsl) (Body Mass Index (advs))"
         },
         {
           "param": "LAB1",
@@ -29202,7 +29280,9 @@
           "label": "Laboratory 1",
           "type": "bds",
           "spec_id": "adlb",
-          "unit": "unit1"
+          "unit": "unit1",
+          "label2": "LAB1",
+          "label3": "Laboratory 1"
         },
         {
           "param": "LAB2",
@@ -29211,7 +29291,9 @@
           "label": "Laboratory 2",
           "type": "bds",
           "spec_id": "adlb",
-          "unit": "unit2"
+          "unit": "unit2",
+          "label2": "LAB2",
+          "label3": "Laboratory 2"
         },
         {
           "param": "LAB3",
@@ -29220,7 +29302,9 @@
           "label": "Laboratory 3",
           "type": "bds",
           "spec_id": "adlb",
-          "unit": "unit3"
+          "unit": "unit3",
+          "label2": "LAB3",
+          "label3": "Laboratory 3"
         },
         {
           "param": "BMI_advs",
@@ -29229,7 +29313,9 @@
           "label": "Body Mass Index (advs)",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "kg/m2"
+          "unit": "kg/m2",
+          "label2": "BMI_advs (BMI_adsl)",
+          "label3": "Body Mass Index (advs) (Body Mass Index (kg/m2) at baseline (adsl))"
         },
         {
           "param": "BPDIA",
@@ -29238,7 +29324,9 @@
           "label": "Diastolic Blood Pressure",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "mmHg"
+          "unit": "mmHg",
+          "label2": "BPDIA",
+          "label3": "Diastolic Blood Pressure"
         },
         {
           "param": "BPSYS",
@@ -29247,7 +29335,9 @@
           "label": "Systolic Blood Pressure",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "mmHg"
+          "unit": "mmHg",
+          "label2": "BPSYS",
+          "label3": "Systolic Blood Pressure"
         },
         {
           "param": "HR",
@@ -29256,7 +29346,9 @@
           "label": "Heart Rate",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "beats/min"
+          "unit": "beats/min",
+          "label2": "HR",
+          "label3": "Heart Rate"
         },
         {
           "param": "WEIGHT",
@@ -29265,7 +29357,9 @@
           "label": "Weight",
           "type": "bds",
           "spec_id": "advs",
-          "unit": "kg"
+          "unit": "kg",
+          "label2": "WEIGHT",
+          "label3": "Weight"
         },
         {
           "param": "cardiac_arrhythmias",
@@ -29273,7 +29367,9 @@
           "source": "MH",
           "label": "Cardiac arrhythmias",
           "type": "occds",
-          "spec_id": "admh"
+          "spec_id": "admh",
+          "label2": "cardiac_arrhythmias",
+          "label3": "Cardiac arrhythmias"
         },
         {
           "param": "coronary_artery_disorders",
@@ -29281,7 +29377,9 @@
           "source": "MH",
           "label": "Coronary artery disorders",
           "type": "occds",
-          "spec_id": "admh"
+          "spec_id": "admh",
+          "label2": "coronary_artery_disorders",
+          "label3": "Coronary artery disorders"
         }
       ] 
       
@@ -29392,9 +29490,6 @@
       
       
       $removed$cols
-      $removed$cols$rm
-      NULL
-      
       $removed$cols$filter_missing
       [1] "LAB1" "LAB2" "LAB3"
       
@@ -29406,9 +29501,6 @@
       
       $removed$cols$corr
       [1] "BMI_adsl"
-      
-      $removed$cols$imp_ignore
-      character(0)
       
       
       
@@ -29428,7 +29520,7 @@
       
       $input
       $input$martini
-      [1] '0.5.1.9000'
+      [1] '0.6.0.9000'
       
       $input$args
       $input$args$level_order

@@ -166,7 +166,8 @@ purrr::walk(c(
   waldo::compare(
     cur_pkg_data(.x),
     get(.x),
-    ignore_formula_env = TRUE
+    ignore_formula_env = TRUE,
+    max_diffs = Inf,
   ) %>% print()
 })
 
