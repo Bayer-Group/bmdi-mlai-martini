@@ -138,8 +138,12 @@
 #' output column in the data sets ( \code{.out} for regression/classification, \code{.time} and \code{.status}
 #' for survival, as well as a \code{mode}, character string of the outcome mode \code{regression/classification/survival} 
 #' 
-#' The dictionary available as an attribute of `feature` is updated with information on the outcome variable
-#' and the log-transformation and available from the \code{dict} slot, NULL if no such attribute is defined.
+#' The dictionary available as an attribute of `feature` is updated with information on the outcome variable,
+#' any log-transformation as well as alternative labels (`label2`, `label3`) 
+#' indicating correlated variable groups e.g. HB (HCT), where HB is kept for the analysis, 
+#' HCT was dropped due to absolute correlation above `thres_corr`.
+#' Dictionary is available from the \code{dict} slot, 
+#' NULL if no such attribute is defined.
 #' 
 #' The \code{source} slot simply passes the \code{source} attribute of \code{feature}, NULL if no such attribute is defined.
 #' If \code{\link{build}()} from the \code{martini} package was used to generate \code{feature}, 
@@ -476,14 +480,18 @@ prepare_ml <- function(
     purrr::keep(~{!is.null(.x)}) %>% 
     # set empty 'removal' slots (=vector of length 0) to NULL
     purrr::map(~{if(length(.x) > 0) .x})
+  
 
-  # 'rm' is returned as named vector 
   if("rm" %in% names(removed_columns)){
-    removed_columns$imp_ignore <- removed_columns$rm %>% 
-      as.character() %>% 
-      setdiff(vars$vars_rm_corr)
+    # step_rm and step_corr only used simultaneously in recipe
     
-    removed_columns$keep_corr <- vars$vars_rm_corr
+    removed_columns$corr <- removed_columns$corr  %>% 
+      c(removed_columns$rm) %>% 
+      # 'rm' is returned as named vector 
+      unname()
+    
+    removed_columns$rm <- NULL
+    
   }
   
   
@@ -597,11 +605,33 @@ prepare_ml <- function(
         ),
         by = c("param")
       )
+    
+    # add alternative label with correlated variables
+    add_labels <- high_corr %>% 
+      dplyr::left_join(the_dict %>% dplyr::select(column, 'label_x' = label), by = c('x' = 'column')) %>% 
+      dplyr::left_join(the_dict %>% dplyr::select(column, 'label_y' = label), by = c('y' = 'column')) %>% 
+      dplyr::select(-r) %>% 
+      dplyr::group_by(x, label_x) %>% 
+      dplyr::summarize(
+        label2  = paste0(unique(x),       ' (', paste(y, collapse = ', '), ')'),
+        label3  = paste0(unique(label_x), ' (', paste(label_y, collapse = ', '), ')'), 
+        .groups = "drop"
+      ) %>% 
+      dplyr::select('column' = x, tidyselect::everything(), -label_x)
+    
+    the_dict <- dplyr::left_join(
+      the_dict, 
+      add_labels,
+      by = 'column'
+    ) %>% 
+      dplyr::mutate(
+        label2 = dplyr::coalesce(label2, column),
+        label3 = dplyr::coalesce(label3, label)
+      )
+    
   }
   
-  
   # OUTPUT #### 
-  
   
   prep_output <- list(
     
@@ -616,9 +646,10 @@ prepare_ml <- function(
     ),
     
     outcome = list(
-      name = list('regression'     = '.out', 
-                  'classification' = '.out', 
-                  'survival'       = c('.time', '.status')
+      name = list(
+        'regression'     = '.out', 
+        'classification' = '.out', 
+        'survival'       = c('.time', '.status')
       )[[outcome_mode]],
       mode = outcome_mode
     ),
