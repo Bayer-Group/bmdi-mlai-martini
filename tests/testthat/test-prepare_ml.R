@@ -1,5 +1,5 @@
 test_that("strata_trt works", {
-  # "strata_trt works" ####
+  # strata_trt works ####
   # TODO WS rewrite 
   
   # test stratification WITH and WITHOUT added treatment
