@@ -115,14 +115,18 @@ testthat::test_that("vars_keep_corr works", {
   R[2,1] <- R[1,2] <- 0.95
   # choose one of V1, V2
   col_to_keep <- 'V2'
-  R[4,3] <- R[3,4] <- 0.95 # no preference, check with current seed which is discarded
+  R[4,3] <- R[3,4] <-  0.95 # no preference, check with current seed which is discarded
+  
   
   withr::with_seed(1492, {
     
     d_feat <- MASS::mvrnorm(n = n, mu = rep(0, p), Sigma = R) %>% 
       as.data.frame() %>% 
       tibble::as_tibble() %>% 
-      dplyr::mutate(.id = 1:n)
+      dplyr::mutate(
+        neg_corr = -V2,
+        .id = 1:n
+      )
     
     d_out <- tibble::tibble(
       .id  = 1:n,
@@ -154,7 +158,7 @@ testthat::test_that("vars_keep_corr works", {
   
   testthat::expect_setequal(
     d_ml1$removed$cols$corr,
-    c('V1', 'V4') # V4 seed dependent, either V4 or V3
+    c('V1', "neg_corr", 'V4') # V4 seed dependent, either V4 or V3
   )
   
 })
