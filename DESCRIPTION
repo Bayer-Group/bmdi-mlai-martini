@@ -22,7 +22,6 @@ BugReports: https://gitlab.bayer.com/ahrensmaike/martini_prep/-/issues/new
 Depends:
     R (>= 3.6)
 Imports:
-    assertive.types,
     cli,
     corrr,
     crayon,
