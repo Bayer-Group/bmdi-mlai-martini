@@ -75,7 +75,7 @@ family of helper functions to identify columns to drop from adsl data set
 \details{
 Columns meeting the following criteria are returned
 
-\code{adsl_identify_dttm()}:  \code{assertive.types::is_date()} is TRUE,
+\code{adsl_identify_dttm()}:  \code{methods::is(.x, "Date")} is TRUE,
 the label contains strings 'year', 'month', 'day', 'date' or 'time'
 (not case sensitive), class is one of 'difftime',
 'hms', 'Period', 'POSIXct', 'POSIXt', 'Date'

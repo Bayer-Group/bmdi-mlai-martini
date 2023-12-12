@@ -327,7 +327,7 @@
  #' 
  #' Columns meeting the following criteria are returned
  #' 
- #' `adsl_identify_dttm()`:  `assertive.types::is_date()` is TRUE, 
+ #' `adsl_identify_dttm()`:  `methods::is(.x, "Date")` is TRUE, 
  #' the label contains strings 'year', 'month', 'day', 'date' or 'time'
  #'  (not case sensitive), class is one of 'difftime', 
  #'  'hms', 'Period', 'POSIXct', 'POSIXt', 'Date'
@@ -453,7 +453,7 @@ adsl_identify_dttm <- function(
   ){
   
   # identify date by variable type...
-  date_auto <- purrr::map_lgl(adsl, assertive.types::is_date) %>% which() %>% names()
+  date_auto <- purrr::map_lgl(adsl, ~methods::is(.x, "Date")) %>% which() %>% names()
   
   # ...and label
   no_labels <- labelled::var_label(adsl) %>% purrr::compact() %>% purrr::is_empty()

@@ -32,6 +32,7 @@ Imports:
     janitor,
     labelled,
     magrittr,
+    methods,
     purrr,
     readr,
     recipes (>= 0.1.16),
@@ -54,8 +55,6 @@ Suggests:
     rmarkdown,
     testthat (>= 3.1.0),
     withr
-Remotes:
-    cran/assertive.types
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
