@@ -888,6 +888,8 @@ a character string of the outcome mode regression/classification/survival.
 The dictionary available as an attribute of feature is updated with 
 information on the outcome variable and the log-transformation 
 and available from the `dict` slot, NULL if no such attribute is defined.
+Columns `label2` and `label3` provide additional information on correlation 
+structure in the data set: <variable kept> (variables removed for correlation).
 
 The `source` slot simply passes the source attribute of feature, 
 NULL if no such attribute is defined. If `build()` from the 
