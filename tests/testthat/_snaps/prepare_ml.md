@@ -9449,37 +9449,6 @@
         }
       ] 
       
-      $prep_recipe
-    Message <cliMessage>
-      
-      -- Recipe ----------------------------------------------------------------------
-      
-      -- Inputs 
-      Number of variables by role
-      outcome:    1
-      predictor: 16
-      ID:         1
-      
-      -- Training information 
-      Training data contained 215 data points and 213 incomplete rows.
-      
-      -- Operations 
-      * Variable mutation for: <none> | Trained
-      * Variable mutation for: .trt, AGEGR01, SEX, RACE | Trained
-      * Variable mutation for: .trt, AGEGR01, SEX, RACE | Trained
-      * Variables removed: <none> | Trained
-      * Missing value column filter removed: LAB1, LAB2, LAB3 | Trained
-      * Removing rows with NA values in: .out | Trained
-      * K-nearest neighbor imputation for: AGEGR01, SEX, RACE, AGE, ... | Trained
-      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, BPSYS, ... | Trained
-      * Mode imputation for: AGEGR01, SEX, RACE | Trained
-      * Removing rows with NA values in: .trt, AGEGR01, SEX, RACE, AGE, ... | Trained
-      * Zero variance filter removed: cardiac_arrhythmias | Trained
-      * Sparse, unbalanced variable filter removed: <none> | Trained
-      * Correlation filter on: BMI_adsl | Trained
-      * Collapsing factor levels for: <none> | Trained
-    Output
-      
       $prep_params
       $prep_params$thres_log
       $prep_params$thres_log$value
