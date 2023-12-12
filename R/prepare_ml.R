@@ -589,6 +589,7 @@ prepare_ml <- function(
   
   
   # DICT ####
+  
   # prevent error in joining logtr column
   if(is.null(vars$vars_log)) vars$vars_log <- NA_character_
   the_dict <- NULL
@@ -608,8 +609,18 @@ prepare_ml <- function(
     
     # add alternative label with correlated variables
     add_labels <- high_corr %>% 
-      dplyr::left_join(the_dict %>% dplyr::select(column, 'label_x' = label), by = c('x' = 'column')) %>% 
-      dplyr::left_join(the_dict %>% dplyr::select(column, 'label_y' = label), by = c('y' = 'column')) %>% 
+      dplyr::left_join(
+        the_dict %>% 
+          dplyr::select(column, 'label_x' = label) %>% 
+          dplyr::distinct(),
+        by = c('x' = 'column')
+      ) %>% 
+      dplyr::left_join(
+        the_dict %>% 
+          dplyr::select(column, 'label_y' = label) %>% 
+          dplyr::distinct(), 
+        by = c('y' = 'column')
+      ) %>% 
       dplyr::select(-r) %>% 
       dplyr::group_by(x, label_x) %>% 
       dplyr::summarize(

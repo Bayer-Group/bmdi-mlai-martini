@@ -20,5 +20,6 @@ utils::globalVariables(c(
   "new_name", "old_name", "n",
   "txt", "data_id", 
   "file_ext_fct",
-  'r', 'role', 'variable', 'x', 'y'
+  'r', 'role', 'variable', 'x', 'y',
+  'label_x', 'label_y', 'label2', 'label3'
 ))
