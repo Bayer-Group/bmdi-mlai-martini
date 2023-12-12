@@ -248,9 +248,7 @@ test_that("prepare_ml snapshots",{
   
   withr::local_options(width = 80)
   
-  skip_on_ci()
   skip_if_not_installed("jsonlite")
-  
   
   ads_path  <- test_path('sas/')
   ads_build <- ads_path %>% 

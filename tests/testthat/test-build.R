@@ -81,7 +81,7 @@ test_that("build() correctly builds the dictionary", {
 
 test_that("build snapshots", {
   
-  skip_on_ci()
+  withr::local_options(width = 80)
   
   ads_path  <- test_path('sas/')
   ads_build <- ads_path %>% 

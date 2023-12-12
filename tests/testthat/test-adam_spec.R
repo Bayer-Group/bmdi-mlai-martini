@@ -37,7 +37,7 @@ test_that("adam_spec keep/drop hierarchy ", {
 
 test_that("adam_spec snapshots", {
   
-  skip_on_ci()
+  withr::local_options(width = 80)
   
   ads_path <- test_path('sas/')
   ads_spec <- adam_spec(ads_path)
