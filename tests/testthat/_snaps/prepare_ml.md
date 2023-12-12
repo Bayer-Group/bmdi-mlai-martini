@@ -29403,7 +29403,7 @@
       * Variable mutation for: .trt, AGEGR01, SEX, RACE | Trained
       * Variables removed: <none> | Trained
       * Missing value column filter removed: LAB1, LAB2, LAB3 | Trained
-      * Removing rows with NA values in: .time, .status | Trained
+      * Removing rows with NA values in: .time and .status | Trained
       * K-nearest neighbor imputation for: AGEGR01, SEX, RACE, AGE, ... | Trained
       * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, BPSYS, ... | Trained
       * Mode imputation for: AGEGR01, SEX, RACE | Trained
