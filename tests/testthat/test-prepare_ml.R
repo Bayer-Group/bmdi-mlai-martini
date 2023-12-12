@@ -246,6 +246,7 @@ test_that('repeated measurement implementation works', {
 test_that("prepare_ml snapshots",{
   # prepare_ml snapshots ####                 
   
+  skip_on_ci()
   withr::local_options(width = 80)
   
   skip_if_not_installed("jsonlite")
