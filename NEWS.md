@@ -1,5 +1,7 @@
 # martini (development version)
 
+* introducing github actions
+
 # martini 0.6.1
 
 * updated output of correlation handling (`removals$cols` structure and addition of alternative labels in dictionary)
