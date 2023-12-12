@@ -55,7 +55,7 @@ test_that("adam_spec snapshots", {
   hide_file_path <- function(x){
     ifelse(
       # contained in every temp file path
-      stringr::str_detect(x, "tests/testthat/"),
+      stringr::str_detect(x, file.path("tests", "testthat")),
       "<REDACTED>", x
     )
   }
