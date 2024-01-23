@@ -1,8 +1,8 @@
-tibble_to_JSON <- function(x){
+tibble_to_JSON <- function(x, drop = FALSE){
   if("tbl_df" %in% class(x)){
     jsonlite::toJSON(x, pretty = TRUE)
   }else{
-    x
+    if(drop){NULL}else{x}
   }
 }
 
