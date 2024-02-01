@@ -178,7 +178,7 @@ prepare_ml_recipe <- function(
         recipes::step_impute_knn(., recipes::all_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
           # simple imputation for values that could not be imputed by knn
           recipes::step_impute_median(recipes::all_numeric_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
-          recipes::step_impute_mode(recipes::all_nominal_predictors(), -tidyselect::any_of(vars_imp_ignore))
+          recipes::step_impute_mode(  recipes::all_nominal_predictors(), -tidyselect::any_of(vars_imp_ignore))
       }else{.}} %>% 
       
       # ... ... omit observations with missing data in variables ####
