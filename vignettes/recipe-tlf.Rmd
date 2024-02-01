@@ -1,0 +1,123 @@
+---
+title: "MARTINI - MLAI pipeline prepare module"
+subtitle: "Document data preparation for TLF"
+author: "Maike Ahrens, Sebastian Voss"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MARTINI - TLF}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+library(martini)
+library(tidyselect)
+library(dplyr)
+library(recipes)
+library(kableExtra)
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval    = FALSE
+)
+```
+
+# Scope
+
+This vignette shows the CSR output for the example of a regression outcome, 
+included in the {martini} package:
+
+* `martini_spec` the general specification
+* `martini_ml_regr` the output of `prepare_ml`, containing the `recipe` object,
+the ML data set and more
+
+Questions to be answered:
+
+**A How was the ML model built?** 
+
+* definition of feature space 
+* list of preprocessing steps with main settings
+* tuned hyper parameters
+
+**B Characterisation of ML model**
+
+* most important variables (VIP table and plot)
+* model performance
+
+**C Is the ML model applicable to new data**
+
+* all variables used in the ML model available in new study?
+* descriptive summary of the variables 
+  * numerics: to check mean/sd/ranges/units/skewness for numerics incl correlation structure
+  * factors: compare level sets for factors
+  
+**D Preprocessing of new data**
+
+* if applicable: transform to match units from training, recode levels
+* `bake()`
+   * proportion missing per variable pass/fail `step_filter_missing()`
+   * missing observations in non-removed columns for subjects with non-missing outcome missing values 
+   * list of removed subjects and columns
+   
+   
+**E Results**
+
+* scatter subject predictions and actual outcome
+* Characterization in terms of trt estimate (location, CI) and (adjusted) r^2
+  * reference model
+  * model with added ML score
+
+
+# A model building
+
+## Feature space
+
+The `raw` feature space is defined as all variables technically available from the selected data sets.
+This can be derived from the martini `spec` object. 
+
+```{r}
+dict_raw <- martini_spec %>% 
+  map('dict') %>% 
+  list_rbind(names_to = 'dataset') 
+
+dict_raw %>% 
+  DT::datatable()
+```
+
+
+The actual feature space available to the ML methods will most likely differ, 
+where there may be additional columns, column removals and renaming, respectively.
+
+
+```{r}
+martini_spec$adlb[c('id', 'trt')]
+
+```
+
+
+```{r}
+martini_ml_regr$dict
+```
+
+
+
+
+
+
+* manual selections
+* spec
+
+# recipe object
+
+List of pre-processing operations with general setting and the list of variables 
+that the recipe step is trained for
+
+```{r}
+preprocess_steps(martini_ml_regr$prep_recipe) %>% 
+  kable() %>% 
+  kable_styling(full_width = FALSE)
+```
+
+
+
