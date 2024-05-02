@@ -37,112 +37,146 @@ prepare_ml(
 )
 }
 \arguments{
-\item{feature}{feature matrix in wide format, e.g. output object of \code{\link{build}()},
+\item{feature}{feature matrix in wide format, e.g. output object of
+\code{\link{build}()},
 i.e. containing \code{.id} column and predictors}
 
-\item{outcome}{tibble containing \code{.id} column and the outcome of interest, \code{\link{prepare_ml_outcome}()}}
+\item{outcome}{tibble containing \code{.id} column and the outcome of
+interest, \code{\link{prepare_ml_outcome}()}}
 
-\item{outcome_name}{single character giving the name of the outcome for regression or classification.
-For survival and repeated measurements analysis (classification or regression), resp.,
-a named vector of length two needs to be specified,
-\code{c(.time = "<time-coln>", .status = "<status-coln>")} for survival and
-\code{c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")} for repeated measurements, resp.
-See Details section.}
+\item{outcome_name}{single character giving the name of the outcome for
+regression or classification. For survival and repeated measurements analysis
+(classification or regression), resp., a named vector of length two needs
+to be specified, \code{c(.time = "<time-coln>", .status = "<status-coln>")}
+for survival and
+\code{c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")}
+for repeated measurements, resp. See Details section.}
 
-\item{level_order}{level order for a classification outcome. Default \code{NULL} keeps the natural order (only used for classification).}
+\item{level_order}{level order for a classification outcome.
+Default \code{NULL} keeps the natural order (only used for classification).}
 
-\item{prep_recipe}{a custom, pre-defined \code{recipes::recipe()} may be provided for data preparation. Defaults to NULL, yielding a data-driven preparation.
-please refer to the details section to learn about the individual recipe steps.}
+\item{prep_recipe}{a custom, pre-defined \code{recipes::recipe()} may be
+provided for data preparation. Defaults to NULL, yielding a data-driven
+preparation. Please refer to the details section to learn about the
+individual recipe steps.}
 
-\item{train_prop}{the proportion of data to be used for the training set. Has to be in [0.5;1.0]. Defaults to 3/4, keeping a quarter of the data for testing.}
+\item{train_prop}{the proportion of data to be used for the training set.
+Has to be in [0.5;1.0]. Defaults to 3/4, keeping a quarter of the data
+for testing.}
 
-\item{strata_trt}{boolean. Expand default stratum variable (\code{.out} for classification, \code{.status} for tte, \code{NULL} for regression)
-by trt (if character, else ignored). Defaults to FALSE, but is highly recommended to be set to TRUE.}
+\item{strata_trt}{boolean. Expand default stratum variable (\code{.out}
+for classification, \code{.status} for tte, \code{NULL} for regression)
+by trt (if character, else ignored). Defaults to FALSE, but is highly
+recommended to be set to TRUE.}
 
 \item{seed}{optionally set a seed before the data splitting.}
 
-\item{prep_step_knnimpute, prep_step_log, prep_step_normalize, prep_step_corr, prep_step_dummy}{logicals determining
-whether or not the corresponding step function should be included in the recipe,
-possibly specified further using additional parameters (\verb{thres_*}, \code{log_base}, \code{one_hot})
-Please refer to the details section for the full list of recipe steps.}
+\item{prep_step_knnimpute, prep_step_log, prep_step_normalize, prep_step_corr, prep_step_dummy}{logicals determining whether or not the corresponding step function should
+be included in the recipe, possibly specified further using additional
+parameters (\verb{thres_*}, \code{log_base}, \code{one_hot}). Please refer to the details
+section for the full list of recipe steps.}
 
-\item{thres_log}{variables will be log-transformed (with base \code{log_base}) if \code{prep_step_log = TRUE},
-all observations are positive, and \code{e1071::skewness() > thres_log}, where \code{thres_log} defaults to 2.}
+\item{thres_log}{variables will be log-transformed (with base \code{log_base})
+if \code{prep_step_log = TRUE}, all observations are positive, and
+\code{e1071::skewness() > thres_log}, where \code{thres_log} defaults to 2.}
 
-\item{thres_count}{integer variables with no more than \code{thres_count} distinct values are considered as count variables and
-are excluded from the log-transformation and normalization. Defaults to 10.}
+\item{thres_count}{integer variables with no more than \code{thres_count} distinct
+values are considered as count variables and are excluded from the
+log-transformation and normalization. Defaults to 10.}
 
-\item{thres_corr}{if \code{prep_step_corr = TRUE}, \code{thres_corr} is passed to \code{recipes::step_corr()}'s
-\code{threshold} argument with a default of 0.9 to remove highly correlated features}
+\item{thres_corr}{if \code{prep_step_corr = TRUE}, \code{thres_corr} is passed
+to \code{recipes::step_corr()}'s \code{threshold} argument with a default
+of 0.9 to remove highly correlated features}
 
-\item{thres_lump}{this parameter is used to prevent renaming of a single low frequency class to 'other' by \code{recipes::step_other()}, to
+\item{thres_lump}{this parameter is used to prevent renaming of a single low
+frequency class to 'other' by \code{recipes::step_other()}, to
 which \code{thres_lump} is passed as parameter \code{threshold}. Defaults to 0.05.}
 
-\item{thres_imp}{Minimal proportion of non-missing data per feature required to be kept
-in the data and completed using \code{recipes::step_impute_knn()}.
-Variables not meeting the threshold will be dropped and not be included in \code{data_prep} data.
-Per default \code{thres_imp = 0.8}, i.e. variables will be dropped if the proportion of available data is less than 80\%.
-Variables listed in \code{vars_imp_ignore} will never be imputed, observations with missing data in the respective
-variables will be removed.}
+\item{thres_imp}{Minimal proportion of non-missing data per feature required
+to be kept in the data and completed using \code{recipes::step_impute_knn()}.
+Variables not meeting the threshold will be dropped and not be included in
+\code{data_prep} data.
+Per default \code{thres_imp = 0.8}, i.e. variables will be dropped if the
+proportion of available data is less than 80\%. Variables listed in
+\code{vars_imp_ignore} will never be imputed, observations with missing data
+in the respective variables will be removed.}
 
-\item{thres_nzv_freq, thres_nzv_unique}{parameters passed to \code{recipes::step_nzv()} with defaults
+\item{thres_nzv_freq, thres_nzv_unique}{parameters passed to
+\code{recipes::step_nzv()} with defaults
 \code{thres_nzv_freq = 95/5)} and \code{thres_nzv_unique = 10}}
 
-\item{vars_imp_ignore}{variables that shall not be imputed can be specified in \code{vars_imp_ignore}
-(vector of column names, defaults to \code{vars_imp_ignore = '.trt'}).
-Observations with missing values in these variables will be removed. Removal is documented in \code{removed$rows}.}
+\item{vars_imp_ignore}{variables that shall not be imputed can be specified
+in \code{vars_imp_ignore} (vector of column names, defaults to
+\code{vars_imp_ignore = '.trt'}). Observations with missing values in these
+variables will be removed. Removal is documented in \code{removed$rows}.}
 
-\item{vars_fct_expl_na}{column names of factors for which NAs should be treated as an explicit factor level. Defaults to NULL.}
+\item{vars_fct_expl_na}{column names of factors for which NAs should be
+treated as an explicit factor level. Defaults to NULL.}
 
-\item{vars_ordinalscore}{column names of ordinal factor variables to be converted into numeric scores. Defaults to NULL.}
+\item{vars_ordinalscore}{column names of ordinal factor variables to be
+converted into numeric scores. Defaults to NULL.}
 
-\item{vars_keep_corr}{choose these variables over other options when removing variables due to high correlation in \code{recipes::step_corr()}. See \code{recipes::step_rm()} below for details.}
+\item{vars_keep_corr}{choose these variables over other options when removing
+variables due to high correlation in \code{recipes::step_corr()}.
+See \code{recipes::step_rm()} below for details.}
 
-\item{one_hot}{boolean. passed to \code{recipes::step_dummy()} to choose one hot encoding over dummy encoding}
+\item{one_hot}{boolean. passed to \code{recipes::step_dummy()} to choose one
+hot encoding over dummy encoding}
 
-\item{log_base}{base to use for log-transformation in \code{recipes::step_log()}. Defaults to \emph{exp(1)}.}
+\item{log_base}{base to use for log-transformation in
+\code{recipes::step_log()}. Defaults to \emph{exp(1)}.}
 
-\item{outlier_remove, outlier_ctrl}{For outcome mode regression only, see \code{\link{prepare_ml_outcome}()}
-for details on how outliers are removed from outcome variables. \code{outlier_remove} defaults to FALSE, \code{outlier_ctrl} to \code{list(coef = 3)}.}
+\item{outlier_remove, outlier_ctrl}{For outcome mode regression only, see
+\code{\link{prepare_ml_outcome}()}
+for details on how outliers are removed from outcome variables.
+\code{outlier_remove} defaults to FALSE, \code{outlier_ctrl} to \code{list(coef = 3)}.}
 
-\item{quiet}{boolean. Suppress messages during outcome preparation to the console on NA and outlier removal, resp. Defaults to \code{FALSE}.}
+\item{quiet}{boolean. Suppress messages during outcome preparation to the
+console on NA and outlier removal, resp. Defaults to \code{FALSE}.}
 }
 \value{
 \subsection{Data sets}{
 
-\code{prepare_ml()} produces a list that contains the data set both with (\code{data_prep}) and
-without (\code{data_raw}) applying the specified ML preparation steps.
-Both versions are split in \code{train} and \code{test} set.
-In addition, \code{split} contains the combined \code{rsample::initial_split()} object that
-the \code{train} and \code{test} data was extracted from. Depending on the programming workflow,
-one might be more convenient to use than the other.
-Both \code{data_test} slots as well as \code{split} are NULL
-if \code{train_prop} was set to 1 (i.e. no splitting was done) and \code{train} contains the full ML data set.
+\code{prepare_ml()} produces a list that contains the data set both with
+(\code{data_prep}) and without (\code{data_raw}) applying the specified ML
+preparation steps. Both versions are split in \code{train} and \code{test}
+set. In addition, \code{split} contains the combined
+\code{rsample::initial_split()} object that the \code{train} and \code{test}
+data was extracted from. Depending on the programming workflow, one might be
+more convenient to use than the other. Both \code{data_test} slots as well
+as \code{split} are \code{NULL} if \code{train_prop} was set to 1
+(i.e. no splitting was done) and \code{train} contains the full ML data set.
 
-The slot \code{outcome} contains a list giving \code{name}, the standardized names of the
-output column in the data sets ( \code{.out} for regression/classification, \code{.time} and \code{.status}
-for survival, as well as a \code{mode}, character string of the outcome mode \code{regression/classification/survival}
+The slot \code{outcome} contains a list giving \code{name}, the standardized
+names of the output column in the data sets ( \code{.out} for
+regression/classification, \code{.time} and \code{.status} for survival,
+as well as a \code{mode}, character string of the outcome mode
+\code{regression/classification/survival}
 
-The dictionary available as an attribute of \code{feature} is updated with information on the outcome variable,
-any log-transformation as well as alternative labels (\code{label2}, \code{label3})
-indicating correlated variable groups e.g. HB (HCT), where HB is kept for the analysis,
-HCT was dropped due to absolute correlation above \code{thres_corr}.
-Dictionary is available from the \code{dict} slot,
-NULL if no such attribute is defined.
+The dictionary available as an attribute of \code{feature} is updated with
+information on the outcome variable, any log-transformation as well as
+alternative labels (\code{label2}, \code{label3}) indicating correlated variable groups
+e.g. HB (HCT), where HB is kept for the analysis, HCT was dropped due to
+absolute correlation above \code{thres_corr}. Dictionary is available from
+the \code{dict} slot, \code{NULL} if no such attribute is defined.
 
-The \code{source} slot simply passes the \code{source} attribute of \code{feature}, NULL if no such attribute is defined.
-If \code{\link{build}()} from the \code{martini} package was used to generate \code{feature},
-this attribute lists the full paths of the files that were used in data generation of \code{feature}.
+The \code{source} slot simply passes the \code{source} attribute of
+\code{feature}, NULL if no such attribute is defined.
+If \code{\link{build}()} from the \code{martini} package was used to generate
+\code{feature}, this attribute lists the full paths of the files that were
+used in data generation of \code{feature}.
 }
 
 \subsection{Data preparation and documentation}{
 
 \code{prep_recipe} contains the prepared recipe object,
-\code{prep_params} documents the parameters/thresholds used in the data preparation,
-giving bare \code{value} slots, as well as a verbose description in \code{text}.
-\code{removed} gives a list of removed \code{rows} and \code{columns} along with the information
-on why/in which recipe step the data was removed.
-\code{high_corr} a tibble listing correlations above \code{thres_corr}. \code{NULL} if \code{prep_step_corr = FALSE}.
+\code{prep_params} documents the parameters/thresholds used in the data
+preparation, giving bare \code{value} slots, as well as a verbose description
+in \code{text}.
+\code{removed} gives a list of removed \code{rows} and \code{columns} along
+with the information on why/in which recipe step the data was removed.
+\code{high_corr} a tibble listing correlations above \code{thres_corr}.
+\code{NULL} if \code{prep_step_corr = FALSE}.
 \code{input} a list giving the {{martini}} \code{packageVersion} and a
 list of (most) input parameters, including the seed used
 }
@@ -150,16 +184,20 @@ list of (most) input parameters, including the seed used
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
 
-Given \code{feature}, a tibble representing a wide format feature matrix, and \code{outcome},
-a tibble containing the outcome information (regression/classification/survival is supported),
-\code{prepare_ml()} will provide data sets suitable for various machine learning problems along with additional information.
+Given \code{feature}, a tibble representing a wide format feature matrix,
+and \code{outcome}, a tibble containing the outcome information
+(regression/classification/survival is supported),
+\code{prepare_ml()} will provide data sets suitable for various
+machine learning problems along with additional information.
 The data preparation steps include, but are not limited to data splitting,
-handling missing values, normalization, removal of redundant information (highly correlated features).
+handling missing values, normalization, removal of redundant information
+(highly correlated features).
 Please refer to the Details section for more information.
 }
 \details{
-The following order of recipe steps for data preparation will be applied (if no recipe is provided).
-The variable sets that a particular step function will be applied to are determined based on user input
+The following order of recipe steps for data preparation will be applied
+(if no recipe is provided). The variable sets that a particular step function
+will be applied to are determined based on user input
 and output of the function \code{\link{prepare_ml_vars}()}, respectively.
 Further details on particular steps are given below.
 \itemize{
@@ -173,7 +211,8 @@ values can still occur after imputation if a large majority (or all) of the
 imputing variables are also missing (see \code{?recipes::step_impute_knn()}).
 Related subjects/observations will be removed to obtain a complete data set
 and listed in removed$rows of the output object.
-\item omit observations with remaining missing values (i.e. in variables that were excluded from imputation and not dropped before) (\code{step_naomit()})
+\item omit observations with remaining missing values (i.e. in variables that
+were excluded from imputation and not dropped before) (\code{step_naomit()})
 \item removal of near-zero variance variables (\code{step_nzv()})
 \item log-transformation (\code{step_log()})
 \item normalization (\code{step_normalize()})
@@ -183,38 +222,48 @@ and listed in removed$rows of the output object.
 \item dummy/one hot encoding (\code{step_dummy()})
 }
 
-The \code{vars_keep_corr} parameter allows to prioritize these variables in the \code{step_corr()} part of the recipe
-over the variables that yield high correlations with them (i.e. exceeding \code{thres_corr}).
-This allows to choose a \emph{representative} from a set of correlated variables that is
-e.g. commonly used in the context of the indication or easier to interpret.
-Please note, that these imposed restrictions may increase the total number of removed variables
-in this step in comparison to the unrestricted version.
+The \code{vars_keep_corr} parameter allows to prioritize these variables in
+the \code{step_corr()} part of the recipe over the variables that yield high
+correlations with them (i.e. exceeding \code{thres_corr}).
+This allows to choose a \emph{representative} from a set of correlated variables
+that is e.g. commonly used in the context of the indication or easier to
+interpret. Please note, that these imposed restrictions may increase the
+total number of removed variables in this step in comparison to the
+unrestricted version.
 
-A note on \code{step_impute_knn()} and the interpretation of the \code{prep()}ped recipe:
-The variables listed for this step are the ones that are \strong{used} for the imputation step.
-It does not mean that missing values in these variables have been or will be imputed.
-For more details on this matter please refer to the documentation of tidymodels and the
-difference in \code{prep()} and \code{bake()}, in particular.
-For example, \code{vars_imp_ignore} includes the standard treatment variable
-\code{.trt} by default to prevent any imputations;
+A note on \code{step_impute_knn()} and the interpretation of the
+\code{prep()}ped recipe: The variables listed for this step are the ones
+that are \strong{used} for the imputation step. It does not mean that missing
+values in these variables have been or will be imputed.
+For more details on this matter please refer to the documentation of
+tidymodels and the difference in \code{prep()} and \code{bake()},
+in particular. For example, \code{vars_imp_ignore} includes the standard
+treatment variable \code{.trt} by default to prevent any imputations;
 however, it will be listed in the variable set of the \code{prep()}ped
 recipe (for older versions of \code{recipes} package). Don't panic. #rtfm.
 
 For repeated measurement analyses, all observations of the same \code{.id}
-will end up the either in the training or test set (using \code{rsample::group_initial_split()}).
-Note that the strata argument will be ignored (with a warning) for versions below 1.1.1.
+will end up the either in the training or test set (using
+\code{rsample::group_initial_split()}). Note that the strata argument will be
+ignored (with a warning) for versions below 1.1.1.
 Currently, grouping is not accounted for in missing value imputation yet.
 
-Specification of \code{outcome_name} for survival analysis or repeated measurements:
-For survival analysis, specify column names for 'time' and 'status' of the \code{Surv} object: \code{c(.time = "<time-coln>", .status = "<status-coln>")},
-where \code{.time} is numeric and \code{.status} is binary with 0 coding for censored, and 1 coding for event.
-Currently, only right-censoring is supported.
+Specification of \code{outcome_name} for survival analysis or repeated
+measurements: For survival analysis, specify column names for 'time' and
+'status' of the \code{Surv} object:
+\code{c(.time = "<time-coln>", .status = "<status-coln>")}, where \code{.time} is
+numeric and \code{.status} is binary with 0 coding for censored, and 1 coding
+for event. Currently, only right-censoring is supported.
 
-For repeated measurements, specify \code{outcome_name} as \code{c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")}.
-The outcome mode will be guessed as regression or classification according to the type of the column specified in \code{.out}.
+For repeated measurements, specify \code{outcome_name} as
+\code{c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")}.
+The outcome mode will be guessed as regression or classification according
+to the type of the column specified in \code{.out}.
 
-If \code{outcome_name = NULL} (default), the first column in \code{outcome} that's not \code{.id} is chosen for \code{outcome_name}
-and the outcome mode is guessed accordingly. Thus, neither survival nor repeated measurement analysis will ever be guessed.
+If \code{outcome_name = NULL} (default), the first column in \code{outcome} that's
+not \code{.id} is chosen for \code{outcome_name} and the outcome mode is guessed
+accordingly. Thus, neither survival nor repeated measurement analysis will
+ever be guessed.
 }
 \section{Authors}{
 
