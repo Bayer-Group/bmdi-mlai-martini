@@ -281,7 +281,7 @@ test_that("prepare_ml snapshots",{
   ads_ml_class$source <- NULL
   # recipe will have different step and environment ids in each run
   ads_ml_class$prep_recipe <- ads_ml_class$prep_recipe %>% 
-    purrr::modify_tree(leaf = tibble_to_JSON, drop = TRUE)
+    purrr::modify_tree(leaf = tibble_to_JSON) 
   
   expect_snapshot(
     ads_ml_class %>% purrr::modify_tree(leaf = tibble_to_JSON)
@@ -305,7 +305,7 @@ test_that("prepare_ml snapshots",{
   ads_ml_regr$source <- NULL
   # recipe will have different step and environment ids in each run
   ads_ml_class$prep_recipe <- ads_ml_class$prep_recipe %>% 
-    purrr::modify_tree(leaf = tibble_to_JSON, drop = TRUE)
+    purrr::modify_tree(leaf = tibble_to_JSON)
   
   expect_snapshot(
     ads_ml_regr %>% purrr::modify_tree(leaf = tibble_to_JSON)
@@ -328,7 +328,7 @@ test_that("prepare_ml snapshots",{
   ads_ml_surv$source <- NULL
   # recipe will have different step and environment ids in each run
   ads_ml_class$prep_recipe <- ads_ml_class$prep_recipe %>% 
-    purrr::modify_tree(leaf = tibble_to_JSON, drop = TRUE)
+    purrr::modify_tree(leaf = tibble_to_JSON)
   
   expect_snapshot(
     ads_ml_surv  %>% purrr::modify_tree(leaf = tibble_to_JSON)

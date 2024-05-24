@@ -1,6 +1,6 @@
 #'Prepare ML ready data set from outcome and predictor data
 #'
-#'@description 
+#'@description
 #'`r lifecycle::badge('maturing')`
 #'
 #'Given \code{feature}, a tibble representing a wide format feature matrix,
@@ -12,8 +12,8 @@
 #'handling missing values, normalization, removal of redundant information
 #'(highly correlated features).
 #'Please refer to the Details section for more information.
-#' 
-#' 
+#'
+#'
 #'@param feature feature matrix in wide format, e.g. output object of 
 #'\code{\link{build}()}, 
 #'i.e. containing \code{.id} column and predictors
