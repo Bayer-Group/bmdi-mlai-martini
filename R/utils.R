@@ -76,3 +76,64 @@ if(FALSE){
   get_default(prepare_ml_feature, unname = FALSE, arg = c("level_other", 'vars_fct_expl_na'), unlist = FALSE)
   
 }
+
+
+
+
+# TODO argument, shave (upper/lower)
+# TODO document
+
+corrr_mini <- function(
+    x,
+    method = 'pearson',
+    use    = 'pairwise.complete.obs'
+){
+  
+  # keep numeric columns only
+  x <- x %>% 
+    purrr::keep_at(purrr::map_lgl(x, is.numeric) %>% which())
+  
+  # compute correlations
+  res_cor <- stats::cor(
+    x = x, 
+    method = method, 
+    use    = use
+  )
+  
+  # upper and lower triangle individually, 
+  index_upper <- combn(seq_along(colnames(res_cor)), 2) %>% t()
+  index_lower <- rev(index_upper)
+  
+  stretch_upper <- tibble::tibble(
+    x = rownames(res_cor)[index_upper[ , 1]], 
+    y = colnames(res_cor)[index_upper[ , 2]],  
+    r = res_cor[index_upper]
+  )
+  stretch_lower <- tibble::tibble(
+    x = rownames(res_cor)[index_lower[ , 1]], 
+    y = colnames(res_cor)[index_lower[ , 2]],  
+    r = res_cor[index_lower]
+  )
+  
+  corr_tibble <- bind_rows(stretch_upper, stretch_lower)
+  
+  corr_tibble
+}
+# 
+# # for all (numeric) variables identify highly correlated variables from d_train_nocorr
+# corr_tibble <- corrr::correlate(
+#   d_train_nocorr %>% 
+#     dplyr::select(tidyselect::any_of(
+#       rcp_prep_nocorr$var_info %>% 
+#         dplyr::filter(role == "predictor") %>% 
+#         dplyr::pull(variable)
+#     )) %>% 
+#     dplyr::select_if(is.numeric),
+#   method = corr_method, 
+#   use    = corr_use,
+#   quiet  = TRUE
+# ) %>% 
+#   # corrr::shave() %>% repeats, but convenient for filtering
+#   corrr::stretch(na.rm = TRUE) %>%  
+#   dplyr::filter(abs(r) > thres_used$thres_corr)
+
