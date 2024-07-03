@@ -1,5 +1,6 @@
-# martini (development version)
+# martini 0.6.2
 
+* removed ´corrr´ package dependency
 * introducing github actions
 
 # martini 0.6.1
