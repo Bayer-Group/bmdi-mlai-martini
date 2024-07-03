@@ -280,8 +280,7 @@ test_that("prepare_ml snapshots",{
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_class$source <- NULL
   # recipe will have different step and environment ids in each run
-  ads_ml_class$prep_recipe <- ads_ml_class$prep_recipe %>% 
-    purrr::modify_tree(leaf = tibble_to_JSON) 
+  ads_ml_class$prep_recipe <- NULL
   
   expect_snapshot(
     ads_ml_class %>% purrr::modify_tree(leaf = tibble_to_JSON)
@@ -304,8 +303,7 @@ test_that("prepare_ml snapshots",{
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_regr$source <- NULL
   # recipe will have different step and environment ids in each run
-  ads_ml_class$prep_recipe <- ads_ml_class$prep_recipe %>% 
-    purrr::modify_tree(leaf = tibble_to_JSON)
+  ads_ml_class$prep_recipe <- NULL
   
   expect_snapshot(
     ads_ml_regr %>% purrr::modify_tree(leaf = tibble_to_JSON)
@@ -327,8 +325,7 @@ test_that("prepare_ml snapshots",{
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_surv$source <- NULL
   # recipe will have different step and environment ids in each run
-  ads_ml_class$prep_recipe <- ads_ml_class$prep_recipe %>% 
-    purrr::modify_tree(leaf = tibble_to_JSON)
+  ads_ml_class$prep_recipe <- NULL
   
   expect_snapshot(
     ads_ml_surv  %>% purrr::modify_tree(leaf = tibble_to_JSON)
