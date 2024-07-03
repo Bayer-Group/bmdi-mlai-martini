@@ -207,7 +207,7 @@
 #'with the information on why/in which recipe step the data was removed.
 #'\code{high_corr} a tibble listing correlations above \code{thres_corr}. 
 #'\code{NULL} if \code{prep_step_corr = FALSE}.
-#'\code{input} a list giving the {{martini}} \code{packageVersion} and a 
+#'\code{input} a list giving the `martini` \code{packageVersion} and a 
 #'list of (most) input parameters, including the seed used 
 #' 
 #'@section Authors:
