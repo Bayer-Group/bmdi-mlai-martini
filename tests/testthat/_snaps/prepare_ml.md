@@ -9450,7 +9450,7 @@
       ] 
       
       $prep_recipe
-    Message
+    Message <cliMessage>
       
       -- Recipe ----------------------------------------------------------------------
       
@@ -9471,9 +9471,9 @@
       * Missing value column filter removed: LAB1, LAB2, LAB3 | Trained
       * Removing rows with NA values in: .out | Trained
       * K-nearest neighbor imputation for: AGEGR01, SEX, RACE, AGE, ... | Trained
-      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, BPSYS, ... | Trained
+      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, ... | Trained
       * Mode imputation for: AGEGR01, SEX, RACE | Trained
-      * Removing rows with NA values in: .trt, AGEGR01, SEX, RACE, AGE, ... | Trained
+      * Removing rows with NA values in: .trt, AGEGR01, SEX, RACE, ... | Trained
       * Zero variance filter removed: cardiac_arrhythmias | Trained
       * Sparse, unbalanced variable filter removed: <none> | Trained
       * Correlation filter on: BMI_adsl | Trained
@@ -19121,7 +19121,7 @@
       ] 
       
       $prep_recipe
-    Message
+    Message <cliMessage>
       
       -- Recipe ----------------------------------------------------------------------
       
@@ -19142,9 +19142,9 @@
       * Missing value column filter removed: LAB1, LAB2, LAB3 | Trained
       * Removing rows with NA values in: .out | Trained
       * K-nearest neighbor imputation for: AGEGR01, SEX, RACE, AGE, ... | Trained
-      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, BPSYS, ... | Trained
+      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, ... | Trained
       * Mode imputation for: AGEGR01, SEX, RACE | Trained
-      * Removing rows with NA values in: .trt, AGEGR01, SEX, RACE, AGE, ... | Trained
+      * Removing rows with NA values in: .trt, AGEGR01, SEX, RACE, ... | Trained
       * Zero variance filter removed: cardiac_arrhythmias | Trained
       * Sparse, unbalanced variable filter removed: <none> | Trained
       * Correlation filter on: BMI_adsl | Trained
@@ -29384,7 +29384,7 @@
       ] 
       
       $prep_recipe
-    Message
+    Message <cliMessage>
       
       -- Recipe ----------------------------------------------------------------------
       
@@ -29403,11 +29403,11 @@
       * Variable mutation for: .trt, AGEGR01, SEX, RACE | Trained
       * Variables removed: <none> | Trained
       * Missing value column filter removed: LAB1, LAB2, LAB3 | Trained
-      * Removing rows with NA values in: .time and .status | Trained
+      * Removing rows with NA values in: .time, .status | Trained
       * K-nearest neighbor imputation for: AGEGR01, SEX, RACE, AGE, ... | Trained
-      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, BPSYS, ... | Trained
+      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, ... | Trained
       * Mode imputation for: AGEGR01, SEX, RACE | Trained
-      * Removing rows with NA values in: .trt, AGEGR01, SEX, RACE, AGE, ... | Trained
+      * Removing rows with NA values in: .trt, AGEGR01, SEX, RACE, ... | Trained
       * Zero variance filter removed: cardiac_arrhythmias | Trained
       * Sparse, unbalanced variable filter removed: <none> | Trained
       * Correlation filter on: BMI_adsl | Trained
