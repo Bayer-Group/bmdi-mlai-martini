@@ -288,7 +288,7 @@ prepare_ml_recipe <- function(
       purrr::pluck('result')
     
     # for all (numeric) variables identify highly correlated variables from d_train_nocorr
-    corr_tibble <- corrr::correlate(
+    corr_tibble <- corrr_mini(
       d_train_nocorr %>% 
         dplyr::select(tidyselect::any_of(
           rcp_prep_nocorr$var_info %>% 
@@ -297,11 +297,8 @@ prepare_ml_recipe <- function(
         )) %>% 
         dplyr::select_if(is.numeric),
       method = corr_method, 
-      use    = corr_use,
-      quiet  = TRUE
+      use    = corr_use
     ) %>% 
-      # corrr::shave() %>% repeats, but convenient for filtering
-      corrr::stretch(na.rm = TRUE) %>%  
       dplyr::filter(abs(r) > thres_used$thres_corr)
    
     

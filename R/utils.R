@@ -78,47 +78,71 @@ if(FALSE){
 }
 
 
-
-
-# TODO argument, shave (upper/lower)
-# TODO document
+#' Correlation matrix in long format
+#' 
+#' Calculate correlation matrix of a numeric data set and stretch to long format for convenient filtering..
+#'
+#' @param x A tibble, data frame or matrix containing numeric columns to be correlated.
+#' @param method,use Arguments that are passed to [stats::cor()]
+#' @param shave logical. if TRUE, only the lower triangle of the correlation matrix is kept.
+#'
+#' @return
+#' A tibble with the pair of variable names in the columns `x` and `y` and the 
+#' corresponding correlation in the column `r`
+#'
 
 corrr_mini <- function(
     x,
     method = 'pearson',
-    use    = 'pairwise.complete.obs'
+    use    = 'pairwise.complete.obs',
+    shave  = FALSE
 ){
   
   # keep numeric columns only
   x <- x %>% 
-    purrr::keep_at(purrr::map_lgl(x, is.numeric) %>% which())
+    tibble::as_tibble() %>% 
+    dplyr::select(tidyselect::where(is.numeric))
   
-  # compute correlations
-  res_cor <- stats::cor(
-    x = x, 
-    method = method, 
-    use    = use
-  )
+  if(ncol(x) == 0) stop("Data does not contain any numeric columns.")
   
-  # upper and lower triangle individually, 
-  index_upper <- combn(seq_along(colnames(res_cor)), 2) %>% t()
-  index_lower <- rev(index_upper)
-  
-  stretch_upper <- tibble::tibble(
-    x = rownames(res_cor)[index_upper[ , 1]], 
-    y = colnames(res_cor)[index_upper[ , 2]],  
-    r = res_cor[index_upper]
-  )
-  stretch_lower <- tibble::tibble(
-    x = rownames(res_cor)[index_lower[ , 1]], 
-    y = colnames(res_cor)[index_lower[ , 2]],  
-    r = res_cor[index_lower]
-  )
-  
-  corr_tibble <- bind_rows(stretch_upper, stretch_lower)
+  if(ncol(x) >= 2){
+    
+    # compute correlations
+    res_cor <- stats::cor(
+      x = x, 
+      method = method, 
+      use    = use
+    )
+    
+    # upper and lower triangle individually, 
+    index_lower <- utils::combn(seq_along(colnames(res_cor)), 2) %>% t()
+    index_upper <- index_lower[, 2:1]
+    
+    stretch_lower <- tibble::tibble(
+      x = rownames(res_cor)[index_lower[ , 1]], 
+      y = colnames(res_cor)[index_lower[ , 2]],  
+      r = res_cor[index_lower]
+    )
+    stretch_upper <- NULL
+    if(!shave){
+      stretch_upper <- tibble::tibble(
+        x = rownames(res_cor)[index_upper[ , 1]], 
+        y = colnames(res_cor)[index_upper[ , 2]],  
+        r = res_cor[index_upper]
+      )
+    }
+    
+    corr_tibble <- dplyr::bind_rows(stretch_lower, stretch_upper)
+    
+  }else{
+    
+    corr_tibble <- tibble::tibble(x = character(), y = character(), r = numeric())
+    
+  }
   
   corr_tibble
 }
+
 # 
 # # for all (numeric) variables identify highly correlated variables from d_train_nocorr
 # corr_tibble <- corrr::correlate(

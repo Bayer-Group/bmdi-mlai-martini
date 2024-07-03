@@ -23,7 +23,6 @@ Depends:
     R (>= 3.6)
 Imports:
     cli,
-    corrr,
     crayon,
     dplyr (>= 1.0.0),
     forcats,
@@ -47,9 +46,11 @@ Imports:
     usethis,
     utils
 Suggests:
+    corrr,
     here,
     jsonlite,
     knitr,
+    kableExtra,
     lifecycle,
     MASS,
     rmarkdown,
