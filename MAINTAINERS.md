@@ -13,8 +13,8 @@ List of current maintainers
 
 | Maintainer           | GitHub ID                                                 | Affiliation      |
 | -------------------- | --------------------------------------------------------- | ---------------- |
-| Maike Ahrens         | [ahrensmaike](https://github.com/ahrensmaike)                         | Chrestos Concept |
-| Sebastian Voß        | [svoss09](https://github.com/svoss09)                         | Chrestos Concept |
+| Maike Ahrens         | [ahrensmaike](https://github.com/ahrensmaike)             | Chrestos Concept |
+| Sebastian Voß        | [svoss09](https://github.com/svoss09)                     | Chrestos Concept |
 
 
 ## Backup Maintainers
@@ -33,5 +33,6 @@ List of maintainers as backup option
 
 ## Emeritus
 
-| Maintainer         | GitHub ID                                                 | Affiliation |
-| ------------------ | --------------------------------------------------------- | ----------- |
+| Maintainer           | GitHub ID                                                 | Affiliation      |
+| -------------------- | --------------------------------------------------------- | ---------------- |
+| Yuan Hong            | [yuanhong03](https://github.com/yuanhong03)               | Bayer            |
