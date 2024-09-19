@@ -25,11 +25,10 @@ List of maintainers as backup option
 | -------------------- | --------------------------------------------------------- | ---------------- |
 | Adam Skubala         | [askubala](https://github.com/askubala)                   | Bayer            |
 | Antigoni Elefsinioti | [Anle3](https://github.com/Anle3)                         | Bayer            |
-| Eliana Garcia Cossio | [eligarcos](https://github.com/eligarcos)                         | Bayer            |
+| Eliana Garcia Cossio | [eligarcos](https://github.com/eligarcos)                 | Bayer            |
 | Frauke Hennig        | [FraukeHEN](https://github.com/FraukeHEN)                 | Chrestos Concept |
 | Karl Köchert         | [KarlKoe](https://github.com/KarlKoe)                     | Bayer            |
 | Lukas Lasota         | [MasterLuke84](https://github.com/MasterLuke84)           | ClinStat         |
-| Yuan Hong            | [yuanhong03](https://github.com/yuanhong03)               | Bayer            |
 
 ## Emeritus
 

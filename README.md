@@ -18,7 +18,7 @@ You can install the development version of martini like so:
 
 ``` r
 devtools::install_git(
-  "https://gitlab.bayer.com/ahrensmaike/martini_prep.git",
+  "https://github.com/bayer-int/bmdi-mlai-martini",
   dependencies    = TRUE,
   build_vignettes = TRUE
 )
