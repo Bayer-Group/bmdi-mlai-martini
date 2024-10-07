@@ -45,7 +45,7 @@ preprocess_steps <- function(
       paste(collapse = ', ')
     ) %>% 
     unlist() %>%
-    enframe(name = 'id', value = 'settings')
+    tibble::enframe(name = 'id', value = 'settings')
   
   affected <- full_info %>% 
     purrr::map('columns') %>% 

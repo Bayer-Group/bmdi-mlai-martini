@@ -14,7 +14,9 @@ library(martini)
 library(tidyselect)
 library(dplyr)
 library(recipes)
-library(kableExtra)
+library(purrr)
+library(gt)
+library(magrittr)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -73,15 +75,44 @@ Questions to be answered:
 
 ## Feature space
 
-The `raw` feature space is defined as all variables technically available from the selected data sets.
-This can be derived from the martini `spec` object. 
+The `raw` feature space is defined as all variables technically
+available from the selected data sets after applying 
+the user-defined filters.
+
+This can be derived from the output of `prepare_ml`.
 
 ```{r}
+colnames_raw <- martini::martini_ml_regr %>% 
+  get_data('raw') %>% 
+  names() %>% 
+  setdiff(c('.id', '.out'))
+
+martini::martini_ml_regr$dict %>% 
+  filter(param %in% colnames_raw) %>% 
+  select(
+    column, 
+    param, 
+    Label = label, 
+    Domain = spec_id
+  ) %>% 
+  gt()
+ # TODO column/label usage for occds
+```
+
+
+
+
+```{r, eval = FALSE}
+#This can be derived from the martini `spec` object. 
+
 dict_raw <- martini_spec %>% 
   map('dict') %>% 
   list_rbind(names_to = 'dataset') 
 
 dict_raw %>% 
+  filter(selected) %>% 
+  select(dataset, param, label) %>%
+  filter(!param %in% martini_spec$adsl[c('id')]) %>% 
   DT::datatable()
 ```
 
@@ -110,7 +141,8 @@ martini_ml_regr$dict
 
 # recipe object
 
-List of pre-processing operations with general setting and the list of variables 
+List of pre-processing operations with general setting and 
+the list of variables 
 that the recipe step is trained for
 
 ```{r}
