@@ -54,3 +54,32 @@ test_that("adam_spec_bds works", {
   
   
 })
+# test area  ####
+if(FALSE){
+  
+  require(tidyverse)
+  require(haven)
+  require(labelled)
+  
+  file = '../adegf.sas7bdat'
+  id = 'SUBJID'
+  param  =  NULL
+  label  = NULL
+  unit   = NULL # AVALU, xxSTRESU, ORESSU
+  time   = NULL 
+  value  = NULL #c(AVAL, CHG)
+  filter = NULL
+  
+  # basic function call
+  spec_res <- adam_spec_bds(file = file, id = id)
+  spec_res %>%  str()
+  
+  # specify filter that is partially not applicable
+  filter_test <- c("AVISIT == 'BASELINE'", "LBTESTCD == 'RHYNOS'")
+  spec_res <- adam_spec_bds(file = file, id = id, filter = filter_test)
+  spec_res$filter
+  
+  # specify value column that is not in the data
+  spec_res <- adam_spec_bds(file = file, id = id, value = "VALUE")
+  
+}

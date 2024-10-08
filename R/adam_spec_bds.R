@@ -96,6 +96,7 @@ adam_spec_bds <- function(
     "label" = label
   )
   
+  
   # check/modify 'col_select' and set 'domain' ####
   
   if (!is.null(data)){
@@ -329,32 +330,132 @@ adam_spec_bds <- function(
   
 }
 
-# test area  ####
-if(FALSE){
+
+
+adam_spec_bds2 <- function(
+    file        = NULL,
+    data        = NULL,
+    id          = 'SUBJID', 
+    param       = NULL,
+    label       = NULL,
+    unit        = NULL,
+    time        = NULL, 
+    value       = NULL,
+    value_type  = NULL,
+    filter      = NULL,
+    attach_data = FALSE,
+    domain      = NULL
+){
   
-  require(tidyverse)
-  require(haven)
-  require(labelled)
+  # initial check(s)  ####
   
-  file = '../adegf.sas7bdat'
-  id = 'SUBJID'
-  param  =  NULL
-  label  = NULL
-  unit   = NULL # AVALU, xxSTRESU, ORESSU
-  time   = NULL 
-  value  = NULL #c(AVAL, CHG)
-  filter = NULL
+  if (all(c(is.null(data), is.null(file)))) {
+    usethis::ui_stop(
+      paste0(
+        'At least one of ', usethis::ui_code('data'), ' or ',
+        usethis::ui_code('file'), ' need to be provided.\n'))
+  }
   
-  # basic function call
-  spec_res <- adam_spec_bds(file = file, id = id)
-  spec_res %>%  str()
+  # remove?
+  # if (!is.null(value_type) && !value_type %in% c("character", "numeric")){
+  #   usethis::ui_stop(paste0(
+  #     usethis::ui_code("value_type"), " needs to be either ",
+  #     usethis::ui_value("numeric"), " or ", usethis::ui_value("character"), ".\n"
+  #   ))
+  # }
   
-  # specify filter that is partially not applicable
-  filter_test <- c("AVISIT == 'BASELINE'", "LBTESTCD == 'RHYNOS'")
-  spec_res <- adam_spec_bds(file = file, id = id, filter = filter_test)
-  spec_res$filter
   
-  # specify value column that is not in the data
-  spec_res <- adam_spec_bds(file = file, id = id, value = "VALUE")
+ # import ####
+ if (is.null(data)) {
+   imported <- import_info(file)
+   data <- imported$data
+   md5      <- imported$md5
+   size     <- imported$size
+ }else{
+   md5      <- NULL
+   size     <- NULL
+ }
+  
+  # identify domain and type ####
+  # either from filename or check data for ADSNAME column
+  ...
+
+ coln_data <- colnames(bds)
+
+ # column checks ####
+ # required column set differs by type
+ # function returning for type and coln_data:
+ # col_select, col_required, guess
+ type <- 'bds'
+ if (type == 'bds') {
+ col_select <- list(
+   "id"    = id,
+   "value" = value,
+   "param" = param,
+   "time"  = time,
+   "unit"  = unit,
+   "label" = label
+ )
+ } else if (type == 'occds') {
+   col_select <- list(
+     "id"    = id,
+     ...
+   )
+ }
+ col_misspecified <- setdiff(col_select, coln_data)
+ 
+ if(length(col_misspecified) > 0) warn
+ 
+ # guessing game ####
+ ...
+ 
+}
+
+#' Import file and collect info
+#'
+#' @param file filepath
+#'
+#' @return  list containing data and corresponding md5 sum and file size
+
+#' 
+import_info <- function(file){
+  # TODO maybe pass context
+  if (!tools::file.exists(file)) {
+    cli::cli_abort(c(
+      #"{.fn adam_spec_bds} 
+      "Could not create a spec from the provided file." ,
+      'x' = "The following file could not be found: {.path {file}}")
+    )
+  }
+  
+  if (!tools::file_ext(file) %in% c("sas7bdat", "rds")) {
+    cli::cli_abort(c(
+      #"{.fn adam_spec_bds} 
+      "expects a sas7bdat or rds file to read, but was provided {.path {file}}.",
+      'x' = 'The provided file is of type {tools::file_ext(file)}.',
+      '*' = 'Please check your input or attach a data set instead.'
+    ))
+    
+  }
+  
+  file_ext <- tools::file_ext(file) 
+  
+  bds <- if (file_ext == 'sas7bdat') {
+    haven::read_sas(file) %>% 
+      dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+  }else if (file_ext == 'rds') {
+    readRDS(file)
+  }else{
+    stop('Only sas7bdat and rds data supported.')
+  }
+  
+  
+  list(
+    data = bds,
+    md5  = tools::md5sum(file) %>% as.character(),
+    size = fs::file_size(file)
+  )
   
 }
+
+
