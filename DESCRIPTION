@@ -20,7 +20,7 @@ Description: Prepare module of the BMDI MLAI pipeline. It contains
 License: GPL-3
 BugReports: https://github.com/bayer-int/bmdi-mlai-martini/issues/new
 Depends:
-    R (>= 3.6)
+    R (>= 4.1)
 Imports:
     cli,
     crayon,
