@@ -459,3 +459,76 @@ import_info <- function(file){
 }
 
 
+#' Check role specification for ADaM data set
+#' 
+#' Checks, if provided column for a role in an ADaM data set is present in the 
+#' data and of the correct type. If no column is provided, it is guessed based 
+#' on ADaM standards.
+#'
+#' @param colnames_data character vector. column names of the data set to check
+#' against
+#' @param role character. the role to check, e.g. "param", "id", "value" or
+#' "time"
+#' @param column_spec character. the selected column name. will be for 
+#' presence in `data`and type. if NULL (the default), it will be guessed based 
+#' on `domain` or `type`.
+#' @param type character. either "adsl", "bds" or "occds"
+#' @param domain character. the ADaM domain of `data`. used for column guessing
+#' @param required boolean. `TRUE`, if `role` is required, `FALSE` if optional.
+#' @param call the execution environment of a currently running function. 
+#'
+#' @return
+#' A list with `role`, the column name `column` or `NULL` (if column check was 
+#' not successful or `role` could not be guessed) and a boolean `check_pass`,
+#' indicating, if all checks on the column have passed.
+#' Throws an informative warning if any of the checks fails.
+#' 
+
+check_role <- function(
+    data,
+    role,
+    column_spec = NULL,
+    type,
+    domain = NULL,
+    required = TRUE,
+    call = rlang::caller_env()
+  ){
+  
+  out <- list(
+    role = role,
+    column = NULL,
+    check_passed = TRUE
+  )
+  
+  colnames_data <- colnames(data)
+  
+  if(!is.null(column_spec)){
+    if(column_spec %in% colnames_data){
+      # TODO check type
+      out$column <- column_spec
+    }else{
+      out$check_passed <- FALSE
+      cli::cli_warn(
+        c("Column {.code {column_spec}} is not present in data."),
+        call = call
+      )
+    }
+  }else{
+    # TODO guess based on 'domain' and 'role' (and 'type'?)
+    guess <- NULL
+    if(!is.null(guess) && required){
+      out$check_passed <- FALSE
+      cli::cli_warn(c(
+        "No '{role}' column could be guessed from the data",
+        "Please provide a column name for '{role}'."
+        ),
+        call = call
+      )
+    }
+  }
+  
+  out
+  
+}
+
+
