@@ -341,7 +341,6 @@ adam_spec_bds2 <- function(
     unit        = NULL,
     time        = NULL, 
     value       = NULL,
-    value_type  = NULL,
     filter      = NULL,
     attach_data = FALSE,
     domain      = NULL
@@ -364,51 +363,71 @@ adam_spec_bds2 <- function(
   #   ))
   # }
   
+  # import ####
+  if (is.null(data)) {
+    imported <- import_info(file)
+    data <- imported$data
+    md5  <- imported$md5
+    size <- imported$size
+  }else{
+    md5  <- NULL
+    size <- NULL
+  }
   
- # import ####
- if (is.null(data)) {
-   imported <- import_info(file)
-   data <- imported$data
-   md5      <- imported$md5
-   size     <- imported$size
- }else{
-   md5      <- NULL
-   size     <- NULL
- }
+  
+   col_select <- list(
+     "id"    = id,
+     "value" = value,
+     "param" = param,
+     "time"  = time,
+     "unit"  = unit,
+     "label" = label
+   )
+   
+   check_role(col_select, required)
+   
+   check_filter()
+   
+   out
+   
+  # consolidate check_passed to use_for_build
+  
   
   # identify domain and type ####
   # either from filename or check data for ADSNAME column
   ...
-
- coln_data <- colnames(bds)
-
- # column checks ####
- # required column set differs by type
- # function returning for type and coln_data:
- # col_select, col_required, guess
- type <- 'bds'
- if (type == 'bds') {
- col_select <- list(
-   "id"    = id,
-   "value" = value,
-   "param" = param,
-   "time"  = time,
-   "unit"  = unit,
-   "label" = label
- )
- } else if (type == 'occds') {
-   col_select <- list(
-     "id"    = id,
-     ...
-   )
- }
- col_misspecified <- setdiff(col_select, coln_data)
- 
- if(length(col_misspecified) > 0) warn
- 
- # guessing game ####
- ...
- 
+  
+  coln_data <- colnames(bds)
+  
+  # column checks ####
+  # required column set differs by type
+  # function returning for type and coln_data:
+  # col_select, col_required, guess
+  type <- 'bds'
+  if (type == 'bds') {
+    col_select <- list(
+      "id"    = id,
+      "value" = value,
+      "param" = param,
+      "time"  = time,
+      "unit"  = unit,
+      "label" = label
+    )
+  } else if (type == 'occds') {
+    col_select <- list(
+      "id"    = id,
+      ...
+    )
+  }
+  col_misspecified <- setdiff(col_select, coln_data)
+  
+  if(length(col_misspecified) > 0) warn
+  
+  # guessing game ####
+  ...
+  
+  
+  
 }
 
 #' Import file and collect info
