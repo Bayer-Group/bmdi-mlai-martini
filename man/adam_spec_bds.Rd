@@ -13,7 +13,6 @@ adam_spec_bds(
   unit = NULL,
   time = NULL,
   value = NULL,
-  value_type = NULL,
   filter = NULL,
   attach_data = FALSE,
   domain = NULL
@@ -36,15 +35,15 @@ adam_spec_bds(
 
 \item{value}{Defaults to NULL, will be guessed if not set (see Details).}
 
-\item{value_type}{NULL or character string 'numeric' or 'character'. Determines guessing of the value column (e.g. AVAL over AVALC by default).
-If NULL (default), the type will be guessed based on name of the sas file (if \code{file} is provided) or set to 'numeric'.}
-
 \item{filter}{character vector of filters to be applied to the bds data set.
 Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL.}
 
 \item{attach_data}{boolean. Attach the imported raw data.}
 
 \item{domain}{character string to be included in dictionary. Automatically derived for standard ADaM data sets. If not set for \code{data} provided, dictionary entry will be 'custom'.}
+
+\item{value_type}{NULL or character string 'numeric' or 'character'. Determines guessing of the value column (e.g. AVAL over AVALC by default).
+If NULL (default), the type will be guessed based on name of the sas file (if \code{file} is provided) or set to 'numeric'.}
 }
 \value{
 A list containing the following

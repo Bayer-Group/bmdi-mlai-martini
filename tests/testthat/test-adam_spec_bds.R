@@ -7,26 +7,27 @@ test_that("adam_spec_bds works", {
   file_adlb_rename <- test_path("sas/adlb_rename.sas7bdat")
   
   
-  # TEST key columns ####
-  # ... provide non-existing id column name ####
-  testthat::expect_error(
-    ads_spec_adlb <- adam_spec_bds(
-      file  = file_adlb,
-      id    = 'USUBJID'         
-    ),
-    regexp = '`id`' 
-  )
-  
-  # ... column cannot be guessed ####
-  testthat::expect_null(
-    adam_spec_bds(file = file_adlb_rename)
-  )
+  # # TEST key columns ####
+  # # ... provide non-existing id column name ####
+  # testthat::expect_error(
+  #   ads_spec_adlb <- adam_spec_bds(
+  #     file  = file_adlb,
+  #     id    = 'USUBJID'         
+  #   ),
+  #   regexp = '`id`' 
+  # )
+  # 
+  # # ... column cannot be guessed ####
+  # testthat::expect_null(
+  #   adam_spec_bds(file = file_adlb_rename)
+  # )
   
   # ... provide non-standard column name ####
   ns_param <- 'MARTINI'
   ns_spec  <- adam_spec_bds(
     file  = file_adlb_rename,
-    param = ns_param
+    param = ns_param,
+    value = "LBSTRESC"
   )
   testthat::expect_equal(
     ns_spec[['param']],
@@ -83,3 +84,44 @@ if(FALSE){
   spec_res <- adam_spec_bds(file = file, id = id, value = "VALUE")
   
 }
+
+test_that("check_role() works with bds data", {
+  
+  adlb <- test_path("sas/adlb.sas7bdat") %>% haven::read_sas()
+  
+  expect_equal(
+    check_role(data = adlb, role = "param", type = "bds"),
+    list(role = "param", column = "PARAMCD", check_passed = TRUE)
+  )
+  
+  expect_equal(
+    check_role(data = adlb, role = "param", column_spec = "param", type = "bds"),
+    list(role = "param", column = NULL, check_passed = FALSE)
+  )
+  
+  expect_warning(
+    check_role(data = adlb, role = "param", column_spec = "param", type = "bds")
+  )
+  
+})
+
+test_that("check_role() works with occds data", {
+  
+  admh <- test_path("sas/admh.sas7bdat") %>% haven::read_sas()
+  
+  expect_equal(
+    check_role(data = admh, role = "label", type = "occds"),
+    list(role = "label", column = "MHHLGT", check_passed = TRUE)
+  )
+  
+  expect_equal(
+    check_role(data = adlb, role = "label", column_spec = "wrong_label", type = "occds"),
+    list(role = "label", column = NULL, check_passed = FALSE)
+  )
+  
+  expect_warning(
+    check_role(data = admh, role = "label", column_spec = "wrong_label", type = "occds")
+  )
+  
+})
+

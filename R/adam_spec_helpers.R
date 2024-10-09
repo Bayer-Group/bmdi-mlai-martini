@@ -161,3 +161,141 @@ data_info <- function(spec_entry){
 
 cor_quiet <- purrr::quietly(stats::cor)
 
+#' Check role specification for ADaM data set
+#' 
+#' Checks, if provided column for a role in an ADaM data set is present in the 
+#' data and of the correct type. If no column is provided, it is guessed based 
+#' on ADaM standards.
+#'
+#' @param colnames_data character vector. column names of the data set to check
+#' against
+#' role character. the .g. "param", "id", "value" or
+#' "time"
+#' @param column_spec character. the selected column name. will be for 
+#' presence in `data`and type. if NULL (the default), it will be guessed based 
+#' on `domain` or `type`.
+#' @param type character. either "bds" or "occds"
+#' @param domain character. an optional id for the specification that is used 
+#' for informative warnings
+#' @param required boolean. `TRUE`, if `role` is required, `FALSE` if optional.
+#' @param call the execution environment of a currently running function. 
+#'
+#' @return
+#' A list with `role`, the column name `column` or `NULL` (if column check was 
+#' not successful or `role` could not be guessed) and a boolean `check_pass`,
+#' indicating, if all checks on the column have passed.
+#' Throws an informative warning if any of the checks fails.
+#' 
+
+check_role <- function(
+    data,
+    role,
+    column_spec = NULL,
+    type = c("bds", "occds"),
+    spec_id = NULL,
+    required = TRUE,
+    call = rlang::caller_env()
+){
+  
+  type <- rlang::arg_match(type)
+  
+  out <- list(
+    column = NULL,
+    required = required,
+    check_passed = TRUE
+  )
+  
+  colnames_data <- colnames(data)
+  
+  if(!is.null(column_spec)){
+    if(column_spec %in% colnames_data){
+      # TODO check type
+      out$column <- column_spec
+    }else{
+      out$check_passed <- FALSE
+      cli::cli_warn(
+        c("Column {.code {column_spec}} is not present in data."),
+        call = call
+      )
+    }
+  }else{
+    # TODO guess based on 'domain' and 'role' (and 'type'?)
+    guess <- adam_guess(
+      role = role,
+      type = type,
+      colnames_data = colnames_data
+    )
+    
+    if(is.null(guess) && required){
+      out$check_passed <- FALSE
+      cli::cli_warn(c(
+        "No '{role}' column could be guessed from the data",
+        "Please provide a column name for '{role}'."
+      ),
+      call = call
+      )
+    }else{
+      out$column <- guess
+    }
+  }
+  
+  out
+  
+}
+
+
+#' Create output object for build specifications
+#'
+#' @param ... output objects
+#' @inheritParams check_role
+#' @inheritParams adam_spec
+#'
+#' @return
+#' Output object of `adam_spec_*()`
+#' 
+#' @seealso 
+#' [adam_spec_bds()]
+#' [adam_spec_occds()]
+
+create_spec_out <- function(..., type = c("bds", "occds"), attach_data = TRUE){
+  
+  type  <- rlang::arg_match(type)
+  input <- rlang::dots_list(..., .named = TRUE)
+  
+  out <- list(
+    file      = input$file,
+    data      = input$data,
+    md5       = input$md5,
+    size      = input$size, 
+    type      = type,
+    filter    = input$actual_filter,
+    spec_id   = input$domain
+  ) %>% 
+    append(
+      # TODO create roles entry that contains col_select
+      input$col_select
+    ) 
+  
+  if(type == "bds"){
+    # required by 'build_bds()'
+    out$dupl_ctrl = list(
+      values_fn = NULL,
+      arrange   = NULL
+    )
+  }
+  
+  # create data_info and dict  ####
+  out$dict      <- create_dict(out)
+  out$data_info <- data_info(out)
+  
+  if(!attach_data){
+    # only keep data, if 'attach_data = TRUE'
+    # (was needed to create data info)
+    out$data <- NULL
+  }
+  
+  out
+  
+}
+
+

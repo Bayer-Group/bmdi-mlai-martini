@@ -2,34 +2,20 @@
 % Please edit documentation in R/adam_guess.R
 \name{adam_guess}
 \alias{adam_guess}
-\title{Guess time and label columns for subsequent use in adam_spec_occds()}
+\title{guess role columns for spec}
 \usage{
-adam_guess(file)
+adam_guess(role, type = c("bds", "occds"), colnames_data)
 }
 \arguments{
-\item{file}{the file containing the data for which label, time (and value) columns need to be guessed}
+\item{role}{the spec role of interest}
+
+\item{type}{either \code{bds} or \code{occds}. defaults to \code{bds}}
+
+\item{colnames_data}{}
 }
 \value{
-If guessing options are available, a list will be returned with possible options for
-label, time and value columns, ranked by relevance.
-These may be intersected with the actual column names of the data set at
-a later point to determine the input for \verb{adam_spec_*()}.
-The function will exit for domains without guessing options.
+The guessed column name or NULL
 }
 \description{
-For domains admh, adcm and adae, appropriate choices for the parameters \code{label} and \code{time}
-are returned for further use in \code{\link{adam_spec_occds}()}.
-}
-\details{
-\code{\link{adam_guess}()} makes use of the internal function \code{\link{adam_domain_type}()} to map
-the domain type to the file name.
-The set of domains for which guessing options are available will be extended in the future if required.
-}
-\section{Authors}{
-
-Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
-}
-
-\seealso{
-\code{\link{adam_spec_occds}()}
+guess role columns for spec
 }

@@ -95,13 +95,13 @@ if(FALSE){
 
 #' guess role columns for spec
 #'
-#'
 #' @param role the spec role of interest
 #' @param type either `bds` or `occds`. defaults to `bds`
 #' @param colnames_data
 #'
 #' @return
-#' 
+#' The guessed column name or NULL
+
 adam_guess <- function(
     role,
     type = c("bds", "occds"),
@@ -140,7 +140,7 @@ adam_guess <- function(
     guesses_occds <- list(
       label = c(
         "BDG01", "SCL01C", "CL01C", "DRUGRP1",
-        "HLGT", "HLT", "BODSYS", "SOC", "DECOD", "CAT",
+        "HLGT", "HLT", "BODSYS", "SOC", "DECOD", "CAT"
       ),
       time = c("STDY")
     ) %>% 
