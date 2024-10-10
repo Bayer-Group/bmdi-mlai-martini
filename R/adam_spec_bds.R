@@ -1,39 +1,46 @@
 #' Create specification object for AdaM data sets of type 'bds'
 #' 
-#' Given a file containing a bds data set (e.g. adlb or advs), \code{\link{adam_spec_bds}()} will create a specification 
-#' object for use in \code{\link{build_bds}()} to prepare the data to be used in machine learning. 
+#' Given a file containing a bds data set (e.g. adlb or advs), 
+#' \code{\link{adam_spec_bds}()} will create a specification 
+#' object for use in \code{\link{build_bds}()} to prepare the data to 
+#' be used in machine learning. 
 #' The main task is to collect the key columns
 #' for reshaping the data into wide format and prepare the data filter.
 #' 
-#' @param data tibble with the data for which the specification is created
-#' @param file the path of the sas(7bdat) or rds file to process, ignored if data is provided
+#' @param data tibble with the data in bds format for which the specification
+#'  is created
+#' @param file the path of the sas(7bdat) or rds file to process, 
+#' ignored if `data` is provided
 #' @param id name of id column to be kept and used for merge of data sets
-#' @param param name of the column that identifies the parameter. Defaults to NULL, will be guessed if not set (see Details).
+#' @param param name of the column that identifies the parameter. 
+#' Defaults to `NULL`, will be guessed if not set (see Details).
 #' @param label name of the column that gives column labels. Defaults to NULL.
-#' @param unit Defaults to NULL, will be guessed if not set (see Details).
-#' @param time Defaults to NULL, will be guessed if not set (see Details).
-#' @param value Defaults to NULL, will be guessed if not set (see Details).
-#' @param value_type NULL or character string 'numeric' or 'character'. Determines guessing of the value column (e.g. AVAL over AVALC by default).
-#' If NULL (default), the type will be guessed based on name of the sas file (if `file` is provided) or set to 'numeric'.
+#' @param unit Defaults to `NULL`, will be guessed if not set (see Details).
+#' @param time Defaults to `NULL`, will be guessed if not set (see Details).
+#' @param value Defaults to `NULL`, will be guessed if not set (see Details).
+#' @param value_type `NULL` or character string 'numeric' or 'character'. 
+#' Determines guessing of the value column (e.g. AVAL over AVALC by default).
+#' If NULL (default), the type will be guessed based on name of the sas file 
+#' (if `file` is provided) or set to 'numeric'.
 #' @param filter character vector of filters to be applied to the bds data set. 
-#' Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL. 
+#' Individual filters will only be considered if the resulting data set has 
+#' positive number of rows. Defaults to `NULL.` 
 #' @param attach_data boolean. Attach the imported raw data.
-#' @param domain character string to be included in dictionary. Automatically derived for standard ADaM data sets. If not set for `data` provided, dictionary entry will be 'custom'.
+#' @param domain character string to be included in dictionary.
+#'  Automatically derived for standard ADaM data sets. 
+#'  If not set for `data` provided, dictionary entry will be 'custom'.
 #' 
 #' @details
 #' 
 #' Values for arguments `param`, `label`, `unit`, `time` and `value` will be guessed if not provided. 
-#' (Only available with usage of 'file'; for 'data' all columns have to be specified explicitly.)
 #' Guess will be the first of the following options that matches a column name (exact match).
 #' 
 #' \describe{
-#'   \item{`param`}{`PARAMCD`, `**TESTCD`, with `**` reflecting the two letter domain abbreviation (e.g. `LB`)}
-#'   \item{`label`}{substring of `param` with trailing `CD` removed}
-#'   \item{`time`}{`AVISIT`, `VISIT`}
-#'   \item{`value`}{`AVAL`, `**STRESN`, `**ORRES` for numeric values, 
-#'   `AVALC`, `**STRESC`, `**ORRES` for character values,
-#'    with `**` reflecting the two letter domain abbreviation}
-#'   \item{`unit`}{`AVALU`, `**STRESU`, `**ORRESU`, with `**` reflecting the two letter domain abbreviation}
+#'   \item{`param`}{`PARAMCD`}
+#'   \item{`label`}{`PARAM`}
+#'   \item{`time`}{`AVISIT`, `AVISITN`, `VISIT`, `VISITN`}
+#'   \item{`value`}{`AVAL`, `AVALC`}
+#'   \item{`unit`}{`AVALU`}
 #' }
 #' 
 #' Function will escape if one of `param` or `value` are neither provided nor can be guessed. The other columns are optional.

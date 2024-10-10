@@ -182,8 +182,9 @@ build <- function(
     dplyr::select(tidyselect::any_of(c(".id", ".trt", ".rmtime")), tidyselect::everything())
   
   # NOTE 
-  # extract all occds columns for explicit factor na
-  # missing values occurring from occurrence data mean 'absence of event', whereas NAs in bds data are true missing values
+  # extract all occds columns for explicit factor na ('yes' for event)
+  # missing values occurring from occds mean 'absence of event', 
+  # whereas NAs in bds data are true missing values
   # -> replace missings by 0 for numerics, level 'none' for factors
   vars_fct_expl_na <- prepped_dict %>% 
     dplyr::filter(type == 'occds') %>% 

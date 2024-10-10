@@ -4,7 +4,8 @@
 # (see 'build_x.R' for documentation details)
 
 build_occds <- function(
-  spec
+  spec,
+  values_fn_occds = NULL
 ){
   
   md5 <- NULL
@@ -50,7 +51,7 @@ build_occds <- function(
       filter_txt <- paste( '(',
                             paste(spec$filter, collapse= ') & (' ),
                             ')') 
-      
+      # TODO dplyr::filter(., !!! rlang::parse_exprs(spec_filter))
       dplyr::filter(., !! rlang::parse_expr(filter_txt))
     }else{.}} %>% 
     dplyr::select(tidyselect::any_of(c(spec$id, col_select)) ) %>% 
@@ -59,9 +60,17 @@ build_occds <- function(
       dplyr::mutate(., value = factor("yes"))
     }else{
       {if(is.null(spec$valuen)){
+        # if only value is specified use as-is
         dplyr::mutate(., value = factor(!!rlang::sym(spec$value)))
       }else{
-        dplyr::mutate(., value = forcats::fct_reorder(!!rlang::sym(spec$value), !!rlang::sym(spec$valuen))) %>% 
+        # if both value and valuen are specified, reorder the factor levels, 
+        # keep only the value column 
+        dplyr::mutate(
+          ., 
+          value = forcats::fct_reorder(
+            !!rlang::sym(spec$value), 
+            !!rlang::sym(spec$valuen))
+          ) %>% 
           dplyr::select(- tidyselect::any_of( spec$valuen))
       }}
     }} %>% 
@@ -75,15 +84,16 @@ build_occds <- function(
   
   
   
-  # TODO for pivoting: add parameter values_fn, currently maximum is chosen 
-  values_fn <- function(x){
-    # if numeric = max
-    # if factor  = highest level
-    sort(x) %>% tail(1)
+  # TODO for pivoting: add parameter values_fn_occds, currently maximum is chosen 
+  if (is.null(values_fn_occds)) { 
+    values_fn_occds <- function(x){
+      # if numeric = max
+      # if factor  = highest level
+      sort(x) %>% tail(1)
+    }
   }
   
   # pivot   ####
-  
   occds_wide <- occds %>% 
       dplyr::select(tidyselect::all_of(c('value', 'param', '.id'))) %>% 
       {if(spec$count){
@@ -93,7 +103,7 @@ build_occds <- function(
       tidyr::pivot_wider(
         names_from  = param, 
         values_from = value,
-        values_fn   = values_fn
+        values_fn   = values_fn_occds
       ) 
     
       
