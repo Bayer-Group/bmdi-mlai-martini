@@ -164,27 +164,25 @@ cor_quiet <- purrr::quietly(stats::cor)
 #' Check role specification for ADaM data set
 #' 
 #' Checks, if provided column for a role in an ADaM data set is present in the 
-#' data and of the correct type. If no column is provided, it is guessed based 
-#' on ADaM standards.
+#' data. If no column is provided, it is guessed based on ADaM standards.
 #'
-#' @param colnames_data character vector. column names of the data set to check
-#' against
-#' role character. the .g. "param", "id", "value" or
+#' @param data data set to check
+#' @param role character. the role to check, e.g. "param", "id", "value" or
 #' "time"
 #' @param column_spec character. the selected column name. will be for 
 #' presence in `data`and type. if NULL (the default), it will be guessed based 
 #' on `domain` or `type`.
 #' @param type character. either "bds" or "occds"
-#' @param domain character. an optional id for the specification that is used 
+#' @param spec_id character. an optional id for the specification that is used 
 #' for informative warnings
 #' @param required boolean. `TRUE`, if `role` is required, `FALSE` if optional.
 #' @param call the execution environment of a currently running function. 
 #'
 #' @return
 #' A list with `role`, the column name `column` or `NULL` (if column check was 
-#' not successful or `role` could not be guessed) and a boolean `check_pass`,
-#' indicating, if all checks on the column have passed.
-#' Throws an informative warning if any of the checks fails.
+#' not successful or no column for `role` could be guessed), `required` (passed 
+#' as-is from the input) and a boolean `check_passed`, indicating, if all checks 
+#' on the column have passed. Throws an informative warning if any check fails.
 #' 
 
 check_role <- function(
@@ -207,19 +205,34 @@ check_role <- function(
   
   colnames_data <- colnames(data)
   
+  if(is.null(spec_id)){
+    # check, if needed
+    msg_start <- NULL
+    msg_code  <- NULL
+  }else{
+    msg_start <- paste0("{.strong ", spec_id, ":} ")
+    msg_code  <- c(
+      "*" = paste(
+        "Use {.code adjust_spec(<spec_obj>, id = '{spec_id}',",
+        "{role} = <column>)} to add a valid '{role}' column."
+      )
+    )
+  }
+  
   if(!is.null(column_spec)){
     if(column_spec %in% colnames_data){
-      # TODO check type
       out$column <- column_spec
     }else{
       out$check_passed <- FALSE
       cli::cli_warn(
-        c("Column {.code {column_spec}} is not present in data."),
+        c(
+          "!" = "{msg_start}You provided {.code {column_spec}} as the '{role}' column.",
+          "i" = "Column {.code {column_spec}} is not present in the data."
+        ) %>% c(msg_code),
         call = call
       )
     }
   }else{
-    # TODO guess based on 'domain' and 'role' (and 'type'?)
     guess <- adam_guess(
       role = role,
       type = type,
@@ -228,11 +241,12 @@ check_role <- function(
     
     if(is.null(guess) && required){
       out$check_passed <- FALSE
-      cli::cli_warn(c(
-        "No '{role}' column could be guessed from the data",
-        "Please provide a column name for '{role}'."
-      ),
-      call = call
+      cli::cli_warn(
+        c(
+          "!" = "{msg_start}No '{role}' column could be guessed from the data.",
+          "i" = "Please provide a column name for '{role}'."
+        ) %>% c(msg_code),
+        call = call
       )
     }else{
       out$column <- guess
