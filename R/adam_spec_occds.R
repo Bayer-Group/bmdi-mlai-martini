@@ -47,85 +47,69 @@ adam_spec_occds <- function(
   file,
   id          = 'SUBJID', 
   label       = NULL,
-  time        = NULL,
   value       = NULL,
   valuen      = NULL,
   filter      = NULL,
   count       = TRUE, # NOTE: add further options (weights, scoring matrix, ...)
+  time        = NULL,
   pre_study   = FALSE,
   attach_data = FALSE
 ){
   
   
-  # READ occds ####
-  file_ext <- tools::file_ext(file) 
+  # initial check(s)  ####
   
-  occds <- if(file_ext == 'sas7bdat'){
-    haven::read_sas(file) %>% 
-      dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
-  }else if(file_ext == 'rds'){
-    readRDS(file)
-  }else{
-    stop('Only sas7bdat and rds data supported.')
+  if (all(c(is.null(data), is.null(file)))) {
+    usethis::ui_stop(
+      paste0(
+        'At least one of ', usethis::ui_code('data'), ' or ',
+        usethis::ui_code('file'), ' need to be provided.\n'))
   }
   
-  md5        <- tools::md5sum(file) %>%  as.character()
-  size       <- fs::file_size(file)
-  
-  coln_occds <- colnames(occds)
-  domain     <- basename(file) %>% 
-    tools::file_path_sans_ext() %>% 
-    stringr::str_remove_all('^ad') %>% 
-    stringr::str_to_upper()
+  # import ####
+  if (is.null(data)) {
+    imported <- import_info(file)
+    data   <- imported$data
+    md5    <- imported$md5
+    size   <- imported$size
+    domain <- basename(file) %>% tools::file_path_sans_ext()
+  }else{
+    md5    <- NULL
+    size   <- NULL
+    domain <- domain %||% "custom"
+  }
   
   # check input validity ####
-  # ... mandatory columns ####
-  if (! id %in% coln_occds){
-    usethis::ui_stop(
-      paste0("The column id = ", id, " is not present in the data set.\n")
+  
+  # collect column name parameters ####
+  col_spec <- list(
+    "id"     = list(column = id,     required = TRUE),
+    "label"  = list(column = label,  required = TRUE),
+    "value"  = list(column = value,  required = TRUE),
+    "valuen" = list(column = valuen, required = FALSE),
+    # only used for pre_study filter (to be deprecated)
+    "time"   = list(column = time,   required = FALSE)
+  )
+  
+  col_select_raw <- purrr::imap(col_spec, ~{
+    check_role(
+      data = data, 
+      role = .y, 
+      column_spec = .x$column, 
+      required = .x$required,
+      type = "bds", 
+      call = rlang::caller_env(n = 4)
     )
-  }
+  })
   
-  if (!is.null(label)) if (! label %in% coln_occds){
-    usethis::ui_stop(
-      paste0("The column label = ", label, " is not present in the data set.\n")
-    )
-  } 
+  col_select <- purrr::map(col_select_raw, "column")
   
-  # ... optional columns ####
-  if (!is.null(value)) if( !value  %in% coln_occds){ 
-    usethis::ui_info(paste0("'", value,  "' not found in data set and ignored.\n"))
-  }
+  use_for_build <- purrr::map_lgl(col_select_raw, "check_passed") %>% all()
   
-  if (!is.null(valuen)) if( !valuen  %in% coln_occds){ 
-    usethis::ui_info(paste0("'", valuen, "' not found in data set and ignored.\n"))
-  }
-  
-  
-  
-  # GUESS label ####
-  if (is.null(label)){
-    
-    guesses    <- adam_guess(file)
-    
-    label <- guesses$label %>% 
-      intersect(coln_occds) %>% 
-      head(1)
-    
-    if (length(label) == 0){
-      usethis::ui_stop(
-        "Parameter 'label' needs to be provided.\n"
-      )
-    }
-  }
+
   
   # GUESS time ####
-  if (is.null(time) && pre_study){
-    guesses    <- adam_guess(file)
-    
-    time <- guesses$time %>% 
-      intersect(coln_occds) %>% 
-      head(1)
+  if (is.null(col_select$time) && pre_study){
     
     if (length(time) == 0){
       usethis::ui_stop(
@@ -136,9 +120,14 @@ adam_spec_occds <- function(
   
   # if requested, build and add pre-study filter ####
   if(pre_study){
-    if(!time %in% coln_occds) usethis::ui_stop('pre_study filter could not be built. The provided parameter "time" is not present in the data.')
-    filter_time <- paste0( time , ' < 0 | is.na(', time, ')')
-    filter      <- filter %>% append(filter_time)
+    
+    if (is.null(col_select$time)) {
+      cli::cli_warn('pre_study filter could not be built. The provided parameter "time" is not present in the data.')
+    }else{
+      filter_time <- paste0( time , ' < 0 | is.na(', time, ')')
+      filter      <- filter %>% append(filter_time)
+    }
+    
   }      
   
   # filter check ####

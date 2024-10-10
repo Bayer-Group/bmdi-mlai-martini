@@ -441,8 +441,9 @@ import_info <- function(file){
       'x' = "The following file could not be found: {.path {file}}")
     )
   }
+  file_ext <- tools::file_ext(file) 
   
-  if (!tools::file_ext(file) %in% c("sas7bdat", "rds")) {
+  if (!file_ext %in% c("sas7bdat", "rds")) {
     cli::cli_abort(c(
       #"{.fn adam_spec_bds} 
       "expects a sas7bdat or rds file to read, but was provided {.path {file}}.",
@@ -452,9 +453,7 @@ import_info <- function(file){
     
   }
   
-  file_ext <- tools::file_ext(file) 
-  
-  bds <- if (file_ext == 'sas7bdat') {
+  data <- if (file_ext == 'sas7bdat') {
     haven::read_sas(file) %>% 
       dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
   }else if (file_ext == 'rds') {
@@ -465,7 +464,7 @@ import_info <- function(file){
   
   
   list(
-    data = bds,
+    data = data,
     md5  = tools::md5sum(file) %>% as.character(),
     size = fs::file_size(file)
   )
