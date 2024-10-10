@@ -79,13 +79,18 @@ adam_spec_occds <- function(
     domain <- domain %||% "custom"
   }
   
-  # check input validity ####
+  if(!is.null(value) && is.null(valuen)){
+    # works only for nchar(value) < 8 and standard coding
+    if(paste0(value, "N") %in% colnames(data)){
+      valuen <- paste0(value, "N")
+    }
+  }
   
   # collect column name parameters ####
   col_spec <- list(
     "id"     = list(column = id,     required = TRUE),
     "label"  = list(column = label,  required = TRUE),
-    "value"  = list(column = value,  required = TRUE),
+    "value"  = list(column = value,  required = FALSE),
     "valuen" = list(column = valuen, required = FALSE),
     # only used for pre_study filter (to be deprecated)
     "time"   = list(column = time,   required = FALSE)
@@ -106,18 +111,6 @@ adam_spec_occds <- function(
   
   use_for_build <- purrr::map_lgl(col_select_raw, "check_passed") %>% all()
   
-
-  
-  # GUESS time ####
-  if (is.null(col_select$time) && pre_study){
-    
-    if (length(time) == 0){
-      usethis::ui_stop(
-        "Parameter 'time' could not be guessed and needs to be provided to build the `pre_study` filter.\n"
-      )
-    }
-  }
-  
   # if requested, build and add pre-study filter ####
   if(pre_study){
     
@@ -132,63 +125,17 @@ adam_spec_occds <- function(
   
   # filter check ####
   # only filter that individually yield non-empty tibbles are kept
-  keep_filter   <- check_filter(occds, filter, data_id = domain)$individual %>% 
+  keep_filter   <- check_filter(data, filter, data_id = domain)$individual %>% 
     purrr::map_lgl("keep") %>% 
     as.logical()
   actual_filter <- filter[keep_filter]
-
-  # collect key columns ####
-  col_select <- c(label = label)
-  if(!is.null(value)) {
-    col_select <- c(col_select, value = value)
-    
-    if (!is.null(valuen)){
-      col_select <- c(col_select, valuen = valuen)
-    } else if (paste0(value, "N") %in% coln_occds ){ # works only for nchar(value) < 8 and standard coding
-      col_select <- c(col_select, valuen = paste0(value, "N"))
-    }
-  }
   
   # output ####
   
-  out <- list(
-    file      = file,
-    md5       = md5,
-    size      = size, 
-    data      = occds,
-    type      = "occds",
-    id        = id,
-    filter    = actual_filter,
-    count     = count,
-    spec_id   = domain
-  ) %>% 
-    append(
-      col_select %>% as.list()
-    )
-  
-  # create data info and dictionary####
-  out$dict <- create_dict(out)
-  out$data_info <- data_info(out)
-  
-
-  
-  if(!attach_data){
-    # only keep data, if 'attach_data = TRUE'
-    # (was needed to create data info)
-    out$data <- NULL
-  }
-  
-  out
+  create_spec_out(
+    file, data, md5, size, actual_filter, domain, col_select, count,
+    type = "occds", attach_data = attach_data
+  )
 
 }
 
-
-# test area  ####
-if(FALSE){
-
-  file      = '../admh.sas7bdat'
-
-  adam_spec_occds(file = file)
-  adam_spec_occds(file = file, value = "MHPRESP")
-
-}

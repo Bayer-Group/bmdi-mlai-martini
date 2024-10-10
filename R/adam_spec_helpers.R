@@ -298,6 +298,11 @@ create_spec_out <- function(..., type = c("bds", "occds"), attach_data = TRUE){
     )
   }
   
+  if(type == "occds"){
+    # required by 'build_occds()'
+    out$count = input$count
+  }
+  
   # create data_info and dict  ####
   out$dict      <- create_dict(out)
   out$data_info <- data_info(out)
