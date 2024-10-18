@@ -77,5 +77,22 @@ testthat::test_that("adsl_identify_dttm works", {
   
 })
 
-
+test_that("catalog_file argument of adam_spec_adsl() works", {
+  
+  file    <- test_path('sas', 'hadley.sas7bdat')
+  catalog <- test_path('sas', 'formats.sas7bcat')
+  
+  data <- haven::read_sas(file, catalog_file = catalog)
+  
+  purrr::map(data, ~{
+    labels <- attr(.x, "labels") 
+    # TODO for now only numeric (labels are levels)
+    # later character: labels are factor labels, levels dont change
+    if (!is.null(labels) && isTRUE(is.numeric(labels))) {
+      labels %>% sort() %>% names()
+    }
+  }) %>% 
+    purrr::compact()
+  
+})
 # NOTE covered by snapshot test for 'adam_spec()'

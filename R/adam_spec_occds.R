@@ -1,4 +1,4 @@
-#' Create specification object for AdaM data sets of type `occds`
+#' Create specification object for ADaM data sets of type `occds`
 #'
 #' Given a file containing a occds data set (e.g. admh or adcm), 
 #' \code{\link{adam_spec_occds}()}

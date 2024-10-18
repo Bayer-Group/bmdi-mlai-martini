@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec_occds.R
 \name{adam_spec_occds}
 \alias{adam_spec_occds}
-\title{Create specification object for AdaM data sets of type \code{occds}}
+\title{Create specification object for ADaM data sets of type \code{occds}}
 \usage{
 adam_spec_occds(
   file = NULL,

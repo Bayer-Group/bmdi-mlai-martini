@@ -19,3 +19,18 @@ test_that("create_dict works", {
   )
   
 })
+
+test_that("import_info() works", {
+  
+  adsl_file <- test_path('sas/adsl.sas7bdat')
+  
+  # no column attributes are removed
+  data_haven <- haven::read_sas(adsl_file)
+  data_import <- import_info(adsl_file)
+  
+  expect_equal(
+    purrr::map(data_haven,  ~{attributes(.x)}),
+    purrr::map(data_import, ~{attributes(.x)})
+  )
+  
+})

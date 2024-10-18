@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec_bds.R
 \name{adam_spec_bds}
 \alias{adam_spec_bds}
-\title{Create specification object for AdaM data sets of type 'bds'}
+\title{Create specification object for ADaM data sets of type 'bds'}
 \usage{
 adam_spec_bds(
   file = NULL,
@@ -58,7 +58,7 @@ A list containing the following
 \item{\code{file}, \code{md5}}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 \item{\code{data}}{the raw data set if \code{attach_data}, NULL otherwise}
 \item{\code{data_info}}{a list containing the number of subjects \code{nsubj} and columns \code{ncol} in the data after applying \code{filter}}
-\item{\code{type}}{character string \code{bds}, generally giving the type of AdaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
+\item{\code{type}}{character string \code{bds}, generally giving the type of ADaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
 \item{\code{filter}}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}()})}
 \item{\code{id}}{passing unchanged input}
 \item{\code{param}, \code{label}, \code{value}, \code{unit}, \code{time}}{names of the key columns to be used in \code{\link{build_bds}()} for reshaping}

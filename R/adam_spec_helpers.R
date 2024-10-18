@@ -189,7 +189,7 @@ check_role <- function(
     data,
     role,
     column_spec = NULL,
-    type = c("bds", "occds"),
+    type = c("adsl", "bds", "occds"),
     spec_id = NULL,
     required = TRUE,
     call = rlang::caller_env()
@@ -205,7 +205,7 @@ check_role <- function(
   
   colnames_data <- colnames(data)
   
-  if(is.null(spec_id)){
+  if (is.null(spec_id)) {
     # check, if needed
     msg_start <- NULL
     msg_code  <- NULL
@@ -219,8 +219,8 @@ check_role <- function(
     )
   }
   
-  if(!is.null(column_spec)){
-    if(column_spec %in% colnames_data){
+  if (!is.null(column_spec)) {
+    if (column_spec %in% colnames_data) {
       out$column <- column_spec
     }else{
       out$check_passed <- FALSE
@@ -233,13 +233,17 @@ check_role <- function(
       )
     }
   }else{
-    guess <- adam_guess(
-      role = role,
-      type = type,
-      colnames_data = colnames_data
-    )
+    guess <- if (type == "adsl") {
+      NULL
+    }else{
+      adam_guess(
+        role = role,
+        type = type,
+        colnames_data = colnames_data
+      )
+    }
     
-    if(is.null(guess) && required){
+    if (is.null(guess) && required) {
       out$check_passed <- FALSE
       cli::cli_warn(
         c(
@@ -271,7 +275,7 @@ check_role <- function(
 #' [adam_spec_bds()]
 #' [adam_spec_occds()]
 
-create_spec_out <- function(..., type = c("bds", "occds"), attach_data = TRUE){
+create_spec_out <- function(..., type = c("adsl", "bds", "occds"), attach_data = TRUE){
   
   type  <- rlang::arg_match(type)
   input <- rlang::dots_list(..., .named = TRUE)
@@ -292,7 +296,7 @@ create_spec_out <- function(..., type = c("bds", "occds"), attach_data = TRUE){
   
   if(type == "bds"){
     # required by 'build_bds()'
-    out$dupl_ctrl = list(
+    out$dupl_ctrl <- list(
       values_fn = NULL,
       arrange   = NULL
     )
@@ -300,7 +304,15 @@ create_spec_out <- function(..., type = c("bds", "occds"), attach_data = TRUE){
   
   if(type == "occds"){
     # required by 'build_occds()'
-    out$count = input$count
+    out$count <- input$count
+  }
+  
+  if(type == "adsl"){
+    # required by 'build_adsl()'
+    out$select        <- input$select_list
+    out$factor_levels <- input$factor_levels
+    out$drop_list     <- input$drop_list
+    out$flag_table    <- input$flag_table
   }
   
   # create data_info and dict  ####
@@ -314,6 +326,79 @@ create_spec_out <- function(..., type = c("bds", "occds"), attach_data = TRUE){
   }
   
   out
+  
+}
+
+#' Import file and collect info
+#'
+#' @param file filepath
+#' @param catalog_file path to the catalog file to be passed to 
+#' [haven::read_sas()]. Defaults to NULL. 
+#' Ignored if `file` is not a sas7bdat file.
+#'
+#' @return  list containing data and corresponding md5 sum and file size
+
+#' 
+import_info <- function(
+    file,
+    catalog_file = NULL
+    ){
+  # TODO maybe pass context
+  if (!fs::file_exists(file)) {
+    cli::cli_abort(c(
+      #"{.fn adam_spec_bds} 
+      "Could not create a spec from the provided file." ,
+      'x' = "The following file could not be found: {.path {file}}")
+    )
+  }
+  file_ext <- tools::file_ext(file) 
+  
+  if (!file_ext %in% c("sas7bdat", "rds")) {
+    cli::cli_abort(c(
+      #"{.fn adam_spec_bds} 
+      "expects a sas7bdat or rds file to read, but was provided {.path {file}}.",
+      'x' = 'The provided file is of type {tools::file_ext(file)}.',
+      '*' = 'Please check your input or attach a data set instead.'
+    ))
+    
+  }
+  
+  data <- if (file_ext == 'sas7bdat') {
+    haven::read_sas(
+      data_file = file,
+      catalog_file = catalog_file
+    )
+  }else if (file_ext == 'rds') {
+    readRDS(file)
+  }else{
+    stop('Only sas7bdat and rds data supported.')
+  }
+  
+  column_labels <- labelled::var_label(data)
+  column_levels <- labelled::val_labels(data) %>% 
+    purrr::compact() %>% 
+    purrr::keep(is.numeric)
+  
+  # transform empty strings into NAs (SAS does not have character NAs)
+  # NOTE na_if() should not remove any attributes from the column in 
+  # combination with mutate(), but to be safe, this is done after the 
+  # extraction of all relevant attributes
+  if (file_ext == 'sas7bdat') {
+    data <- data %>% 
+      dplyr::mutate(dplyr::across(
+        tidyselect::where(is.character),
+        ~dplyr::na_if(., "")
+      ))
+  }
+  
+  attr(data, 'column_labels') <- column_labels
+  attr(data, 'column_levels') <- column_levels
+  
+  list(
+    data = data,
+    md5  = tools::md5sum(file) %>% as.character(),
+    size = fs::file_size(file)
+  )
   
 }
 

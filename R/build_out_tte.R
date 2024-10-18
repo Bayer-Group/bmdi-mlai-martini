@@ -3,7 +3,7 @@
 #' Convenience function to prepare an outcome object from adtte-like data sets, either for tte or binarized endpoint.
 #'
 #' @param data adtte-like tibble, e.g. output of haven::read_sas('adtte.sas7bdat')
-#' @param file path to AdaM-like tte data set, e.g. files/adtte.sas7bdat, ignored if data is provided
+#' @param file path to ADaM-like tte data set, e.g. files/adtte.sas7bdat, ignored if data is provided
 #' @param filter character vector to be applied to the data set (e.g. to select PARAMCD or subset to particular population)
 #' @param cut optional numeric, required for binarized version from tte data. Note that cut must provided in the same unit as the time column (e.g. AVAL)
 #' @param unit only relevant if outcome should be binarized, i.e. if `cut` is provided. 

@@ -15,7 +15,7 @@ adam_guess <- function(
   
   type <- rlang::arg_match(type)
   
-  if(type == "bds"){
+  if (type == "bds") {
 
     guesses_bds <- list(
       # candidates 'param'
@@ -40,7 +40,7 @@ adam_guess <- function(
     ) %>% 
       head(1)
     
-  }else if(type == "occds"){
+  }else if (type == "occds") {
     
     guesses_occds <- list(
       label = c(
@@ -59,7 +59,7 @@ adam_guess <- function(
     
   }
   
-  if(length(actual_guess) == 0){
+  if (length(actual_guess) == 0) {
     return(NULL)
   }
   

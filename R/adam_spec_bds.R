@@ -1,4 +1,4 @@
-#' Create specification object for AdaM data sets of type 'bds'
+#' Create specification object for ADaM data sets of type 'bds'
 #' 
 #' Given a file containing a bds data set (e.g. adlb or advs), 
 #' \code{\link{adam_spec_bds}()} will create a specification 
@@ -50,7 +50,7 @@
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
 #' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
 #' \item{`data_info`}{a list containing the number of subjects `nsubj` and columns `ncol` in the data after applying `filter`}
-#' \item{`type`}{character string \code{bds}, generally giving the type of AdaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
+#' \item{`type`}{character string \code{bds}, generally giving the type of ADaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
 #' \item{`filter`}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}()})}
 #' \item{`id`}{passing unchanged input}  
 #' \item{`param`, `label`, `value`, `unit`, `time`}{names of the key columns to be used in \code{\link{build_bds}()} for reshaping}
@@ -67,7 +67,7 @@
 adam_spec_bds <- function(
     file        = NULL,
     data        = NULL,
-    id          = 'SUBJID', 
+    id          = 'USUBJID', 
     param       = NULL,
     label       = NULL,
     unit        = NULL,
@@ -431,50 +431,3 @@ if(FALSE){
   }
   
 }
-
-#' Import file and collect info
-#'
-#' @param file filepath
-#'
-#' @return  list containing data and corresponding md5 sum and file size
-
-#' 
-import_info <- function(file){
-  # TODO maybe pass context
-  if (!fs::file_exists(file)) {
-    cli::cli_abort(c(
-      #"{.fn adam_spec_bds} 
-      "Could not create a spec from the provided file." ,
-      'x' = "The following file could not be found: {.path {file}}")
-    )
-  }
-  file_ext <- tools::file_ext(file) 
-  
-  if (!file_ext %in% c("sas7bdat", "rds")) {
-    cli::cli_abort(c(
-      #"{.fn adam_spec_bds} 
-      "expects a sas7bdat or rds file to read, but was provided {.path {file}}.",
-      'x' = 'The provided file is of type {tools::file_ext(file)}.',
-      '*' = 'Please check your input or attach a data set instead.'
-    ))
-    
-  }
-  
-  data <- if (file_ext == 'sas7bdat') {
-    haven::read_sas(file) %>% 
-      dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
-  }else if (file_ext == 'rds') {
-    readRDS(file)
-  }else{
-    stop('Only sas7bdat and rds data supported.')
-  }
-  
-  
-  list(
-    data = data,
-    md5  = tools::md5sum(file) %>% as.character(),
-    size = fs::file_size(file)
-  )
-  
-}
-

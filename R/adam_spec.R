@@ -1,11 +1,11 @@
-#' Creating a specification for building a wide format data set from AdaM data
+#' Creating a specification for building a wide format data set from ADaM data
 #' 
 #' @description 
 #' `r lifecycle::badge('maturing')`
 #' 
 #' \code{\link{adam_spec}()} is a wrapper for the `adam_spec_*()` functions.
 #' It creates a list of specifications on how to extract and process data from 
-#' AdaM data sets in a given location. 
+#' ADaM data sets in a given location. 
 #' The resulting list can be passed to \code{\link{build}()}, where the 
 #' created specs are applied and the generated data sets are combined into a single wide format data set.  
 #'
@@ -27,6 +27,9 @@
 #' @param file_ext only rds and sas7bdat data sets are allowed (e.g. \code{file_ext = 'rds'}). User may select
 #' only sas7bdat, only rds or set a priorization rule (\code{file_ext = c('rds', 'sas7bdat')}, see Details).
 #' Defaults to c('rds', 'sas7bdat'), i.e. rds if available, sas7bdat else.
+#' @param catalog_file path to the catalog file to be passed to
+#' [haven::read_sas()] for adsl. Defaults to NULL.
+#' Ignored if `file` is not a sas7bdat file.
 #' 
 #' @details 
 #' \code{adam_spec()} matches file names in the given path against an internal library
@@ -73,7 +76,8 @@ adam_spec <- function(
   # ADaMIG Within a given study, USUBJID is the key variable that links the ADSL to other datasets (both SDTM and ADaM).
   trt         = "TRT01A",
   add_bds     = NULL,
-  file_ext    = c('rds', 'sas7bdat')
+  file_ext    = c('rds', 'sas7bdat'),
+  catalog_file = NULL
 ){
   
   file_ext <- rlang::arg_match(file_ext, c('rds', 'sas7bdat'), multiple = TRUE)
@@ -121,7 +125,9 @@ adam_spec <- function(
     spec <- spec %>% 
       append(
         purrr::map(files_adsl, ~ adam_spec_adsl(
-          file = .x, id = id, trt = trt, filter = filter, attach_data = attach_data
+          file = .x, id = id, trt = trt, 
+          filter = filter, attach_data = attach_data,
+          catalog_file = catalog_file
         ))
       )
     
@@ -139,7 +145,8 @@ adam_spec <- function(
     spec <- spec %>% 
       append(
         purrr::map(files_bds, ~ adam_spec_bds(
-          file = .x, id = id, filter = filter, attach_data = attach_data
+          file = .x, id = id,
+          filter = filter, attach_data = attach_data
         ))
       )
     
@@ -157,7 +164,9 @@ adam_spec <- function(
     spec <- spec %>% 
       append(
         purrr::map(files_occds, ~ adam_spec_occds(
-          file = .x, id = id, filter = filter, attach_data = attach_data, pre_study = pre_study
+          file = .x, id = id,
+          filter = filter, attach_data = attach_data, 
+          pre_study = pre_study
         ))
       )
     

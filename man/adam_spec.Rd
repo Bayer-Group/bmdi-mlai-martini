@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec.R
 \name{adam_spec}
 \alias{adam_spec}
-\title{Creating a specification for building a wide format data set from AdaM data}
+\title{Creating a specification for building a wide format data set from ADaM data}
 \usage{
 adam_spec(
   path,
@@ -55,7 +55,7 @@ of the \verb{adam_spec_*()} for a detailed description of the output object.
 
 \code{\link{adam_spec}()} is a wrapper for the \verb{adam_spec_*()} functions.
 It creates a list of specifications on how to extract and process data from
-AdaM data sets in a given location.
+ADaM data sets in a given location.
 The resulting list can be passed to \code{\link{build}()}, where the
 created specs are applied and the generated data sets are combined into a single wide format data set.
 }
