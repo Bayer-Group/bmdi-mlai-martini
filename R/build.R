@@ -3,13 +3,18 @@
 #' @description 
 #' `r lifecycle::badge('maturing')`
 #' 
-#' The `build()` function allows to build a machine learning data set from a specification object as provided
+#' The `build()` function allows to build a machine learning data set from a 
+#' specification object as provided
 #' by \code{\link{adam_spec}()} (with or without data already attached). 
 #' 
-#' @param spec a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)
-#' @param join either function to join data sets (e.g. \code{dplyr::full_join()} or a character (vector) giving the names
-#' of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}
-#' @param rm boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an additional `.rmtime` column 
+#' @param spec a specification object as provided by \code{\link{adam_spec}()} 
+#' (either \code{spec} or \code{path} has to be provided)
+#' @param join either function to join data sets (e.g. \code{dplyr::full_join()}
+#'  or a character (vector) giving the names
+#' of the data sets containing the .ids to keep
+#'  (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}
+#' @param rm boolean. defaults to FALSE. if TRUE, a repeated measurement feature
+#'  matrix with an additional `.rmtime` column 
 #' is prepared. (experimental.)
 #'
 #' @return
@@ -21,10 +26,13 @@
 #' \item{`dict`}{
 #' \describe{
 #'   \item{`param`}{original parameter name in the source data}
-#'   \item{`column`}{column name of the variable in the returned data. `column` is derived from `param` by transforming
-#'   it into a valid file name and possibly adding a time extension, if multiple time points are considered for a particular parameter.}
+#'   \item{`column`}{column name of the variable in the returned data. `column` 
+#'   is derived from `param` by transforming
+#'   it into a valid file name and possibly adding a time extension, if multiple
+#'    time points are considered for a particular parameter.}
 #'   \item{`label`}{parameter label}
-#'   \item{`source`}{source id provided by the specification object. If created with \code{\link{adam_spec}()}, this is the name of the domain.}
+#'   \item{`source`}{source id provided by the specification object. If created
+#'    with \code{\link{adam_spec}()}, this is the name of the domain.}
 #'   \item{`type`}{AdaM data type of the source data (adsl, bds or occds)}
 #'   \item{`unit`}{parameter unit (if applicable)}
 #'   \item{`time`}{measurement time point (if applicable)}
@@ -33,14 +41,17 @@
 #' \item{`source`}{file path and md5 checksums of the source data sets}
 #' 
 #' @details 
-#' Missing values in variables from occurrence data sets are interpreted as 'absence of event', 
+#' Missing values in variables from occurrence data sets are interpreted as
+#'  'absence of event', 
 #' whereas NAs in adsl and bds data are considered to be true missing values. 
 #' For missing values in occds data after joining with other data sets, 
-#' missing values are replace by 0 for numerics, an additional level 'none' is introduced for 
+#' missing values are replace by 0 for numerics, an additional level 'none'
+#'  is introduced for 
 #' for factors.
 #' 
 #' 
-#' @seealso \code{\link{build_adsl}()}, \code{\link{build_bds}()}, \code{\link{build_occds}()}
+#' @seealso \code{\link{build_adsl}()}, \code{\link{build_bds}()}, 
+#' \code{\link{build_occds}()}
 #'
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
