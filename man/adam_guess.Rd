@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_guess.R
 \name{adam_guess}
 \alias{adam_guess}
-\title{guess role columns for spec}
+\title{Guess role columns for spec}
 \usage{
 adam_guess(role, type = c("bds", "occds"), colnames_data)
 }
@@ -17,5 +17,5 @@ adam_guess(role, type = c("bds", "occds"), colnames_data)
 The guessed column name or NULL
 }
 \description{
-guess role columns for spec
+Guess role columns for spec
 }

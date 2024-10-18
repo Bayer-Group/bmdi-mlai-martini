@@ -5,8 +5,9 @@
 \title{Create specification object for AdaM data sets of type 'adsl'}
 \usage{
 adam_spec_adsl(
-  file,
-  id = "SUBJID",
+  file = NULL,
+  data = NULL,
+  id = "USUBJID",
   trt = "TRT01A",
   keep = NULL,
   drop = NULL,

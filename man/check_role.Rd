@@ -15,32 +15,31 @@ check_role(
 )
 }
 \arguments{
+\item{data}{data set to check}
+
+\item{role}{character. the role to check, e.g. "param", "id", "value" or
+"time"}
+
 \item{column_spec}{character. the selected column name. will be for
 presence in \code{data}and type. if NULL (the default), it will be guessed based
 on \code{domain} or \code{type}.}
 
 \item{type}{character. either "bds" or "occds"}
 
+\item{spec_id}{character. an optional id for the specification that is used
+for informative warnings}
+
 \item{required}{boolean. \code{TRUE}, if \code{role} is required, \code{FALSE} if optional.}
 
 \item{call}{the execution environment of a currently running function.}
-
-\item{colnames_data}{character vector. column names of the data set to check
-against
-role character. the .g. "param", "id", "value" or
-"time"}
-
-\item{domain}{character. an optional id for the specification that is used
-for informative warnings}
 }
 \value{
 A list with \code{role}, the column name \code{column} or \code{NULL} (if column check was
-not successful or \code{role} could not be guessed) and a boolean \code{check_pass},
-indicating, if all checks on the column have passed.
-Throws an informative warning if any of the checks fails.
+not successful or no column for \code{role} could be guessed), \code{required} (passed
+as-is from the input) and a boolean \code{check_passed}, indicating, if all checks
+on the column have passed. Throws an informative warning if any check fails.
 }
 \description{
 Checks, if provided column for a role in an ADaM data set is present in the
-data and of the correct type. If no column is provided, it is guessed based
-on ADaM standards.
+data. If no column is provided, it is guessed based on ADaM standards.
 }

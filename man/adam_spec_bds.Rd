@@ -7,7 +7,7 @@
 adam_spec_bds(
   file = NULL,
   data = NULL,
-  id = "SUBJID",
+  id = "USUBJID",
   param = NULL,
   label = NULL,
   unit = NULL,
@@ -19,31 +19,39 @@ adam_spec_bds(
 )
 }
 \arguments{
-\item{file}{the path of the sas(7bdat) or rds file to process, ignored if data is provided}
+\item{file}{the path of the sas(7bdat) or rds file to process,
+ignored if \code{data} is provided}
 
-\item{data}{tibble with the data for which the specification is created}
+\item{data}{tibble with the data in bds format for which the specification
+is created}
 
 \item{id}{name of id column to be kept and used for merge of data sets}
 
-\item{param}{name of the column that identifies the parameter. Defaults to NULL, will be guessed if not set (see Details).}
+\item{param}{name of the column that identifies the parameter.
+Defaults to \code{NULL}, will be guessed if not set (see Details).}
 
 \item{label}{name of the column that gives column labels. Defaults to NULL.}
 
-\item{unit}{Defaults to NULL, will be guessed if not set (see Details).}
+\item{unit}{Defaults to \code{NULL}, will be guessed if not set (see Details).}
 
-\item{time}{Defaults to NULL, will be guessed if not set (see Details).}
+\item{time}{Defaults to \code{NULL}, will be guessed if not set (see Details).}
 
-\item{value}{Defaults to NULL, will be guessed if not set (see Details).}
+\item{value}{Defaults to \code{NULL}, will be guessed if not set (see Details).}
 
 \item{filter}{character vector of filters to be applied to the bds data set.
-Individual filters will only be considered if the resulting data set has positive number of rows. Defaults to NULL.}
+Individual filters will only be considered if the resulting data set has
+positive number of rows. Defaults to \code{NULL.}}
 
 \item{attach_data}{boolean. Attach the imported raw data.}
 
-\item{domain}{character string to be included in dictionary. Automatically derived for standard ADaM data sets. If not set for \code{data} provided, dictionary entry will be 'custom'.}
+\item{domain}{character string to be included in dictionary.
+Automatically derived for standard ADaM data sets.
+If not set for \code{data} provided, dictionary entry will be 'custom'.}
 
-\item{value_type}{NULL or character string 'numeric' or 'character'. Determines guessing of the value column (e.g. AVAL over AVALC by default).
-If NULL (default), the type will be guessed based on name of the sas file (if \code{file} is provided) or set to 'numeric'.}
+\item{value_type}{\code{NULL} or character string 'numeric' or 'character'.
+Determines guessing of the value column (e.g. AVAL over AVALC by default).
+If NULL (default), the type will be guessed based on name of the sas file
+(if \code{file} is provided) or set to 'numeric'.}
 }
 \value{
 A list containing the following
@@ -60,24 +68,23 @@ to be used as a data dictionary}
 \item{\code{dupl_ctrl}}{a list of length 2 with parameters \code{values_fn} and \code{arrange} that are passed to \code{\link{build_bds}()} to handle pivoting for duplicated values. Both default to NULL.}
 }
 \description{
-Given a file containing a bds data set (e.g. adlb or advs), \code{\link{adam_spec_bds}()} will create a specification
-object for use in \code{\link{build_bds}()} to prepare the data to be used in machine learning.
+Given a file containing a bds data set (e.g. adlb or advs),
+\code{\link{adam_spec_bds}()} will create a specification
+object for use in \code{\link{build_bds}()} to prepare the data to
+be used in machine learning.
 The main task is to collect the key columns
 for reshaping the data into wide format and prepare the data filter.
 }
 \details{
 Values for arguments \code{param}, \code{label}, \code{unit}, \code{time} and \code{value} will be guessed if not provided.
-(Only available with usage of 'file'; for 'data' all columns have to be specified explicitly.)
 Guess will be the first of the following options that matches a column name (exact match).
 
 \describe{
-\item{\code{param}}{\code{PARAMCD}, \verb{**TESTCD}, with \verb{**} reflecting the two letter domain abbreviation (e.g. \code{LB})}
-\item{\code{label}}{substring of \code{param} with trailing \code{CD} removed}
-\item{\code{time}}{\code{AVISIT}, \code{VISIT}}
-\item{\code{value}}{\code{AVAL}, \verb{**STRESN}, \verb{**ORRES} for numeric values,
-\code{AVALC}, \verb{**STRESC}, \verb{**ORRES} for character values,
-with \verb{**} reflecting the two letter domain abbreviation}
-\item{\code{unit}}{\code{AVALU}, \verb{**STRESU}, \verb{**ORRESU}, with \verb{**} reflecting the two letter domain abbreviation}
+\item{\code{param}}{\code{PARAMCD}}
+\item{\code{label}}{\code{PARAM}}
+\item{\code{time}}{\code{AVISIT}, \code{AVISITN}, \code{VISIT}, \code{VISITN}}
+\item{\code{value}}{\code{AVAL}, \code{AVALC}}
+\item{\code{unit}}{\code{AVALU}}
 }
 
 Function will escape if one of \code{param} or \code{value} are neither provided nor can be guessed. The other columns are optional.

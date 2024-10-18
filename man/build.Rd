@@ -7,12 +7,16 @@
 build(spec, join = dplyr::inner_join, rm = FALSE)
 }
 \arguments{
-\item{spec}{a specification object as provided by \code{\link{adam_spec}()} (either \code{spec} or \code{path} has to be provided)}
+\item{spec}{a specification object as provided by \code{\link{adam_spec}()}
+(either \code{spec} or \code{path} has to be provided)}
 
-\item{join}{either function to join data sets (e.g. \code{dplyr::full_join()} or a character (vector) giving the names
-of the data sets containing the .ids to keep (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}}
+\item{join}{either function to join data sets (e.g. \code{dplyr::full_join()}
+or a character (vector) giving the names
+of the data sets containing the .ids to keep
+(e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}}
 
-\item{rm}{boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an additional \code{.rmtime} column
+\item{rm}{boolean. defaults to FALSE. if TRUE, a repeated measurement feature
+matrix with an additional \code{.rmtime} column
 is prepared. (experimental.)}
 }
 \value{
@@ -23,10 +27,13 @@ the data are provided in the attributes of the returned object.
 \item{\code{dict}}{
 \describe{
 \item{\code{param}}{original parameter name in the source data}
-\item{\code{column}}{column name of the variable in the returned data. \code{column} is derived from \code{param} by transforming
-it into a valid file name and possibly adding a time extension, if multiple time points are considered for a particular parameter.}
+\item{\code{column}}{column name of the variable in the returned data. \code{column}
+is derived from \code{param} by transforming
+it into a valid file name and possibly adding a time extension, if multiple
+time points are considered for a particular parameter.}
 \item{\code{label}}{parameter label}
-\item{\code{source}}{source id provided by the specification object. If created with \code{\link{adam_spec}()}, this is the name of the domain.}
+\item{\code{source}}{source id provided by the specification object. If created
+with \code{\link{adam_spec}()}, this is the name of the domain.}
 \item{\code{type}}{AdaM data type of the source data (adsl, bds or occds)}
 \item{\code{unit}}{parameter unit (if applicable)}
 \item{\code{time}}{measurement time point (if applicable)}
@@ -37,14 +44,17 @@ it into a valid file name and possibly adding a time extension, if multiple time
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
 
-The \code{build()} function allows to build a machine learning data set from a specification object as provided
+The \code{build()} function allows to build a machine learning data set from a
+specification object as provided
 by \code{\link{adam_spec}()} (with or without data already attached).
 }
 \details{
-Missing values in variables from occurrence data sets are interpreted as 'absence of event',
+Missing values in variables from occurrence data sets are interpreted as
+'absence of event',
 whereas NAs in adsl and bds data are considered to be true missing values.
 For missing values in occds data after joining with other data sets,
-missing values are replace by 0 for numerics, an additional level 'none' is introduced for
+missing values are replace by 0 for numerics, an additional level 'none'
+is introduced for
 for factors.
 }
 \section{Authors}{
@@ -53,5 +63,6 @@ Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }
 
 \seealso{
-\code{\link{build_adsl}()}, \code{\link{build_bds}()}, \code{\link{build_occds}()}
+\code{\link{build_adsl}()}, \code{\link{build_bds}()},
+\code{\link{build_occds}()}
 }

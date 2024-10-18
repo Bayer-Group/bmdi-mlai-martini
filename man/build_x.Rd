@@ -18,7 +18,7 @@ build_bds(
   rm = FALSE
 )
 
-build_occds(spec)
+build_occds(spec, values_fn_occds = NULL)
 }
 \arguments{
 \item{spec}{result of \verb{adam_spec_*()}}
