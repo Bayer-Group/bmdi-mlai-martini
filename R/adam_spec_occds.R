@@ -95,10 +95,10 @@ adam_spec_occds <- function(
   # import ####
   if (is.null(data)) {
     imported <- import_info(file)
-    data   <- imported$data
-    md5    <- imported$md5
-    size   <- imported$size
-    domain <- basename(file) %>% tools::file_path_sans_ext()
+    data     <- imported$data
+    md5      <- imported$md5
+    size     <- imported$size
+    domain   <- basename(file) %>% tools::file_path_sans_ext()
   }else{
     md5    <- NULL
     size   <- NULL
@@ -128,7 +128,7 @@ adam_spec_occds <- function(
       role = .y, 
       column_spec = .x$column, 
       required = .x$required,
-      type = "bds", 
+      type = "occds", 
       call = rlang::caller_env(n = 4)
     )
   })

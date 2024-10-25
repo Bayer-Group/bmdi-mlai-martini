@@ -51,6 +51,9 @@ adam_guess <- function(
     ) %>% 
       purrr::map(~{paste0(.x, "$") %>% paste(collapse = "|")})
     
+    # COMBAK 
+    # test create_dict works dies here for role == value -> pattern is NULL
+    # -> str_subset escapes
     actual_guess <- stringr::str_subset(
       string  = colnames_data, 
       pattern = guesses_occds[[role]]

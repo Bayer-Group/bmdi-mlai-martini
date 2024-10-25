@@ -7,6 +7,9 @@ test_that("create_dict works", {
   
   # create prep specification
   ads_spec <- adam_spec(ads_path, attach_data = TRUE)
+  # ERROR adam_guess() for occds, 
+  #role == value -> pattern is NULL
+  # -> str_subset exits
   
   # no unit column available
   ads_spec_bds         <- ads_spec$adlb
@@ -30,7 +33,7 @@ test_that("import_info() works", {
   
   expect_equal(
     purrr::map(data_haven,  ~{attributes(.x)}),
-    purrr::map(data_import, ~{attributes(.x)})
+    purrr::map(data_import$data, ~{attributes(.x)})
   )
   
 })

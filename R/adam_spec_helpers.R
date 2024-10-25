@@ -219,7 +219,9 @@ check_role <- function(
     )
   }
   
+  # for provided clumn name...
   if (!is.null(column_spec)) {
+    # ... check if column is present in data
     if (column_spec %in% colnames_data) {
       out$column <- column_spec
     }else{
@@ -232,10 +234,11 @@ check_role <- function(
         call = call
       )
     }
-  }else{
+  }else{ # if no column name was provided
     guess <- if (type == "adsl") {
       NULL
     }else{
+      # returns a single column name or NULL if no column could be guessed
       adam_guess(
         role = role,
         type = type,
