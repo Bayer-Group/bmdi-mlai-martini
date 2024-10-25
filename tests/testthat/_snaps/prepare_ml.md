@@ -9272,7 +9272,7 @@
         {
           "param": ".id",
           "column": ".id",
-          "source": "SL",
+          "source": "adsl",
           "label": "Subject Identifier for the Study",
           "type": "adsl",
           "spec_id": "adsl",
@@ -9282,7 +9282,7 @@
         {
           "param": ".trt",
           "column": ".trt",
-          "source": "SL",
+          "source": "adsl",
           "label": "Actual Treatment for Period 01",
           "type": "adsl",
           "spec_id": "adsl",
@@ -9292,7 +9292,7 @@
         {
           "param": "AGE",
           "column": "AGE",
-          "source": "SL",
+          "source": "adsl",
           "label": "Age",
           "type": "adsl",
           "spec_id": "adsl",
@@ -9302,7 +9302,7 @@
         {
           "param": "AGEGR01",
           "column": "AGEGR01",
-          "source": "SL",
+          "source": "adsl",
           "label": "Age Group 01",
           "type": "adsl",
           "spec_id": "adsl",
@@ -9312,7 +9312,7 @@
         {
           "param": "SEX",
           "column": "SEX",
-          "source": "SL",
+          "source": "adsl",
           "label": "Sex",
           "type": "adsl",
           "spec_id": "adsl",
@@ -9322,7 +9322,7 @@
         {
           "param": "RACE",
           "column": "RACE",
-          "source": "SL",
+          "source": "adsl",
           "label": "Race",
           "type": "adsl",
           "spec_id": "adsl",
@@ -9332,7 +9332,7 @@
         {
           "param": "BMI_adsl",
           "column": "BMI_adsl",
-          "source": "SL",
+          "source": "adsl",
           "label": "Body Mass Index (kg/m2) at baseline (adsl)",
           "type": "adsl",
           "spec_id": "adsl",
@@ -9342,7 +9342,7 @@
         {
           "param": "LAB1",
           "column": "LAB1",
-          "source": "LB",
+          "source": "adlb",
           "label": "Laboratory 1",
           "type": "bds",
           "spec_id": "adlb",
@@ -9353,7 +9353,7 @@
         {
           "param": "LAB2",
           "column": "LAB2",
-          "source": "LB",
+          "source": "adlb",
           "label": "Laboratory 2",
           "type": "bds",
           "spec_id": "adlb",
@@ -9364,7 +9364,7 @@
         {
           "param": "LAB3",
           "column": "LAB3",
-          "source": "LB",
+          "source": "adlb",
           "label": "Laboratory 3",
           "type": "bds",
           "spec_id": "adlb",
@@ -9375,7 +9375,7 @@
         {
           "param": "BMI_advs",
           "column": "BMI_advs",
-          "source": "VS",
+          "source": "advs",
           "label": "Body Mass Index (advs)",
           "type": "bds",
           "spec_id": "advs",
@@ -9386,7 +9386,7 @@
         {
           "param": "BPDIA",
           "column": "BPDIA",
-          "source": "VS",
+          "source": "advs",
           "label": "Diastolic Blood Pressure",
           "type": "bds",
           "spec_id": "advs",
@@ -9397,7 +9397,7 @@
         {
           "param": "BPSYS",
           "column": "BPSYS",
-          "source": "VS",
+          "source": "advs",
           "label": "Systolic Blood Pressure",
           "type": "bds",
           "spec_id": "advs",
@@ -9408,7 +9408,7 @@
         {
           "param": "HR",
           "column": "HR",
-          "source": "VS",
+          "source": "advs",
           "label": "Heart Rate",
           "type": "bds",
           "spec_id": "advs",
@@ -9419,7 +9419,7 @@
         {
           "param": "WEIGHT",
           "column": "WEIGHT",
-          "source": "VS",
+          "source": "advs",
           "label": "Weight",
           "type": "bds",
           "spec_id": "advs",
@@ -9430,7 +9430,7 @@
         {
           "param": "cardiac_arrhythmias",
           "column": "cardiac_arrhythmias",
-          "source": "MH",
+          "source": "admh",
           "label": "Cardiac arrhythmias",
           "type": "occds",
           "spec_id": "admh",
@@ -9440,7 +9440,7 @@
         {
           "param": "coronary_artery_disorders",
           "column": "coronary_artery_disorders",
-          "source": "MH",
+          "source": "admh",
           "label": "Coronary artery disorders",
           "type": "occds",
           "spec_id": "admh",
@@ -18912,7 +18912,7 @@
         {
           "param": ".id",
           "column": ".id",
-          "source": "SL",
+          "source": "adsl",
           "label": "Subject Identifier for the Study",
           "type": "adsl",
           "spec_id": "adsl",
@@ -18922,7 +18922,7 @@
         {
           "param": ".trt",
           "column": ".trt",
-          "source": "SL",
+          "source": "adsl",
           "label": "Actual Treatment for Period 01",
           "type": "adsl",
           "spec_id": "adsl",
@@ -18932,7 +18932,7 @@
         {
           "param": "AGE",
           "column": "AGE",
-          "source": "SL",
+          "source": "adsl",
           "label": "Age",
           "type": "adsl",
           "spec_id": "adsl",
@@ -18942,7 +18942,7 @@
         {
           "param": "AGEGR01",
           "column": "AGEGR01",
-          "source": "SL",
+          "source": "adsl",
           "label": "Age Group 01",
           "type": "adsl",
           "spec_id": "adsl",
@@ -18952,7 +18952,7 @@
         {
           "param": "SEX",
           "column": "SEX",
-          "source": "SL",
+          "source": "adsl",
           "label": "Sex",
           "type": "adsl",
           "spec_id": "adsl",
@@ -18962,7 +18962,7 @@
         {
           "param": "RACE",
           "column": "RACE",
-          "source": "SL",
+          "source": "adsl",
           "label": "Race",
           "type": "adsl",
           "spec_id": "adsl",
@@ -18972,7 +18972,7 @@
         {
           "param": "BMI_adsl",
           "column": "BMI_adsl",
-          "source": "SL",
+          "source": "adsl",
           "label": "Body Mass Index (kg/m2) at baseline (adsl)",
           "type": "adsl",
           "spec_id": "adsl",
@@ -18982,7 +18982,7 @@
         {
           "param": "LAB1",
           "column": "LAB1",
-          "source": "LB",
+          "source": "adlb",
           "label": "Laboratory 1",
           "type": "bds",
           "spec_id": "adlb",
@@ -18993,7 +18993,7 @@
         {
           "param": "LAB2",
           "column": "LAB2",
-          "source": "LB",
+          "source": "adlb",
           "label": "Laboratory 2",
           "type": "bds",
           "spec_id": "adlb",
@@ -19004,7 +19004,7 @@
         {
           "param": "LAB3",
           "column": "LAB3",
-          "source": "LB",
+          "source": "adlb",
           "label": "Laboratory 3",
           "type": "bds",
           "spec_id": "adlb",
@@ -19015,7 +19015,7 @@
         {
           "param": "BMI_advs",
           "column": "BMI_advs",
-          "source": "VS",
+          "source": "advs",
           "label": "Body Mass Index (advs)",
           "type": "bds",
           "spec_id": "advs",
@@ -19026,7 +19026,7 @@
         {
           "param": "BPDIA",
           "column": "BPDIA",
-          "source": "VS",
+          "source": "advs",
           "label": "Diastolic Blood Pressure",
           "type": "bds",
           "spec_id": "advs",
@@ -19037,7 +19037,7 @@
         {
           "param": "BPSYS",
           "column": "BPSYS",
-          "source": "VS",
+          "source": "advs",
           "label": "Systolic Blood Pressure",
           "type": "bds",
           "spec_id": "advs",
@@ -19048,7 +19048,7 @@
         {
           "param": "HR",
           "column": "HR",
-          "source": "VS",
+          "source": "advs",
           "label": "Heart Rate",
           "type": "bds",
           "spec_id": "advs",
@@ -19059,7 +19059,7 @@
         {
           "param": "WEIGHT",
           "column": "WEIGHT",
-          "source": "VS",
+          "source": "advs",
           "label": "Weight",
           "type": "bds",
           "spec_id": "advs",
@@ -19070,7 +19070,7 @@
         {
           "param": "cardiac_arrhythmias",
           "column": "cardiac_arrhythmias",
-          "source": "MH",
+          "source": "admh",
           "label": "Cardiac arrhythmias",
           "type": "occds",
           "spec_id": "admh",
@@ -19080,7 +19080,7 @@
         {
           "param": "coronary_artery_disorders",
           "column": "coronary_artery_disorders",
-          "source": "MH",
+          "source": "admh",
           "label": "Coronary artery disorders",
           "type": "occds",
           "spec_id": "admh",
@@ -29144,7 +29144,7 @@
         {
           "param": ".id",
           "column": ".id",
-          "source": "SL",
+          "source": "adsl",
           "label": "Subject Identifier for the Study",
           "type": "adsl",
           "spec_id": "adsl",
@@ -29154,7 +29154,7 @@
         {
           "param": ".trt",
           "column": ".trt",
-          "source": "SL",
+          "source": "adsl",
           "label": "Actual Treatment for Period 01",
           "type": "adsl",
           "spec_id": "adsl",
@@ -29164,7 +29164,7 @@
         {
           "param": "AGE",
           "column": "AGE",
-          "source": "SL",
+          "source": "adsl",
           "label": "Age",
           "type": "adsl",
           "spec_id": "adsl",
@@ -29174,7 +29174,7 @@
         {
           "param": "AGEGR01",
           "column": "AGEGR01",
-          "source": "SL",
+          "source": "adsl",
           "label": "Age Group 01",
           "type": "adsl",
           "spec_id": "adsl",
@@ -29184,7 +29184,7 @@
         {
           "param": "SEX",
           "column": "SEX",
-          "source": "SL",
+          "source": "adsl",
           "label": "Sex",
           "type": "adsl",
           "spec_id": "adsl",
@@ -29194,7 +29194,7 @@
         {
           "param": "RACE",
           "column": "RACE",
-          "source": "SL",
+          "source": "adsl",
           "label": "Race",
           "type": "adsl",
           "spec_id": "adsl",
@@ -29204,7 +29204,7 @@
         {
           "param": "BMI_adsl",
           "column": "BMI_adsl",
-          "source": "SL",
+          "source": "adsl",
           "label": "Body Mass Index (kg/m2) at baseline (adsl)",
           "type": "adsl",
           "spec_id": "adsl",
@@ -29214,7 +29214,7 @@
         {
           "param": "LAB1",
           "column": "LAB1",
-          "source": "LB",
+          "source": "adlb",
           "label": "Laboratory 1",
           "type": "bds",
           "spec_id": "adlb",
@@ -29225,7 +29225,7 @@
         {
           "param": "LAB2",
           "column": "LAB2",
-          "source": "LB",
+          "source": "adlb",
           "label": "Laboratory 2",
           "type": "bds",
           "spec_id": "adlb",
@@ -29236,7 +29236,7 @@
         {
           "param": "LAB3",
           "column": "LAB3",
-          "source": "LB",
+          "source": "adlb",
           "label": "Laboratory 3",
           "type": "bds",
           "spec_id": "adlb",
@@ -29247,7 +29247,7 @@
         {
           "param": "BMI_advs",
           "column": "BMI_advs",
-          "source": "VS",
+          "source": "advs",
           "label": "Body Mass Index (advs)",
           "type": "bds",
           "spec_id": "advs",
@@ -29258,7 +29258,7 @@
         {
           "param": "BPDIA",
           "column": "BPDIA",
-          "source": "VS",
+          "source": "advs",
           "label": "Diastolic Blood Pressure",
           "type": "bds",
           "spec_id": "advs",
@@ -29269,7 +29269,7 @@
         {
           "param": "BPSYS",
           "column": "BPSYS",
-          "source": "VS",
+          "source": "advs",
           "label": "Systolic Blood Pressure",
           "type": "bds",
           "spec_id": "advs",
@@ -29280,7 +29280,7 @@
         {
           "param": "HR",
           "column": "HR",
-          "source": "VS",
+          "source": "advs",
           "label": "Heart Rate",
           "type": "bds",
           "spec_id": "advs",
@@ -29291,7 +29291,7 @@
         {
           "param": "WEIGHT",
           "column": "WEIGHT",
-          "source": "VS",
+          "source": "advs",
           "label": "Weight",
           "type": "bds",
           "spec_id": "advs",
@@ -29302,7 +29302,7 @@
         {
           "param": "cardiac_arrhythmias",
           "column": "cardiac_arrhythmias",
-          "source": "MH",
+          "source": "admh",
           "label": "Cardiac arrhythmias",
           "type": "occds",
           "spec_id": "admh",
@@ -29312,7 +29312,7 @@
         {
           "param": "coronary_artery_disorders",
           "column": "coronary_artery_disorders",
-          "source": "MH",
+          "source": "admh",
           "label": "Coronary artery disorders",
           "type": "occds",
           "spec_id": "admh",

@@ -51,7 +51,7 @@
             {
               "type": "character",
               "attributes": {},
-              "value": ["SL", "SL", "SL", "SL", "SL", "SL", "SL", "LB", "LB", "LB", "VS", "VS", "VS", "VS", "VS", "MH", "MH"]
+              "value": ["adsl", "adsl", "adsl", "adsl", "adsl", "adsl", "adsl", "adlb", "adlb", "adlb", "advs", "advs", "advs", "advs", "advs", "admh", "admh"]
             },
             {
               "type": "character",

@@ -8,7 +8,7 @@ check_role(
   data,
   role,
   column_spec = NULL,
-  type = c("bds", "occds"),
+  type = c("adsl", "bds", "occds"),
   spec_id = NULL,
   required = TRUE,
   call = rlang::caller_env()

@@ -4,7 +4,7 @@
 \alias{create_spec_out}
 \title{Create output object for build specifications}
 \usage{
-create_spec_out(..., type = c("bds", "occds"), attach_data = TRUE)
+create_spec_out(..., type = c("adsl", "bds", "occds"), attach_data = TRUE)
 }
 \arguments{
 \item{...}{output objects}

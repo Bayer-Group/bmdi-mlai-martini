@@ -198,6 +198,7 @@ check_role <- function(
   type <- rlang::arg_match(type)
   
   out <- list(
+    role = role,
     column = NULL,
     required = required,
     check_passed = TRUE
@@ -219,7 +220,7 @@ check_role <- function(
     )
   }
   
-  # for provided clumn name...
+  # for provided column name...
   if (!is.null(column_spec)) {
     # ... check if column is present in data
     if (column_spec %in% colnames_data) {
@@ -377,15 +378,9 @@ import_info <- function(
     stop('Only sas7bdat and rds data supported.')
   }
   
-  column_labels <- labelled::var_label(data)
-  column_levels <- labelled::val_labels(data) %>% 
-    purrr::compact() %>% 
-    purrr::keep(is.numeric)
-  
   # transform empty strings into NAs (SAS does not have character NAs)
   # NOTE na_if() should not remove any attributes from the column in 
-  # combination with mutate(), but to be safe, this is done after the 
-  # extraction of all relevant attributes
+  # combination with mutate() 
   if (file_ext == 'sas7bdat') {
     data <- data %>% 
       dplyr::mutate(dplyr::across(
@@ -393,9 +388,6 @@ import_info <- function(
         ~dplyr::na_if(., "")
       ))
   }
-  
-  attr(data, 'column_labels') <- column_labels
-  attr(data, 'column_levels') <- column_levels
   
   list(
     data = data,

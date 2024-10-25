@@ -7,12 +7,13 @@
 adam_spec_adsl(
   file = NULL,
   data = NULL,
-  id = "USUBJID",
-  trt = "TRT01A",
+  id = "SUBJID",
+  trt = NULL,
   keep = NULL,
   drop = NULL,
   filter = NULL,
-  attach_data = FALSE
+  attach_data = FALSE,
+  catalog_file = NULL
 )
 }
 \arguments{
@@ -30,6 +31,10 @@ to the \code{drop_list}. If NULL, all treatment variables will be added to the \
 Defaults to NULL.}
 
 \item{attach_data}{boolean. attach the imported raw data.}
+
+\item{catalog_file}{path to the catalog file to be passed to
+\code{\link[haven:read_sas]{haven::read_sas()}}. Defaults to NULL.
+Ignored if \code{file} is not a sas7bdat file.}
 }
 \value{
 A list containing the following

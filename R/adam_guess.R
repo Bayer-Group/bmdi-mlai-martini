@@ -51,14 +51,17 @@ adam_guess <- function(
     ) %>% 
       purrr::map(~{paste0(.x, "$") %>% paste(collapse = "|")})
     
-    # COMBAK 
-    # test create_dict works dies here for role == value -> pattern is NULL
-    # -> str_subset escapes
-    actual_guess <- stringr::str_subset(
-      string  = colnames_data, 
-      pattern = guesses_occds[[role]]
-    ) %>% 
-      head(1)
+    actual_guess <- if (!is.null(guesses_occds[[role]])) {
+      # in contrast to 'bds', column names in guess list are not 
+      # necessarily exact but might have a data set specific prefix
+      stringr::str_subset(
+        string  = colnames_data, 
+        pattern = guesses_occds[[role]]
+      ) %>% 
+        head(1)
+    }else{
+      NULL
+    }
     
   }
   

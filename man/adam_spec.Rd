@@ -14,7 +14,8 @@ adam_spec(
   id = "SUBJID",
   trt = "TRT01A",
   add_bds = NULL,
-  file_ext = c("rds", "sas7bdat")
+  file_ext = c("rds", "sas7bdat"),
+  catalog_file = NULL
 )
 }
 \arguments{
@@ -43,6 +44,10 @@ in the package library of ADaM types (yet), but should be processed as per usual
 \item{file_ext}{only rds and sas7bdat data sets are allowed (e.g. \code{file_ext = 'rds'}). User may select
 only sas7bdat, only rds or set a priorization rule (\code{file_ext = c('rds', 'sas7bdat')}, see Details).
 Defaults to c('rds', 'sas7bdat'), i.e. rds if available, sas7bdat else.}
+
+\item{catalog_file}{path to the catalog file to be passed to
+\code{\link[haven:read_sas]{haven::read_sas()}} for adsl. Defaults to NULL.
+Ignored if \code{file} is not a sas7bdat file.}
 }
 \value{
 \code{adam_spec()} returns named list of specifications that can be passed to the \code{\link{build}()} function.

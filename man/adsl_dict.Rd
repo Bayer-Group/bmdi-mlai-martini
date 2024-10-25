@@ -4,10 +4,10 @@
 \alias{adsl_dict}
 \title{create adsl dictionary from column labels/names}
 \usage{
-adsl_dict(adsl, param = "param", label = "label")
+adsl_dict(data, param = "param", label = "label")
 }
 \arguments{
-\item{adsl}{adsl-like data set}
+\item{data}{adsl-like data set}
 
 \item{param, label}{column name for resulting tibble where column name
 (param) and label are stored}

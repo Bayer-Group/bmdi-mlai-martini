@@ -66,7 +66,7 @@
 adam_spec_adsl <- function(
     file         = NULL,
     data         = NULL,
-    id           = 'USUBJID',
+    id           = 'SUBJID',
     trt          = NULL,
     keep         = NULL, 
     drop         = NULL,
@@ -368,15 +368,34 @@ adam_spec_adsl <- function(
   })
 
   if('factor' %in% type){
+    res_fct_data <- adsl_identify_factor_data(data)
     res_fct <- do.call(
       adsl_identify_factor,
       tibble::lst(data, id, dict, dict_label, dict_param, clmn_flag = to_remove$flag)
     )
     # NOTE factors should not be in the 'to_remove' entry
-    to_remove$factor <- res_fct[['all_num_codes']]
+    to_remove$factor <- c(
+     
+       # for numerics WITH labels from data, exclude matching decode
+      res_fct$code_decode %>% 
+        dplyr::filter(lev %in% names(res_fct_data)) %>% 
+        dplyr::pull(lab),
+      
+      # for numeric codes WITHOUT format/label attribute, exclude num (-> decode kept)
+      res_fct$code_decode %>% 
+        dplyr::filter(!lev %in% names(res_fct_data)) %>% 
+        dplyr::pull(lev)
+      
+    )
+    
+    lev_list <- c(
+      res_fct$lev_list %>% 
+        purrr::discard_at(to_remove$factor %||% character(0)),
+      res_fct_data
+    )
    
   }else{
-    res_fct <- NULL
+    lev_list <- NULL
   }
   
   if('redundant' %in% type){
@@ -627,6 +646,7 @@ adsl_identify_factor <- function(
   lab_num <- lab_mod[lab_ind]
   
   # mapping of columns to keep (labels) and columns to use for level order
+  # i.e. code-decode pairs
   all_lab_lev <- dplyr::bind_rows(
     tibble::tibble(
       lab = clmn_cat,
@@ -704,7 +724,7 @@ adsl_identify_factor <- function(
     lev  <- rlang::sym(lab_lev[r,] %>% dplyr::pull(lev))
     lab  <- rlang::sym(lab_lev[r,] %>% dplyr::pull(lab))
     
-    levs <- data %>% 
+    levs <- data %>%  
       dplyr::select(lab_lev[r,] %>% as.character()) %>% 
       dplyr::distinct() %>% 
       dplyr::arrange(!! lev) %>% 
@@ -715,14 +735,36 @@ adsl_identify_factor <- function(
     attributes(levs)    <- NULL
     attr(levs, "label") <- levs_label
     
-    lev_list[[lab]] <- levs
+    lev_list[[lab]] <- purrr::set_names(levs)
   }
   
   tibble::lst(
-    all_num_codes = all_lab_lev$lev,
-    lev_list
+    lev_list, 
+    code_decode = all_lab_lev
   )
   
 }
 
+#' @rdname adsl_identify
 
+adsl_identify_factor_data <- function(
+    data){
+  
+  # identify integer columns from data 
+  # for now ignore character columns with levels
+  
+  # guess integer columns
+  integer_cols <- data %>% purrr::map_lgl(~{
+    readr::guess_parser(as.character(.x), guess_integer = TRUE) == 'integer'
+  }) %>% 
+    purrr::keep(~ .x) %>% 
+    names()
+  
+  # label list 
+  labelled::val_labels(data) %>%
+    purrr::compact() %>% 
+    magrittr::extract(., intersect(integer_cols, names(.))) %>% 
+    purrr::map(sort) 
+  
+}
+    

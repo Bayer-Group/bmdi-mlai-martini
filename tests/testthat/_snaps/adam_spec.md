@@ -17,8 +17,8 @@
         advs PARAMCD AVAL  AVALU AVISIT
       
         Key columns used in occds-type data sets
-        name label  value valuen count time
-        admh MHHLGT NA    NA     TRUE  NA  
+        name label  value valuen count time  
+        admh MHHLGT NA    NA     TRUE  MHSTDY
 
 ---
 
@@ -34,85 +34,47 @@
       
       $adsl$size
       128K
-      $adsl$data
-      NULL
-      
-      $adsl$data_info
-      $adsl$data_info$nsubj
-      [1] 320
-      
-      $adsl$data_info$ncol
-      [1] 7
-      
-      
       $adsl$type
       [1] "adsl"
       
       $adsl$filter
       NULL
       
+      $adsl$spec_id
+      [1] "adsl"
+      
+      $adsl$id
+      [1] "SUBJID"
+      
+      $adsl$trt
+      [1] "TRT01A"
+      
       $adsl$select
       [1] "SUBJID"  "TRT01A"  "AGEGR01" "SEX"     "RACE"    "AGE"     "BMI"    
       
       $adsl$factor_levels
       $adsl$factor_levels$TRT01A
-      [1] "PLC" "TRT"
+        PLC   TRT 
+      "PLC" "TRT" 
       attr(,"label")
       [1] "Actual Treatment for Period 01"
       
       $adsl$factor_levels$AGEGR01
-      [1] "< 60"     "60 - <75" ">=75"    
+            < 60   60 - <75       >=75 
+          "< 60" "60 - <75"     ">=75" 
       attr(,"label")
       [1] "Age Group 01"
       
       $adsl$factor_levels$SEX
-      [1] "M" "F"
+        M   F 
+      "M" "F" 
       attr(,"label")
       [1] "Sex"
       
       $adsl$factor_levels$RACE
-      [1] "WHITE" "BLACK" "ASIAN"
+        WHITE   BLACK   ASIAN 
+      "WHITE" "BLACK" "ASIAN" 
       
-      
-      $adsl$dict
-      # A tibble: 19 x 5
-         param    label                                  source type  selected
-         <chr>    <chr>                                  <chr>  <chr> <lgl>   
-       1 ADSNAME  Dataset Name                           SL     adsl  FALSE   
-       2 STUDYID  Study Identifier                       SL     adsl  FALSE   
-       3 SUBJID   Subject Identifier for the Study       SL     adsl  TRUE    
-       4 USUBJID  Unique Subject Identifier              SL     adsl  FALSE   
-       5 UASR     Unique Subject Identifier/Age/Sex/Race SL     adsl  FALSE   
-       6 ITTFL    Intent-To-Treat Population Flag        SL     adsl  FALSE   
-       7 TRT01P   Planned Treatment for Period 01        SL     adsl  FALSE   
-       8 TRT01PN  Planned Treatment for Period 01 (N)    SL     adsl  FALSE   
-       9 TRT01A   Actual Treatment for Period 01         SL     adsl  TRUE    
-      10 TRT01AN  Actual Treatment for Period 01 (N)     SL     adsl  FALSE   
-      11 RANDDT   Date of Randomization                  SL     adsl  FALSE   
-      12 AGE      Age                                    SL     adsl  TRUE    
-      13 AGEGR01  Age Group 01                           SL     adsl  TRUE    
-      14 AGEGR01N Age Group 01 (N)                       SL     adsl  FALSE   
-      15 SEX      Sex                                    SL     adsl  TRUE    
-      16 SEXN     Sex (N)                                SL     adsl  FALSE   
-      17 RACE     Race                                   SL     adsl  TRUE    
-      18 RACEN    Race (N)                               SL     adsl  FALSE   
-      19 BMI      Body Mass Index (kg/m2) at baseline    SL     adsl  TRUE    
-      
-      $adsl$flag_table
-      # A tibble: 320 x 2
-         SUBJID ITTFL
-          <dbl> <chr>
-       1  10001 Y    
-       2  10002 Y    
-       3  10003 Y    
-       4  10004 Y    
-       5  10005 Y    
-       6  10006 Y    
-       7  10007 Y    
-       8  10008 Y    
-       9  10009 Y    
-      10  10010 Y    
-      # i 310 more rows
       
       $adsl$drop_list
       $adsl$drop_list$drop
@@ -151,14 +113,53 @@
       character(0)
       
       
-      $adsl$id
-      [1] "SUBJID"
+      $adsl$flag_table
+      # A tibble: 320 x 2
+         SUBJID ITTFL
+          <dbl> <chr>
+       1  10001 Y    
+       2  10002 Y    
+       3  10003 Y    
+       4  10004 Y    
+       5  10005 Y    
+       6  10006 Y    
+       7  10007 Y    
+       8  10008 Y    
+       9  10009 Y    
+      10  10010 Y    
+      # i 310 more rows
       
-      $adsl$trt
-      [1] "TRT01A"
+      $adsl$dict
+      # A tibble: 19 x 5
+         param    label                                  source type  selected
+         <chr>    <chr>                                  <chr>  <chr> <lgl>   
+       1 ADSNAME  Dataset Name                           adsl   adsl  FALSE   
+       2 STUDYID  Study Identifier                       adsl   adsl  FALSE   
+       3 SUBJID   Subject Identifier for the Study       adsl   adsl  TRUE    
+       4 USUBJID  Unique Subject Identifier              adsl   adsl  FALSE   
+       5 UASR     Unique Subject Identifier/Age/Sex/Race adsl   adsl  FALSE   
+       6 ITTFL    Intent-To-Treat Population Flag        adsl   adsl  FALSE   
+       7 TRT01P   Planned Treatment for Period 01        adsl   adsl  FALSE   
+       8 TRT01PN  Planned Treatment for Period 01 (N)    adsl   adsl  FALSE   
+       9 TRT01A   Actual Treatment for Period 01         adsl   adsl  TRUE    
+      10 TRT01AN  Actual Treatment for Period 01 (N)     adsl   adsl  FALSE   
+      11 RANDDT   Date of Randomization                  adsl   adsl  FALSE   
+      12 AGE      Age                                    adsl   adsl  TRUE    
+      13 AGEGR01  Age Group 01                           adsl   adsl  TRUE    
+      14 AGEGR01N Age Group 01 (N)                       adsl   adsl  FALSE   
+      15 SEX      Sex                                    adsl   adsl  TRUE    
+      16 SEXN     Sex (N)                                adsl   adsl  FALSE   
+      17 RACE     Race                                   adsl   adsl  TRUE    
+      18 RACEN    Race (N)                               adsl   adsl  FALSE   
+      19 BMI      Body Mass Index (kg/m2) at baseline    adsl   adsl  TRUE    
       
-      $adsl$spec_id
-      [1] "SL"
+      $adsl$data_info
+      $adsl$data_info$nsubj
+      [1] 320
+      
+      $adsl$data_info$ncol
+      [1] 7
+      
       
       
       $adlb
@@ -177,7 +178,7 @@
       NULL
       
       $adlb$spec_id
-      [1] "LB"
+      [1] "adlb"
       
       $adlb$id
       [1] "SUBJID"
@@ -209,9 +210,9 @@
       # A tibble: 3 x 6
         param label        unit  source type  selected
         <chr> <chr>        <chr> <chr>  <chr> <lgl>   
-      1 LAB1  Laboratory 1 unit1 LB     bds   TRUE    
-      2 LAB2  Laboratory 2 unit2 LB     bds   TRUE    
-      3 LAB3  Laboratory 3 unit3 LB     bds   TRUE    
+      1 LAB1  Laboratory 1 unit1 adlb   bds   TRUE    
+      2 LAB2  Laboratory 2 unit2 adlb   bds   TRUE    
+      3 LAB3  Laboratory 3 unit3 adlb   bds   TRUE    
       
       $adlb$data_info
       $adlb$data_info$nsubj
@@ -238,7 +239,7 @@
       NULL
       
       $advs$spec_id
-      [1] "VS"
+      [1] "advs"
       
       $advs$id
       [1] "SUBJID"
@@ -270,11 +271,11 @@
       # A tibble: 5 x 6
         param  label                    unit      source type  selected
         <chr>  <chr>                    <chr>     <chr>  <chr> <lgl>   
-      1 BMI    Body Mass Index          kg/m2     VS     bds   TRUE    
-      2 BPDIA  Diastolic Blood Pressure mmHg      VS     bds   TRUE    
-      3 BPSYS  Systolic Blood Pressure  mmHg      VS     bds   TRUE    
-      4 HR     Heart Rate               beats/min VS     bds   TRUE    
-      5 WEIGHT Weight                   kg        VS     bds   TRUE    
+      1 BMI    Body Mass Index          kg/m2     advs   bds   TRUE    
+      2 BPDIA  Diastolic Blood Pressure mmHg      advs   bds   TRUE    
+      3 BPSYS  Systolic Blood Pressure  mmHg      advs   bds   TRUE    
+      4 HR     Heart Rate               beats/min advs   bds   TRUE    
+      5 WEIGHT Weight                   kg        advs   bds   TRUE    
       
       $advs$data_info
       $advs$data_info$nsubj
@@ -297,27 +298,36 @@
       $admh$type
       [1] "occds"
       
-      $admh$id
-      [1] "SUBJID"
-      
       $admh$filter
       NULL
       
-      $admh$count
-      [1] TRUE
-      
       $admh$spec_id
-      [1] "MH"
+      [1] "admh"
+      
+      $admh$id
+      [1] "SUBJID"
       
       $admh$label
       [1] "MHHLGT"
+      
+      $admh$value
+      NULL
+      
+      $admh$valuen
+      NULL
+      
+      $admh$time
+      [1] "MHSTDY"
+      
+      $admh$count
+      [1] TRUE
       
       $admh$dict
       # A tibble: 2 x 4
         label                     source type  selected
         <chr>                     <chr>  <chr> <lgl>   
-      1 Cardiac arrhythmias       MH     occds TRUE    
-      2 Coronary artery disorders MH     occds TRUE    
+      1 Cardiac arrhythmias       admh   occds TRUE    
+      2 Coronary artery disorders admh   occds TRUE    
       
       $admh$data_info
       $admh$data_info$nsubj

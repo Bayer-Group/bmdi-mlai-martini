@@ -11,7 +11,7 @@
 \title{identify/categorize columns from adsl}
 \usage{
 adsl_identify(
-  adsl,
+  data,
   dict = NULL,
   type = c("dttm", "constant", "combined", "flag", "factor", "redundant"),
   dict_label = "label",
@@ -21,23 +21,23 @@ adsl_identify(
   black_list = c("RANDNO", "SITEID", "SITENAM", "INVID", "INVNAM")
 )
 
-adsl_identify_dttm(adsl)
+adsl_identify_dttm(data)
 
-adsl_identify_constant(adsl)
+adsl_identify_constant(data)
 
 adsl_identify_combined(
-  adsl,
+  data,
   dict = NULL,
   dict_label = "label",
   dict_param = "param"
 )
 
-adsl_identify_redundant(adsl, id, trt, clmn_flag)
+adsl_identify_redundant(data, id, trt, clmn_flag)
 
-adsl_identify_flag(adsl, dict, dict_param = "param", dict_label = "label")
+adsl_identify_flag(data, dict, dict_param = "param", dict_label = "label")
 
 adsl_identify_factor(
-  adsl,
+  data,
   id,
   clmn_flag = NULL,
   dict,
@@ -46,17 +46,17 @@ adsl_identify_factor(
 )
 }
 \arguments{
-\item{adsl}{adsl-like data set in which to identify particular columns of interest}
+\item{data}{adsl-like data set in which to identify particular columns of interest}
 
 \item{dict, dict_param, dict_label}{dict is \code{tibble} as created by \code{adsl_dict()}
 where \code{dict_param} and \code{dict_label} indicate the columns in \code{dict}
-containing for parameter names (column names of \code{adsl}) and labels, resp.}
+containing for parameter names (column names of \code{data}) and labels, resp.}
 
 \item{type}{character vector determining the categories of column types to identify.
 defaults all possible categories:
 \code{dttm}, \code{constant}, \code{combined}, \code{flag}, \code{factor}, \code{redundant}}
 
-\item{id, trt}{user-selected column names in \code{adsl} for ID and treatment column,
+\item{id, trt}{user-selected column names in \code{data} for ID and treatment column,
 defaulting to \code{SUBJID} and \code{TRT01A}, resp.}
 
 \item{black_list}{character vector of columns that should be dropped for
@@ -66,7 +66,7 @@ most analyses, see details.}
 }
 \value{
 list with two top level entries, where \code{to_remove} is a list of
-column names from \code{adsl} that were identified as candidates for a given category
+column names from \code{data} that were identified as candidates for a given category
 and \code{lev_list} a \code{list} required to set factor level orders.
 }
 \description{

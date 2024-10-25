@@ -20,6 +20,8 @@ build_adsl <- function(
   
   if(is.null(spec$data)){
     
+    # TODO replace with import function (also md5 above)
+    
     # ... no data attached ####
     
     file_name <- spec$file 
@@ -69,17 +71,17 @@ build_adsl <- function(
   }
   
   # reorder / set factor levels  ####
-  clmns <- names(spec$factor_levels) %>% 
-    intersect(names(adsl_full))
-  
-  if(length(clmns)>0){
+  factor_levels <- spec$factor_levels %>% purrr::keep_at(names(adsl_full))
 
-    for(clmn in clmns){ 
-      adsl_full[[clmn]] <- adsl_full[[clmn]] %>% 
-        factor(levels = spec$factor_levels[[clmn]])
-    }
+  if (length(factor_levels) > 0) {
+    adsl_full <- adsl_full %>% 
+      dplyr::mutate(dplyr::across(tidyselect::all_of(names(factor_levels)), as.character))
+    # COMBAK attr 'label' in factor_level list causes error in labelled::val_labels
+    # removing 'label' attribute in adsl_identify_factor() (where level list is created)
+    # leads to different assignment of levels than in current snapshots
+    labelled::val_labels(adsl_full) <- factor_levels
+    adsl_full <- haven::as_factor(adsl_full)
   }
-  
   
   # apply spec: filter, select and standardize column names ####
   
