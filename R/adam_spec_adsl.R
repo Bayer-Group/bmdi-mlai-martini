@@ -171,7 +171,7 @@ adam_spec_adsl <- function(
     
 
   # ... selected columns ####
-
+  # COMBAK: check renaming here
   lev_list <- identify_res$lev_list
   
   select_list <- c(
@@ -373,10 +373,10 @@ adam_spec_adsl <- function(
       adsl_identify_factor,
       tibble::lst(data, id, dict, dict_label, dict_param, clmn_flag = to_remove$flag)
     )
-    # NOTE factors should not be in the 'to_remove' entry
+
     to_remove$factor <- c(
-     
-       # for numerics WITH labels from data, exclude matching decode
+      
+      # for numerics WITH labels from data, exclude matching decode
       res_fct$code_decode %>% 
         dplyr::filter(lev %in% names(res_fct_data)) %>% 
         dplyr::pull(lab),
@@ -388,6 +388,7 @@ adam_spec_adsl <- function(
       
     )
     
+    # COMBAK rename using code_decode table
     lev_list <- c(
       res_fct$lev_list %>% 
         purrr::discard_at(to_remove$factor %||% character(0)),
@@ -409,7 +410,10 @@ adam_spec_adsl <- function(
   
   to_remove$black_list <- intersect(black_list, colnames(data))
   
-  tibble::lst(to_remove, lev_list = res_fct$lev_list)
+  tibble::lst(
+    to_remove, 
+    lev_list # = res_fct$lev_list
+  )
 }
   
 
@@ -754,9 +758,10 @@ adsl_identify_factor_data <- function(
   # for now ignore character columns with levels
   
   # guess integer columns
-  integer_cols <- data %>% purrr::map_lgl(~{
-    readr::guess_parser(as.character(.x), guess_integer = TRUE) == 'integer'
-  }) %>% 
+  integer_cols <- data %>% 
+    purrr::map_lgl(~{
+       readr::guess_parser(as.character(.x), guess_integer = TRUE) == 'integer'
+    }) %>% 
     purrr::keep(~ .x) %>% 
     names()
   

@@ -54,6 +54,7 @@ build_adsl <- function(
     # ... data attached ####
     
     adsl_full <- spec$data %>% 
+      # TODO haven::zap_empty()
       dplyr::mutate_if(is.character,  ~ dplyr::na_if(., ""))
     
     if(md5 != spec$md5){
