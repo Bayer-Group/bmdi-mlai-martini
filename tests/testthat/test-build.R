@@ -107,3 +107,30 @@ test_that("build snapshots", {
   )
   
 })
+
+
+test_that("factor levels correct", {
+  
+  # factor levels from catalog file ####
+  if(FALSE){
+  data_haven <- haven::read_sas(
+    test_path('sas/hadley.sas7bdat'),
+    catalog_file = test_path('sas/formats.sas7bcat')
+  )
+  
+  
+  levels_haven <- data_haven %>% 
+    haven::as_factor() %>% 
+    dplyr::select(dplyr::where(is.factor)) %>% 
+    purrr::map(levels)
+  
+  labels_haven <- data_haven %>% 
+    purrr::map(~attr(.x, 'label'))
+  
+  expect_equal(
+    purrr::map(data_haven,  ~{attributes(.x)}),
+    purrr::map(data_import$data, ~{attributes(.x)})
+  )
+  }
+
+})
