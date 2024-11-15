@@ -187,10 +187,11 @@ there is no information on whether or not an event occurred within `cut`.
 
 # Example study MARTINI 
 
-This package comes with an example study containing three data sets in 
+Assume an example study containing four data sets in 
 `.sas7bdat` format, covering the three different ADaM data types:
 
 * adsl (adsl, wide format)
+* adlb (bds, long format)
 * advs (bds, long format)
 * admh (occds, long format)
 

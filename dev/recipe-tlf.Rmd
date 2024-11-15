@@ -27,19 +27,20 @@ knitr::opts_chunk$set(
 
 # Scope
 
-This vignette shows the CSR output for the example of a regression outcome, 
+This vignette shows the CSR output for the martini package
+for the example of a regression outcome, 
 included in the {martini} package:
 
 * `martini_spec` the general specification
 * `martini_ml_regr` the output of `prepare_ml`, containing the `recipe` object,
 the ML data set and more
 
-Questions to be answered:
+General questions to be answered (with the ones related to martini in bold):
 
 **A How was the ML model built?** 
 
-* definition of feature space 
-* list of preprocessing steps with main settings
+* **definition of feature space**
+* **list of preprocessing steps with main settings**
 * tuned hyper parameters
 
 **B Characterisation of ML model**
@@ -85,7 +86,7 @@ This can be derived from the output of `prepare_ml`.
 colnames_raw <- martini::martini_ml_regr %>% 
   get_data('raw') %>% 
   names() %>% 
-  setdiff(c('.id', '.out'))
+  setdiff(c('.id', '.out', '.trt', '.rmtime'))
 
 martini::martini_ml_regr$dict %>% 
   filter(param %in% colnames_raw) %>% 
