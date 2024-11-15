@@ -34,6 +34,10 @@ build_adsl <- function(
     if(file_ext == 'sas7bdat'){
       
       adsl_full <- haven::read_sas(file_name) %>% 
+        # TODO replace with haven::zap_empty()
+        # and add haven::zap_format()
+        # also do that in import_info()
+        # TODO check if this can be replaced by import_info()
         dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))      
       
     } else {
@@ -55,6 +59,7 @@ build_adsl <- function(
     
     adsl_full <- spec$data %>% 
       # TODO haven::zap_empty()
+      # TODO remove
       dplyr::mutate_if(is.character,  ~ dplyr::na_if(., ""))
     
     if(md5 != spec$md5){
@@ -75,13 +80,15 @@ build_adsl <- function(
   factor_levels <- spec$factor_levels %>% purrr::keep_at(names(adsl_full))
 
   if (length(factor_levels) > 0) {
-    adsl_full <- adsl_full %>% 
-      dplyr::mutate(dplyr::across(tidyselect::all_of(names(factor_levels)), as.character))
-    # COMBAK attr 'label' in factor_level list causes error in labelled::val_labels
-    # removing 'label' attribute in adsl_identify_factor() (where level list is created)
-    # leads to different assignment of levels than in current snapshots
-    labelled::val_labels(adsl_full) <- factor_levels
-    adsl_full <- haven::as_factor(adsl_full)
+    purrr::walk(names(factor_levels), ~{
+      cases <- purrr::map2(
+        unname(factor_levels[[.x]]),
+        names(factor_levels[[.x]]),
+        rlang::new_formula
+      )
+      adsl_full[[.x]] <<- dplyr::case_match(adsl_full[[.x]], !!!cases) %>% 
+        factor(levels = names(factor_levels[[.x]]))
+    })
   }
   
   # apply spec: filter, select and standardize column names ####

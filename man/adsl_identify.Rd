@@ -8,6 +8,7 @@
 \alias{adsl_identify_redundant}
 \alias{adsl_identify_flag}
 \alias{adsl_identify_factor}
+\alias{adsl_identify_factor_data}
 \title{identify/categorize columns from adsl}
 \usage{
 adsl_identify(
@@ -44,6 +45,8 @@ adsl_identify_factor(
   dict_param = "param",
   dict_label = "label"
 )
+
+adsl_identify_factor_data(data)
 }
 \arguments{
 \item{data}{adsl-like data set in which to identify particular columns of interest}
