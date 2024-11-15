@@ -15,6 +15,7 @@ adam_spec(
   trt = "TRT01A",
   add_bds = NULL,
   file_ext = c("rds", "sas7bdat"),
+  fct_levels = NULL,
   catalog_file = NULL
 )
 }
@@ -45,8 +46,12 @@ in the package library of ADaM types (yet), but should be processed as per usual
 only sas7bdat, only rds or set a priorization rule (\code{file_ext = c('rds', 'sas7bdat')}, see Details).
 Defaults to c('rds', 'sas7bdat'), i.e. rds if available, sas7bdat else.}
 
+\item{fct_levels}{optional list of named vectors providing code-decode pairs
+and/or setting the level order for factors in an adsl data set
+(see details section of \code{\link[=adam_spec_adsl]{adam_spec_adsl()}} for structure).}
+
 \item{catalog_file}{path to the catalog file to be passed to
-\code{\link[haven:read_sas]{haven::read_sas()}} for adsl. Defaults to NULL.
+\code{\link[haven:read_sas]{haven::read_sas()}} for adsl. Defaults to \code{NULL}.
 Ignored if \code{file} is not a sas7bdat file.}
 }
 \value{

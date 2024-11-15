@@ -12,6 +12,7 @@ adam_spec_adsl(
   keep = NULL,
   drop = NULL,
   filter = NULL,
+  fct_levels = NULL,
   attach_data = FALSE,
   catalog_file = NULL
 )
@@ -29,6 +30,9 @@ to the \code{drop_list}. If NULL, all treatment variables will be added to the \
 
 \item{filter}{character vector of filters following \code{dplyr::filter()} syntax for use in \code{\link{build_adsl}()} (see Details).
 Defaults to NULL.}
+
+\item{fct_levels}{optional list of named vectors providing code-decode pairs
+and/or setting the level order (see details section for structure).}
 
 \item{attach_data}{boolean. attach the imported raw data.}
 
@@ -78,6 +82,18 @@ No more than one of these variables will be returned in \code{select}. Note that
 variable will be renamed to the standard '.trt' in \code{\link{build_adsl}()}.}
 \item{\emph{Filter check}}{Filters will be checked against the data and will only be kept if the filter would not throw an error and if the resulting
 data set has positive number of rows. See \code{\link{check_filter}()} for further details.}
+\item{\emph{fct_levels}}{\code{adam_spec_adsl()} will try and derive the factor levels from
+the data set by identifying column of code/decode pairs using a simple
+heuristic and any formats present in the optionally provided catalog file.
+For ADaM 2.0, the number of the code/decode column pairs is expected to
+be reduced to a minimum and mainly numeric codes are expected to be present.
+\code{fct_levels} can be used to ensure that the columns are treated as factors
+in the first place and to provide the factor labels manually for
+interpretability of the results.
+\code{fct_levels} is provided as a named list, containing one entry per factor
+column, that should be defined/updated. Each entry is a named vector with
+the names being the level names and values the corresponding
+entries used in the actual data.}
 }
 }
 \section{Authors}{

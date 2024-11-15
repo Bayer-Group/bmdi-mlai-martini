@@ -14,6 +14,8 @@
 #' @param keep,drop columns to be kept/dropped, independent of the technical selection process within this function
 #' @param filter character vector of filters following \code{dplyr::filter()} syntax for use in \code{\link{build_adsl}()} (see Details).
 #' Defaults to NULL. 
+#' @param fct_levels optional list of named vectors providing code-decode pairs
+#' and/or setting the level order (see details section for structure).
 #' @param attach_data boolean. attach the imported raw data.
 #' @param catalog_file path to the catalog file to be passed to 
 #' [haven::read_sas()]. Defaults to NULL. 
@@ -31,6 +33,18 @@
 #'   variable will be renamed to the standard '.trt' in \code{\link{build_adsl}()}.}
 #'   \item{*Filter check*}{Filters will be checked against the data and will only be kept if the filter would not throw an error and if the resulting
 #'   data set has positive number of rows. See \code{\link{check_filter}()} for further details.}
+#'   \item{*fct_levels*}{`adam_spec_adsl()` will try and derive the factor levels from
+#'   the data set by identifying column of code/decode pairs using a simple
+#'   heuristic and any formats present in the optionally provided catalog file.
+#'   For ADaM 2.0, the number of the code/decode column pairs is expected to 
+#'   be reduced to a minimum and mainly numeric codes are expected to be present.
+#'   `fct_levels` can be used to ensure that the columns are treated as factors 
+#'   in the first place and to provide the factor labels manually for 
+#'   interpretability of the results.
+#'   `fct_levels` is provided as a named list, containing one entry per factor 
+#'   column, that should be defined/updated. Each entry is a named vector with
+#'   the names being the level names and values the corresponding 
+#'   entries used in the actual data.}
 #' }
 #' 
 #' @return 
@@ -71,6 +85,7 @@ adam_spec_adsl <- function(
     keep         = NULL, 
     drop         = NULL,
     filter       = NULL,
+    fct_levels   = NULL,
     attach_data  = FALSE, 
     catalog_file = NULL
 ){
@@ -135,6 +150,7 @@ adam_spec_adsl <- function(
     trt = col_select$trt
   )
   
+  
   # transform date and time to character to ensure exclusion
   # from numeric selection
   # (caution: mutate() deletes column labels)
@@ -173,6 +189,23 @@ adam_spec_adsl <- function(
   # ... selected columns ####
   # COMBAK: check renaming here
   lev_list <- identify_res$lev_list
+  
+  if (!is.null(fct_levels)) {
+    
+    fct_levels <- fct_levels %>% 
+      purrr::keep_at(colnames(data))
+    
+    lev_list <- if (length(fct_levels) > 0) {
+      if (!is.null(lev_list)) {
+        lev_list %>% purrr::list_assign(!!! fct_levels)
+      }else{
+        fct_levels
+      }
+    }else{
+      NULL
+    }
+    
+  }
   
   select_list <- c(
     id,
@@ -410,10 +443,8 @@ adam_spec_adsl <- function(
   
   to_remove$black_list <- intersect(black_list, colnames(data))
   
-  tibble::lst(
-    to_remove, 
-    lev_list # = res_fct$lev_list
-  )
+  tibble::lst(to_remove, lev_list)
+  
 }
   
 
@@ -724,22 +755,26 @@ adsl_identify_factor <- function(
   
   # create list of factor levels
   lev_list <- list()
-  for(r in 1:nrow(lab_lev)){
-    lev  <- rlang::sym(lab_lev[r,] %>% dplyr::pull(lev))
-    lab  <- rlang::sym(lab_lev[r,] %>% dplyr::pull(lab))
+  if (nrow(lab_lev) > 0) {
     
-    levs <- data %>%  
-      dplyr::select(lab_lev[r,] %>% as.character()) %>% 
-      dplyr::distinct() %>% 
-      dplyr::arrange(!! lev) %>% 
-      dplyr::pull(!! lab) %>% 
-      na.exclude()
+    for (r in 1:nrow(lab_lev)) {
+      lev  <- rlang::sym(lab_lev[r,] %>% dplyr::pull(lev))
+      lab  <- rlang::sym(lab_lev[r,] %>% dplyr::pull(lab))
+      
+      levs <- data %>%  
+        dplyr::select(lab_lev[r,] %>% as.character()) %>% 
+        dplyr::distinct() %>% 
+        dplyr::arrange(!! lev) %>% 
+        dplyr::pull(!! lab) %>% 
+        na.exclude()
+      
+      levs_label          <- attr(levs, "label") 
+      attributes(levs)    <- NULL
+      attr(levs, "label") <- levs_label
+      
+      lev_list[[lab]] <- purrr::set_names(levs)
+    }
     
-    levs_label          <- attr(levs, "label") 
-    attributes(levs)    <- NULL
-    attr(levs, "label") <- levs_label
-    
-    lev_list[[lab]] <- purrr::set_names(levs)
   }
   
   tibble::lst(

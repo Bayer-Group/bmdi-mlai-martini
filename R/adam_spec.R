@@ -27,8 +27,11 @@
 #' @param file_ext only rds and sas7bdat data sets are allowed (e.g. \code{file_ext = 'rds'}). User may select
 #' only sas7bdat, only rds or set a priorization rule (\code{file_ext = c('rds', 'sas7bdat')}, see Details).
 #' Defaults to c('rds', 'sas7bdat'), i.e. rds if available, sas7bdat else.
+#' @param fct_levels optional list of named vectors providing code-decode pairs
+#' and/or setting the level order for factors in an adsl data set
+#' (see details section of [adam_spec_adsl()] for structure).
 #' @param catalog_file path to the catalog file to be passed to
-#' [haven::read_sas()] for adsl. Defaults to NULL.
+#' [haven::read_sas()] for adsl. Defaults to `NULL`.
 #' Ignored if `file` is not a sas7bdat file.
 #' 
 #' @details 
@@ -77,6 +80,7 @@ adam_spec <- function(
   trt         = "TRT01A",
   add_bds     = NULL,
   file_ext    = c('rds', 'sas7bdat'),
+  fct_levels  = NULL,
   catalog_file = NULL
 ){
   
@@ -127,6 +131,7 @@ adam_spec <- function(
         purrr::map(files_adsl, ~ adam_spec_adsl(
           file = .x, id = id, trt = trt, 
           filter = filter, attach_data = attach_data,
+          fct_levels = fct_levels,
           catalog_file = catalog_file
         ))
       )

@@ -95,4 +95,58 @@ test_that("catalog_file argument of adam_spec_adsl() works", {
     purrr::compact()
   
 })
-# NOTE covered by snapshot test for 'adam_spec()'
+
+test_that("fct_levels argument of adam_spec_adsl() works", {
+  
+  file    <- test_path('sas', 'hadley.sas7bdat')
+  catalog <- test_path('sas', 'formats.sas7bcat')
+  
+  data <- haven::read_sas(file, catalog_file = catalog)
+  
+  fct_levels <- purrr::map(c(paste0("q", 1:4)) %>% purrr::set_names(), ~{
+    purrr::set_names(1:5, LETTERS[1:5])
+  }) 
+  
+  spec_adsl <- adam_spec_adsl(
+    file        = file, 
+    id          = "id",
+    fct_levels  = fct_levels, 
+    catalog     = catalog
+  )
+  
+  expect_setequal(
+    names(spec_adsl$factor_levels),
+    c(
+      "q1", "q2", "q3", "q4",
+      # only level labels of integer columns are extracted 
+      # from the catalog file
+      "workshop"
+    )
+  )
+  
+  fct_levels <- list(
+    q1           = purrr::set_names(1:6, LETTERS[1:6]),
+    gender       = c(girl = "f", boy = "m"),
+    workshop     = c(R = 1, Python = 2),
+    non_existent = c(old = 65, young = 25)
+  )
+  
+  spec_adsl <- adam_spec_adsl(
+    file        = file, 
+    id          = "id",
+    fct_levels  = fct_levels, 
+    catalog     = catalog
+  )
+  
+  expect_setequal(
+    names(spec_adsl$factor_levels),
+    c("q1", "workshop", "gender")
+  )
+  
+  expect_equal(
+    names(spec_adsl$factor_levels$workshop),
+    c("R", "Python")
+  )
+  
+})
+
