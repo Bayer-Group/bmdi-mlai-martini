@@ -1,6 +1,6 @@
-testthat::test_that("adam_spec_adsl works", {
+test_that("adam_spec_adsl works", {
   
-  adsl_file   <- file.path(test_path('sas', 'adsl.sas7bdat'))
+  adsl_file   <- file.path(testthat::test_path('sas', 'adsl.sas7bdat'))
   filter      <- c("FASFL == 'Y'", "AGE < 80", "GENDER == 'female'")
    
   spec <- adam_spec_adsl(
@@ -12,7 +12,7 @@ testthat::test_that("adam_spec_adsl works", {
   
 })
 
-testthat::test_that("adsl_identify works", {
+test_that("adsl_identify works", {
   
   adsl_data <- haven::read_sas(file.path(test_path('sas', 'adsl.sas7bdat')))
   adsl_data <- adsl_data %>% labelled::remove_var_label()
@@ -35,7 +35,7 @@ testthat::test_that("adsl_identify works", {
 })
   
 
-testthat::test_that("adsl_identify_dttm works", {
+test_that("adsl_identify_dttm works", {
   # currently adsl_identify_dttm is only helper that directly uses var_labels of adsl
   # others use dictionary
   
