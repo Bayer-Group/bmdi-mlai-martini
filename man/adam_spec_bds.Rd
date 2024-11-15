@@ -47,11 +47,6 @@ positive number of rows. Defaults to \code{NULL.}}
 \item{domain}{character string to be included in dictionary.
 Automatically derived for standard ADaM data sets.
 If not set for \code{data} provided, dictionary entry will be 'custom'.}
-
-\item{value_type}{\code{NULL} or character string 'numeric' or 'character'.
-Determines guessing of the value column (e.g. AVAL over AVALC by default).
-If NULL (default), the type will be guessed based on name of the sas file
-(if \code{file} is provided) or set to 'numeric'.}
 }
 \value{
 A list containing the following

@@ -18,10 +18,6 @@
 #' @param unit Defaults to `NULL`, will be guessed if not set (see Details).
 #' @param time Defaults to `NULL`, will be guessed if not set (see Details).
 #' @param value Defaults to `NULL`, will be guessed if not set (see Details).
-#' @param value_type `NULL` or character string 'numeric' or 'character'. 
-#' Determines guessing of the value column (e.g. AVAL over AVALC by default).
-#' If NULL (default), the type will be guessed based on name of the sas file 
-#' (if `file` is provided) or set to 'numeric'.
 #' @param filter character vector of filters to be applied to the bds data set. 
 #' Individual filters will only be considered if the resulting data set has 
 #' positive number of rows. Defaults to `NULL.` 

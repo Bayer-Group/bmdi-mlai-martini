@@ -6,6 +6,8 @@
 #' identification of noise and redundancies in the data and the selection of a potentially meaningful
 #' set of columns (returned in \code{select}) and redundancies in the data. 
 #' 
+#' @param data tibble with the data in adsl format for which the specification
+#'  is created
 #' @param file the path of the sas(7bdat) or rds file to process
 #' @param id name of id (e.g. SUBJIDN, SUBJID) column to keep.
 #' Highly redundant variables will not be included in the suggested set of columns returned in \code{select} (see Details).
@@ -55,7 +57,7 @@
 #' \item{`type`}{character string \code{adsl}, generally giving the type of ADaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
 #' \item{`filter`}{subset of \code{filter} that yields non-empty result when applied individually (using \code{\link{check_filter}()}}
 #' \item{`select`}{the suggested list of columns to select from the data set} 
-#' \item{`factor_levels`}{a list column pairs factor/factorN to determine factor level order} 
+#' \item{`factor_levels`}{a list containing a factor level code/decode for each column identified as a factor} 
 #' \item{`flag_table`}{a tibble with columns id and any columns identified as flag (character and matching numeric) based on matching column names or labels}
 #' \item{`id`, `trt`}{passing unchanged input}  
 #' \item{`drop_list`}{a list containing column names suggested to be dropped with the entry

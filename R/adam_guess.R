@@ -2,7 +2,8 @@
 #'
 #' @param role the spec role of interest
 #' @param type either `bds` or `occds`. defaults to `bds`
-#' @param colnames_data
+#' @param colnames_data character vector, containing the column names of the 
+#' ADaM data set to be processed
 #'
 #' @return
 #' The guessed column name or NULL

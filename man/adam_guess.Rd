@@ -11,7 +11,8 @@ adam_guess(role, type = c("bds", "occds"), colnames_data)
 
 \item{type}{either \code{bds} or \code{occds}. defaults to \code{bds}}
 
-\item{colnames_data}{}
+\item{colnames_data}{character vector, containing the column names of the
+ADaM data set to be processed}
 }
 \value{
 The guessed column name or NULL

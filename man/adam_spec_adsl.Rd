@@ -20,6 +20,9 @@ adam_spec_adsl(
 \arguments{
 \item{file}{the path of the sas(7bdat) or rds file to process}
 
+\item{data}{tibble with the data in adsl format for which the specification
+is created}
+
 \item{id}{name of id (e.g. SUBJIDN, SUBJID) column to keep.
 Highly redundant variables will not be included in the suggested set of columns returned in \code{select} (see Details).}
 
@@ -48,7 +51,7 @@ A list containing the following
 \item{\code{type}}{character string \code{adsl}, generally giving the type of ADaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
 \item{\code{filter}}{subset of \code{filter} that yields non-empty result when applied individually (using \code{\link{check_filter}()}}
 \item{\code{select}}{the suggested list of columns to select from the data set}
-\item{\code{factor_levels}}{a list column pairs factor/factorN to determine factor level order}
+\item{\code{factor_levels}}{a list containing a factor level code/decode for each column identified as a factor}
 \item{\code{flag_table}}{a tibble with columns id and any columns identified as flag (character and matching numeric) based on matching column names or labels}
 \item{\code{id}, \code{trt}}{passing unchanged input}
 \item{\code{drop_list}}{a list containing column names suggested to be dropped with the entry

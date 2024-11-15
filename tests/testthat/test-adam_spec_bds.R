@@ -58,10 +58,6 @@ test_that("adam_spec_bds works", {
 # test area  ####
 if(FALSE){
   
-  require(tidyverse)
-  require(haven)
-  require(labelled)
-  
   file = '../adegf.sas7bdat'
   id = 'SUBJID'
   param  =  NULL

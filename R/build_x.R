@@ -18,6 +18,9 @@
 #' }
 #' @param rm bds only. boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an 
 #' additional `.rmtime` column is prepared. Only used, if \code{is.null(spec$rm)}.
+#' @param values_fn_occds occds only. function that is used to summarize values in the pivoting step, 
+#' if multiple rows per observation unit are present. if NULL, the maximum is used for numeric values and 
+#' the last factor level is used for categorical values.
 #'
 #' @return 
 #' A list with the following entries

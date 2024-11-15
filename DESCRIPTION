@@ -55,7 +55,8 @@ Suggests:
     MASS,
     rmarkdown,
     testthat (>= 3.1.0),
-    withr
+    withr,
+    spelling
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
@@ -64,3 +65,4 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 URL: https://curly-adventure-5mko88j.pages.github.io/
+Language: en-US
