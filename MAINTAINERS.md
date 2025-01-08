@@ -15,6 +15,7 @@ List of current maintainers
 | -------------------- | --------------------------------------------------------- | ---------------- |
 | Maike Ahrens         | [ahrensmaike](https://github.com/ahrensmaike)             | Chrestos Concept |
 | Sebastian Voß        | [svoss09](https://github.com/svoss09)                     | Chrestos Concept |
+| Adam Skubala         | [askubala](https://github.com/askubala)                   | Bayer            |
 
 
 ## Backup Maintainers
@@ -23,7 +24,6 @@ List of maintainers as backup option
 
 | Maintainer           | GitHub ID                                                 | Affiliation      |
 | -------------------- | --------------------------------------------------------- | ---------------- |
-| Adam Skubala         | [askubala](https://github.com/askubala)                   | Bayer            |
 | Antigoni Elefsinioti | [Anle3](https://github.com/Anle3)                         | Bayer            |
 | Eliana Garcia Cossio | [eligarcos](https://github.com/eligarcos)                 | Bayer            |
 | Frauke Hennig        | [FraukeHEN](https://github.com/FraukeHEN)                 | Chrestos Concept |
