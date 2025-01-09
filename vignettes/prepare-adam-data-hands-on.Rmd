@@ -401,7 +401,8 @@ An overview of applied and discarded filters from the filters provided to
 as well as when printing the object to the console. 
 The filter set that was originally provided to `\link{adam_spec}()` is stored 
 in the `filter` attribute of the resulting object. 
-Note that the print will only refer to this initial filter set and ignore any manual adjustments. 
+Note that the print will only refer to this initial filter set and 
+ignore any manual adjustments. 
 We strongly advise to not change filters using spec adjustments
 but only by rerunning `\link{adam_spec}()` to assure proper checks.
 
@@ -499,15 +500,19 @@ ads_spec <- adam_spec(
 
 ## Manual adaptations
 
-The most common adaptations of an automatically generated _spec_ object are probably the removal of particular variables and adjustment of factor level order and/or names.
+The most common adaptations of an automatically generated _spec_ object are
+probably the removal of particular variables and adjustment of factor
+level order and/or names.
 
-Two helper function are available that allow for easy modification of the _spec_ objects in a pipe-based workflow: 
+Two helper functions are available that allow for easy modification of the
+_spec_ objects in a pipe-based workflow: 
 
 * `adjust_adsl()` specifically allows to add/drop variables from adsl to the automated selection
 * `adjust_spec()` is a general helper to adjust/set any spec entry
 
 Where possible, it is recommended to use these helpers as they will trigger an
-update of both the filter and content info that is printed to thee console when inspecting a spec object.
+update of both the filter and content info that is printed to thee console when
+inspecting a spec object.
 Note, that both updates are only possible if the `attach_data` argument of `adam_spec()` was set to `TRUE`.
 
 
@@ -525,10 +530,11 @@ Reasons for exclusion may include but are not limited to:
 * variables are available in both a continuous as well as categorical version (e.g. age, BMI, weight), there is no automated selection available
 * different groupings based on the same variable (e.g. country group)
 
-Given an `ads_spec` object as built from `adam_spec()` such as the example object `martini::martini_spec`,
-the user may simply pass character vectors of variables to add/drop them to the automated selection.
+Given an `ads_spec` object as built from `adam_spec()` such as the example 
+object `martini::martini_spec`, the user may simply pass character vectors of variables to add/drop them to the automated selection.
 
-In this example, variables included from adsl are `pander::pandoc.list.return(martini::martini_spec$adsl$select)`.
+In this example, variables included from adsl are
+`pander::pandoc.list.return(martini::martini_spec$adsl$select)`.
 
 Assuming we wanted to switch the continuous age variable to the grouped one (not recommended in practice)
 
@@ -569,13 +575,17 @@ ads_spec$adsl$select <- ads_spec$adsl$select %>%
 
 ### `adjust_spec()`
 
-The `spec` object is a nested list, with a data set/domain id on the top level with the entries required for building the wide data set in nested lists.
-Instead of adjusting/setting these entries in individual steps, one may also use the `adjust_spec()` helper function. 
+The `spec` object is a nested list, with a data set/domain id on the top
+level with the entries required for building the wide data set in nested lists.
+Instead of adjusting/setting these entries in individual steps, 
+one may also use the `adjust_spec()` helper function. 
 
 In particular, this allows convenient factor handling, where one may 
 
 * set factor level order to adjust the order in all corresponding outputs
-* specify variables that should be treated as factors with the given factor level order. This may come in useful for variables that could not be detected as factors automatically (e.g. either code or decode missing). 
+* specify variables that should be treated as factors with the given factor 
+level order. This may come in useful for variables that could not be detected 
+as factors automatically (e.g. either code or decode missing). 
 Specify `append = TRUE` if a modification should be appended to the existing entry instead of replacing/overwriting it.
 
 Other options include but are not limited to
