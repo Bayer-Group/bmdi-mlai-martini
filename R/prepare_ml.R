@@ -224,7 +224,7 @@ prepare_ml <- function(
   prep_recipe  = NULL,
   train_prop   = 3 / 4,
   strata_trt   = FALSE,
-  seed         = 1130,
+  seed         = 1130, # TODO default to NULL?
   
   prep_step_normalize = TRUE,
   prep_step_knnimpute = TRUE,
