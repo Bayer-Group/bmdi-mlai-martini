@@ -10,7 +10,6 @@
 #'
 #' @param spec spec object to modify
 #' @param id name of list element to modify in the spec
-#' @param append boolean. If TRUE, modifications are appended, otherwise overwritten. defaults to FALSE.
 #' @param ... modifications to the `spec[[id]]` of the form `<name> = <value>`.
 #' 
 #' @return
@@ -25,79 +24,73 @@
 adjust_spec <- function(
   spec, 
   id,
-  ..., 
-  append = FALSE
+  ...,
+  
 ){
   
   stopifnot(inherits(spec, what =  "martini_spec"))
   
+  if (!id %in% names(spec)) usethis::ui_stop(
+    crayon::magenta(
+      paste0("No spec with the id ", usethis::ui_code(id), " available.") 
+    )
+  )
+  
   modifications <- list(...)
-  if(length(modifications) == 0) return(spec)
+  if (length(modifications) == 0) return(spec)
   
-  # CHECKS
-  #modifications <- check_adjust(modifications, spec = spec, id = id, append = append)
- 
+  # CHECKS ----
+  modifications <- check_adjust(modifications, spec = spec, id = id)
+  if (length(modifications) == 0) return(spec)
   
-  
-  if (!append){
-    
-    spec[[id]][names(modifications)] <- list(NULL)
-    
-    spec[[id]] <- spec[[id]] %>% purrr::list_modify(!!! modifications)
-    
-  }else{
-    
-    for (i in names(modifications)){
-      
-      spec[[id]][[i]] <- append(spec[[id]][[i]], modifications[[i]])
-      
-    }
-    
-  }
+  spec[[id]][names(modifications)] <- list(NULL)
+  spec[[id]] <- spec[[id]] %>% purrr::list_modify(!!! modifications)
   
   # update data_info and filters if possible
-  if(!is.null(spec[[id]][["data"]])){
+  if (!is.null(spec[[id]][["data"]])) {
 
-    if('filter' %in% names(modifications)){
-      
-      # re-check filters
-      keep_filter <- check_filter(
-        spec[[id]][["data"]], 
-        spec[[id]][["filter"]], 
-        data_id = id
-        )$individual %>% 
-        purrr::map_lgl("keep") %>% 
-        as.logical()
-      spec[[id]][["filter"]] <- spec[[id]][["filter"]][keep_filter]
-    }
+    # if('filter' %in% names(modifications)){
+    #   
+    #   # re-check filters
+    #   keep_filter <- check_filter(
+    #     spec[[id]][["data"]], 
+    #     spec[[id]][["filter"]], 
+    #     data_id = id
+    #     )$individual %>% 
+    #     purrr::map_lgl("keep") %>% 
+    #     as.logical()
+    #   spec[[id]][["filter"]] <- spec[[id]][["filter"]][keep_filter]
+    # }
     
     # update dict and data_info
     spec[[id]][['dict']]      <- create_dict(spec[[id]])
     spec[[id]][["data_info"]] <- data_info(spec[[id]])
     
+    attr(spec, 'data_info_ok') <- TRUE
+    
   }else{
-    # if not data attached: message
+    
     attr(spec, 'data_info_ok') <- FALSE
     
-    if('filter' %in% names(modifications)){
-      
-      usethis::ui_todo(paste(
-        'Please specify all required filters in `adam_spec()` to ensure proper filter checks.'
-      ))
-      
-      attr(spec, 'filter_ok') <- FALSE
-      
-    }
-    
-    if(any(c('param', 'label') %in% names(modifications))) {
-      
-      usethis::ui_todo(paste(
-        'Please specify all key columns (such as param, label) in `adam_spec()` to obtain an accurate dictionary.'
-      ))
-      
-      attr(spec, 'filter_ok') <- FALSE
-      
-    }
+    # if('filter' %in% names(modifications)){
+    #   
+    #   usethis::ui_todo(paste(
+    #     'Please specify all required filters in `adam_spec()` to ensure proper filter checks.'
+    #   ))
+    #   
+    #   attr(spec, 'filter_ok') <- FALSE
+    #   
+    # }
+    # 
+    # if(any(c('param', 'label') %in% names(modifications))) {
+    #   
+    #   usethis::ui_todo(paste(
+    #     'Please specify all key columns (such as param, label) in `adam_spec()` to obtain an accurate dictionary.'
+    #   ))
+    #   
+    #   attr(spec, 'filter_ok') <- FALSE
+    #   
+    # }
   }
 
   spec
@@ -105,75 +98,60 @@ adjust_spec <- function(
 }
 
 
-# COMBAK
-# check keys are actual spec parameters
-# for all column related changes: check if is in names(data)
-# ? how to check values_fn
-# adsl: factor levels are values?
-# md5 sum nicht überschreiben
-
 #' check key value pair inputs for adjust_* functions
 #'
 #' @param modifications 
 #' @param spec spec object to modify
 #' @param id name of list element to modify in  `spec`
-#' @param append logical. If TRUE, modifications are appended,
-#'  otherwise overwritten. 
 #'
 #' @return subset of modifications that are valid to apply
 #' 
-check_adjust <- function(modifications, spec, id, append){
+check_adjust <- function(modifications, spec, id){
+
+  protected <- c(
+    "file", "data", "md5", "size", "data_info", 
+    "dict", "spec_id", "drop_list", "flag_table"
+  )
   
-  # check: append applicable ####
-  if(append){
+  # COMBAK add protection for 'select' in 'adsl' and point to 'adjust_adsl_select'
+  
+  if (any(names(modifications) %in% protected)) {
     
-    
-    if(!all(names(modifications) %in% names(spec[[id]]))){
-      usethis::ui_info(paste0(
-        'The following entries are not present in the spec object for id ', id,
-        ' and will be ignored: ', 
-        paste(setdiff(names(modifications), names(spec[[id]])), collapse = ', ')
-      ))
-      
-      modifications <- modifications %>% purrr::discard_at(setdiff(names(modifications), names(spec[[id]])))
-    }
-  }
-  
-  
-  # check: slots to be prevented from manual adjustments ####
-  # if(FALSE){
-  #   tibble::lst(adam_spec_adsl, adam_spec_bds, adam_spec_occds) %>%
-  #     purrr::map(~formals(.x) %>% names())
-  #   martini_spec %>% purrr::map(names)
-  # }
-  protected <- c("file", "data", "md5", "size", "data_info")
-  
-  if(any(names(modifications) %in% protected)){
     ignore <- names(modifications) %>% intersect(protected)
-    usethis::ui_info(paste0(
-      'The following slots are protected and should not be adjusted manually: ', 
-      paste(ignore, collapse = ', ')
+    cli::cli_inform(c(
+      "Some entries in the {.code spec} object are protected from being adjusted manually.",
+      "i" = "You tried to adjust the following protected {cli::qty(length(ignore))} entr{?y/ies}: {ignore}.",
+      "i" = "{cli::qty(length(ignore))}{?This/These} adjustment{?s} will be ignored."
     ))
     
-    modifications <- modifications %>%
-      purrr::discard_at(ignore)
+    modifications <- modifications %>% purrr::discard_at(ignore)
+    
   }
   
+  if ("filter" %in% names(modifications)) {
+    
+    cli::cli_inform(c(
+      "{.code filter} can't be modified by {.fun adjust_spec}.",
+      "!" = "Adjustment will be ignored.",
+      "*" = "Please rerun {.fun adam_spec} or use {.fun adam_spec_filter()}."
+    ))
+    
+    modifications <- modifications %>% purrr::discard_at("filter")
+    
+  }
   
   # check: entry must already exist in spec entry ####
-  if(!all(names(modifications) %in% names(spec[[id]]))){
+  if (!all(names(modifications) %in% names(spec[[id]]))) {
     
     not_present <- setdiff(names(modifications), names(spec[[id]]))
-    usethis::ui_info(paste0(
-      'No entr{?y/ies} called ', 
-      paste(not_present, collapse = ', '), 
-      ' in the spec object for id ', id,
-      '. Specified modifications will be ignored.'
+    cli::cli_warn(c(
+      "Only existing entries can be adjusted.",
+      "i" = "You tried to adjust the following {cli::qty(length(not_present))} entr{?y/ies}: {not_present}.",
+      "!" = "{cli::qty(length(not_present))}{?This/These} adjustment{?s} will be ignored.",
+      "*" = "Please check your adjustment instructions."
     ))
     
-    modifications <- modifications %>%
-      purrr::discard_at(not_present)
-    
+    modifications <- modifications %>% purrr::discard_at(not_present)
     
   }
   
@@ -182,7 +160,7 @@ check_adjust <- function(modifications, spec, id, append){
     # bds
     "param", "label", "unit", "time",
     # adsl
-    "spec_id", "trt", "id",
+    "trt", "id",
     # occds
     "valuen", "value"
   )
@@ -192,54 +170,112 @@ check_adjust <- function(modifications, spec, id, append){
     entries_colnames
   ) %>% purrr::set_names()
   
-  if(length(entries_check) > 0){
+  if (length(entries_check) > 0) {
     
+    # ... format ####
     check_format <- purrr::map_lgl(entries_check, ~{
-      is.character(modifications[[.x]]) && length(modifications) == 1
+      rlang::is_character(modifications[[.x]], n = 1)
     })
     wrong_format <- names(check_format)[!check_format]
     
     cli::cli_info(c(
-      'The following entries must be character vectors of length 1 and will be ignored: ',
-      paste(wrong_format, collapse = ', ')
+      "Entries that specify column names in the data must be character vectors of length 1.",
+      "i" = "The following {cli::qty(length(wrong_format))} entr{?y/ies} {?is/are} of the wrong format: {wrong_format}.",
+      "!" = "{cli::qty(length(wrong_format))}{?This/These} adjustment{?s} will be ignored.",
+      "*" = "Please check your adjustment instructions."
     ))
+    
     modifications <- modifications %>% purrr::discard_at(wrong_format)
     
+    # ... availability of remaining columns####
     if(!is.null(spec[[id]]$data)){
       
-      cols_missing <- intersect(
+      cols_not_in_data <- intersect(
         names(modifications),
         entries_colnames
       ) %>% 
         purrr::map_lgl(~{
           !modifications[[.x]] %in% names(spec[[id]]$data)
         }) %>% 
-        purrr::keep(~ .x) %>% 
-        names()
+        purrr::keep(~ .x) 
       
-      if(length(cols_missing) > 0) {
-        usethis::ui_info(paste0(
-          'The columns specified for the following entries are not present ',  
-          'in the data object and will be ignored: ',
-          paste(cols_missing, collapse = ', ')
+      if (length(cols_not_in_data) > 0) {
+        
+        cli::cli_warn(c(
+          "Specified column names must be present in the attached data.",
+          "i" = paste(
+            "The following {cli::qty(length(cols_not_in_data))}",
+            "column{?s} {?is/are} not present in {.code data}:",
+            "{cols_not_in_data}."
+          ),
+          "!" = paste(
+            "{cli::qty(length(cols_not_in_data))}{?This/These}", 
+            "adjustment{?s} will be ignored."
+          ),
+          "*" = "Please check your adjustment instructions."
         ))
-        modifications <- modifications %>% purrr::discard_at(cols_missing)
+        
+        modifications <- modifications %>% purrr::discard_at(cols_not_in_data)
       }
     }
   }
   
   # for dupl_ctrl: check is list with names values_fn and arrange
-  if(dupl_ctrl %in% names(modifications)){
+  if (dupl_ctrl %in% names(modifications)) {
     
     check_dupl_ctrl <- is.list(modifications[[dupl_ctrl]]) &&
-      # full list needs to be provided or subentries?
+      # full list needs to be provided
       setequal(c('values_fn', 'arrange'), names(modifications[[dupl_ctrl]])) 
     
-    # check: arrange: char length 1 / a column name
-    # values_fn: function(name)
-    
+    if (!check_dupl_ctrl) {
+      
+      cli::cli_warn(c(
+        "{.code dupl_ctrl} must be a list of length 2 with entries {.code values_fn} and {.code arrange}.",
+        "!" = "Adjustment will beignored.",
+        "*" = "Please check your adjustment instructions."
+      ))
+      
+      modifications <- modifications %>% purrr::discard_at("dupl_ctrl")
+      
+    }else{
+      
+      # check: arrange: char length 1 / a column name
+      # values_fn: function(name)
+      
+      # check if values_fn is a function
+      check_passed_valuesfn <- rlang::is_function(modifications[[dupl_ctrl]]$values_fn)
+      # NOTE check if output length is 1 (works for either num or categorical)
+      if (!check_passed_valuesfn) {
+        
+        cli::cli_warn(c(
+          "{.code dupl_ctrl$values_fn} must be a function.",
+          "!" = "Adjustment of {.code dupl_ctrl} will be ignored.",
+          "*" = "Please check your adjustment instructions."
+        ))
+        
+      }
+      
+      # check if arrange has length 1
+      # TODO if data is available, check if arrange can be applied without error
+      check_passed_arrange <- length(modifications[[dupl_ctrl]]$arrange) == 1
+      if (!check_passed_arrange) {
+        
+        cli::cli_warn(c(
+          "{.code dupl_ctrl$arrange} must be a character vector.",
+          "!" = "Adjustment of {.code dupl_ctrl} will be ignored.",
+          "*" = "Please check your adjustment instructions."
+        ))
+        
+      }
+      
+      if (!all(check_passed_valuesfn, check_passed_arrange)) {
+        modifications <- modifications %>% purrr::discard_at("dupl_ctrl")
+      }
+      
+    }
     
   }
   
   modifications
+  
 } 
