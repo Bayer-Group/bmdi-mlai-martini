@@ -1,5 +1,13 @@
 # martini (development version)
 
+major changes
+
+* to accommodate for handling of adsl data sets in ADaM 2.0 format, 
+the structure of `fct_levels` entry was changed to name value pairs
+
+* added function `adjust_spec_filter()`, removing `append` argument from
+`adjust_spec()`
+
 # martini 0.6.3
 
 * preparations for bay-open: added code of conduct, updated license and added code owner and contributing information
