@@ -161,3 +161,4 @@ corrr_mini <- function(
 #   corrr::stretch(na.rm = TRUE) %>%  
 #   dplyr::filter(abs(r) > thres_used$thres_corr)
 
+length0_to_null <- function(x) if (length(x) == 0) NULL else x

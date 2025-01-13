@@ -22,9 +22,9 @@
 #' 
 #' @md
 adjust_spec <- function(
-  spec, 
-  entry,
-  ...
+    spec, 
+    entry,
+    ...
 ){
   
   stopifnot(inherits(spec, what =  "martini_spec"))
@@ -47,7 +47,7 @@ adjust_spec <- function(
   
   # update data_info and filters if possible
   if (!is.null(spec[[id]][["data"]])) {
-
+    
     # if('filter' %in% names(modifications)){
     #   
     #   # re-check filters
@@ -91,7 +91,7 @@ adjust_spec <- function(
     #   
     # }
   }
-
+  
   spec
   
 }
@@ -101,18 +101,40 @@ adjust_spec <- function(
 #'
 #' @param modifications list of key value pairs defining adjustments
 #' @param spec spec object to modify
-#' @param id name of list element to modify in  `spec`
+#' @param entry name of list element to modify in `spec`
 #'
 #' @return subset of modifications that are valid to apply
 #' 
-check_adjust <- function(modifications, spec, id){
-
+check_adjust <- function(modifications, spec, entry){
+  
+  if("select" %in% names(modifications)){
+    
+    cli::cli_inform(c(
+      "{.code select} can't be modified by {.fun adjust_spec}.",
+      "!" = "Adjustment will be ignored.",
+      "*" = "Please rerun {.fun adam_spec} or use {.fun adjust_adsl_select()}."
+    ))
+    
+    modifications <- modifications %>% purrr::discard_at("select")
+    
+  }
+  
+  if("id" %in% names(modifications)){
+    # id column must be present in all data sets, needs to be checked globally 
+    cli::cli_inform(c(
+      "{.code select} can't be modified by {.fun adjust_spec}.",
+      "!" = "Adjustment will be ignored.",
+      "*" = "Please rerun {.fun adam_spec} ."
+    ))
+    
+    modifications <- modifications %>% purrr::discard_at("id")
+    
+  }
+  
   protected <- c(
     "file", "data", "md5", "size", "data_info", 
     "dict", "spec_id", "drop_list", "flag_table"
   )
-  
-  # COMBAK add protection for 'select' in 'adsl' and point to 'adjust_adsl_select'
   
   if (any(names(modifications) %in% protected)) {
     
@@ -140,9 +162,9 @@ check_adjust <- function(modifications, spec, id){
   }
   
   # check: entry must already exist in spec entry ####
-  if (!all(names(modifications) %in% names(spec[[id]]))) {
+  if (!all(names(modifications) %in% names(spec[[entry]]))) {
     
-    not_present <- setdiff(names(modifications), names(spec[[id]]))
+    not_present <- setdiff(names(modifications), names(spec[[entry]]))
     cli::cli_warn(c(
       "Only existing entries can be adjusted.",
       "i" = "You tried to adjust the following {cli::qty(length(not_present))} entr{?y/ies}: {not_present}.",
@@ -187,14 +209,14 @@ check_adjust <- function(modifications, spec, id){
     modifications <- modifications %>% purrr::discard_at(wrong_format)
     
     # ... availability of remaining columns####
-    if(!is.null(spec[[id]]$data)){
+    if(!is.null(spec[[entry]]$data)){
       
       cols_not_in_data <- intersect(
         names(modifications),
         entries_colnames
       ) %>% 
         purrr::map_lgl(~{
-          !modifications[[.x]] %in% names(spec[[id]]$data)
+          !modifications[[.x]] %in% names(spec[[entry]]$data)
         }) %>% 
         purrr::keep(~ .x) 
       
@@ -219,6 +241,7 @@ check_adjust <- function(modifications, spec, id){
     }
   }
   
+  # dupl_ctrl ####
   # for dupl_ctrl: check is list with names values_fn and arrange
   if ("dupl_ctrl" %in% names(modifications)) {
     
@@ -278,3 +301,4 @@ check_adjust <- function(modifications, spec, id){
   modifications
   
 } 
+
