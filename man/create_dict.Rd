@@ -2,7 +2,7 @@
 % Please edit documentation in R/adam_spec_helpers.R
 \name{create_dict}
 \alias{create_dict}
-\title{Title}
+\title{Create dictionary for spec entry}
 \usage{
 create_dict(spec_entry)
 }
@@ -10,14 +10,17 @@ create_dict(spec_entry)
 \item{spec_entry}{Top level entry of an object of class \code{martini_spec}.}
 }
 \value{
-the dictionary
+the dictionary as a tibble.
+For all data types, the dict contains columns
+\code{label}, \code{source}, \code{type} and \code{selected}.
+In addition for data type adsl and bds there is \code{param}, with
+\code{unit} and \code{selected} as additional column for bds and adsl, resp.
 }
 \description{
-Title
+Create dictionary for spec entry
 }
 \section{Authors}{
 
 Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
-TODO complete docu
 }
 

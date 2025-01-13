@@ -4,22 +4,25 @@
 \alias{adjust_spec}
 \title{Adjust spec object}
 \usage{
-adjust_spec(spec, id, ..., append = FALSE)
+adjust_spec(spec, entry, ...)
 }
 \arguments{
 \item{spec}{spec object to modify}
 
-\item{id}{name of list element to modify in the spec}
+\item{entry}{name of list element to modify in the spec}
 
 \item{...}{modifications to the \code{spec[[id]]} of the form \verb{<name> = <value>}.}
-
-\item{append}{boolean. If TRUE, modifications are appended, otherwise overwritten. defaults to FALSE.}
 }
 \value{
 A modified version of \code{spec} to be used as input to \verb{\link{build}()}
 }
 \description{
-Helper function to make adjustments to the spec object built by \verb{\link{adam_spec}()} to be used with the \verb{\%>\%}.
+Helper function to make adjustments to the spec object built by
+\verb{\link{adam_spec}()} to be used with the pipe.
+For example, update of entries for
+\code{param}, \code{label}, \code{dupl_ctrl} (bds)
+\code{fct_levels}, \code{spec_id}, \code{trt}, \code{id}, (adsl)
+\code{valuen}, \code{value}, \code{count} (occds)
 }
 \section{Authors}{
 
