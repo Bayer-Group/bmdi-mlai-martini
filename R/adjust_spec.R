@@ -9,7 +9,7 @@
 #'
 #'
 #' @param spec spec object to modify
-#' @param id name of list element to modify in the spec
+#' @param entry name of list element to modify in the spec
 #' @param ... modifications to the `spec[[id]]` of the form `<name> = <value>`.
 #' 
 #' @return
@@ -23,9 +23,8 @@
 #' @md
 adjust_spec <- function(
   spec, 
-  id,
-  ...,
-  
+  entry,
+  ...
 ){
   
   stopifnot(inherits(spec, what =  "martini_spec"))
@@ -100,7 +99,7 @@ adjust_spec <- function(
 
 #' check key value pair inputs for adjust_* functions
 #'
-#' @param modifications 
+#' @param modifications list of key value pairs defining adjustments
 #' @param spec spec object to modify
 #' @param id name of list element to modify in  `spec`
 #'
@@ -221,11 +220,11 @@ check_adjust <- function(modifications, spec, id){
   }
   
   # for dupl_ctrl: check is list with names values_fn and arrange
-  if (dupl_ctrl %in% names(modifications)) {
+  if ("dupl_ctrl" %in% names(modifications)) {
     
-    check_dupl_ctrl <- is.list(modifications[[dupl_ctrl]]) &&
+    check_dupl_ctrl <- is.list(modifications[["dupl_ctrl"]]) &&
       # full list needs to be provided
-      setequal(c('values_fn', 'arrange'), names(modifications[[dupl_ctrl]])) 
+      setequal(c('values_fn', 'arrange'), names(modifications[["dupl_ctrl"]])) 
     
     if (!check_dupl_ctrl) {
       

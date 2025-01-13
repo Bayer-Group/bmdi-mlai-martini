@@ -1,17 +1,23 @@
-#' Title
+#' Create dictionary for spec entry
 #'
 #' @param spec_entry Top level entry of an object of class `martini_spec`.
 #'
 #' @return
-#' the dictionary
+#' the dictionary as a tibble.
+#' For all data types, the dict contains columns 
+#' `label`, `source`, `type` and `selected`.
+#' In addition for data type adsl and bds there is `param`, with
+#' `unit` and `selected` as additional column for bds and adsl, resp.
 #'
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
-#' TODO complete docu
 
 create_dict <- function(spec_entry){
   
   # input checks
+  # COMBAK create_dict checks, provide for build() output
+  # as should be exported to re-run after changes to build() output
+  # not exported; no extra checks on spec_entry's list structure and entries
   
   if(is.null(spec_entry$data)){
     cli::cli_abort( c(
@@ -21,14 +27,13 @@ create_dict <- function(spec_entry){
     ))
     
   }
-  # not exported; no extra checks on spec_entry's list structure and entries
-  
+   
   
   dict <- with(spec_entry, {
     
     if(type == "adsl"){
       
-      labelled::var_label(data)  %>%
+      labelled::var_label(data) %>%
         # fix labels (no label = empty string (already done in spec creation, just to be safe))
         purrr::imap(~{
           if(is.null(.x)){.y}else{.x}}
