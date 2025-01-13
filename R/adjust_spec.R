@@ -302,3 +302,75 @@ check_adjust <- function(modifications, spec, entry){
   
 } 
 
+
+#' @title Adjust spec object filter 
+#' 
+#' @description
+#' Helper function to make adjustments to the filter of the spec object built by
+#' `adam_spec()` to be used with the pipe.
+#' 
+#' @param spec `martini_spec` object to modify
+#' @param filter character vector of filter conditions
+#' @param append logical, if TRUE, append filter to existing filter(s), else replace
+#' 
+#' @details
+#' The function checks if the filter can be applied to the data attached to the spec.
+#' If the data is not attached, the filter will be added to the spec as is.
+#' 
+#' @return A modified version of `spec` to be used as input to `build()`
+#' @export
+
+adjust_spec_filter <- function(spec, filter, append = TRUE){
+  
+  stopifnot(inherits(spec, what =  "martini_spec"))
+  
+  purrr::walk(names(spec), ~{
+    
+    if (append) {
+      filter_update <- c(spec[[.x]][["filter"]], filter)
+    }else{
+      filter_update <- filter
+    }
+    
+    
+    if (!is.null(spec[[.x]][["data"]])) {
+      
+      # re-check filters
+      keep_filter <- check_filter(
+        spec[[.x]][["data"]],
+        filter_update,
+        data_id = entry
+      )$individual %>%
+        purrr::map_lgl("keep") %>%
+        as.logical()
+      spec[[.x]][["filter"]] <<- filter_update[keep_filter]
+      
+      attr(spec, "filter_ok") <- TRUE
+      
+      spec[[.x]][["dict"]]      <<- create_dict(spec[[.x]])
+      spec[[.x]][["data_info"]] <<- data_info(spec[[.x]])
+      
+      attr(spec, "data_info_ok") <- TRUE
+    }else{
+      spec[[.x]][["filter"]] <<- filter_update
+      
+      attr(spec, "filter_ok")    <- FALSE
+      attr(spec, "data_info_ok") <- FALSE
+    }
+    
+  })
+  
+  any_data_missing <- any(purrr::map_lgl(spec, ~{is.null(.x[["data"]])}))
+  
+  if(any_data_missing){
+    cli::cli_inform(c(
+      "Can't check {.code filter} if {.code data} is not attached.",
+      "i" = "At least one entry of {.code spec} does not have the data attached.",
+      "i" = "The specified {.code filter} will be added to the spec as is.",
+      "*" = "Please rerun `adam_spec()` with the additional filters for proper checks."
+    ))
+  }
+  
+  spec
+  
+}
