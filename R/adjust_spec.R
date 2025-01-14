@@ -20,7 +20,6 @@
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
-#' @md
 adjust_spec <- function(
     spec, 
     entry,
@@ -29,9 +28,9 @@ adjust_spec <- function(
   
   stopifnot(inherits(spec, what =  "martini_spec"))
   
-  if (!id %in% names(spec)) usethis::ui_stop(
+  if (!entry %in% names(spec)) usethis::ui_stop(
     crayon::magenta(
-      paste0("No spec with the id ", usethis::ui_code(id), " available.") 
+      paste0("No spec with the name ", usethis::ui_code(entry), " available.") 
     )
   )
   
@@ -39,14 +38,14 @@ adjust_spec <- function(
   if (length(modifications) == 0) return(spec)
   
   # CHECKS ----
-  modifications <- check_adjust(modifications, spec = spec, id = id)
+  modifications <- check_adjust(modifications, spec = spec, entry = entry)
   if (length(modifications) == 0) return(spec)
   
-  spec[[id]][names(modifications)] <- list(NULL)
-  spec[[id]] <- spec[[id]] %>% purrr::list_modify(!!! modifications)
+  spec[[entry]][names(modifications)] <- list(NULL)
+  spec[[entry]] <- spec[[entry]] %>% purrr::list_modify(!!! modifications)
   
   # update data_info and filters if possible
-  if (!is.null(spec[[id]][["data"]])) {
+  if (!is.null(spec[[entry]][["data"]])) {
     
     # if('filter' %in% names(modifications)){
     #   
@@ -62,8 +61,8 @@ adjust_spec <- function(
     # }
     
     # update dict and data_info
-    spec[[id]][['dict']]      <- create_dict(spec[[id]])
-    spec[[id]][["data_info"]] <- data_info(spec[[id]])
+    spec[[entry]][['dict']]      <- create_dict(spec[[entry]])
+    spec[[entry]][["data_info"]] <- data_info(spec[[entry]])
     
     attr(spec, 'data_info_ok') <- TRUE
     
@@ -99,20 +98,21 @@ adjust_spec <- function(
 
 #' check key value pair inputs for adjust_* functions
 #'
-#' @param modifications list of key value pairs defining adjustments
 #' @param spec spec object to modify
 #' @param entry name of list element to modify in `spec`
+#' @param modifications list of key value pairs defining adjustments
 #'
 #' @return subset of modifications that are valid to apply
 #' 
-check_adjust <- function(modifications, spec, entry){
+check_adjust <- function(spec, entry, modifications){
   
+  # check: refer to other funs for id, select, filter ####
   if("select" %in% names(modifications)){
     
     cli::cli_inform(c(
       "{.code select} can't be modified by {.fun adjust_spec}.",
       "!" = "Adjustment will be ignored.",
-      "*" = "Please rerun {.fun adam_spec} or use {.fun adjust_adsl_select()}."
+      "*" = "Please rerun {.fun adam_spec} or use {.fun adjust_adsl_select}."
     ))
     
     modifications <- modifications %>% purrr::discard_at("select")
@@ -121,16 +121,33 @@ check_adjust <- function(modifications, spec, entry){
   
   if("id" %in% names(modifications)){
     # id column must be present in all data sets, needs to be checked globally 
+    # TODO spec is given, just check here if available for all entries if data is attached
     cli::cli_inform(c(
       "{.code select} can't be modified by {.fun adjust_spec}.",
       "!" = "Adjustment will be ignored.",
-      "*" = "Please rerun {.fun adam_spec} ."
+      "*" = "Please rerun {.fun adam_spec}."
     ))
     
     modifications <- modifications %>% purrr::discard_at("id")
     
   }
   
+  if ("filter" %in% names(modifications)) {
+    
+    cli::cli_inform(c(
+      "{.code filter} can't be modified by {.fun adjust_spec}.",
+      "!" = "Adjustment will be ignored.",
+      "*" = paste(
+        "Please rerun {.fun adam_spec} or use",
+        "{.fun adjust_spec_filter} in case data is attached."
+      )
+    ))
+    
+    modifications <- modifications %>% purrr::discard_at("filter")
+    
+  }
+  
+  # check: protected entries ####
   protected <- c(
     "file", "data", "md5", "size", "data_info", 
     "dict", "spec_id", "drop_list", "flag_table"
@@ -149,17 +166,7 @@ check_adjust <- function(modifications, spec, entry){
     
   }
   
-  if ("filter" %in% names(modifications)) {
-    
-    cli::cli_inform(c(
-      "{.code filter} can't be modified by {.fun adjust_spec}.",
-      "!" = "Adjustment will be ignored.",
-      "*" = "Please rerun {.fun adam_spec} or use {.fun adam_spec_filter()}."
-    ))
-    
-    modifications <- modifications %>% purrr::discard_at("filter")
-    
-  }
+  
   
   # check: entry must already exist in spec entry ####
   if (!all(names(modifications) %in% names(spec[[entry]]))) {
@@ -241,7 +248,7 @@ check_adjust <- function(modifications, spec, entry){
     }
   }
   
-  # dupl_ctrl ####
+  # check: dupl_ctrl ####
   # for dupl_ctrl: check is list with names values_fn and arrange
   if ("dupl_ctrl" %in% names(modifications)) {
     

@@ -180,11 +180,6 @@ adam_spec <- function(
   # filter messages ####
   info_filter(spec, filter = filter)
   
-  
-  # remove filter info attr once moved to print method
-  #res_info_fltr <- info_filter(spec, filter = filter)
-  #attr(spec, 'info_filter') <-  res_info_fltr
-  
   # output ####
   # TODO later attribute martini_spec kept for list subsets
   class(spec) <- c("martini_spec", class(spec))

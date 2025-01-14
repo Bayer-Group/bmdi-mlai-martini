@@ -36,7 +36,7 @@ adjust_adsl_select <- function(
   add  = NULL,
   drop = NULL,
   select = NULL,
-  entry   = "adsl"
+  entry   = 'adsl'
 ){
 
   # CHECK specified modifications ####
@@ -109,7 +109,7 @@ adjust_adsl_select <- function(
 
   
   # update dict and data_info ####
-  if (!is.null(spec[[entry]][[data]])) {
+  if (!is.null(spec[[entry]][["data"]])) {
     spec[[entry]][['dict']]      <- create_dict(spec[[entry]])
     spec[[entry]][["data_info"]] <- data_info(spec[[entry]])
     
@@ -137,7 +137,7 @@ adjust_adsl_select <- function(
 #' 
 #' 
 check_adjust_adsl_select <- function(
-    spec, add, drop, select, entry
+    spec, add, drop, select, entry = "adsl"
 ){
   
   # spec of correct type ####
