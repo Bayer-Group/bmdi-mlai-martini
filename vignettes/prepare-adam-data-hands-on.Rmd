@@ -498,6 +498,44 @@ ads_spec <- adam_spec(
 
 ***
 
+
+## Manual adaptations - UPDATE - 
+
+After the initial spec was created, the user should inspect the object
+and make necessary adjustments. It is strongly recommended to use the build-in
+helper functions were possible, since they provide some basic checks of
+the desired modifications in terms of consistency and applicability.
+
+### Variable selection from adsl
+
+A common task is to review and adjust the automated variable selection from
+adsl by inspecting `martini_spec$adsl$dict`. 
+The adjustment can be accomplished by using the `adjust_adsl_select()` function, 
+which allows to either add or drop variables from the automated selection.
+Small adjustment can be made using the `drop`and `add` arguments, but the 
+user can also provide the exact set of variables to extract using the 
+`select` argument. 
+
+
+### Filters
+
+The function `adjust_spec_filter()` allows to update the set of filters 
+for the `martini_spec` object. If an error in the filter expression is detected
+during the inspection of the spec object, e.g. in the filter information
+section of the console output from printing, the set of filters can be adjusted 
+easily without rerunning the `adam_spec()` as long as the data is attached.
+If no data is attached, the filter checks cannot be performed and `adam_spec()` 
+should be re-run to avoid any downstream issues.
+
+### General adjustments
+
+The `adjust_spec()` function allows to adjust the parameter of 
+a particular entry of the spec object, related to the data extraction, 
+such as `param` and `label` for bds entries or  `value` and `count` for 
+occds entries.
+
+
+
 ## Manual adaptations
 
 The most common adaptations of an automatically generated _spec_ object are
