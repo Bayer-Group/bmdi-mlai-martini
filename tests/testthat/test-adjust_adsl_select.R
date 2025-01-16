@@ -6,7 +6,7 @@ test_that("adjust_adsl", {
   drop <- "AGE"
   
   martini_spec_adj <- martini_spec %>% 
-    adjust_adsl(
+    adjust_adsl_select(
       add  = add,
       drop = drop
     ) 

@@ -214,7 +214,7 @@ test_that('repeated measurement implementation works', {
   #'repeated measurement implementation works'  ####
   
   ads_build <- martini_spec %>% 
-    adjust_spec(id = "adlb", filter = "") %>% 
+    adjust_spec(entry = "adlb", filter = "") %>% 
     build(rm = TRUE)
   
   outcome_regr <- martini_spec$adlb$data %>% 
