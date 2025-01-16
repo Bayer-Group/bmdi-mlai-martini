@@ -44,7 +44,6 @@ datetime
 difftime
 docu
 eval
-factorN
 fct
 filepath
 fn
@@ -55,8 +54,8 @@ img
 interpretability
 knitr
 knn
-macimum
 md
+misspecifications
 misspecified
 modelling
 multicollinearity
