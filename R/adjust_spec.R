@@ -47,49 +47,18 @@ adjust_spec <- function(
   # update data_info and filters if possible
   if (!is.null(spec[[entry]][["data"]])) {
     
-    # if('filter' %in% names(modifications)){
-    #   
-    #   # re-check filters
-    #   keep_filter <- check_filter(
-    #     spec[[id]][["data"]], 
-    #     spec[[id]][["filter"]], 
-    #     data_id = id
-    #     )$individual %>% 
-    #     purrr::map_lgl("keep") %>% 
-    #     as.logical()
-    #   spec[[id]][["filter"]] <- spec[[id]][["filter"]][keep_filter]
-    # }
-    
     # update dict and data_info
     spec[[entry]][['dict']]      <- create_dict(spec[[entry]])
     spec[[entry]][["data_info"]] <- data_info(spec[[entry]])
-    
     attr(spec, 'data_info_ok') <- TRUE
-    
+    # COMBAK restructure to attribute on entry level instead of global for spec
   }else{
     
     attr(spec, 'data_info_ok') <- FALSE
     
-    # if('filter' %in% names(modifications)){
-    #   
-    #   usethis::ui_todo(paste(
-    #     'Please specify all required filters in `adam_spec()` to ensure proper filter checks.'
-    #   ))
-    #   
-    #   attr(spec, 'filter_ok') <- FALSE
-    #   
-    # }
-    # 
-    # if(any(c('param', 'label') %in% names(modifications))) {
-    #   
-    #   usethis::ui_todo(paste(
-    #     'Please specify all key columns (such as param, label) in `adam_spec()` to obtain an accurate dictionary.'
-    #   ))
-    #   
-    #   attr(spec, 'filter_ok') <- FALSE
-    #   
-    # }
+   
   }
+  
   
   spec
   
@@ -144,6 +113,18 @@ check_adjust <- function(spec, entry, modifications){
     ))
     
     modifications <- modifications %>% purrr::discard_at("filter")
+    
+  }
+  
+  if("factor_levels" %in% names(modifications)){
+    
+    cli::cli_inform(c(
+      "{.code factor_levels} can't be modified by {.fun adjust_spec}.",
+      "!" = "Adjustment will be ignored.",
+      "*" = "Please use {.fun adjust_adsl_factors}."
+    ))
+    
+    modifications <- modifications %>% purrr::discard_at("factor_levels")
     
   }
   
@@ -206,7 +187,7 @@ check_adjust <- function(spec, entry, modifications){
     })
     wrong_format <- names(check_format)[!check_format]
     
-    cli::cli_info(c(
+    cli::cli_inform(c(
       "Entries that specify column names in the data must be character vectors of length 1.",
       "i" = "The following {cli::qty(length(wrong_format))} entr{?y/ies} {?is/are} of the wrong format: {wrong_format}.",
       "!" = "{cli::qty(length(wrong_format))}{?This/These} adjustment{?s} will be ignored.",
@@ -374,6 +355,199 @@ adjust_spec_filter <- function(spec, filter, append = TRUE){
     ))
   }
   
+  all_data_available <- all(purrr::map_lgl(spec, ~{!is.null(.x[["data"]])}))
+  attr(spec, "filter_ok") <-  attr(spec, "data_info_ok") <- all_data_available
+  
+  # set of all filters
+  attr(spec, "filter") <- spec %>% purrr::map("filter") %>% unlist() %>% unique()
+  
   spec
   
 }
+
+
+#' Adjust factor (levels) from adsl
+#'
+#' @param spec object of class `martini_spec`
+#' @param fctrs named list (column in data) of named vectors with 
+#' factor levels (values) and labels (names)
+#' @param entry name of spec entry to modify, defaults to "adsl"
+#'
+#' @return the `spec` object with all valid modifications to the factor 
+#' definitions applied.
+#' The modification of a factor definition is skipped (with info) 
+#' if not all factor levels of this factor that were derived from the data set 
+#' are included in the modified list of levels.
+#' Additional factor level can be introduced, the user is informed.
+#' 
+#' @export
+#'
+adjust_adsl_factors <- function(spec, fctrs, entry = "adsl"){
+  
+  stopifnot(inherits(spec, what =  "martini_spec"))
+  stopifnot(entry %in% names(spec))
+  stopifnot(inherits(fctrs, "list"))
+  stopifnot(rlang::is_named(fctrs))
+  
+  
+ # discard ignored ones, set names, then boils down to purrr::list_modify()
+  fctrs_used <- check_adjust_adsl_factors(
+    spec  = spec, 
+    fctrs = fctrs,
+    entry = entry
+  )
+  
+  # apply adjustment (list_modify works with NULL)
+  spec[[entry]][["factor_levels"]] <- spec[[entry]][["factor_levels"]] %>% 
+    purrr::list_modify(!!! fctrs_used)
+  
+  spec
+  
+}
+
+#' Helper for factor (level) adjustment of spec
+#'
+#' @param spec object of class martini_spec
+#' @param fctrs named list(column in data) of named vectors with
+#' factor levels (values) and labels (names)
+#' @param entry name of spec entry to modify, defaults to 'adsl'
+#'
+#' @details
+#' The function checks if the modifications to the factor definitions
+#' provided in `fctrs` are valid:
+#' 
+#' * The names of `fctrs` top level entries must be present in the data 
+#' of the entry (checked by attached data or dictionary).
+#'  Else: ignore with message
+#' * The factor levels provided must contain all current/known levels.
+#' Else: ignore with warning.
+#' * New factor levels (not seen in data) can be introduced (with message)
+#' * if only levels are provided, labels are created via `purrr::set_names()`
+#' 
+#' @return subset of `fctrs` that are valid to apply, `NULL` if none
+#'
+check_adjust_adsl_factors <- function(
+    spec, 
+    fctrs,
+    entry = "adsl"
+){
+  
+  # check names(fctrs) are colnames of adsl/entry data
+  # ignore non-matching ones
+  adsl_names <- spec[[entry]][["dict"]][["param"]] 
+  # NOTE could also check if colnames available and is part of select,
+  # otherwise point to add in adjust_adsl_select()
+  cols_missing <- setdiff(names(fctrs), adsl_names)
+  
+  if (length(cols_missing) > 0) {
+    
+    cli::cli_inform(c(
+      paste("Only columns existing in", entry, "can be modified."),
+      "i" = "You specified the following non-existing {cli::qty(length(cols_missing))} column{?s}: {cols_missing}.",
+      "i" = "The corresponding factor {cli::qty(length(cols_missing))} definition{?s} will not be modified.",
+      "*" = "Please check your adjustment instructions."
+    )
+    )
+    
+    fctrs <- fctrs %>% purrr::discard_at(cols_missing)
+    
+  }
+  if(length(fctrs) == 0) return(NULL)
+  
+  # if is already factor (i.e. in names factor_levels) or data is present,
+  # check factor levels are setequal with current entry -> reorder
+  
+  # if data is available extract unique values as ref for level set
+  # if not check the current fct level list
+  # ref_levels NULL for new factors AND no data
+  ref_levels <- if (!is.null(spec[[entry]][["data"]])) {
+    spec[[entry]][["data"]] %>% 
+      dplyr::select(tidyselect::any_of(names(fctrs))) %>% 
+      purrr::map(~{
+        if(is.factor(.x)){
+          levels(.x)
+        }else{
+          unique(.x)
+        }
+      }) %>% 
+      purrr::map(na.omit)
+  }else{
+    spec[[entry]][["factor_levels"]] %>%
+      purrr::keep_at(names(fctrs))
+  }
+  
+  # build() expects named vector, where names are labels, values levels (i.e. in data)
+  fctrs <- fctrs %>%  
+    purrr::map(~{
+      if(!rlang::is_named(.x)){
+        rlang::set_names(.x) 
+      }else .x
+    })
+  
+  use_factor <- purrr::map_lgl(names(fctrs), ~{
+    
+    # no checks are possible without ref_levels -> apply adjustment as-is
+    if(is.null(ref_levels[[.x]])) return(TRUE)
+    
+    # info only: new level introduced
+    new_level_introduced <- !all(fctrs[[.x]] %in% ref_levels[[.x]])
+    
+    if (new_level_introduced) {
+      
+      new_levels <- setdiff(fctrs[[.x]], ref_levels[[.x]])
+      
+      cli::cli_inform(c(
+        paste(
+          "The current set of levels for the factor", .x, 
+          "{?is/are} {ref_levels[[.x]]}"
+        ),
+        "i" = paste(
+          "The provided set of levels for", .x, 
+          "introduces the following {cli::qty(length(new_levels))}",
+          "new level{?s}: {new_levels}."
+        )
+      ))
+      
+    }
+    
+    
+    # warn and ignore: level missing
+    any_level_missing <- !all(ref_levels[[.x]] %in% fctrs[[.x]])
+    
+    if (any_level_missing) {
+      
+      level_missing <- setdiff(ref_levels[[.x]], fctrs[[.x]])
+      
+      potential_label_mixup <- (length(level_missing) > 0) &&
+        all(ref_levels[[.x]] %in% names(fctrs[[.x]]))
+      
+      cli_out <- c(
+        paste(
+          "The provided set of levels for", .x, 
+          "is missing the following existing {cli::qty(length(level_missing))}",
+          "level{?s}: {level_missing}."
+        ),
+        "i" = paste("Updates for factor", .x, "will be ignored."),
+        "*" = "Please check your adjustment instructions."
+      )
+      
+      if(potential_label_mixup){
+        cli_out <- c(
+          cli_out,
+          "*" = paste(
+            "Note that the values provided are interpreted as factor levels",
+            "and labels to be used in {.fun build} may be provided as names."
+          )
+        )
+      }
+      
+      cli::cli_warn(cli_out)
+      
+    }
+    !any_level_missing
+  })
+  if(sum(use_factor) == 0) return(NULL)
+  
+  fctrs %>% 
+    purrr::keep_at(names(fctrs)[use_factor]) 
+} 
