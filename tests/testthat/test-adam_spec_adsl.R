@@ -82,17 +82,22 @@ test_that("catalog_file argument of adam_spec_adsl() works", {
   file    <- test_path('sas', 'hadley.sas7bdat')
   catalog <- test_path('sas', 'formats.sas7bcat')
   
+  # extract labels attribute from imported data
   data <- haven::read_sas(file, catalog_file = catalog)
+  expect_equal(
+    purrr::map(data, ~{
+      labels <- attr(.x, "labels") 
+      # TODO for now only numeric (labels are levels)
+      # later character: labels are factor labels, levels dont change
+      if (!is.null(labels) && isTRUE(is.numeric(labels))) {
+        labels %>% sort() 
+      }
+    }) %>% 
+      purrr::compact(),
+    list(workshop = c(R = 1, SAS = 2))
+  )
   
-  purrr::map(data, ~{
-    labels <- attr(.x, "labels") 
-    # TODO for now only numeric (labels are levels)
-    # later character: labels are factor labels, levels dont change
-    if (!is.null(labels) && isTRUE(is.numeric(labels))) {
-      labels %>% sort() %>% names()
-    }
-  }) %>% 
-    purrr::compact()
+  
   
 })
 
