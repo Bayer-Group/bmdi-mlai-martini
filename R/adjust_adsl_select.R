@@ -10,7 +10,7 @@
 #' @param select character vector of column names to be selected. if not NULL
 #'  (the default), arguments `add` and `drop` will be ignored. 
 #'  Overrides `select` entry of the corresponding `spec` entry.
-#' @param id name of list element to modify in the spec, defaults to "adsl"
+#' @param entry name of list element to modify in the spec, defaults to "adsl"
 #' 
 #' @details
 #' if data is provided, the column names stored in the `select` slot will be 
@@ -249,4 +249,6 @@ check_adjust_adsl_select <- function(
   modifications
   
 }
+
+
 
