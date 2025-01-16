@@ -352,17 +352,13 @@ adjust_spec_filter <- function(spec, filter, append = TRUE){
         as.logical()
       spec[[.x]][["filter"]] <<- filter_update[keep_filter]
       
-      attr(spec, "filter_ok") <- TRUE
-      
       spec[[.x]][["dict"]]      <<- create_dict(spec[[.x]])
       spec[[.x]][["data_info"]] <<- data_info(spec[[.x]])
       
-      attr(spec, "data_info_ok") <- TRUE
     }else{
+      
       spec[[.x]][["filter"]] <<- filter_update
       
-      attr(spec, "filter_ok")    <- FALSE
-      attr(spec, "data_info_ok") <- FALSE
     }
     
   })
