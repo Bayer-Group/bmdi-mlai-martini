@@ -110,12 +110,12 @@ adjust_adsl_select <- function(
   
   # update dict and data_info ####
   if (!is.null(spec[[entry]][["data"]])) {
-    spec[[entry]][['dict']]      <- create_dict(spec[[entry]])
+    spec[[entry]][["dict"]]      <- create_dict(spec[[entry]])
     spec[[entry]][["data_info"]] <- data_info(spec[[entry]])
     
-    attr(spec, 'data_info_ok') <- TRUE
+    attr(spec, "data_info_ok") <- TRUE
   }else{
-    attr(spec, 'data_info_ok') <- FALSE
+    attr(spec, "data_info_ok") <- FALSE
   }
 
   

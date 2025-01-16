@@ -22,5 +22,6 @@ utils::globalVariables(c(
   "txt", "data_id", 
   "file_ext_fct",
   'r', 'role', 'variable', 'x', 'y',
-  'label_x', 'label_y', 'label2', 'label3'
+  'label_x', 'label_y', 'label2', 'label3',
+  "dupl_ctrl"
 ))
