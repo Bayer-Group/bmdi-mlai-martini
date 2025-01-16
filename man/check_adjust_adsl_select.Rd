@@ -4,7 +4,7 @@
 \alias{check_adjust_adsl_select}
 \title{checks for adjustments in \code{adjust_adsl_select()}}
 \usage{
-check_adjust_adsl_select(spec, add, drop, select, entry)
+check_adjust_adsl_select(spec, add, drop, select, entry = "adsl")
 }
 \arguments{
 \item{spec}{object of class \code{martini_spec}}

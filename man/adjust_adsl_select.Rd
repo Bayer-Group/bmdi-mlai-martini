@@ -23,7 +23,7 @@ corresponding \code{spec} entry (drop wins over add).}
 (the default), arguments \code{add} and \code{drop} will be ignored.
 Overrides \code{select} entry of the corresponding \code{spec} entry.}
 
-\item{id}{name of list element to modify in the spec, defaults to "adsl"}
+\item{entry}{name of list element to modify in the spec, defaults to "adsl"}
 }
 \value{
 A modified version of \code{spec} to be used as input to \verb{\link{build}()}

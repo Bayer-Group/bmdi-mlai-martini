@@ -4,14 +4,14 @@
 \alias{check_adjust}
 \title{check key value pair inputs for adjust_* functions}
 \usage{
-check_adjust(modifications, spec, entry)
+check_adjust(spec, entry, modifications)
 }
 \arguments{
-\item{modifications}{list of key value pairs defining adjustments}
-
 \item{spec}{spec object to modify}
 
 \item{entry}{name of list element to modify in \code{spec}}
+
+\item{modifications}{list of key value pairs defining adjustments}
 }
 \value{
 subset of modifications that are valid to apply
