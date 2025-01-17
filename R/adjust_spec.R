@@ -108,7 +108,7 @@ check_adjust <- function(spec, entry, modifications){
       "!" = "Adjustment will be ignored.",
       "*" = paste(
         "Please rerun {.fun adam_spec} or use",
-        "{.fun adjust_spec_filter} in case data is attached."
+        "{.fun adjust_filter} in case data is attached."
       )
     ))
     
@@ -308,7 +308,7 @@ check_adjust <- function(spec, entry, modifications){
 #' @return A modified version of `spec` to be used as input to `build()`
 #' @export
 
-adjust_spec_filter <- function(spec, filter, append = TRUE){
+adjust_filter <- function(spec, filter, append = TRUE){
   
   stopifnot(inherits(spec, what =  "martini_spec"))
   

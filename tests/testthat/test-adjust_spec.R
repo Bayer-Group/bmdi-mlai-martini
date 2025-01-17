@@ -57,7 +57,7 @@ expect_message(
     entry = "adsl",
     filter = "SUBJID %% 2 == 0"
   ),
-  "adjust_spec_filter"
+  "adjust_filter"
 )
 
 
@@ -167,17 +167,17 @@ test_that("adjust_adsl_select() works", {
 
 })
 
-test_that("adjust_spec_filter() works", {
+test_that("adjust_filter() works", {
   
   expect_snapshot(
-    adjust_spec_filter(
+    adjust_filter(
       spec = martini_spec,
       filter = "SUBJID %% 2 == 0",
       append = TRUE
     )
   )
   expect_snapshot(
-    adjust_spec_filter(
+    adjust_filter(
       spec = martini_spec,
       filter = "SUBJID %% 2 == 0",
       append = FALSE
