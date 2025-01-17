@@ -86,40 +86,30 @@ if(FALSE){
   #[1] "TRT01A"  "AGEGR01" "SEX"     "RACE"  
   
 }
-pre_mod <- martini_spec$adsl$factor_levels
-
-# reverse order for TRT01A
-adjusted_trt_rev <- martini_spec %>% 
+# ... factors
+# pointing to separate function, returning unmodified spec
+expect_equal(
   adjust_spec(
+    spec = martini_spec,
     entry = "adsl",
     factor_levels = list(
       "TRT01A" = martini_spec$adsl$factor_levels$TRT01A %>% rev()
     )
-  ) 
-expect_equal(
-  adjusted_trt_rev$adsl$factor_levels$TRT01A,
-  pre_mod$TRT01A %>% rev()
+  ),
+  martini_spec
+)
+expect_message(
+  adjust_spec(
+    spec = martini_spec,
+    entry = "adsl",
+    factor_levels = list(
+      "TRT01A" = martini_spec$adsl$factor_levels$TRT01A %>% rev()
+    )
+  ),
+  "adjust_adsl_factors"
 )
 
 
-# relabel TRT01A
-adjusted_trt_relabel <- martini_spec %>% 
-  adjust_spec(
-    entry = "adsl",
-    factor_levels = list(
-      "TRT01A" = c("treated", "non-treated")
-    )
-  ) 
-
-
-adjusted_add_var <- martini_spec %>% 
-  adjust_adsl_select(add = "ITTFL") %>% 
-  adjust_spec(
-    entry = "adsl",
-    factor_levels = list(
-      "TRT01A" = c("treated", "non-treated")
-    )
-  ) 
 
 })
 
@@ -297,8 +287,9 @@ test_that("adjust_adsl_factors() works", {
   )
   
   # add factor not yet in factor_levels ####
-  # test redundant, is testing list_modify() 
+  # test redundant, is testing list_modify()
   
+ 
   # see build_adsl() tests for usage of factors_levels 
 })
 
