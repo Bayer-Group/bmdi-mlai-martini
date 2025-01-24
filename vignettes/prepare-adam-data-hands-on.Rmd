@@ -503,24 +503,54 @@ ads_spec <- adam_spec(
 
 After the initial spec was created, the user should inspect the object
 and make necessary adjustments. It is strongly recommended to use the build-in
-helper functions were possible, since they provide some basic checks of
+helper functions where possible, since they provide some basic checks of
 the desired modifications in terms of consistency and applicability.
 
 ### Variable selection from adsl
 
 A common task is to review and adjust the automated variable selection from
-adsl by inspecting `martini_spec$adsl$dict`. 
-The adjustment can be accomplished by using the `adjust_adsl_select()` function, 
-which allows to either add or drop variables from the automated selection.
-Small adjustment can be made using the `drop`and `add` arguments, but the 
+adsl by inspecting `martini_spec$adsl$dict`
+(or simply `martini_spec$adsl$select`). 
+The adjustment can be accomplished by using the `adjust_adsl_select()`
+function, which allows to either add or drop variables from the automated selection.
+Small adjustment can be made using the `drop` and `add` arguments, but the 
 user can also provide the exact set of variables to extract using the 
-`select` argument. 
+`select` argument. In the latter case, make sure to include the variables
+with special roles `id` and `trt` the `adam_spec()` function to avoid the
+corresponding warnings.
+
+The removal of variables that are not derived from adsl, but from one of the 
+long format data sets, the removal is actual accomplished by applying a 
+filter, please refer to the section on `adjust_filter()` for more
+information.
+
+
+```{r}
+martini_spec %>% 
+  adjust_adsl_select(
+    add  = c('BMI'),
+    drop = c('AGE')
+  )
+
+martini_spec %>% 
+  adjust_adsl_select(
+    select = c("SUBJID", "TRT01A", "SEX", "RACE", "AGE", "BMI")
+  )
+
+# warnings for missing id and trt
+martini_spec %>% 
+  adjust_adsl_select(
+    select = c("SEX", "RACE", "AGE", "BMI")
+  )
+```
+
 
 
 ### Filters
 
-The function `adjust_spec_filter()` allows to update the set of filters 
-for the `martini_spec` object. If an error in the filter expression is detected
+The function `adjust_filter()` allows to update the set of filters 
+for the `martini_spec` object.
+If an error in the filter expression is detected
 during the inspection of the spec object, e.g. in the filter information
 section of the console output from printing, the set of filters can be adjusted 
 easily without rerunning the `adam_spec()` as long as the data is attached.
