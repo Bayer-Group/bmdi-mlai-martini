@@ -511,36 +511,112 @@ the desired modifications in terms of consistency and applicability.
 A common task is to review and adjust the automated variable selection from
 adsl by inspecting `martini_spec$adsl$dict`
 (or simply `martini_spec$adsl$select`). 
+
+Reasons for dropping variables from the automated selection 
+may include but are not limited to:
+
+*  post baseline information (MARTINI pipeline aims at assessing the relation 
+of baseline information with a given outcome. Consequently, outcome-related
+information should be removed (e.g. death flag))
+* variables are available in both a continuous as well as categorical version 
+(e.g. age, BMI, weight), there is no automated selection available
+* different groupings based on the same variable (e.g. country group)
+
 The adjustment can be accomplished by using the `adjust_adsl_select()`
-function, which allows to either add or drop variables from the automated selection.
-Small adjustment can be made using the `drop` and `add` arguments, but the 
+function, which allows to either add or drop variables from the automated 
+selection.
+Small adjustments can be made using the `drop` and `add` arguments, but the 
 user can also provide the exact set of variables to extract using the 
 `select` argument. In the latter case, make sure to include the variables
-with special roles `id` and `trt` the `adam_spec()` function to avoid the
+with special roles `id` and `trt` in the `adam_spec()` function to avoid the
 corresponding warnings.
+
+```{r}
+martini_spec <- martini_spec %>% 
+  adjust_adsl_select(
+    add  = c('BMI'),
+    drop = c('AGE')
+  )
+
+martini_spec <- martini_spec %>% 
+  adjust_adsl_select(
+    select = c("SUBJID", "TRT01A", "SEX", "RACE", "AGE", "BMI")
+  )
+
+# warnings for missing id and trt
+martini_spec <- martini_spec %>% 
+  adjust_adsl_select(
+    select = c("SEX", "RACE", "AGE", "BMI")
+  )
+```
+
+
+
+For large data sets, the creation of the `select` vector may be cumbersome.
+In this case, it may be helpful to extract the current selection and adjust it
+using e.g. the `stringr::str_subset()` function to make use of
+regular expressions.
+
+
+```{r spec remove adsl columns}
+user_selection <- ads_spec$adsl$select %>% 
+  
+  # remove post baseline information
+  setdiff(c('DEATHFL')) %>% 
+ 
+  # categoricals with a continuous version 
+  str_subset("AGEGR|BMIGR|WEIGGR|RACEGR", negate = TRUE) %>% 
+
+  # several grouped versions available
+  str_subset("CNTYGR[2-7]") 
+
+```
 
 The removal of variables that are not derived from adsl, but from one of the 
 long format data sets, the removal is actual accomplished by applying a 
 filter, please refer to the section on `adjust_filter()` for more
 information.
 
+### Factor levels in adsl
+
+The function `adjust_adsl_factors()` can be used to adjust or expand the
+factor level list. The level order will determine for example the display order 
+in tabular outputs in certain contexts.
+
+In the following example, the factor level order for the variable `RACE` is 
+reversed and labels are changed to lower case.
+Assigning factor labels is particularly useful for variables that
+were automatically identified as factors, but do not have the desired labels 
+(e.g. due to missing decode column as typical for ADaM 2.0 and/or issues with 
+reading the label information from the sas catalog file).
+
 
 ```{r}
-martini_spec %>% 
-  adjust_adsl_select(
-    add  = c('BMI'),
-    drop = c('AGE')
+martini_spec <- martini_spec %>% 
+  adjust_adsl_factors(
+      fctrs = list(
+        "RACE" = c(asian = "ASIAN", black = "BLACK", white = "WHITE")
+      )
   )
+```
 
-martini_spec %>% 
-  adjust_adsl_select(
-    select = c("SUBJID", "TRT01A", "SEX", "RACE", "AGE", "BMI")
-  )
+In addition to reordering and relabeling existing factors in the list, 
+it is also possible to add variables to the factor list that would have been 
+dropped otherwise. 
 
-# warnings for missing id and trt
-martini_spec %>% 
-  adjust_adsl_select(
-    select = c("SEX", "RACE", "AGE", "BMI")
+Note, that the factor level list contains information on all detected factors, 
+irrespective of whether they are selected or not. Refer to adsl's dictionary 
+(`selected`) to see which factor levels are actually applied.
+
+
+
+```{r}
+martini_spec <- martini_spec %>% 
+  adjust_adsl_select(add = "AGEGR01N") %>%
+  adjust_adsl_factors(
+      fctrs = list(
+        "AGEGR01N" = c("< 60" = 1, "60 - <75" = 2, ">=75" = 3)
+      )
   )
 ```
 
@@ -564,187 +640,52 @@ a particular entry of the spec object, related to the data extraction,
 such as `param` and `label` for bds entries or  `value` and `count` for 
 occds entries.
 
+Some entries are protected from manual adjustments altogether, 
+adjustments of entries `filter`, `factor_levels` and column selection from adsl
+the respective specialized functions should be used 
+(`adjust_filter()`, `adjust_adsl_select()`, `adjust_adsl_factors()`).
+
+
+**Value column for bds type data**
+
+In order to create a wide data set from bds type data, the main operation is
+the application of `tidyr::pivot_wider()`. 
+`adam_spec` will guess the appropriate columns to use for `names_from` and 
+`values_from` (if not provided) and store them in the list entries `param` 
+and `value` of the respective spec entry, respectively, e.g. `param = PARAMCD`
+and `value = AVAL`.
+
+Please do check the entries before moving on to `build()` to ensure correct 
+handling of variable types. If necessary, use `adjust_spec()` to make any changes.
+
+For some domains, variables may differ in type, i.e. while some are
+numeric (and `AVAL`) should be used, others might be available in character
+format (e.g. high/low, where `AVALC`). Appropriate handling depends on the 
+exact data structure:
+
+ * If `AVALC` also contains the numeric values, `build()` is able to handle 
+ variables differently based on their (guessed) type, i.e. convert character 
+ values from `AVALC` to either factors or numerics based on observed values. 
+ * If `AVALC` and `AVAL` contain complementary information (`AVALC` missing 
+ values for numeric variables):
+    * create new (character) column combining `AVALC` and `AVAL` and adjust
+    attached data and spec entry `value` accordingly
+    * create two disjoint spec entries for the same data set: filtering for
+    numeric and character variables, respectively, by setting filters manually 
+    (e.g. based on PARAMCD) and choosing the appropriate value column for each
+    subset
+
+
 
 
 ## Manual adaptations
-
-The most common adaptations of an automatically generated _spec_ object are
-probably the removal of particular variables and adjustment of factor
-level order and/or names.
-
-Two helper functions are available that allow for easy modification of the
-_spec_ objects in a pipe-based workflow: 
-
-* `adjust_adsl()` specifically allows to add/drop variables from adsl to the automated selection
-* `adjust_spec()` is a general helper to adjust/set any spec entry
-
-Where possible, it is recommended to use these helpers as they will trigger an
-update of both the filter and content info that is printed to thee console when
-inspecting a spec object.
-Note, that both updates are only possible if the `attach_data` argument of `adam_spec()` was set to `TRUE`.
-
-
-
-
-***
-
-### `adjust_adsl()`
-
-In the following, we demonstrate how to remove variables from adsl type data (*subject level*).
-
-Reasons for exclusion may include but are not limited to:
-
-* post baseline information (MARTINI pipeline aims at assessing the relation of baseline information with a given outcome. Consequently, outcome-related information should be removed (e.g. death flag))
-* variables are available in both a continuous as well as categorical version (e.g. age, BMI, weight), there is no automated selection available
-* different groupings based on the same variable (e.g. country group)
-
-Given an `ads_spec` object as built from `adam_spec()` such as the example 
-object `martini::martini_spec`, the user may simply pass character vectors of variables to add/drop them to the automated selection.
-
-In this example, variables included from adsl are
-`pander::pandoc.list.return(martini::martini_spec$adsl$select)`.
-
-Assuming we wanted to switch the continuous age variable to the grouped one (not recommended in practice)
-
-```{r}
-add   <- c('AGEGR01')
-drop  <- c('AGE')
-spec_age <- martini_spec %>% 
-  adjust_adsl(
-    add  = add,
-    drop = drop
-  ) 
-```
-
-the `build()` function would now extract  
-`pander::pandoc.list.return(martini::martini_spec$adsl$select)`.
-
-
-
-The variable selection can also be adjusted manually:
-The columns to be selected from the `adsl` data set are stored in `ads_spec$adsl$select`. 
-Simply remove column names from this entry to discard particular variables. 
-
-```{r spec remove adsl columns}
-ads_spec$adsl$select <- ads_spec$adsl$select %>% 
-  
-  # remove post baseline information
-  setdiff(c('DEATHFL')) %>% 
- 
-  # categoricals with a continuous version 
-  str_subset("AGEGR|BMIGR|WEIGGR|RACEGR", negate = TRUE) %>% 
-
-  # several grouped versions available
-  str_subset("CNTYGR[2-7]") 
-
-```
-
-***
-
-### `adjust_spec()`
-
-The `spec` object is a nested list, with a data set/domain id on the top
-level with the entries required for building the wide data set in nested lists.
-Instead of adjusting/setting these entries in individual steps, 
-one may also use the `adjust_spec()` helper function. 
-
-In particular, this allows convenient factor handling, where one may 
-
-* set factor level order to adjust the order in all corresponding outputs
-* specify variables that should be treated as factors with the given factor 
-level order. This may come in useful for variables that could not be detected 
-as factors automatically (e.g. either code or decode missing). 
-Specify `append = TRUE` if a modification should be appended to the existing entry instead of replacing/overwriting it.
-
-Other options include but are not limited to
- 
- * data set label
- * switching the `count` option for occds type data
-
-<!-- TODO add more -->
-
-```{r}
-martini_spec %>% 
-  # 
-  adjust_spec(
-    id    = 'admh',
-    count = TRUE
-  ) %>% 
-  # factor handling
-  adjust_spec(
-    id            = 'adsl',
-    factor_levels = list(
-      # set factor level order (SEX and TRT01A already present in factor_levels)
-      SEX    = c('F', 'M'), 
-      TRT01A = c('TRT', 'PLC')
-    )
-  ) %>% 
-    adjust_spec(
-    id            = 'adsl',
-    factor_levels = list(
-      # add variables to factor list that are not included automatically. 
-      NEW = c('A', 'B')
-    ),
-    append = TRUE
-  )
-  
-```
-
-As mentioned above, although it is possible to overwrite the filter entries of individual specs, we strongly advise against it since it undermines the filter check implemented in `\link{adam_spec}()`. 
 
 <!-- TODO explain label for count FALSE in occds by checking freq distribution of columns  -->
 
 ***
 
-### Further adaptations
 
 
-**Value column for bds type data**
-
-In order to create a wide data set from bds type data, the main operation is the application of `tidyr::pivot_wider()`. 
-`adam_spec` will guess the appropriate columns to use for `names_from` and `values_from` (if not provided) and store them in the list entries `param` and `value` of the respective spec entry, respectively, e.g. `param = PARAMCD` and `value = AVAL`.
-
-Please do check the entries before moving on to `build()` to ensure correct handling of variable types. 
-
-For some domains, variables may differ in type, i.e. while some are numeric (and `AVAL`) should be used, others might be available in character format (e.g. high/low, where `AVALC`). Appropriate handling depends on the exact data structure:
-
- * If `AVALC` also contains the numeric values, `build()` is able to handle variables differently based on their (guessed) type, i.e. convert character values from `AVALC` to either factors or numerics based on observed values. 
- * If `AVALC` and `AVAL` contain complementary information (`AVALC` missing values for numeric variables):
-    * create new (character) column combining `AVALC` and `AVAL` and adjust attached data and spec entry `value` accordingly
-    * create two disjoint spec entries for the same data set: filtering for numeric and character variables, respectively, by setting filters manually (e.g. based on PARAMCD) and choosing the appropriate value column for each subset
-
-
-
-
-
-
-
-
-
-**Change existing data** 
-
-If any manual changes need to be made to the data sets themselves, the `attach_data` parameter of `ads_spec()` needs to be set to `TRUE`. 
-In this case, top level entry of `spec` will have a `data` slot where the data set is stored and used by the `build()` function.
-Just like the other slots, it may be adjusted by the user in an intermediate step as shown in the following.
-
-
-
-```{r spec change data}
-# identify variables that contain explicit "unknowns"
-var_unknown <- ads_spec$adsl$data %>% 
-  select_if(is.character) %>% 
-  select_if(~{any(str_to_lower(.x) %in% c("u", "unknown"))}) %>% 
-  colnames()
-
-var_unknown
-
-# recode "unknowns" as NA
-ads_spec$adsl$data <- ads_spec$adsl$data %>% 
-  mutate_at(var_unknown, ~if_else(str_to_lower(.x) %in% c("u", "unknown"), NA_character_, .x))
-
-```
-
-***
 
 **Add data**
 
@@ -866,6 +807,32 @@ feature <- build(
 
 
 
+**Adding or modifying wide data set after build()** 
+
+The output object of `build()` is a wide data set, with a dictionary attribute
+containing information on the variables and their origin. 
+If the data set is to be used with the martini pipeline it is crucial that the
+dictionary is consistent with the provided data set.
+
+* recoding of factors (e.g. summarising levels)
+* deriving new variables (e.g. clinical index or summary scores 
+from questionnaires or interaction terms)
+
+```{r change data after build}
+
+feature <- feature %>% 
+  mutate(RACE = fct_collapse(RACE, other = c("asian", "black"))) %>% 
+  mutate(RISK_CLASS = case_when(
+    BMI >= 30 & CREAT >= 2 ~ "III",
+    BMI >= 30 & CREAT <  2 ~ "II",
+    TRUE ~ "I"
+  ) %>% factor())
+
+# 
+
+```
+
+***
 
 
 
