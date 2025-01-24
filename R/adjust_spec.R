@@ -699,14 +699,14 @@ check_adjust_adsl_select <- function(
 ){
   
   # spec of correct type ####
-  if(!inherits(spec, "martini_spec")) {
+  if (!inherits(spec, "martini_spec")) {
     cli::cli_abort(c(
       "Input is not a martini spec object."
     ))
   }
   
   # any modification specified ####
-  if (is.null(c(select, add, drop))){
+  if (is.null(c(select, add, drop))) {
     cli::cli_inform(
       "No modifications specified. Returning unmodified spec object."
     )
@@ -716,7 +716,7 @@ check_adjust_adsl_select <- function(
   # select wins over add, drop ####
   if (!is.null(select)) {
     
-    if(!is.null(add) | !is.null(drop))
+    if (!is.null(add) | !is.null(drop))
       cli::cli_inform(
         "Arguments `add` and `drop` will be ignored, as `select` is provided."
       )
@@ -733,7 +733,6 @@ check_adjust_adsl_select <- function(
     ))
   }
   
-  
   # catch missing id ####
   # missing id by updated select or in drop
   select_misses_id <- !is.null(select) && 
@@ -742,7 +741,7 @@ check_adjust_adsl_select <- function(
     is.null(select) &&
     (spec[[entry]][["id"]] %in% drop)   
   
-  if(select_misses_id | dropping_id) {
+  if (select_misses_id | dropping_id) {
     cli::cli_warn(c(
       paste(
         "The identifier column contained in the subject level",
