@@ -499,7 +499,7 @@ ads_spec <- adam_spec(
 ***
 
 
-## Manual adaptations - UPDATE - 
+## Manual adaptations 
 
 After the initial spec was created, the user should inspect the object
 and make necessary adjustments. It is strongly recommended to use the build-in
@@ -677,8 +677,6 @@ exact data structure:
 
 
 
-
-## Manual adaptations
 
 <!-- TODO explain label for count FALSE in occds by checking freq distribution of columns  -->
 
