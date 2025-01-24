@@ -161,6 +161,10 @@
       [1] 7
       
       
+      attr(,"filter_ok")
+      [1] TRUE
+      attr(,"data_info_ok")
+      [1] TRUE
       
       $adlb
       $adlb$file
@@ -222,6 +226,10 @@
       [1] 3
       
       
+      attr(,"filter_ok")
+      [1] TRUE
+      attr(,"data_info_ok")
+      [1] TRUE
       
       $advs
       $advs$file
@@ -285,6 +293,10 @@
       [1] 5
       
       
+      attr(,"filter_ok")
+      [1] TRUE
+      attr(,"data_info_ok")
+      [1] TRUE
       
       $admh
       $admh$file
@@ -337,9 +349,9 @@
       [1] 2
       
       
-      
       attr(,"filter_ok")
       [1] TRUE
       attr(,"data_info_ok")
       [1] TRUE
+      
 

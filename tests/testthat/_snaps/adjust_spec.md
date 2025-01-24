@@ -21,7 +21,7 @@
         admh MHDECOD NA    NA     FALSE MHSTDY
       
         Filter information 
-    Message
+    Message <rlang_message>
       v Each filter may be applied at least once.
       v 4 filters could be applied:
         - adsl: ITTFL == 'Y'
@@ -29,10 +29,10 @@
         - advs: AVISIT == 'Baseline'
         - admh: MHOCCUR == 'Y' | is.na(MHOCCUR)
 
-# adjust_spec_filter() works
+# adjust_filter() works
 
     Code
-      adjust_spec_filter(spec = martini_spec, filter = "SUBJID %% 2 == 0", append = TRUE)
+      adjust_filter(spec = martini_spec, filter = "SUBJID %% 2 == 0", append = TRUE)
     Output
       
         Content
@@ -52,7 +52,7 @@
         admh MHDECOD NA    NA     FALSE MHSTDY
       
         Filter information 
-    Message
+    Message <rlang_message>
       v Each filter may be applied at least once.
       v 4 filters could be applied:
         - adsl: ITTFL == 'Y', SUBJID %% 2 == 0
@@ -63,7 +63,7 @@
 ---
 
     Code
-      adjust_spec_filter(spec = martini_spec, filter = "SUBJID %% 2 == 0", append = FALSE)
+      adjust_filter(spec = martini_spec, filter = "SUBJID %% 2 == 0", append = FALSE)
     Output
       
         Content
@@ -83,7 +83,7 @@
         admh MHDECOD NA    NA     FALSE MHSTDY
       
         Filter information 
-    Message
+    Message <rlang_message>
       v Each filter may be applied at least once.
       v 4 filters could be applied:
         - adsl: SUBJID %% 2 == 0

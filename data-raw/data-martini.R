@@ -33,6 +33,8 @@ usethis::use_data(martini_feat, overwrite = TRUE)
 
 # OUTCOME OBJECTS ####
 
+set.seed(1841)
+
 # ... prepare feature matrix for simulation ####
 
 rec <- recipes::recipe(~., data = martini_feat) %>% 
@@ -74,8 +76,6 @@ logistic_b0 <- -log(1/prob_case-1)
 logistic_mult_b <- 1.5
 
 # ... simulate outcome ####
-
-set.seed(1841)
 
 ## ... ... classification ####
 martini_outc_class <- martini:::simulate_outcome(

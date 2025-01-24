@@ -181,14 +181,16 @@ adam_spec <- function(
   info_filter(spec, filter = filter)
   
   # output ####
-  # TODO later attribute martini_spec kept for list subsets
-  class(spec) <- c("martini_spec", class(spec))
   
   # NOTE attribute will not be explicitly created, if filter is NULL
-  attr(spec, 'filter')       <- filter
-   
-  attr(spec, 'filter_ok')    <- TRUE
-  attr(spec, 'data_info_ok') <- TRUE
+  attr(spec, 'filter') <- filter
+  
+  purrr::walk(names(spec), ~{
+    attr(spec[[.x]], 'filter_ok')    <<- TRUE
+    attr(spec[[.x]], 'data_info_ok') <<- TRUE
+  })
+  
+  class(spec) <- c("martini_spec", class(spec))
   
   spec
   

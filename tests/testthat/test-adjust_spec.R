@@ -18,6 +18,7 @@ test_that("adjust_spec works", {
   # TODO WS one expectation pair may be discarded, both using the same code in adjust_spec
   # TODO WS testing our function or just modify_list, append and if/else?
 
+  
   # protected slot ####
   # return original object, when trying to change protected slot
   expect_equal(
@@ -28,94 +29,137 @@ test_that("adjust_spec works", {
     ),
     martini_spec
   )
-
-# entry not in spec ####
-missing_entry <- "adlb"
-expect_error(
-  adjust_spec(
-    spec = martini_spec %>% magrittr::inset2(missing_entry, NULL),
-    entry = missing_entry,
-    id = "USUBJIDN"
-  ),
-  missing_entry
-)
-
-# refer to other funs for select, filter mods ####
-# leave spec unmodified
-# ... filter
-expect_equal(
-  adjust_spec(
-    spec = martini_spec,
-    entry = "adsl",
-    filter = "SUBJID %% 2 == 0"
-  ),
-  martini_spec
-)
-expect_message(
-  adjust_spec(
-    spec = martini_spec,
-    entry = "adsl",
-    filter = "SUBJID %% 2 == 0"
-  ),
-  "adjust_filter"
-)
-
-
-# ... select
-expect_equal(
-  adjust_spec(
-    spec = martini_spec,
-    entry = "adsl",
-    select = c("SUBJID", "TRT01A", "SEX")
-  ),
-  martini_spec
-)
-expect_message(
-  adjust_spec(
-    spec = martini_spec,
-    entry = "adsl",
-    select = c("SUBJID", "TRT01A", "SEX")
-  ),
-  "adjust_adsl_select"
-)
-
-# factors ####
-# set factors not yet recognized & modify factors labels
-if(FALSE){
-  martini_spec$adsl$factor_levels %>% names
-  #[1] "TRT01A"  "AGEGR01" "SEX"     "RACE"  
   
-}
-# ... factors
-# pointing to separate function, returning unmodified spec
-expect_equal(
-  adjust_spec(
-    spec = martini_spec,
-    entry = "adsl",
-    factor_levels = list(
-      "TRT01A" = martini_spec$adsl$factor_levels$TRT01A %>% rev()
-    )
-  ),
-  martini_spec
-)
-expect_message(
-  adjust_spec(
-    spec = martini_spec,
-    entry = "adsl",
-    factor_levels = list(
-      "TRT01A" = martini_spec$adsl$factor_levels$TRT01A %>% rev()
-    )
-  ),
-  "adjust_adsl_factors"
-)
-
+  # entry not in spec ####
+  missing_entry <- "adlb"
+  expect_error(
+    adjust_spec(
+      spec = martini_spec %>% magrittr::inset2(missing_entry, NULL),
+      entry = missing_entry,
+      id = "USUBJIDN"
+    ),
+    missing_entry
+  )
+  
+  # refer to other funs for select, filter mods ####
+  # leave spec unmodified
+  # ... filter
+  expect_equal(
+    adjust_spec(
+      spec = martini_spec,
+      entry = "adsl",
+      filter = "SUBJID %% 2 == 0"
+    ),
+    martini_spec
+  )
+  expect_message(
+    adjust_spec(
+      spec = martini_spec,
+      entry = "adsl",
+      filter = "SUBJID %% 2 == 0"
+    ),
+    "adjust_filter"
+  )
+  
+  # ... select
+  expect_equal(
+    adjust_spec(
+      spec = martini_spec,
+      entry = "adsl",
+      select = c("SUBJID", "TRT01A", "SEX")
+    ),
+    martini_spec
+  )
+  expect_message(
+    adjust_spec(
+      spec = martini_spec,
+      entry = "adsl",
+      select = c("SUBJID", "TRT01A", "SEX")
+    ),
+    "adjust_adsl_select"
+  )
+  
+  expect_s3_class(
+    adjust_spec(
+      spec = martini_spec,
+      entry = "adlb",
+      md5 = "fail"
+    ),
+    "martini_spec"
+  )
+  
+  # factors ####
+  # set factors not yet recognized & modify factors labels
+  if(FALSE){
+    martini_spec$adsl$factor_levels %>% names
+    #[1] "TRT01A"  "AGEGR01" "SEX"     "RACE"  
+    
+  }
+  # ... factors
+  # pointing to separate function, returning unmodified spec
+  expect_equal(
+    adjust_spec(
+      spec = martini_spec,
+      entry = "adsl",
+      factor_levels = list(
+        "TRT01A" = martini_spec$adsl$factor_levels$TRT01A %>% rev()
+      )
+    ),
+    martini_spec
+  )
+  expect_message(
+    adjust_spec(
+      spec = martini_spec,
+      entry = "adsl",
+      factor_levels = list(
+        "TRT01A" = martini_spec$adsl$factor_levels$TRT01A %>% rev()
+      )
+    ),
+    "adjust_adsl_factors"
+  )
+  
 
 
 })
 
 test_that("adjust_adsl_select() works", {
 # check_adjust_adsl_select
-
+  
+  select_orig <- martini_spec[["adsl"]][["select"]]
+  
+  add  <- "AGEGR01"
+  drop <- "AGE"
+  
+  martini_spec_adj <- martini_spec %>% 
+    adjust_adsl_select(
+      add  = add,
+      drop = drop
+    ) 
+  
+  expect_s3_class(martini_spec_adj, "martini_spec")
+  
+  select_adj <- martini_spec_adj %>% 
+    .[["adsl"]] %>% 
+    .[["select"]]
+  
+  # check that spec's select slot is updated
+  expect_setequal(
+    c(select_orig, add) %>% unique() %>% setdiff(drop),
+    select_adj
+  )
+  
+  # check that dict column is updated
+  expect_true(
+    martini_spec_adj$adsl$dict %>%
+      dplyr::select(param, selected) %>% 
+      dplyr::filter(param %in% c(add, drop)) %>% 
+      dplyr::mutate(expect = ifelse(param %in% add, TRUE, FALSE)) %>% 
+      dplyr::mutate(match = (selected == expect)) %>% 
+      dplyr::pull(match) %>% 
+      all()
+  )
+  # TODO maybe later: check that data_info_ok is FALSE if data not attached
+  
   # use select ####
   expect_snapshot(
     adjust_adsl_select(
@@ -184,6 +228,14 @@ test_that("adjust_filter() works", {
     )
   )
   
+  expect_s3_class(
+    adjust_filter(
+      spec = martini_spec,
+      filter = "SUBJID %% 2 == 0"
+    ),
+    "martini_spec"
+  )
+  
 })
 
 test_that("adjust_adsl_factors() works", {
@@ -194,6 +246,15 @@ test_that("adjust_adsl_factors() works", {
       setdiff(names(martini_spec$adsl$factor_levels))
     
   }
+  
+  expect_s3_class(
+    adjust_filter(
+      spec = martini_spec,
+      filter = "SUBJID %% 2 == 0",
+      append = FALSE
+    ),
+    "martini_spec"
+  )
   
   # for now: skip tests on spec class, entry name exists, factor_levels is named list
   
@@ -292,4 +353,3 @@ test_that("adjust_adsl_factors() works", {
  
   # see build_adsl() tests for usage of factors_levels 
 })
-

@@ -1,3 +1,22 @@
+test_that("adam_spec() works", {
+  
+  ads_path <- test_path('sas/')
+  
+  ads_spec     <- adam_spec(ads_path, attach_data = TRUE)
+  
+  # check class to enable print method
+  expect_equal(
+    c(ads_spec %>% class),
+    c("martini_spec", "list")
+  )
+
+  ads_spec     <- adam_spec(ads_path, filter = "ABLFL == 'Y'")
+  
+})
+
+
+
+
 test_that("adam_spec add_bds ", {
   
   ads_path <- test_path('sas/')
@@ -76,7 +95,6 @@ test_that("adam_spec rds/sas selection works", {
   spec_sas_only   <- adam_spec(ads_path, file_ext = 'sas7bdat')
   spec_rds_only   <- adam_spec(ads_path, file_ext = 'rds')
   
-  
   expect_true(spec_rds_only %>% purrr::map_chr(~{.x$file %>% purrr::map_chr(tools::file_ext)}) %>% {. == 'rds'}      %>% all())
   expect_true(spec_sas_only %>% purrr::map_chr(~{.x$file %>% purrr::map_chr(tools::file_ext)}) %>% {. == 'sas7bdat'} %>% all())
   
@@ -94,7 +112,6 @@ test_that("adam_spec rds/sas selection works", {
   
   # no difference with different file ext preference 
   expect_equal(spec_rds_sas, spec_rds_sas)
-  
   
 })
   

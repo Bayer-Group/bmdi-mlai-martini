@@ -33,7 +33,7 @@ check_filter <- function(
     # check which filters are applicable for the data set
     individual  <- purrr::map(purrr::set_names(filter), function(x){
       
-      # A. filter not applicable, WOULD throw an error if it was to be applied in build_*
+      # A. filter not applicable, WOULD throw an error if it was to be applied in build_* ####
       #    (e.g. column not present in given domain)
       #    this is NOT a suppressed error in the 'check_filter()' function, 
       #    but a desired side effect to select applicable filters (filter/domain match)
@@ -44,7 +44,7 @@ check_filter <- function(
       )
       is_error <- "try-error" %in% class(try_it)
       
-      # B. column present, resulting tibble has nrow = 0
+      # B. column present, resulting tibble has nrow = 0 ####
       is_norow <- FALSE
       if (!is_error) is_norow <- nrow(try_it) == 0
       

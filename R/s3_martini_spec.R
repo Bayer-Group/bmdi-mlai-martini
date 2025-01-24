@@ -51,7 +51,7 @@ print.martini_spec <- function(x, ...){
   
   names_bds <- names(types)[which(types == 'bds')] %>% rlang::set_names()
   
-  if(any( purrr::map_chr(x, "type") == "bds")){
+  if (any( purrr::map_chr(x, "type") == "bds")) {
 
     bds_keys  <- c("param", "value", "unit", "time")
     
@@ -85,7 +85,7 @@ print.martini_spec <- function(x, ...){
   
   names_occds <- names(types)[which(types == 'occds')] %>% rlang::set_names()
   
-  if(any(purrr::map_chr(x, "type") == "occds")){
+  if (any(purrr::map_chr(x, "type") == "occds")) {
     
     occds_keys  <- c("label", "value", "valuen", "count", "time")
     
@@ -115,24 +115,28 @@ print.martini_spec <- function(x, ...){
     
   }
   
-  if(!attr(x, 'data_info_ok')| !attr(x, 'filter_ok')){
-       not_ok <- ''
-       if(!attr(x, 'data_info_ok')) not_ok <- c(not_ok, 'content')
-       if(!attr(x, 'filter_ok'))    not_ok <- c(not_ok, 'filter')
-       
-        cat(usethis::ui_warn(crayon::bgMagenta(crayon::white(
+  all_data_info_ok <- all(purrr::map_lgl(x, ~attr(.x, 'data_info_ok')))
+  all_filter_ok    <- all(purrr::map_lgl(x, ~attr(.x, 'filter_ok')))
+  
+  if (!all_data_info_ok | !all_filter_ok) {
+    not_ok <- ''
+    if (!all_data_info_ok) not_ok <- c(not_ok, 'content')
+    if (!all_filter_ok)    not_ok <- c(not_ok, 'filter')
+    
+    cat(usethis::ui_warn(crayon::bgMagenta(crayon::white(
       paste0(
         ifelse(!is.null(data_id), paste0(data_id, ': '), ''), 
         'The ', 
         paste(not_ok, collapse = ' and '),
         ' info shown might be outdated due to adjustments to the spec object.', 
         'Re-run adam_spec() with data attached to enable updating. \n\n'
-      )))
-    )
-    )}
+      )
+    ))))
+  }
   purrr::walk(txt_print, cat)
   
-  # combine original filter set used to build the spec with potentially added filters during spec adjustment (not recommended)
+  # combine original filter set used to build the spec with potentially 
+  # added filters during spec adjustment (not recommended)
   all_filters <- c(
     # filter argument passed from adam_spec() call
     attr(x, 'filter', exact = TRUE), 
@@ -141,7 +145,7 @@ print.martini_spec <- function(x, ...){
     ) %>% unique()
   res_info    <- info_filter(x, all_filters, quiet = TRUE)
 
-  if(res_info %>% purrr::map_lgl(~!is.null(.x)) %>% any()){
+  if (res_info %>% purrr::map_lgl(~!is.null(.x)) %>% any()) {
     cat(crayon::silver("\n  Filter information \n"))
     
     info_filter(x, attr(x, 'filter', exact = TRUE))
