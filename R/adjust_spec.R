@@ -162,7 +162,40 @@ check_adjust <- function(spec, entry, modifications){
     
   }
   
-  # check: column names correct ####
+  # check entries that should have logical values ####
+  # if they have the wrong format, inform the user and ignore modification by removing it
+  entries_lgl_check <- c(
+    # occds
+    "count"
+  ) %>% 
+    intersect(names(modifications)) %>% 
+    purrr::set_names()
+  
+  if (length(entries_lgl_check) > 0) {
+    
+    # ... format ####
+    check_format <- purrr::map_lgl(entries_lgl_check, ~{
+      rlang::is_logical(modifications[[.x]], n = 1)
+    })
+    wrong_format <- names(check_format)[!check_format]
+    
+    if (length(wrong_format) > 0) {
+      cli::cli_inform(c(
+        "i" = paste0(
+          "The following {cli::qty(length(wrong_format))} entr{?y/ies} ", 
+          "have to be logicals of length 1 but ",
+          "{?is/are} of the wrong format: {wrong_format}."
+        ),
+        "!" = "{cli::qty(length(wrong_format))}{?This/These} adjustment{?s} will be ignored.",
+        "*" = "Please check your adjustment instructions."
+      ))
+      
+      modifications <- modifications %>% purrr::discard_at(wrong_format)
+    }
+  }
+  
+  
+   # check: column names correct ####
   entries_colnames <- c(
     # bds
     "param", "label", "unit", "time",
@@ -185,14 +218,16 @@ check_adjust <- function(spec, entry, modifications){
     })
     wrong_format <- names(check_format)[!check_format]
     
-    cli::cli_inform(c(
-      "Entries that specify column names in the data must be character vectors of length 1.",
-      "i" = "The following {cli::qty(length(wrong_format))} entr{?y/ies} {?is/are} of the wrong format: {wrong_format}.",
-      "!" = "{cli::qty(length(wrong_format))}{?This/These} adjustment{?s} will be ignored.",
-      "*" = "Please check your adjustment instructions."
-    ))
-    
-    modifications <- modifications %>% purrr::discard_at(wrong_format)
+    if (length(wrong_format) > 0) {
+      cli::cli_inform(c(
+        "Entries that specify column names in the data must be character vectors of length 1.",
+        "i" = "The following {cli::qty(length(wrong_format))} entr{?y/ies} {?is/are} of the wrong format: {wrong_format}.",
+        "!" = "{cli::qty(length(wrong_format))}{?This/These} adjustment{?s} will be ignored.",
+        "*" = "Please check your adjustment instructions."
+      ))
+      
+      modifications <- modifications %>% purrr::discard_at(wrong_format)
+    }
     
     # ... availability of remaining columns####
     if(!is.null(spec[[entry]]$data)){
