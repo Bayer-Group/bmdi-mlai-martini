@@ -97,8 +97,6 @@ test_that("catalog_file argument of adam_spec_adsl() works", {
     list(workshop = c(R = 1, SAS = 2))
   )
   
-  
-  
 })
 
 test_that("fct_levels argument of adam_spec_adsl() works", {

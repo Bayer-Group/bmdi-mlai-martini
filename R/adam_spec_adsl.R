@@ -118,26 +118,17 @@ adam_spec_adsl <- function(
   
   # check input ####
   # collect column name parameters ####
-  col_spec <- list(
-    "id"  = list(column = id,  required = TRUE),
-    "trt" = list(column = trt, required = FALSE)
+  prepared_cols <- prepare_col_selection(
+    data = data, 
+    id, trt,
+    type = c("adsl"), 
+    call = rlang::caller_env(n = 5)
   )
   
-  col_select_raw <- purrr::imap(col_spec, ~{
-    check_role(
-      data = data, 
-      role = .y, 
-      column_spec = .x$column, 
-      required = .x$required,
-      type = "adsl", 
-      call = rlang::caller_env(n = 4)
-    )
-  })
+  use_for_build <- prepared_cols$use_for_build
+  col_select    <- prepared_cols$col_select
   
-  col_select <- purrr::map(col_select_raw, "column")
   
-  use_for_build <- purrr::map_lgl(col_select_raw, "check_passed") %>% all()
-
   # dict creation (name <-> label)  ####
   dict <- adsl_dict(data)
   
@@ -251,6 +242,7 @@ adam_spec_adsl <- function(
   create_spec_out(
     file, data, md5, size, actual_filter, domain, col_select, dict,
     select_list, factor_levels, drop_list, flag_table,
+    use_for_build,
     type = "adsl", 
     attach_data = attach_data
   )

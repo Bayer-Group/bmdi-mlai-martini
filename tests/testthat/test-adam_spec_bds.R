@@ -81,45 +81,45 @@ if(FALSE){
   
 }
 
-test_that("check_role() works with bds data", {
+test_that("check_and_guess_column() works with bds data", {
   
   adlb <- test_path("sas/adlb.sas7bdat") %>% haven::read_sas()
   
   # guess param column name
   expect_equal(
-    check_role(data = adlb, role = "param", type = "bds"),
+    check_and_guess_column(data = adlb, role = "param", type = "bds"),
     list(role = "param", column = "PARAMCD", required = TRUE, check_passed = TRUE)
   )
   
   # provide wrong column name
   expect_equal(
-    check_role(data = adlb, role = "param", column_spec = "param", type = "bds"),
+    check_and_guess_column(data = adlb, role = "param", column_spec = "param", type = "bds"),
     list(role = "param", column = NULL, required = TRUE, check_passed = FALSE)
   )
   expect_warning(
-    check_role(data = adlb, role = "param", column_spec = "param", type = "bds")
+    check_and_guess_column(data = adlb, role = "param", column_spec = "param", type = "bds")
   )
   
 })
 
-test_that("check_role() works with occds data", {
+test_that("check_and_guess_column() works with occds data", {
   
   admh <- test_path("sas/admh.sas7bdat") %>% haven::read_sas()
   
   # guess label column name
   expect_equal(
-    check_role(data = admh, role = "label", type = "occds"),
+    check_and_guess_column(data = admh, role = "label", type = "occds"),
     list(role = "label", column = "MHHLGT", required = TRUE, check_passed = TRUE)
   )
   
   # provide wrong column name
   expect_equal(
-    check_role(data = admh, role = "label", column_spec = "wrong_label", type = "occds"),
+    check_and_guess_column(data = admh, role = "label", column_spec = "wrong_label", type = "occds"),
     list(role = "label", column = NULL, required = TRUE, check_passed = FALSE)
   )
   
   expect_warning(
-    check_role(data = admh, role = "label", column_spec = "wrong_label", type = "occds")
+    check_and_guess_column(data = admh, role = "label", column_spec = "wrong_label", type = "occds")
   )
   
 })

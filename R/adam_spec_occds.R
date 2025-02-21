@@ -113,29 +113,15 @@ adam_spec_occds <- function(
   }
   
   # collect column name parameters ####
-  col_spec <- list(
-    "id"     = list(column = id,     required = TRUE),
-    "label"  = list(column = label,  required = TRUE),
-    "value"  = list(column = value,  required = FALSE),
-    "valuen" = list(column = valuen, required = FALSE),
-    # only used for pre_study filter (to be deprecated)
-    "time"   = list(column = time,   required = FALSE)
+  prepared_cols <- prepare_col_selection(
+    data = data, 
+    id, label, value, valuen, time,
+    type = c("occds"), 
+    call = rlang::caller_env(n = 5)
   )
   
-  col_select_raw <- purrr::imap(col_spec, ~{
-    check_role(
-      data = data, 
-      role = .y, 
-      column_spec = .x$column, 
-      required = .x$required,
-      type = "occds", 
-      call = rlang::caller_env(n = 4)
-    )
-  })
-  
-  col_select <- purrr::map(col_select_raw, "column")
-  
-  use_for_build <- purrr::map_lgl(col_select_raw, "check_passed") %>% all()
+  use_for_build <- prepared_cols$use_for_build
+  col_select    <- prepared_cols$col_select
   
   # if requested, build and add pre-study filter ####
   if(pre_study){
@@ -160,7 +146,7 @@ adam_spec_occds <- function(
   
   create_spec_out(
     file, data, md5, size, actual_filter, domain, col_select, count,
-    type = "occds", attach_data = attach_data
+    use_for_build, type = "occds", attach_data = attach_data
   )
 
 }

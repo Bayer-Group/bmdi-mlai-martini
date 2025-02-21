@@ -13,6 +13,29 @@ test_that("check_adjust() works", {
 })
 
 
+test_that("adjust_spec correctly modifies use_for_build", {
+  
+  # use_for build FALSE at spec creation, 
+  # check if set to TRUE after adding missing key columns
+  spec_missing_key_columns <- martini_spec 
+  
+  # remove key column param (like it could not be guessed from the data)
+  spec_missing_key_columns$adlb$use_for_build <- FALSE
+  spec_missing_key_columns$adlb <- spec_missing_key_columns$adlb %>% 
+    purrr::list_modify("param" = NULL)
+  
+  expect_true(
+    spec_missing_key_columns %>% 
+      adjust_spec("adlb", param = "PARAMCD") %>% 
+      purrr::pluck("adlb", "use_for_build")
+  )
+  
+  # direction TRUE to FALSE not tested, as it should not possible
+  # messing up the spec as long as adjust_spec() is used
+  # (only if data is not provided and columns can not be checked)
+  
+})
+
 test_that("adjust_spec works", {
 
   # TODO WS one expectation pair may be discarded, both using the same code in adjust_spec

@@ -48,15 +48,25 @@ adjust_spec <- function(
   if (!is.null(spec[[entry]][["data"]])) {
     
     # update dict and data_info
-    spec[[entry]][['dict']]      <- create_dict(spec[[entry]])
+    spec[[entry]][["dict"]]      <- create_dict(spec[[entry]])
     spec[[entry]][["data_info"]] <- data_info(spec[[entry]])
-    attr(spec[[entry]], 'data_info_ok') <- TRUE
+    attr(spec[[entry]], "data_info_ok") <- TRUE
     # COMBAK restructure to attribute on entry level instead of global for spec
   }else{
     
-    attr(spec[[entry]], 'data_info_ok') <- FALSE
+    attr(spec[[entry]], "data_info_ok") <- FALSE
     
   }
+  
+  martini_col_spec_required <- list(
+    "adsl"  = c("id"),
+    "bds"   = c("id", "value", "param"),
+    "occds" = c("id", "label")
+  )[[spec[[entry]][["type"]]]]
+  
+  spec[[entry]][["use_for_build"]] <- spec[[entry]][martini_col_spec_required] %>% 
+    purrr::map_lgl(~{!is.null(.x)}) %>% 
+    all()
 
   spec
   
@@ -129,7 +139,7 @@ check_adjust <- function(spec, entry, modifications){
   # check: protected entries ####
   protected <- c(
     "file", "data", "md5", "size", "data_info", 
-    "dict", "spec_id", "drop_list", "flag_table"
+    "dict", "use_for_build", "spec_id", "drop_list", "flag_table"
   )
   
   if (any(names(modifications) %in% protected)) {
@@ -195,7 +205,7 @@ check_adjust <- function(spec, entry, modifications){
   }
   
   
-   # check: column names correct ####
+  # check: column names correct ####
   entries_colnames <- c(
     # bds
     "param", "label", "unit", "time",
@@ -635,7 +645,7 @@ adjust_adsl_select <- function(
 ){
   
   # CHECK specified modifications ####
-  modifications  <- check_adjust_adsl_select(
+  modifications <- check_adjust_adsl_select(
     spec = spec, 
     add = add, 
     drop = drop, 

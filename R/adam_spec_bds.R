@@ -106,31 +106,15 @@ adam_spec_bds <- function(
   }
   
   # collect column name parameters ####
-  col_spec <- list(
-    "id"    = list(column = id,    required = TRUE),
-    "value" = list(column = value, required = TRUE),
-    "param" = list(column = param, required = TRUE),
-    "time"  = list(column = time,  required = FALSE),
-    "unit"  = list(column = unit,  required = FALSE),
-    "label" = list(column = label, required = FALSE)
+  prepared_cols <- prepare_col_selection(
+    data = data, 
+    id, value, param, time, unit, label,
+    type = c("bds"), 
+    call = rlang::caller_env(n = 5)
   )
   
-  col_select_raw <- purrr::imap(col_spec, ~{
-    check_role(
-      data = data, 
-      role = .y, 
-      column_spec = .x$column, 
-      required = .x$required,
-      type = "bds", 
-      call = rlang::caller_env(n = 4)
-    )
-  })
-  
-  col_select <- purrr::map(col_select_raw, "column")
-  
-  col_select[['label']] <- col_select[['label']] %||% col_select[['param']]
-  
-  use_for_build <- purrr::map_lgl(col_select_raw, "check_passed") %>% all()
+  use_for_build <- prepared_cols$use_for_build
+  col_select    <- prepared_cols$col_select
   
   # filter check ####
   
@@ -145,7 +129,7 @@ adam_spec_bds <- function(
   
   create_spec_out(
     file, data, md5, size, actual_filter, domain, col_select,
-    type = "bds", attach_data = attach_data
+    use_for_build, type = "bds", attach_data = attach_data
   )
   
 }

@@ -166,6 +166,86 @@ data_info <- function(spec_entry){
 
 cor_quiet <- purrr::quietly(stats::cor)
 
+
+#' Prepare column selection
+#' 
+#' Prepare column selection in `adam_spec_*()` functions for output. This 
+#' includes checks for column presence and guessing of column names based on
+#' ADaM standards and transformation into a standard format for further use 
+#' within the `adam_spec_*()` functions.
+#'
+#' @param ... objects containing the column names for the roles in the data set 
+#' following the standard naming convention in the `adam_spec_*()` functions
+#' (`id`, `value`, etc.).
+#' @inheritParams check_and_guess_column
+#'
+#' @return
+#' A list with `col_select` containing the column names for the roles in the
+#' data set and `use_for_build` indicating, if all checks on the columns have
+#' passed.
+
+prepare_col_selection <- function(
+    data, 
+    ..., 
+    type = c("adsl", "bds", "occds"), 
+    call = rlang::caller_env()
+){
+  
+  type <- rlang::arg_match(type)
+  
+  dots <- rlang::dots_list(..., .named = TRUE)
+  
+  # collect column name parameters ####
+  col_spec <- if (type == "adsl") {
+    list(
+      "id"  = list(column = dots$id,  required = TRUE),
+      "trt" = list(column = dots$trt, required = FALSE)
+    )
+  } else if (type == "bds") {
+    list(
+      "id"    = list(column = dots$id,    required = TRUE),
+      "value" = list(column = dots$value, required = TRUE),
+      "param" = list(column = dots$param, required = TRUE),
+      "time"  = list(column = dots$time,  required = FALSE),
+      "unit"  = list(column = dots$unit,  required = FALSE),
+      "label" = list(column = dots$label, required = FALSE)
+    )
+  } else if (type == "occds") {
+    list(
+      "id"     = list(column = dots$id,     required = TRUE),
+      "label"  = list(column = dots$label,  required = TRUE),
+      "value"  = list(column = dots$value,  required = FALSE),
+      "valuen" = list(column = dots$valuen, required = FALSE),
+      # only used for pre_study filter (to be deprecated)
+      "time"   = list(column = dots$time,   required = FALSE)
+    )
+  }
+
+  col_select_raw <- purrr::imap(col_spec, ~{
+    check_and_guess_column(
+      data = data, 
+      role = .y, 
+      column_spec = .x$column, 
+      required = .x$required,
+      type = type, 
+      call = call
+    )
+  })
+  
+  use_for_build <- purrr::map_lgl(col_select_raw, "check_passed") %>% all()
+  col_select    <- purrr::map(col_select_raw, "column")
+  
+  if (type == "bds") {
+    col_select[['label']] <- col_select[['label']] %||% col_select[['param']]
+  }
+  
+  list(
+    col_select = col_select,
+    use_for_build = use_for_build
+  )
+   
+}
+
 #' Check role specification for ADaM data set
 #' 
 #' Checks, if provided column for a role in an ADaM data set is present in the 
@@ -190,7 +270,7 @@ cor_quiet <- purrr::quietly(stats::cor)
 #' on the column have passed. Throws an informative warning if any check fails.
 #' 
 
-check_role <- function(
+check_and_guess_column <- function(
     data,
     role,
     column_spec = NULL,
@@ -274,17 +354,22 @@ check_role <- function(
 #' Create output object for build specifications
 #'
 #' @param ... output objects
-#' @inheritParams check_role
+#' @inheritParams check_and_guess_column
 #' @inheritParams adam_spec
 #'
 #' @return
 #' Output object of `adam_spec_*()`
 #' 
 #' @seealso 
+#' [adam_spec_adsl()]
 #' [adam_spec_bds()]
 #' [adam_spec_occds()]
 
-create_spec_out <- function(..., type = c("adsl", "bds", "occds"), attach_data = TRUE){
+create_spec_out <- function(
+    ...,
+    type = c("adsl", "bds", "occds"), 
+    attach_data = TRUE
+){
   
   type  <- rlang::arg_match(type)
   input <- rlang::dots_list(..., .named = TRUE)
@@ -303,7 +388,7 @@ create_spec_out <- function(..., type = c("adsl", "bds", "occds"), attach_data =
       input$col_select
     ) 
   
-  if(type == "bds"){
+  if (type == "bds") {
     # required by 'build_bds()'
     out$dupl_ctrl <- list(
       values_fn = NULL,
@@ -311,12 +396,12 @@ create_spec_out <- function(..., type = c("adsl", "bds", "occds"), attach_data =
     )
   }
   
-  if(type == "occds"){
+  if (type == "occds") {
     # required by 'build_occds()'
     out$count <- input$count
   }
   
-  if(type == "adsl"){
+  if (type == "adsl") {
     # required by 'build_adsl()'
     out$select        <- input$select_list
     out$factor_levels <- input$factor_levels
@@ -328,7 +413,9 @@ create_spec_out <- function(..., type = c("adsl", "bds", "occds"), attach_data =
   out$dict      <- create_dict(out)
   out$data_info <- data_info(out)
   
-  if(!attach_data){
+  out$use_for_build <- input$use_for_build
+  
+  if (!attach_data) {
     # only keep data, if 'attach_data = TRUE'
     # (was needed to create data info)
     out$data <- NULL
