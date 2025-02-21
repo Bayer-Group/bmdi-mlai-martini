@@ -17,7 +17,7 @@
 #'  If both \code{keep} and \code{drop} are specified, only \code{keep} will be used.
 #'  Both default to NULL, which means that all (known) domains are included.
 #' @param attach_data boolean indicating whether the imported raw data is included in 
-#' the output. Defaults to FALSE.
+#' the output. Defaults to TRUE.
 #' @param id,trt id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()} 
 #' for details).
 #' @param pre_study boolean. Include only pre-study events from occurrence data sets 
@@ -73,7 +73,7 @@ adam_spec <- function(
   keep        = NULL,
   drop        = NULL,
   pre_study   = FALSE,
-  attach_data = FALSE,
+  attach_data = TRUE,
   id          = "SUBJID", 
   #TODO switch default to USUBJID
   # ADaMIG Within a given study, USUBJID is the key variable that links the ADSL to other datasets (both SDTM and ADaM).

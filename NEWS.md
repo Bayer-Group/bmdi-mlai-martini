@@ -8,6 +8,11 @@ the structure of `fct_levels` entry was changed to name value pairs
 * added function `adjust_spec_filter()`, removing `append` argument from
 `adjust_spec()`
 
+* `adjust_spec()` now provides extensive checks of user defined modifications to 
+a `spec` object. Part of them relies on the data being available, which is why
+we strongly recommend to attach data in `adam_spec()`, if possible, which is 
+why the default for `attach_data` in `adam_spec()` is now `TRUE`
+
 # martini 0.6.3
 
 * preparations for bay-open: added code of conduct, updated license and added code owner and contributing information

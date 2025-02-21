@@ -9,8 +9,6 @@ test_that("adam_spec() works", {
     c(ads_spec %>% class),
     c("martini_spec", "list")
   )
-
-  ads_spec     <- adam_spec(ads_path, filter = "ABLFL == 'Y'")
   
 })
 
@@ -67,7 +65,7 @@ test_that("adam_spec snapshots", {
     ads_spec
   )
   
-  ads_spec_mod <- ads_spec
+  ads_spec_mod <- adam_spec(ads_path, attach_data = FALSE)
   # remove class to avoid print method
   class(ads_spec_mod) <- NULL
   # remove file path information (will be a different tmp file path each time the test is run)
@@ -92,8 +90,8 @@ test_that("adam_spec rds/sas selection works", {
   ads_path <- test_path('sas/file_ext_test')
   
   # create prep specification
-  spec_sas_only   <- adam_spec(ads_path, file_ext = 'sas7bdat')
-  spec_rds_only   <- adam_spec(ads_path, file_ext = 'rds')
+  spec_sas_only   <- adam_spec(ads_path, file_ext = 'sas7bdat', attach_data = FALSE)
+  spec_rds_only   <- adam_spec(ads_path, file_ext = 'rds', attach_data = FALSE)
   
   expect_true(spec_rds_only %>% purrr::map_chr(~{.x$file %>% purrr::map_chr(tools::file_ext)}) %>% {. == 'rds'}      %>% all())
   expect_true(spec_sas_only %>% purrr::map_chr(~{.x$file %>% purrr::map_chr(tools::file_ext)}) %>% {. == 'sas7bdat'} %>% all())
