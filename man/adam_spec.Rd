@@ -10,7 +10,7 @@ adam_spec(
   keep = NULL,
   drop = NULL,
   pre_study = FALSE,
-  attach_data = FALSE,
+  attach_data = TRUE,
   id = "SUBJID",
   trt = "TRT01A",
   add_bds = NULL,
@@ -34,7 +34,7 @@ Both default to NULL, which means that all (known) domains are included.}
 (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.}
 
 \item{attach_data}{boolean indicating whether the imported raw data is included in
-the output. Defaults to FALSE.}
+the output. Defaults to TRUE.}
 
 \item{id, trt}{id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()}
 for details).}

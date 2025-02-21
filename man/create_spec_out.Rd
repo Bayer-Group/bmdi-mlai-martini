@@ -12,7 +12,7 @@ create_spec_out(..., type = c("adsl", "bds", "occds"), attach_data = TRUE)
 \item{type}{character. either "bds" or "occds"}
 
 \item{attach_data}{boolean indicating whether the imported raw data is included in
-the output. Defaults to FALSE.}
+the output. Defaults to TRUE.}
 }
 \value{
 Output object of \verb{adam_spec_*()}
@@ -21,6 +21,7 @@ Output object of \verb{adam_spec_*()}
 Create output object for build specifications
 }
 \seealso{
+\code{\link[=adam_spec_adsl]{adam_spec_adsl()}}
 \code{\link[=adam_spec_bds]{adam_spec_bds()}}
 \code{\link[=adam_spec_occds]{adam_spec_occds()}}
 }
