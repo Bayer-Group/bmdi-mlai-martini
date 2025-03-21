@@ -196,6 +196,7 @@ prepare_col_selection <- function(
   dots <- rlang::dots_list(..., .named = TRUE)
   
   # collect column name parameters ####
+  # TODO use `spec_cols_required` object
   col_spec <- if (type == "adsl") {
     list(
       "id"  = list(column = dots$id,  required = TRUE),

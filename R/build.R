@@ -65,24 +65,69 @@ build <- function(
 ){
   
   # add names to the spec if none are provided
-  if(is.null(names(spec))) names(spec) <- rep('', length(spec))
+  if(is.null(names(spec))) names(spec) <- rep("", length(spec))
   
   for (i in 1:length(spec)){
-    if(is.null(spec[[i]]$"spec_id")) {
-      spec[[i]]$"spec_id" <- names(spec)[i]
-    }
+    spec[[i]]$"spec_id" <- spec[[i]]$"spec_id" %||% names(spec)[i]
     if(spec[[i]]$type == "bds") {
       spec[[i]][["rm"]] <- rm
     }
   }
   
+  
+  not_used_for_build <- !purrr::map_lgl(spec, ~{
+    if (is.null(.x[['use_for_build']])) TRUE else .x[['use_for_build']]
+  })
+  
+  msg_not_used_for_build_shared <- c(
+    "i" = paste(
+      "Only spec entries that contain information on all necessary key",
+      "columns can be used to build a wide data set."
+    ), 
+    "*" = paste(
+      "Check the object {.code spec_cols_required} for a list of the", 
+      "necessary columns."
+    )
+  )
+  msg_not_used_for_build_error <- c(
+    "x" = "None of the spec entries can used for build.",
+    "i" = "The following entries cannot be used for build: {names(spec)[not_used_for_build]}"
+  )
+    
+  if (all(not_used_for_build)) {
+    cli::cli_abort(
+      msg_not_used_for_build_shared %>%  
+        append(msg_not_used_for_build_error['x'], after = 1)
+    )
+  } else if(any(not_used_for_build)){
+    cli::cli_inform(
+      msg_not_used_for_build_shared %>%  
+        append(msg_not_used_for_build_error['i'], after = 1)
+    )
+  }
+  
+  if (all(not_used_for_build)) {
+    cli::cli_abort(c(
+      "i" = paste(
+        "Only spec entries that contain information on all necessary key",
+        "columns can be used to build a wide data set."
+      ),
+      "x" = "None of the spec entries can used for build.",
+      "*" = paste(
+        "Check the object {.code spec_cols_required} for a list of the", 
+        "necessary columns."
+      )
+    ))
+  }
+  
+  spec_build <- spec %>% purrr::discard(not_used_for_build)
+  
   # call the appropriate build_*() function
-  built_data <- purrr::map(spec,  ~{
+  built_data <- purrr::map(spec_build,  ~{
     
     do.call( paste0('build_', .x[['type']]), list(.x))
     
   })
-  
   
   # create output object ####
     
@@ -94,7 +139,7 @@ build <- function(
     dplyr::rename('old_name' = 'value') %>% 
     dplyr::add_count(old_name) %>% 
     dplyr::filter(n > 1) %>% 
-    dplyr::filter(! old_name %in% c('.id')) %>% 
+    dplyr::filter(!old_name %in% c('.id')) %>% 
     dplyr::select(-n)
   
   built_data <- purrr::imap(built_data, ~{
@@ -156,8 +201,8 @@ build <- function(
   # identify subjects from selected data sets to filter prepped_join
   # (if join is not a fct)
   # TODO warn if built data has 0 rows (e.g. by mal-adapted spec)
-  if(! is.function(join)){
-    if(any(join %in% names(built_data) )) {
+  if (!is.function(join)) {
+    if (any(join %in% names(built_data))) {
       join_ids <- purrr::map(built_data[join %>%  intersect(names(built_data))], ~.[['data']]) %>% 
         purrr::reduce(dplyr::full_join, by = '.id') %>% 
         dplyr::pull(.id)
@@ -171,7 +216,7 @@ build <- function(
   
   # combine and filter
   prepped_join <- purrr::map(built_data, 'data') %>% 
-    {if(is.function(join)){
+    {if (is.function(join)) {
       purrr::reduce(., function(x1, x2){
         join(
           x1, x2,  
