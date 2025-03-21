@@ -77,6 +77,8 @@ logistic_mult_b <- 1.5
 
 # ... simulate outcome ####
 
+set.seed(1840)
+
 ## ... ... classification ####
 martini_outc_class <- martini:::simulate_outcome(
   X, beta,
