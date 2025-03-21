@@ -166,8 +166,8 @@ purrr::walk(c(
   "martini_ml_surv"
 ), ~{
   waldo::compare(
-    cur_pkg_data(.x),
-    get(.x),
+    cur_pkg_data(.x) %>% magrittr::inset("prep_recipe", NULL),
+    get(.x) %>% magrittr::inset("prep_recipe", NULL),
     ignore_formula_env = TRUE,
     max_diffs = Inf,
   ) %>% print()
