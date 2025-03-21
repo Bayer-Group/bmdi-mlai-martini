@@ -161,6 +161,9 @@
       [1] 7
       
       
+      $adsl$use_for_build
+      [1] TRUE
+      
       attr(,"filter_ok")
       [1] TRUE
       attr(,"data_info_ok")
@@ -225,6 +228,9 @@
       $adlb$data_info$ncol
       [1] 3
       
+      
+      $adlb$use_for_build
+      [1] TRUE
       
       attr(,"filter_ok")
       [1] TRUE
@@ -293,6 +299,9 @@
       [1] 5
       
       
+      $advs$use_for_build
+      [1] TRUE
+      
       attr(,"filter_ok")
       [1] TRUE
       attr(,"data_info_ok")
@@ -348,6 +357,9 @@
       $admh$data_info$ncol
       [1] 2
       
+      
+      $admh$use_for_build
+      [1] TRUE
       
       attr(,"filter_ok")
       [1] TRUE
