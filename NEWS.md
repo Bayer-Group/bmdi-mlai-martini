@@ -1,7 +1,3 @@
-
-# martini (development version)
-
-
 # martini 0.6.4
 
 major changes
