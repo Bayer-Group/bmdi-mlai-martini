@@ -58,8 +58,7 @@ Suggests:
     withr,
     spelling
 Remotes:
-    cran/labelled@2.13.0,
-    cran/tibble@3.2.1
+    cran/labelled@2.13.0
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
