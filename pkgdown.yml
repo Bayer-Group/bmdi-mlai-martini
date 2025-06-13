@@ -1,0 +1,10 @@
+pandoc: 3.1.11
+pkgdown: 2.1.3
+pkgdown_sha: ~
+articles:
+  prepare-adam-data-hands-on: prepare-adam-data-hands-on.html
+  prepare-adam-data: prepare-adam-data.html
+last_built: 2025-06-13T15:44Z
+urls:
+  reference: https://curly-adventure-5mko88j.pages.github.io/reference
+  article: https://curly-adventure-5mko88j.pages.github.io/articles
