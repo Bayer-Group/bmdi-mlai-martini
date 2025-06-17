@@ -11,8 +11,8 @@ Prepare module of the BMDI MLAI pipeline. It contains functions to conveniently 
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://curly-adventure-5mko88j.pages.github.io/}
-  \item Report bugs at \url{https://github.com/bayer-int/bmdi-mlai-martini/issues/new}
+  \item \url{https://bayer-group.github.io/bmdi-mlai-martini/}
+  \item Report bugs at \url{https://github.com/Bayer-Group/bmdi-mlai-martini/issues/new}
 }
 
 }

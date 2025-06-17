@@ -18,7 +18,7 @@ Description: Prepare module of the BMDI MLAI pipeline. It contains
     and occds) into a data object that can be used for machine learning,
     e.g. using the BMDI MLAI pipeline.
 License: GPL-3
-BugReports: https://github.com/bayer-int/bmdi-mlai-martini/issues/new
+BugReports: https://github.com/Bayer-Group/bmdi-mlai-martini/issues/new
 Depends:
     R (>= 4.1)
 Imports:
@@ -66,5 +66,5 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-URL: https://curly-adventure-5mko88j.pages.github.io/
+URL: https://bayer-group.github.io/bmdi-mlai-martini/
 Language: en-US

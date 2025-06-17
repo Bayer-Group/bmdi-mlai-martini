@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/bayer-int/bmdi-mlai-martini/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/bayer-int/bmdi-mlai-martini/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/Bayer-Group/bmdi-mlai-martini/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Bayer-Group/bmdi-mlai-martini/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 martini is the data preparation module of the BMDI MLAI pipeline. The
@@ -18,7 +18,7 @@ You can install the development version of martini like so:
 
 ``` r
 devtools::install_git(
-  "https://github.com/bayer-int/bmdi-mlai-martini",
+  "https://github.com/Bayer-Group/bmdi-mlai-martini",
   dependencies    = TRUE,
   build_vignettes = TRUE
 )
