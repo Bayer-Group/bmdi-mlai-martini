@@ -1,4 +1,12 @@
 url: https://bayer-group.github.io/bmdi-mlai-martini/
 template:
   bootstrap: 5
-
+articles:
+  - title: "Getting Started"
+    navbar: "Introduction"
+    contents:
+      - intro-to-martini
+  - title: "Hands-on tutorials"
+    navbar: "Tutorials"
+    contents:
+      - prepare-adam-data-hands-on

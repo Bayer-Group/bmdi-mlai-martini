@@ -1,10 +1,9 @@
 ---
-title: "MARTINI - MLAI pipeline prepare module"
+title: "Introduction to martini"
 subtitle: "Prepare ADaM data for Machine Learning"
-author: "Maike Ahrens, Sebastian Voss"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{MARTINI - MLAI pipeline prepare module}
+  %\VignetteIndexEntry{Introduction to martini}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -1,10 +1,9 @@
 ---
-title: "MARTINI - MLAI pipeline prepare module"
-subtitle: "A hands-on tutorial on the preparation of ADaM data for Machine Learning"
-author: "Maike Ahrens, Sebastian Voss"
+title: "Preparation of ADaM data for Machine Learning"
+subtitle: "A hands-on tutorial"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{MARTINI - MLAI pipeline prepare module (hands-on)}
+  %\VignetteIndexEntry{Preparation of ADaM data for Machine Learning}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -30,14 +29,19 @@ knitr::opts_chunk$set(
 
 **Package**
 
-The `MARTINIprep` package is the first part of the BMDI MARTINI pipeline, which aims at assessing the relation of baseline information from clinical domains with a given outcome. 
-`MARTINIprep` provides a convenient framework to gather information from different clinical data sets and to combine them into a machine-learning-ready data set.
-The output is meant to be used with packages 
-<!-- TODO adjust package names-->
-`MARTINImodtune` and `MARTINIreport`,
-both included in the `MARTINI` meta package (to come).
+The `martini` package is part of a pipeline for machine learning and artificial 
+intelligence, that aims to assess the relation of information stored in
+clinical study data with a given outcome while meeting the validation and 
+documentation standards for software that is used in clinical trials.  
 
-The automated part of the preparation workflow is handled by the three main functions of `MARTINIprep`, namely
+`martini` provides a convenient framework to gather information 
+from different clinical data sets and to combine them into a 
+machine-learning-ready data set. The output is designed to be handed over to
+internal down-stream packages for modelling and reporting, but can of course 
+also be used with the modelling framework of your choice.  
+
+The automated part of the preparation workflow is handled by the three main 
+functions of `martini`, namely
 
 * `adam_spec()`, 
 * `ads_build()`,  
@@ -60,7 +64,7 @@ please refer to the individual help pages for full details.
 
 **Vignette**
 
-This vignette serves as a hands-on tutorial on the usage of the `MARTINIprep` package. 
+This vignette serves as a hands-on tutorial on the usage of the `martini` package. 
 It clearly outlines the required steps to get from an ads folder to a 
 machine learning data set, listing a number of commonly required adaptations along the way. 
 <!-- gives valuable advice -->
@@ -98,7 +102,7 @@ The chart below highlights the main workflow and lists related
 helper functions (mostly internal).
 
 
-```{r, out.width='100%', eval = TRUE, echo = FALSE, fig.cap = 'Overview of `MARTINIprep` functions. The basic workflow from ads path to ML data object is accomplished by the main functions (turquoise), which make use of the (mostly internal) helper functions shown below. '}
+```{r, out.width='100%', eval = TRUE, echo = FALSE, fig.cap = 'Overview of `martini` functions. The basic workflow from ads path to ML data object is accomplished by the main functions (turquoise), which make use of the (mostly internal) helper functions shown below. '}
 
 knitr::include_graphics('img/martini-high-level.png')
 ```

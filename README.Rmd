@@ -14,37 +14,53 @@ knitr::opts_chunk$set(
 )
 ```
 
-# martini
+## martini
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/Bayer-Group/bmdi-mlai-martini/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Bayer-Group/bmdi-mlai-martini/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-martini is the data preparation module of the BMDI MLAI pipeline.
-The goal of martini is to enable the creation of a machine learning ready data set for use with the substream modules.
+`{martini}` provides a convenient framework to collect data from multiple 
+clinical trial data sets following the ADaM standard and create a 
+machine-learning-ready data set.  
+
+It is part of a set of packages that form a pipeline for machine learning and 
+artificial intelligence applications in clinical research that offers a 
+streamlined and standardized way to assess relationships between clinical study 
+data and a specified outcome while aligning with validation and documentation 
+standards expected for software used in clinical trials.  
+
+While designed to interface smoothly with internal downstream modeling and 
+reporting tools, the outputs from `{martini}` can of course also be used with any 
+ML framework of your choice.
+
+The core of `{martini}` revolves around three key steps, each represent by one 
+main function:  
+
+- `spec()` – Specify the relevant steps to collect and combine the relevant data  
+- `build()` – Build one raw analysis dataset in wide format with the relevant clinical features  
+- `prepare_ml()` – Prepare a clean, analysis-ready data object for modeling  
+
 
 ## Installation
 
-You can install the development version of martini like so:
+To install the latest version of `martini` from GitHub:
 
 ```{r, eval=FALSE}
-devtools::install_git(
+remotes::install_git(
   "https://github.com/Bayer-Group/bmdi-mlai-martini",
   dependencies    = TRUE,
   build_vignettes = TRUE
 )
 ```
 
-<!-- # TODO -->
-<!-- or from artifactory -->
 
-## Example
+## Documentation
 
-Please refer to the 'hands-on' vignette in the package 
+Please refer to the package vignettes for an exemplary analysis either by 
+running the following code or by opening the  
+[pkgdown site](https://bayer-group.github.io/bmdi-mlai-martini/).
 
-
-
-```{r}
-vignette('hands-on', package = 'martini')
+```{r eval = FALSE}
+vignette(package = "martini")
 ```
-
