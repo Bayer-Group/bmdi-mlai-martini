@@ -296,7 +296,7 @@ check_adjust <- function(spec, entry, modifications){
       # values_fn: function(name)
       
       # check if values_fn is a function
-      check_passed_valuesfn <- rlang::is_function(modifications[[dupl_ctrl]]$values_fn)
+      check_passed_valuesfn <- rlang::is_function(modifications[["dupl_ctrl"]]$values_fn)
       # NOTE check if output length is 1 (works for either num or categorical)
       if (!check_passed_valuesfn) {
         
@@ -310,7 +310,7 @@ check_adjust <- function(spec, entry, modifications){
       
       # check if arrange has length 1
       # TODO if data is available, check if arrange can be applied without error
-      check_passed_arrange <- length(modifications[[dupl_ctrl]]$arrange) == 1
+      check_passed_arrange <- length(modifications[["dupl_ctrl"]]$arrange) == 1
       if (!check_passed_arrange) {
         
         cli::cli_warn(c(
