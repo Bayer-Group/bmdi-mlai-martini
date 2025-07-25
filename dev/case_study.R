@@ -1,5 +1,5 @@
 
-options(pillar.width = 60, pillar.print_min = 7)
+options(pillar.width = 60, pillar.print_min = 5)
 library(tidyverse)
 
 library(martini)
@@ -23,7 +23,9 @@ filters <- c(
   "ITTFL == 'Y'",
   "!is.na(TRT01A)",  
   # exclude a single parameter from 'advs'
-  "PARAMDC != 'BMI'"
+  "PARAMDC != 'BMI'",
+  # account for pre-defined event set
+  "MHOCCUR == 'Y'"
 )
 
 # create specification again
@@ -59,7 +61,7 @@ data_prep_spec <- data_prep_spec %>%
     entry = "advs", 
     dupl_ctrl = list(
       # in case of duplicated values, use the last one...
-      values_fn = function(x) tail(x, 1),
+      values_fn = \(x) tail(x, 1),
       # ... after sorting by measurement date/time
       arrange = "VSDT"
     )
@@ -74,6 +76,29 @@ data_feat_wide
 # dictionary
 attr(data_feat_wide, "dict")
 
+# add new variable # https://en.wikipedia.org/wiki/Harris%E2%80%93Benedict_equation
+data_feat_mod <- data_feat_wide %>% 
+  mutate(
+    HEIGHT = sqrt(WEIGHT / BMI),
+    BMR = (10 * WEIGHT) + (6.25 * HEIGHT) - (5 * AGE) + if_else(SEX == 'M', 5, -161)
+  ) 
+
+attr(data_feat_mod, 'dict') <- attr(data_feat_mod, 'dict') %>% 
+  add_row(
+    param = 'HEIGHT',
+    label = 'Height', 
+    unit  = 'cm'
+  ) %>% 
+  add_row(
+    param = 'BMR',
+    label = 'Basal metabolic rate (Harris–Benedict equation, 1990)',
+    unit  = 'kcal'
+  )
+attr(data_feat_mod, 'dict') %>% tail()
+
+# check for low frequency classes before proceeding to prepare_ml()
+check_freq(data_feat_wide, thres = ceiling(nrow(data_feat_wide)/10))
+
 # example classification outcome object
 martini_outc_class
 
@@ -82,12 +107,12 @@ data_ml <- prepare_ml(
   # feature data
   feature = data_feat_wide,
   # outcome data
-  outcome = martini_outc_class, 
+  outcome = martini_outc_regr, 
   outcome_name = ".out",
   # training-test-split
   train_prop = 0.8,
-  # keep only one representative of feature-pairs with a correlation > 0.5 ...
-  thres_corr = .5,
+  # keep only one representative of feature-groups with a correlation > 0.8 ...
+  thres_corr = .8,
   # ... but make sure to keep these
   vars_keep_corr = c("BMI", "HB", "BPSYS"),
   # impute missing values (knn) ...
@@ -104,7 +129,7 @@ data_ml$data_prep$train
 data_ml$removed$rows %>% 
   map(~{if (!is.null(.x)) paste(.x, collapse = ", ") else NA_character_}) %>% 
   unlist() %>% 
-  enframe(name = "reason", value = "variables")
+  enframe(name = "reason", value = "identifier")
 
 # information on removed columns
 data_ml$removed$cols %>% 
@@ -118,3 +143,10 @@ data_ml$high_corr
 # full preparation recipe
 data_ml$prep_recipe
 
+data_ml$prep_recipe %>% broom::tidy()
+
+data_ml$prep_params |>
+  map('text') |>
+  compact() |>
+  set_names('*') |>
+  cli::cli_bullets()
