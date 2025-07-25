@@ -111,8 +111,8 @@ data_ml <- prepare_ml(
   outcome_name = ".out",
   # training-test-split
   train_prop = 0.8,
-  # keep only one representative of feature-groups with a correlation > 0.8 ...
-  thres_corr = .8,
+  # keep only one representative of feature-groups with a correlation > 0.5 ...
+  thres_corr = 0.5,
   # ... but make sure to keep these
   vars_keep_corr = c("BMI", "HB", "BPSYS"),
   # impute missing values (knn) ...
