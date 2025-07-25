@@ -1,5 +1,5 @@
 
-options(pillar.width = 60, pillar.print_min = 5)
+options(pillar.width = 70, pillar.print_min = 5)
 library(tidyverse)
 
 library(martini)
@@ -40,12 +40,12 @@ data_prep_spec
 # inspect specified column selection for 'adsl'
 data_prep_spec$adsl$select
 
-data_prep_spec <- data_prep_spec %>% 
+data_prep_spec <- data_prep_spec |> 
   # correct version of the filter that could not be applied 
-  adjust_filter(filter = c("PARAMCD != 'BMI'")) %>% 
+  adjust_filter(filter = c("PARAMCD != 'BMI'")) |> 
   # AGEGR01 is a grouped version of AGE
-  adjust_adsl_select(drop = "AGEGR01") %>% 
-  # we are interested in a finer granularity of the mdeical history
+  adjust_adsl_select(drop = "AGEGR01") |> 
+  # we are interested in a finer granularity of the medical history
   adjust_spec("admh", label = "MHDECOD")
 
 data_prep_spec
@@ -77,24 +77,25 @@ data_feat_wide
 attr(data_feat_wide, "dict")
 
 # add new variable # https://en.wikipedia.org/wiki/Harris%E2%80%93Benedict_equation
-data_feat_mod <- data_feat_wide %>% 
+data_feat_mod <- data_feat_wide |> 
   mutate(
     HEIGHT = sqrt(WEIGHT / BMI),
     BMR = (10 * WEIGHT) + (6.25 * HEIGHT) - (5 * AGE) + if_else(SEX == 'M', 5, -161)
   ) 
 
-attr(data_feat_mod, 'dict') <- attr(data_feat_mod, 'dict') %>% 
+attr(data_feat_mod, 'dict') <- attr(data_feat_mod, 'dict') |> 
   add_row(
     param = 'HEIGHT',
     label = 'Height', 
     unit  = 'cm'
-  ) %>% 
+  ) |> 
   add_row(
     param = 'BMR',
     label = 'Basal metabolic rate (Harris–Benedict equation, 1990)',
     unit  = 'kcal'
   )
-attr(data_feat_mod, 'dict') %>% tail()
+
+attr(data_feat_mod, 'dict') |> tail()
 
 # check for low frequency classes before proceeding to prepare_ml()
 check_freq(data_feat_wide, thres = ceiling(nrow(data_feat_wide)/10))
@@ -126,15 +127,15 @@ data_ml <- prepare_ml(
 data_ml$data_prep$train
 
 # information on removed rows
-data_ml$removed$rows %>% 
-  map(~{if (!is.null(.x)) paste(.x, collapse = ", ") else NA_character_}) %>% 
-  unlist() %>% 
+data_ml$removed$rows |> 
+  map(\(x) if (!is.null(x)) paste(x, collapse = ", ") else NA_character_) |> 
+  unlist() |> 
   enframe(name = "reason", value = "identifier")
 
 # information on removed columns
-data_ml$removed$cols %>% 
-  map(~{if (!is.null(.x)) paste(.x, collapse = ", ") else NA_character_}) %>% 
-  unlist() %>% 
+data_ml$removed$cols |>  
+  map(\(x) if (!is.null(x)) paste(x, collapse = ", ") else NA_character_) |> 
+  unlist() |> 
   enframe(name = "reason", value = "variables")
 
 # variable pairs that exceed the correlation threshold
@@ -143,10 +144,10 @@ data_ml$high_corr
 # full preparation recipe
 data_ml$prep_recipe
 
-data_ml$prep_recipe %>% broom::tidy()
+data_ml$prep_recipe |> broom::tidy()
 
 data_ml$prep_params |>
-  map('text') |>
+  map("text") |>
   compact() |>
   set_names('*') |>
   cli::cli_bullets()
