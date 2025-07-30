@@ -106,12 +106,6 @@ prepare_ml_vars <- function(
     }
   }
   
-  # imputation/exclusion based on proportion available ####
-  # ... prop_available: calculate proportion of missing values per column ####
-  prop_available <- data %>% 
-    purrr::map_dbl(~ mean(!is.na(.))) %>% 
-    tibble::enframe()
-  
   # output ####
   list(
     count    = vars_count,
