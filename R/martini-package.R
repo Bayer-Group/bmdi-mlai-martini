@@ -5,6 +5,10 @@
 # roxygen namespace tags. Modify with care!
 ## usethis namespace: start
 #' @importFrom magrittr %>%
+#' @importFrom recipes bake
+#' @importFrom recipes prep
+#' @importFrom recipes tidy
+#' @importFrom recipes tunable
 #' @importFrom rlang %||%
 #' @importFrom stats na.omit na.exclude quantile as.formula
 #' @importFrom utils head tail
