@@ -14,6 +14,8 @@ step_corr_keep(
   method = "pearson",
   keep = NULL,
   removals = NULL,
+  high_corr = NULL,
+  columns_logged = NULL,
   skip = FALSE,
   id = recipes::rand_id("corr_keep")
 )

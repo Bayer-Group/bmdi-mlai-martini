@@ -95,25 +95,10 @@ step_corr_keep <- function(
   keep = NULL, #vars_keep_corr,
   removals = NULL,
   high_corr = NULL, # check if necessary
+  columns_logged = NULL,
   skip = FALSE,
   id = recipes::rand_id("corr_keep")
 ) {
-  
-  # check for previous log step
-  # note: we cannot check for previous backtrafo
-  
-  columns_logged <- character(0)
-  if (any('log' %in% tidy(recipe)$type)) {
-    
-    number_log_step <- recipe %>% 
-      tidy() %>% 
-      pull(type) %>% 
-      magrittr::equals('log') %>% 
-      which() %>% 
-      tail(1)
-    columns_logged <- recipe$steps[[number_log_step]]$columns
-      
-  }
   
   recipes::add_step(
     recipe,
@@ -248,7 +233,7 @@ corr_keep_filter <-
   }
 
 #' @exportS3Method 
-prep.step_corr_keep <- function(x, training, info = NULL, ...) {
+prep.step_corr_keep <- function(x, recipe, training, info = NULL, ...) {
   col_names <- recipes::recipes_eval_select(x$terms, training, info)
   recipes::check_type(training[, col_names], types = c("double", "integer"))
   recipes:::check_number_decimal(x$threshold, min = 0, max = 1, arg = "threshold")
@@ -288,7 +273,46 @@ prep.step_corr_keep <- function(x, training, info = NULL, ...) {
     filter <- character(0)
     high_corr <- NULL
   }
-
+  
+  print(recipe)
+  
+  # Iterate through previous steps to find `step_log` instances
+  log_info_list <- list()
+  processed_columns <- character(0) # Keep track of columns already handled by a log step
+  
+  for (i in seq_along(current_recipe$steps)) {
+    current_step_obj <- current_recipe$steps[[i]]
+    
+    # Check if the step is of type 'log'
+    if (inherits(current_step_obj$actions$op, "step_log")) {
+      # Ensure the step is trained and has columns defined
+      if (recipes:::is_trained(current_step_obj$actions$op) &&
+          !is.null(current_step_obj$actions$op$columns) &&
+          length(current_step_obj$actions$op$columns) > 0) {
+        
+        # Get the columns, base, and offset from the step_log
+        log_cols <- current_step_obj$actions$op$columns
+        log_base <- current_step_obj$actions$op$base
+        log_offset <- current_step_obj$actions$op$offset
+        log_signed <- current_step_obj$actions$op$signed # Also check for signed log
+        
+        # Add unique columns to our list of processed columns
+        new_logged_cols <- setdiff(log_cols, processed_columns)
+        
+        if (length(new_logged_cols) > 0) {
+          for (col in new_logged_cols) {
+            log_info_list[[col]] <- list(
+              base = log_base,
+              offset = log_offset,
+              signed = log_signed # Store signed status
+            )
+          }
+          processed_columns <- union(processed_columns, new_logged_cols)
+        }
+      }
+    }
+  }
+  
   step_corr_keep_new(
     terms = x$terms,
     role = x$role,
@@ -299,7 +323,7 @@ prep.step_corr_keep <- function(x, training, info = NULL, ...) {
     keep = x$keep,
     removals = filter,
     high_corr = high_corr,
-    columns_logged = x$columns_logged,
+    columns_logged = names(log_info_list),
     skip = x$skip,
     id = x$id,
     case_weights = were_weights_used
