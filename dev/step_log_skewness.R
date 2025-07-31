@@ -71,40 +71,33 @@ step_log_skewed_undo <- function(
   ...,
   role = NA,
   trained = FALSE,
-  threshold = 0.9,
-  use = "pairwise.complete.obs",
-  method = "pearson",
-  keep = NULL, #vars_keep_corr,
-  removals = NULL,
-  high_corr = NULL, # check if necessary
-  step_backtrafo = NULL,
+  id_log_skewed = NULL,
   skip = FALSE,
   id = recipes::rand_id("log_skewed_undo")
 ) {
   
-  # check for previous log step
-  # note: we cannot check for previous backtrafo
-  
+   
   columns_logged <- character(0)
   if (any('log' %in% tidy(recipe)$type)) {
     
-    # identify last log step
-    if(is.null(step_backtrafo)) {
-    number_log_step <- recipe %>%
-      tidy() %>%
-      pull(type) %>%
-      magrittr::equals('log') %>%
-      which() %>%
-      tail(1)
-    } else{
-    # find specified log step
-    number_log_step <- recipe %>% 
-      tidy() %>% 
-      filter(id == step_backtrafo) %>%
-      pull(number)
+    # identify last log step from unprepped recipe
+    number_log_step <- if (use_specified) {
+       recipe %>% 
+         tidy() %>% 
+         filter(id == id_log_skewed) %>%
+         pull(number)
+     } else {
+       recipe %>%
+         tidy() %>%
+         pull(type) %>%
+         magrittr::equals('log') %>%
+         which() %>%
+         tail(1)
     }
+    
     columns_logged <- recipe %>%
-      prep() %>%
+      # potentially expensive, but hey...
+      prep() %>% 
       magrittr::extract2("steps") %>%
       magrittr::extract2(number_log_step) %>%
       tidy() %>%
@@ -118,13 +111,7 @@ step_log_skewed_undo <- function(
       terms = rlang::enquos(...),
       role = role,
       trained = trained,
-      threshold = threshold,
-      use = use,
-      method = method,
-      keep = keep,
-      removals = removals,
-      high_corr = high_corr,
-      columns_logged = columns_logged,
+      
       skip = skip,
       id = id,
       case_weights = NULL
