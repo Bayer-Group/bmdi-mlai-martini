@@ -32,4 +32,17 @@ test_that("step_log_skew() works", {
   
   expect_equal(X_baked, X_mutate, ignore_attr = TRUE)
   
+  # also works, when no skewed variables are present
+  rec_noskew_prep <- recipes::recipe(
+    ~ ., 
+    data = dplyr::select(X, tidyselect::starts_with("sym"))
+  ) %>% 
+    step_log_skew(
+      recipes::all_numeric_predictors(), 
+      skewness = 2
+    ) %>% 
+    prep()
+  
+  expect_length(rec_noskew_prep$steps[[1]]$columns, 0)
+  
 })
