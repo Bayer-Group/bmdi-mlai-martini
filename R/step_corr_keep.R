@@ -94,10 +94,27 @@ step_corr_keep <- function(
   method = "pearson",
   keep = NULL, #vars_keep_corr,
   removals = NULL,
-  #high_corr = NULL,
+  high_corr = NULL, # check if necessary
   skip = FALSE,
   id = recipes::rand_id("corr_keep")
 ) {
+  
+  # check for previous log step
+  # note: we cannot check for previous backtrafo
+  
+  columns_logged <- character(0)
+  if (any('log' %in% tidy(recipe)$type)) {
+    
+    number_log_step <- recipe %>% 
+      tidy() %>% 
+      pull(type) %>% 
+      magrittr::equals('log') %>% 
+      which() %>% 
+      tail(1)
+    columns_logged <- recipe$steps[[number_log_step]]$columns
+      
+  }
+  
   recipes::add_step(
     recipe,
     step_corr_keep_new(
@@ -109,7 +126,8 @@ step_corr_keep <- function(
       method = method,
       keep = keep,
       removals = removals,
-      high_corr = NULL,
+      high_corr = high_corr,
+      columns_logged = columns_logged,
       skip = skip,
       id = id,
       case_weights = NULL
@@ -128,6 +146,7 @@ step_corr_keep_new <-
     keep,
     removals,
     high_corr,
+    columns_logged,
     skip,
     id,
     case_weights
@@ -143,6 +162,7 @@ step_corr_keep_new <-
       keep = keep,
       removals = removals,
       high_corr = high_corr,
+      columns_logged = columns_logged,
       skip = skip,
       id = id,
       case_weights = case_weights
@@ -279,6 +299,7 @@ prep.step_corr_keep <- function(x, training, info = NULL, ...) {
     keep = x$keep,
     removals = filter,
     high_corr = high_corr,
+    columns_logged = x$columns_logged,
     skip = x$skip,
     id = x$id,
     case_weights = were_weights_used
