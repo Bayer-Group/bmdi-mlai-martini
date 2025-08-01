@@ -1,15 +1,20 @@
-#' High correlation filter with a twist
+#' High correlation filter
 #'
 #' `step_corr_keep()` creates a *specification* of a recipe step that will
 #' potentially remove variables that have large absolute correlations with other
-#' variables BUT with a twist.
+#' variables, keeping just one representative from highly correlated variable 
+#' pairs. The choice of representatives can be controlled by providing a set of
+#' variables that should be prioritized.
 #'
-#' @inheritParams step_center 
-#' 
-#' TODO
+#' @inheritParams step_log_skew 
 #' @param threshold A value for the threshold of absolute correlation values.
 #'   The step will try to remove the minimum number of columns so that all the
 #'   resulting absolute correlations are less than this value.
+#' @param keep A character vector, containing variables that should be kept. 
+#'   These will be prioritized when selecting a representative from a 
+#'   variable pair with an absolute correlation greater than `threshold` 
+#'   (see details). If `NULL`, this step is equivalent to 
+#'   [recipes::step_corr()].
 #' @param use A character string for the `use` argument to the [stats::cor()]
 #'   function.
 #' @param method A character string for the `method` argument to the
@@ -17,21 +22,35 @@
 #' @param removals A character string that contains the names of columns that
 #'   should be removed. These values are not determined until [prep()] is
 #'   called.
-# @template step-return
-# @template filter-steps
-#' @author Modified from recipes. Original R code for filtering algorithm by Dong Li, modified by Max
-#'   Kuhn. Contributions by Reynald Lescarbeau (for original in `caret`
-#'   package). Max Kuhn for the `step` function.
+#' @param high_corr A tibble containing all correlations above `threshold`. 
+#'   These values are not determined until [prep()] is called.
+#' @template recipe-step-return
+#' 
+#' @author  Modified from [recipes::step_corr()].
+#' @seealso [recipes::step_corr()]
+#' 
 #' @export
 #'
 #' @details
+#'
+#' This step can potentially remove columns from the data set. This may
+#' cause issues for subsequent steps in your recipe if the missing columns are
+#' specifically referenced by name. To avoid this, see the advice in the
+#' _Tips for saving recipes and filtering columns_ section of 
+#' [recipes::selections].
 #'
 #' This step attempts to remove variables to keep the largest absolute
 #' correlation between the variables less than `threshold`.
 #'
 #' The filter tries to prioritize predictors for removal based on the global
-#' affect on the overall correlation structure. If you have two identical
-#' predictors, the variable ordered first will be removed.
+#' affect on the overall correlation structure. If you have two
+#' predictors with an absolute correlation above `threshold`, the variable with 
+#' the larger average correlation with all other predictors will be removed, 
+#' unless it is specified in `keep` as a variable the user wants to prioritize. 
+#' If the absolute correlation of two variables in `keep` exceeds the 
+#' `threshold`, the variable with the larger average correlation to the other 
+#' predictors will be removed and and the user is informed by a message in the 
+#' console.
 #'
 #' When a column has a single unique value, that column will be excluded from
 #' the correlation analysis. Also, if the data set has sporadic missing values
@@ -43,47 +62,58 @@
 #'
 #' # Tidying
 #'
-# When you [`tidy()`][tidy.recipe()] this step, a tibble is returned with
-# columns `terms` and `id`:
+#' When you [`tidy()`][recipes::tidy.recipe()] this step, a tibble is returned with
+#' columns `terms` and `id`:
 #'
 #' \describe{
 #'   \item{terms}{character, the selectors or variables selected to be removed}
 #'   \item{id}{character, id of this step}
 #' }
+#' 
+#' # Tuning Parameters
+#' 
+#' The `threshold` parameter can be tuned.
+#' 
+#' @template recipe-case-weights-unsupervised
 #'
-#' ```{r, echo = FALSE, results="asis"}
-#' step <- "step_corr"
-#' result <- knitr::knit_child("man/rmd/tunable-args.Rmd")
-#' cat(result)
-#' ```
-#'
-# @template case-weights-unsupervised
-#'
-#' @examplesIf rlang::is_installed("modeldata")
-#' data(biomass, package = "modeldata")
-#'
-#' set.seed(3535)
-#' biomass$duplicate <- biomass$carbon + rnorm(nrow(biomass))
-#'
-#' biomass_tr <- biomass[biomass$dataset == "Training", ]
-#' biomass_te <- biomass[biomass$dataset == "Testing", ]
-#'
-#' rec <- recipe(
-#'   HHV ~ carbon + hydrogen + oxygen + nitrogen + sulfur + duplicate,
-#'   data = biomass_tr
-#' )
-#'
-#' corr_filter <- rec |>
-#'   step_corr_keep(all_numeric_predictors(), threshold = .5)
-#'
-#' filter_obj <- prep(corr_filter, training = biomass_tr)
-#'
-#' filtered_te <- bake(filter_obj, biomass_te)
-#' round(abs(cor(biomass_tr[, c(3:7, 9)])), 2)
-#' round(abs(cor(filtered_te)), 2)
-#'
-#' tidy(corr_filter, number = 1)
-#' tidy(filter_obj, number = 1)
+#' @examplesIf rlang::is_installed("MASS")
+#' # create a data set
+#' set.seed(1717)
+#' p <- 5
+#' corrm <- matrix(numeric(p^2), ncol = p, nrow = p)
+#' # variable 2 has a higher average correlation 
+#' # than all other variables
+#' corrm[,2] <- corrm[2,] <- .2
+#' # variable 1 and 2 have high correlation
+#' corrm[1,2] <- corrm[2,1] <- .9
+#' diag(corrm) <- 1
+#' X <- MASS::mvrnorm(n = 100, mu = rep(0, p), Sigma = corrm) %>% 
+#'   tibble::as_tibble(.name_repair = ~paste0("V", 1:p))
+#' 
+#' # apply correlation filter without specifying `keep`
+#' rec_prep <- recipes::recipe(~., data = X) %>% 
+#'   step_corr_keep(
+#'     recipes::all_numeric_predictors(),
+#'     threshold = .8
+#'   ) %>% 
+#'   recipes::prep()
+#' 
+#' recipes::bake(rec_prep, new_data = NULL)
+#' 
+#' # make sure that "V2" is kept
+#' rec_keep_prep <- recipes::recipe(~., data = X) %>% 
+#'   step_corr_keep(
+#'     recipes::all_numeric_predictors(),
+#'     threshold = .8,
+#'     keep = "V2"
+#'   ) %>% 
+#'   recipes::prep()
+#' 
+#' recipes::bake(rec_keep_prep, new_data = NULL)
+#' 
+#' # inspect high correlations
+#' rec_keep_prep$steps[[1]]$high_corr
+
 step_corr_keep <- function(
   recipe,
   ...,
@@ -92,10 +122,9 @@ step_corr_keep <- function(
   threshold = 0.9,
   use = "pairwise.complete.obs",
   method = "pearson",
-  keep = NULL, #vars_keep_corr,
+  keep = NULL,
   removals = NULL,
-  high_corr = NULL, # check if necessary
-  columns_logged = NULL,
+  high_corr = NULL,
   skip = FALSE,
   id = recipes::rand_id("corr_keep")
 ) {
@@ -112,7 +141,6 @@ step_corr_keep <- function(
       keep = keep,
       removals = removals,
       high_corr = high_corr,
-      columns_logged = columns_logged,
       skip = skip,
       id = id,
       case_weights = NULL
@@ -131,7 +159,6 @@ step_corr_keep_new <-
     keep,
     removals,
     high_corr,
-    columns_logged,
     skip,
     id,
     case_weights
@@ -147,7 +174,6 @@ step_corr_keep_new <-
       keep = keep,
       removals = removals,
       high_corr = high_corr,
-      columns_logged = columns_logged,
       skip = skip,
       id = id,
       case_weights = case_weights
@@ -164,6 +190,9 @@ corr_keep_filter <-
     keep = NULL
   ) {
     x <- recipes::correlations(x, wts = wts, use = use, method = method)
+    
+    # create correlation tibble in long format for output 
+    high_corr <- corr_stretch(x) %>% dplyr::filter(abs(r) > cutoff)
     
     if (any(!vctrs::vec_detect_complete(x))) {
       all_na <- apply(x, 2, function(x) all(is.na(x)))
@@ -193,11 +222,12 @@ corr_keep_filter <-
       diag(x) <- 1
     }
     averageCorr <- colMeans(abs(x))
-    # adjusting recipes::corr_filter() to account for predetermined representives
+    # adjusting recipes::corr_filter() to account for predetermined representatives
     # vars_keep_corr
     avgCorrVarsRank <- as.numeric(as.factor(averageCorr))
-    if (length(keep)> 0) {
-      avgCorrVarsRank[names(averageCorr) %in% keep] <- avgCorrVarsRank[names(averageCorr) %in% keep] - max(avgCorrVarsRank)
+    if (length(keep) > 0) {
+      var_in_keep <- names(averageCorr) %in% keep
+      avgCorrVarsRank[var_in_keep] <- avgCorrVarsRank[var_in_keep] - max(avgCorrVarsRank)
     }
     
     x[lower.tri(x, diag = TRUE)] <- NA
@@ -205,7 +235,6 @@ corr_keep_filter <-
     
     colsToCheck <- ceiling(combsAboveCutoff / nrow(x))
     rowsToCheck <- combsAboveCutoff %% nrow(x)
-    
     
     # Discard column variable in the correlation pair with the higher average
     # correlation across all pairwise correlations
@@ -228,7 +257,7 @@ corr_keep_filter <-
     
     list(
       removals = deletecol,
-      high_corr = x
+      high_corr = high_corr
     )
   }
 
@@ -273,46 +302,7 @@ prep.step_corr_keep <- function(x, recipe, training, info = NULL, ...) {
     filter <- character(0)
     high_corr <- NULL
   }
-  
-  print(recipe)
-  
-  # Iterate through previous steps to find `step_log` instances
-  log_info_list <- list()
-  processed_columns <- character(0) # Keep track of columns already handled by a log step
-  
-  for (i in seq_along(current_recipe$steps)) {
-    current_step_obj <- current_recipe$steps[[i]]
-    
-    # Check if the step is of type 'log'
-    if (inherits(current_step_obj$actions$op, "step_log")) {
-      # Ensure the step is trained and has columns defined
-      if (recipes:::is_trained(current_step_obj$actions$op) &&
-          !is.null(current_step_obj$actions$op$columns) &&
-          length(current_step_obj$actions$op$columns) > 0) {
-        
-        # Get the columns, base, and offset from the step_log
-        log_cols <- current_step_obj$actions$op$columns
-        log_base <- current_step_obj$actions$op$base
-        log_offset <- current_step_obj$actions$op$offset
-        log_signed <- current_step_obj$actions$op$signed # Also check for signed log
-        
-        # Add unique columns to our list of processed columns
-        new_logged_cols <- setdiff(log_cols, processed_columns)
-        
-        if (length(new_logged_cols) > 0) {
-          for (col in new_logged_cols) {
-            log_info_list[[col]] <- list(
-              base = log_base,
-              offset = log_offset,
-              signed = log_signed # Store signed status
-            )
-          }
-          processed_columns <- union(processed_columns, new_logged_cols)
-        }
-      }
-    }
-  }
-  
+ 
   step_corr_keep_new(
     terms = x$terms,
     role = x$role,
@@ -323,7 +313,6 @@ prep.step_corr_keep <- function(x, recipe, training, info = NULL, ...) {
     keep = x$keep,
     removals = filter,
     high_corr = high_corr,
-    columns_logged = names(log_info_list),
     skip = x$skip,
     id = x$id,
     case_weights = were_weights_used
@@ -364,7 +353,6 @@ tidy_filter <- function(x, ...) {
   res
 }
 
-#' @rdname tidy.recipe
 #' @exportS3Method 
 tidy.step_corr_keep <- tidy_filter
 

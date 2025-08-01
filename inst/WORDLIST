@@ -62,12 +62,12 @@ modelling
 multicollinearity
 na
 occds
-on’
 param
 parametrized
 params
 pearson
 ped
+pkgdown
 png
 pre
 priorization
@@ -79,7 +79,6 @@ rtfm
 sas
 sep
 subpopulation
-substream
 summarising
 svoss
 testthat

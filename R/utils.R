@@ -90,6 +90,7 @@ if(FALSE){
 #' A tibble with the pair of variable names in the columns `x` and `y` and the 
 #' corresponding correlation in the column `r`
 #'
+#' TODO deprecate
 
 corrr_mini <- function(
     x,
@@ -139,6 +140,60 @@ corrr_mini <- function(
     corr_tibble <- tibble::tibble(x = character(), y = character(), r = numeric())
     
   }
+  
+  corr_tibble
+}
+
+#' Stretch a correlation matrix to long format
+#' 
+#' Stretch a correlation matrix from [stats::cor()] to a long format tibble
+#'
+#' @param x a symmetric matrix containing the correlations
+#' @param shave logical. if TRUE, only the lower triangle of the correlation 
+#'   matrix is kept.
+#'
+#' @return
+#' A tibble with the pair of variable names in the columns `x` and `y` and the 
+#' corresponding correlation in the column `r`
+#'
+
+corr_stretch <- function(
+    x,
+    shave  = FALSE
+){
+  
+  if (!rlang::inherits_any(x, "matrix")) 
+    cli::cli_abort(c("!" = "{.code x} has to be a matrix."))
+  
+  if (!isSymmetric(x)) 
+    cli::cli_abort(c("!" = "{.code x} has to be a symmetric matrix."))
+  
+  if(ncol(x) < 2) 
+    cli::cli_abort(c("!" = "{.code x} has to have at least 2 columns."))
+  
+  # upper and lower triangle individually, 
+  index_lower <- utils::combn(seq_along(colnames(x)), 2) %>% t()
+  index_upper <- index_lower[, 2:1]
+  
+  stretch_lower <- data.frame(
+    # start with a df to avoid column name `x` 
+    # and object name `x` collusion
+    x = rownames(x)[index_lower[ , 1]] ,
+    y = colnames(x)[index_lower[ , 2]],
+    r = as.data.frame(x)[index_lower]
+  )
+  
+  stretch_upper <- NULL
+  if(!shave){
+    stretch_upper <- data.frame(
+      x = rownames(x)[index_upper[ , 1]], 
+      y = colnames(x)[index_upper[ , 2]],  
+      r = as.data.frame(x)[index_upper]
+    )
+  }
+  
+  corr_tibble <- dplyr::bind_rows(stretch_lower, stretch_upper) %>% 
+    tibble::as_tibble()
   
   corr_tibble
 }

@@ -21,7 +21,7 @@
         admh MHDECOD NA    NA     FALSE MHSTDY
       
         Filter information 
-    Message
+    Message <rlang_message>
       v Each filter may be applied at least once.
       v 4 filters could be applied:
         - adsl: ITTFL == 'Y'
@@ -52,7 +52,7 @@
         admh MHDECOD NA    NA     FALSE MHSTDY
       
         Filter information 
-    Message
+    Message <rlang_message>
       v Each filter may be applied at least once.
       v 4 filters could be applied:
         - adsl: ITTFL == 'Y', SUBJID %% 2 == 0
@@ -83,7 +83,7 @@
         admh MHDECOD NA    NA     FALSE MHSTDY
       
         Filter information 
-    Message
+    Message <rlang_message>
       v Each filter may be applied at least once.
       v 4 filters could be applied:
         - adsl: SUBJID %% 2 == 0

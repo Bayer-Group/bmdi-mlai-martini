@@ -25,17 +25,18 @@ test_that("step_log_skew() works", {
     unname(rec_log_prep$steps[[1]]$columns),
     c("skw1", "skw2")
   )
-  
-  X_baked  <- recipes::bake(rec_log_prep, new_data = NULL)
-  X_mutate <- X %>% 
-    dplyr::mutate(dplyr::across(skw1:skw2, log))
-  
-  expect_equal(X_baked, X_mutate, ignore_attr = TRUE)
+
+  expect_equal(
+    recipes::bake(rec_log_prep, new_data = NULL), 
+    dplyr::mutate(X, dplyr::across(skw1:skw2, log)), 
+    ignore_attr = TRUE
+  )
   
   # also works, when no skewed variables are present
+  X_sym <-  dplyr::select(X, tidyselect::starts_with("sym"))
   rec_noskew_prep <- recipes::recipe(
     ~ ., 
-    data = dplyr::select(X, tidyselect::starts_with("sym"))
+    data = X_sym
   ) %>% 
     step_log_skew(
       recipes::all_numeric_predictors(), 
@@ -44,5 +45,11 @@ test_that("step_log_skew() works", {
     prep()
   
   expect_length(rec_noskew_prep$steps[[1]]$columns, 0)
+  
+  expect_equal(
+    recipes::bake(rec_noskew_prep, new_data = NULL), 
+    X_sym, 
+    ignore_attr = TRUE
+  )
   
 })

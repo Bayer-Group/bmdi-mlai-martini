@@ -93,7 +93,7 @@ test_that("check_and_guess_column() works with bds data", {
   
   # provide wrong column name
   expect_equal(
-    check_and_guess_column(data = adlb, role = "param", column_spec = "param", type = "bds"),
+    purrr::quietly(check_and_guess_column)(data = adlb, role = "param", column_spec = "param", type = "bds")$result,
     list(role = "param", column = NULL, required = TRUE, check_passed = FALSE)
   )
   expect_warning(
@@ -114,7 +114,7 @@ test_that("check_and_guess_column() works with occds data", {
   
   # provide wrong column name
   expect_equal(
-    check_and_guess_column(data = admh, role = "label", column_spec = "wrong_label", type = "occds"),
+    purrr::quietly(check_and_guess_column)(data = admh, role = "label", column_spec = "wrong_label", type = "occds")$result,
     list(role = "label", column = NULL, required = TRUE, check_passed = FALSE)
   )
   

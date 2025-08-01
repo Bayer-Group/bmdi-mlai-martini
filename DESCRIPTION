@@ -44,7 +44,8 @@ Imports:
     tidyselect (>= 1.0.0),
     tools,
     usethis,
-    utils
+    utils,
+    vctrs
 Suggests:
     corrr,
     here,

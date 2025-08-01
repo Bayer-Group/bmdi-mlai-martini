@@ -62,10 +62,10 @@ sequence of any existing operations.
 }
 \description{
 \code{step_log()} creates a \emph{specification} of a recipe step that will log
-transform numericvariables if the skewness exceeds a given threshold.
+transform numeric variables if the skewness exceeds a given threshold.
 }
 \section{Tidying}{
-When you \code{\link[=tidy.recipe]{tidy()}} this step, a tibble is returned with
+When you \code{\link[recipes:tidy.recipe]{tidy()}} this step, a tibble is returned with
 columns \code{terms}, \code{base} , and \code{id}:
 
 \describe{
@@ -86,21 +86,20 @@ set.seed(313)
 examples <- matrix(exp(rnorm(40)), ncol = 2)
 examples <- as.data.frame(examples)
 
-rec <- recipe(~ V1 + V2, data = examples)
+rec <- recipes::recipe(~ V1 + V2, data = examples)
 
 log_trans <- rec |>
-  step_log_skew(all_numeric_predictors(), skewness = 1)
+  step_log_skew(recipes::all_numeric_predictors(), skewness = 1)
 
-log_obj <- prep(log_trans, training = examples)
+log_obj <- recipes::prep(log_trans, training = examples)
 
-transformed_te <- bake(log_obj, examples)
+transformed_te <- recipes::bake(log_obj, examples)
 plot(examples$V1, transformed_te$V1)
 plot(examples$V2, transformed_te$V2)
-
 }
 \seealso{
 \code{\link[recipes:step_log]{recipes::step_log()}}
 }
 \author{
-Modified from recipes.
+Modified from \code{\link[recipes:step_log]{recipes::step_log()}}.
 }

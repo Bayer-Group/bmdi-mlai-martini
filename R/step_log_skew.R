@@ -1,7 +1,7 @@
 #' Logarithmic transformation based on skewness
 #'
 #' `step_log()` creates a *specification* of a recipe step that will log
-#' transform numericvariables if the skewness exceeds a given threshold.
+#' transform numeric variables if the skewness exceeds a given threshold.
 #'
 #' @param recipe A recipe object. The step will be added to the sequence of
 #'   operations for this recipe.
@@ -32,13 +32,16 @@
 #'
 #' @template recipe-step-return
 #' 
-#' @author  Modified from recipes.
+#' @author  Modified from [recipes::step_log()].
+#' @seealso [recipes::step_log()]
+#' 
+#' @export
 #' 
 #' @details
 #'
 #' # Tidying
 #'
-#' When you [`tidy()`][tidy.recipe()] this step, a tibble is returned with
+#' When you [`tidy()`][recipes::tidy.recipe()] this step, a tibble is returned with
 #' columns `terms`, `base` , and `id`:
 #'
 #' \describe{
@@ -54,19 +57,16 @@
 #' examples <- matrix(exp(rnorm(40)), ncol = 2)
 #' examples <- as.data.frame(examples)
 #'
-#' rec <- recipe(~ V1 + V2, data = examples)
+#' rec <- recipes::recipe(~ V1 + V2, data = examples)
 #'
 #' log_trans <- rec |>
-#'   step_log_skew(all_numeric_predictors(), skewness = 1)
+#'   step_log_skew(recipes::all_numeric_predictors(), skewness = 1)
 #'
-#' log_obj <- prep(log_trans, training = examples)
+#' log_obj <- recipes::prep(log_trans, training = examples)
 #'
-#' transformed_te <- bake(log_obj, examples)
+#' transformed_te <- recipes::bake(log_obj, examples)
 #' plot(examples$V1, transformed_te$V1)
 #' plot(examples$V2, transformed_te$V2)
-#'
-#' @seealso [recipes::step_log()]
-#' @export
 step_log_skew <-
   function(
     recipe,
@@ -129,7 +129,7 @@ step_log_skew_new <-
 #' @exportS3Method 
 prep.step_log_skew <- function(x, training, info = NULL, ...) {
   col_names <- recipes::recipes_eval_select(x$terms, training, info)
-  recipes:::check_type(training[, col_names], types = c("double", "integer"))
+  recipes::check_type(training[, col_names], types = c("double", "integer"))
   recipes:::check_number_decimal(x$offset, arg = "offset")
   recipes:::check_bool(x$signed, arg = "signed")
   recipes:::check_number_decimal(x$base, arg = "base", min = 0)
@@ -162,7 +162,7 @@ prep.step_log_skew <- function(x, training, info = NULL, ...) {
 bake.step_log_skew <- function(object, new_data, ...) {
   # For backward compatibility #1284
   col_names <- names(object$columns) %||% object$columns
-  recipes:::check_new_data(col_names, object, new_data)
+  recipes::check_new_data(col_names, object, new_data)
   
   # for backward compat
   if (all(names(object) != "offset")) {
@@ -196,8 +196,8 @@ bake.step_log_skew <- function(object, new_data, ...) {
 print.step_log_skew <-
   function(x, width = max(20, options()$width - 31), ...) {
     msg <- ifelse(x$signed, "Signed log", "Log")
-    title <- glue::glue("{msg} transformation on ")
-    recipes:::print_step(x$columns, x$terms, x$trained, title, width)
+    title <- paste0(msg, " transformation on ")
+    recipes::print_step(x$columns, x$terms, x$trained, title, width)
     invisible(x)
   }
 

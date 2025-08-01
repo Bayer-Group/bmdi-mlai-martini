@@ -293,14 +293,16 @@ test_that("adjust_adsl_factors() works", {
     ),
     "non-existing column"
   )
-  expect_equal(
-    adjust_adsl_factors(
+  expect_message(
+    martini_spec_sx <- adjust_adsl_factors(
       spec = martini_spec,
       fctrs = list(
         "SX" = rev(martini_spec$adsl$factor_levels$SEX)
-      ),
-      entry = "adsl"
-    ),
+      )
+    )
+  )
+  expect_equal(
+    martini_spec_sx,
     martini_spec
   )
   
@@ -335,15 +337,15 @@ test_that("adjust_adsl_factors() works", {
     "missing the following existing level"
   )
   expect_equal(
-    adjust_adsl_factors(
+    purrr::quietly(adjust_adsl_factors)(
       spec = martini_spec,
       fctrs = list(
         "RACE" = martini_spec$adsl$factor_levels$RACE %>% 
           rev() %>% 
           tail(-1)
       )
-    ),
-    martini_spec
+    )$result,
+    martini_spec 
   )
   
   
