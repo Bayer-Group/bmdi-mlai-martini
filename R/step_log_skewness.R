@@ -1,6 +1,6 @@
 #' Logarithmic transformation based on skewness
 #'
-#' `step_log()` creates a *specification* of a recipe step that will log
+#' `step_log_skewness()` creates a *specification* of a recipe step that will log
 #' transform numeric variables if the skewness exceeds a given threshold.
 #'
 #' @param recipe A recipe object. The step will be added to the sequence of
@@ -60,14 +60,14 @@
 #' rec <- recipes::recipe(~ V1 + V2, data = examples)
 #'
 #' log_trans <- rec |>
-#'   step_log_skew(recipes::all_numeric_predictors(), skewness = 1)
+#'   step_log_skewness(recipes::all_numeric_predictors(), skewness = 1)
 #'
 #' log_obj <- recipes::prep(log_trans, training = examples)
 #'
 #' transformed_te <- recipes::bake(log_obj, examples)
 #' plot(examples$V1, transformed_te$V1)
 #' plot(examples$V2, transformed_te$V2)
-step_log_skew <-
+step_log_skewness <-
   function(
     recipe,
     ...,
@@ -79,11 +79,11 @@ step_log_skew <-
     columns = NULL,
     skip = FALSE,
     signed = FALSE,
-    id = recipes::rand_id("log_skew")
+    id = recipes::rand_id("log_skewness")
   ) {
     recipes::add_step(
       recipe,
-      step_log_skew_new(
+      step_log_skewness_new(
         terms = rlang::enquos(...),
         role = role,
         trained = trained,
@@ -98,7 +98,7 @@ step_log_skew <-
     )
   }
 
-step_log_skew_new <-
+step_log_skewness_new <-
   function(
     terms, 
     role, 
@@ -112,7 +112,7 @@ step_log_skew_new <-
     id
   ) {
     recipes::step(
-      subclass = "log_skew",
+      subclass = "log_skewness",
       terms = terms,
       role = role,
       trained = trained,
@@ -127,7 +127,7 @@ step_log_skew_new <-
   }
 
 #' @exportS3Method 
-prep.step_log_skew <- function(x, training, info = NULL, ...) {
+prep.step_log_skewness <- function(x, training, info = NULL, ...) {
   col_names <- recipes::recipes_eval_select(x$terms, training, info)
   recipes::check_type(training[, col_names], types = c("double", "integer"))
   recipes:::check_number_decimal(x$offset, arg = "offset")
@@ -144,7 +144,7 @@ prep.step_log_skew <- function(x, training, info = NULL, ...) {
     
   }
   
-  step_log_skew_new(
+  step_log_skewness_new(
     terms = x$terms,
     role = x$role,
     trained = TRUE,
@@ -159,7 +159,7 @@ prep.step_log_skew <- function(x, training, info = NULL, ...) {
 }
 
 #' @exportS3Method 
-bake.step_log_skew <- function(object, new_data, ...) {
+bake.step_log_skewness <- function(object, new_data, ...) {
   # For backward compatibility #1284
   col_names <- names(object$columns) %||% object$columns
   recipes::check_new_data(col_names, object, new_data)
@@ -193,7 +193,7 @@ bake.step_log_skew <- function(object, new_data, ...) {
 }
 
 #' @exportS3Method 
-print.step_log_skew <-
+print.step_log_skewness <-
   function(x, width = max(20, options()$width - 31), ...) {
     msg <- ifelse(x$signed, "Signed log", "Log")
     title <- paste0(msg, " transformation on ")
@@ -202,7 +202,7 @@ print.step_log_skew <-
   }
 
 #' @exportS3Method 
-tidy.step_log_skew <- function(x, ...) {
+tidy.step_log_skewness <- function(x, ...) {
   out <- recipes:::simple_terms(x, ...)
   out$base <- x$base
   out$id <- x$id

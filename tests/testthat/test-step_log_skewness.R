@@ -1,4 +1,4 @@
-test_that("step_log_skew() works", {
+test_that("step_log_skewness() works", {
   
   withr::with_seed(2116,{
     
@@ -14,7 +14,7 @@ test_that("step_log_skew() works", {
   rec <- recipes::recipe(~ ., data = X)
   
   rec_log <- rec %>% 
-    step_log_skew(
+    step_log_skewness(
       recipes::all_numeric_predictors(), 
       skewness = 2
     )
@@ -38,7 +38,7 @@ test_that("step_log_skew() works", {
     ~ ., 
     data = X_sym
   ) %>% 
-    step_log_skew(
+    step_log_skewness(
       recipes::all_numeric_predictors(), 
       skewness = 2
     ) %>% 

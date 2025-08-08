@@ -6,7 +6,7 @@
 #' pairs. The choice of representatives can be controlled by providing a set of
 #' variables that should be prioritized.
 #'
-#' @inheritParams step_log_skew 
+#' @inheritParams step_log_skewness 
 #' @param threshold A value for the threshold of absolute correlation values.
 #'   The step will try to remove the minimum number of columns so that all the
 #'   resulting absolute correlations are less than this value.
