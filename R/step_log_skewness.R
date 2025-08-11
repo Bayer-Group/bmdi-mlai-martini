@@ -26,9 +26,6 @@
 #' @param base A numeric value for the base.
 #' @param offset An optional value to add to the data prior to logging (to avoid
 #'   `log(0)`).
-#' @param signed A logical indicating whether to take the signed log. This is
-#'   `sign(x) * log(abs(x))` when `abs(x) => 1` or `0 if abs(x) < 1`. If `TRUE`
-#'   the `offset` argument will be ignored.
 #'
 #' @template recipe-step-return
 #' 
@@ -78,7 +75,6 @@ step_log_skewness <-
     offset = 0,
     columns = NULL,
     skip = FALSE,
-    signed = FALSE,
     id = recipes::rand_id("log_skewness")
   ) {
     recipes::add_step(
@@ -92,7 +88,6 @@ step_log_skewness <-
         offset = offset,
         columns = columns,
         skip = skip,
-        signed = signed,
         id = id
       )
     )
@@ -108,7 +103,6 @@ step_log_skewness_new <-
     offset, 
     columns, 
     skip, 
-    signed, 
     id
   ) {
     recipes::step(
@@ -121,7 +115,6 @@ step_log_skewness_new <-
       offset = offset,
       columns = columns,
       skip = skip,
-      signed = signed,
       id = id
     )
   }
@@ -131,7 +124,6 @@ prep.step_log_skewness <- function(x, training, info = NULL, ...) {
   col_names <- recipes::recipes_eval_select(x$terms, training, info)
   recipes::check_type(training[, col_names], types = c("double", "integer"))
   recipes:::check_number_decimal(x$offset, arg = "offset")
-  recipes:::check_bool(x$signed, arg = "signed")
   recipes:::check_number_decimal(x$base, arg = "base", min = 0)
   
   if (!is.null(x$skewness)){
@@ -153,7 +145,6 @@ prep.step_log_skewness <- function(x, training, info = NULL, ...) {
     offset = x$offset,
     columns = col_names,
     skip = x$skip,
-    signed = x$signed,
     id = x$id
   )
 }
@@ -164,29 +155,16 @@ bake.step_log_skewness <- function(object, new_data, ...) {
   col_names <- names(object$columns) %||% object$columns
   recipes::check_new_data(col_names, object, new_data)
   
-  # for backward compat
+  # for backward compatibility
   if (all(names(object) != "offset")) {
     object$offset <- 0
   }
   
-  if (object$signed && object$offset != 0) {
-    cli::cli_warn("When {.arg signed} is TRUE, {.arg offset} will be ignored.")
-  }
+  # TODO add check if log can be applied and exclude variables if not possible
   
   for (col_name in col_names) {
     tmp <- new_data[[col_name]]
-    
-    if (object$signed) {
-      tmp <- ifelse(
-        abs(tmp) < 1,
-        0,
-        sign(tmp) * log(abs(tmp), base = object$base)
-      )
-    } else {
-      tmp <- log(tmp + object$offset, base = object$base)
-    }
-    
-    new_data[[col_name]] <- tmp
+    new_data[[col_name]] <- log(mp + object$offset, base = object$base)
   }
   
   new_data
@@ -195,8 +173,7 @@ bake.step_log_skewness <- function(object, new_data, ...) {
 #' @exportS3Method 
 print.step_log_skewness <-
   function(x, width = max(20, options()$width - 31), ...) {
-    msg <- ifelse(x$signed, "Signed log", "Log")
-    title <- paste0(msg, " transformation on ")
+    title <- "Log transformation on "
     recipes::print_step(x$columns, x$terms, x$trained, title, width)
     invisible(x)
   }
@@ -208,3 +185,165 @@ tidy.step_log_skewness <- function(x, ...) {
   out$id <- x$id
   out
 }
+
+#' Undoing logarithmic transformations based on skewness
+#'
+#' `step_log_skewness_undo()` creates a *specification* of a recipe step that 
+#' will reverse any log transformations that are done by [step_log_skewness()].
+#'
+#' @inheritParams step_log_skewness
+#' 
+#' @inherit step_log_skewness return author seealso
+#' @inheritSection step_log_skewness Case weights
+#' @inheritSection step_log_skewness Tidying
+#' 
+#' @export
+
+step_log_skewness_undo <- function(
+    recipe,
+    ...,
+    role = NA,
+    trained = FALSE,
+    base = NULL,
+    offset = NULL,
+    columns = NULL,
+    skip = FALSE,
+    id = recipes::rand_id("log_skewed_undo"),
+    id_undo = NULL
+) {
+  
+  recipe_tidy <- recipes::tidy(recipe)
+  
+  # check 'id_undo', if provided
+  if (!is.null(id_undo)) {
+    
+    if (!id_undo %in% recipe_tidy$id) {
+      cli::cli_abort(c(
+        "!" = "{.code id_undo = {id_undo}} is not an id of a previous recipe step."))
+    }
+    
+    type_id_undo <- recipe_tidy %>% 
+      dplyr::filter(id == id_undo) %>% 
+      dplyr::pull(type)
+    
+    if (type_id_undo != "log_skewness") {
+      cli::cli_abort(c(
+        "!" = "The recipe step with {.code id_undo = {id_undo}} is not of type 'log_skewness'."))
+    }
+    
+  }
+  
+  columns_logged <- character(0)
+  if (any("log_skewness" %in% recipe_tidy$type)) {
+    
+    # identify number of specified log step ...
+    number_log_step <- if (!is.null(id_undo)) {
+      recipe_tidy %>% 
+        dplyr::filter(id == id_undo) %>%
+        dplyr::pull(number)
+    } else {
+      # ... or take the last one
+      recipe_tidy %>%
+        dplyr::filter(type == "log_skewness") %>% 
+        nrow()
+    }
+    
+    recipe_prepared_step <- recipes::prep(recipe) %>% 
+      magrittr::extract2("steps") %>% 
+      magrittr::extract2(number_log_step)
+    
+    columns_logged <- recipe_prepared_step$columns
+    
+    base   <- recipe_prepared_step$base
+    offset <- recipe_prepared_step$offset
+    
+  }
+  
+  recipes::add_step(
+    recipe,
+    step_log_skewness_undo_new(
+      terms = rlang::enquos(...),
+      role = role,
+      trained = trained,
+      base = base,
+      offset = offset,
+      columns = columns_logged,
+      skip = skip,
+      id = id
+    )
+  )
+}
+
+step_log_skewness_undo_new <-
+  function(
+    terms, 
+    role, 
+    trained, 
+    base,
+    offset,
+    columns, 
+    skip, 
+    id
+  ) {
+    recipes::step(
+      subclass = "log_skewness_undo",
+      terms = terms,
+      role = role,
+      trained = trained,
+      base = base,
+      offset = offset,
+      columns = columns,
+      skip = skip,
+      id = id
+    )
+  }
+
+#' @exportS3Method 
+prep.step_log_skewness_undo <- function(x, training, info = NULL, ...) {
+  col_names <- recipes::recipes_eval_select(unname(x$columns), training, info)
+  recipes::check_type(training[, col_names], types = c("double", "integer"))
+  recipes:::check_number_decimal(x$offset, arg = "offset")
+  recipes:::check_number_decimal(x$base, arg = "base", min = 0)
+  
+  step_log_skewness_undo_new(
+    terms = x$terms,
+    role = x$role,
+    trained = TRUE,
+    base = x$base,
+    offset = x$offset,
+    columns = col_names,
+    skip = x$skip,
+    id = x$id
+  )
+}
+
+#' @exportS3Method 
+bake.step_log_skewness_undo <- function(object, new_data, ...) {
+  # For backward compatibility #1284
+  col_names <- names(object$columns) %||% object$columns
+  recipes::check_new_data(col_names, object, new_data)
+  
+  for (col_name in col_names) {
+    tmp <- new_data[[col_name]]
+    new_data[[col_name]] <- object$base**tmp - object$offset
+  }
+  
+  new_data
+}
+
+#' @exportS3Method 
+print.step_log_skewness_undo <-
+  function(x, width = max(20, options()$width - 31), ...) {
+    title <- "Log transformation reversed on "
+    recipes::print_step(x$columns, x$terms, x$trained, title, width)
+    invisible(x)
+  }
+
+#' @exportS3Method 
+tidy.step_log_skewness_undo <- function(x, ...) {
+  out <- recipes:::simple_terms(x, ...)
+  out$base <- x$base
+  out$id <- x$id
+  out
+}
+

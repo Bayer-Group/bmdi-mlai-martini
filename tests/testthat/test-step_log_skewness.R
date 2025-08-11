@@ -32,6 +32,17 @@ test_that("step_log_skewness() works", {
     ignore_attr = TRUE
   )
   
+  rec_log_undo <- rec_log %>% 
+    step_log_skewness_undo(recipes::all_numeric_predictors())
+  
+  rec_log_undo_prep <- recipes::prep(rec_log_undo)
+  
+  expect_equal(
+    recipes::bake(rec_log_undo_prep, new_data = NULL), 
+    X,
+    ignore_attr = TRUE
+  )
+  
   # also works, when no skewed variables are present
   X_sym <-  dplyr::select(X, tidyselect::starts_with("sym"))
   rec_noskew_prep <- recipes::recipe(
@@ -53,3 +64,56 @@ test_that("step_log_skewness() works", {
   )
   
 })
+
+test_that("step_log_skewness_undo() works", {
+  
+  withr::with_seed(1653,{
+    
+    n <- 250
+    X <- tibble::tibble(
+      sym1 = rnorm(n, mean = 10, sd =1),
+      sym2 = rnorm(n, mean = 100, sd =5),
+      skw1 = exp(rnorm(n, mean = 1, sd = 2)),
+      skw2 = exp(rnorm(n, mean = 0, sd = 1))
+    )
+  })
+  
+  rec <- recipes::recipe(~ ., data = X)
+  
+  rec_log_undo <- rec %>% 
+    step_log_skewness(
+      recipes::all_numeric_predictors(), 
+      skewness = 2
+    ) %>% 
+    step_log_skewness_undo(
+      recipes::all_numeric_predictors()
+    )
+  
+  rec_log_undo_prep <- recipes::prep(rec_log_undo)
+  
+  expect_equal(
+    recipes::bake(rec_log_undo_prep, new_data = NULL), 
+    X,
+    ignore_attr = TRUE
+  )
+  
+  rec_log_undo_base <- rec %>% 
+    step_log_skewness(
+      recipes::all_numeric_predictors(), 
+      skewness = 2,
+      base = 2, offset = .1
+    ) %>% 
+    step_log_skewness_undo(
+      recipes::all_numeric_predictors()
+    )
+  
+  rec_log_undo_base_prep <- recipes::prep(rec_log_undo)
+  
+  expect_equal(
+    recipes::bake(rec_log_undo_base_prep, new_data = NULL), 
+    X,
+    ignore_attr = TRUE
+  )
+  
+})
+
