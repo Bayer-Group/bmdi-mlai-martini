@@ -33,7 +33,7 @@ test_that("step_corr_keep() works", {
     setdiff(colnames(X), "V2")
   )
  
-  # no `keep = "V2"`, V1 should be discarded
+  # `keep = "V2"`, V1 should be discarded
   rec_keep_prep <- rec_base %>% 
     step_corr_keep(
       recipes::all_numeric_predictors(),
@@ -49,7 +49,7 @@ test_that("step_corr_keep() works", {
     setdiff(colnames(X), "V1")
   )
   
-  # no `keep = c("V1", "V2")`, V2 should be discarded 
+  # `keep = c("V1", "V2")`, V2 should be discarded 
   # (larger avg correlation) and a message should be printed
   expect_message(
     rec_keep2_prep <- rec_base %>% 
