@@ -264,8 +264,16 @@ corr_keep_filter <-
 #' @exportS3Method 
 prep.step_corr_keep <- function(x, recipe, training, info = NULL, ...) {
   col_names <- recipes::recipes_eval_select(x$terms, training, info)
-  recipes::check_type(training[, col_names], types = c("double", "integer"))
-  recipes:::check_number_decimal(x$threshold, min = 0, max = 1, arg = "threshold")
+  #recipes::check_type(training[, col_names], types = c("double", "integer"))
+  do.call(
+    utils::getFromNamespace("check_type", "recipes"),
+    list(dat = training[, col_names], types = c("double", "integer"))
+  )
+  #recipes:::check_number_decimal(x$threshold, min = 0, max = 1, arg = "threshold")
+  do.call(
+    utils::getFromNamespace("check_number_decimal", "recipes"),
+    list(x = x$threshold, min = 0, max = 1, arg = "threshold")
+  )
   use <- x$use
   rlang::arg_match(
     use,

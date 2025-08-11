@@ -122,9 +122,21 @@ step_log_skewness_new <-
 #' @exportS3Method 
 prep.step_log_skewness <- function(x, training, info = NULL, ...) {
   col_names <- recipes::recipes_eval_select(x$terms, training, info)
-  recipes::check_type(training[, col_names], types = c("double", "integer"))
-  recipes:::check_number_decimal(x$offset, arg = "offset")
-  recipes:::check_number_decimal(x$base, arg = "base", min = 0)
+  #recipes::check_type(training[, col_names], types = c("double", "integer"))
+  do.call(
+    utils::getFromNamespace("check_type", "recipes"),
+    list(dat = training[, col_names], types = c("double", "integer"))
+  )
+  #recipes:::check_number_decimal(x$offset, arg = "offset")
+  do.call(
+    utils::getFromNamespace("check_number_decimal", "recipes"),
+    list(x = x$offset, arg = "offset")
+  )
+  #recipes:::check_number_decimal(x$base, arg = "base", min = 0)
+  do.call(
+    utils::getFromNamespace("check_number_decimal", "recipes"),
+    list(x = x$base, arg = "base", min = 0)
+  )
   
   if (!is.null(x$skewness)){
     
@@ -164,7 +176,7 @@ bake.step_log_skewness <- function(object, new_data, ...) {
   
   for (col_name in col_names) {
     tmp <- new_data[[col_name]]
-    new_data[[col_name]] <- log(mp + object$offset, base = object$base)
+    new_data[[col_name]] <- log(tmp + object$offset, base = object$base)
   }
   
   new_data
@@ -302,8 +314,16 @@ step_log_skewness_undo_new <-
 prep.step_log_skewness_undo <- function(x, training, info = NULL, ...) {
   col_names <- recipes::recipes_eval_select(unname(x$columns), training, info)
   recipes::check_type(training[, col_names], types = c("double", "integer"))
-  recipes:::check_number_decimal(x$offset, arg = "offset")
-  recipes:::check_number_decimal(x$base, arg = "base", min = 0)
+  #recipes:::check_number_decimal(x$offset, arg = "offset")
+  do.call(
+    utils::getFromNamespace("check_number_decimal", "recipes"),
+    list(x = x$offset, arg = "offset")
+  )
+  #recipes:::check_number_decimal(x$base, arg = "base", min = 0)
+  do.call(
+    utils::getFromNamespace("check_number_decimal", "recipes"),
+    list(x = x$base, arg = "base", min = 0)
+  )
   
   step_log_skewness_undo_new(
     terms = x$terms,

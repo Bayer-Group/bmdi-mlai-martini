@@ -106,10 +106,12 @@ if(FALSE){ # comparison with recipes::step_other()
   df_baked_orig_step_other <- recipes::bake(rcp_orig_step_other_prepped, new_data = df)
   df_baked_orig_step_other
   
-  waldo::compare(
-    df_baked, df_baked_orig_step_other, 
-    x_arg = "martini", y_arg = "recipes"
-  )
+  #if(rlang::is_installed("waldo")){
+  #  waldo::compare(
+  #    df_baked, df_baked_orig_step_other, 
+  #    x_arg = "martini", y_arg = "recipes"
+  #  )
+  #}
 }
 
 })

@@ -59,60 +59,19 @@
 #'
 #' # Tidying
 #'
-#' When you [`tidy()`][tidy.recipe()] this step, a tibble is returned with
+#' When you [`recipes::tidy()`][recipes::tidy.recipe()] this step, a tibble is returned with
 #' columns `terms`, `retained` , and `id`:
 #'
 #' \describe{
 #'   \item{terms}{character, the selectors or variables selected}
-#'   \item{retained}{character, factor levels not pulled into `"other"`}
+#'   \item{retained}{character, factor levels not pulled into `other`}
 #'   \item{id}{character, id of this step}
 #' }
 #'
-#' ```{r, echo = FALSE, results="asis"}
-#' step <- "step_other2"
-#' result <- knitr::knit_child("man/rmd/tunable-args.Rmd")
-#' cat(result)
-#' ```
 #'
 #' @template recipe-case-weights-unsupervised
 #'
-#' @examplesIf rlang::is_installed("modeldata")
-#' data(Sacramento, package = "modeldata")
-#'
-#' set.seed(19)
-#' in_train <- sample(1:nrow(Sacramento), size = 800)
-#'
-#' sacr_tr <- Sacramento[in_train, ]
-#' sacr_te <- Sacramento[-in_train, ]
-#'
-#' rec <- recipe(~ city + zip, data = sacr_tr)
-#'
-#'
-#' rec <- rec |>
-#'   step_other2(city, zip, threshold = .1, other = "other values")
-#' rec <- prep(rec, training = sacr_tr)
-#'
-#' collapsed <- bake(rec, sacr_te)
-#' table(sacr_te$city, collapsed$city, useNA = "always")
-#'
-#' tidy(rec, number = 1)
-#'
-#' # novel levels are "othered" in original step_other(), but kept as-is for step_other2()
-#' tahiti <- Sacramento[1, ]
-#' tahiti$zip <- "a magical place"
-#' bake(rec, tahiti)
-#'
-#' # threshold as a frequency
-#' rec <- recipe(~ city + zip, data = sacr_tr)
-#'
-#' rec <- rec |>
-#'   step_other2(city, zip, threshold = 2000, other = "other values")
-#' rec <- prep(rec, training = sacr_tr)
-#'
-#' tidy(rec, number = 1)
-#' # compare it to
-#' # sacr_tr |> count(city, sort = TRUE) |> top_n(4)
-#' # sacr_tr |> count(zip, sort = TRUE) |> top_n(3)
+
 step_other2 <-
   function(
     recipe,
@@ -372,7 +331,7 @@ tidy.step_other2 <- function(x, ...) {
     term_names <- recipes::sel2char(x$terms)
     res <- tibble::tibble(
       terms = term_names,
-      retained = rep(na_chr, length(term_names))
+      retained = rep(rlang::na_chr, length(term_names))
     )
   }
   res$id <- x$id
