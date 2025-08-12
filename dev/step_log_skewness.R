@@ -15,6 +15,7 @@
 #' @param removals A character string that contains the names of columns that
 #'   should be removed. These values are not determined until [prep()] is
 #'   called.
+#' @param id_log_skewed id of corresponding step for log transformation that should be reversed
 # @template step-return
 # @template filter-steps
 #' @author Modified from recipes. Original R code for filtering algorithm by Dong Li, modified by Max
