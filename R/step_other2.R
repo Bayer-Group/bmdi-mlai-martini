@@ -15,7 +15,7 @@
 #'   a single level meets the criterion for pooling. This is different from 
 #'   `recipes::step_other()`'s behavior ('rename'), where the low rate/frequency 
 #'   class would not be pooled with other classes but renamed to `other`
-#' @param other A single character value for the other category, default to
+#' @param other A single character value for the other category, defaults to
 #'   `"other_ml"`.
 #' @param objects A list of objects that contain the information to pool
 #'   infrequent levels that is determined by [prep()].
