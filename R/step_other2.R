@@ -1,31 +1,45 @@
 #' Collapse infrequent categorical levels
 #'
 #' `step_other2()` creates a *specification* of a recipe step that will
-#' potentially pool infrequently occurring values into an `"other"` category.
+#' potentially pool infrequently occurring values into an `"other_ml"` category.
 #'
-#' @inheritParams step_log_skewness
+# @inheritParams recipes::step_other
+#' @param recipe A recipe object. The step will be added to the sequence of
+#'   operations for this recipe.
+#' @param ... One or more selector functions to choose variables for this step.
+#'   See [selections()] for more details.
+#' @param role Not used by this step since no new variables are created.
+#' @param trained A logical to indicate if the quantities for preprocessing have
+#'   been estimated.
 #' @param threshold A numeric value between 0 and 1, or an integer greater or
-#'   equal to one. If less than one, then factor levels with a rate of
+#'   equal to one.  If less than one, then factor levels with a rate of
 #'   occurrence in the training set below `threshold` will be pooled to `other`.
 #'   If greater or equal to one, then this value is treated as a frequency and
 #'   factor levels that occur less than `threshold` times will be pooled to
-#'   `other`. See also 
-#' @param single_low_level character controlling handling of a single low 
-#'   rate/frequency class. Defaults to 'as-is', where data is unmodified if only 
-#'   a single level meets the criterion for pooling. This is different from 
-#'   `recipes::step_other()`'s behavior ('rename'), where the low rate/frequency 
-#'   class would not be pooled with other classes but renamed to `other`
+#'   `other`.
 #' @param other A single character value for the other category, defaults to
-#'   `"other_ml"`.
+#' `"other_ml"`. 
+#' @param single_low_level character controlling handling of a single low 
+#' rate/frequency class. Defaults to 'as-is', where data is unmodified if only 
+#' a single level meets the criterion for pooling. This is different from 
+#' `recipes::step_other()`'s behavior ('rename'), where the low rate/frequency 
+#' class would not be pooled with other classes but renamed to `other`
+#' @param skip A logical. Should the step be skipped when the recipe is baked by
+#'   [bake()]? While all operations are baked when [prep()] is run, some
+#'   operations may not be able to be conducted on new data (e.g. processing the
+#'   outcome variable(s)). Care should be taken when using `skip = TRUE` as it
+#'   may affect the computations for subsequent operations.
+#' @param id A character string that is unique to this step to identify it.
+
 #' @param objects A list of objects that contain the information to pool
 #'   infrequent levels that is determined by [prep()].
 #' @template recipe-step-return
 # @family dummy variable and encoding steps
 # @seealso [dummy_names()]
 #' @export
-#' @author This step is based on `recipes::step_other()` 
-#' (https://github.com/tidymodels/recipes/blob/d269758cb171698f38f376fcd711de941840657f/R/other.R#L1)
-#'  with only minor modifications.
+#' @author This step is based on 
+#' [`recipes::step_other()`](https://github.com/tidymodels/recipes/blob/d269758cb171698f38f376fcd711de941840657f/R/other.R#L1)
+#' with only minor modifications.
 #'  
 #' @details
 #'
@@ -40,26 +54,27 @@
 #' If `threshold` is less than the largest category proportion, all levels
 #' except for the most frequent are collapsed to the `other` level.
 #'
-# from step_other(): If the retained categories include the value of `other`, an error is thrown.
-# TODO check behaviour for non-retained category other_ml()
-#' If `other` is in the list of discarded levels, no error occurs.
+#' If `other_ml` is in the list of discarded levels, no error occurs.
 #'
 #' If no pooling is done, novel factor levels are converted to missing. If
-#' pooling is needed, they will be placed into the other category.
+#' pooling is needed, they will be placed into the other_ml category.
 #'
 #' When data to be processed contains novel levels (i.e., not contained in the
 #' training set), the other category is assigned.
 #' 
 #' # Differences to step_other()
-#' - a single class subject to lumping is kept as-is as opposed to renamed to `other` (during prep)
-#' - If the level defined in `other` is an original class level that was not subject to pooing, 
+#' - a single class subject to lumping is kept as-is as opposed to renamed 
+#' to `other` (during prep)
+#' - If the level defined in `other` is an original class level that was not 
+#' subject to pooling, 
 #' the user is informed, but no error is raised.
 #' # TODO check message in test case
 #' - novel factor levels are not pooled with an existing lumped category (during bake)
 #'
 #' # Tidying
 #'
-#' When you [`recipes::tidy()`][recipes::tidy.recipe()] this step, a tibble is returned with
+#' When you [`recipes::tidy()`][recipes::tidy.recipe()] this step, 
+#' a tibble is returned with
 #' columns `terms`, `retained` , and `id`:
 #'
 #' \describe{
@@ -68,7 +83,8 @@
 #'   \item{id}{character, id of this step}
 #' }
 #'
-#'
+#' @inheritSection step_log_skewness Case weights
+
 #' @template recipe-case-weights-unsupervised
 #'
 
