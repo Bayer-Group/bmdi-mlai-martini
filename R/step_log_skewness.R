@@ -192,7 +192,11 @@ print.step_log_skewness <-
 
 #' @exportS3Method 
 tidy.step_log_skewness <- function(x, ...) {
-  out <- recipes:::simple_terms(x, ...)
+  dots <- rlang::dots_list()
+  out <- do.call(
+    getfromNamespace("simple_terms", "recipes"), #recipes:::simple_terms(x, ...)
+    list(x = x, dots)
+  )
   out$base <- x$base
   out$id <- x$id
   out
