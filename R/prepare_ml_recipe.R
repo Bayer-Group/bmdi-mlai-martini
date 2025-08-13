@@ -162,6 +162,15 @@ prepare_ml_recipe <- function(
       # ... ... omit observations with missing endpoint ####
       recipes::step_naomit(recipes::all_outcomes(), skip = FALSE) %>% 
       
+      # ... ... log transformation ####
+      {if (step_used$prep_step_log) {
+        step_log_skewness(
+          ., recipes::all_numeric_predictors(), 
+          base = log_base, 
+          skewness = thres_used$thres_log
+        ) 
+      }else{.}} %>%
+      
       # ... ... imputation ####
       {if (step_used$prep_step_knnimpute) {
         recipes::step_impute_knn(., recipes::all_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
@@ -180,15 +189,6 @@ prepare_ml_recipe <- function(
         freq_cut   = thres_used$thres_nzv_freq, 
         unique_cut = thres_used$thres_nzv_unique
       ) %>% 
-      
-      # ... ... log transformation ####
-      {if (step_used$prep_step_log) {
-        step_log_skewness(
-          ., recipes::all_numeric_predictors(), 
-          base = log_base, 
-          skewness = thres_used$thres_log
-        ) 
-      }else{.}} %>%
       
       # ... ... normalization ####
       {if (step_used$prep_step_normalize) {
