@@ -30,13 +30,13 @@ See \code{\link[=selections]{selections()}} for more details.}
 been estimated.}
 
 \item{threshold}{A numeric value between 0 and 1, or an integer greater or
-equal to one. If less than one, then factor levels with a rate of
+equal to one.  If less than one, then factor levels with a rate of
 occurrence in the training set below \code{threshold} will be pooled to \code{other}.
 If greater or equal to one, then this value is treated as a frequency and
 factor levels that occur less than \code{threshold} times will be pooled to
-\code{other}. See also}
+\code{other}.}
 
-\item{other}{A single character value for the other category, default to
+\item{other}{A single character value for the other category, defaults to
 \code{"other_ml"}.}
 
 \item{single_low_level}{character controlling handling of a single low
@@ -62,7 +62,7 @@ sequence of any existing operations.
 }
 \description{
 \code{step_other2()} creates a \emph{specification} of a recipe step that will
-potentially pool infrequently occurring values into an \code{"other"} category.
+potentially pool infrequently occurring values into an \code{"other_ml"} category.
 }
 \details{
 The overall proportion (or total counts) of the categories are computed. The
@@ -76,18 +76,20 @@ Otherwise, a factor is always returned with different factor levels.
 If \code{threshold} is less than the largest category proportion, all levels
 except for the most frequent are collapsed to the \code{other} level.
 
-If \code{other} is in the list of discarded levels, no error occurs.
+If \code{other_ml} is in the list of discarded levels, no error occurs.
 
 If no pooling is done, novel factor levels are converted to missing. If
-pooling is needed, they will be placed into the other category.
+pooling is needed, they will be placed into the other_ml category.
 
 When data to be processed contains novel levels (i.e., not contained in the
 training set), the other category is assigned.
 }
 \section{Differences to step_other()}{
 \itemize{
-\item a single class subject to lumping is kept as-is as opposed to renamed to \code{other} (during prep)
-\item If the level defined in \code{other} is an original class level that was not subject to pooing,
+\item a single class subject to lumping is kept as-is as opposed to renamed
+to \code{other} (during prep)
+\item If the level defined in \code{other} is an original class level that was not
+subject to pooling,
 the user is informed, but no error is raised.
 }
 }
@@ -99,19 +101,15 @@ the user is informed, but no error is raised.
 }
 
 \section{Tidying}{
-When you \code{\link[=tidy.recipe]{tidy()}} this step, a tibble is returned with
+When you \code{\link[recipes:tidy.recipe]{recipes::tidy()}} this step,
+a tibble is returned with
 columns \code{terms}, \code{retained} , and \code{id}:
 
 \describe{
 \item{terms}{character, the selectors or variables selected}
-\item{retained}{character, factor levels not pulled into \code{"other"}}
+\item{retained}{character, factor levels not pulled into \code{other}}
 \item{id}{character, id of this step}
 }
-
-\if{html}{\out{<div class="sourceCode {r, echo = FALSE, results="asis"}">}}\preformatted{step <- "step_other2"
-result <- knitr::knit_child("man/rmd/tunable-args.Rmd")
-cat(result)
-}\if{html}{\out{</div>}}
 }
 
 \section{Case weights}{
@@ -121,50 +119,14 @@ This step performs an unsupervised operation that can utilize case weights.
 As a result, case weights are only used with frequency weights. For more
 information, see the documentation in \link[recipes:case_weights]{recipes::case_weights} and the
 examples on \code{tidymodels.org}.
+
+
+
+The underlying operation does not allow for case weights.
 }
 
-\examples{
-\dontshow{if (rlang::is_installed("modeldata")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-data(Sacramento, package = "modeldata")
-
-set.seed(19)
-in_train <- sample(1:nrow(Sacramento), size = 800)
-
-sacr_tr <- Sacramento[in_train, ]
-sacr_te <- Sacramento[-in_train, ]
-
-rec <- recipe(~ city + zip, data = sacr_tr)
-
-
-rec <- rec |>
-  step_other2(city, zip, threshold = .1, other = "other values")
-rec <- prep(rec, training = sacr_tr)
-
-collapsed <- bake(rec, sacr_te)
-table(sacr_te$city, collapsed$city, useNA = "always")
-
-tidy(rec, number = 1)
-
-# novel levels are "othered" in original step_other(), but kept as-is for step_other2()
-tahiti <- Sacramento[1, ]
-tahiti$zip <- "a magical place"
-bake(rec, tahiti)
-
-# threshold as a frequency
-rec <- recipe(~ city + zip, data = sacr_tr)
-
-rec <- rec |>
-  step_other2(city, zip, threshold = 2000, other = "other values")
-rec <- prep(rec, training = sacr_tr)
-
-tidy(rec, number = 1)
-# compare it to
-# sacr_tr |> count(city, sort = TRUE) |> top_n(4)
-# sacr_tr |> count(zip, sort = TRUE) |> top_n(3)
-\dontshow{\}) # examplesIf}
-}
 \author{
-This step is based on \code{recipes::step_other()}
-(https://github.com/tidymodels/recipes/blob/d269758cb171698f38f376fcd711de941840657f/R/other.R#L1)
+This step is based on
+\href{https://github.com/tidymodels/recipes/blob/d269758cb171698f38f376fcd711de941840657f/R/other.R#L1}{\code{recipes::step_other()}}
 with only minor modifications.
 }
