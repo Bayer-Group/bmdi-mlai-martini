@@ -121,6 +121,7 @@ step_log_skewness_new <-
 
 #' @exportS3Method 
 prep.step_log_skewness <- function(x, training, info = NULL, ...) {
+  
   col_names <- recipes::recipes_eval_select(x$terms, training, info)
   #recipes::check_type(training[, col_names], types = c("double", "integer"))
   do.call(
@@ -140,11 +141,14 @@ prep.step_log_skewness <- function(x, training, info = NULL, ...) {
   
   if (!is.null(x$skewness)){
     
-    is_skewed <- logical(length(col_names)) %>% purrr::set_names(col_names)
-    for (col_name in col_names) {
-      is_skewed[col_name] <- skw(training[[col_name]], na.rm = TRUE) > x$skewness
-    }
-    col_names <- col_names[unname(is_skewed)]
+    skws <- purrr::map_dbl(
+      col_names %>% purrr::set_names(),
+      ~skw(training[[.x]], na.rm = TRUE)
+    )
+    col_names <- skws %>%
+      magrittr::is_greater_than(x$skewness) %>%
+      purrr::keep(isTRUE) %>%
+      names()
     
   }
   

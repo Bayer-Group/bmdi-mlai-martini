@@ -13,6 +13,7 @@ test_that("step_log_skewness() works", {
   
   rec <- recipes::recipe(~ ., data = X)
   
+  # step_log_skewness() with skewed vars ####
   rec_log <- rec %>% 
     step_log_skewness(
       recipes::all_numeric_predictors(), 
@@ -32,6 +33,7 @@ test_that("step_log_skewness() works", {
     ignore_attr = TRUE
   )
   
+  # step_log_skewness_undo() with skewed vars ####
   rec_log_undo <- rec_log %>% 
     step_log_skewness_undo(recipes::all_numeric_predictors())
   
@@ -43,7 +45,7 @@ test_that("step_log_skewness() works", {
     ignore_attr = TRUE
   )
   
-  # also works, when no skewed variables are present
+  ## no skewed variables are present ####
   X_sym <-  dplyr::select(X, tidyselect::starts_with("sym"))
   rec_noskew_prep <- recipes::recipe(
     ~ ., 
