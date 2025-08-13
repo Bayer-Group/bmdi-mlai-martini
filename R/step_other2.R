@@ -146,7 +146,7 @@ step_other2_new <-
     )
   }
 
-#' @export
+#' @exportS3Method 
 prep.step_other2 <- function(x, training, info = NULL, ...) {
   col_names <- recipes::recipes_eval_select(x$terms, training, info)
   recipes::check_type(training[, col_names], types = c("string", "factor", "ordered"))
@@ -246,7 +246,7 @@ bake.step_other2 <- function(object, new_data, ...) {
   new_data
 }
 
-#' @export
+#' @exportS3Method 
 print.step_other2 <-
   function(x, width = max(20, options()$width - 30), ...) {
     title <- "Collapsing factor levels for "
@@ -328,8 +328,7 @@ keep_levels <- function(
   )
 }
 
-#' @rdname tidy.recipe
-#' @export
+#' @exportS3Method 
 tidy.step_other2 <- function(x, ...) {
   if (recipes::is_trained(x)) {
     values <- purrr::map(x$objects, function(x) x$keep)
@@ -354,7 +353,7 @@ tidy.step_other2 <- function(x, ...) {
   res
 }
 
-#' @export
+#' @exportS3Method 
 tunable.step_other2 <- function(x, ...) {
   tibble::tibble(
     name = "threshold",
