@@ -6,6 +6,9 @@
   * similar to the data that is provided in its raw form as well as prepped and 
   ready to use for ML, the recipe is now provided in raw and prepped version 
   as well to allow for proper tuning workflows
+  * removed$cols$corr_keep
+  * recipe log step now called log_skewness. Info on log trafod values to 
+  be extracted from new output slot
 * the default `recipe` itself has been modified, making use of new custom steps 
   that are adaptations of existing `recipes` functions
   * `step_corr_keep()` offers the functionality of `recipes::step_corr()` 
@@ -21,7 +24,9 @@
   class and silently adds novel levels to this class, our version would leave 
   the single class unmodified and raise an error in case a new data set 
   comes with novel levels for that variable. 
-  
+    
+* vars_count deprecated: no longer excluded from log transformation and normalization
+
 
 # martini 0.6.4
 
