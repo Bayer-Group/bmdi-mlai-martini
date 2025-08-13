@@ -142,6 +142,9 @@ adam_spec_occds <- function(
     as.logical()
   actual_filter <- filter[keep_filter]
   
+  # --OCCUR check ####
+  #...
+  
   # output ####
   
   create_spec_out(
