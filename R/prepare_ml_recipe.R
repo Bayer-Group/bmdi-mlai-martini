@@ -108,9 +108,6 @@ prepare_ml_recipe <- function(
   vars_log     <- vars$log   
   vars_nolump  <- vars$nolump
   
-  # placeholder for recipe, will be filled later
-  vars_rm_corr <- NULL
-  
   # RECIPE ####
   
   if (is.null(prep_recipe)){
@@ -156,13 +153,7 @@ prepare_ml_recipe <- function(
         recipes::all_factor_predictors(), 
         fn = ~ {prepare_ml_other(.x)}
       ) %>% 
-      
-      # ... ... remove variables that are correlated to 'vars_keep_corr' ####
-      # helper step - only used in combination with 'step_corr()'
-      {if (step_used$prep_step_corr) {
-        recipes::step_rm(., tidyselect::any_of(vars_rm_corr))
-      }else{.}} %>% 
-      
+
       # ... ... exclude variables with too many missings ####
       {if (thres_used$thres_imp>0) {
         recipes::step_filter_missing(., recipes::all_predictors(), threshold = 1-thres_used$thres_imp)
@@ -203,22 +194,22 @@ prepare_ml_recipe <- function(
       {if (step_used$prep_step_normalize) {
         recipes::step_normalize(
           ., 
-          recipes::all_numeric(), -recipes::all_outcomes(), -recipes::has_role("ID"),
-          # exclude vars identified as counts (previously excluded from logtrafo as well)
-          -tidyselect::any_of(vars_count),
+          recipes::all_numeric_predictors()
         )
       }else{.}} %>% 
       
       # ... ... remove highly correlated variables with a twist #### 
       {if (step_used$prep_step_corr) {
-        recipes::step_corr(
+        step_corr_keep(
           ., 
           recipes::all_numeric_predictors(), 
           threshold = thres_used$thres_corr, 
           method = corr_method,
-          use = corr_use
+          use = corr_use, 
+          keep = vars_keep_corr
         )
       }else{.}} %>%  
+      
       # ... ... lump factors ####
       recipes::step_other(
         ., 
@@ -245,84 +236,7 @@ prepare_ml_recipe <- function(
     rcp <- prep_recipe
   }
   
-  
-  corr_tibble <- NULL
-  
-  # modify recipe to omit corr step,  is applied and given var set should be kept
-  if(step_used$prep_step_corr){
-    
-    # determine correlation structure to identify correlated groups ####
-    
-    # identify corr step from recipe
-    number_corr <- rcp %>% 
-      recipes::tidy() %>% 
-      dplyr::filter(type == 'corr') %>% 
-      dplyr::pull(number)
-    
-    # prep and train
-    rcp_nocorr <- rcp
-    rcp_nocorr$steps[[number_corr]]$skip <- TRUE
-    
-    rcp_prep_nocorr <- rcp_nocorr %>% 
-      # NOTE suppress warnings from gower_topn(), used in recipes::step_impute_knn
-      # this function skips constant columns (desired behavior) and throws a warning (not desired in our case)
-      # TODO suppress only the warning mentioned above ("skipping variable with zero..."),
-      # but show other warnings
-      # (used multiple times in the package)
-      {purrr::quietly(recipes::prep)(., strings_as_factors = FALSE, training = data)} %>% 
-      purrr::pluck("result")
-    
-    # identify naomit step from recipe and make sure that skip = FALSE
-    # (always set to TRUE, when the recipe is prepped)
-    number_naomit <- rcp_prep_nocorr %>% 
-      recipes::tidy() %>% 
-      dplyr::filter(type == 'naomit') %>% 
-      dplyr::pull(number)
-    
-    # prep and train
-    purrr::walk(number_naomit, ~{
-      rcp_prep_nocorr$steps[[.x]]$columns <<- unname(rcp_prep_nocorr$steps[[.x]]$columns)
-      rcp_prep_nocorr$steps[[.x]]$skip    <<- FALSE
-    })
-    
-    d_train_nocorr <- rcp_prep_nocorr %>%
-      {purrr::quietly(recipes::bake)(., new_data = data)} %>% 
-      purrr::pluck('result')
-    
-    # for all (numeric) variables identify highly correlated variables from d_train_nocorr
-    corr_tibble <- corrr_mini(
-      d_train_nocorr %>% 
-        dplyr::select(tidyselect::any_of(
-          rcp_prep_nocorr$var_info %>% 
-            dplyr::filter(role == "predictor") %>% 
-            dplyr::pull(variable)
-        )) %>% 
-        dplyr::select_if(is.numeric),
-      method = corr_method, 
-      use    = corr_use
-    ) %>% 
-      dplyr::filter(abs(r) > thres_used$thres_corr)
-   
-    
-    if(!is.null(vars_keep_corr)){
-      
-      vars_rm_corr <- corr_tibble %>%  
-        dplyr::filter(x %in% vars_keep_corr) %>% 
-        dplyr::pull(y) %>% 
-        unique()
-      
-      # modify removal step in original recipe to add vars_rm_corr
-      number_rm <- rcp %>% recipes::tidy() %>% dplyr::filter(type == 'rm') %>% dplyr::pull(number)
-      env_rm    <- rcp$steps[[number_rm]]$terms[[1]] %>% attr(which = '.Environment') 
-      
-      assign('vars_rm_corr', vars_rm_corr, envir = env_rm) 
-      
-    }
-    
-  }
-  
   # ... prep recipe ####
-  # must be prepped at the very end, since corr step modifies removal step
   rcp_prep <- rcp %>% 
     {purrr::quietly(recipes::prep)(., 
       strings_as_factors = FALSE,
@@ -334,8 +248,33 @@ prepare_ml_recipe <- function(
     purrr::pluck("result")
   # TODO 
   # check new parameters 'retain' and 'log_changes' in 'prep()'
-   
-
+  
+  # ... extract corr tibble ####
+  if (is.null(prep_recipe) && step_used$prep_step_corr) {
+    
+    number_step_corr_keep <- recipes::tidy(rcp_prep) %>% 
+      dplyr::pull(type) %>% 
+      magrittr::equals("corr_keep") %>% 
+      which()
+    corr_tibble <- rcp_prep$steps[[number_step_corr_keep]]$high_corr
+    
+  } else {
+    corr_tibble <- NULL
+  }
+  
+  # ... extract log-transformed variables ####
+  if (step_used$prep_step_log) {
+    
+    number_step_log <- recipes::tidy(rcp_prep) %>% 
+      dplyr::pull(type) %>% 
+      magrittr::equals("log_skewness") %>% 
+      which()
+    vars_log <- rcp_prep$steps[[number_step_log]]$columns
+    
+  } else {
+    vars_log <- NULL
+  }
+  
   # identify naomit step from recipe and make sure that skip = FALSE
   # (see ?recipes::step_naomit)
   number_naomit <- rcp_prep %>% 
@@ -344,6 +283,7 @@ prepare_ml_recipe <- function(
     dplyr::pull(number)
   
   # prep and train
+  # TODO WTH?
   purrr::walk(number_naomit, ~{
     rcp_prep$steps[[.x]]$columns <<- unname(rcp_prep$steps[[.x]]$columns)
     rcp_prep$steps[[.x]]$skip    <<- FALSE

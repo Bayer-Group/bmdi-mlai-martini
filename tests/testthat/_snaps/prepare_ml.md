@@ -8563,7 +8563,7 @@
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "ASIAN",
+          "RACE": "BLACK",
           "AGE": 51,
           "BMI_advs": 27.2,
           "BPDIA": 69,
@@ -9534,7 +9534,7 @@
       $removed$cols$nzv
       NULL
       
-      $removed$cols$corr
+      $removed$cols$corr_keep
       [1] "BMI_adsl"
       
       
@@ -18233,7 +18233,7 @@
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
-          "RACE": "WHITE",
+          "RACE": "BLACK",
           "AGE": 83,
           "BMI_advs": 36.6,
           "BPDIA": 75,
@@ -18338,7 +18338,7 @@
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "WHITE",
+          "RACE": "ASIAN",
           "AGE": 51,
           "BMI_advs": 27.2,
           "BPDIA": 69,
@@ -19180,7 +19180,7 @@
       $removed$cols$nzv
       NULL
       
-      $removed$cols$corr
+      $removed$cols$corr_keep
       [1] "BMI_adsl"
       
       
@@ -29406,7 +29406,7 @@
       $removed$cols$nzv
       NULL
       
-      $removed$cols$corr
+      $removed$cols$corr_keep
       [1] "BMI_adsl"
       
       
