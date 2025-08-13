@@ -85,14 +85,25 @@ if(FALSE){
   # `baked$clash`:    "other_ml"  "other_ml"  "other_ml"  "other_ml"  "other_ml" 
 }
 
+# combined test of individual cases ----
 expect_equal(
   df_baked,
   df_baked_reference
 )
 
+# basic check: tidy gives result for raw and prepped ----
+expect_s3_class(
+  rcp_raw %>% tidy(),
+  "tbl_df"
+)
+
+expect_s3_class(
+  rcp_prepped %>% tidy(),
+  "tbl_df"
+)
 
 
-if(FALSE){ # comparison with recipes::step_other()
+if(interactive()){ # comparison with recipes::step_other()
   
   rcp_orig_step_other <- recipes::recipe(x = df) %>% 
     recipes::update_role(tidyselect::everything()) %>% 

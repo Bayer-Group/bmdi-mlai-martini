@@ -1,5 +1,5 @@
 test_that("step_log_skewness() works", {
-  
+  # step_log_skewness ####
   withr::with_seed(2116,{
     
     n <- 250
@@ -61,6 +61,32 @@ test_that("step_log_skewness() works", {
     recipes::bake(rec_noskew_prep, new_data = NULL), 
     X_sym, 
     ignore_attr = TRUE
+  )
+  
+  # basic check: tidy gives tibble result for raw and prepped ----
+  expect_s3_class(
+    rec_log %>% tidy(),
+    "tbl_df"
+  )
+  
+  expect_s3_class(
+    rec_log_prep %>% tidy(),
+    "tbl_df"
+  )
+  
+  expect_s3_class(
+    rec_log_undo %>% tidy(),
+    "tbl_df"
+  )
+  
+  expect_s3_class(
+    rec_log_undo_prep %>% tidy(),
+    "tbl_df"
+  )
+  
+  expect_s3_class(
+    rec_noskew_prep %>% tidy(),
+    "tbl_df"
   )
   
 })
