@@ -31,12 +31,28 @@ prepare_ml_recipe(
 and step selection info, resp. please refer to the documentation of the \verb{thres_*} and \verb{prep_step_*} arguments
 in \code{\link{prepare_ml}()} for detailed documentation and list entry names.}
 
-\item{vars_imp_ignore, vars_fct_expl_na, vars_ordinalscore, vars_keep_corr}{vars relevant
-to steps. see \code{\link{prepare_ml}()} for details.}
+\item{vars_imp_ignore}{variables that shall not be imputed can be specified
+in \code{vars_imp_ignore} (vector of column names, defaults to
+\code{vars_imp_ignore = '.trt'}). Observations with missing values in these
+variables will be removed. Removal is documented in \code{removed$rows}.}
 
-\item{level_other}{name for the "other"-category in \code{recipes::step_other()}. defaults to "other".}
+\item{vars_fct_expl_na}{column names of factors for which NAs should be
+treated as an explicit factor level. Defaults to NULL.}
 
-\item{one_hot, log_base}{see \code{\link{prepare_ml}()}}
+\item{vars_ordinalscore}{column names of ordinal factor variables to be
+converted into numeric scores. Defaults to NULL.}
+
+\item{vars_keep_corr}{choose these variables over other options when removing
+variables due to high correlation in \code{recipes::step_corr()}.
+See \code{recipes::step_rm()} below for details.}
+
+\item{level_other}{name for the "other"-category in \code{\link[=step_other2]{step_other2()}}. defaults to "other_ml".}
+
+\item{one_hot}{boolean. passed to \code{recipes::step_dummy()} to choose one
+hot encoding over dummy encoding}
+
+\item{log_base}{base to use for log-transformation in
+\code{recipes::step_log()}. Defaults to \emph{exp(1)}.}
 }
 \value{
 a named list with entries containing

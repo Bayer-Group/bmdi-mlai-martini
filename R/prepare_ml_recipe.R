@@ -8,10 +8,8 @@
 #' @param thres_list,step_list named list objects collecting all threshold values 
 #' and step selection info, resp. please refer to the documentation of the `thres_*` and `prep_step_*` arguments 
 #' in \code{\link{prepare_ml}()} for detailed documentation and list entry names.
-#' @param vars_imp_ignore,vars_fct_expl_na,vars_ordinalscore,vars_keep_corr vars relevant 
-#' to steps. see \code{\link{prepare_ml}()} for details.
-#' @param level_other name for the "other"-category in `recipes::step_other()`. defaults to "other".
-#' @param one_hot,log_base see \code{\link{prepare_ml}()}
+#' @param level_other name for the "other"-category in [step_other2()]. defaults to "other_ml".
+#' @inheritParams prepare_ml
 #'
 #' @return
 #' a named list with entries containing
@@ -193,8 +191,12 @@ prepare_ml_recipe <- function(
       ) %>% 
       
       # ... ... log transformation ####
-      {if (step_used$prep_step_log && length(vars_log) > 0) {
-        recipes::step_log(., tidyselect::any_of(vars_log), base = log_base) 
+      {if (step_used$prep_step_log) {
+        step_log_skewness(
+          ., recipes::all_numeric_predictors(), 
+          base = log_base, 
+          skewness = thres_used$thres_log
+        ) 
       }else{.}} %>%
       
       # ... ... normalization ####
