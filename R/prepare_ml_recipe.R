@@ -147,90 +147,90 @@ prepare_ml_recipe <- function(
       {if (!is.null(vars_fct_expl_na)) {
         recipes::step_mutate_at(., vars_fct_expl_na, ~ fct_na_to_level(.x, level = "missing"))
       }else{.}} %>% 
-      
+        
       # ... ... consistent handling of factors with level other ####
-      recipes::step_mutate_at(
-        recipes::all_factor_predictors(), 
-        fn = ~ {prepare_ml_other(.x)}
-      ) %>% 
-
-      # ... ... exclude variables with too many missings ####
-      {if (thres_used$thres_imp>0) {
-        recipes::step_filter_missing(., recipes::all_predictors(), threshold = 1-thres_used$thres_imp)
-      }else{.}} %>% 
+    recipes::step_mutate_at(
+      recipes::all_factor_predictors(), 
+      fn = ~ {prepare_ml_other(.x)}
+    ) %>% 
+      
+    # ... ... exclude variables with too many missings ####
+    {if (thres_used$thres_imp>0) {
+      recipes::step_filter_missing(., recipes::all_predictors(), threshold = 1-thres_used$thres_imp)
+    }else{.}} %>% 
       
       # ... ... omit observations with missing endpoint ####
-      recipes::step_naomit(recipes::all_outcomes(), skip = FALSE) %>% 
+    recipes::step_naomit(recipes::all_outcomes(), skip = FALSE) %>% 
       
-      # ... ... imputation ####
-      {if (step_used$prep_step_knnimpute) {
-        recipes::step_impute_knn(., recipes::all_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
-          # simple imputation for values that could not be imputed by knn
-          recipes::step_impute_median(recipes::all_numeric_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
-          recipes::step_impute_mode(  recipes::all_nominal_predictors(), -tidyselect::any_of(vars_imp_ignore))
-      }else{.}} %>% 
+     # ... ... log transformation ####
+    {if (step_used$prep_step_log) {
+      step_log_skewness(
+        ., recipes::all_numeric_predictors(), 
+        base = log_base, 
+        skewness = thres_used$thres_log
+      ) 
+    }else{.}} %>%
       
-      # ... ... omit observations with missing data in variables ####
-      recipes::step_naomit(recipes::all_predictors(), skip = FALSE) %>% 
+    # ... ... imputation ####
+    {if (step_used$prep_step_knnimpute) {
+      recipes::step_impute_knn(., recipes::all_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
+        # simple imputation for values that could not be imputed by knn
+        recipes::step_impute_median(recipes::all_numeric_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
+        recipes::step_impute_mode(  recipes::all_nominal_predictors(), -tidyselect::any_of(vars_imp_ignore))
+    }else{.}} %>% 
       
-      # ... ... (near) zero variance ####
-      recipes::step_zv(recipes::all_predictors()) %>% 
+    # ... ... omit observations with missing data in variables ####
+    recipes::step_naomit(recipes::all_predictors(), skip = FALSE) %>% 
+      
+    # ... ... (near) zero variance ####
+    recipes::step_zv(recipes::all_predictors()) %>% 
       recipes::step_nzv(
         recipes::all_predictors(),
         freq_cut   = thres_used$thres_nzv_freq, 
         unique_cut = thres_used$thres_nzv_unique
       ) %>% 
       
-      # ... ... log transformation ####
-      {if (step_used$prep_step_log) {
-        step_log_skewness(
-          ., recipes::all_numeric_predictors(), 
-          base = log_base, 
-          skewness = thres_used$thres_log
-        ) 
-      }else{.}} %>%
-      
-      # ... ... normalization ####
-      {if (step_used$prep_step_normalize) {
-        recipes::step_normalize(
-          ., 
-          recipes::all_numeric_predictors()
-        )
-      }else{.}} %>% 
-      
-      # ... ... remove highly correlated variables with a twist #### 
-      {if (step_used$prep_step_corr) {
-        step_corr_keep(
-          ., 
-          recipes::all_numeric_predictors(), 
-          threshold = thres_used$thres_corr, 
-          method = corr_method,
-          use = corr_use, 
-          keep = vars_keep_corr
-        )
-      }else{.}} %>%  
-      
-      # ... ... lump factors ####
-      recipes::step_other(
+    # ... ... normalization ####
+    {if (step_used$prep_step_normalize) {
+      recipes::step_normalize(
         ., 
-        recipes::all_nominal_predictors(), -tidyselect::any_of(vars_nolump),
-        threshold = thres_used$thres_lump, other = level_other
-      ) %>%  
+        recipes::all_numeric_predictors()
+      )
+    }else{.}} %>% 
       
-      # ... ... factor handling ####
-      {if (!is.null(vars_ordinalscore)) {
-        recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )
-      }else{.}} %>%  
+    # ... ... remove highly correlated variables with a twist #### 
+    {if (step_used$prep_step_corr) {
+      step_corr_keep(
+        ., 
+        recipes::all_numeric_predictors(), 
+        threshold = thres_used$thres_corr, 
+        method = corr_method,
+        use = corr_use, 
+        keep = vars_keep_corr
+      )
+    }else{.}} %>%  
       
-      #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
-      # ... ... dummy coding ####
-      {if(step_used$prep_step_dummy){
-        recipes::step_dummy(
-          .,  
-          recipes::all_nominal_predictors(),  
-          one_hot = one_hot
-        ) 
-      }else{.}} 
+     # ... ... lump factors ####
+    recipes::step_other(
+      ., 
+      recipes::all_nominal_predictors(), -tidyselect::any_of(vars_nolump),
+      threshold = thres_used$thres_lump, other = level_other
+    ) %>%  
+      
+    # ... ... factor handling ####
+    {if (!is.null(vars_ordinalscore)) {
+      recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )
+    }else{.}} %>%  
+      
+    #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
+    # ... ... dummy coding ####
+    {if(step_used$prep_step_dummy){
+      recipes::step_dummy(
+        .,  
+        recipes::all_nominal_predictors(),  
+        one_hot = one_hot
+      ) 
+    }else{.}} 
     
   } else {
     rcp <- prep_recipe
