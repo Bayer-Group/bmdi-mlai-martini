@@ -7,7 +7,9 @@ test_that("step_log_skewness() works", {
       sym1 = rnorm(n, mean = 10, sd =1),
       sym2 = rnorm(n, mean = 100, sd =5),
       skw1 = exp(rnorm(n, mean = 1, sd = 2)),
-      skw2 = exp(rnorm(n, mean = 0, sd = 1))
+      skw2 = exp(rnorm(n, mean = 0, sd = 1)),
+      # add a constant (skewness = NaN)
+      const = rep(1,n)
     )
   })
   
@@ -102,7 +104,9 @@ test_that("step_log_skewness_undo() works", {
       sym1 = rnorm(n, mean = 10, sd =1),
       sym2 = rnorm(n, mean = 100, sd =5),
       skw1 = exp(rnorm(n, mean = 1, sd = 2)),
-      skw2 = exp(rnorm(n, mean = 0, sd = 1))
+      skw2 = exp(rnorm(n, mean = 0, sd = 1)),
+      # add a constant (skewness = NaN)
+      const = rep(1,n)
     )
   })
   
