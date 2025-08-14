@@ -147,13 +147,13 @@ prepare_ml_recipe <- function(
       {if (!is.null(vars_fct_expl_na)) {
         recipes::step_mutate_at(., vars_fct_expl_na, ~ fct_na_to_level(.x, level = "missing"))
       }else{.}} %>% 
-      
+        
       # ... ... consistent handling of factors with level other ####
       recipes::step_mutate_at(
         recipes::all_factor_predictors(), 
         fn = ~ {prepare_ml_other(.x)}
       ) %>% 
-
+        
       # ... ... exclude variables with too many missings ####
       {if (thres_used$thres_imp>0) {
         recipes::step_filter_missing(., recipes::all_predictors(), threshold = 1-thres_used$thres_imp)
@@ -176,9 +176,9 @@ prepare_ml_recipe <- function(
           recipes::step_impute_median(recipes::all_numeric_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
           recipes::step_impute_mode(  recipes::all_nominal_predictors(), -tidyselect::any_of(vars_imp_ignore))
       }else{.}} %>% 
-      
+
       # ... ... omit observations with missing data in variables excluded from imputation ####
-      recipes::step_naomit(vars_imp_ignore, skip = FALSE) %>% 
+      recipes::step_naomit(tidyselect::any_of(vars_imp_ignore), skip = FALSE) %>% 
       
       # ... ... undo log transformation ####
       {if (!step_used$prep_step_log) {
@@ -214,28 +214,40 @@ prepare_ml_recipe <- function(
           keep = vars_keep_corr
         )
       }else{.}} %>%  
-      
-      # ... ... lump factors ####
-      recipes::step_other(
+
+    # ... ... remove highly correlated variables with a twist #### 
+    {if (step_used$prep_step_corr) {
+      step_corr_keep(
         ., 
-        recipes::all_nominal_predictors(), -tidyselect::any_of(vars_nolump),
-        threshold = thres_used$thres_lump, other = level_other
-      ) %>%  
+        recipes::all_numeric_predictors(), 
+        threshold = thres_used$thres_corr, 
+        method = corr_method,
+        use = corr_use, 
+        keep = vars_keep_corr
+      )
+    }else{.}} %>%  
       
-      # ... ... factor handling ####
-      {if (!is.null(vars_ordinalscore)) {
-        recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )
-      }else{.}} %>%  
+     # ... ... lump factors ####
+    recipes::step_other(
+      ., 
+      recipes::all_nominal_predictors(), -tidyselect::any_of(vars_nolump),
+      threshold = thres_used$thres_lump, other = level_other
+    ) %>%  
       
-      #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
-      # ... ... dummy coding ####
-      {if(step_used$prep_step_dummy){
-        recipes::step_dummy(
-          .,  
-          recipes::all_nominal_predictors(),  
-          one_hot = one_hot
-        ) 
-      }else{.}} 
+    # ... ... factor handling ####
+    {if (!is.null(vars_ordinalscore)) {
+      recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )
+    }else{.}} %>%  
+      
+    #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
+    # ... ... dummy coding ####
+    {if(step_used$prep_step_dummy){
+      recipes::step_dummy(
+        .,  
+        recipes::all_nominal_predictors(),  
+        one_hot = one_hot
+      ) 
+    }else{.}} 
     
   } else {
     rcp <- prep_recipe

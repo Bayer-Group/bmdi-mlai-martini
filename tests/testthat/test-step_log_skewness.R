@@ -62,7 +62,7 @@ test_that("step_log_skewness() works", {
   expect_length(rec_noskew_prep$steps[[1]]$columns, 0)
   
   expect_equal(
-    recipes::bake(rec_noskew_prep, new_data = NULL), 
+    recipes::bake(rec_noskew_prep, new_data = X_sym), 
     X_sym, 
     ignore_attr = TRUE
   )
