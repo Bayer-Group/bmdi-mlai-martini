@@ -162,6 +162,9 @@ prepare_ml_recipe <- function(
       # ... ... omit observations with missing endpoint ####
       recipes::step_naomit(recipes::all_outcomes(), skip = FALSE) %>% 
       
+      # ... ... omit observations with missing data in variables excluded from imputation ####
+      recipes::step_naomit(tidyselect::any_of(vars_imp_ignore), skip = FALSE) %>%   
+      
       # ... ... log transformation ####
       step_log_skewness(
         ., recipes::all_numeric_predictors(), 
@@ -171,14 +174,11 @@ prepare_ml_recipe <- function(
       
       # ... ... imputation ####
       {if (step_used$prep_step_knnimpute) {
-        recipes::step_impute_knn(., recipes::all_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
+        recipes::step_impute_knn(., recipes::all_predictors()) %>% 
           # simple imputation for values that could not be imputed by knn
-          recipes::step_impute_median(recipes::all_numeric_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
-          recipes::step_impute_mode(  recipes::all_nominal_predictors(), -tidyselect::any_of(vars_imp_ignore))
+          recipes::step_impute_median(recipes::all_numeric_predictors()) %>% 
+          recipes::step_impute_mode(  recipes::all_nominal_predictors())
       }else{.}} %>% 
-
-      # ... ... omit observations with missing data in variables excluded from imputation ####
-      recipes::step_naomit(tidyselect::any_of(vars_imp_ignore), skip = FALSE) %>% 
       
       # ... ... undo log transformation ####
       {if (!step_used$prep_step_log) {
