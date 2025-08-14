@@ -202,18 +202,6 @@ prepare_ml_recipe <- function(
           recipes::all_numeric_predictors()
         )
       }else{.}} %>% 
-      
-      # ... ... remove highly correlated variables with a twist #### 
-      {if (step_used$prep_step_corr) {
-        step_corr_keep(
-          ., 
-          recipes::all_numeric_predictors(), 
-          threshold = thres_used$thres_corr, 
-          method = corr_method,
-          use = corr_use, 
-          keep = vars_keep_corr
-        )
-      }else{.}} %>%  
 
     # ... ... remove highly correlated variables with a twist #### 
     {if (step_used$prep_step_corr) {
@@ -268,11 +256,12 @@ prepare_ml_recipe <- function(
   
   # ... extract corr tibble ####
   if (is.null(prep_recipe) && step_used$prep_step_corr) {
-    
+    browser()
     number_step_corr_keep <- recipes::tidy(rcp_prep) %>% 
       dplyr::pull(type) %>% 
       magrittr::equals("corr_keep") %>% 
-      which()
+      which() 
+      
     corr_tibble <- rcp_prep$steps[[number_step_corr_keep]]$high_corr
     
   } else {
