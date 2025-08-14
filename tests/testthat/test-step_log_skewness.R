@@ -129,6 +129,9 @@ test_that("step_log_skewness_undo() works", {
     ignore_attr = TRUE
   )
   
+  # TODO add test to check if undoing still works if a log-transformed 
+  # column is removed before the undo-step
+  
   rec_log_undo_base <- rec %>% 
     step_log_skewness(
       recipes::all_numeric_predictors(), 

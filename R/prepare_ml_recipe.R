@@ -163,13 +163,11 @@ prepare_ml_recipe <- function(
       recipes::step_naomit(recipes::all_outcomes(), skip = FALSE) %>% 
       
       # ... ... log transformation ####
-      {if (step_used$prep_step_log) {
-        step_log_skewness(
-          ., recipes::all_numeric_predictors(), 
-          base = log_base, 
-          skewness = thres_used$thres_log
-        ) 
-      }else{.}} %>%
+      step_log_skewness(
+        ., recipes::all_numeric_predictors(), 
+        base = log_base, 
+        skewness = thres_used$thres_log
+      ) %>% 
       
       # ... ... imputation ####
       {if (step_used$prep_step_knnimpute) {
@@ -179,8 +177,15 @@ prepare_ml_recipe <- function(
           recipes::step_impute_mode(  recipes::all_nominal_predictors(), -tidyselect::any_of(vars_imp_ignore))
       }else{.}} %>% 
       
-      # ... ... omit observations with missing data in variables ####
-      recipes::step_naomit(recipes::all_predictors(), skip = FALSE) %>% 
+      # ... ... omit observations with missing data in variables excluded from imputation ####
+      recipes::step_naomit(vars_imp_ignore, skip = FALSE) %>% 
+      
+      # ... ... undo log transformation ####
+      {if (!step_used$prep_step_log) {
+        step_log_skewed_undo(
+          ., recipes::all_numeric_predictors()
+        )
+      }else{.}} %>%
       
       # ... ... (near) zero variance ####
       recipes::step_zv(recipes::all_predictors()) %>% 

@@ -319,12 +319,10 @@ step_log_skewness_undo_new <-
 prep.step_log_skewness_undo <- function(x, training, info = NULL, ...) {
   col_names <- recipes::recipes_eval_select(unname(x$columns), training, info)
   recipes::check_type(training[, col_names], types = c("double", "integer"))
-  #recipes:::check_number_decimal(x$offset, arg = "offset")
   do.call(
     utils::getFromNamespace("check_number_decimal", "recipes"),
     list(x = x$offset, arg = "offset")
   )
-  #recipes:::check_number_decimal(x$base, arg = "base", min = 0)
   do.call(
     utils::getFromNamespace("check_number_decimal", "recipes"),
     list(x = x$base, arg = "base", min = 0)
