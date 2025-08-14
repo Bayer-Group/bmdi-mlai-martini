@@ -195,7 +195,7 @@ print.step_log_skewness <-
 tidy.step_log_skewness <- function(x, ...) {
   dots <- rlang::dots_list()
   out <- do.call(
-    getfromNamespace("simple_terms", "recipes"), #recipes:::simple_terms(x, ...)
+    utils::getFromNamespace("simple_terms", "recipes"), 
     list(x = x, dots)
   )
   out$base <- x$base
