@@ -149,27 +149,25 @@ prepare_ml_recipe <- function(
       }else{.}} %>% 
         
       # ... ... consistent handling of factors with level other ####
-    recipes::step_mutate_at(
-      recipes::all_factor_predictors(), 
-      fn = ~ {prepare_ml_other(.x)}
-    ) %>% 
-      
-    # ... ... exclude variables with too many missings ####
-    {if (thres_used$thres_imp>0) {
-      recipes::step_filter_missing(., recipes::all_predictors(), threshold = 1-thres_used$thres_imp)
-    }else{.}} %>% 
+      recipes::step_mutate_at(
+        recipes::all_factor_predictors(), 
+        fn = ~ {prepare_ml_other(.x)}
+      ) %>% 
+        
+      # ... ... exclude variables with too many missings ####
+      {if (thres_used$thres_imp>0) {
+        recipes::step_filter_missing(., recipes::all_predictors(), threshold = 1-thres_used$thres_imp)
+      }else{.}} %>% 
       
       # ... ... omit observations with missing endpoint ####
-    recipes::step_naomit(recipes::all_outcomes(), skip = FALSE) %>% 
+      recipes::step_naomit(recipes::all_outcomes(), skip = FALSE) %>% 
       
       # ... ... log transformation ####
-      {if (step_used$prep_step_log) {
-        step_log_skewness(
-          ., recipes::all_numeric_predictors(), 
-          base = log_base, 
-          skewness = thres_used$thres_log
-        ) 
-      }else{.}} %>%
+      step_log_skewness(
+        ., recipes::all_numeric_predictors(), 
+        base = log_base, 
+        skewness = thres_used$thres_log
+      ) %>% 
       
       # ... ... imputation ####
       {if (step_used$prep_step_knnimpute) {
@@ -179,11 +177,18 @@ prepare_ml_recipe <- function(
           recipes::step_impute_mode(  recipes::all_nominal_predictors(), -tidyselect::any_of(vars_imp_ignore))
       }else{.}} %>% 
 
-    # ... ... omit observations with missing data in variables ####
-    recipes::step_naomit(recipes::all_predictors(), skip = FALSE) %>% 
+      # ... ... omit observations with missing data in variables excluded from imputation ####
+      recipes::step_naomit(tidyselect::any_of(vars_imp_ignore), skip = FALSE) %>% 
       
-    # ... ... (near) zero variance ####
-    recipes::step_zv(recipes::all_predictors()) %>% 
+      # ... ... undo log transformation ####
+      {if (!step_used$prep_step_log) {
+        step_log_skewed_undo(
+          ., recipes::all_numeric_predictors()
+        )
+      }else{.}} %>%
+      
+      # ... ... (near) zero variance ####
+      recipes::step_zv(recipes::all_predictors()) %>% 
       recipes::step_nzv(
         recipes::all_predictors(),
         freq_cut   = thres_used$thres_nzv_freq, 
