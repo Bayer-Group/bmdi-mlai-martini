@@ -1,5 +1,5 @@
 test_that("check_adjust() works", {
-
+ # check_adjust() protected ####
   # md5 slot is protected, check message
   expect_message(
     check_adjust(
@@ -13,8 +13,8 @@ test_that("check_adjust() works", {
 })
 
 
-test_that("adjust_spec correctly modifies use_for_build", {
-  
+test_that("adjust_spec() correctly modifies use_for_build", {
+  # adjust_spec(): use_for build ####
   # use_for build FALSE at spec creation, 
   # check if set to TRUE after adding missing key columns
   spec_missing_key_columns <- martini_spec 
@@ -36,11 +36,79 @@ test_that("adjust_spec correctly modifies use_for_build", {
   
 })
 
+
+test_that("adjust_spec() works for dupl_ctrl", {
+  
+  # adjust_spec() for dupl_ctrl #### 
+  # dupl_ctrl test values_fn: should be updated with function mean without warning
+  martini_spec_val_fn <- martini_spec
+  purrr::pluck(martini_spec_val_fn, "adlb", "dupl_ctrl", "values_fn") <- mean
+  
+  expect_equal(
+    adjust_spec(
+      spec = martini_spec,
+      entry = "adlb",
+      dupl_ctrl = list(values_fn = mean, arrange = NULL)
+    ),
+    martini_spec_val_fn
+  )
+  
+  expect_no_warning(
+    adjust_spec(
+      spec = martini_spec,
+      entry = "adlb",
+      dupl_ctrl = list(values_fn = mean, arrange = NULL)
+    )
+  )
+  # dupl_ctrl test arrange: # martini_spec$adlb$data %>% names()
+  # should be changed without warning
+  arrange_col <- c('AVISITN', 'desc(PARAM)')
+  martini_spec_arrange <- martini_spec
+  purrr::pluck(martini_spec_arrange, "adlb", "dupl_ctrl", "arrange") <- arrange_col
+  
+  expect_equal(
+    adjust_spec(
+      spec = martini_spec,
+      entry = "adlb",
+      dupl_ctrl = list(values_fn = NULL, arrange = arrange_col)
+    ),
+    martini_spec_arrange
+  )
+  expect_no_warning(
+    adjust_spec(
+      spec = martini_spec,
+      entry = "adlb",
+      dupl_ctrl = list(values_fn = NULL, arrange = arrange_col)
+    )
+  )
+  
+  # dupl_ctrl test error arrange: try arranging by non existing column
+  # should be ignored with warning
+  non_exist_col <- 'STDY'
+  expect_equal(
+    adjust_spec(
+      spec = martini_spec,
+      entry = "adlb",
+      dupl_ctrl = list(values_fn = NULL, arrange = non_exist_col)
+    ),
+    martini_spec
+  )
+  expect_warning(
+    adjust_spec(
+      spec = martini_spec,
+      entry = "adlb",
+      dupl_ctrl = list(values_fn = NULL, arrange = non_exist_col)
+    )
+  )
+}
+)
+
 test_that("adjust_spec works", {
 
   # TODO WS one expectation pair may be discarded, both using the same code in adjust_spec
   # TODO WS testing our function or just modify_list, append and if/else?
 
+  
   
   # protected slot ####
   # return original object, when trying to change protected slot
