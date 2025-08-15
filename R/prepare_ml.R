@@ -65,9 +65,12 @@
 #'@param thres_count integer variables with no more than `thres_count` distinct 
 #'values are considered as count variables and are excluded from the 
 #'log-transformation and normalization. Defaults to 10.
-#'@param thres_lump this parameter is used to prevent renaming of a single low 
-#'frequency class to 'other' by \code{recipes::step_other()}, to
-#'which `thres_lump` is passed as parameter `threshold`. Defaults to 0.05.
+#'@param thres_lump threshold used in \code{step_other2()}. 
+#'If at least two classes of a factor have low frequencies/proportions, they 
+#'will be lumped into a class
+#'`r step_other2 %>% args() %>% as.list() %>% purrr::keep_at('other')`. If only 
+#'one class is below the threshold, data is unmodified and the user is informed.
+#' Defaults to 0.05. See \code{recipes::step_other()} for usage of argument threshold.
 #'@param one_hot boolean. passed to \code{recipes::step_dummy()} to choose one 
 #'hot encoding over dummy encoding
 #'@param vars_imp_ignore variables that shall not be imputed can be specified 

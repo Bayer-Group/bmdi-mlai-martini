@@ -88,9 +88,11 @@ log-transformation and normalization. Defaults to 10.}
 to \code{recipes::step_corr()}'s \code{threshold} argument with a default
 of 0.9 to remove highly correlated features}
 
-\item{thres_lump}{this parameter is used to prevent renaming of a single low
-frequency class to 'other' by \code{recipes::step_other()}, to
-which \code{thres_lump} is passed as parameter \code{threshold}. Defaults to 0.05.}
+\item{thres_lump}{threshold used in \code{step_other2()}.
+If at least two classes of a factor have low frequencies/proportions, they
+will be lumped into a class
+other_ml.
+Defaults to 0.05. See \code{recipes::step_other()} for usage of argument threshold.}
 
 \item{thres_imp}{Minimal proportion of non-missing data per feature required
 to be kept in the data and completed using \code{recipes::step_impute_knn()}.
