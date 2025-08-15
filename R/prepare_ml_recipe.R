@@ -42,7 +42,6 @@ prepare_ml_recipe <- function(
   vars_ordinalscore   = NULL,
   vars_keep_corr      = NULL,
   
-  level_other = 'other_ml',
   one_hot,
   log_base
   
@@ -61,9 +60,9 @@ prepare_ml_recipe <- function(
     thres_corr       = get_default(recipes::step_corr,  'threshold'),
     
     # no recipes equivalent
-    thres_count = 10,   
-    thres_log   = 2,    
-    thres_imp   = 0.8  
+    thres_count = get_default(prepare_ml, 'thres_count'),   
+    thres_log   = get_default(prepare_ml, 'thres_log'),    
+    thres_imp   = get_default(prepare_ml, 'thres_imp')  
     
   )
   
@@ -77,14 +76,10 @@ prepare_ml_recipe <- function(
   
   
   # select recipe steps to include ####
-  # TODO use args(prepare_ml) instead 
-  step_default <- list(
-    prep_step_normalize = TRUE,
-    prep_step_knnimpute = TRUE,
-    prep_step_log       = TRUE,
-    prep_step_corr      = TRUE,
-    prep_step_dummy     = FALSE
-  )
+  step_default <- args(prepare_ml) %>%
+    as.list() %>% 
+    head(-1) %>% 
+    keep_at(., names(.) %>% str_subset('prep_step'))
   
   if(!is.null(step_list)){
     step_used <- purrr::imap(step_default, ~{step_list[[.y]] %||% .x})
