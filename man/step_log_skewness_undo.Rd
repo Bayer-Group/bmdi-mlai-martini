@@ -45,6 +45,8 @@ outcome variable(s)). Care should be taken when using \code{skip = TRUE} as it
 may affect the computations for subsequent operations.}
 
 \item{id}{A character string that is unique to this step to identify it.}
+
+\item{id_undo}{id of the corresponding step_log_skewness() to reverse the log trafo on}
 }
 \value{
 An updated version of \code{recipe} with the new step added to the

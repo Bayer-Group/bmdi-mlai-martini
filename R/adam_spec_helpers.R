@@ -532,7 +532,7 @@ if (length(occur_columns) > 0) {
   cli::cli_inform(c(
     "i" = paste0(
       "{stringr::str_to_lower(domain)}: The column{?s} {names_not_unique} ha{?s/ve} at least two distinct values", 
-      ifelse(length(filter)>0, " after using applicable filters", ""),
+      ifelse(length(filters) > 0, " after using applicable filters", ""),
       "."),
     "*" = paste0(
       "Please check if an additional filter is required",

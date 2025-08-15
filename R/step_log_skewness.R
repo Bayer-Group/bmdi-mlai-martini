@@ -208,6 +208,7 @@ tidy.step_log_skewness <- function(x, ...) {
 #' will reverse any log transformations that are done by [step_log_skewness()].
 #'
 #' @inheritParams step_log_skewness
+#' @param id_undo id of the corresponding step_log_skewness() to reverse the log trafo on 
 #' 
 #' @inherit step_log_skewness return author seealso
 #' @inheritSection step_log_skewness Case weights
