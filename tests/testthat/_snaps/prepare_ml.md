@@ -9458,12 +9458,12 @@
       [1] "Variables were log transformed (base e) if e1071::skewness() > 2. Variables that are assumed to be count variables were excluded from the transformation (see thres_count for details)."
       
       
-      $prep_params$thres_count
-      $prep_params$thres_count$value
+      $prep_params$vars_no_trafo
+      $prep_params$vars_no_trafo$value
       [1] NA
       
-      $prep_params$thres_count$text
-      [1] "Not applicable."
+      $prep_params$vars_no_trafo$text
+      [1] NA
       
       
       $prep_params$thres_corr
@@ -9619,6 +9619,9 @@
       NULL
       
       $input$args$vars_keep_corr
+      NULL
+      
+      $input$args$vars_no_trafo
       NULL
       
       $input$args$one_hot
@@ -19098,12 +19101,12 @@
       [1] "Variables were log transformed (base e) if e1071::skewness() > 2. Variables that are assumed to be count variables were excluded from the transformation (see thres_count for details)."
       
       
-      $prep_params$thres_count
-      $prep_params$thres_count$value
+      $prep_params$vars_no_trafo
+      $prep_params$vars_no_trafo$value
       [1] NA
       
-      $prep_params$thres_count$text
-      [1] "Not applicable."
+      $prep_params$vars_no_trafo$text
+      [1] NA
       
       
       $prep_params$thres_corr
@@ -19265,6 +19268,9 @@
       NULL
       
       $input$args$vars_keep_corr
+      NULL
+      
+      $input$args$vars_no_trafo
       NULL
       
       $input$args$one_hot
@@ -29330,12 +29336,12 @@
       [1] "Variables were log transformed (base e) if e1071::skewness() > 2. Variables that are assumed to be count variables were excluded from the transformation (see thres_count for details)."
       
       
-      $prep_params$thres_count
-      $prep_params$thres_count$value
+      $prep_params$vars_no_trafo
+      $prep_params$vars_no_trafo$value
       [1] NA
       
-      $prep_params$thres_count$text
-      [1] "Not applicable."
+      $prep_params$vars_no_trafo$text
+      [1] NA
       
       
       $prep_params$thres_corr
@@ -29491,6 +29497,9 @@
       NULL
       
       $input$args$vars_keep_corr
+      NULL
+      
+      $input$args$vars_no_trafo
       NULL
       
       $input$args$one_hot

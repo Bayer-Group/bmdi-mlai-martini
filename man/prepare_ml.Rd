@@ -81,9 +81,10 @@ section for the full list of recipe steps.}
 if \code{prep_step_log = TRUE}, all observations are positive, and
 \code{e1071::skewness() > thres_log}, where \code{thres_log} defaults to 2.}
 
-\item{thres_count}{integer variables with no more than \code{thres_count} distinct
-values are considered as count variables and are excluded from the
-log-transformation and normalization. Defaults to 10.}
+\item{thres_count}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} integer variables with
+no more than \code{thres_count} distinct values are considered as count variables
+and are excluded from the log-transformation and normalization.
+Defaults to 10.}
 
 \item{thres_corr}{if \code{prep_step_corr = TRUE}, \code{thres_corr} is passed
 to \code{recipes::step_corr()}'s \code{threshold} argument with a default
