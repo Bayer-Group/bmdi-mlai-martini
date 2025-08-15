@@ -8,7 +8,7 @@
 #' @param thres_list,step_list named list objects collecting all threshold values 
 #' and step selection info, resp. please refer to the documentation of the `thres_*` and `prep_step_*` arguments 
 #' in \code{\link{prepare_ml}()} for detailed documentation and list entry names.
-#' @param level_other name for the "other"-category in [step_other2()]. defaults to "other_ml".
+#' @param level_other name for the "other"-category in [step_other2()]. defaults to "other_ml". 
 #' @inheritParams prepare_ml
 #'
 #' @return
@@ -77,6 +77,7 @@ prepare_ml_recipe <- function(
   
   
   # select recipe steps to include ####
+  # TODO use args(prepare_ml) instead 
   step_default <- list(
     prep_step_normalize = TRUE,
     prep_step_knnimpute = TRUE,
@@ -220,16 +221,19 @@ prepare_ml_recipe <- function(
       )
     }else{.}} %>%  
       
-     # ... ... lump factors ####
+    # ... ... lump factors ####
     recipes::step_other(
       ., 
       recipes::all_nominal_predictors(), -tidyselect::any_of(vars_nolump),
-      threshold = thres_used$thres_lump, other = level_other
+      threshold = thres_used$thres_lump, 
+      other = level_other 
+      # TODO consider promoting to top level arg in case of conflicts, 
+      # OR use step_other2 default and remove arg from prepare_ml_recipe
     ) %>%  
       
     # ... ... factor handling ####
     {if (!is.null(vars_ordinalscore)) {
-      recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ) )
+      recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ))
     }else{.}} %>%  
       
     #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
@@ -261,7 +265,7 @@ prepare_ml_recipe <- function(
   
   # ... extract corr tibble ####
   if (is.null(prep_recipe) && step_used$prep_step_corr) {
-    browser()
+
     number_step_corr_keep <- recipes::tidy(rcp_prep) %>% 
       dplyr::pull(type) %>% 
       magrittr::equals("corr_keep") %>% 
