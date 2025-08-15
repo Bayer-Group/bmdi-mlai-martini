@@ -58,7 +58,7 @@ get_default <- function(
   ){
 
   # pmatch arg to out names
-  out <- formals(fun) %>% as.list() %>% purrr::compact()  # freq_cut default in step_nzv is call 95/5
+  out <- formals(fun) %>% as.list() %>% head(-1)  # freq_cut default in step_nzv is call 95/5
   if(!is.null(arg)) out <- out %>% purrr::keep_at(arg) 
   out <- purrr::map(out, ~{if(is.call(.x)) eval(.x) else .x})
   
