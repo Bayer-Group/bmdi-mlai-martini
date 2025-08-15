@@ -318,7 +318,7 @@ prepare_ml <- function(
     if (length(vars_fct_expl_na) == 0) vars_fct_expl_na <- NULL
   }
   
-  level_other <- "other"
+  #level_other <- "other"
   
   # MERGE OUTCOME AND FEATURE  ####
   
@@ -400,7 +400,7 @@ prepare_ml <- function(
     vars_ordinalscore   = vars_ordinalscore,
     vars_keep_corr      = vars_keep_corr,
     
-    level_other = level_other, # 'other'
+    #level_other = level_other, # 'other'
     one_hot     = one_hot,
     log_base    = log_base
     

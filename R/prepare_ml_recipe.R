@@ -42,7 +42,7 @@ prepare_ml_recipe <- function(
   vars_ordinalscore   = NULL,
   vars_keep_corr      = NULL,
   
-  level_other,
+  level_other = 'other_ml',
   one_hot,
   log_base
   
@@ -149,10 +149,10 @@ prepare_ml_recipe <- function(
       }else{.}} %>% 
         
       # ... ... consistent handling of factors with level other ####
-      recipes::step_mutate_at(
-        recipes::all_factor_predictors(), 
-        fn = ~ {prepare_ml_other(.x)}
-      ) %>% 
+      # recipes::step_mutate_at(
+      #   recipes::all_factor_predictors(), 
+      #   fn = ~ {prepare_ml_other(.x)}
+      # ) %>% 
         
       # ... ... exclude variables with too many missings ####
       {if (thres_used$thres_imp>0) {
@@ -178,7 +178,12 @@ prepare_ml_recipe <- function(
           # simple imputation for values that could not be imputed by knn
           recipes::step_impute_median(recipes::all_numeric_predictors()) %>% 
           recipes::step_impute_mode(  recipes::all_nominal_predictors())
-      }else{.}} %>% 
+      } else {
+        recipes::step_naomit(., recipes::all_predictors(), skip = FALSE)   
+      }} %>% 
+      
+      # ... ... omit observations with missing data in case not prep_step_knnimpute = FALSE ####
+      #recipes::step_naomit(recipes::all_predictors(), skip = FALSE) %>%   
       
       # ... ... undo log transformation ####
       {if (!step_used$prep_step_log) {
