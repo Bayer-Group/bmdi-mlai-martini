@@ -15,7 +15,7 @@ prepare_ml_recipe(
   vars_fct_expl_na = NULL,
   vars_ordinalscore = NULL,
   vars_keep_corr = NULL,
-  level_other,
+  level_other = "other_ml",
   one_hot,
   log_base
 )

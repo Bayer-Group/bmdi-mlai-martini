@@ -20,6 +20,12 @@ test_that("step_other2() works", {
       rep('collapse1', 1),
       rep('collapse2', 1)
     ),
+    # 'collapse' should be incorporated into the 'other_ml' class
+    incorporate = c(
+      rep('large', n-2), 
+      rep('other_ml', 1),
+      rep('collapse', 1)
+    ),
     # other_ml pools collapse1/2 just like for two_low, yielding a constant column
     # note error for original recipes::step_other()
     clash = c(
@@ -41,88 +47,92 @@ test_that("step_other2() works", {
   rcp_prepped <- prep(rcp_raw, training = df)
   rcp_prepped
   
-df_baked  <- recipes::bake(rcp_prepped, new_data = df)
-# df_baked %>% dput()
-df_baked_reference <- structure(
-  list(
-    no_mods = structure(
-      c(1L, 1L, 2L, 2L, 2L), 
-      levels = c("large1", "large2"), 
-      class = "factor"), 
-    single_low = structure(
-      c(2L, 2L, 2L, 2L, 1L), 
-      levels = c("asis", "large"), 
-      class = "factor"),
-    two_low = structure(
-      c(1L, 1L, 1L, 2L, 2L), 
-      levels = c("large", "other_ml"), 
-      class = "factor"),
-    clash = structure(
-      c(1L, 1L, 1L, 1L, 1L), 
-      levels = "other_ml", 
-      class = "factor")
+  df_baked  <- recipes::bake(rcp_prepped, new_data = df)
+  # df_baked %>% dput()
+  df_baked_reference <- structure(
+    list(
+      no_mods = structure(
+        c(1L, 1L, 2L, 2L, 2L), 
+        levels = c("large1", "large2"), 
+        class = "factor"), 
+      single_low = structure(
+        c(2L, 2L, 2L, 2L, 1L), 
+        levels = c("asis", "large"), 
+        class = "factor"),
+      two_low = structure(
+        c(1L, 1L, 1L, 2L, 2L), 
+        levels = c("large", "other_ml"), 
+        class = "factor"),
+      incorporate = structure(
+        c(1L, 1L, 1L, 2L, 2L), 
+        levels = c("large", "other_ml"), 
+        class = "factor"),
+      clash = structure(
+        c(1L, 1L, 1L, 1L, 1L), 
+        levels = "other_ml", 
+        class = "factor")
     ), 
-  class = c("tbl_df", "tbl", "data.frame"), 
-  row.names = c(NA, -5L))
-
-if(FALSE){
-  # waldo::compare(df, df_baked_reference, x_arg = "original", y_arg = "baked")
-  # see details on expected changes above in definition of df
-  # no changes in variables 'no_mods' and 'single_low'
+    class = c("tbl_df", "tbl", "data.frame"), 
+    row.names = c(NA, -5L))
   
-  # two_low: "collapse1" "collapse2" pooled into other_ml
-  # `levels(original$two_low)`: "collapse1" "collapse2" "large"
-  # `levels(baked$two_low)`:    "large"     "other_ml"         
-  # 
-  # `original$two_low`: "large    " "large    " "large    " "collapse1" "collapse2"
-  # `baked$two_low`:    "large   "  "large   "  "large   "  "other_ml"  "other_ml" 
-  #
-  # clash: same as two_low
-  # `levels(original$clash)`: "collapse1" "collapse2" "other_ml"
-  # `levels(baked$clash)`:                            "other_ml"
-  # 
-  # `original$clash`: "other_ml " "other_ml " "other_ml " "collapse1" "collapse2"
-  # `baked$clash`:    "other_ml"  "other_ml"  "other_ml"  "other_ml"  "other_ml" 
-}
-
-# combined test of individual cases ----
-expect_equal(
-  df_baked,
-  df_baked_reference
-)
-
-# basic check: tidy gives result for raw and prepped ----
-expect_s3_class(
-  rcp_raw %>% tidy(),
-  "tbl_df"
-)
-
-expect_s3_class(
-  rcp_prepped %>% tidy(),
-  "tbl_df"
-)
-
-
-if(interactive()){ # comparison with recipes::step_other()
+  if(FALSE){
+    # waldo::compare(df, df_baked_reference, x_arg = "original", y_arg = "baked")
+    # see details on expected changes above in definition of df
+    # no changes in variables 'no_mods' and 'single_low'
+    
+    # two_low: "collapse1" "collapse2" pooled into other_ml
+    # `levels(original$two_low)`: "collapse1" "collapse2" "large"
+    # `levels(baked$two_low)`:    "large"     "other_ml"         
+    # 
+    # `original$two_low`: "large    " "large    " "large    " "collapse1" "collapse2"
+    # `baked$two_low`:    "large   "  "large   "  "large   "  "other_ml"  "other_ml" 
+    #
+    # clash: same as two_low
+    # `levels(original$clash)`: "collapse1" "collapse2" "other_ml"
+    # `levels(baked$clash)`:                            "other_ml"
+    # 
+    # `original$clash`: "other_ml " "other_ml " "other_ml " "collapse1" "collapse2"
+    # `baked$clash`:    "other_ml"  "other_ml"  "other_ml"  "other_ml"  "other_ml" 
+  }
   
-  rcp_orig_step_other <- recipes::recipe(x = df) %>% 
-    recipes::update_role(tidyselect::everything()) %>% 
-    recipes::step_other(
-      recipes::all_predictors(), -clash,
-      threshold = threshold
-      #, other = 'other_ml'
-    )
-  rcp_orig_step_other_prepped <- recipes::prep(rcp_orig_step_other, training = df)
+  # combined test of individual cases ----
+  expect_equal(
+    df_baked,
+    df_baked_reference
+  )
   
-  df_baked_orig_step_other <- recipes::bake(rcp_orig_step_other_prepped, new_data = df)
-  df_baked_orig_step_other
+  # basic check: tidy gives result for raw and prepped ----
+  expect_s3_class(
+    rcp_raw %>% tidy(),
+    "tbl_df"
+  )
   
-  #if(rlang::is_installed("waldo")){
-  #  waldo::compare(
-  #    df_baked, df_baked_orig_step_other, 
-  #    x_arg = "martini", y_arg = "recipes"
-  #  )
-  #}
-}
-
+  expect_s3_class(
+    rcp_prepped %>% tidy(),
+    "tbl_df"
+  )
+  
+  
+  if(interactive()){ # comparison with recipes::step_other()
+    
+    rcp_orig_step_other <- recipes::recipe(x = df) %>% 
+      recipes::update_role(tidyselect::everything()) %>% 
+      recipes::step_other(
+        recipes::all_predictors(), -clash,
+        threshold = threshold
+        #, other = 'other_ml'
+      )
+    rcp_orig_step_other_prepped <- recipes::prep(rcp_orig_step_other, training = df)
+    
+    df_baked_orig_step_other <- recipes::bake(rcp_orig_step_other_prepped, new_data = df)
+    df_baked_orig_step_other
+    
+    #if(rlang::is_installed("waldo")){
+    #  waldo::compare(
+    #    df_baked, df_baked_orig_step_other, 
+    #    x_arg = "martini", y_arg = "recipes"
+    #  )
+    #}
+  }
+  
 })
