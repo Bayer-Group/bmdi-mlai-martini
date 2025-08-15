@@ -163,9 +163,6 @@ testthat::test_that("vars_keep_corr works", {
   
 })
 
-
-
-
 test_that('row removal works', {
   # row removal works ####
   
@@ -175,11 +172,15 @@ test_that('row removal works', {
   n_total  <- 10
   n_remove <- 1
   
-  set.seed(955)
-  d_feat <- tibble::tibble(
-    .id  = 1:n_total,
-    .trt = sample(c('A', 'B'), n_total, replace = TRUE),
-    cont  = c(rnorm(n_total-n_remove), rep(NA, n_remove))
+  # feat matrix with two NAs in separate subjects: 
+  # first in feature cont, last in feature .trt which is ignored in imputation by default (2. expectation)
+  d_feat <- withr::with_seed(
+    955, 
+    tibble::tibble(
+      .id  = 1:n_total,
+      .trt = sample(c('A', 'B'), n_total, replace = TRUE) %>% magrittr::inset2(n_total, NA),
+      cont  = c(rep(NA, n_remove), rnorm(n_total-n_remove))
+    )
   )
   
   d_out <- tibble::tibble(
@@ -189,8 +190,7 @@ test_that('row removal works', {
   
   res_out <- prepare_ml(
     feature    = d_feat,
-    outcome    = d_out, 
-    prep_step_knnimpute = FALSE
+    outcome    = d_out
   ) 
   
   # observation deleted from prepped data set
@@ -199,15 +199,44 @@ test_that('row removal works', {
     n_total - n_remove
   )
   
-  # documented id in na_feature
+  # documented id in na_feature slot in prepare_ml output
   testthat::expect_equal(
     res_out$removed$rows$na_feature,
     res_out %>% 
       martini::get_data(type = 'raw') %>% 
-      dplyr::filter(is.na(cont)) %>% 
+      dplyr::filter(is.na(.trt)) %>% 
       dplyr::pull(.id) 
   )
     
+})
+
+test_that('imputation works', {
+  
+  
+  n_total  <- 10
+  n_remove <- 1
+  
+  d_rec_in <- dplyr::left_join(
+    martini_feat, 
+    martini_outc_class, 
+    by = dplyr::join_by(.id)
+    ) %>%
+    dplyr::select(-.id)
+  
+  prepare_ml(
+    martini_feat, 
+    martini_outc_class
+  )
+  
+  recipe_impute <-  recipes::recipe(.out ~ ., data = d_rec_in) %>% 
+    # assume still missings after knn
+ #  recipes::step_impute_knn(., recipes::all_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
+      # simple imputation for values that could not be imputed by knn
+      recipes::step_impute_median(recipes::all_numeric_predictors()) %>% 
+      recipes::step_impute_mode(  recipes::all_nominal_predictors())
+  recipe_impute_prepped <- prep(recipe_impute)
+  bake(recipe_impute_prepped, new_data = NULL)
+  
 })
 
 test_that('repeated measurement implementation works', {
