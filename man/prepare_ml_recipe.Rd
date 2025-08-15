@@ -15,7 +15,7 @@ prepare_ml_recipe(
   vars_fct_expl_na = NULL,
   vars_ordinalscore = NULL,
   vars_keep_corr = NULL,
-  level_other = "other_ml",
+  vars_no_trafo = NULL,
   one_hot,
   log_base
 )
@@ -46,13 +46,17 @@ converted into numeric scores. Defaults to NULL.}
 variables due to high correlation in \code{recipes::step_corr()}.
 See \code{recipes::step_rm()} below for details.}
 
-\item{level_other}{name for the "other"-category in \code{\link[=step_other2]{step_other2()}}. defaults to "other_ml".}
+\item{vars_no_trafo}{character vector defining variables that should be
+excluded from transformation steps such as log trafo and/or normalization
+(if applicable). Defaults to NULL.}
 
 \item{one_hot}{boolean. passed to \code{recipes::step_dummy()} to choose one
 hot encoding over dummy encoding}
 
 \item{log_base}{base to use for log-transformation in
 \code{recipes::step_log()}. Defaults to \emph{exp(1)}.}
+
+\item{level_other}{name for the "other"-category in \code{\link[=step_other2]{step_other2()}}. defaults to "other_ml".}
 }
 \value{
 a named list with entries containing

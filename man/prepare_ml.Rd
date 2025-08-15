@@ -29,6 +29,7 @@ prepare_ml(
   vars_fct_expl_na = NULL,
   vars_ordinalscore = NULL,
   vars_keep_corr = NULL,
+  vars_no_trafo = NULL,
   one_hot = NULL,
   log_base = exp(1),
   outlier_remove = FALSE,
@@ -91,7 +92,8 @@ of 0.9 to remove highly correlated features}
 \item{thres_lump}{threshold used in \code{step_other2()}.
 If at least two classes of a factor have low frequencies/proportions, they
 will be lumped into a class
-other_ml.
+other_ml. If only
+one class is below the threshold, data is unmodified and the user is informed.
 Defaults to 0.05. See \code{recipes::step_other()} for usage of argument threshold.}
 
 \item{thres_imp}{Minimal proportion of non-missing data per feature required
@@ -121,6 +123,10 @@ converted into numeric scores. Defaults to NULL.}
 \item{vars_keep_corr}{choose these variables over other options when removing
 variables due to high correlation in \code{recipes::step_corr()}.
 See \code{recipes::step_rm()} below for details.}
+
+\item{vars_no_trafo}{character vector defining variables that should be
+excluded from transformation steps such as log trafo and/or normalization
+(if applicable). Defaults to NULL.}
 
 \item{one_hot}{boolean. passed to \code{recipes::step_dummy()} to choose one
 hot encoding over dummy encoding}

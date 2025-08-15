@@ -7,7 +7,7 @@
   ready to use for ML, the recipe is now provided in raw and prepped version 
   as well to allow for proper tuning workflows
   * removed$cols$corr_keep
-  * recipe log step now called log_skewness. Info on log trafod values to 
+  * recipe log step now called log_skewness. Info on log transformed values to 
   be extracted from new output slot
 * the default `recipe` itself has been modified, making use of new custom steps 
   that are adaptations of existing `recipes` functions
@@ -23,9 +23,12 @@
   minimum size as defined by `threshold`: while the original version renames the 
   class and silently adds novel levels to this class, our version would leave 
   the single class unmodified and raise an error in case a new data set 
-  comes with novel levels for that variable. 
+  comes with novel levels for that variable. This change was handled manually before 
+  and does not change results.
     
-* vars_count deprecated: no longer excluded from log transformation and normalization
+* vars_count deprecated in favor of vars_no_trafo: count variables are no
+longer guessed and automatically excluded from transformation, but need
+to be specified by the user. 
 
 
 # martini 0.6.4
