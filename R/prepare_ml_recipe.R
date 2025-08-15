@@ -106,8 +106,6 @@ prepare_ml_recipe <- function(
   )
   
   vars_count   <- vars$count   
-  vars_log     <- vars$log   
-  vars_nolump  <- vars$nolump
   
   # RECIPE ####
   
@@ -149,12 +147,6 @@ prepare_ml_recipe <- function(
         recipes::step_mutate_at(., vars_fct_expl_na, ~ fct_na_to_level(.x, level = "missing"))
       }else{.}} %>% 
         
-      # ... ... consistent handling of factors with level other ####
-      # recipes::step_mutate_at(
-      #   recipes::all_factor_predictors(), 
-      #   fn = ~ {prepare_ml_other(.x)}
-      # ) %>% 
-        
       # ... ... exclude variables with too many missings ####
       {if (thres_used$thres_imp>0) {
         recipes::step_filter_missing(., recipes::all_predictors(), threshold = 1-thres_used$thres_imp)
@@ -188,7 +180,7 @@ prepare_ml_recipe <- function(
       
       # ... ... undo log transformation ####
       {if (!step_used$prep_step_log) {
-        step_log_skewed_undo(
+        step_log_skewness_undo(
           ., recipes::all_numeric_predictors()
         )
       }else{.}} %>%
@@ -209,42 +201,39 @@ prepare_ml_recipe <- function(
         )
       }else{.}} %>% 
 
-    # ... ... remove highly correlated variables with a twist #### 
-    {if (step_used$prep_step_corr) {
-      step_corr_keep(
+      # ... ... remove highly correlated variables with a twist #### 
+      {if (step_used$prep_step_corr) {
+        step_corr_keep(
+          ., 
+          recipes::all_numeric_predictors(), 
+          threshold = thres_used$thres_corr, 
+          method = corr_method,
+          use = corr_use, 
+          keep = vars_keep_corr
+        )
+      }else{.}} %>%  
+        
+      # ... ... lump factors ####
+      step_other2(
         ., 
-        recipes::all_numeric_predictors(), 
-        threshold = thres_used$thres_corr, 
-        method = corr_method,
-        use = corr_use, 
-        keep = vars_keep_corr
-      )
-    }else{.}} %>%  
-      
-    # ... ... lump factors ####
-    recipes::step_other(
-      ., 
-      recipes::all_nominal_predictors(), -tidyselect::any_of(vars_nolump),
-      threshold = thres_used$thres_lump, 
-      other = level_other 
-      # TODO consider promoting to top level arg in case of conflicts, 
-      # OR use step_other2 default and remove arg from prepare_ml_recipe
-    ) %>%  
-      
-    # ... ... factor handling ####
-    {if (!is.null(vars_ordinalscore)) {
-      recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ))
-    }else{.}} %>%  
-      
-    #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
-    # ... ... dummy coding ####
-    {if(step_used$prep_step_dummy){
-      recipes::step_dummy(
-        .,  
-        recipes::all_nominal_predictors(),  
-        one_hot = one_hot
-      ) 
-    }else{.}} 
+        recipes::all_nominal_predictors(),
+        threshold = thres_used$thres_lump
+      ) %>%  
+        
+      # ... ... factor handling ####
+      {if (!is.null(vars_ordinalscore)) {
+        recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ))
+      }else{.}} %>%  
+        
+      #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
+      # ... ... dummy coding ####
+      {if(step_used$prep_step_dummy){
+        recipes::step_dummy(
+          .,  
+          recipes::all_nominal_predictors(),  
+          one_hot = one_hot
+        ) 
+      }else{.}} 
     
   } else {
     rcp <- prep_recipe
@@ -313,7 +302,6 @@ prepare_ml_recipe <- function(
       vars_keep_corr,
       
       vars_log,
-      vars_nolump,
       vars_ordinalscore
     ),
     high_corr = corr_tibble,
