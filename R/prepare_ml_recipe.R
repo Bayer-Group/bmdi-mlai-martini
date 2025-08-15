@@ -41,6 +41,7 @@ prepare_ml_recipe <- function(
   vars_fct_expl_na    = NULL,
   vars_ordinalscore   = NULL,
   vars_keep_corr      = NULL,
+  vars_no_trafo       = NULL,
   
   one_hot,
   log_base
@@ -79,7 +80,7 @@ prepare_ml_recipe <- function(
   step_default <- args(prepare_ml) %>%
     as.list() %>% 
     head(-1) %>% 
-    keep_at(., names(.) %>% str_subset('prep_step'))
+    purrr::keep_at(., names(.) %>% stringr::str_subset('prep_step'))
   
   if(!is.null(step_list)){
     step_used <- purrr::imap(step_default, ~{step_list[[.y]] %||% .x})
@@ -87,20 +88,6 @@ prepare_ml_recipe <- function(
     step_used <- step_default
   }
  
-  
-  # variable lists for steps ####
-  
-  # ... passed from prepare_ml
-  
-  # ... derive 
-  vars <- prepare_ml_vars(
-    data        = data,
-    thres_count = thres_used$thres_count,
-    thres_log   = thres_used$thres_log,
-    thres_lump  = thres_used$thres_lump
-  )
-  
-  vars_count   <- vars$count   
   
   # RECIPE ####
   
@@ -155,7 +142,9 @@ prepare_ml_recipe <- function(
       
       # ... ... log transformation ####
       step_log_skewness(
-        ., recipes::all_numeric_predictors(), 
+        ., 
+        recipes::all_numeric_predictors(), 
+        -tidyselect::any_of(vars_no_trafo),
         base = log_base, 
         skewness = thres_used$thres_log
       ) %>% 
@@ -192,7 +181,8 @@ prepare_ml_recipe <- function(
       {if (step_used$prep_step_normalize) {
         recipes::step_normalize(
           ., 
-          recipes::all_numeric_predictors()
+          recipes::all_numeric_predictors(),
+          -tidyselect::any_of(vars_no_trafo)
         )
       }else{.}} %>% 
 
@@ -291,7 +281,7 @@ prepare_ml_recipe <- function(
   tibble::lst(
     rcp_prep,
     vars = tibble::lst(
-      vars_count,
+      vars_no_trafo,
       vars_fct_expl_na,
       vars_imp_ignore,
       vars_keep_corr,

@@ -62,9 +62,10 @@
 #'@param thres_nzv_freq,thres_nzv_unique parameters passed to
 #'\code{recipes::step_nzv()} with defaults 
 #'\code{thres_nzv_freq = 95/5)} and \code{thres_nzv_unique = 10} 
-#'@param thres_count integer variables with no more than `thres_count` distinct 
-#'values are considered as count variables and are excluded from the 
-#'log-transformation and normalization. Defaults to 10.
+#'@param thres_count `r lifecycle::badge("deprecated")` integer variables with 
+#'no more than `thres_count` distinct values are considered as count variables 
+#'and are excluded from the log-transformation and normalization.
+#' Defaults to 10.
 #'@param thres_lump threshold used in \code{step_other2()}. 
 #'If at least two classes of a factor have low frequencies/proportions, they 
 #'will be lumped into a class
@@ -84,6 +85,9 @@
 #'See \code{recipes::step_rm()} below for details. 
 #'@param vars_ordinalscore  column names of ordinal factor variables to be 
 #'converted into numeric scores. Defaults to NULL.
+#'@param vars_no_trafo character vector defining variables that should be
+#' excluded from transformation steps such as log trafo and/or normalization
+#'  (if applicable). Defaults to NULL.
 #'@param log_base base to use for log-transformation in 
 #'\code{recipes::step_log()}. Defaults to _exp(1)_.
 #'@param outlier_remove,outlier_ctrl For outcome mode regression only, see 
@@ -247,6 +251,7 @@ prepare_ml <- function(
   vars_fct_expl_na    = NULL,
   vars_ordinalscore   = NULL,
   vars_keep_corr      = NULL,
+  vars_no_trafo       = NULL,
   
   one_hot             = NULL,
   
@@ -257,6 +262,14 @@ prepare_ml <- function(
   quiet               = FALSE
     
 ) {
+  
+  if(!missing(thres_count)){
+    lifecycle::deprecate_warn(
+      when = "0.7.0",
+      what = "prepare_ml(thres_count)", 
+      details = "Please use argument `vars_no_trafo` instead."
+    )
+  }
   
   # save all input args
   all_args <- as.list(environment())
@@ -510,13 +523,19 @@ prepare_ml <- function(
     ),
     
     # ... log trafo excluded (integer with low number of values) ####
-    thres_count  = list(
-      value = ifelse(length(vars$vars_log) > 0 && length(vars$vars_count) > 0, 
-                     thres$thres_count, NA_real_),
-      text  = ifelse(length(vars$vars_log) > 0 && length(vars$vars_count) > 0,
-                     paste0("Variables were excluded from log transformation if they are integer coded 
-                             and have ", thres$thres_count, " distinct values."),
-                     "Not applicable.")
+    vars_no_trafo  = list(
+      value = vars$vars_no_trafo %||% NA,
+      text  = ifelse(
+        length(vars$vars_no_trafo) > 0 && (steps$prep_step_normalize || steps$prep_step_log),
+        paste0(cli::pluralize(
+          "{vars$vars_no_trafo} {?was/were} excluded from log transformation and normalization (if applicable).",
+         # TODO pluralize
+         #   if(prep_step_log) "log transformation", 
+        #    if(prep_step_normalize) "normalization"
+         # )
+          #", '.'
+        )), 
+        NA_character_)
     ),
     
     
@@ -529,7 +548,7 @@ prepare_ml <- function(
     ),  
     
     vars_keep_corr = list(
-      value = ifelse(!is.null(vars$vars_keep_corr), vars$vars_keep_corr, NA),
+      value = vars$vars_keep_corr %||% NA,
       text  = ifelse(steps$prep_step_corr && !is.null(vars$vars_exclude_corr),
                      "Variable selection in recipes::step_corr() was adjusted according to 'vars_keep_corr'",
                      "No variables were excluded specifically due to high correlation with the variables in 'vars_keep_corr'")
