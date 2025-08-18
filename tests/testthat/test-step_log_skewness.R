@@ -9,7 +9,7 @@ test_that("step_log_skewness() works", {
       skw1 = exp(rnorm(n, mean = 1, sd = 2)),
       skw2 = exp(rnorm(n, mean = 0, sd = 1)),
       # add a constant (skewness = NaN)
-      const = rep(1,n)
+      const = rep(1, n)
     )
   })
   
@@ -20,7 +20,7 @@ test_that("step_log_skewness() works", {
     step_log_skewness(
       recipes::all_numeric_predictors(), 
       skewness = 2
-    )
+    ) 
   
   rec_log_prep <- recipes::prep(rec_log)
   
@@ -65,6 +65,74 @@ test_that("step_log_skewness() works", {
     recipes::bake(rec_noskew_prep, new_data = X_sym), 
     X_sym, 
     ignore_attr = TRUE
+  )
+  
+  # step_log_skewness_undo() picks correct step to undo ####
+  var_for_backtrafo <- "skw1"
+  rec_multiple_log_specified <- rec %>% 
+    step_log_skewness(
+      tidyselect::all_of(var_for_backtrafo), 
+      skewness = 1, id = "still_skewed"
+    ) %>% 
+    step_log_skewness(
+      recipes::all_numeric_predictors(),
+      -tidyselect::all_of(var_for_backtrafo)
+    ) %>% 
+    step_log_skewness_undo(id_undo = "still_skewed")
+  
+  expect_setequal(
+    var_for_backtrafo,
+    rec_multiple_log_specified %>% 
+      prep() %>% 
+      tidy(3) %>% # number of step_log_skewness_undo in recipe
+      dplyr::pull(terms)
+  )
+  
+  # --- 
+  var_for_backtrafo <- "skw2"
+  rec_multiple_log_last <- rec %>% 
+    step_log_skewness(
+      recipes::all_numeric_predictors(),
+      -tidyselect::all_of(var_for_backtrafo)
+    ) %>% 
+    step_log_skewness(
+      tidyselect::all_of(var_for_backtrafo),
+      skewness = 1
+    ) %>% 
+    step_log_skewness_undo(id_undo = NULL)
+  
+  expect_setequal(
+    var_for_backtrafo,
+    rec_multiple_log_last %>% 
+      prep() %>% 
+      tidy(3) %>% # number of step_log_skewness_undo in recipe
+      dplyr::pull(terms)
+  )  
+  
+  #--- try reversing regular step_log should fail
+  var_for_backtrafo <- "skw2"
+  expect_error(
+    rec %>% 
+      step_log_skewness(skewness = Inf) %>% 
+      recipes::step_log(var_for_backtrafo, id = "cannot_be_undone") %>% 
+      step_log_skewness_undo(id_undo = "cannot_be_undone"),
+    "log_skewness"
+  )
+  
+  
+  
+  # log-transformed column is removed before the undo-step
+  var_gone_missing <- "skw1"
+  rec_var_gone_missing <- rec %>% 
+    step_log_skewness(tidyselect::any_of(var_gone_missing), skewness = 0) %>% 
+    recipes::step_rm(tidyselect::any_of(var_gone_missing)) %>% 
+    step_log_skewness_undo(id_undo = NULL)
+  expect_length(
+    rec_var_gone_missing %>% 
+      prep() %>% 
+      tidy(3) %>%  # number of step_log_skewness_undo in recipe
+      dplyr::pull(terms),
+    0
   )
   
   # basic check: tidy gives tibble result for raw and prepped ----
@@ -128,9 +196,6 @@ test_that("step_log_skewness_undo() works", {
     X,
     ignore_attr = TRUE
   )
-  
-  # TODO add test to check if undoing still works if a log-transformed 
-  # column is removed before the undo-step
   
   rec_log_undo_base <- rec %>% 
     step_log_skewness(
