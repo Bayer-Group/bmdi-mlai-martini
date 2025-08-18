@@ -46,7 +46,8 @@ may affect the computations for subsequent operations.}
 
 \item{id}{A character string that is unique to this step to identify it.}
 
-\item{id_undo}{id of the corresponding step_log_skewness() to reverse the log trafo on}
+\item{id_undo}{id of the corresponding step_log_skewness() to reverse the
+log transformation on}
 }
 \value{
 An updated version of \code{recipe} with the new step added to the
