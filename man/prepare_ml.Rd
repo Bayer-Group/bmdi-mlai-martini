@@ -126,7 +126,7 @@ variables due to high correlation in \code{recipes::step_corr()}.
 See \code{recipes::step_rm()} below for details.}
 
 \item{vars_no_trafo}{character vector defining variables that should be
-excluded from transformation steps such as log trafo and/or normalization
+excluded from transformation steps such as log transformation and/or normalization
 (if applicable). Defaults to NULL.}
 
 \item{one_hot}{boolean. passed to \code{recipes::step_dummy()} to choose one
