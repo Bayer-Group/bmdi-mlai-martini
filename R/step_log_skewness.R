@@ -208,7 +208,8 @@ tidy.step_log_skewness <- function(x, ...) {
 #' will reverse any log transformations that are done by [step_log_skewness()].
 #'
 #' @inheritParams step_log_skewness
-#' @param id_undo id of the corresponding step_log_skewness() to reverse the log trafo on 
+#' @param id_undo id of the corresponding [step_log_skewness()] to reverse the 
+#' log transformation on 
 #' 
 #' @inherit step_log_skewness return author seealso
 #' @inheritSection step_log_skewness Case weights
@@ -318,7 +319,24 @@ step_log_skewness_undo_new <-
 
 #' @exportS3Method 
 prep.step_log_skewness_undo <- function(x, training, info = NULL, ...) {
-  col_names <- recipes::recipes_eval_select(unname(x$columns), training, info)
+  
+  # if columns have been removed after log trafo, silently skip them for back transformation
+  #col_names <- recipes::recipes_eval_select(unname(x$columns), training, info)
+  
+  # currently, missing vars are skipped silently
+  # logged_but_gone <- unname(x$columns) %>% setdiff(names(training))
+  # if (length(logged_but_gone) > 0) {
+  #   cli::cli_inform(c(
+  #     "{.fn step_log_skewness_undo} is supposed to reverse the log transformation of {.fn step_log_skewness}.",
+  #     "i" = "The variable{?s} {logged_but_gone} {?was/were} removed in the mean time."
+  #   ))
+  # }
+  col_names <- recipes::recipes_eval_select(
+    unname(x$columns) %>% intersect(names(training)),
+    training,
+    info
+  )
+  
   recipes::check_type(training[, col_names], types = c("double", "integer"))
   do.call(
     utils::getFromNamespace("check_number_decimal", "recipes"),
