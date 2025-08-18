@@ -163,6 +163,85 @@ testthat::test_that("vars_keep_corr works", {
   
 })
 
+
+testthat::test_that("vars_no_trafo works", {
+  # vars_no_trafo works ####
+  
+  withr::with_seed(2116,{
+    
+    n <- 250
+    d_feat <- tibble::tibble(
+      sym1 = rnorm(n, mean = 10, sd =1),
+      sym2 = rnorm(n, mean = 100, sd =5),
+      skw1 = exp(rnorm(n, mean = 1, sd = 2)),
+      skw2 = exp(rnorm(n, mean = 0, sd = 1)),
+      skw_corr = skw2 *2,
+      # add a constant (skewness = NaN)
+      const = rep(1,n)
+    )
+    d_out <- tibble::tibble(
+      .id  = 1:n,
+      .out = rnorm(n)
+    )
+    
+  })
+  
+  d_ml0 <- prepare_ml(
+    feature    = d_feat,
+    outcome    = d_out, 
+    train_prop = 1
+  )
+  
+  # find variable, that is log transformed by default to exclude using vars_no_trafo
+  log_step <- d_ml0$prep_recipe %>%
+    recipes::tidy() %>% 
+    dplyr::filter(type == "log_skewness") %>% 
+    dplyr::pull(number) %>% 
+    head(1)
+  var_notrafo <- tidy(d_ml0$prep_recipe, log_step)$terms %>%
+    stringr::str_subset('skw') %>%
+    head(1)
+  
+  d_ml1 <- prepare_ml(
+    feature        = d_feat,
+    outcome        = d_out,
+    # keep the variable that would be discarded by default
+    vars_keep_corr = d_ml0$removed$cols$corr_keep, 
+    # vars_no_trafo: use one that is log transformed by default
+    vars_no_trafo = var_notrafo,
+    prep_step_normalize = FALSE, # for message test
+    prep_step_log = FALSE,
+    train_prop     = 1
+  )
+  
+  cols_0 <- d_ml0$data_prep$train %>% names()
+  cols_1 <- d_ml1$data_prep$train %>% names()
+  
+  # vars_no_trafo
+  # ... input is documented correctly
+  testthat::expect_true(
+    var_notrafo %in% d_ml1$prep_params$vars_no_trafo$value
+  )
+  testthat::expect_equal( # message adjusted according to prep_step_normalize
+    d_ml1$prep_params$vars_no_trafo$text %>% 
+      stringr::str_detect('normali.ation'),
+    (d_ml1$input$args$prep_step_normalize) && # if normalized or...
+      (d_ml1$input$args %>% 
+         purrr::keep_at(c('prep_step_normalize', 'prep_step_log')) %>% 
+         purrr::none(isTRUE)) # neither log nor normalize
+  )
+  
+ 
+  # vars_keep_corr
+  testthat::expect_false(
+    d_ml0$removed$cols$corr_keep %in% cols_0
+  )
+  testthat::expect_true(
+    d_ml0$removed$cols$corr_keep %in% cols_1
+  )
+  
+})
+
 test_that('row removal works', {
   # row removal works ####
   

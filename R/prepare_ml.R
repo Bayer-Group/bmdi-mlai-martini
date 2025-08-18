@@ -86,7 +86,7 @@
 #'@param vars_ordinalscore  column names of ordinal factor variables to be 
 #'converted into numeric scores. Defaults to NULL.
 #'@param vars_no_trafo character vector defining variables that should be
-#' excluded from transformation steps such as log trafo and/or normalization
+#' excluded from transformation steps such as log transformation and/or normalization
 #'  (if applicable). Defaults to NULL.
 #'@param log_base base to use for log-transformation in 
 #'\code{recipes::step_log()}. Defaults to _exp(1)_.
@@ -415,8 +415,8 @@ prepare_ml <- function(
     vars_fct_expl_na    = vars_fct_expl_na,
     vars_ordinalscore   = vars_ordinalscore,
     vars_keep_corr      = vars_keep_corr,
+    vars_no_trafo       = vars_no_trafo,
     
-    #level_other = level_other, # 'other'
     one_hot     = one_hot,
     log_base    = log_base
     
@@ -522,20 +522,23 @@ prepare_ml <- function(
                      "No variables were log transformed.")
     ),
     
-    # ... log trafo excluded (integer with low number of values) ####
+    # ... no trafo (no normalization, no log trafo) ####
     vars_no_trafo  = list(
       value = vars$vars_no_trafo %||% NA,
-      text  = ifelse(
-        length(vars$vars_no_trafo) > 0 && (steps$prep_step_normalize || steps$prep_step_log),
+      text  = if(length(vars$vars_no_trafo) > 0) { 
+          if (steps$prep_step_normalize || steps$prep_step_log) {
         paste0(cli::pluralize(
-          "{vars$vars_no_trafo} {?was/were} excluded from log transformation and normalization (if applicable).",
-         # TODO pluralize
-         #   if(prep_step_log) "log transformation", 
-        #    if(prep_step_normalize) "normalization"
-         # )
-          #", '.'
-        )), 
-        NA_character_)
+          "{vars$vars_no_trafo} {?was/were} excluded from ",
+          "{trafo_applied <- c(if(prep_step_log) 'log transformation', if(prep_step_normalize) 'normalization'); trafo_applied}",
+          "."
+        )
+        )} else {
+          paste0(cli::pluralize(
+            "{vars$vars_no_trafo} {?was/were} not subject to ",
+            "log transformation or normalization (neither is part of data preparation)."
+            ))
+        }
+    } else NA_character_
     ),
     
     
