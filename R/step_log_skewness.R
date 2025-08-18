@@ -262,7 +262,8 @@ step_log_skewness_undo <- function(
       # ... or take the last one
       recipe_tidy %>%
         dplyr::filter(type == "log_skewness") %>% 
-        nrow()
+        dplyr::pull(number) %>% 
+        tail(1)
     }
     
     recipe_prepared_step <- recipes::prep(recipe) %>% 
