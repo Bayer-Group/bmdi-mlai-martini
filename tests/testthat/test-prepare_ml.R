@@ -225,7 +225,7 @@ testthat::test_that("vars_no_trafo works", {
   testthat::expect_equal( # message adjusted according to prep_step_normalize
     d_ml1$prep_params$vars_no_trafo$text %>% 
       stringr::str_detect('normali.ation'),
-    (d_ml1$input$args$prep_step_normalize) && # if normalized or...
+    (d_ml1$input$args$prep_step_normalize) || # if normalized or...
       (d_ml1$input$args %>% 
          purrr::keep_at(c('prep_step_normalize', 'prep_step_log')) %>% 
          purrr::none(isTRUE)) # neither log nor normalize
