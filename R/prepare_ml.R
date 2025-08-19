@@ -62,12 +62,16 @@
 #'@param thres_nzv_freq,thres_nzv_unique parameters passed to
 #'\code{recipes::step_nzv()} with defaults 
 #'\code{thres_nzv_freq = 95/5)} and \code{thres_nzv_unique = 10} 
-#'@param thres_count integer variables with no more than `thres_count` distinct 
-#'values are considered as count variables and are excluded from the 
-#'log-transformation and normalization. Defaults to 10.
-#'@param thres_lump this parameter is used to prevent renaming of a single low 
-#'frequency class to 'other' by \code{recipes::step_other()}, to
-#'which `thres_lump` is passed as parameter `threshold`. Defaults to 0.05.
+#'@param thres_count `r lifecycle::badge("deprecated")` integer variables with 
+#'no more than `thres_count` distinct values are considered as count variables 
+#'and are excluded from the log-transformation and normalization.
+#' Defaults to 10.
+#'@param thres_lump threshold used in \code{step_other2()}. 
+#'If at least two classes of a factor have low frequencies/proportions, they 
+#'will be lumped into a class
+#'`r step_other2 %>% args() %>% as.list() %>% purrr::keep_at('other')`. If only 
+#'one class is below the threshold, data is unmodified and the user is informed.
+#' Defaults to 0.05. See \code{recipes::step_other()} for usage of argument threshold.
 #'@param one_hot boolean. passed to \code{recipes::step_dummy()} to choose one 
 #'hot encoding over dummy encoding
 #'@param vars_imp_ignore variables that shall not be imputed can be specified 
@@ -81,6 +85,9 @@
 #'See \code{recipes::step_rm()} below for details. 
 #'@param vars_ordinalscore  column names of ordinal factor variables to be 
 #'converted into numeric scores. Defaults to NULL.
+#'@param vars_no_trafo character vector defining variables that should be
+#' excluded from transformation steps such as log transformation and/or normalization
+#'  (if applicable). Defaults to NULL.
 #'@param log_base base to use for log-transformation in 
 #'\code{recipes::step_log()}. Defaults to _exp(1)_.
 #'@param outlier_remove,outlier_ctrl For outcome mode regression only, see 
@@ -199,6 +206,7 @@
 #' 
 #'## Data preparation and documentation
 #' 
+#'\code{raw_recipe} contains the unprepared recipe object, 
 #'\code{prep_recipe} contains the prepared recipe object, 
 #'\code{prep_params} documents the parameters/thresholds used in the data 
 #'preparation, giving bare \code{value} slots, as well as a verbose description
@@ -244,6 +252,7 @@ prepare_ml <- function(
   vars_fct_expl_na    = NULL,
   vars_ordinalscore   = NULL,
   vars_keep_corr      = NULL,
+  vars_no_trafo       = NULL,
   
   one_hot             = NULL,
   
@@ -254,6 +263,14 @@ prepare_ml <- function(
   quiet               = FALSE
     
 ) {
+  
+  if(!missing(thres_count)){
+    lifecycle::deprecate_warn(
+      when = "0.7.0",
+      what = "prepare_ml(thres_count)", 
+      details = "Please use argument `vars_no_trafo` instead."
+    )
+  }
   
   # save all input args
   all_args <- as.list(environment())
@@ -318,7 +335,7 @@ prepare_ml <- function(
     if (length(vars_fct_expl_na) == 0) vars_fct_expl_na <- NULL
   }
   
-  level_other <- "other"
+  #level_other <- "other"
   
   # MERGE OUTCOME AND FEATURE  ####
   
@@ -326,6 +343,13 @@ prepare_ml <- function(
     c(".id", ".rmtime"), 
     intersect(colnames(outcome), colnames(feature))
   )
+  
+  if (length(clmn_by) == 0) {
+    cli::cli_abort(c(
+      "`feature` and `outcome` is combined into a single data set based on a common identifier.",
+      "!" = "No common identifier was found (needs to be .id .rmtime)."
+    ))
+  }
   
   if (!all(
     outcome[clmn_by] %>% purrr::map_chr(class) %>% unname() ==
@@ -399,13 +423,14 @@ prepare_ml <- function(
     vars_fct_expl_na    = vars_fct_expl_na,
     vars_ordinalscore   = vars_ordinalscore,
     vars_keep_corr      = vars_keep_corr,
+    vars_no_trafo       = vars_no_trafo,
     
-    level_other = level_other, # 'other'
     one_hot     = one_hot,
     log_base    = log_base
     
   )
   
+  rcp_raw   <- rcp_output$rcp_raw
   rcp_prep  <- rcp_output$rcp_prep
   vars      <- rcp_output$vars
   steps     <- rcp_output$steps
@@ -506,14 +531,23 @@ prepare_ml <- function(
                      "No variables were log transformed.")
     ),
     
-    # ... log trafo excluded (integer with low number of values) ####
-    thres_count  = list(
-      value = ifelse(length(vars$vars_log) > 0 && length(vars$vars_count) > 0, 
-                     thres$thres_count, NA_real_),
-      text  = ifelse(length(vars$vars_log) > 0 && length(vars$vars_count) > 0,
-                     paste0("Variables were excluded from log transformation if they are integer coded 
-                             and have ", thres$thres_count, " distinct values."),
-                     "Not applicable.")
+    # ... no trafo (no normalization, no log trafo) ####
+    vars_no_trafo  = list(
+      value = vars$vars_no_trafo %||% NA,
+      text  = if(length(vars$vars_no_trafo) > 0) { 
+          if (steps$prep_step_normalize || steps$prep_step_log) {
+        paste0(cli::pluralize(
+          "{vars$vars_no_trafo} {?was/were} excluded from ",
+          "{trafo_applied <- c(if(prep_step_log) 'log transformation', if(prep_step_normalize) 'normalization'); trafo_applied}",
+          "."
+        )
+        )} else {
+          paste0(cli::pluralize(
+            "{vars$vars_no_trafo} {?was/were} not subject to ",
+            "log transformation or normalization (neither is part of data preparation)."
+            ))
+        }
+    } else NA_character_
     ),
     
     
@@ -526,7 +560,7 @@ prepare_ml <- function(
     ),  
     
     vars_keep_corr = list(
-      value = ifelse(!is.null(vars$vars_keep_corr), vars$vars_keep_corr, NA),
+      value = vars$vars_keep_corr %||% NA,
       text  = ifelse(steps$prep_step_corr && !is.null(vars$vars_exclude_corr),
                      "Variable selection in recipes::step_corr() was adjusted according to 'vars_keep_corr'",
                      "No variables were excluded specifically due to high correlation with the variables in 'vars_keep_corr'")
@@ -666,6 +700,7 @@ prepare_ml <- function(
     source = attr(feature, "source"),
     
     # documentation
+    raw_recipe  = rcp_raw,
     prep_recipe = rcp_prep,
     
     prep_params = prep_params,

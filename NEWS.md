@@ -1,8 +1,39 @@
 # martini (development version)
 
+## major changes
+
+* the prepare_ml() output object structure has changed
+  * similar to the data that is provided in its raw form as well as prepped and 
+  ready to use for ML, the recipe is now provided in raw and prepped version 
+  as well to allow for proper tuning workflows
+  * removed$cols$corr_keep
+  * recipe log step now called log_skewness. Info on log transformed values to 
+  be extracted from new output slot
+* the default `recipe` itself has been modified, making use of new custom steps 
+  that are adaptations of existing `recipes` functions
+  * `step_corr_keep()` offers the functionality of `recipes::step_corr()` 
+  with the option to nominate preferred representatives of correlated groups. 
+  * `step_log_skewness()` to transform variables
+  exceeding a threshold for skewness before imputation by means of 
+  `step_impute_knn()` for a more robust imputation. 
+  Optionally, variables can be transformed back to their original scale right 
+  after imputation using `step_log_skewness_undo()`.
+  * `step_other2()` is pretty much identical with `recipes::step_other()` except 
+  its behavior in case of a single class that does not meet the required 
+  minimum size as defined by `threshold`: while the original version renames the 
+  class and silently adds novel levels to this class, our version would leave 
+  the single class unmodified and raise an error in case a new data set 
+  comes with novel levels for that variable. This change was handled manually before 
+  and does not change results.
+    
+* `vars_count` deprecated in favor of `vars_no_trafo`: count variables are no
+longer guessed and automatically excluded from transformation, but need
+to be specified by the user. 
+
+
 # martini 0.6.4
 
-major changes
+## major changes
 
 * to accommodate for handling of adsl data sets in ADaM 2.0 format, 
 the structure of `fct_levels` entry was changed to name value pairs

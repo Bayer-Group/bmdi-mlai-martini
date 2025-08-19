@@ -1,0 +1,343 @@
+#' Back transform log trafo from previous step
+#'
+#' `step_log_skewed_undo()` creates a *specification* of a recipe step that will
+#' reverse the log trafo of a previous step_log_skewed()
+#'
+#' @inheritParams step_center 
+#' 
+#' TODO
+#' @param id id of step to undo. defaults to NULL, in which case the last 
+#' log trafo before this step is reversed
+#' @param use A character string for the `use` argument to the [stats::cor()]
+#'   function.
+#' @param method A character string for the `method` argument to the
+#'   [stats::cor()] function.
+#' @param removals A character string that contains the names of columns that
+#'   should be removed. These values are not determined until [prep()] is
+#'   called.
+#' @param id_log_skewed id of corresponding step for log transformation that should be reversed
+# @template step-return
+# @template filter-steps
+#' @author Modified from recipes. Original R code for filtering algorithm by Dong Li, modified by Max
+#'   Kuhn. Contributions by Reynald Lescarbeau (for original in `caret`
+#'   package). Max Kuhn for the `step` function.
+#' @export
+#'
+#' @details
+#'
+#' This step attempts to remove variables to keep the largest absolute
+#' correlation between the variables less than `threshold`.
+#'
+#' The filter tries to prioritize predictors for removal based on the global
+#' affect on the overall correlation structure. If you have two identical
+#' predictors, the variable ordered first will be removed.
+#'
+#' When a column has a single unique value, that column will be excluded from
+#' the correlation analysis. Also, if the data set has sporadic missing values
+#' (and an inappropriate value of `use` is chosen), some columns will also be
+#' excluded from the filter.
+#'
+#' The arguments `use` and `method` don't take effect if case weights are used
+#' in the recipe.
+#'
+#' # Tidying
+#'
+# When you [`tidy()`][tidy.recipe()] this step, a tibble is returned with
+# columns `terms` and `id`:
+#'
+#' \describe{
+#'   \item{terms}{character, the selectors or variables selected to be removed}
+#'   \item{id}{character, id of this step}
+#' }
+#'
+#' ```{r, echo = FALSE, results="asis"}
+#' step <- "step_corr"
+#' result <- knitr::knit_child("man/rmd/tunable-args.Rmd")
+#' cat(result)
+#' ```
+#'
+# @template case-weights-unsupervised
+#'
+#' @examplesIf rlang::is_installed("modeldata")
+#' data(biomass, package = "modeldata")
+#'
+#' set.seed(3535)
+#' biomass$duplicate <- biomass$carbon + rnorm(nrow(biomass))
+#'
+#' biomass_tr <- biomass[biomass$dataset == "Training", ]
+#' biomass_te <- biomass[biomass$dataset == "Testing", ]
+#'
+step_log_skewed_undo <- function(
+  recipe,
+  ...,
+  role = NA,
+  trained = FALSE,
+  id_log_skewed = NULL,
+  skip = FALSE,
+  id = recipes::rand_id("log_skewed_undo")
+) {
+  
+   
+  columns_logged <- character(0)
+  if (any('log' %in% tidy(recipe)$type)) {
+    
+    # identify last log step from unprepped recipe
+    number_log_step <- if (use_specified) {
+       recipe %>% 
+         tidy() %>% 
+         filter(id == id_log_skewed) %>%
+         pull(number)
+     } else {
+       recipe %>%
+         tidy() %>%
+         pull(type) %>%
+         magrittr::equals('log') %>%
+         which() %>%
+         tail(1)
+    }
+    
+    columns_logged <- recipe %>%
+      # potentially expensive, but hey...
+      prep() %>% 
+      magrittr::extract2("steps") %>%
+      magrittr::extract2(number_log_step) %>%
+      tidy() %>%
+      pull(terms)
+      
+  }
+  
+  recipes::add_step(
+    recipe,
+    step_log_skewed_undo_new(
+      terms = rlang::enquos(...),
+      role = role,
+      trained = trained,
+      
+      skip = skip,
+      id = id,
+      case_weights = NULL
+    )
+  )
+}
+
+step_log_skewed_undo_new <-
+  function(
+    terms,
+    role,
+    trained,
+    threshold,
+    use,
+    method,
+    keep,
+    removals,
+    high_corr,
+    columns_logged,
+    skip,
+    id,
+    case_weights
+  ) {
+    recipes::step(
+      subclass = "log_skewed_undo",
+      terms = terms,
+      role = role,
+      trained = trained,
+      threshold = threshold,
+      use = use,
+      method = method,
+      keep = keep,
+      removals = removals,
+      high_corr = high_corr,
+      columns_logged = columns_logged,
+      skip = skip,
+      id = id,
+      case_weights = case_weights
+    )
+  }
+
+log_skewed_undo <-
+  function(
+    x,
+    wts = NULL,
+    cutoff = .90,
+    use = "pairwise.complete.obs",
+    method = "pearson",
+    keep = NULL
+  ) {
+    x <- recipes::correlations(x, wts = wts, use = use, method = method)
+    
+    if (any(!vctrs::vec_detect_complete(x))) {
+      all_na <- apply(x, 2, function(x) all(is.na(x)))
+      if (sum(all_na) >= nrow(x) - 1) {
+        cli::cli_warn(
+          "Too many correlations are `NA`; skipping correlation filter."
+        )
+        return(numeric(0))
+      } else {
+        na_cols <- which(all_na)
+        if (length(na_cols) > 0) {
+          x[na_cols, ] <- 0
+          x[, na_cols] <- 0
+          cli::cli_warn(
+            "The correlation matrix has missing values. \\
+            {length(na_cols)} column{?s} {?was/were} excluded from the filter."
+          )
+        }
+      }
+      if (anyNA(x)) {
+        cli::cli_warn(
+          "The correlation matrix has sporadic missing values. \\
+          Some columns were excluded from the filter."
+        )
+        x[is.na(x)] <- 0
+      }
+      diag(x) <- 1
+    }
+    averageCorr <- colMeans(abs(x))
+    # adjusting recipes::corr_filter() to account for predetermined representives
+    # vars_keep_corr
+    avgCorrVarsRank <- as.numeric(as.factor(averageCorr))
+    if (length(keep)> 0) {
+      avgCorrVarsRank[names(averageCorr) %in% keep] <- avgCorrVarsRank[names(averageCorr) %in% keep] - max(avgCorrVarsRank)
+    }
+    
+    x[lower.tri(x, diag = TRUE)] <- NA
+    combsAboveCutoff <- which(abs(x) > cutoff)
+    
+    colsToCheck <- ceiling(combsAboveCutoff / nrow(x))
+    rowsToCheck <- combsAboveCutoff %% nrow(x)
+    
+    
+    # Discard column variable in the correlation pair with the higher average
+    # correlation across all pairwise correlations
+    colsToDiscard <- avgCorrVarsRank[colsToCheck] > avgCorrVarsRank[rowsToCheck]
+    rowsToDiscard <- !colsToDiscard
+    
+    deletecol <- c(colsToCheck[colsToDiscard], rowsToCheck[rowsToDiscard])
+    deletecol <- unique(deletecol)
+    if (length(deletecol) > 0) {
+      deletecol <- colnames(x)[deletecol]
+    }
+    
+    if (length(intersect(deletecol, keep))>0) {
+      cli::cli_inform(c(
+        "Representatives to be kept for correlated variables (above {cutoff}) were {keep}.",
+        '!' = "Not all representatives were kept as the correlation amongst them was above the cutoff.",
+        'i' = "{intersect(deletecol, keep)} {?was/were} removed from the feature set."
+      ))
+    }
+    
+    list(
+      removals = deletecol,
+      high_corr = x
+    )
+  }
+
+#' @exportS3Method 
+prep.step_log_skewed_undo <- function(x, training, info = NULL, ...) {
+  col_names <- recipes::recipes_eval_select(x$terms, training, info)
+  recipes::check_type(training[, col_names], types = c("double", "integer"))
+  recipes:::check_number_decimal(x$threshold, min = 0, max = 1, arg = "threshold")
+  use <- x$use
+  rlang::arg_match(
+    use,
+    c(
+      "all.obs",
+      "complete.obs",
+      "pairwise.complete.obs",
+      "everything",
+      "na.or.complete"
+    )
+  )
+  method <- x$method
+  rlang::arg_match(method, c("pearson", "kendall", "spearman"))
+ 
+  wts <- recipes::get_case_weights(info, training)
+  were_weights_used <- recipes::are_weights_used(wts, unsupervised = TRUE)
+  if (isFALSE(were_weights_used)) {
+    wts <- NULL
+  }
+
+  
+  if (length(col_names) > 1) {
+    res_log_skewed_undo <- log_skewed_undo(
+      x = training[, col_names],
+      wts = wts,
+      cutoff = x$threshold,
+      use = use,
+      method = method,
+      keep =  x$keep
+    )
+    filter <- res_log_skewed_undo_filter$removals
+    high_corr <- res_log_skewed_undo_filter$high_corr
+  } else {
+    filter <- character(0)
+    high_corr <- NULL
+  }
+
+  step_log_skewed_undo_new(
+    terms = x$terms,
+    role = x$role,
+    trained = TRUE,
+    threshold = x$threshold,
+    use = use,
+    method = method,
+    keep = x$keep,
+    removals = filter,
+    high_corr = high_corr,
+    columns_logged = x$columns_logged,
+    skip = x$skip,
+    id = x$id,
+    case_weights = were_weights_used
+  )
+}
+
+#' @exportS3Method 
+bake.step_log_skewed_undo <- function(object, new_data, ...) {
+  new_data <- recipes::recipes_remove_cols(new_data, object)
+  new_data
+}
+
+#' @exportS3Method 
+print.step_log_skewed_undo <-
+  function(x, width = max(20, options()$width - 36), ...) {
+    title <- "Correlation filter on "
+    recipes::print_step(
+      x$removals,
+      x$terms,
+      x$trained,
+      title,
+      width,
+      case_weights = x$case_weights
+    )
+    invisible(x)
+  }
+
+
+
+tidy_filter <- function(x, ...) {
+  if (recipes::is_trained(x)) {
+    res <- tibble::tibble(terms = unname(x$removals))
+  } else {
+    term_names <- recipes::sel2char(x$terms)
+    res <- tibble::tibble(terms = term_names)
+  }
+  res$id <- x$id
+  res
+}
+
+#' @rdname tidy.recipe
+#' @exportS3Method 
+tidy.step_log_skewed_undo <- tidy_filter
+
+#' @exportS3Method 
+tunable.step_log_skewed_undo <- function(x, ...) {
+  tibble::tibble(
+    name = "threshold",
+    call_info = list(
+      list(pkg = "dials", fun = "threshold")
+    ),
+    source = "recipe",
+    component = "step_log_skewed_undo",
+    component_id = x$id
+  )
+}

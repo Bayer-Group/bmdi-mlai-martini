@@ -177,6 +177,12 @@ prepare_ml_feature <- function(
     level_other = 'other'
 ){
 
+  lifecycle::deprecate_soft(
+    when = "0.7.0",
+    what = "prepare_ml_feature()", 
+    details = "Please reach out to the authors if you find yourself using this function."
+  )
+  
   # TODO !! remove. not needed in prepare_ml() anymore, but still used within a project as standalone function
   
   # ... transform all character columns into factors (strips labels) ####
@@ -215,10 +221,10 @@ prepare_ml_feature <- function(
 
 # consistent handling of factors with level other ####
 # TODO docu
-
+# deprecated
 prepare_ml_other <- function(
     x,
-    level_other = 'other'
+    level_other = 'other_ml'
     
 ){
   

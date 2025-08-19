@@ -2,8 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{skw}
 \alias{skw}
-\title{skewness ####
-e1071 was only used for e1071::skewness in prepare_ml_vars,default type = 3}
+\title{skewness}
 \usage{
 skw(x, na.rm = FALSE)
 }
@@ -16,6 +15,5 @@ skw(x, na.rm = FALSE)
 The estimated skewness of x.
 }
 \description{
-skewness ####
 e1071 was only used for e1071::skewness in prepare_ml_vars,default type = 3
 }

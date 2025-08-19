@@ -5,6 +5,7 @@
 ^doc$
 ^Meta$
 ^data-raw$
+^man-roxygen$
 ^.github$
 ^README\.Rmd$
 ^\.gitlab-ci\.yml$

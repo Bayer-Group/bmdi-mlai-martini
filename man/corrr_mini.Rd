@@ -16,6 +16,8 @@ corrr_mini(x, method = "pearson", use = "pairwise.complete.obs", shave = FALSE)
 \value{
 A tibble with the pair of variable names in the columns \code{x} and \code{y} and the
 corresponding correlation in the column \code{r}
+
+TODO deprecate
 }
 \description{
 Calculate correlation matrix of a numeric data set and stretch to long format for convenient filtering..

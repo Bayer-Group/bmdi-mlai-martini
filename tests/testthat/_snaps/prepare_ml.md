@@ -9458,12 +9458,12 @@
       [1] "Variables were log transformed (base e) if e1071::skewness() > 2. Variables that are assumed to be count variables were excluded from the transformation (see thres_count for details)."
       
       
-      $prep_params$thres_count
-      $prep_params$thres_count$value
+      $prep_params$vars_no_trafo
+      $prep_params$vars_no_trafo$value
       [1] NA
       
-      $prep_params$thres_count$text
-      [1] "Not applicable."
+      $prep_params$vars_no_trafo$text
+      [1] NA
       
       
       $prep_params$thres_corr
@@ -9534,7 +9534,7 @@
       $removed$cols$nzv
       NULL
       
-      $removed$cols$corr
+      $removed$cols$corr_keep
       [1] "BMI_adsl"
       
       
@@ -9619,6 +9619,9 @@
       NULL
       
       $input$args$vars_keep_corr
+      NULL
+      
+      $input$args$vars_no_trafo
       NULL
       
       $input$args$one_hot
@@ -18233,7 +18236,7 @@
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
-          "RACE": "BLACK",
+          "RACE": "WHITE",
           "AGE": 83,
           "BMI_advs": 36.6,
           "BPDIA": 75,
@@ -18338,7 +18341,7 @@
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "ASIAN",
+          "RACE": "WHITE",
           "AGE": 51,
           "BMI_advs": 27.2,
           "BPDIA": 69,
@@ -19098,12 +19101,12 @@
       [1] "Variables were log transformed (base e) if e1071::skewness() > 2. Variables that are assumed to be count variables were excluded from the transformation (see thres_count for details)."
       
       
-      $prep_params$thres_count
-      $prep_params$thres_count$value
+      $prep_params$vars_no_trafo
+      $prep_params$vars_no_trafo$value
       [1] NA
       
-      $prep_params$thres_count$text
-      [1] "Not applicable."
+      $prep_params$vars_no_trafo$text
+      [1] NA
       
       
       $prep_params$thres_corr
@@ -19180,7 +19183,7 @@
       $removed$cols$nzv
       NULL
       
-      $removed$cols$corr
+      $removed$cols$corr_keep
       [1] "BMI_adsl"
       
       
@@ -19265,6 +19268,9 @@
       NULL
       
       $input$args$vars_keep_corr
+      NULL
+      
+      $input$args$vars_no_trafo
       NULL
       
       $input$args$one_hot
@@ -25833,7 +25839,7 @@
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "WHITE",
+          "RACE": "BLACK",
           "AGE": 51,
           "BMI_advs": 27.2,
           "BPDIA": 69,
@@ -28285,7 +28291,7 @@
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
-          "RACE": "WHITE",
+          "RACE": "BLACK",
           "AGE": 83,
           "BMI_advs": 36.6,
           "BPDIA": 75,
@@ -29330,12 +29336,12 @@
       [1] "Variables were log transformed (base e) if e1071::skewness() > 2. Variables that are assumed to be count variables were excluded from the transformation (see thres_count for details)."
       
       
-      $prep_params$thres_count
-      $prep_params$thres_count$value
+      $prep_params$vars_no_trafo
+      $prep_params$vars_no_trafo$value
       [1] NA
       
-      $prep_params$thres_count$text
-      [1] "Not applicable."
+      $prep_params$vars_no_trafo$text
+      [1] NA
       
       
       $prep_params$thres_corr
@@ -29406,7 +29412,7 @@
       $removed$cols$nzv
       NULL
       
-      $removed$cols$corr
+      $removed$cols$corr_keep
       [1] "BMI_adsl"
       
       
@@ -29491,6 +29497,9 @@
       NULL
       
       $input$args$vars_keep_corr
+      NULL
+      
+      $input$args$vars_no_trafo
       NULL
       
       $input$args$one_hot

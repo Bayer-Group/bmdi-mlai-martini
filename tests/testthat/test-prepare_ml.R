@@ -164,7 +164,84 @@ testthat::test_that("vars_keep_corr works", {
 })
 
 
-
+testthat::test_that("vars_no_trafo works", {
+  # vars_no_trafo works ####
+  
+  withr::with_seed(2116,{
+    
+    n <- 250
+    d_feat <- tibble::tibble(
+      .id = 1:n,
+      sym1 = rnorm(n, mean = 10, sd =1),
+      sym2 = rnorm(n, mean = 100, sd =5),
+      skw1 = exp(rnorm(n, mean = 1, sd = 2)),
+      skw2 = exp(rnorm(n, mean = 0, sd = 1)),
+      skw_corr = skw2 *2,
+      # add a constant (skewness = NaN)
+      const = rep(1,n)
+    )
+    d_out <- tibble::tibble(
+      .id  = 1:n,
+      .out = rnorm(n)
+    )
+    
+  })
+  
+  d_ml0 <- prepare_ml(
+    feature    = d_feat,
+    outcome    = d_out, 
+    train_prop = 1
+  )
+  
+  # find variable, that is log transformed by default to exclude using vars_no_trafo
+  log_step <- d_ml0$prep_recipe %>%
+    recipes::tidy() %>% 
+    dplyr::filter(type == "log_skewness") %>% 
+    dplyr::pull(number) %>% 
+    head(1)
+  var_notrafo <- tidy(d_ml0$prep_recipe, log_step)$terms %>%
+    stringr::str_subset('skw') %>%
+    head(1)
+  
+  d_ml1 <- prepare_ml(
+    feature        = d_feat,
+    outcome        = d_out,
+    # keep the variable that would be discarded by default
+    vars_keep_corr = d_ml0$removed$cols$corr_keep, 
+    # vars_no_trafo: use one that is log transformed by default
+    vars_no_trafo = var_notrafo,
+    prep_step_normalize = FALSE, # for message test
+    prep_step_log = FALSE,
+    train_prop     = 1
+  )
+  
+  cols_0 <- d_ml0$data_prep$train %>% names()
+  cols_1 <- d_ml1$data_prep$train %>% names()
+  
+  # vars_no_trafo
+  # ... input is documented correctly
+  testthat::expect_true(
+    var_notrafo %in% d_ml1$prep_params$vars_no_trafo$value
+  )
+  testthat::expect_equal( # message adjusted according to prep_step_normalize
+    d_ml1$prep_params$vars_no_trafo$text %>% 
+      stringr::str_detect('normali.ation'),
+    (d_ml1$input$args$prep_step_normalize) || # if normalized or...
+      (d_ml1$input$args %>% 
+         purrr::keep_at(c('prep_step_normalize', 'prep_step_log')) %>% 
+         purrr::none(isTRUE)) # neither log nor normalize
+  )
+  
+ 
+  # vars_keep_corr
+  testthat::expect_false(
+    d_ml0$removed$cols$corr_keep %in% cols_0
+  )
+  testthat::expect_true(
+    d_ml0$removed$cols$corr_keep %in% cols_1
+  )
+  
+})
 
 test_that('row removal works', {
   # row removal works ####
@@ -175,11 +252,15 @@ test_that('row removal works', {
   n_total  <- 10
   n_remove <- 1
   
-  set.seed(955)
-  d_feat <- tibble::tibble(
-    .id  = 1:n_total,
-    .trt = sample(c('A', 'B'), n_total, replace = TRUE),
-    cont  = c(rnorm(n_total-n_remove), rep(NA, n_remove))
+  # feat matrix with two NAs in separate subjects: 
+  # first in feature cont, last in feature .trt which is ignored in imputation by default (2. expectation)
+  d_feat <- withr::with_seed(
+    955, 
+    tibble::tibble(
+      .id  = 1:n_total,
+      .trt = sample(c('A', 'B'), n_total, replace = TRUE) %>% magrittr::inset2(n_total, NA),
+      cont  = c(rep(NA, n_remove), rnorm(n_total-n_remove))
+    )
   )
   
   d_out <- tibble::tibble(
@@ -189,8 +270,7 @@ test_that('row removal works', {
   
   res_out <- prepare_ml(
     feature    = d_feat,
-    outcome    = d_out, 
-    prep_step_knnimpute = FALSE
+    outcome    = d_out
   ) 
   
   # observation deleted from prepped data set
@@ -199,15 +279,69 @@ test_that('row removal works', {
     n_total - n_remove
   )
   
-  # documented id in na_feature
+  # documented id in na_feature slot in prepare_ml output
   testthat::expect_equal(
     res_out$removed$rows$na_feature,
     res_out %>% 
       martini::get_data(type = 'raw') %>% 
-      dplyr::filter(is.na(cont)) %>% 
+      dplyr::filter(is.na(.trt)) %>% 
       dplyr::pull(.id) 
   )
     
+})
+
+test_that("`strings_as_factors = TRUE` in `recipe` works as expected", {
+  
+  martini_feat_char <- martini_feat %>% 
+    dplyr::mutate(.id = stringr::str_pad(.id, width = 5, pad = "0")) %>% 
+    dplyr::mutate(dplyr::across(tidyselect::where(is.factor), as.character))
+  
+  martini_outc_idchar <- martini_outc_class %>% 
+    dplyr::mutate(.id = stringr::str_pad(.id, width = 5, pad = "0"))
+  
+  ml_class <- prepare_ml(
+    feature = martini_feat_char,
+    outcome = martini_outc_idchar, 
+    train_prop = 1
+  )
+  
+  # -id should be the only column of type character
+  expect_equal(
+    ml_class$data_prep$train %>% 
+      purrr::map_lgl(is.character) %>% 
+      purrr::keep(isTRUE) %>%
+      names(),
+    ".id"
+  )
+  
+})
+
+test_that('imputation works', {
+  
+  n_total  <- 10
+  n_remove <- 1
+  
+  d_rec_in <- dplyr::left_join(
+    martini_feat, 
+    martini_outc_class, 
+    by = dplyr::join_by(.id)
+    ) %>%
+    dplyr::select(-.id)
+  
+  prepare_ml(
+    martini_feat, 
+    martini_outc_class
+  )
+  
+  recipe_impute <-  recipes::recipe(.out ~ ., data = d_rec_in) %>% 
+    # assume still missings after knn
+ #  recipes::step_impute_knn(., recipes::all_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
+      # simple imputation for values that could not be imputed by knn
+      recipes::step_impute_median(recipes::all_numeric_predictors()) %>% 
+      recipes::step_impute_mode(  recipes::all_nominal_predictors())
+  recipe_impute_prepped <- prep(recipe_impute)
+  bake(recipe_impute_prepped, new_data = NULL)
+  
 })
 
 test_that('repeated measurement implementation works', {
@@ -241,7 +375,6 @@ test_that('repeated measurement implementation works', {
   expect_true('.rmtime' %in% colnames(ml_regr$data_raw$train))
   
 })
-
 
 test_that("prepare_ml snapshots",{
   # prepare_ml snapshots ####                 
@@ -281,6 +414,7 @@ test_that("prepare_ml snapshots",{
   ads_ml_class$source <- NULL
   # recipe will have different step and environment ids in each run
   ads_ml_class$prep_recipe <- NULL
+  ads_ml_class$raw_recipe  <- NULL
   
   expect_snapshot(
     ads_ml_class %>% purrr::modify_tree(leaf = tibble_to_JSON)
@@ -304,6 +438,7 @@ test_that("prepare_ml snapshots",{
   ads_ml_regr$source <- NULL
   # recipe will have different step and environment ids in each run
   ads_ml_regr$prep_recipe <- NULL
+  ads_ml_regr$raw_recipe  <- NULL
   
   expect_snapshot(
     ads_ml_regr %>% purrr::modify_tree(leaf = tibble_to_JSON)
@@ -326,6 +461,7 @@ test_that("prepare_ml snapshots",{
   ads_ml_surv$source <- NULL
   # recipe will have different step and environment ids in each run
   ads_ml_surv$prep_recipe <- NULL
+  ads_ml_surv$raw_recipe  <- NULL
   
   expect_snapshot(
     ads_ml_surv  %>% purrr::modify_tree(leaf = tibble_to_JSON)

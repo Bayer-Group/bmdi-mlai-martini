@@ -29,6 +29,7 @@ prepare_ml(
   vars_fct_expl_na = NULL,
   vars_ordinalscore = NULL,
   vars_keep_corr = NULL,
+  vars_no_trafo = NULL,
   one_hot = NULL,
   log_base = exp(1),
   outlier_remove = FALSE,
@@ -80,17 +81,21 @@ section for the full list of recipe steps.}
 if \code{prep_step_log = TRUE}, all observations are positive, and
 \code{e1071::skewness() > thres_log}, where \code{thres_log} defaults to 2.}
 
-\item{thres_count}{integer variables with no more than \code{thres_count} distinct
-values are considered as count variables and are excluded from the
-log-transformation and normalization. Defaults to 10.}
+\item{thres_count}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} integer variables with
+no more than \code{thres_count} distinct values are considered as count variables
+and are excluded from the log-transformation and normalization.
+Defaults to 10.}
 
 \item{thres_corr}{if \code{prep_step_corr = TRUE}, \code{thres_corr} is passed
 to \code{recipes::step_corr()}'s \code{threshold} argument with a default
 of 0.9 to remove highly correlated features}
 
-\item{thres_lump}{this parameter is used to prevent renaming of a single low
-frequency class to 'other' by \code{recipes::step_other()}, to
-which \code{thres_lump} is passed as parameter \code{threshold}. Defaults to 0.05.}
+\item{thres_lump}{threshold used in \code{step_other2()}.
+If at least two classes of a factor have low frequencies/proportions, they
+will be lumped into a class
+other_ml. If only
+one class is below the threshold, data is unmodified and the user is informed.
+Defaults to 0.05. See \code{recipes::step_other()} for usage of argument threshold.}
 
 \item{thres_imp}{Minimal proportion of non-missing data per feature required
 to be kept in the data and completed using \code{recipes::step_impute_knn()}.
@@ -119,6 +124,10 @@ converted into numeric scores. Defaults to NULL.}
 \item{vars_keep_corr}{choose these variables over other options when removing
 variables due to high correlation in \code{recipes::step_corr()}.
 See \code{recipes::step_rm()} below for details.}
+
+\item{vars_no_trafo}{character vector defining variables that should be
+excluded from transformation steps such as log transformation and/or normalization
+(if applicable). Defaults to NULL.}
 
 \item{one_hot}{boolean. passed to \code{recipes::step_dummy()} to choose one
 hot encoding over dummy encoding}
@@ -169,6 +178,7 @@ used in data generation of \code{feature}.
 
 \subsection{Data preparation and documentation}{
 
+\code{raw_recipe} contains the unprepared recipe object,
 \code{prep_recipe} contains the prepared recipe object,
 \code{prep_params} documents the parameters/thresholds used in the data
 preparation, giving bare \code{value} slots, as well as a verbose description

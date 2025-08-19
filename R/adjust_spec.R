@@ -284,7 +284,7 @@ check_adjust <- function(spec, entry, modifications){
       
       cli::cli_warn(c(
         "{.code dupl_ctrl} must be a list of length 2 with entries {.code values_fn} and {.code arrange}.",
-        "!" = "Adjustment will beignored.",
+        "!" = "Adjustment will be ignored.",
         "*" = "Please check your adjustment instructions."
       ))
       
@@ -296,12 +296,14 @@ check_adjust <- function(spec, entry, modifications){
       # values_fn: function(name)
       
       # check if values_fn is a function
-      check_passed_valuesfn <- rlang::is_function(modifications[["dupl_ctrl"]]$values_fn)
+      user_fn <- modifications[["dupl_ctrl"]]$values_fn
+      check_passed_valuesfn <- rlang::is_function(user_fn) || is.null(user_fn)
       # NOTE check if output length is 1 (works for either num or categorical)
+      # needs to be taken care of by pivot_wider()
       if (!check_passed_valuesfn) {
         
         cli::cli_warn(c(
-          "{.code dupl_ctrl$values_fn} must be a function.",
+          "{.code dupl_ctrl$values_fn} must be a function or NULL.",
           "!" = "Adjustment of {.code dupl_ctrl} will be ignored.",
           "*" = "Please check your adjustment instructions."
         ))
@@ -310,11 +312,25 @@ check_adjust <- function(spec, entry, modifications){
       
       # check if arrange has length 1
       # TODO if data is available, check if arrange can be applied without error
-      check_passed_arrange <- length(modifications[["dupl_ctrl"]]$arrange) == 1
+      user_arrange <- modifications[["dupl_ctrl"]]$arrange
+      #browser()
+      if (!is.null(spec[[entry]][['data']])) {
+        safely_arranged <- purrr::safely(dplyr::arrange)(spec[[entry]][['data']], !!! rlang::parse_exprs(user_arrange))
+        check_passed_arrange <- is.null(safely_arranged$error) || is.null(user_arrange)
+       # misspecified_cols <- user_arrange %>% setdiff(names(spec[[entry]][['data']]))
+      } else { 
+        
+        check_passed_arrange <- is.null(user_arrange) || is.character(user_arrange)
+       # misspecified_cols <- NULL
+        try_arrange <- TRUE
+      }
+      
       if (!check_passed_arrange) {
         
         cli::cli_warn(c(
-          "{.code dupl_ctrl$arrange} must be a character vector.",
+          "{entry}: `dupl_ctrl$arrange` must be NULL, a character vector of colnames to sort by or a character vector to be passed to {.fn dplyr::arrange} via {.fn rlang::parse_exprs} such as 'desc(colname)').",
+          "i" = "`dupl_ctrl$arrange` is currently {ifelse(is.null(user_arrange), 'NULL', user_arrange)}.",
+         # "!" = if(length(misspecified_cols)>0) "columns {misspecified_cols} are not in the data set." else NULL, 
           "!" = "Adjustment of {.code dupl_ctrl} will be ignored.",
           "*" = "Please check your adjustment instructions."
         ))

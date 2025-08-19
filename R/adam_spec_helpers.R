@@ -221,7 +221,7 @@ prepare_col_selection <- function(
       "time"   = list(column = dots$time,   required = FALSE)
     )
   }
-
+  
   col_select_raw <- purrr::imap(col_spec, ~{
     check_and_guess_column(
       data = data, 
@@ -244,7 +244,7 @@ prepare_col_selection <- function(
     col_select = col_select,
     use_for_build = use_for_build
   )
-   
+  
 }
 
 #' Check role specification for ADaM data set
@@ -439,7 +439,7 @@ create_spec_out <- function(
 import_info <- function(
     file,
     catalog_file = NULL
-    ){
+){
   # TODO maybe pass context
   if (!fs::file_exists(file)) {
     cli::cli_abort(c(
@@ -488,6 +488,61 @@ import_info <- function(
     size = fs::file_size(file)
   )
   
+}
+
+#' Check for non-constant --OCCUR column in occds
+#'
+#' @param data data set to check
+#' @param domain name of data set
+#' @param filters filters to be applied before checking for issues. 
+#' defaults to NULL, in which case no filters are applied.
+#'
+#' @return nothing is returned if no potential issues were detected. 
+#' If domain is adcm or admh, invisibly returns the suggested filter.
+#'
+check_occds_occur <-  function(
+    data, 
+    domain, 
+    filters = NULL
+  ){
+  occur_columns <- stringr::str_detect(
+    string = colnames(data),
+    pattern = "^..OCCUR$",
+  ) %>% 
+  which()
+
+if (length(occur_columns) > 0) {
+  names_not_unique <- data %>% 
+    dplyr::filter(!!! rlang::parse_exprs(filters)) %>% 
+    dplyr::select(occur_columns) %>% 
+    purrr::imap_lgl(~dplyr::n_distinct(.x) > 1) %>% # also sensitive to sas missing values ''
+    purrr::keep(isTRUE) %>% 
+    names()
+  
+  confident_guess  <- stringr::str_to_lower(domain) %in% c("adcm", "admh") 
+  
+  if(confident_guess){
+    filter_suggested <- domain %>% 
+      stringr::str_to_lower() %>% 
+      stringr::str_remove('^ad') %>% 
+      stringr::str_to_upper() %>% 
+      paste0("OCCUR == 'Y'")
+  }else NULL
+  
+  cli::cli_inform(c(
+    "i" = paste0(
+      "{stringr::str_to_lower(domain)}: The column{?s} {names_not_unique} ha{?s/ve} at least two distinct values", 
+      ifelse(length(filters) > 0, " after using applicable filters", ""),
+      "."),
+    "*" = paste0(
+      "Please check if an additional filter is required",
+      ifelse(confident_guess, paste0(" such as ", filter_suggested, '')),
+      ".")
+  ))
+  
+  if (!is.null(confident_guess)) {invisible(confident_guess)}
+  
+}
 }
 
 
