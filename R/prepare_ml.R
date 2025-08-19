@@ -48,7 +48,7 @@
 #'@param thres_imp Minimal proportion of non-missing data per feature required
 #'to be kept in the data and completed using \code{recipes::step_impute_knn()}. 
 #'Variables not meeting the threshold will be dropped and not be included in 
-#'\code{data_prep} data. 
+#'\code{prep} data entries. 
 #'Per default \code{thres_imp = 0.8}, i.e. variables will be dropped if the 
 #'proportion of available data is less than 80%. Variables listed in 
 #'\code{vars_imp_ignore} will never be imputed, observations with missing data
@@ -172,18 +172,17 @@
 #' 
 #' @return 
 #' 
+#' \code{prepare_ml()} produces a nested list.
+#' 
 #' ## Data sets
 #' 
-#'\code{prepare_ml()} produces a list that contains the data set both with 
-#'(\code{data_prep}) and without (\code{data_raw}) applying the specified ML 
-#'preparation steps. Both versions are split in \code{train} and \code{test} 
-#'set. In addition, \code{split} contains the combined
-#'\code{rsample::initial_split()} object that the \code{train} and \code{test} 
-#'data was extracted from. Depending on the programming workflow, one might be
-#'more convenient to use than the other. Both \code{data_test} slots as well
-#'as \code{split} are `NULL` if \code{train_prop} was set to 1 
-#'(i.e. no splitting was done) and \code{train} contains the full ML data set.
-#'  
+#' The top level entry `data` is a nested list, that contains the data set both
+#' prior to (\code{raw}) and after (\code{prep}) application of 
+#' the specified ML preparation steps. Both versions are split in \code{train} 
+#' and \code{test} set. If \code{train_prop} was set to 1, both \code{test}
+#'  slots are `NULL` (i.e. no splitting was done) and \code{train} slots 
+#'  contain the full data set.
+#'   
 #' 
 #'The slot \code{outcome} contains a list giving \code{name}, the standardized
 #'names of the output column in the data sets ( \code{.out} for
@@ -335,7 +334,6 @@ prepare_ml <- function(
     if (length(vars_fct_expl_na) == 0) vars_fct_expl_na <- NULL
   }
   
-  #level_other <- "other"
   
   # MERGE OUTCOME AND FEATURE  ####
   
@@ -677,13 +675,15 @@ prepare_ml <- function(
   prep_output <- list(
     
     # data
-    data_raw = list(
-      train = d_train_raw,
-      test  = d_test_raw
-    ),
-    data_prep = list(
-      train = d_train,
-      test  = d_test 
+    data = list(
+      raw = list(
+        train = d_train_raw,
+        test  = d_test_raw
+      ),
+      prep = list(
+        train = d_train,
+        test  = d_test
+      )
     ),
     
     outcome = list(
@@ -700,6 +700,11 @@ prepare_ml <- function(
     source = attr(feature, "source"),
     
     # documentation
+    # recipe = list(
+    #   raw  = rcp_raw,
+    #   prep = rcp_prep,
+    #   params = prep_params
+    # ),
     raw_recipe  = rcp_raw,
     prep_recipe = rcp_prep,
     

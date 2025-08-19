@@ -906,7 +906,7 @@ Description of the `d_ml` entries (taken from `martini::prepare_ml()` documentat
 
 ### Data sets
 
-`prepare_ml()` produces a list that contains the data set both with (`data_prep`) and without (`data_raw`) applying the specified ML preparation steps. 
+`prepare_ml()` produces a list that contains the data set both with (`data$prep`) and without (`data$raw`) applying the specified ML preparation steps. 
 Both versions are split in `train` and `test` set. 
 In addition, `split` contains the combined `rsample::initial_split()` object that the `train` and `test` data was extracted from. 
 Depending on the programming workflow, one might be more convenient to use than the other. 
@@ -974,7 +974,7 @@ the corresponding frequency tables are returned in a list.
 
 * `prep_recipe` contains the prepared recipe object, `prep_params` documents the parameters/thresholds used in the data preparation, giving bare `value` slots, as well as a verbose description in `text`. `removed` gives a list of removed `rows` and `columns` along with the information on why/in which recipe step the data was removed.  
 
-* If `data_prep` has less columns than `data_raw`, 
+* If `data$prep` has less columns than `data$raw`, 
 details on removal can be found in `d_ml$removed$cols`.  
 
 ```{r, eval=TRUE}
@@ -987,7 +987,7 @@ d_ml$removed$cols %>%
   rename(reason = name, `variable removed` = value)
 ```
 
-* If `data_prep` has less rows than `data_raw`, details on removal can be found in `d_ml$removed$rows`. Observations are removed if 
+* If `data$prep` has less rows than `data$raw`, details on removal can be found in `d_ml$removed$rows`. Observations are removed if 
   * no outcome is available
   * outcome value was identified as outlier (regression only, optional, parametrized)
   * the value for a variable is missing, that is excluded from imputation (e.g. trt), but the missing value proportion is considered low enough that the observations are dropped (instead of dropping the variable)
@@ -999,7 +999,7 @@ d_ml$removed$rows
 ```
 
 ```{r}
-d_ml$data_raw %>% 
+d_ml$data$raw %>% 
   bind_rows() %>% 
   filter(.id %in% d_ml$removed$rows$na_feature)
 ```

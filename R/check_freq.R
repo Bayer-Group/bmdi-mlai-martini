@@ -9,7 +9,7 @@
 #' relevant names are printed in the console and a list of frequency tables is returned.
 #' 
 #' @details 
-#' If `x` is the output of `\link{prepare_ml}()`, the tibble `x$data_prep$train` is checked for
+#' If `x` is the output of `\link{prepare_ml}()`, the tibble `x$data$prep$train` is checked for
 #'  factors with at least one low frequency class. 
 #'  Please refer to the package vignette for further details.
 #' 
@@ -27,7 +27,7 @@ check_freq <- function(
   is_ml <- !is.data.frame(x)
   
   data  <- x
-  if(is_ml) {data <- data$data_prep$train}
+  if(is_ml) {data <- data$data$prep$train}
   
   if(is.null(data)){
     cli::cli_abort("Please check your input. Currently NULL.")

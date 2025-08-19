@@ -1,5 +1,5 @@
 
-test_that("prepare_ml_split creates the same structure than prepare_ml", {
+test_that("prepare_ml_split() creates the same structure like prepare_ml()", {
   
   # reference object
   d_ml <- prepare_ml(
@@ -40,14 +40,14 @@ test_that("prepared data in split objects contains all variables except for the 
   
   # one-hot encoding (default) ####
   
-  split_levs <- d_ml$data_raw$train[[split_by]] %>% levels()
+  split_levs <- d_ml$data$raw$train[[split_by]] %>% levels()
   
-  var_ref <- d_ml$data_prep$train %>% 
+  var_ref <- d_ml$data$prep$train %>% 
     names()
   
   var_split <- purrr::map(d_ml_split, ~{
     
-    .x$data_prep$train %>% 
+    .x$data$prep$train %>% 
       names()
     
   })
@@ -72,12 +72,12 @@ test_that("prepared data in split objects contains all variables except for the 
   
   d_ml_nodummy_split <- prepare_ml_split(d_ml_nodummy, by = split_by)
   
-  var_ref <- d_ml_nodummy$data_prep$train %>% 
+  var_ref <- d_ml_nodummy$data$prep$train %>% 
     names()
   
   var_split <- purrr::map(d_ml_nodummy_split, ~{
     
-    .x$data_prep$train %>% 
+    .x$data$prep$train %>% 
       names()
     
   })
@@ -106,7 +106,7 @@ test_that("by variable removed from formulae", {
   split_by   <- "RACE"
   d_ml_split <- prepare_ml_split(d_ml, by = split_by)
   
-  split_levs <- d_ml$data_raw$train[[split_by]] %>% levels()
+  split_levs <- d_ml$data$raw$train[[split_by]] %>% levels()
   
   split_by_regex <- c(split_by, paste0(split_by, "_", split_levs)) %>% 
     paste0('\\b', ., '\\b') %>% 
@@ -137,15 +137,17 @@ test_that("subjects split is correct", {
   d_ml_split <- prepare_ml_split(d_ml, by = split_by)
   
   subj_split <- d_ml_split %>% 
-    purrr::imap(~{
-      .x[["data_raw"]] %>% 
-        purrr::imap_dfr(~{.x %>% dplyr::mutate(.split_split = .y)}) %>% 
+    purrr::imap(~{ # map across levels
+      .x[["data"]][["raw"]] %>% 
+        purrr::imap_dfr(~{ # map across train and test
+          .x %>% dplyr::mutate(.split_split = .y)
+        }) %>% 
         dplyr::mutate(.group_split = .y) %>% 
         dplyr::select(.id, .group_split, .split_split)
     }) %>% 
     purrr::reduce(dplyr::bind_rows)
     
-  subj_orig <- d_ml$data_raw %>% 
+  subj_orig <- d_ml$data$raw %>% 
     purrr::imap_dfr(~{.x %>% dplyr::mutate(.split_orig = .y)}) %>% 
     dplyr::select(tidyselect::all_of(c(".id", ".group_orig" = split_by, ".split_orig"))) %>% 
     dplyr::mutate(.group_orig = as.character(.group_orig))

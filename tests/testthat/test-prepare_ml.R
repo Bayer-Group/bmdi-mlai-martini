@@ -36,7 +36,7 @@ test_that("strata_trt works", {
     train_prop = train_prop,
     strata_trt = FALSE,
     seed       = seed
-  )$data_raw
+  )$data$raw
 
     
   res_out_trt <- prepare_ml(
@@ -45,7 +45,7 @@ test_that("strata_trt works", {
     train_prop = train_prop,
     strata_trt = TRUE,
     seed       = seed
-  )$data_raw
+  )$data$raw
   
   # distribution of trt
   prop_event <- list(
@@ -148,8 +148,8 @@ testthat::test_that("vars_keep_corr works", {
     train_prop     = 1
   )
   
-  cols_0 <- d_ml0$data_prep$train %>% names()
-  cols_1 <- d_ml1$data_prep$train %>% names()
+  cols_0 <- d_ml0$data$prep$train %>% names()
+  cols_1 <- d_ml1$data$prep$train %>% names()
   
   testthat::expect_true(
     !  col_to_keep %in% cols_0 
@@ -215,8 +215,8 @@ testthat::test_that("vars_no_trafo works", {
     train_prop     = 1
   )
   
-  cols_0 <- d_ml0$data_prep$train %>% names()
-  cols_1 <- d_ml1$data_prep$train %>% names()
+  cols_0 <- d_ml0$data$prep$train %>% names()
+  cols_1 <- d_ml1$data$prep$train %>% names()
   
   # vars_no_trafo
   # ... input is documented correctly
@@ -307,7 +307,7 @@ test_that("`strings_as_factors = TRUE` in `recipe` works as expected", {
   
   # -id should be the only column of type character
   expect_equal(
-    ml_class$data_prep$train %>% 
+    ml_class$data$prep$train %>% 
       purrr::map_lgl(is.character) %>% 
       purrr::keep(isTRUE) %>%
       names(),
@@ -367,15 +367,44 @@ test_that('repeated measurement implementation works', {
     seed                = 1825
   )
   
-  id_training <- unique(ml_regr$data_raw$train$.id)
-  id_test     <- unique(ml_regr$data_raw$test$.id)
+  id_training <- unique(ml_regr$data$raw$train$.id)
+  id_test     <- unique(ml_regr$data$raw$test$.id)
   
   expect_length(intersect(id_training, id_test), 0)
   
-  expect_true('.rmtime' %in% colnames(ml_regr$data_raw$train))
+  expect_true('.rmtime' %in% colnames(ml_regr$data$raw$train))
   
 })
 
+test_that("get_data(martini_ml) works", {  
+  #get_data(martini_ml) works ####
+  
+  expect_s3_class(
+    get_data(martini_ml_regr, type = 'prep'),
+    "tbl_df" 
+  )
+  expect_s3_class(
+    get_data(martini_ml_regr, type = 'raw'),
+    "tbl_df" 
+  )
+  
+  # test split_id argument
+  d_prep       <- get_data(martini_ml_regr)
+  ncol_no_id   <- ncol(d_prep) 
+  d_prep_id    <- get_data(martini_ml_regr, split_id = "type") 
+  ncol_with_id <- ncol(d_prep_id)
+  
+  expect_true(
+    ncol_no_id + 1 == ncol_with_id
+  )
+
+  expect_setequal(
+    d_prep_id$type %>% unique(), 
+    c("train", "test")
+  )
+    
+})
+  
 test_that("prepare_ml snapshots",{
   # prepare_ml snapshots ####                 
   

@@ -124,7 +124,7 @@ data_ml <- prepare_ml(
 
 
 # prepared training data
-data_ml$data_prep$train
+data_ml$data$prep$train
 
 # information on removed rows
 data_ml$removed$rows |> 

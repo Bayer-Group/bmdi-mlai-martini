@@ -22,7 +22,7 @@ get_data <- function(
   
   type <- rlang::arg_match(type)
   
-  d_type <- ml_obj[[paste0('data_', type)]]
+  d_type <- purrr::pluck(ml_obj, 'data', type)
   
   dplyr::bind_rows(
     train = d_type$train, 
