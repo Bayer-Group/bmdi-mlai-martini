@@ -44,62 +44,51 @@ test_that("adjust_spec() works for dupl_ctrl", {
   martini_spec_val_fn <- martini_spec
   purrr::pluck(martini_spec_val_fn, "adlb", "dupl_ctrl", "values_fn") <- mean
   
-  expect_equal(
-    adjust_spec(
-      spec = martini_spec,
-      entry = "adlb",
-      dupl_ctrl = list(values_fn = mean, arrange = NULL)
-    ),
-    martini_spec_val_fn
-  )
-  
   expect_no_warning(
-    adjust_spec(
+    spec_adj_nowarn1 <- adjust_spec(
       spec = martini_spec,
       entry = "adlb",
       dupl_ctrl = list(values_fn = mean, arrange = NULL)
     )
   )
+  expect_equal(
+    spec_adj_nowarn1,
+    martini_spec_val_fn
+  )
+  
   # dupl_ctrl test arrange: # martini_spec$adlb$data %>% names()
   # should be changed without warning
   arrange_col <- c('AVISITN', 'desc(PARAM)')
   martini_spec_arrange <- martini_spec
   purrr::pluck(martini_spec_arrange, "adlb", "dupl_ctrl", "arrange") <- arrange_col
   
-  expect_equal(
-    adjust_spec(
-      spec = martini_spec,
-      entry = "adlb",
-      dupl_ctrl = list(values_fn = NULL, arrange = arrange_col)
-    ),
-    martini_spec_arrange
-  )
   expect_no_warning(
-    adjust_spec(
+    spec_adj_nowarn2 <- adjust_spec(
       spec = martini_spec,
       entry = "adlb",
       dupl_ctrl = list(values_fn = NULL, arrange = arrange_col)
     )
+  )
+  expect_equal(
+    spec_adj_nowarn2,
+    martini_spec_arrange
   )
   
   # dupl_ctrl test error arrange: try arranging by non existing column
   # should be ignored with warning
   non_exist_col <- 'STDY'
-  expect_equal(
-    adjust_spec(
-      spec = martini_spec,
-      entry = "adlb",
-      dupl_ctrl = list(values_fn = NULL, arrange = non_exist_col)
-    ),
-    martini_spec
-  )
   expect_warning(
-    adjust_spec(
+    spec_adj_warn <- adjust_spec(
       spec = martini_spec,
       entry = "adlb",
       dupl_ctrl = list(values_fn = NULL, arrange = non_exist_col)
     )
   )
+  expect_equal(
+    spec_adj_warn,
+    martini_spec
+  )
+
 }
 )
 

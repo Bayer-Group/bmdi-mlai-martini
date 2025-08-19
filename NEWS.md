@@ -26,7 +26,7 @@
   comes with novel levels for that variable. This change was handled manually before 
   and does not change results.
     
-* vars_count deprecated in favor of vars_no_trafo: count variables are no
+* `vars_count` deprecated in favor of `vars_no_trafo`: count variables are no
 longer guessed and automatically excluded from transformation, but need
 to be specified by the user. 
 

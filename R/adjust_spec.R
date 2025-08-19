@@ -328,7 +328,7 @@ check_adjust <- function(spec, entry, modifications){
       if (!check_passed_arrange) {
         
         cli::cli_warn(c(
-          "{entry}: `dupl_ctrl$arrange` must be NULL, a character vector of colnames to sort by or a character vector to be passed to {.fn dplyr::arrange()} via {.fn rlang::parse_exprs} such as 'desc(colname)').",
+          "{entry}: `dupl_ctrl$arrange` must be NULL, a character vector of colnames to sort by or a character vector to be passed to {.fn dplyr::arrange} via {.fn rlang::parse_exprs} such as 'desc(colname)').",
           "i" = "`dupl_ctrl$arrange` is currently {ifelse(is.null(user_arrange), 'NULL', user_arrange)}.",
          # "!" = if(length(misspecified_cols)>0) "columns {misspecified_cols} are not in the data set." else NULL, 
           "!" = "Adjustment of {.code dupl_ctrl} will be ignored.",

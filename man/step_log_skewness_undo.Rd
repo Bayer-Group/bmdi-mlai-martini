@@ -46,7 +46,7 @@ may affect the computations for subsequent operations.}
 
 \item{id}{A character string that is unique to this step to identify it.}
 
-\item{id_undo}{id of the corresponding step_log_skewness() to reverse the
+\item{id_undo}{id of the corresponding \code{\link[=step_log_skewness]{step_log_skewness()}} to reverse the
 log transformation on}
 }
 \value{
