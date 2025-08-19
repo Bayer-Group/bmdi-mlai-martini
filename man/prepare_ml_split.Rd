@@ -9,11 +9,12 @@ prepare_ml_split(ml_obj, by = ".trt")
 \arguments{
 \item{ml_obj}{Result of \code{\link{prepare_ml}()}.}
 
-\item{by}{character. Name of the variable to split the ml object by. Must be a factor in
-\code{ml_obj$data_raw$train}.}
+\item{by}{character. Name of the variable to split the ml object by.
+Must be a factor in \code{ml_obj$data$raw$train}.}
 }
 \value{
-A named list of length 'number of levels' of the \code{by} variable where each entry contains the parts
+A named list of length 'number of levels' of the \code{by} variable
+where each entry contains the parts
 of the \code{ml_obj} that correspond the respective factor level.
 Each entry has the same structure as the original \code{ml_obj}
 and thus can be used in subsequent MARTINI modules.
@@ -23,11 +24,14 @@ it is removed from the prepared data, while being kept in raw versions.
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
 
-\code{prepare_ml_split()} allows to split a \code{\link{prepare_ml}()} object by a factor variable, e.g. treatment.
-This approach is preferable over independent preparations of each data part if
-comparability of resulting models is required (e.g. between treatment groups or studies).
+\code{prepare_ml_split()} allows to split a \code{\link{prepare_ml}()}
+object by a factor variable, e.g. treatment.
+This approach is preferable over independent preparations of each data part
+if comparability of resulting models is required
+(e.g. between treatment groups or studies).
 Note that the data preparation recipe is trained on the complete data set
-(instead of independent preparation) and the split happens after preparation is completed.
+(instead of independent preparation) and the split happens after
+preparation is completed.
 }
 \section{Authors}{
 

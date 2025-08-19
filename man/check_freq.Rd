@@ -19,7 +19,7 @@ relevant names are printed in the console and a list of frequency tables is retu
 Identify factors with low frequency classes
 }
 \details{
-If \code{x} is the output of \verb{\link{prepare_ml}()}, the tibble \code{x$data_prep$train} is checked for
+If \code{x} is the output of \verb{\link{prepare_ml}()}, the tibble \code{x$data$prep$train} is checked for
 factors with at least one low frequency class.
 Please refer to the package vignette for further details.
 }
