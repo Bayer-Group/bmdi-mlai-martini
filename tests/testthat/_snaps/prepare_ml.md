@@ -3,8 +3,9 @@
     Code
       ads_ml_class %>% purrr::modify_tree(leaf = tibble_to_JSON)
     Output
-      $data_raw
-      $data_raw$train
+      $data
+      $data$raw
+      $data$raw$train
       [
         {
           ".id": 10002,
@@ -3649,7 +3650,7 @@
         }
       ] 
       
-      $data_raw$test
+      $data$raw$test
       [
         {
           ".id": 10005,
@@ -4906,8 +4907,8 @@
       ] 
       
       
-      $data_prep
-      $data_prep$train
+      $data$prep
+      $data$prep$train
       [
         {
           ".id": 10002,
@@ -8136,7 +8137,7 @@
         }
       ] 
       
-      $data_prep$test
+      $data$prep$test
       [
         {
           ".id": 10005,
@@ -9251,6 +9252,7 @@
       ] 
       
       
+      
       $outcome
       $outcome$name
       [1] ".out"
@@ -9646,8 +9648,9 @@
     Code
       ads_ml_regr %>% purrr::modify_tree(leaf = tibble_to_JSON)
     Output
-      $data_raw
-      $data_raw$train
+      $data
+      $data$raw
+      $data$raw$train
       [
         {
           ".id": 10002,
@@ -13309,7 +13312,7 @@
         }
       ] 
       
-      $data_raw$test
+      $data$raw$test
       [
         {
           ".id": 10003,
@@ -14549,8 +14552,8 @@
       ] 
       
       
-      $data_prep
-      $data_prep$train
+      $data$prep
+      $data$prep$train
       [
         {
           ".id": 10002,
@@ -17794,7 +17797,7 @@
         }
       ] 
       
-      $data_prep$test
+      $data$prep$test
       [
         {
           ".id": 10003,
@@ -18894,6 +18897,7 @@
       ] 
       
       
+      
       $outcome
       $outcome$name
       [1] ".out"
@@ -19295,8 +19299,9 @@
     Code
       ads_ml_surv %>% purrr::modify_tree(leaf = tibble_to_JSON)
     Output
-      $data_raw
-      $data_raw$train
+      $data
+      $data$raw
+      $data$raw$train
       [
         {
           ".id": 10006,
@@ -23151,7 +23156,7 @@
         }
       ] 
       
-      $data_raw$test
+      $data$raw$test
       [
         {
           ".id": 10005,
@@ -24487,8 +24492,8 @@
       ] 
       
       
-      $data_prep
-      $data_prep$train
+      $data$prep
+      $data$prep$train
       [
         {
           ".id": 10006,
@@ -27932,7 +27937,7 @@
         }
       ] 
       
-      $data_prep$test
+      $data$prep$test
       [
         {
           ".id": 10005,
@@ -29119,6 +29124,7 @@
           ".status": 1
         }
       ] 
+      
       
       
       $outcome
