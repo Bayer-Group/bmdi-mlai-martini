@@ -206,6 +206,7 @@
 #' 
 #'## Data preparation and documentation
 #' 
+#'\code{raw_recipe} contains the unprepared recipe object, 
 #'\code{prep_recipe} contains the prepared recipe object, 
 #'\code{prep_params} documents the parameters/thresholds used in the data 
 #'preparation, giving bare \code{value} slots, as well as a verbose description
@@ -343,6 +344,13 @@ prepare_ml <- function(
     intersect(colnames(outcome), colnames(feature))
   )
   
+  if (length(clmn_by) == 0) {
+    cli::cli_abort(c(
+      "`feature` and `outcome` is combined into a single data set based on a common identifier.",
+      "!" = "No common identifier was found (needs to be .id .rmtime)."
+    ))
+  }
+  
   if (!all(
     outcome[clmn_by] %>% purrr::map_chr(class) %>% unname() ==
     feature[clmn_by] %>% purrr::map_chr(class) %>% unname()
@@ -422,6 +430,7 @@ prepare_ml <- function(
     
   )
   
+  rcp_raw   <- rcp_output$rcp_raw
   rcp_prep  <- rcp_output$rcp_prep
   vars      <- rcp_output$vars
   steps     <- rcp_output$steps
@@ -691,6 +700,7 @@ prepare_ml <- function(
     source = attr(feature, "source"),
     
     # documentation
+    raw_recipe  = rcp_raw,
     prep_recipe = rcp_prep,
     
     prep_params = prep_params,

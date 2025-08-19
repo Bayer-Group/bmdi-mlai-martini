@@ -13,11 +13,12 @@
 #' @return
 #' a named list with entries containing
 #' 
-#' * the prepared recipe
-#' * info on steps included in the recipe
-#' * a list of relevant variables
-#' * a list of thresholds used
-#' * \code{high_corr} a tibble listing correlations above \code{thres_corr}. \code{NULL} if \code{step_list$prep_step_corr = FALSE}.
+#' * the unprepared recipe  
+#' * the prepared recipe  
+#' * info on steps included in the recipe  
+#' * a list of relevant variables  
+#' * a list of thresholds used  
+#' * \code{high_corr} a tibble listing correlations above \code{thres_corr}. \code{NULL} if \code{step_list$prep_step_corr = FALSE}.  
 
 #' 
 #' @seealso \code{\link{prepare_ml}()}
@@ -109,13 +110,18 @@ prepare_ml_recipe <- function(
     # recipes::step_lincomb()
     # recipes::check_range() (did not work on the first try, can not handle NA?)
     
-    rcp <- recipes::recipe(the_formula, data = data) %>% 
+    rcp <- recipes::recipe(
+      formula = the_formula, 
+      data = data,
+      # `strings_as_factors` only affects variables with role 'outcome' and 
+      # 'predictor'. 'ID' is not affected, even though it is not defined yet 
+      # (but in the next step)
+      strings_as_factors = TRUE
+    ) %>% 
       
       recipes::update_role(tidyselect::any_of(c(".id", ".rmtime")), new_role = "ID") %>% 
       
       # ... ... make clean levels ####
-      recipes::step_mutate_at(recipes::all_string_predictors(), fn = factor) %>% 
-      
       recipes::step_mutate_at(
         recipes::all_factor_predictors(), 
         fn = ~{prepare_replace(.x)$x}
@@ -225,9 +231,9 @@ prepare_ml_recipe <- function(
   
   # ... prep recipe ####
   rcp_prep <- rcp %>% 
-    {purrr::quietly(recipes::prep)(., 
-      strings_as_factors = FALSE,
-      training           = data
+    {purrr::quietly(recipes::prep)(
+      ., 
+      retain = TRUE
       #, log_changes        = TRUE,
       #  fresh              = TRUE
       # retain
@@ -263,21 +269,8 @@ prepare_ml_recipe <- function(
     vars_log <- NULL
   }
   
-  # identify naomit step from recipe and make sure that skip = FALSE
-  # (see ?recipes::step_naomit)
-  number_naomit <- rcp_prep %>% 
-    recipes::tidy() %>% 
-    dplyr::filter(type == 'naomit') %>% 
-    dplyr::pull(number)
-  
-  # prep and train
-  # TODO WTH?
-  purrr::walk(number_naomit, ~{
-    rcp_prep$steps[[.x]]$columns <<- unname(rcp_prep$steps[[.x]]$columns)
-    rcp_prep$steps[[.x]]$skip    <<- FALSE
-  })
-  
   tibble::lst(
+    rcp_raw = rcp,
     rcp_prep,
     vars = tibble::lst(
       vars_no_trafo,

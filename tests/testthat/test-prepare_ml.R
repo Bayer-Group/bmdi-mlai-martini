@@ -171,6 +171,7 @@ testthat::test_that("vars_no_trafo works", {
     
     n <- 250
     d_feat <- tibble::tibble(
+      .id = 1:n,
       sym1 = rnorm(n, mean = 10, sd =1),
       sym2 = rnorm(n, mean = 100, sd =5),
       skw1 = exp(rnorm(n, mean = 1, sd = 2)),
@@ -289,8 +290,33 @@ test_that('row removal works', {
     
 })
 
-test_that('imputation works', {
+test_that("`strings_as_factors = TRUE` in `recipe` works as expected", {
   
+  martini_feat_char <- martini_feat %>% 
+    dplyr::mutate(.id = stringr::str_pad(.id, width = 5, pad = "0")) %>% 
+    dplyr::mutate(dplyr::across(tidyselect::where(is.factor), as.character))
+  
+  martini_outc_idchar <- martini_outc_class %>% 
+    dplyr::mutate(.id = stringr::str_pad(.id, width = 5, pad = "0"))
+  
+  ml_class <- prepare_ml(
+    feature = martini_feat_char,
+    outcome = martini_outc_idchar, 
+    train_prop = 1
+  )
+  
+  # -id should be the only column of type character
+  expect_equal(
+    ml_class$data_prep$train %>% 
+      purrr::map_lgl(is.character) %>% 
+      purrr::keep(isTRUE) %>%
+      names(),
+    ".id"
+  )
+  
+})
+
+test_that('imputation works', {
   
   n_total  <- 10
   n_remove <- 1
@@ -350,7 +376,6 @@ test_that('repeated measurement implementation works', {
   
 })
 
-
 test_that("prepare_ml snapshots",{
   # prepare_ml snapshots ####                 
   
@@ -389,6 +414,7 @@ test_that("prepare_ml snapshots",{
   ads_ml_class$source <- NULL
   # recipe will have different step and environment ids in each run
   ads_ml_class$prep_recipe <- NULL
+  ads_ml_class$raw_recipe  <- NULL
   
   expect_snapshot(
     ads_ml_class %>% purrr::modify_tree(leaf = tibble_to_JSON)
@@ -412,6 +438,7 @@ test_that("prepare_ml snapshots",{
   ads_ml_regr$source <- NULL
   # recipe will have different step and environment ids in each run
   ads_ml_regr$prep_recipe <- NULL
+  ads_ml_regr$raw_recipe  <- NULL
   
   expect_snapshot(
     ads_ml_regr %>% purrr::modify_tree(leaf = tibble_to_JSON)
@@ -434,6 +461,7 @@ test_that("prepare_ml snapshots",{
   ads_ml_surv$source <- NULL
   # recipe will have different step and environment ids in each run
   ads_ml_surv$prep_recipe <- NULL
+  ads_ml_surv$raw_recipe  <- NULL
   
   expect_snapshot(
     ads_ml_surv  %>% purrr::modify_tree(leaf = tibble_to_JSON)

@@ -59,6 +59,7 @@ hot encoding over dummy encoding}
 \value{
 a named list with entries containing
 \itemize{
+\item the unprepared recipe
 \item the prepared recipe
 \item info on steps included in the recipe
 \item a list of relevant variables

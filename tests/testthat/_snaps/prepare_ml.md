@@ -25839,7 +25839,7 @@
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "WHITE",
+          "RACE": "BLACK",
           "AGE": 51,
           "BMI_advs": 27.2,
           "BPDIA": 69,

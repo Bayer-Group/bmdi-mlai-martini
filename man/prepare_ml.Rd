@@ -178,6 +178,7 @@ used in data generation of \code{feature}.
 
 \subsection{Data preparation and documentation}{
 
+\code{raw_recipe} contains the unprepared recipe object,
 \code{prep_recipe} contains the prepared recipe object,
 \code{prep_params} documents the parameters/thresholds used in the data
 preparation, giving bare \code{value} slots, as well as a verbose description
