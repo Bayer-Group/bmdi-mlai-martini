@@ -258,7 +258,8 @@ test_that('row removal works', {
     955, 
     tibble::tibble(
       .id  = 1:n_total,
-      .trt = sample(c('A', 'B'), n_total, replace = TRUE) %>% magrittr::inset2(n_total, NA),
+      .trt = sample(c('A', 'B'), n_total, replace = TRUE) %>% 
+        magrittr::inset2(n_total, NA),
       cont  = c(rep(NA, n_remove), rnorm(n_total-n_remove))
     )
   )
@@ -275,7 +276,7 @@ test_that('row removal works', {
   
   # observation deleted from prepped data set
   testthat::expect_equal(
-    res_out %>% martini::get_data(type = 'prep') %>% nrow(),
+    res_out %>% get_data(type = 'prep') %>% nrow(),
     n_total - n_remove
   )
   
