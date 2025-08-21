@@ -32,6 +32,7 @@ Imports:
     labelled,
     magrittr,
     methods,
+    pillar,
     purrr,
     readr,
     recipes (>= 0.1.16),

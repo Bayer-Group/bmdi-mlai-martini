@@ -25,10 +25,24 @@
   the single class unmodified and raise an error in case a new data set 
   comes with novel levels for that variable. This change was handled manually before 
   and does not change results.
-    
+* argument `prep_recipe` is deprecated in favor of `custom_recipe` for consistency
+  
+* the output of prepare_ml() now comes with its own class `martini_ml` 
+and corresponding print method
+  
+* example data sets in the package are updated according to new output structure 
+ described above
+ 
+* the feature matrix check functionality has been extended. 
+[check_freq()] is now part of a new function [check_feature()] that can e.g.
+also check for outliers in numeric variables. 
+It it run by default in [prepare_ml()], but recommended to run prior to calling 
+[prepare_ml()].
+
 * `vars_count` deprecated in favor of `vars_no_trafo`: count variables are no
 longer guessed and automatically excluded from transformation, but need
 to be specified by the user. 
+
 
 
 # martini 0.6.4
