@@ -3,7 +3,7 @@
 #' create recipe from data 
 #'
 #' @param data raw data set to create recipe for
-#' @param prep_recipe if NULL, recipe will be created
+#' @param custom_recipe if NULL, recipe will be created
 #' @param corr_method,corr_use defaulting to corr_method "pearson" and corr_use "pairwise.complete.obs"
 #' @param thres_list,step_list named list objects collecting all threshold values 
 #' and step selection info, resp. please refer to the documentation of the `thres_*` and `prep_step_*` arguments 
@@ -30,7 +30,7 @@ prepare_ml_recipe <- function(
   
   data, 
   
-  prep_recipe = NULL,
+  custom_recipe = NULL,
   corr_method = "pearson",
   corr_use    = "pairwise.complete.obs",
   
@@ -47,6 +47,8 @@ prepare_ml_recipe <- function(
   log_base
   
 ){
+  
+  
   
   # define thresholds to use in recipe steps ####
   
@@ -91,7 +93,7 @@ prepare_ml_recipe <- function(
   
   # RECIPE ####
   
-  if (is.null(prep_recipe)){
+  if (is.null(custom_recipe)){
     
     # ... formula ####
     # TODO check, if different formula is needed for repeated measurements
@@ -226,7 +228,7 @@ prepare_ml_recipe <- function(
       }else{.}} 
     
   } else {
-    rcp <- prep_recipe
+    rcp <- custom_recipe
   }
   
   # ... prep recipe ####
@@ -243,7 +245,7 @@ prepare_ml_recipe <- function(
   # check new parameters 'retain' and 'log_changes' in 'prep()'
   
   # ... extract corr tibble ####
-  if (is.null(prep_recipe) && step_used$prep_step_corr) {
+  if (is.null(custom_recipe) && step_used$prep_step_corr) {
 
     number_step_corr_keep <- recipes::tidy(rcp_prep) %>% 
       dplyr::pull(type) %>% 
