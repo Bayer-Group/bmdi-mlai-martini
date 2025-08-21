@@ -170,16 +170,18 @@ cur_pkg_data <- function(x){
   
 }
 
+waldo_ignore <- \(ml){
+  purrr::pluck(ml, "recipe", "prep") <- NULL
+}
 purrr::walk(c(
   "martini_ml_class",
   "martini_ml_regr",
   "martini_ml_surv"
 ), ~{
+   
   waldo::compare(
-    cur_pkg_data(.x) %>% 
-      magrittr::inset2("prep_recipe", NULL),
-    get(.x) %>% 
-      magrittr::inset2("prep_recipe", NULL),
+    cur_pkg_data(.x) %>% waldo_ignore(),
+    get(.x) %>% waldo_ignore(),
     ignore_formula_env = TRUE,
     max_diffs = Inf,
   ) %>% print()
@@ -209,7 +211,12 @@ ads_path %>%
   list.files(full.names = TRUE) %>% 
   purrr::walk(~{
     data <- haven::read_sas(.x)
-    saveRDS(data, here::here(ads_path, basename(.x) %>% tools::file_path_sans_ext() %>% paste0('.rds')))
+    saveRDS(
+      data, 
+      here::here(
+        ads_path, 
+        basename(.x) %>% 
+          tools::file_path_sans_ext() %>% paste0(".rds")))
   })
 
 
