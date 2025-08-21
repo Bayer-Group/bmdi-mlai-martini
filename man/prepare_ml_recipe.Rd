@@ -6,7 +6,7 @@
 \usage{
 prepare_ml_recipe(
   data,
-  prep_recipe = NULL,
+  custom_recipe = NULL,
   corr_method = "pearson",
   corr_use = "pairwise.complete.obs",
   thres_list = NULL,
@@ -23,7 +23,7 @@ prepare_ml_recipe(
 \arguments{
 \item{data}{raw data set to create recipe for}
 
-\item{prep_recipe}{if NULL, recipe will be created}
+\item{custom_recipe}{if NULL, recipe will be created}
 
 \item{corr_method, corr_use}{defaulting to corr_method "pearson" and corr_use "pairwise.complete.obs"}
 

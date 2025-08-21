@@ -109,17 +109,18 @@ test_that("by variable removed from formulae", {
   split_levs <- d_ml$data$raw$train[[split_by]] %>% levels()
   
   split_by_regex <- c(split_by, paste0(split_by, "_", split_levs)) %>% 
-    paste0('\\b', ., '\\b') %>% 
-    paste(collapse = '|')
+    paste0("\\b", ., "\\b") %>% 
+    paste(collapse = "|")
   
   expect_false(
-    purrr::map(d_ml_split, 'prep_recipe') %>% 
-      purrr::map(formula) %>% 
-      purrr::map(~stringr::str_detect(rlang::f_text(.x), split_by_regex)) %>% 
+    purrr::map(d_ml_split, \(d_ml_level){
+      purrr::pluck(d_ml_level, "recipe", "prep", "formula") %>% 
+        purrr::map(~stringr::str_detect(rlang::f_text(.x), split_by_regex))
+    }) %>% 
       unlist() %>% 
       any()
   )
-    
+  
 }
 )
 
@@ -143,7 +144,7 @@ test_that("subjects split is correct", {
           .x %>% dplyr::mutate(.split_split = .y)
         }) %>% 
         dplyr::mutate(.group_split = .y) %>% 
-        dplyr::select(.id, .group_split, .split_split)
+        dplyr::select(tidyselect::any_of(c(".id", ".group_split", ".split_split")))
     }) %>% 
     purrr::reduce(dplyr::bind_rows)
     

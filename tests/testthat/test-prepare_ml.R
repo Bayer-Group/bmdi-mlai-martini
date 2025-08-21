@@ -4,7 +4,7 @@ test_that("strata_trt works", {
   
   # test stratification WITH and WITHOUT added treatment
   
-  trt_groups <- c('PLA', 'trt1', 'trt2')
+  trt_groups <- c("PLA", "trt1", "trt2")
   n_total    <- 90
   
   d_feat <- tibble::tibble(
@@ -16,8 +16,8 @@ test_that("strata_trt works", {
   d_out <- tibble::tibble(
     .id  = 1:n_total,
     .out = rep(c(
-      rep('no event', round(n_total/length(trt_groups))-9),
-      rep('event',    9)), 
+      rep("no event", round(n_total/length(trt_groups))-9),
+      rep("event",    9)), 
       length.out = n_total) 
   )
   
@@ -67,18 +67,18 @@ test_that("strata_trt works", {
   
   prop_out_trt <- list(
     
-    total   = d_raw %>% smmry_reshape(set = 'total') ,
+    total   = d_raw %>% smmry_reshape(set = "total") ,
     
     out_trt = res_out_trt %>% 
       purrr::map(~ tidyr::unite(., trt.out, .trt, .out, remove = FALSE) %>% 
             smmry_reshape) %>% 
-      dplyr::bind_rows(.id = 'set') %>% 
+      dplyr::bind_rows(.id = "set") %>% 
       dplyr::mutate(strata_trt = TRUE, .after = set),
     
     out     = res_out     %>% 
       purrr::map(~ tidyr::unite(., trt.out, .trt, .out, remove = FALSE) %>% 
             smmry_reshape)  %>% 
-      dplyr::bind_rows(.id = 'set') %>% 
+      dplyr::bind_rows(.id = "set") %>% 
       dplyr::mutate(strata_trt = FALSE, .after = set)
   ) %>% 
     purrr::reduce(dplyr::bind_rows)
@@ -87,9 +87,9 @@ test_that("strata_trt works", {
   
   # compute sum of absolute deviations WITH and WITHOUT strata_trt parameter set to TRUE
   comp_strata_trt <- prop_out_trt %>%  
-    dplyr::mutate_if(is.numeric, ~ abs(.x - .x[set == 'total'])) %>% 
-    dplyr::filter(set != 'total') %>% 
-    tidyr::nest(e = dplyr::contains('event')) %>% 
+    dplyr::mutate_if(is.numeric, ~ abs(.x - .x[set == "total"])) %>% 
+    dplyr::filter(set != "total") %>% 
+    tidyr::nest(e = dplyr::contains("event")) %>% 
     dplyr::mutate(sum_e = purrr::map_dbl(e, sum)) %>% 
     dplyr::group_by(strata_trt) %>% 
     dplyr::mutate(sum_e = sum(sum_e)) %>% 
@@ -99,8 +99,8 @@ test_that("strata_trt works", {
     tibble::deframe()
   
   testthat::expect_gt(
-    comp_strata_trt['FALSE'], 
-    comp_strata_trt['TRUE']
+    comp_strata_trt["FALSE"], 
+    comp_strata_trt["TRUE"]
   )
   
 })
@@ -114,7 +114,7 @@ testthat::test_that("vars_keep_corr works", {
   R <- rep(1, p) %>% diag()
   R[2,1] <- R[1,2] <- 0.95
   # choose one of V1, V2
-  col_to_keep <- 'V2'
+  col_to_keep <- "V2"
   R[4,3] <- R[3,4] <-  0.95 # no preference, check with current seed which is discarded
   
   
@@ -158,7 +158,7 @@ testthat::test_that("vars_keep_corr works", {
   
   testthat::expect_setequal(
     d_ml1$removed$cols$corr,
-    c('V1', "neg_corr", 'V4') # V4 seed dependent, either V4 or V3
+    c("V1", "neg_corr", "V4") # V4 seed dependent, either V4 or V3
   )
   
 })
@@ -194,13 +194,13 @@ testthat::test_that("vars_no_trafo works", {
   )
   
   # find variable, that is log transformed by default to exclude using vars_no_trafo
-  log_step <- d_ml0$prep_recipe %>%
+  log_step <- d_ml0$recipe$prep %>%
     recipes::tidy() %>% 
     dplyr::filter(type == "log_skewness") %>% 
     dplyr::pull(number) %>% 
     head(1)
-  var_notrafo <- tidy(d_ml0$prep_recipe, log_step)$terms %>%
-    stringr::str_subset('skw') %>%
+  var_notrafo <- tidy(d_ml0$recipe$prep, log_step)$terms %>%
+    stringr::str_subset("skw") %>%
     head(1)
   
   d_ml1 <- prepare_ml(
@@ -221,14 +221,14 @@ testthat::test_that("vars_no_trafo works", {
   # vars_no_trafo
   # ... input is documented correctly
   testthat::expect_true(
-    var_notrafo %in% d_ml1$prep_params$vars_no_trafo$value
+    var_notrafo %in% d_ml1$recipe$params$vars_no_trafo$value
   )
   testthat::expect_equal( # message adjusted according to prep_step_normalize
-    d_ml1$prep_params$vars_no_trafo$text %>% 
-      stringr::str_detect('normali.ation'),
+    d_ml1$recipe$params$vars_no_trafo$text %>% 
+      stringr::str_detect("normali.ation"),
     (d_ml1$input$args$prep_step_normalize) || # if normalized or...
       (d_ml1$input$args %>% 
-         purrr::keep_at(c('prep_step_normalize', 'prep_step_log')) %>% 
+         purrr::keep_at(c("prep_step_normalize", "prep_step_log")) %>% 
          purrr::none(isTRUE)) # neither log nor normalize
   )
   
@@ -243,7 +243,7 @@ testthat::test_that("vars_no_trafo works", {
   
 })
 
-test_that('row removal works', {
+test_that("row removal works", {
   # row removal works ####
   
   # create minimal data set with NA and set prep_step_knnimpute = FALSE
@@ -258,7 +258,7 @@ test_that('row removal works', {
     955, 
     tibble::tibble(
       .id  = 1:n_total,
-      .trt = sample(c('A', 'B'), n_total, replace = TRUE) %>% 
+      .trt = sample(c("A", "B"), n_total, replace = TRUE) %>% 
         magrittr::inset2(n_total, NA),
       cont  = c(rep(NA, n_remove), rnorm(n_total-n_remove))
     )
@@ -266,7 +266,7 @@ test_that('row removal works', {
   
   d_out <- tibble::tibble(
     .id  = 1:n_total,
-    .out = sample(c('out1', 'out2'), n_total, replace = TRUE),
+    .out = sample(c("out1", "out2"), n_total, replace = TRUE),
   )
   
   res_out <- prepare_ml(
@@ -276,7 +276,7 @@ test_that('row removal works', {
   
   # observation deleted from prepped data set
   testthat::expect_equal(
-    res_out %>% get_data(type = 'prep') %>% nrow(),
+    res_out %>% get_data(type = "prep") %>% nrow(),
     n_total - n_remove
   )
   
@@ -284,7 +284,7 @@ test_that('row removal works', {
   testthat::expect_equal(
     res_out$removed$rows$na_feature,
     res_out %>% 
-      martini::get_data(type = 'raw') %>% 
+      martini::get_data(type = "raw") %>% 
       dplyr::filter(is.na(.trt)) %>% 
       dplyr::pull(.id) 
   )
@@ -317,7 +317,7 @@ test_that("`strings_as_factors = TRUE` in `recipe` works as expected", {
   
 })
 
-test_that('imputation works', {
+test_that("imputation works", {
   
   n_total  <- 10
   n_remove <- 1
@@ -345,7 +345,7 @@ test_that('imputation works', {
   
 })
 
-test_that('repeated measurement implementation works', {
+test_that("repeated measurement implementation works", {
   #'repeated measurement implementation works'  ####
   
   ads_build <- martini_spec %>% 
@@ -373,7 +373,7 @@ test_that('repeated measurement implementation works', {
   
   expect_length(intersect(id_training, id_test), 0)
   
-  expect_true('.rmtime' %in% colnames(ml_regr$data$raw$train))
+  expect_true(".rmtime" %in% colnames(ml_regr$data$raw$train))
   
 })
 
@@ -381,11 +381,11 @@ test_that("get_data(martini_ml) works", {
   #get_data(martini_ml) works ####
   
   expect_s3_class(
-    get_data(martini_ml_regr, type = 'prep'),
+    get_data(martini_ml_regr, type = "prep"),
     "tbl_df" 
   )
   expect_s3_class(
-    get_data(martini_ml_regr, type = 'raw'),
+    get_data(martini_ml_regr, type = "raw"),
     "tbl_df" 
   )
   
@@ -406,15 +406,15 @@ test_that("get_data(martini_ml) works", {
     
 })
   
-test_that("prepare_ml snapshots",{
-  # prepare_ml snapshots ####                 
+test_that("prepare_ml() snapshots content/print",{
+  # prepare_ml snapshots content/print ####                 
   
   #skip_on_ci()
   withr::local_options(width = 80)
   
   skip_if_not_installed("jsonlite")
   
-  ads_path  <- test_path('sas/')
+  ads_path  <- test_path("sas/")
   ads_build <- ads_path %>% 
     adam_spec(
       filter = c(
@@ -443,11 +443,21 @@ test_that("prepare_ml snapshots",{
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_class$source <- NULL
   # recipe will have different step and environment ids in each run
-  ads_ml_class$prep_recipe <- NULL
-  ads_ml_class$raw_recipe  <- NULL
+  ads_ml_class$recipe$raw   <- NULL
+  ads_ml_class$recipe$prep  <- NULL
   
   expect_snapshot(
-    ads_ml_class %>% purrr::modify_tree(leaf = tibble_to_JSON)
+    ads_ml_class %>% 
+      magrittr::set_attr('class', 'list') %>% # snapshot object not print
+      purrr::modify_tree(leaf = tibble_to_JSON)
+  )
+  # snapshot print
+  expect_snapshot(
+    ads_ml_class
+  )
+  # dummy expectation to avoid 'skip due to empty test' message (snapshots only)
+  expect_visible(
+    ads_ml_class
   )
   
   
@@ -467,11 +477,13 @@ test_that("prepare_ml snapshots",{
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_regr$source <- NULL
   # recipe will have different step and environment ids in each run
-  ads_ml_regr$prep_recipe <- NULL
-  ads_ml_regr$raw_recipe  <- NULL
+  ads_ml_class$recipe$raw   <- NULL
+  ads_ml_class$recipe$prep  <- NULL
   
   expect_snapshot(
-    ads_ml_regr %>% purrr::modify_tree(leaf = tibble_to_JSON)
+    ads_ml_regr %>% 
+      magrittr::set_attr('class', 'list') %>% # snapshot object not print
+      purrr::modify_tree(leaf = tibble_to_JSON)
   )
   
   # time-to-event ####
@@ -490,12 +502,16 @@ test_that("prepare_ml snapshots",{
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_surv$source <- NULL
   # recipe will have different step and environment ids in each run
-  ads_ml_surv$prep_recipe <- NULL
-  ads_ml_surv$raw_recipe  <- NULL
+  ads_ml_class$recipe$raw   <- NULL
+  ads_ml_class$recipe$prep  <- NULL
   
   expect_snapshot(
-    ads_ml_surv  %>% purrr::modify_tree(leaf = tibble_to_JSON)
+    ads_ml_surv %>% 
+      magrittr::set_attr('class', 'list') %>% # snapshot object not print
+      purrr::modify_tree(leaf = tibble_to_JSON)
   )
+  
+  
   
 })
 
