@@ -33,8 +33,8 @@
 #' @export
 
 prepare_ml_split <- function(
-  ml_obj, 
-  by = ".trt"
+    ml_obj, 
+    by = ".trt"
 ){
   
   d_raw_train  <- ml_obj$data$raw$train
@@ -84,14 +84,15 @@ prepare_ml_split <- function(
       }else{.x$data$raw$test <- NULL}
       
       # add removal step to end of recipe, to remove 'by' after all prep steps are conducted
-      .x$prep_recipe <- .x$prep_recipe %>% 
+      .x$recipe$prep <- .x$recipe$prep %>% 
         recipes::step_rm(tidyselect::any_of(vars_remove), removals = vars_remove) %>% 
         recipes::prep()
-        # from ?prep(): Also, if a recipe has been trained using prep() and then steps are added, prep() will only update the new operations. 
-        
-      .x$data$prep$train <- recipes::bake(.x$prep_recipe, new_data = .x$data$raw$train)
+      # from ?prep(): Also, if a recipe has been trained using prep() and then 
+      # steps are added, prep() will only update the new operations. 
+      
+      .x$data$prep$train <- recipes::bake(.x$recipe$prep, new_data = .x$data$raw$train)
       if(!is.null(.x$data$prep$test)){
-       .x$data$prep$test  <- recipes::bake(.x$prep_recipe, new_data = .x$data$raw$test)
+        .x$data$prep$test  <- recipes::bake(.x$recipe$prep, new_data = .x$data$raw$test)
       }else{
         .x$data$prep$test  <- NULL}
       
@@ -99,10 +100,9 @@ prepare_ml_split <- function(
       if(!is.null(.x$split)){
         .x$split$data <- .x$split$data %>% 
           dplyr::filter(!! rlang::sym(by) ==.y) 
-      
+        
         .x$split$in_id  <- which( .x$split$data$.id %in% .x$data$raw$train$.id)
       } 
-      
       
       .x
       
