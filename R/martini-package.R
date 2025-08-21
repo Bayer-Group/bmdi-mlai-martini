@@ -27,5 +27,5 @@ utils::globalVariables(c(
   "file_ext_fct",
   'r', 'role', 'variable', 'x', 'y',
   'label_x', 'label_y', 'label2', 'label3',
-  "dupl_ctrl"
+  "dupl_ctrl", "recipe_state"
 ))
