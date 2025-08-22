@@ -15,18 +15,30 @@ test_that("adam_spec() works", {
 
 
 
-test_that("adam_spec add_bds ", {
+test_that("adam_spec add_bds / add_occds", {
   
   ads_path <- test_path('sas/')
   
   add_name <- "adlb_miss"
   # create prep specification
-  ads_spec     <- adam_spec(ads_path)
-  ads_spec_add <- adam_spec(ads_path, add_bds = add_name)
+  ads_spec         <- adam_spec(ads_path)
+  # add_bds
+  ads_spec_add_bds <- adam_spec(ads_path, add_bds = add_name)
   
   expect_setequal(
     names(ads_spec) %>% c(add_name),
-    names(ads_spec_add)
+    names(ads_spec_add_bds)
+  )
+  
+  # add_occds
+  expect_warning(
+    # mandatory column 'label' cannot be guessed
+    ads_spec_add_occds <- adam_spec(ads_path, add_occds = add_name)
+  )
+  
+  expect_setequal(
+    names(ads_spec) %>% c(add_name),
+    names(ads_spec_add_occds)
   )
 
 })

@@ -14,13 +14,14 @@ adam_spec(
   id = "SUBJID",
   trt = "TRT01A",
   add_bds = NULL,
+  add_occds = NULL,
   file_ext = c("rds", "sas7bdat"),
   fct_levels = NULL,
   catalog_file = NULL
 )
 }
 \arguments{
-\item{path}{path to a directory containing ads files in .sas7bdat format}
+\item{path}{path to a directory containing ads files in .sas7bdat or .rds format}
 
 \item{filter}{a character vector of conditions to be passed to \code{dplyr::filter()},
 e.g. regarding visits, treatment arms or parameters. Defaults to NULL.}
@@ -39,8 +40,9 @@ the output. Defaults to TRUE.}
 \item{id, trt}{id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()}
 for details).}
 
-\item{add_bds}{character vector of domain names of type bds that are not included
-in the package library of ADaM types (yet), but should be processed as per usual, e.g. 'adfapr'}
+\item{add_bds, add_occds}{character vector of domain names of type bds or
+occds that are not included in the package library of ADaM types (yet), but
+should be processed as per usual.}
 
 \item{file_ext}{only rds and sas7bdat data sets are allowed (e.g. \code{file_ext = 'rds'}). User may select
 only sas7bdat, only rds or set a priorization rule (\code{file_ext = c('rds', 'sas7bdat')}, see Details).

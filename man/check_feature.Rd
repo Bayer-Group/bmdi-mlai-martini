@@ -7,7 +7,6 @@
 check_feature(
   x,
   check_low_freq = TRUE,
-  check_outlier = TRUE,
   check_other = TRUE,
   check_NA = TRUE,
   check_count = TRUE,
@@ -21,8 +20,6 @@ check_feature(
 \item{x}{feature matrix to check, such as the output of \code{\link[=build]{build()}}.}
 
 \item{check_low_freq, check_other, check_NA, check_count}{logicals to control which checks to include. All default to TRUE.}
-
-\item{check_outlier}{for future use}
 
 \item{quiet}{logical controlling whether any informative messages are
 printed to the console}

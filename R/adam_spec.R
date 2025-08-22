@@ -9,7 +9,7 @@
 #' The resulting list can be passed to \code{\link{build}()}, where the 
 #' created specs are applied and the generated data sets are combined into a single wide format data set.  
 #'
-#' @param path path to a directory containing ads files in .sas7bdat format
+#' @param path path to a directory containing ads files in .sas7bdat or .rds format
 #' @param filter a character vector of conditions to be passed to \code{dplyr::filter()}, 
 #' e.g. regarding visits, treatment arms or parameters. Defaults to NULL.
 #' @param keep,drop character vectors controlling the subset of data sets in the given \code{path} 
@@ -22,8 +22,6 @@
 #' for details).
 #' @param pre_study boolean. Include only pre-study events from occurrence data sets 
 #' (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.
-#' @param add_bds character vector of domain names of type bds that are not included 
-#' in the package library of ADaM types (yet), but should be processed as per usual, e.g. 'adfapr' 
 #' @param file_ext only rds and sas7bdat data sets are allowed (e.g. \code{file_ext = 'rds'}). User may select
 #' only sas7bdat, only rds or set a priorization rule (\code{file_ext = c('rds', 'sas7bdat')}, see Details).
 #' Defaults to c('rds', 'sas7bdat'), i.e. rds if available, sas7bdat else.
@@ -33,6 +31,7 @@
 #' @param catalog_file path to the catalog file to be passed to
 #' [haven::read_sas()] for adsl. Defaults to `NULL`.
 #' Ignored if `file` is not a sas7bdat file.
+#' @inheritParams adam_domain_type
 #' 
 #' @details 
 #' \code{adam_spec()} matches file names in the given path against an internal library
@@ -79,6 +78,7 @@ adam_spec <- function(
   # ADaMIG Within a given study, USUBJID is the key variable that links the ADSL to other datasets (both SDTM and ADaM).
   trt         = "TRT01A",
   add_bds     = NULL,
+  add_occds   = NULL,
   file_ext    = c('rds', 'sas7bdat'),
   fct_levels  = NULL,
   catalog_file = NULL
@@ -88,22 +88,19 @@ adam_spec <- function(
   stopifnot(length(file_ext) > 0)
   
   # identify type for selected files in path (adsl/bds/occds) #####
-  file_info <- adam_domain_type(path, keep, drop, add_bds = add_bds, quiet = FALSE) %>% 
-    {
-      if(!is.null(add_bds)){ 
-        dplyr::mutate(., type = dplyr::case_when(
-          domain %in% add_bds ~ "bds",
-          TRUE ~ type
-        ))
-      }else{.} 
-    } %>%    
+  file_info <- adam_domain_type(
+    path, keep, drop, 
+    add_bds = add_bds, 
+    add_occds = add_occds,
+    quiet = FALSE
+  ) %>% 
     dplyr::filter(type != "none") %>% 
     dplyr::mutate(file_ext_fct = factor(file_ext, levels = !!file_ext)) %>% 
     dplyr::filter(!is.na(file_ext_fct)) %>% 
     dplyr::arrange(file_ext_fct) %>% 
     dplyr::distinct(domain, .keep_all = TRUE)
   
-  if(!is.null(add_bds) && any(!add_bds %in% file_info$domain)){
+  if (!is.null(add_bds) && any(!add_bds %in% file_info$domain)) {
     
     usethis::ui_oops(paste0(
       '\nThe following domain(s) specified in ', '`add_bds`',
@@ -114,12 +111,22 @@ adam_spec <- function(
     ))
   }
   
+  if (!is.null(add_occds) && any(!add_occds %in% file_info$domain)) {
+    
+    usethis::ui_oops(paste0(
+      '\nThe following domain(s) specified in ', '`add_occds`',
+      ' were not found in ', '`path`', ':\n  ',
+      paste(setdiff(add_occds, file_info$domain), collapse = ', ') %>% 
+        crayon::bold() %>%  
+        crayon::blue()
+    ))
+  }
   
   spec <- list()
   
   # adsl spec ####
   
-  if ( any(file_info$type == "adsl") ){
+  if (any(file_info$type == "adsl")) {
     
     files_adsl <- file_info %>% 
       dplyr::filter(type == "adsl") %>% 

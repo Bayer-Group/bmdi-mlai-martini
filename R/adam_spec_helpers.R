@@ -46,55 +46,64 @@ create_dict <- function(spec_entry){
       
     }else if(type == "bds"){
       
-      dict  <- data %>% 
-        dplyr::select( tidyselect::any_of(
-          # determine combinations of only param, label and unit to handle randomly missing unit entries
-          # same unit should be filled across timepoints
-          c("param" = param, "label" = label, unit) %>% na.omit() 
-        )) %>% 
-        {if (!is.null(unit)){
-          dplyr::group_by(., dplyr::across(-tidyselect::any_of(c("param", "label")))) %>% 
-            tidyr::fill(tidyselect::any_of(unit), .direction = "downup") %>% 
-            dplyr::ungroup() %>% 
-            dplyr::rename(tidyselect::any_of(c("unit" = unit)))
-        } else {
-          .
-        }} %>% 
-        dplyr::distinct() %>%
-        dplyr::mutate(source = spec_id) %>% 
-        dplyr::mutate(type   = type) 
-      
-      # for consistent dict structure: add NA columns for time and/or unit if missing
-      if(is.null(unit)) dict <- dict %>% dplyr::mutate(unit = NA_character_)
-      
-      param_sel <- data %>% 
-        {if(length(filter) > 0){       
-          dplyr::filter(., !!! rlang::parse_exprs(filter))
-        }else{.}
-        } %>% 
-        dplyr::pull(param) %>% 
-        unique()
-      
-      dict %>% dplyr::mutate(selected = param %in% param_sel)
+      if (is.null(param)) {
+        list(NULL)
+      } else {
+        dict  <- data %>% 
+          dplyr::select( tidyselect::any_of(
+            # determine combinations of only param, label and unit to handle randomly missing unit entries
+            # same unit should be filled across timepoints
+            c("param" = param, "label" = label, unit) %>% na.omit() 
+          )) %>% 
+          {if (!is.null(unit)){
+            dplyr::group_by(., dplyr::across(-tidyselect::any_of(c("param", "label")))) %>% 
+              tidyr::fill(tidyselect::any_of(unit), .direction = "downup") %>% 
+              dplyr::ungroup() %>% 
+              dplyr::rename(tidyselect::any_of(c("unit" = unit)))
+          } else {
+            .
+          }} %>% 
+          dplyr::distinct() %>%
+          dplyr::mutate(source = spec_id) %>% 
+          dplyr::mutate(type   = type) 
+        
+        # for consistent dict structure: add NA columns for time and/or unit if missing
+        if(is.null(unit)) dict <- dict %>% dplyr::mutate(unit = NA_character_)
+        
+        param_sel <- data %>% 
+          {if(length(filter) > 0){       
+            dplyr::filter(., !!! rlang::parse_exprs(filter))
+          }else{.}
+          } %>% 
+          dplyr::pull(param) %>% 
+          unique()
+        
+        dict %>% dplyr::mutate(selected = param %in% param_sel)
+      }
       
     }else if(type == 'occds'){
       
-      dict  <- data %>% 
-        dplyr::select(label = !! rlang::sym(label)) %>% 
-        dplyr::distinct() %>%
-        dplyr::mutate(source = spec_id) %>% 
-        dplyr::mutate(type   = type) 
+      if (is.null(label)) {
+        list(NULL)
+      } else {
+        dict  <- data %>% 
+          dplyr::select(label = !! rlang::sym(label)) %>% 
+          dplyr::distinct() %>%
+          dplyr::mutate(source = spec_id) %>% 
+          dplyr::mutate(type   = type) 
+        
+        label_sel <- data %>% 
+          {if(length(filter) > 0){       
+            dplyr::filter(., !!! rlang::parse_exprs(filter))
+          }else{.}
+          } %>% 
+          dplyr::pull(!! rlang::sym(label)) %>% 
+          unique()
+        
+        dict %>% dplyr::mutate(selected = label %in% label_sel)
+        # TODO add param column
+      }
       
-      label_sel <- data %>% 
-        {if(length(filter) > 0){       
-          dplyr::filter(., !!! rlang::parse_exprs(filter))
-        }else{.}
-        } %>% 
-        dplyr::pull(!! rlang::sym(label)) %>% 
-        unique()
-      
-      dict %>% dplyr::mutate(selected = label %in% label_sel)
-      # TODO add param column
     }
     
   })

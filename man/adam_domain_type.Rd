@@ -9,6 +9,7 @@ adam_domain_type(
   keep = NULL,
   drop = NULL,
   add_bds = NULL,
+  add_occds = NULL,
   quiet = TRUE
 )
 }
@@ -19,8 +20,9 @@ adam_domain_type(
 
 \item{drop}{exclude the domains provided, e.g. \code{drop = 'adxb'}}
 
-\item{add_bds}{character vector of domain names of type bds that are not included in the package library of ADaM types (yet),
-but should be processed as per usual, e.g. 'adfapr'}
+\item{add_bds, add_occds}{character vector of domain names of type bds or
+occds that are not included in the package library of ADaM types (yet), but
+should be processed as per usual.}
 
 \item{quiet}{whether to suppress printing info on unknown domains to the console, defaults to \code{TRUE}}
 }

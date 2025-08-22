@@ -6,8 +6,9 @@
 #' @param path ads path to the file of interest
 #' @param keep only keep the domains provided, e.g. \code{keep = 'adsl'}
 #' @param drop exclude the domains provided, e.g. \code{drop = 'adxb'} 
-#' @param add_bds character vector of domain names of type bds that are not included in the package library of ADaM types (yet), 
-#' but should be processed as per usual, e.g. 'adfapr'
+#' @param add_bds,add_occds character vector of domain names of type bds or 
+#' occds that are not included in the package library of ADaM types (yet), but 
+#' should be processed as per usual.
 #' @param quiet whether to suppress printing info on unknown domains to the console, defaults to \code{TRUE}
 #' 
 #' @details
@@ -42,12 +43,22 @@
 #' @export 
 
 adam_domain_type <- function(
-  path    = NULL , 
-  keep    = NULL, 
-  drop    = NULL,
-  add_bds = NULL,
-  quiet   = TRUE
+  path      = NULL , 
+  keep      = NULL, 
+  drop      = NULL,
+  add_bds   = NULL,
+  add_occds = NULL,
+  quiet     = TRUE
   ){
+  
+  
+  ambiguous_add <- intersect(add_bds, add_occds)
+  if (length(ambiguous_add) != 0) {
+    cli::cli_abort(c(
+      "i" = "Additional domains can be added to either {.arg add_bds} or {.arg add_occds}.",
+      "!" = "{ambiguous_add} {?was/were} defined in both {.arg add_bds} and {.arg add_occds}."
+    ))
+  }
   
   # define look-up table ####
   # library of data sets to be processed automatically
@@ -117,7 +128,9 @@ adam_domain_type <- function(
       type   = dplyr::case_when(
         stringr::str_detect(basename(file), type_list_regex$adsl ) ~ "adsl",
         stringr::str_detect(basename(file), type_list_regex$bds  ) ~ "bds",
+        domain %in% add_bds                                        ~ "bds",
         stringr::str_detect(basename(file), type_list_regex$occds) ~ "occds",
+        domain %in% add_occds                                      ~ "occds",
         TRUE ~ "none"
       ), 
       file_ext = tools::file_ext(file)
@@ -154,8 +167,7 @@ adam_domain_type <- function(
     # doms_ignored: domains without match in look-up table  ####
     doms_ignored <- file_info %>% 
       dplyr::filter(type == "none") %>% 
-      dplyr::pull(domain) %>% 
-      setdiff(add_bds)
+      dplyr::pull(domain)
       
     if(length(doms_ignored) > 0 && !quiet){
       cat('\n')
