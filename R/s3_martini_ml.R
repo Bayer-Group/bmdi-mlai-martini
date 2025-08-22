@@ -11,14 +11,20 @@ print.martini_ml <- function(x, ...){
   
   # data set sizes ####
   tab_dim <- purrr::map(
-    x$data, 
+    x$data %>% purrr::set_names(~{paste0("data$", .)}), 
     \(rec_state) purrr::map(rec_state, pillar::dim_desc) %>% tibble::as_tibble_row() # 
   ) %>%
     purrr::list_rbind(names_to = "recipe_state") %>% 
     # format to char vector by row
     dplyr::add_row(
       tibble::as_tibble_row(
-        names(.) %>% purrr::set_names() %>% gsub("_", " ", .)),
+        names(.) %>% 
+          purrr::set_names() %>% 
+          #paste0("$", .) %>% 
+          gsub("recipe_state", " ", .) %>% 
+          gsub("^t", "$t", .) 
+          #paste0("$", .)
+        ),
       .) %>% 
     dplyr::mutate(recipe_state = pillar::align(recipe_state)) %>% 
     dplyr::mutate(
