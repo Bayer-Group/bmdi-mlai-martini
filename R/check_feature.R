@@ -18,7 +18,6 @@
 #' @param x feature matrix to check, such as the output of [build()].
 #' @param check_low_freq,check_other,check_NA,check_count 
 #' logicals to control which checks to include. All default to TRUE.
-#' @param check_outlier for future use
 #' @param quiet logical controlling whether any informative messages are 
 #' printed to the console
 #' @param verbose TRUE by default, FALSE results in messages used for 
@@ -36,7 +35,6 @@
 check_feature <- function(
   x,
   check_low_freq = TRUE,
-  check_outlier  = TRUE,
   check_other    = TRUE,
   check_NA       = TRUE,
   check_count    = TRUE,
@@ -46,15 +44,6 @@ check_feature <- function(
   ...
 ){
   
-# check_low_freq <- rlang::arg_match(check_low_freq, as.logical(c(TRUE, FALSE)))
-# check_outlier  <- rlang::arg_match(check_outlier, c(TRUE, FALSE))
-# check_other    <- rlang::arg_match(check_other, c(TRUE, FALSE))
-# check_NA       <- rlang::arg_match(check_NA, c(TRUE, FALSE))
-# check_count    <- rlang::arg_match(check_count, c(TRUE, FALSE))
-
-# quiet         <- rlang::arg_match(quiet)
-# verbose       <- rlang::arg_match(verbose)
-
 
 all_args <- rlang::dots_list(..., .homonyms = "error")
   
@@ -98,10 +87,6 @@ if (length(cols_skewed) > 0) {
  # out$log_skewness <- list(NULL)
 }
 
-# outlier ####
-if (check_outlier) {
-  out$outlier <- NULL
-}
 
 # other_ml ####
 # inform about potentially ambiguous 'other_ml' group  
