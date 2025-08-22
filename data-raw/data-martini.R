@@ -33,18 +33,19 @@ usethis::use_data(martini_feat, overwrite = TRUE)
 
 # OUTCOME OBJECTS ####
 
-set.seed(1841)
-
 # ... prepare feature matrix for simulation ####
 
-rec <- recipes::recipe(~., data = martini_feat) %>% 
-  recipes::update_role(.id, new_role = "id") %>% 
-  recipes::step_impute_knn(recipes::all_predictors()) %>% 
-  recipes::step_normalize(recipes::all_numeric(), -recipes::has_role("id")) %>% 
-  recipes::step_dummy(recipes::all_nominal(), -recipes::has_role("id")) %>% 
-  recipes::prep()
+rec <- withr::with_seed(
+  1841,
+  recipes::recipe(~., data = martini_feat) %>% 
+    recipes::update_role(.id, new_role = "id") %>% 
+    recipes::step_impute_knn(recipes::all_predictors()) %>% 
+    recipes::step_normalize(recipes::all_numeric(), -recipes::has_role("id")) %>% 
+    recipes::step_dummy(recipes::all_nominal(), -recipes::has_role("id")) %>% 
+    recipes::prep()
+)
 
-X <- recipes::juice(rec) %>% 
+X <- recipes::bake(rec, new_data = NULL) %>% 
   # prepare linear interaction effect
   dplyr::mutate(int = -.trt_TRT*BMI)
 
@@ -77,31 +78,38 @@ logistic_mult_b <- 1.5
 
 # ... simulate outcome ####
 
-set.seed(1840)
-
 ## ... ... classification ####
-martini_outc_class <- martini:::simulate_outcome(
-  X, beta,
-  type       = "classification",
-  ctrl_class = list(prob_ev = .4, mult_beta = 1.5)
+martini_outc_class <- withr::with_seed(
+  1840,
+  martini:::simulate_outcome(
+    X, beta,
+    type       = "classification",
+    ctrl_class = list(prob_ev = .4, mult_beta = 1.5)
+  )
 )
 
 ## ... ... regression ####
-martini_outc_regr <- martini:::simulate_outcome(
-  X, beta,
-  type       = "regression",
-  ctrl_class = list(b0 = 0, sd = .4)
+martini_outc_regr <- withr::with_seed(
+  1840,
+  martini:::simulate_outcome(
+    X, beta,
+    type       = "regression",
+    ctrl_class = list(b0 = 0, sd = .4)
+  )
 )
 
 ## ... ... survival ####
-martini_outc_surv <- martini:::simulate_outcome(
-  X, beta,
-  type      = "survival",
-  ctrl_surv = list(surv_mean = 180,
-                   cens_mean = 180,
-                   cens_max  = 270,
-                   mult_beta = 1.5,
-                   int       = TRUE)
+martini_outc_surv <- withr::with_seed(
+  1840,
+  martini:::simulate_outcome(
+    X, beta,
+    type      = "survival",
+    ctrl_surv = list(surv_mean = 180,
+                     cens_mean = 180,
+                     cens_max  = 270,
+                     mult_beta = 1.5,
+                     int       = TRUE)
+  )
 )
 
 # ... export ####
@@ -162,14 +170,18 @@ cur_pkg_data <- function(x){
   
 }
 
+waldo_ignore <- \(ml){
+  purrr::pluck(ml, "recipe", "prep") <- NULL
+}
 purrr::walk(c(
   "martini_ml_class",
   "martini_ml_regr",
   "martini_ml_surv"
 ), ~{
+   
   waldo::compare(
-    cur_pkg_data(.x) %>% magrittr::inset("prep_recipe", NULL),
-    get(.x) %>% magrittr::inset("prep_recipe", NULL),
+    cur_pkg_data(.x) %>% waldo_ignore(),
+    get(.x) %>% waldo_ignore(),
     ignore_formula_env = TRUE,
     max_diffs = Inf,
   ) %>% print()
@@ -199,7 +211,12 @@ ads_path %>%
   list.files(full.names = TRUE) %>% 
   purrr::walk(~{
     data <- haven::read_sas(.x)
-    saveRDS(data, here::here(ads_path, basename(.x) %>% tools::file_path_sans_ext() %>% paste0('.rds')))
+    saveRDS(
+      data, 
+      here::here(
+        ads_path, 
+        basename(.x) %>% 
+          tools::file_path_sans_ext() %>% paste0(".rds")))
   })
 
 

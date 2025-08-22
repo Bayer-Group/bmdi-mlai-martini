@@ -28,7 +28,9 @@
 #'for repeated measurements, resp. See Details section.
 #'@param level_order level order for a classification outcome.
 #' Default \code{NULL} keeps the natural order (only used for classification).
-#'@param prep_recipe a custom, pre-defined \code{recipes::recipe()} may be 
+#'@param prep_recipe `r lifecycle::badge("deprecated")` Please use `custom_recipe`
+#'argument instead.
+#'custom, pre-defined \code{recipes::recipe()} may be 
 #'provided for data preparation. Defaults to NULL, yielding a data-driven
 #'preparation. Please refer to the details section to learn about the 
 #'individual recipe steps.
@@ -48,7 +50,7 @@
 #'@param thres_imp Minimal proportion of non-missing data per feature required
 #'to be kept in the data and completed using \code{recipes::step_impute_knn()}. 
 #'Variables not meeting the threshold will be dropped and not be included in 
-#'\code{data_prep} data. 
+#'\code{prep} data entries. 
 #'Per default \code{thres_imp = 0.8}, i.e. variables will be dropped if the 
 #'proportion of available data is less than 80%. Variables listed in 
 #'\code{vars_imp_ignore} will never be imputed, observations with missing data
@@ -94,8 +96,16 @@
 #'\code{\link{prepare_ml_outcome}()}
 #'for details on how outliers are removed from outcome variables.
 #'`outlier_remove` defaults to FALSE, `outlier_ctrl` to `list(coef = 3)`.
+#'@param custom_recipe custom, pre-defined \code{recipes::recipe()} that may be 
+#'provided for data preparation. Defaults to NULL, yielding {{martini}}'s default
+#'preparation (please refer to the details section to learn about the 
+#'default recipe steps).
 #'@param quiet boolean. Suppress messages during outcome preparation to the 
 #'console on NA and outlier removal, resp. Defaults to `FALSE`.
+#'@param check_feature logical controlling whether to run basic checks on 
+#'input of `feature` to identify sources for potential downstream issues
+#'such as low frequency classes in a character/factor column. 
+#'defaults to TRUE.
 #'
 #'@details 
 #'
@@ -172,18 +182,18 @@
 #' 
 #' @return 
 #' 
+#' \code{prepare_ml()} produces an object of class `martini_ml`, a nested list
+#' containing data, `recipe` objects and description of data preparation, 
+#' information on the outcome.
+#' 
 #' ## Data sets
 #' 
-#'\code{prepare_ml()} produces a list that contains the data set both with 
-#'(\code{data_prep}) and without (\code{data_raw}) applying the specified ML 
-#'preparation steps. Both versions are split in \code{train} and \code{test} 
-#'set. In addition, \code{split} contains the combined
-#'\code{rsample::initial_split()} object that the \code{train} and \code{test} 
-#'data was extracted from. Depending on the programming workflow, one might be
-#'more convenient to use than the other. Both \code{data_test} slots as well
-#'as \code{split} are `NULL` if \code{train_prop} was set to 1 
-#'(i.e. no splitting was done) and \code{train} contains the full ML data set.
-#'  
+#' The top level entry `data` is a nested list, that contains the data set both
+#' prior to (\code{raw}) and after (\code{prep}) application of 
+#' the specified ML preparation steps. Both versions are split in \code{train} 
+#' and \code{test} set. If \code{train_prop} was set to 1, both \code{test}
+#' slots are `NULL` (i.e. no splitting was done) and \code{train} slots 
+#' contain the full data set.   
 #' 
 #'The slot \code{outcome} contains a list giving \code{name}, the standardized
 #'names of the output column in the data sets ( \code{.out} for
@@ -206,11 +216,14 @@
 #' 
 #'## Data preparation and documentation
 #' 
-#'\code{raw_recipe} contains the unprepared recipe object, 
-#'\code{prep_recipe} contains the prepared recipe object, 
-#'\code{prep_params} documents the parameters/thresholds used in the data 
+#'Within the recipe entry  
+#'\code{raw} contains the unprepared recipe object, 
+#'\code{prep} contains the prepared recipe object, 
+#'\code{params} documents the parameters/thresholds used in the data 
 #'preparation, giving bare \code{value} slots, as well as a verbose description
 #' in \code{text}.
+#' 
+#'Top level entries  
 #'\code{removed} gives a list of removed \code{rows} and \code{columns} along 
 #'with the information on why/in which recipe step the data was removed.
 #'\code{high_corr} a tibble listing correlations above \code{thres_corr}. 
@@ -229,7 +242,6 @@ prepare_ml <- function(
   outcome,
   outcome_name = NULL,
   level_order  = NULL,
-  prep_recipe  = NULL,
   train_prop   = 3 / 4,
   strata_trt   = FALSE,
   seed         = 1130, # TODO default to NULL?
@@ -260,10 +272,15 @@ prepare_ml <- function(
   outlier_remove      = FALSE,
   outlier_ctrl        = list(coef = 3),
     
-  quiet               = FALSE
+  custom_recipe  = NULL,
+  prep_recipe    = NULL,
+  
+  quiet          = TRUE, 
+  check_feature  = TRUE
     
 ) {
   
+  # deprecated
   if(!missing(thres_count)){
     lifecycle::deprecate_warn(
       when = "0.7.0",
@@ -272,8 +289,33 @@ prepare_ml <- function(
     )
   }
   
+  if(!missing(thres_count)){
+    lifecycle::deprecate_warn(
+      when = "0.7.0",
+      what = "prepare_ml(prep_recipe)", 
+      details = "Please use argument `custom_recipe` instead."
+    )
+  }
+  
+  # argument checks
+  tibble::lst(
+    check_feature,
+    prep_step_normalize, 
+    prep_step_knnimpute,
+    prep_step_log,
+    prep_step_corr, 
+    prep_step_dummy
+  ) %>% 
+    purrr::imap(~{
+      if(!is.logical(.x))
+      cli:cli_abort("{.y} must be logical, but input is of type {type(.x)}.")
+    }
+    )
+ 
+  
+  
   # save all input args
-  all_args <- as.list(environment())
+  all_args <- as.list(environment()) %>% purrr::discard_at("prep_recipe")
   
   if (prep_step_dummy && is.null(one_hot)) {
     one_hot <- FALSE
@@ -335,7 +377,17 @@ prepare_ml <- function(
     if (length(vars_fct_expl_na) == 0) vars_fct_expl_na <- NULL
   }
   
-  #level_other <- "other"
+  # FEATURE ####
+  if(check_feature){
+    res_check_feat <- check_feature(
+      feature,
+      check_low_freq = TRUE,
+      check_outlier = TRUE,
+      quiet = FALSE,
+      verbose = FALSE
+    )
+    
+  }
   
   # MERGE OUTCOME AND FEATURE  ####
   
@@ -396,7 +448,7 @@ prepare_ml <- function(
   rcp_output <- prepare_ml_recipe(
     
     data         = d_train_raw,
-    prep_recipe  = prep_recipe,
+    custom_recipe  = prep_recipe,
     
     corr_method = "pearson",
     corr_use    = "pairwise.complete.obs",
@@ -677,13 +729,15 @@ prepare_ml <- function(
   prep_output <- list(
     
     # data
-    data_raw = list(
-      train = d_train_raw,
-      test  = d_test_raw
-    ),
-    data_prep = list(
-      train = d_train,
-      test  = d_test 
+    data = list(
+      raw = list(
+        train = d_train_raw,
+        test  = d_test_raw
+      ),
+      prep = list(
+        train = d_train,
+        test  = d_test
+      )
     ),
     
     outcome = list(
@@ -700,10 +754,15 @@ prepare_ml <- function(
     source = attr(feature, "source"),
     
     # documentation
-    raw_recipe  = rcp_raw,
-    prep_recipe = rcp_prep,
-    
-    prep_params = prep_params,
+    recipe = list(
+      raw    = rcp_raw,
+      prep   = rcp_prep,
+      params = prep_params
+    ),
+    # raw_recipe  = rcp_raw,
+    # prep_recipe = rcp_prep,
+    # 
+    # prep_params = prep_params,
     
     removed = list(
       rows = removed_rows,
@@ -722,6 +781,7 @@ prepare_ml <- function(
   
   # TODO add attribute to indicate repeated measurements data
   
+  class(prep_output) <-  c("martini_ml", class(prep_output))
   prep_output
   
 }

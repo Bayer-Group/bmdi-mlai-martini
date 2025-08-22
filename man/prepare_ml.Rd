@@ -9,7 +9,6 @@ prepare_ml(
   outcome,
   outcome_name = NULL,
   level_order = NULL,
-  prep_recipe = NULL,
   train_prop = 3/4,
   strata_trt = FALSE,
   seed = 1130,
@@ -34,7 +33,10 @@ prepare_ml(
   log_base = exp(1),
   outlier_remove = FALSE,
   outlier_ctrl = list(coef = 3),
-  quiet = FALSE
+  custom_recipe = NULL,
+  prep_recipe = NULL,
+  quiet = TRUE,
+  check_feature = TRUE
 )
 }
 \arguments{
@@ -55,11 +57,6 @@ for repeated measurements, resp. See Details section.}
 
 \item{level_order}{level order for a classification outcome.
 Default \code{NULL} keeps the natural order (only used for classification).}
-
-\item{prep_recipe}{a custom, pre-defined \code{recipes::recipe()} may be
-provided for data preparation. Defaults to NULL, yielding a data-driven
-preparation. Please refer to the details section to learn about the
-individual recipe steps.}
 
 \item{train_prop}{the proportion of data to be used for the training set.
 Has to be in [0.5;1.0]. Defaults to 3/4, keeping a quarter of the data
@@ -100,7 +97,7 @@ Defaults to 0.05. See \code{recipes::step_other()} for usage of argument thresho
 \item{thres_imp}{Minimal proportion of non-missing data per feature required
 to be kept in the data and completed using \code{recipes::step_impute_knn()}.
 Variables not meeting the threshold will be dropped and not be included in
-\code{data_prep} data.
+\code{prep} data entries.
 Per default \code{thres_imp = 0.8}, i.e. variables will be dropped if the
 proportion of available data is less than 80\%. Variables listed in
 \code{vars_imp_ignore} will never be imputed, observations with missing data
@@ -140,21 +137,38 @@ hot encoding over dummy encoding}
 for details on how outliers are removed from outcome variables.
 \code{outlier_remove} defaults to FALSE, \code{outlier_ctrl} to \code{list(coef = 3)}.}
 
+\item{custom_recipe}{custom, pre-defined \code{recipes::recipe()} that may be
+provided for data preparation. Defaults to NULL, yielding {{martini}}'s default
+preparation (please refer to the details section to learn about the
+default recipe steps).}
+
+\item{prep_recipe}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{custom_recipe}
+argument instead.
+custom, pre-defined \code{recipes::recipe()} may be
+provided for data preparation. Defaults to NULL, yielding a data-driven
+preparation. Please refer to the details section to learn about the
+individual recipe steps.}
+
 \item{quiet}{boolean. Suppress messages during outcome preparation to the
 console on NA and outlier removal, resp. Defaults to \code{FALSE}.}
+
+\item{check_feature}{logical controlling whether to run basic checks on
+input of \code{feature} to identify sources for potential downstream issues
+such as low frequency classes in a character/factor column.
+defaults to TRUE.}
 }
 \value{
+\code{prepare_ml()} produces an object of class \code{martini_ml}, a nested list
+containing data, \code{recipe} objects and description of data preparation,
+information on the outcome.
 \subsection{Data sets}{
 
-\code{prepare_ml()} produces a list that contains the data set both with
-(\code{data_prep}) and without (\code{data_raw}) applying the specified ML
-preparation steps. Both versions are split in \code{train} and \code{test}
-set. In addition, \code{split} contains the combined
-\code{rsample::initial_split()} object that the \code{train} and \code{test}
-data was extracted from. Depending on the programming workflow, one might be
-more convenient to use than the other. Both \code{data_test} slots as well
-as \code{split} are \code{NULL} if \code{train_prop} was set to 1
-(i.e. no splitting was done) and \code{train} contains the full ML data set.
+The top level entry \code{data} is a nested list, that contains the data set both
+prior to (\code{raw}) and after (\code{prep}) application of
+the specified ML preparation steps. Both versions are split in \code{train}
+and \code{test} set. If \code{train_prop} was set to 1, both \code{test}
+slots are \code{NULL} (i.e. no splitting was done) and \code{train} slots
+contain the full data set.
 
 The slot \code{outcome} contains a list giving \code{name}, the standardized
 names of the output column in the data sets ( \code{.out} for
@@ -178,11 +192,14 @@ used in data generation of \code{feature}.
 
 \subsection{Data preparation and documentation}{
 
-\code{raw_recipe} contains the unprepared recipe object,
-\code{prep_recipe} contains the prepared recipe object,
-\code{prep_params} documents the parameters/thresholds used in the data
+Within the recipe entry
+\code{raw} contains the unprepared recipe object,
+\code{prep} contains the prepared recipe object,
+\code{params} documents the parameters/thresholds used in the data
 preparation, giving bare \code{value} slots, as well as a verbose description
 in \code{text}.
+
+Top level entries
 \code{removed} gives a list of removed \code{rows} and \code{columns} along
 with the information on why/in which recipe step the data was removed.
 \code{high_corr} a tibble listing correlations above \code{thres_corr}.
