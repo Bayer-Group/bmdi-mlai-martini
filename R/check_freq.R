@@ -24,14 +24,13 @@ check_freq <- function(
   quiet = FALSE
 ){
   
-  data_check <- if(inherits(x, martini_ml)) {
+  data_check <- if(inherits(x, "martini_ml")) {
     x$data$prep$train
-  }else{
-    if(is.null(x)){
+  }else if (is.null(x)) {
       cli::cli_abort("Please check your input. Currently NULL.")
-    }else{
+    }else if (!is.data.frame(x)) {
       cli::cli_abort("Please check your input. Should be a data frame.")
-    }
+    }else{
     x
   }
   
@@ -56,7 +55,12 @@ check_freq <- function(
     names()
   
   # determine overall minimum of class sizes (named)
-  overall_min <- min_counts %>% sort() %>% magrittr::extract(1)
+  overall_min <- if( length(fct_counts) == 0) {
+    NA_integer_
+  } else{
+    min_counts %>% sort() %>% magrittr::extract(1)
+  }
+  
   
   out <- list(
     vars = risky,
@@ -64,21 +68,19 @@ check_freq <- function(
     overall_min = overall_min
   )
   
- # build message with details about number and names of potentially problematic factors
-  mess <- c(
-    paste0(
-      "Data contains {length(risky)} factor{?s} with less than {thres} observations in at least one class",
-    
-      ifelse(
-        !is_ml, 
-        '.', 
-        ' which may cause downstream problems. Changing the seed for test/train split and/or the modelling may solve potential issues.'
+  if (!quiet) {
+    if (length(risky) > 0 ) {
+      cli::cli_inform(c(
+        'i' = '{cli::qty(risky)}The following factor{?s} {?has/have} low frequencies (<{thres}) in at least one class: \n{risky}'
+        )
       )
-    ),
-    
-    'i' = 'The following factor{?s} {?has/have} low frequencies in at least one class: \n{risky}'
-  )
-  cli::cli_inform(mess)
+    } else{
+      cli::cli_text(
+        c("No factors with low frequency class (<{thres}) detected in data set.")
+      )
+      
+    }
+  } 
   
-  out
+  invisible(out)
 }
