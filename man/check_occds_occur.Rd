@@ -2,9 +2,16 @@
 % Please edit documentation in R/adam_spec_helpers.R
 \name{check_occds_occur}
 \alias{check_occds_occur}
-\title{Check for non-constant --OCCUR column in occds}
+\title{Check for 'N' values in --OCCUR column in occds}
 \usage{
-check_occds_occur(data, domain, filters = NULL)
+check_occds_occur(
+  data,
+  domain = NULL,
+  filters = NULL,
+  quiet = FALSE,
+  no_char = "N",
+  no_num = 0
+)
 }
 \arguments{
 \item{data}{data set to check}
@@ -13,11 +20,16 @@ check_occds_occur(data, domain, filters = NULL)
 
 \item{filters}{filters to be applied before checking for issues.
 defaults to NULL, in which case no filters are applied.}
+
+\item{quiet}{whether to suppress messaging in the console. defaults to FALSE.}
+
+\item{no_char, no_num}{values that code for 'no' in pre-specified list of
+events. defaults to \code{N} and \code{1} for character and numeric variables, resp.}
 }
 \value{
-nothing is returned if no potential issues were detected.
-If domain is adcm or admh, invisibly returns the suggested filter.
+invisibly returns character vector of potentially problematic columns.
+(Invisible) return value has length 0 if no problems were detected.
 }
 \description{
-Check for non-constant --OCCUR column in occds
+Check for 'N' values in --OCCUR column in occds
 }

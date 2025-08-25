@@ -12,9 +12,9 @@ prepare_ml(
   train_prop = 3/4,
   strata_trt = FALSE,
   seed = 1130,
-  prep_step_normalize = TRUE,
-  prep_step_knnimpute = TRUE,
   prep_step_log = TRUE,
+  prep_step_knnimpute = TRUE,
+  prep_step_normalize = TRUE,
   prep_step_corr = TRUE,
   prep_step_dummy = FALSE,
   thres_log = 2,
@@ -69,7 +69,7 @@ recommended to be set to TRUE.}
 
 \item{seed}{optionally set a seed before the data splitting.}
 
-\item{prep_step_knnimpute, prep_step_log, prep_step_normalize, prep_step_corr, prep_step_dummy}{logicals determining whether or not the corresponding step function should
+\item{prep_step_log, prep_step_knnimpute, prep_step_normalize, prep_step_corr, prep_step_dummy}{logicals determining whether or not the corresponding step function should
 be included in the recipe, possibly specified further using additional
 parameters (\verb{thres_*}, \code{log_base}, \code{one_hot}). Please refer to the details
 section for the full list of recipe steps.}

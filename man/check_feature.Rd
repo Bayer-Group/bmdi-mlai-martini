@@ -13,6 +13,7 @@ check_feature(
   quiet = TRUE,
   verbose = TRUE,
   thres_count_distinct = 30,
+  thres_low_freq = NULL,
   ...
 )
 }
@@ -39,5 +40,5 @@ NULL if not tested at all.
 }
 \description{
 Running \code{check_feature()} is by default run in \code{\link[=prepare_ml]{prepare_ml()}} on the
-input \code{feature} to notify the user on sources of potential issues
+input \code{feature} to notify the user on sources of potential issues.
 }

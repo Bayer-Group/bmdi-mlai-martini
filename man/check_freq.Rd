@@ -4,7 +4,7 @@
 \alias{check_freq}
 \title{Identify factors with low frequency classes}
 \usage{
-check_freq(x, thres = 10)
+check_freq(x, thres = 10, quiet = FALSE)
 }
 \arguments{
 \item{x}{output of \verb{\link{prepare_ml}()} or a tibble}
