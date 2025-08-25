@@ -421,6 +421,7 @@ test_that("prepare_ml() snapshots content/print",{
         "AVISIT == 'Baseline'",
         "ADSNAME == 'ADLB' & AVISIT == 'Visit 1'",
         "ABLFL == 'Y'"
+       #, "MHOCCUR == 'Y' | is.na(MHOCCUR)"
       ),
       attach_data = TRUE
     ) %>% 
@@ -510,8 +511,6 @@ test_that("prepare_ml() snapshots content/print",{
       magrittr::set_attr('class', 'list') %>% # snapshot object not print
       purrr::modify_tree(leaf = tibble_to_JSON)
   )
-  
-  
   
 })
 

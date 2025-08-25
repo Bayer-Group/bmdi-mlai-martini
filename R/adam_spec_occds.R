@@ -143,7 +143,11 @@ adam_spec_occds <- function(
   actual_filter <- filter[keep_filter]
   
   # --OCCUR check ####
-  #...
+  # check_occds_occur(
+  #   data = data,
+  #   filters = actual_filter, 
+  #   domain = domain
+  # )
   
   # output ####
   
