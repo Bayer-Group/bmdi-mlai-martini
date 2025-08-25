@@ -20,53 +20,49 @@
 
 check_freq <- function(
   x,
-  thres = 10
+  thres = 10,
+  quiet = FALSE
 ){
   
-  # TODO replace by checking for ml_object class once defined
-  is_ml <- !is.data.frame(x)
-  
-  data  <- x
-  if(is_ml) {data <- data$data$prep$train}
-  
-  if(is.null(data)){
-    cli::cli_abort("Please check your input. Currently NULL.")
+  data_check <- if(inherits(x, martini_ml)) {
+    x$data$prep$train
+  }else{
+    if(is.null(x)){
+      cli::cli_abort("Please check your input. Currently NULL.")
+    }else{
+      cli::cli_abort("Please check your input. Should be a data frame.")
+    }
+    x
   }
   
-  d_fct <- data %>% 
-    dplyr::select_if(is.factor)
-    
-  if(ncol(d_fct) == 0){
-    
-    usethis::ui_info('Data does not contain any factors.')
-    return(invisible(NULL))
-    
-  }
+  # determine all class distributions
+  fct_counts <- data_check %>% 
+    dplyr::select(dplyr::where(is.factor), dplyr::where(is.character)) %>% 
+    purrr::map(~{
+      tibble::tibble(fct = .x) %>% 
+        dplyr::count(fct, sort = TRUE)
+    }) 
   
   # determine size of smallest class per factor
-  min_count <- purrr::map_int(d_fct, ~{
-    
-    tibble::tibble(fct = .x) %>% 
-      dplyr::count(fct) %>% 
-      dplyr::slice_min(n) %>%  
-      dplyr::pull(n) %>% 
-      unique()
-    
-  })
+  min_counts <- fct_counts %>% 
+    purrr::map_int(
+      ~.x %>% dplyr::slice_min(n) %>%  
+        dplyr::pull(n) %>% 
+        unique()
+    )
   
   # get names of 'risky' factors
-  risky <- names(min_count)[as.numeric(min_count) < thres]
+  risky <- purrr::keep(min_counts, ~ {.x  < thres}) %>% 
+    names()
   
-  # determine overall minimum of class sizes
-  overall_min <- min(min_count)
+  # determine overall minimum of class sizes (named)
+  overall_min <- min_counts %>% sort() %>% magrittr::extract(1)
   
-  if(length(risky) == 0){
-    
-    usethis::ui_info(paste0('Minimum observed class size is ', usethis::ui_value(overall_min), '.'))
-    return(invisible(NULL))
-    
-  }
-  
+  out <- list(
+    vars = risky,
+    counts = fct_counts[risky], 
+    overall_min = overall_min
+  )
   
  # build message with details about number and names of potentially problematic factors
   mess <- c(
@@ -84,14 +80,5 @@ check_freq <- function(
   )
   cli::cli_inform(mess)
   
-  d_fct %>% 
-    dplyr::select(tidyselect::any_of(risky)) %>% 
-    purrr::map(~{
-      
-      tibble::tibble(fct = .x) %>% 
-        dplyr::count(fct) %>% 
-        dplyr::arrange(n)
-      
-    })
-  
+  out
 }
