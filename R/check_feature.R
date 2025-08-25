@@ -1,18 +1,7 @@
-
-
-# check for low freq factors: check_freq()
-# check for category 'other_ml' (default step_other2())
-# skewed variables / extreme outliers: skw(na.rm = TRUE) / refactor prepare_ml_outcome()
-# proportion NA
-# check for potential ordinalscore variable
-
-# guess count variable, suggest providing names in vars_no_trafo if they should be excluded from log trafo and normalization
-
-
 #' check feature matrix
 #' 
 #' Running `check_feature()` is by default run in [prepare_ml()] on the 
-#' input `feature` to notify the user on sources of potential issues
+#' input `feature` to notify the user on sources of potential issues. 
 #' 
 #'
 #' @param x feature matrix to check, such as the output of [build()].
@@ -41,6 +30,7 @@ check_feature <- function(
   quiet          = TRUE,
   verbose        = TRUE,
   thres_count_distinct = 30,
+  thres_low_freq = NULL,
   ...
 ){
   
@@ -58,34 +48,16 @@ if(check_low_freq){
   # args_check_freq <- args_check_freq_default %>% 
   #  purrr::list_modify(all_args %>% purrr::keep_at(names(args_check_freq_default)))
   
-  out$low_freq <- check_freq(x)
+  out$low_freq <- check_freq(
+    x, 
+    quiet = quiet, 
+    thres = thres_low_freq %||% get_default(check_freq, arg = "thres")
+  )
+  
 } else {
   out$low_freq <- list(NULL)
 }
 
-# skewness ####
-if(FALSE){
-# $x, $na.rm FALSE
-cols_skewness <- x %>% 
-  dplyr::select(dplyr::where(is.numeric)) %>% 
-  purrr::map_dbl(~skw(.x, na.rm = TRUE)) %>% 
-  magrittr::is_greater_than(get_default(prepare_ml, "thres_log")) %>% 
-  purrr::keep(isTRUE) %>% 
-  names()
-
-out$log_skewness <- cols_skewness
-
-if (length(cols_skewed) > 0) {
-  cli::cli_inform(c(
-    "Highly skewed variables might be log transformed during ML data prep in {.fn prepare_ml}.",
-    "i" = "By default, columns {cols_skewness} would be subject to log transformation (skewness above {get_default(prepare_ml, 'thres_log')}).",
-    "*" = "See {.fn step_log_skewness} and {.fn prepare_ml}'s arguments {.code prep_step_log} and {.code thres_log} for details."
-  )
-  )
-}
-}else {
- # out$log_skewness <- list(NULL)
-}
 
 
 # other_ml ####
@@ -98,8 +70,11 @@ if (check_other) {
     purrr::map_lgl(~ any(.x == other2_class)) %>% 
     purrr::keep(isTRUE) %>% 
     names()
+  
+  out$other <- cols_with_class_other2
+  
   if (length(cols_with_class_other2) > 0 && ! quiet) {
-    if(verbose){
+    if (verbose) {
       cli::cli_inform(c(
         "Low frequency classes may be pooled during ML data prep into a class {other2_class} in {.fn prepare_ml}.",
         "i" = "Note that {other2_class} is already a value in column{?s} {cols_with_class_other2}.",
@@ -115,13 +90,14 @@ if (check_other) {
 }
 
 # proportion NA ####
-if(check_NA){
+if (check_NA) {
   
   thres_imp <-  get_default(prepare_ml, "thres_imp")
   cols_high_miss <- x %>% 
     purrr::map_lgl(~ {!is.na(.x) %>% mean() %>% magrittr::is_less_than(thres_imp)}) %>% 
     purrr::keep(isTRUE) %>% 
     names()
+  
   out$filter_missing <- cols_high_miss
   
   if (length(cols_high_miss) > 0 && ! quiet) {
@@ -152,7 +128,7 @@ if (check_count) {
     purrr::keep(isTRUE) %>% 
     names()
   
-  if(!quiet){
+  if (!quiet) {
     cli::cli_inform(
       "{cli::qty(looks_like_count)}Data set contains {?''/a} numeric variable{?s} with only positive integer values and few distinct values.",
       "*" = "{cli::qty(looks_like_count)}Please check whether conversion to factor{?s} is appropriate."
