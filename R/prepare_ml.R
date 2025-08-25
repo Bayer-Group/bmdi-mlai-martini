@@ -42,7 +42,7 @@
 #'by trt (if character, else ignored). Defaults to FALSE, but is highly 
 #'recommended to be set to TRUE.
 #'@param seed optionally set a seed before the data splitting. 
-#'@param prep_step_knnimpute,prep_step_log,prep_step_normalize,prep_step_corr,prep_step_dummy
+#'@param prep_step_log,prep_step_knnimpute,prep_step_normalize,prep_step_corr,prep_step_dummy
 #'logicals determining whether or not the corresponding step function should 
 #'be included in the recipe, possibly specified further using additional 
 #'parameters (`thres_*`, `log_base`, `one_hot`). Please refer to the details 
@@ -246,9 +246,9 @@ prepare_ml <- function(
   strata_trt   = FALSE,
   seed         = 1130, # TODO default to NULL?
   
-  prep_step_normalize = TRUE,
-  prep_step_knnimpute = TRUE,
   prep_step_log       = TRUE,
+  prep_step_knnimpute = TRUE,
+  prep_step_normalize = TRUE,
   prep_step_corr      = TRUE,
   prep_step_dummy     = FALSE,
   
