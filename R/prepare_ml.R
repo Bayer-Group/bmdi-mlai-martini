@@ -85,11 +85,11 @@
 #'@param vars_keep_corr choose these variables over other options when removing
 #'variables due to high correlation in \code{recipes::step_corr()}. 
 #'See \code{recipes::step_rm()} below for details. 
-#'@param vars_ordinalscore  column names of ordinal factor variables to be 
-#'converted into numeric scores. Defaults to NULL.
+#'@param vars_ordinalscore column names of ordinal factor variables to be 
+#'converted into numeric scores (using `as.numeric()`). Defaults to NULL.
 #'@param vars_no_trafo character vector defining variables that should be
-#' excluded from transformation steps such as log transformation and/or normalization
-#'  (if applicable). Defaults to NULL.
+#'excluded from transformation steps such as log transformation and/or normalization
+#'(if applicable). Defaults to NULL.
 #'@param log_base base to use for log-transformation in 
 #'\code{recipes::step_log()}. Defaults to _exp(1)_.
 #'@param outlier_remove,outlier_ctrl For outcome mode regression only, see 
@@ -381,10 +381,7 @@ prepare_ml <- function(
   if(check_feature){
     res_check_feat <- check_feature(
       feature,
-      check_low_freq = TRUE,
-      check_outlier = TRUE,
-      quiet = FALSE,
-      verbose = FALSE
+      quiet = TRUE
     )
     
   }
