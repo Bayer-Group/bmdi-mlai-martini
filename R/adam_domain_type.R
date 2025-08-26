@@ -53,13 +53,14 @@ adam_domain_type <- function(
   
   
   ambiguous_add <- intersect(add_bds, add_occds)
-  if (length(ambiguous_add) != 0) {
-    cli::cli_abort(c(
-      "i" = "Additional domains can be added to either {.arg add_bds} or {.arg add_occds}.",
-      "!" = "{ambiguous_add} {?was/were} defined in both {.arg add_bds} and {.arg add_occds}."
+  if (length(ambiguous_add) > 0) {
+    cli::cli_bullets(c(
+      "x" = "The following domain{?s} {?was/were} specified to be added as both bds and occds: {add_ambiguous}.",
+      "*" = "Please check your input to {.fun prepare_ml} arguments {.arg add_bds} and {.arg add_occds}."
     ))
   }
   
+
   # define look-up table ####
   # library of data sets to be processed automatically
   
@@ -143,10 +144,10 @@ adam_domain_type <- function(
        ))
     }
       
-    if (!is.null(keep)){
-        # strip file extension, in case the user provided the file name instead of domain
-        keep      <- stringr::str_remove(keep, paste(file_ext, collapse = '|'))
-        file_info <- file_info %>% dplyr::filter( domain %in% keep)
+    if (!is.null(keep)) {
+      # strip file extension, in case the user provided the file name instead of domain
+      keep        <- stringr::str_remove(keep, paste(file_ext, collapse = '|'))
+      file_info   <- file_info %>% dplyr::filter(domain %in% c(keep, add_bds, add_occds))
     } else {
       if(!is.null(drop)){
         drop      <- stringr::str_remove(drop, paste(file_ext, collapse = '|'))
