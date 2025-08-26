@@ -12,6 +12,7 @@
 #' @param verbose TRUE by default, FALSE results in messages used for 
 #' [prepare_ml()]
 #' @param thres_count_distinct check_count
+#' @param thres_low_freq passed to [check_freq()]
 #' @param ... arguments to be passed to other methods
 #'
 #'
