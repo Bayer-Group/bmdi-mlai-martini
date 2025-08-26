@@ -1,6 +1,6 @@
 
-test_that("check_freq works", {
-  
+test_that("check_freq() works", {
+  # check_freq() works ####
   n     <- 100
   thres <- n/10  
   
@@ -19,24 +19,22 @@ test_that("check_freq works", {
   expect_equal(
    res1 <- x %>% 
       dplyr::select(num) %>% 
-      check_freq(thres = thres),
+      check_freq(thres = thres, quiet = TRUE),
     list(
       vars        = character(0),
       counts      = structure(list(), names = character(0)), 
-      overall_min = NA_integer_
+      overall_min = NA_integer_,
+      finding     = FALSE,
+      threshold   = 10,
+      check       = "check_freq()"
     )
   )
   
   # case 2: factors, no risk: vars & counts empty, overall min of fct_safe
-  expect_equal(
+  expect_snapshot(
     res2 <- x %>% 
       dplyr::select(-fct_risky) %>%
-      check_freq(thres = thres),
-    list(
-      vars = character(0), 
-      counts = structure(list(), names = character(0)), 
-      overall_min = c(fct_safe = 50L)
-    )
+      check_freq(thres = thres)
   )
   
   # case 3: at least one factor with min class size below thres
@@ -45,20 +43,8 @@ test_that("check_freq works", {
     "fct_risky"
   )
   
-  expect_equal(
-    res3,
-    list(
-      vars = "fct_risky",
-      counts = list(
-        fct_risky = structure(
-          list(
-            fct = structure(1:2, levels = c("A", "B"), class = "factor"), 
-            n = c(95L, 5L)
-          ), 
-          class = c("tbl_df", "tbl", "data.frame"),
-          row.names = c(NA, -2L))
-        ), 
-      overall_min = c(fct_risky = 5L))
+  expect_snapshot(
+    check_freq(x, thres = thres)
   )
   
   # case 4: pkg data
@@ -68,11 +54,10 @@ test_that("check_freq works", {
     "The following factors have low frequencies"
   )
   # ... martini_ml output object for automated slot selection
-  expect_message(
-    res4 <- check_freq(martini_ml_class, thres = 50),
-    "The following factors have low frequencies"
-  )
-  
-  
+  # TODO move to check_feature
+  # expect_message(
+  #   res4 <- check_freq(martini_ml_class, thres = 50),
+  #   "The following factors have low frequencies"
+  # )
   
 })
