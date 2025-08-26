@@ -372,7 +372,8 @@ test_that("repeated measurement implementation works", {
 
 
 test_that("get_data(martini_ml) works", {  
-  #get_data(martini_ml) works ####
+  
+  # get_data(martini_ml) works ####
   
   expect_s3_class(
     get_data(martini_ml_regr, type = "prep"),
@@ -447,7 +448,7 @@ test_that("prepare_ml() snapshots content/print", {
       purrr::modify_tree(leaf = tibble_to_JSON)
   )
   
-  # # pkg data ####
+  # # pkg data # todo: modify before snapshotting
   # expect_snapshot(martini_ml_class)
   # expect_snapshot(martini_ml_regr)
   # expect_snapshot(martini_ml_surv)
