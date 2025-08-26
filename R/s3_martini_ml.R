@@ -31,7 +31,13 @@ print.martini_ml <- function(x, ...){
     cli::cat_line() %>% 
     c(cli::cli_h3("Data set sizes (n {cli::symbol$times} p)"), .)
   
- # main recipe steps ####
+  # main recipe steps ####
+  if (!is.null(x$input$args$custom_recipe)) {
+    c("A custom recipe was provided.") %>% 
+    cli::cat_line() %>% 
+      c(cli::cli_h3("Recipe"), .)
+    
+  } else {
   steps_to_report <- c(
     "filter_missing", 
     "log_skewness", 
@@ -42,21 +48,6 @@ print.martini_ml <- function(x, ...){
     "other2", 
     "dummy"
     ) 
-  
-  # # version green checkmark/ red cross
-  # steps_to_report %in% 
-  #   recipes::tidy(x$recipe$prep)$type %>% 
-  #   purrr::set_names(steps_to_report) %>% 
-  #   tibble::enframe() %>% 
-  #   # for log report TRUE iff data was log transformed and NOT back transformed,
-  #   # (log_skewness && ! log_skewness_undo)
-  #   # i.e. iff prep_step_log
-  #   dplyr::mutate(value = replace(value, name == "log_skewness", x$input$args$prep_step_log)) %>%
-  #   dplyr::mutate(symbol = dplyr::if_else(value, "v", "x")) %>% 
-  #   dplyr::select(symbol, name) %>%
-  #   tibble::deframe() %>% 
-  #   cli::cli_bullets() %>% 
-  #   c(cli::cli_h3("Recipe Steps (parametrized)"), .)
   
   # versions with cli_symbols: checkbox on off / 
    steps_to_report %in% 
@@ -77,7 +68,7 @@ print.martini_ml <- function(x, ...){
     dplyr::pull() %>%  
     cli::cat_line() %>% 
     c(cli::cli_h3("(parametrized) Recipe Steps"), .)
-  
+  }
   
 }
   
