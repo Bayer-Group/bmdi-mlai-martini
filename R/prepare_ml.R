@@ -96,7 +96,7 @@
 #'\code{\link{prepare_ml_outcome}()}
 #'for details on how outliers are removed from outcome variables.
 #'`outlier_remove` defaults to FALSE, `outlier_ctrl` to `list(coef = 3)`.
-#'@param custom_recipe custom, pre-defined \code{recipes::recipe()} that may be 
+#'@param custom_recipe `r lifecycle::badge("experimental")` custom, pre-defined \code{recipes::recipe()} that may be 
 #'provided for data preparation. Defaults to NULL, yielding {{martini}}'s default
 #'preparation (please refer to the details section to learn about the 
 #'default recipe steps).
@@ -448,7 +448,7 @@ prepare_ml <- function(
   rcp_output <- prepare_ml_recipe(
     
     data         = d_train_raw,
-    custom_recipe  = prep_recipe,
+    custom_recipe  = custom_recipe,
     
     corr_method = "pearson",
     corr_use    = "pairwise.complete.obs",
@@ -674,53 +674,62 @@ prepare_ml <- function(
   
   # prevent error in joining logtr column
   if (is.null(vars$vars_log)) vars$vars_log <- NA_character_
+  
   the_dict <- NULL
   if (!is.null(attr(feature, "dict"))) {
+    
     the_dict <- dplyr::bind_rows(
       outcome_dict,
       attr(feature, "dict")  
-    ) %>% 
-      dplyr::left_join(
-        ., 
+    ) 
+    
+    if (length(vars$vars_log) > 0){ 
+      
+      the_dict <- dplyr::left_join(
+        the_dict, 
         tibble::tibble(
           param = vars$vars_log,
           logtr = "Y"
         ),
         by = c("param")
       )
+    }
     
-    # add alternative label with correlated variables
-    add_labels <- high_corr %>% 
-      dplyr::left_join(
-        the_dict %>% 
-          dplyr::select(column, "label_x" = label) %>% 
-          dplyr::distinct(),
-        by = c("x" = "column")
-      ) %>% 
-      dplyr::left_join(
-        the_dict %>% 
-          dplyr::select(column, "label_y" = label) %>% 
-          dplyr::distinct(), 
-        by = c("y" = "column")
-      ) %>% 
-      dplyr::select(-r) %>% 
-      dplyr::group_by(x, label_x) %>% 
-      dplyr::summarize(
-        label2  = paste0(unique(x),       " (", paste(y, collapse = ", "), ")"),
-        label3  = paste0(unique(label_x), " (", paste(label_y, collapse = ", "), ")"), 
-        .groups = "drop"
-      ) %>% 
-      dplyr::select("column" = x, tidyselect::everything(), -label_x)
     
-    the_dict <- dplyr::left_join(
-      the_dict, 
-      add_labels,
-      by = "column"
-    ) %>% 
-      dplyr::mutate(
-        label2 = dplyr::coalesce(label2, column),
-        label3 = dplyr::coalesce(label3, label)
-      )
+    # add alternative label to dict with correlated variables
+    if(!is.null(high_corr)){
+      add_labels <- high_corr %>% 
+        dplyr::left_join(
+          the_dict %>% 
+            dplyr::select(column, "label_x" = label) %>% 
+            dplyr::distinct(),
+          by = c("x" = "column")
+        ) %>% 
+        dplyr::left_join(
+          the_dict %>% 
+            dplyr::select(column, "label_y" = label) %>% 
+            dplyr::distinct(), 
+          by = c("y" = "column")
+        ) %>% 
+        dplyr::select(-r) %>% 
+        dplyr::group_by(x, label_x) %>% 
+        dplyr::summarize(
+          label2  = paste0(unique(x),       " (", paste(y, collapse = ", "), ")"),
+          label3  = paste0(unique(label_x), " (", paste(label_y, collapse = ", "), ")"), 
+          .groups = "drop"
+        ) %>% 
+        dplyr::select("column" = x, tidyselect::everything(), -label_x)
+      
+      the_dict <- dplyr::left_join(
+        the_dict, 
+        add_labels,
+        by = "column"
+      ) %>% 
+        dplyr::mutate(
+          label2 = dplyr::coalesce(label2, column),
+          label3 = dplyr::coalesce(label3, label)
+        )
+    }
     
   }
   

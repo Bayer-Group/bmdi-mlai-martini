@@ -259,7 +259,7 @@ prepare_ml_recipe <- function(
   }
   
   # ... extract log-transformed variables ####
-  if (step_used$prep_step_log) {
+  if (is.null(custom_recipe) && step_used$prep_step_log) {
     
     number_step_log <- recipes::tidy(rcp_prep) %>% 
       dplyr::pull(type) %>% 
@@ -268,7 +268,18 @@ prepare_ml_recipe <- function(
     vars_log <- rcp_prep$steps[[number_step_log]]$columns
     
   } else {
-    vars_log <- NULL
+    
+    number_step_log <- recipes::tidy(rcp_prep) %>% 
+      dplyr::pull(type) %>% 
+      magrittr::equals("log") %>% 
+      which()
+    
+    vars_log <- if (length(number_step_log) > 0) {
+      rcp_prep$steps[[number_step_log]]$columns
+    } else {
+      character() 
+    }
+     
   }
   
   tibble::lst(
