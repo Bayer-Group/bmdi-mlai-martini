@@ -4,18 +4,20 @@
 \alias{check_freq}
 \title{Identify factors with low frequency classes}
 \usage{
-check_freq(x, thres = 10, quiet = FALSE)
+check_freq(x, thres = NULL, quiet = FALSE)
 }
 \arguments{
-\item{x}{output of \verb{\link{prepare_ml}()} or a tibble}
+\item{x}{data set to check}
 
-\item{thres}{integer. Factors with at least one class of size smaller than \code{thres} will be identified. Defaults to 10.}
+\item{thres}{integer.
+Factors with at least one class of size smaller than \code{thres} will be identified.
+Defaults to NULL,}
 
-\item{quiet}{logical to suppress printing messages to the console}
+\item{quiet}{whether to suppress printing messages to the console.
+defaults to FALSE.}
 }
 \value{
-In case factors are present in the data set that meet the condition of interest,
-relevant names are printed in the console and a list of frequency tables is returned.
+invisibly returns a list for downstream use in \code{\link[=check_feature]{check_feature()}}
 }
 \description{
 Identify factors with low frequency classes

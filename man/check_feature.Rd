@@ -8,19 +8,20 @@ check_feature(
   x,
   check_low_freq = TRUE,
   check_other = TRUE,
-  check_NA = TRUE,
+  check_missing = TRUE,
   check_count = TRUE,
   quiet = TRUE,
   verbose = TRUE,
-  thres_count_distinct = 30,
+  thres_count = 30,
   thres_low_freq = NULL,
+  thres_missing = NULL,
   ...
 )
 }
 \arguments{
 \item{x}{feature matrix to check, such as the output of \code{\link[=build]{build()}}.}
 
-\item{check_low_freq, check_other, check_NA, check_count}{logicals to control which checks to include. All default to TRUE.}
+\item{check_low_freq, check_other, check_missing, check_count}{logicals to control which checks to include. All default to TRUE.}
 
 \item{quiet}{logical controlling whether any informative messages are
 printed to the console}
@@ -28,9 +29,11 @@ printed to the console}
 \item{verbose}{TRUE by default, FALSE results in messages used for
 \code{\link[=prepare_ml]{prepare_ml()}}}
 
-\item{thres_count_distinct}{check_count}
+\item{thres_count}{\code{\link[=check_count]{check_count()}}}
 
 \item{thres_low_freq}{passed to \code{\link[=check_freq]{check_freq()}}}
+
+\item{thres_missing}{passed to \code{\link[=check_non_missing]{check_non_missing()}}}
 
 \item{...}{arguments to be passed to other methods}
 }

@@ -116,7 +116,7 @@ variables will be removed. Removal is documented in \code{removed$rows}.}
 treated as an explicit factor level. Defaults to NULL.}
 
 \item{vars_ordinalscore}{column names of ordinal factor variables to be
-converted into numeric scores. Defaults to NULL.}
+converted into numeric scores (using \code{as.numeric()}). Defaults to NULL.}
 
 \item{vars_keep_corr}{choose these variables over other options when removing
 variables due to high correlation in \code{recipes::step_corr()}.
