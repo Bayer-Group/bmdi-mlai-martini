@@ -147,7 +147,7 @@ adam_spec <- function(
   
   # bds spec ####
   
-  if ( any(file_info$type == "bds") ){
+  if (any(file_info$type == "bds")) {
     
     files_bds <- file_info %>% 
       dplyr::filter(type == "bds") %>% 
@@ -166,7 +166,7 @@ adam_spec <- function(
   
   # occds spec ####
   
-  if ( any(file_info$type == "occds") ){
+  if (any(file_info$type == "occds")) {
     
     files_occds <- file_info %>% 
       dplyr::filter(type == "occds") %>% 

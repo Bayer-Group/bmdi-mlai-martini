@@ -54,10 +54,11 @@ adam_domain_type <- function(
   
   ambiguous_add <- intersect(add_bds, add_occds)
   if (length(ambiguous_add) > 0) {
-    cli::cli_bullets(c(
-      "x" = "The following domain{?s} {?was/were} specified to be added as both bds and occds: {add_ambiguous}.",
-      "*" = "Please check your input to {.fun prepare_ml} arguments {.arg add_bds} and {.arg add_occds}."
-    ))
+    cli::cli_abort(
+      c(
+        "x" = "The following domain{?s} {?was/were} specified to be added as both bds and occds: {ambiguous_add}.",
+        "*" = "Please check your input to {.fun prepare_ml} arguments {.arg add_bds} and {.arg add_occds}."
+      ))
   }
   
 
