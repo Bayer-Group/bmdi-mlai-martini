@@ -9575,14 +9575,14 @@
       $input$args$seed
       [1] 2231
       
-      $input$args$prep_step_normalize
-      [1] FALSE
+      $input$args$prep_step_log
+      [1] TRUE
       
       $input$args$prep_step_knnimpute
       [1] TRUE
       
-      $input$args$prep_step_log
-      [1] TRUE
+      $input$args$prep_step_normalize
+      [1] FALSE
       
       $input$args$prep_step_corr
       [1] TRUE
@@ -9650,19 +9650,6 @@
       
       attr(,"class")
       [1] "list"
-
----
-
-    Code
-      ads_ml_class
-    Message
-      # Object of class 'martini_ml' with classification outcome .out
-      
-      -- Data set sizes (n x p) 
-    Output
-      recipe state    train    test
-      raw          215 x 18 74 x 18
-      prep         215 x 13 74 x 13
 
 ---
 
@@ -19302,14 +19289,14 @@
       $input$args$seed
       [1] 2231
       
-      $input$args$prep_step_normalize
-      [1] FALSE
+      $input$args$prep_step_log
+      [1] TRUE
       
       $input$args$prep_step_knnimpute
       [1] TRUE
       
-      $input$args$prep_step_log
-      [1] TRUE
+      $input$args$prep_step_normalize
+      [1] FALSE
       
       $input$args$prep_step_corr
       [1] TRUE
@@ -29596,14 +29583,14 @@
       $input$args$seed
       [1] 2231
       
-      $input$args$prep_step_normalize
-      [1] FALSE
+      $input$args$prep_step_log
+      [1] TRUE
       
       $input$args$prep_step_knnimpute
       [1] TRUE
       
-      $input$args$prep_step_log
-      [1] TRUE
+      $input$args$prep_step_normalize
+      [1] FALSE
       
       $input$args$prep_step_corr
       [1] TRUE

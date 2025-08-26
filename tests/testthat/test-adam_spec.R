@@ -40,7 +40,26 @@ test_that("adam_spec add_bds / add_occds", {
     names(ads_spec) %>% c(add_name),
     names(ads_spec_add_occds)
   )
+  
+  # specify same domain in add_bds and add_occds
+  expect_error(
+    ads_spec_error <- adam_spec(
+      ads_path, 
+      add_occds = add_name, 
+      add_bds = add_name
+    ), 
+    "was defined in both"
+  )
 
+  # usage via adam_spec()
+  add_name <- "admh"
+  ads_spec  <- adam_spec(
+    ads_path, 
+    keep = c("adsl", "adlb"),
+    add_occds = add_name
+    )
+  
+  
 })
 
 test_that("adam_spec keep/drop hierarchy ", {
