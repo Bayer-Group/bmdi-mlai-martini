@@ -137,7 +137,7 @@ hot encoding over dummy encoding}
 for details on how outliers are removed from outcome variables.
 \code{outlier_remove} defaults to FALSE, \code{outlier_ctrl} to \code{list(coef = 3)}.}
 
-\item{custom_recipe}{custom, pre-defined \code{recipes::recipe()} that may be
+\item{custom_recipe}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} custom, pre-defined \code{recipes::recipe()} that may be
 provided for data preparation. Defaults to NULL, yielding {{martini}}'s default
 preparation (please refer to the details section to learn about the
 default recipe steps).}

@@ -10,6 +10,8 @@ check_freq(x, thres = 10, quiet = FALSE)
 \item{x}{output of \verb{\link{prepare_ml}()} or a tibble}
 
 \item{thres}{integer. Factors with at least one class of size smaller than \code{thres} will be identified. Defaults to 10.}
+
+\item{quiet}{logical to suppress printing messages to the console}
 }
 \value{
 In case factors are present in the data set that meet the condition of interest,

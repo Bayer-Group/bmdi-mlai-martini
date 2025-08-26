@@ -30,6 +30,8 @@ printed to the console}
 
 \item{thres_count_distinct}{check_count}
 
+\item{thres_low_freq}{passed to \code{\link[=check_freq]{check_freq()}}}
+
 \item{...}{arguments to be passed to other methods}
 }
 \value{
