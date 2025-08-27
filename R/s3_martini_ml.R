@@ -68,7 +68,7 @@ print.martini_ml <- function(x, ...){
     # dplyr::mutate(symbol = dplyr::if_else(value, cli::symbol$square_small_filled, cli::symbol$square_small)) %>% 
     # dplyr::mutate(symbol = dplyr::if_else(value, cli::symbol$tick, cli::symbol$cross)) %>% 
     dplyr::filter(value) %>% 
-    dplyr::mutate(symbol = dplyr::if_else(value, cli::symbol$arrow_right, cli::symbol$stop)) %>% 
+    dplyr::mutate(symbol = dplyr::if_else(value, cli::symbol$bullet, cli::symbol$stop)) %>% #arrow_right
     dplyr::select(symbol, name) %>%
     tidyr::unite(col, tidyselect::everything(), sep = " ") %>% 
     dplyr::pull() %>%  
