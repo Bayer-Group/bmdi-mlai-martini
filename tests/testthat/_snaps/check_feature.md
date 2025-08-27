@@ -2,80 +2,74 @@
 
     Code
       check_feature(martini_feat, thres_low_freq = 15)
+    Message
+      i Data set was checked for causes for potential downstream issues with ML preparation.
+      ! Potential issues were identified.
+      * Run check_freq() and check_count() on the input to `prepare_ml()`'s `feature` to learn more.
+
+# check_freq() works
+
+    Code
+      res2 <- x %>% dplyr::select(-fct_risky) %>% check_freq(thres = thres)
+    Message
+      No factors with low frequency class (<10) detected in data set.
+
+---
+
+    Code
+      check_freq(x, thres = thres)
+    Message
+      i The following factor has low frequencies (<10) in at least one class: fct_risky
+
+# check_other_class() works
+
+    Code
+      x %>% purrr::modify_tree(leaf = tibble_to_JSON)
     Output
-      $low_freq
-      $low_freq$vars
-      [1] "angina_pectoris"
+      $vars
+      [1] "incorporate" "clash"      
       
-      $low_freq$counts
-      $low_freq$counts$angina_pectoris
-      # A tibble: 2 x 2
-        fct       n
-        <fct> <int>
-      1 no      275
-      2 yes      14
+      $counts
+      $counts$incorporate
+      [
+        {
+          "f": "large",
+          "n": 3
+        },
+        {
+          "f": "collapse",
+          "n": 1
+        },
+        {
+          "f": "other_ml",
+          "n": 1
+        }
+      ] 
+      
+      $counts$clash
+      [
+        {
+          "f": "other_ml",
+          "n": 3
+        },
+        {
+          "f": "collapse1",
+          "n": 1
+        },
+        {
+          "f": "collapse2",
+          "n": 1
+        }
+      ] 
       
       
-      $low_freq$overall_min
-      angina_pectoris 
-                   14 
-      
-      $low_freq$finding
+      $finding
       [1] TRUE
       
-      $low_freq$threshold
-      [1] 15
-      
-      $low_freq$check
-      [1] "check_freq()"
-      
-      
-      $other
-      $other$vars
-      character(0)
-      
-      $other$counts
-      named list()
-      
-      $other$finding
-      [1] FALSE
-      
-      $other$class
+      $class
       [1] "other_ml"
       
-      $other$check
+      $check
       [1] "check_other_class()"
-      
-      
-      $missing
-      $missing$vars
-      character(0)
-      
-      $missing$prop_missing
-      named numeric(0)
-      
-      $missing$finding
-      [1] FALSE
-      
-      $missing$threshold
-      [1] 0.8
-      
-      $missing$check
-      [1] "check_non_missing()"
-      
-      
-      $count
-      $count$vars
-      [1] "AGE"   "BPDIA" "BPSYS" "HR"   
-      
-      $count$finding
-      [1] TRUE
-      
-      $count$threshold
-      [1] 30
-      
-      $count$check
-      [1] "check_count()"
-      
       
 
