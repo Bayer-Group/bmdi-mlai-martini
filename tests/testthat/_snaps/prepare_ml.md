@@ -1,3 +1,28 @@
+# prepare_ml(check_feature) works
+
+    Code
+      prepare_ml(feature = martini_feat, outcome = martini_outc_class, check_feature = FALSE)
+    Message
+      # Object of class 'martini_ml' with classification outcome .out
+      
+      -- Data set sizes (n x p) 
+    Output
+                  $train   $test
+      data$raw  216 x 27 73 x 27
+      data$prep 216 x 26 73 x 26
+    Message
+      
+      -- (parametrized) Recipe Steps 
+    Output
+      * filter_missing
+      * log_skewness
+      * impute_knn
+      * nzv
+      * normalize
+      * corr_keep
+      * other2
+      cli-29783-132
+
 # prepare_ml() snapshots content/print
 
     Code
