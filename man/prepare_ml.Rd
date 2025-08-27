@@ -35,7 +35,7 @@ prepare_ml(
   outlier_ctrl = list(coef = 3),
   custom_recipe = NULL,
   prep_recipe = NULL,
-  quiet = TRUE,
+  quiet = FALSE,
   check_feature = TRUE
 )
 }

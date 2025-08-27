@@ -10,8 +10,7 @@ check_feature(
   check_other = TRUE,
   check_missing = TRUE,
   check_count = TRUE,
-  quiet = TRUE,
-  verbose = TRUE,
+  quiet = FALSE,
   thres_count = 30,
   thres_low_freq = NULL,
   thres_missing = NULL,
@@ -24,10 +23,7 @@ check_feature(
 \item{check_low_freq, check_other, check_missing, check_count}{logicals to control which checks to include. All default to TRUE.}
 
 \item{quiet}{logical controlling whether any informative messages are
-printed to the console}
-
-\item{verbose}{TRUE by default, FALSE results in messages used for
-\code{\link[=prepare_ml]{prepare_ml()}}}
+printed to the console. Defaults to FALSE.}
 
 \item{thres_count}{\code{\link[=check_count]{check_count()}}}
 
