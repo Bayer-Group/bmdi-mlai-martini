@@ -275,7 +275,7 @@ prepare_ml <- function(
   custom_recipe  = NULL,
   prep_recipe    = NULL,
   
-  quiet          = TRUE, 
+  quiet          = FALSE, 
   check_feature  = TRUE
     
 ) {
@@ -378,12 +378,11 @@ prepare_ml <- function(
   }
   
   # FEATURE ####
-  if(check_feature){
+  if (check_feature) {
     res_check_feat <- check_feature(
       feature,
-      quiet = TRUE
+      quiet = FALSE
     )
-    
   }
   
   # MERGE OUTCOME AND FEATURE  ####
