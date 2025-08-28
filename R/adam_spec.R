@@ -106,8 +106,8 @@ adam_spec <- function(
       '\nThe following domain(s) specified in ', '`add_bds`',
       ' were not found in ', '`path`', ':\n  ',
       paste(setdiff(add_bds, file_info$domain), collapse = ', ') %>% 
-        crayon::bold() %>%  
-        crayon::blue()
+        cli::style_bold() %>%  
+        cli::col_blue()
     ))
   }
   
@@ -117,8 +117,8 @@ adam_spec <- function(
       '\nThe following domain(s) specified in ', '`add_occds`',
       ' were not found in ', '`path`', ':\n  ',
       paste(setdiff(add_occds, file_info$domain), collapse = ', ') %>% 
-        crayon::bold() %>%  
-        crayon::blue()
+        cli::style_bold() %>%  
+        cli::col_blue()
     ))
   }
   

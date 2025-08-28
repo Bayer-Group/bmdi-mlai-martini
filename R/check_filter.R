@@ -69,7 +69,7 @@ check_filter <- function(
       
       # user note
       if(overall_norow){
-        usethis::ui_warn(crayon::bgMagenta(crayon::white(
+        usethis::ui_warn(cli::bg_magenta(cli::col_white(
           paste0(
             ifelse(!is.null(data_id), paste0(data_id, ': '), ''), 
             'The combination of all applicable filters yields an empty tibble.'

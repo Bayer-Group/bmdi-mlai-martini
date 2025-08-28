@@ -104,8 +104,8 @@ adam_domain_type <- function(
 
     if( ! dir.exists(path) && ! file.exists(path)){
       usethis::ui_stop(paste0(
-        crayon::silver("The provided path does not exist. \n\t "), 
-        crayon::blue(path)
+        cli::col_silver("The provided path does not exist. \n\t "), 
+        cli::col_blue(path)
       ))
     }
       
@@ -140,7 +140,7 @@ adam_domain_type <- function(
       
     # ... check selection options ###
     if( !is.null(keep) && !is.null(drop) ){
-      usethis::ui_info(crayon::silver( 
+      usethis::ui_info(cli::col_silver( 
         "Please specify only one of 'keep' or 'drop'. Only 'keep' will be used for subsetting here. \n\t " 
        ))
     }
@@ -174,11 +174,11 @@ adam_domain_type <- function(
     if(length(doms_ignored) > 0 && !quiet){
       cat('\n')
       usethis::ui_info( paste0(
-        crayon::silver(
+        cli::col_silver(
           'The following domains were not processed as they are currently not in the library: \n  '
         ), 
-        crayon::blue(paste(doms_ignored, collapse = ', ')) %>% crayon::bold(),
-        crayon::silver(sep = '',
+        cli::col_blue(paste(doms_ignored, collapse = ', ')) %>% cli::style_bold(),
+        cli::col_silver(sep = '',
           '\nYou may consider using the ', usethis::ui_code('add_bds'),
           ' argument in ', usethis::ui_code('adam_spec()'),
           ' to add bds-type data.\n'

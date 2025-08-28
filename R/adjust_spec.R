@@ -29,7 +29,7 @@ adjust_spec <- function(
   stopifnot(inherits(spec, what =  "martini_spec"))
   
   if (!entry %in% names(spec)) usethis::ui_stop(
-    crayon::magenta(
+    cli::col_magenta(
       paste0("No spec with the name ", usethis::ui_code(entry), " available.") 
     )
   )

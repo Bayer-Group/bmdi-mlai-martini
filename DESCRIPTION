@@ -23,7 +23,6 @@ Depends:
     R (>= 4.1)
 Imports:
     cli,
-    crayon,
     dplyr (>= 1.0.0),
     forcats,
     fs,

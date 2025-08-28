@@ -851,8 +851,8 @@ prepare_ml_data_split <- function(
     # extend strata variable by treatment
     if (strata_trt) {
       if (! ".trt" %in% colnames(data)) {
-        usethis::ui_info(crayon::silver(paste(
-          "No treatment variable was detected in the data set.", 
+        usethis::ui_info(cli::col_silver(paste(
+          "No treatment variable '.trt' was detected in the data set.", 
           "Argument strata_trt was set to TRUE but will be ignored.")))
       } else {
         data <- data %>% 
