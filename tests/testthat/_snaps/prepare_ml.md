@@ -1,15 +1,16 @@
 # prepare_ml(check_feature) works
 
     Code
-      prepare_ml(feature = martini_feat, outcome = martini_outc_class, check_feature = FALSE)
+      prepare_ml(feature = martini_feat, outcome = martini_outc_class, check_feature = FALSE,
+        train_prop = 3 / 4)
     Message
       # Object of class 'martini_ml' with classification outcome .out
       
       -- Data set sizes (n x p) 
     Output
                   $train   $test
-      data$raw  216 x 27 73 x 27
-      data$prep 216 x 26 73 x 26
+      data$raw  215 x 27 74 x 27
+      data$prep 215 x 25 74 x 25
     Message
       
       -- (parametrized) Recipe Steps 
@@ -21,7 +22,7 @@
       * normalize
       * corr_keep
       * other2
-      cli-29783-132
+      <cli-12345-678>
 
 # prepare_ml() snapshots content/print
 

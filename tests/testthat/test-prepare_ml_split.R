@@ -1,32 +1,43 @@
 
 test_that("prepare_ml_split() creates the same structure like prepare_ml()", {
+  # prepare_ml_split() creates the same structure like prepare_ml() ####
   
-  # reference object
-  d_ml <- prepare_ml(
+  # reference object 
+  d_ml_1 <- prepare_ml(
     feature = martini_feat,
     outcome = martini_outc_class, 
     seed    = 1314
   )
+  d_ml_075 <- prepare_ml(
+    feature = martini_feat,
+    outcome = martini_outc_class, 
+    seed    = 1314,
+    train_prop = 3/4
+  )
   
   # split object
   split_by   <- "RACE"
-  d_ml_split <- prepare_ml_split(d_ml, by = split_by)
-  
-  d_ml_split <- prepare_ml_split(d_ml)
+  d_ml_split <- prepare_ml_split(d_ml_1, by = split_by)
   
   for (i in length(d_ml_split)){
     
     expect_equal(
       names(d_ml_split[[i]]),
-      names(d_ml)
+      names(d_ml_1)
+    )
+    expect_equal(
+      names(d_ml_split[[i]]),
+      names(d_ml_075)
     )
     
   }
   
+  
 })
 
 test_that("prepared data in split objects contains all variables except for the split variable", {
-
+  # prepared data in split objects contains all variables except for the split variable ####
+  
   # reference object
   d_ml <- prepare_ml(
     feature = martini_feat,
@@ -94,6 +105,7 @@ test_that("prepared data in split objects contains all variables except for the 
 })
 
 test_that("by variable removed from formulae", {
+  # by variable removed from formulae ####
   
   # reference object
   d_ml <- prepare_ml(
@@ -125,12 +137,14 @@ test_that("by variable removed from formulae", {
 )
 
 test_that("subjects split is correct", {
+  # subjects split is correct ####
   
   # reference object
   d_ml <- prepare_ml(
     feature = martini_feat,
     outcome = martini_outc_class, 
-    seed    = 1314
+    seed    = 1314, 
+    train_prop = 3/4
   )
   
   # split object

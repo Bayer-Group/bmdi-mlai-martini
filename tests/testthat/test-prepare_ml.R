@@ -351,6 +351,7 @@ test_that("repeated measurement implementation works", {
 })
 
 test_that("prepare_ml(check_feature) works", {  
+  # prepare_ml(check_feature) works ####
   
   expect_message(
     p <- prepare_ml(
@@ -358,7 +359,7 @@ test_that("prepare_ml(check_feature) works", {
       outcome = martini_outc_class, 
       check_feature = TRUE
     ), 
-    "Potential issues were identified"
+    "No issues were detected"
   )
   
   expect_message(
@@ -367,18 +368,22 @@ test_that("prepare_ml(check_feature) works", {
       outcome = martini_outc_class, 
       check_feature = TRUE
     ), 
-    "Potential issues were identified"
+    "No issues were detected"
   )
   
   expect_snapshot(
     prepare_ml(
       feature = martini_feat,
       outcome = martini_outc_class, 
-      check_feature = FALSE
-    )
+      check_feature = FALSE,
+      train_prop = 3/4
+    ),
+    transform = hide_cli_id
   )
   
 })
+
+
 
 # test_that("prepare_ml(custom_recipe) works", {  
 #   
@@ -463,7 +468,8 @@ test_that("prepare_ml() snapshots content/print", {
     prep_step_dummy     = FALSE,
     prep_step_normalize = FALSE,
     vars_imp_ignore     = ".trt",
-    seed                = 2231
+    seed                = 2231,
+    train_prop          = 3/4
   )
   
   # remove file path information in console output (will be a different tmp file path each time the test is run)
@@ -498,7 +504,8 @@ test_that("prepare_ml() snapshots content/print", {
     prep_step_dummy     = FALSE,
     prep_step_normalize = FALSE,
     vars_imp_ignore     = ".trt",
-    seed                = 2231
+    seed                = 2231,
+    train_prop          = 3/4
   )
   
   # remove file path information in console output (will be a different tmp file path each time the test is run)
@@ -523,7 +530,8 @@ test_that("prepare_ml() snapshots content/print", {
     prep_step_dummy     = FALSE,
     prep_step_normalize = FALSE,
     vars_imp_ignore     = ".trt",
-    seed                = 2231
+    seed                = 2231, 
+    train_prop          = 3/4
   )
   
   # remove file path information in console output (will be a different tmp file path each time the test is run)

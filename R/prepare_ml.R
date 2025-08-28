@@ -35,12 +35,10 @@
 #'preparation. Please refer to the details section to learn about the 
 #'individual recipe steps.
 #'@param train_prop the proportion of data to be used for the training set. 
-#'Has to be in \[0.5;1.0\]. Defaults to 3/4, keeping a quarter of the data 
-#'for testing.
+#'Has to be in \[0.5;1.0\]. Defaults to 1, making use of the full data set.
 #'@param strata_trt boolean. Expand default stratum variable (\code{.out} 
 #'for classification, \code{.status} for tte, \code{NULL} for regression)
-#'by trt (if character, else ignored). Defaults to FALSE, but is highly 
-#'recommended to be set to TRUE.
+#'by trt (if character, else ignored). Defaults to TRUE.
 #'@param seed optionally set a seed before the data splitting. 
 #'@param prep_step_log,prep_step_knnimpute,prep_step_normalize,prep_step_corr,prep_step_dummy
 #'logicals determining whether or not the corresponding step function should 
@@ -242,8 +240,8 @@ prepare_ml <- function(
   outcome,
   outcome_name = NULL,
   level_order  = NULL,
-  train_prop   = 3 / 4,
-  strata_trt   = FALSE,
+  train_prop   = 1,
+  strata_trt   = TRUE,
   seed         = 1130, # TODO default to NULL?
   
   prep_step_log       = TRUE,
