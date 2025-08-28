@@ -5,7 +5,7 @@
     Message
       i Data set was checked for causes for potential downstream issues with ML preparation.
       ! Potential issues were identified.
-      * Run check_freq() and check_count() on the input to `prepare_ml()`'s `feature` to learn more.
+      * Run check_freq() on the input to `prepare_ml()`'s `feature` to learn more.
 
 # check_freq() works
 
