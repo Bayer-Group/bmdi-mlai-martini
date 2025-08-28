@@ -39,7 +39,7 @@ quiet_checks <- TRUE
 out <- list()
 
 # check_freq ####
-if(check_low_freq){
+if (check_low_freq) {
   out$low_freq <- check_freq(x, thres = thres_low_freq, quiet = quiet_checks)
 } else {
   out$low_freq <- list(NULL)

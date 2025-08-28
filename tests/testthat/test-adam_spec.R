@@ -1,5 +1,5 @@
 test_that("adam_spec() works", {
-  
+  # adam_spec() works ####
   ads_path <- test_path('sas/')
   
   ads_spec     <- adam_spec(ads_path, attach_data = TRUE)
@@ -12,8 +12,13 @@ test_that("adam_spec() works", {
   
 })
 
-
-
+test_that("info_filter() works", {
+  
+  expect_snapshot(
+    info_filter(martini_spec)
+  )
+  
+})
 
 test_that("adam_spec add_bds / add_occds", {
   
