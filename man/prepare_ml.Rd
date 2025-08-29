@@ -53,7 +53,8 @@ regression or classification. For survival and repeated measurements analysis
 to be specified, \code{c(.time = "<time-coln>", .status = "<status-coln>")}
 for survival and
 \code{c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")}
-for repeated measurements, resp. See Details section.}
+for repeated measurements (\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}),
+resp. See Details section.}
 
 \item{level_order}{level order for a classification outcome.
 Default \code{NULL} keeps the natural order (only used for classification).}

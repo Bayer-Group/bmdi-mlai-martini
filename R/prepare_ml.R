@@ -25,7 +25,8 @@
 #'to be specified, `c(.time = "<time-coln>", .status = "<status-coln>")` 
 #'for survival and 
 #'`c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")` 
-#'for repeated measurements, resp. See Details section.
+#'for repeated measurements (`r lifecycle::badge("experimental")`),
+#' resp. See Details section.
 #'@param level_order level order for a classification outcome.
 #' Default \code{NULL} keeps the natural order (only used for classification).
 #'@param prep_recipe `r lifecycle::badge("deprecated")` Please use `custom_recipe`
@@ -293,6 +294,14 @@ prepare_ml <- function(
       what = "prepare_ml(prep_recipe)", 
       details = "Please use argument `custom_recipe` instead."
     )
+  }
+  
+  if (!missing(strata_trt) && !".trt" %in% colnames(feature) && strata_trt) {
+    cli::cli_inform(cli::col_silver(paste(
+        "No treatment variable '.trt' was detected in the data set.", 
+        "Argument `strata_trt` was set to TRUE but will be ignored."
+    )))
+    strata_trt <- FALSE
   }
   
   # argument checks
@@ -845,20 +854,12 @@ prepare_ml_data_split <- function(
       # anyways to make it extendable by strata_trt = TRUE
       {if (outcome_mode == "regression") {
         dplyr::mutate(., .strata = "")
-      } else {.}
-      }
-    
-    # extend strata variable by treatment
-    if (strata_trt) {
-      if (! ".trt" %in% colnames(data)) {
-        usethis::ui_info(cli::col_silver(paste(
-          "No treatment variable '.trt' was detected in the data set.", 
-          "Argument strata_trt was set to TRUE but will be ignored.")))
-      } else {
-        data <- data %>% 
-          dplyr::mutate(.strata = paste0(.strata, .trt, sep = "_"))
-      }  
-    }
+      } else {.}} %>% 
+      
+      # extend strata variable by treatment
+      {if (strata_trt) {
+        dplyr::mutate(., .strata = paste0(.strata, .trt, sep = "_"))
+      } else {.}}
     
     if (!c(".rmtime") %in% names(data)) {
       

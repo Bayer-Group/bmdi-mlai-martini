@@ -24,7 +24,7 @@ defaults to NULL, in which case no filters are applied.}
 \item{quiet}{whether to suppress messaging in the console. defaults to FALSE.}
 
 \item{no_char, no_num}{values that code for 'no' in pre-specified list of
-events. defaults to \code{N} and \code{1} for character and numeric variables, resp.}
+events. defaults to \code{N} and \code{0} for character and numeric variables, resp.}
 }
 \value{
 invisibly returns character vector of potentially problematic columns.

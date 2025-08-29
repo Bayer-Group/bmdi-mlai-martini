@@ -4,11 +4,11 @@ test_that("check_feature() works", {
   # on package data: martini_feat
   res_pkg_feat <- check_feature(martini_feat, thres_low_freq = 15)
   
-  
   #expect_invisible(check_feature(martini_feat, thres_low_freq = 15))
   
   expect_snapshot(
-    check_feature(martini_feat, thres_low_freq = 15)
+    check_feature(martini_feat, thres_low_freq = 15) %>% 
+      purrr::modify_tree(leaf = tibble_to_JSON)
   )
 })
 
@@ -120,7 +120,7 @@ test_that("check_other_class() works", {
   
   expect_message(
     x <- check_other_class(df), 
-    "column incorporate and clash"
+    "columns incorporate and clash"
   )
   
   expect_snapshot(
@@ -129,7 +129,7 @@ test_that("check_other_class() works", {
   
 })
 
-test_that("check_non-missing() works", {
+test_that("check_non_missing() works", {
   # check_non_missing() works ####
 
   n <- 10
@@ -141,10 +141,12 @@ test_that("check_non-missing() works", {
   )
   # p <- 0.8; rep(NA, (n*(1-p))); rep(NA, n*(1-0.8)); (1-0.8); rep(NA, (n*.2))
   
-  res_check <- check_non_missing(
-    df,
-    thres = NULL,
-    quiet = FALSE
+  expect_message(
+    res_check <- check_non_missing(
+      df,
+      thres = NULL,
+      quiet = FALSE
+    )
   )
   
   rcp_raw <- recipes::recipe(x = df) %>% 
@@ -153,7 +155,7 @@ test_that("check_non-missing() works", {
       recipes::all_predictors()
     )
   rcp_prepped <- prep(rcp_raw, training = df)
-  rcp_prepped
+  #rcp_prepped
   df_baked <- recipes::bake(rcp_prepped, new_data = df)
   
   # for reference: step_filter_missing() works as expected
@@ -183,11 +185,13 @@ test_that("check_count() works", {
     guess_count = withr::with_seed(1344, sample(1:threshold, n, replace = TRUE))
   )
   
-  res_check <- check_count(
-    df,
-    thres   = threshold,
-    non_neg = TRUE,
-    quiet   = FALSE
+  expect_message(
+    res_check <- check_count(
+      df,
+      thres   = threshold,
+      non_neg = TRUE,
+      quiet   = FALSE
+    )
   )
   
   expect_setequal(

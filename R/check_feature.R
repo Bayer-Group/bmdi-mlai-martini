@@ -51,14 +51,14 @@ if (check_low_freq) {
 if (check_other) {
   out$other <- check_other_class(x, other2_class = NULL, quiet = quiet_checks)
 } else {
-  out$other <- NULL
+  out$other <- list(NULL)
 } 
 
 # proportion NA ####
 if (check_missing) { 
   out$missing <- check_non_missing(x, thres = thres_missing, quiet = quiet_checks)
 } else {
-  out$missing <-  NULL
+  out$missing <-  list(NULL)
 }
 
 # 
@@ -66,7 +66,7 @@ if (check_missing) {
 if (check_count) {
   out$count <- check_count(x, thres = thres_count, quiet = quiet_checks)
 } else {
-  out$count <-  NULL
+  out$count <-  list(NULL)
 }
 
 
@@ -245,7 +245,7 @@ check_other_class <- function(
     
     cli::cli_inform(c(
       "Low frequency classes may be pooled during ML data prep into a class {other2_class} in {.fn prepare_ml}.",
-      "i" = "Note that {other2_class} is already a value in column{?s} {cols_with_class_other2}.",
+      "i" = "Note that {other2_class} is already a value in {cli::qty(cols_with_class_other2)}column{?s} {cols_with_class_other2}.",
       "*" = "See {.fn step_other2} for details on downstream processing and modify your data as needed before proceeding."
     ))
     
