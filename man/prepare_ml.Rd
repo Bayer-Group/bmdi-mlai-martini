@@ -9,12 +9,12 @@ prepare_ml(
   outcome,
   outcome_name = NULL,
   level_order = NULL,
-  train_prop = 3/4,
-  strata_trt = FALSE,
+  train_prop = 1,
+  strata_trt = TRUE,
   seed = 1130,
-  prep_step_normalize = TRUE,
-  prep_step_knnimpute = TRUE,
   prep_step_log = TRUE,
+  prep_step_knnimpute = TRUE,
+  prep_step_normalize = TRUE,
   prep_step_corr = TRUE,
   prep_step_dummy = FALSE,
   thres_log = 2,
@@ -35,7 +35,7 @@ prepare_ml(
   outlier_ctrl = list(coef = 3),
   custom_recipe = NULL,
   prep_recipe = NULL,
-  quiet = TRUE,
+  quiet = FALSE,
   check_feature = TRUE
 )
 }
@@ -53,23 +53,22 @@ regression or classification. For survival and repeated measurements analysis
 to be specified, \code{c(.time = "<time-coln>", .status = "<status-coln>")}
 for survival and
 \code{c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")}
-for repeated measurements, resp. See Details section.}
+for repeated measurements (\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}),
+resp. See Details section.}
 
 \item{level_order}{level order for a classification outcome.
 Default \code{NULL} keeps the natural order (only used for classification).}
 
 \item{train_prop}{the proportion of data to be used for the training set.
-Has to be in [0.5;1.0]. Defaults to 3/4, keeping a quarter of the data
-for testing.}
+Has to be in [0.5;1.0]. Defaults to 1, making use of the full data set.}
 
 \item{strata_trt}{boolean. Expand default stratum variable (\code{.out}
 for classification, \code{.status} for tte, \code{NULL} for regression)
-by trt (if character, else ignored). Defaults to FALSE, but is highly
-recommended to be set to TRUE.}
+by trt (if character, else ignored). Defaults to TRUE.}
 
 \item{seed}{optionally set a seed before the data splitting.}
 
-\item{prep_step_knnimpute, prep_step_log, prep_step_normalize, prep_step_corr, prep_step_dummy}{logicals determining whether or not the corresponding step function should
+\item{prep_step_log, prep_step_knnimpute, prep_step_normalize, prep_step_corr, prep_step_dummy}{logicals determining whether or not the corresponding step function should
 be included in the recipe, possibly specified further using additional
 parameters (\verb{thres_*}, \code{log_base}, \code{one_hot}). Please refer to the details
 section for the full list of recipe steps.}
@@ -116,7 +115,7 @@ variables will be removed. Removal is documented in \code{removed$rows}.}
 treated as an explicit factor level. Defaults to NULL.}
 
 \item{vars_ordinalscore}{column names of ordinal factor variables to be
-converted into numeric scores. Defaults to NULL.}
+converted into numeric scores (using \code{as.numeric()}). Defaults to NULL.}
 
 \item{vars_keep_corr}{choose these variables over other options when removing
 variables due to high correlation in \code{recipes::step_corr()}.
@@ -137,7 +136,7 @@ hot encoding over dummy encoding}
 for details on how outliers are removed from outcome variables.
 \code{outlier_remove} defaults to FALSE, \code{outlier_ctrl} to \code{list(coef = 3)}.}
 
-\item{custom_recipe}{custom, pre-defined \code{recipes::recipe()} that may be
+\item{custom_recipe}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} custom, pre-defined \code{recipes::recipe()} that may be
 provided for data preparation. Defaults to NULL, yielding {{martini}}'s default
 preparation (please refer to the details section to learn about the
 default recipe steps).}

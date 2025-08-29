@@ -62,7 +62,7 @@ info_filter <- function(
       ) 
     
     txt_applied <- tibble_applied %>% 
-      dplyr::mutate_at('name', ~crayon::col_align(paste0(.x, ':'), width = max(nchar(.x))+1)) %>% 
+      dplyr::mutate_at('name', ~pillar::align(paste0(.x, ':'))) %>% 
       tidyr::unite(txt, name, filter, sep = ' ') %>% 
       dplyr::pull(txt)
     

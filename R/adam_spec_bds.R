@@ -306,7 +306,7 @@ if(FALSE){
           
           if (length(choices) == 0 && i %in% col_required){
             # add 'domain' for information when used within adam_spec()
-            usethis::ui_info(crayon::silver(paste0(
+            usethis::ui_info(cli::col_silver(paste0(
               'AD', domain, ": No column could be identified to be used as ", i, ". No spec will be provided.\n")))
             return(NULL)
           }
@@ -356,7 +356,7 @@ if(FALSE){
     purrr::iwalk(col_select, ~{
       if (!is.null(.x) && (length(intersect(.x, coln_bds)) == 0)) {
         
-        usethis::ui_stop(crayon::silver(paste0(
+        usethis::ui_stop(cli::col_silver(paste0(
           "The ", usethis::ui_code(.y), " column '", .x, "' is not available in the data set.\n")))
       }
     })

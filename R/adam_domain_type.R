@@ -53,13 +53,15 @@ adam_domain_type <- function(
   
   
   ambiguous_add <- intersect(add_bds, add_occds)
-  if (length(ambiguous_add) != 0) {
-    cli::cli_abort(c(
-      "i" = "Additional domains can be added to either {.arg add_bds} or {.arg add_occds}.",
-      "!" = "{ambiguous_add} {?was/were} defined in both {.arg add_bds} and {.arg add_occds}."
-    ))
+  if (length(ambiguous_add) > 0) {
+    cli::cli_abort(
+      c(
+        "x" = "The following domain{?s} {?was/were} specified to be added as both bds and occds: {ambiguous_add}.",
+        "*" = "Please check your input to {.fun prepare_ml} arguments {.arg add_bds} and {.arg add_occds}."
+      ))
   }
   
+
   # define look-up table ####
   # library of data sets to be processed automatically
   
@@ -102,8 +104,8 @@ adam_domain_type <- function(
 
     if( ! dir.exists(path) && ! file.exists(path)){
       usethis::ui_stop(paste0(
-        crayon::silver("The provided path does not exist. \n\t "), 
-        crayon::blue(path)
+        cli::col_silver("The provided path does not exist. \n\t "), 
+        cli::col_blue(path)
       ))
     }
       
@@ -138,15 +140,15 @@ adam_domain_type <- function(
       
     # ... check selection options ###
     if( !is.null(keep) && !is.null(drop) ){
-      usethis::ui_info(crayon::silver( 
+      usethis::ui_info(cli::col_silver( 
         "Please specify only one of 'keep' or 'drop'. Only 'keep' will be used for subsetting here. \n\t " 
        ))
     }
       
-    if (!is.null(keep)){
-        # strip file extension, in case the user provided the file name instead of domain
-        keep      <- stringr::str_remove(keep, paste(file_ext, collapse = '|'))
-        file_info <- file_info %>% dplyr::filter( domain %in% keep)
+    if (!is.null(keep)) {
+      # strip file extension, in case the user provided the file name instead of domain
+      keep        <- stringr::str_remove(keep, paste(file_ext, collapse = '|'))
+      file_info   <- file_info %>% dplyr::filter(domain %in% c(keep, add_bds, add_occds))
     } else {
       if(!is.null(drop)){
         drop      <- stringr::str_remove(drop, paste(file_ext, collapse = '|'))
@@ -172,17 +174,17 @@ adam_domain_type <- function(
     if(length(doms_ignored) > 0 && !quiet){
       cat('\n')
       usethis::ui_info( paste0(
-        crayon::silver(
+        cli::col_silver(
           'The following domains were not processed as they are currently not in the library: \n  '
         ), 
-        crayon::blue(paste(doms_ignored, collapse = ', ')) %>% crayon::bold(),
-        crayon::silver(sep = '',
-          '\nYou may consider using the ', usethis::ui_code('add_bds'),
+        cli::col_blue(paste(doms_ignored, collapse = ', ')) %>% cli::style_bold(),
+        cli::col_silver(sep = '',
+          '\nYou may consider using the ', 
+          usethis::ui_code('add_bds'), '/' , usethis::ui_code('add_occds'),
           ' argument in ', usethis::ui_code('adam_spec()'),
-          ' to add bds-type data.\n'
+          ' to process the data sets.\n'
         )
       ))
-      cat('\n')
     }
       
     attr(file_info, 'unknown_domains') <- doms_ignored

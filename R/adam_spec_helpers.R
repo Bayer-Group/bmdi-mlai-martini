@@ -499,59 +499,71 @@ import_info <- function(
   
 }
 
-#' Check for non-constant --OCCUR column in occds
+#' Check for 'N' values in --OCCUR column in occds
 #'
 #' @param data data set to check
 #' @param domain name of data set
 #' @param filters filters to be applied before checking for issues. 
 #' defaults to NULL, in which case no filters are applied.
+#' @param quiet whether to suppress messaging in the console. defaults to FALSE.
+#' @param no_char,no_num values that code for 'no' in pre-specified list of 
+#' events. defaults to `N` and `0` for character and numeric variables, resp.
 #'
-#' @return nothing is returned if no potential issues were detected. 
-#' If domain is adcm or admh, invisibly returns the suggested filter.
+#' @return invisibly returns character vector of potentially problematic columns. 
+#' (Invisible) return value has length 0 if no problems were detected.
 #'
 check_occds_occur <-  function(
     data, 
-    domain, 
-    filters = NULL
+    domain = NULL, 
+    filters = NULL,
+    quiet = FALSE, 
+    no_char = "N",
+    no_num = 0
   ){
+  
   occur_columns <- stringr::str_detect(
     string = colnames(data),
-    pattern = "^..OCCUR$",
-  ) %>% 
-  which()
+    pattern = "^.{1,3}(?i)occurN?(?-i)$",
+  ) %>%
+  purrr::set_names(colnames(data)) %>%
+  purrr::keep(isTRUE) %>% 
+  names()
 
-if (length(occur_columns) > 0) {
-  names_not_unique <- data %>% 
-    dplyr::filter(!!! rlang::parse_exprs(filters)) %>% 
-    dplyr::select(occur_columns) %>% 
-    purrr::imap_lgl(~dplyr::n_distinct(.x) > 1) %>% # also sensitive to sas missing values ''
+  if (length(occur_columns) == 0) {
+    return(invisible(character()))
+  }
+  contains_N <- data %>% 
+    # TODO filter check?
+    {if (!is.null(filters)) {
+      dplyr::filter(., !!! rlang::parse_exprs(filters))
+    } else {.}
+    } %>% 
+    dplyr::select(tidyselect::any_of(occur_columns)) %>% 
+    # values to keep: 'Y' or missing (not predefined)
+    purrr::imap_lgl(
+      ~ {if(is.character(.x)) any(.x == no_char) else any(.x == no_num)}
+    ) %>%
     purrr::keep(isTRUE) %>% 
     names()
   
-  confident_guess  <- stringr::str_to_lower(domain) %in% c("adcm", "admh") 
+  if (length(contains_N) > 0 && !quiet) {
+    
+    filter_suggested <- "--OCCUR == 'Y' | is.na(--OCCUR)"
+    
+    cli::cli_inform(c(
+      "i" = cli::col_silver(paste0(
+        "{if(!is.null(domain)) paste0(stringr::str_to_lower(domain), ': ')}", 
+        "{cli::qty(contains_N)}The column{?s} {contains_N} contain{?s/} {no_char}/{as.character(no_num)} values", 
+        ifelse(length(filters) > 0, " after using applicable filters", ""),
+        ".")),
+      "*" = cli::col_silver(paste0(
+        "Please check if an additional filter is required",
+        " such as {.code ", filter_suggested, "}."
+      ))
+    ))
+  }
   
-  if(confident_guess){
-    filter_suggested <- domain %>% 
-      stringr::str_to_lower() %>% 
-      stringr::str_remove('^ad') %>% 
-      stringr::str_to_upper() %>% 
-      paste0("OCCUR == 'Y'")
-  }else NULL
-  
-  cli::cli_inform(c(
-    "i" = paste0(
-      "{stringr::str_to_lower(domain)}: The column{?s} {names_not_unique} ha{?s/ve} at least two distinct values", 
-      ifelse(length(filters) > 0, " after using applicable filters", ""),
-      "."),
-    "*" = paste0(
-      "Please check if an additional filter is required",
-      ifelse(confident_guess, paste0(" such as ", filter_suggested, '')),
-      ".")
-  ))
-  
-  if (!is.null(confident_guess)) {invisible(confident_guess)}
-  
-}
+  invisible(contains_N)
 }
 
 

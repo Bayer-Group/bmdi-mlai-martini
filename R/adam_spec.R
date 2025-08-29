@@ -106,8 +106,8 @@ adam_spec <- function(
       '\nThe following domain(s) specified in ', '`add_bds`',
       ' were not found in ', '`path`', ':\n  ',
       paste(setdiff(add_bds, file_info$domain), collapse = ', ') %>% 
-        crayon::bold() %>%  
-        crayon::blue()
+        cli::style_bold() %>%  
+        cli::col_blue()
     ))
   }
   
@@ -117,8 +117,8 @@ adam_spec <- function(
       '\nThe following domain(s) specified in ', '`add_occds`',
       ' were not found in ', '`path`', ':\n  ',
       paste(setdiff(add_occds, file_info$domain), collapse = ', ') %>% 
-        crayon::bold() %>%  
-        crayon::blue()
+        cli::style_bold() %>%  
+        cli::col_blue()
     ))
   }
   
@@ -147,7 +147,7 @@ adam_spec <- function(
   
   # bds spec ####
   
-  if ( any(file_info$type == "bds") ){
+  if (any(file_info$type == "bds")) {
     
     files_bds <- file_info %>% 
       dplyr::filter(type == "bds") %>% 
@@ -166,7 +166,7 @@ adam_spec <- function(
   
   # occds spec ####
   
-  if ( any(file_info$type == "occds") ){
+  if (any(file_info$type == "occds")) {
     
     files_occds <- file_info %>% 
       dplyr::filter(type == "occds") %>% 

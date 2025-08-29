@@ -1,28 +1,17 @@
-
-
-# check for low freq factors: check_freq()
-# check for category 'other_ml' (default step_other2())
-# skewed variables / extreme outliers: skw(na.rm = TRUE) / refactor prepare_ml_outcome()
-# proportion NA
-# check for potential ordinalscore variable
-
-# guess count variable, suggest providing names in vars_no_trafo if they should be excluded from log trafo and normalization
-
-
 #' check feature matrix
 #' 
 #' Running `check_feature()` is by default run in [prepare_ml()] on the 
-#' input `feature` to notify the user on sources of potential issues
+#' input `feature` to notify the user on sources of potential issues. 
 #' 
 #'
 #' @param x feature matrix to check, such as the output of [build()].
-#' @param check_low_freq,check_other,check_NA,check_count 
+#' @param check_low_freq,check_other,check_missing,check_count 
 #' logicals to control which checks to include. All default to TRUE.
 #' @param quiet logical controlling whether any informative messages are 
-#' printed to the console
-#' @param verbose TRUE by default, FALSE results in messages used for 
-#' [prepare_ml()]
-#' @param thres_count_distinct check_count
+#' printed to the console. Defaults to FALSE.
+#' @param thres_count [check_count()]
+#' @param thres_low_freq passed to [check_freq()]
+#' @param thres_missing passed to [check_non_missing()]
 #' @param ... arguments to be passed to other methods
 #'
 #'
@@ -36,133 +25,352 @@ check_feature <- function(
   x,
   check_low_freq = TRUE,
   check_other    = TRUE,
-  check_NA       = TRUE,
+  check_missing  = TRUE,
   check_count    = TRUE,
-  quiet          = TRUE,
-  verbose        = TRUE,
-  thres_count_distinct = 30,
+  quiet          = FALSE,
+  thres_count    = 30,
+  thres_low_freq = NULL,
+  thres_missing  = NULL,
   ...
 ){
   
 
-all_args <- rlang::dots_list(..., .homonyms = "error")
-  
+quiet_checks <- TRUE
 out <- list()
 
 # check_freq ####
-if(check_low_freq){
-  # args_check_freq_default <- args(check_freq) %>% 
-  #   as.list() %>% 
-  #   head(-1) 
-  # # $x, $thres 100
-  # args_check_freq <- args_check_freq_default %>% 
-  #  purrr::list_modify(all_args %>% purrr::keep_at(names(args_check_freq_default)))
-  
-  out$low_freq <- check_freq(x)
+if (check_low_freq) {
+  out$low_freq <- check_freq(x, thres = thres_low_freq, quiet = quiet_checks)
 } else {
   out$low_freq <- list(NULL)
 }
 
-# skewness ####
-if(FALSE){
-# $x, $na.rm FALSE
-cols_skewness <- x %>% 
-  dplyr::select(dplyr::where(is.numeric)) %>% 
-  purrr::map_dbl(~skw(.x, na.rm = TRUE)) %>% 
-  magrittr::is_greater_than(get_default(prepare_ml, "thres_log")) %>% 
+
+# other_ml ####
+# inform about potentially ambiguous 'other_ml' group 
+if (check_other) {
+  out$other <- check_other_class(x, other2_class = NULL, quiet = quiet_checks)
+} else {
+  out$other <- list(NULL)
+} 
+
+# proportion NA ####
+if (check_missing) { 
+  out$missing <- check_non_missing(x, thres = thres_missing, quiet = quiet_checks)
+} else {
+  out$missing <-  list(NULL)
+}
+
+# 
+# # counts ####
+if (check_count) {
+  out$count <- check_count(x, thres = thres_count, quiet = quiet_checks)
+} else {
+  out$count <-  list(NULL)
+}
+
+
+# RETURN ####
+
+finding_yn <- out %>% 
+  purrr::map(~ {.x$finding %>% purrr::set_names(.x$check)}) %>%
+  unname() %>% 
+  unlist()
+
+checks_finding <- finding_yn %>% 
   purrr::keep(isTRUE) %>% 
   names()
 
-out$log_skewness <- cols_skewness
-
-if (length(cols_skewed) > 0) {
-  cli::cli_inform(c(
-    "Highly skewed variables might be log transformed during ML data prep in {.fn prepare_ml}.",
-    "i" = "By default, columns {cols_skewness} would be subject to log transformation (skewness above {get_default(prepare_ml, 'thres_log')}).",
-    "*" = "See {.fn step_log_skewness} and {.fn prepare_ml}'s arguments {.code prep_step_log} and {.code thres_log} for details."
+if (!quiet) {
+  # build message
+  msg <- c(
+    "i" = "Data set was checked for causes for potential downstream issues with ML preparation."
   )
+  
+  if (length(checks_finding) > 0) {
+    msg <- c(
+      msg, 
+      "!" = "Potential issues were identified.",
+      "*" = "Run {checks_finding} on the input to {.fun prepare_ml}'s {.arg feature} to learn more."
+    )
+  } else {
+    msg <- c(
+      msg, 
+      "v" = "No issues were detected for the particular parameters."
+    )
+  }
+  
+  cli::cli_inform(msg)
+}
+
+invisible(list(
+  summary = finding_yn,
+  details = out
+))
+
+}
+
+#' Identify factors with low frequency classes
+#'
+#' @param x data set to check
+#' @param thres integer. 
+#' Factors with at least one class of size smaller than `thres` will be identified. 
+#' Defaults to NULL, 
+#' @param quiet whether to suppress printing messages to the console.
+#' defaults to FALSE.
+#' @return invisibly returns a list for downstream use in [check_feature()]
+#' 
+#' @details 
+#' If `x` is the output of `\link{prepare_ml}()`, the tibble `x$data$prep$train` is checked for
+#'  factors with at least one low frequency class. 
+#'  Please refer to the package vignette for further details.
+#' 
+#' @export
+#' @section Authors:
+#' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
+
+
+check_freq <- function(
+    x,
+    thres = NULL,
+    quiet = FALSE
+){
+  
+  thres <- thres %||% get_default(step_other2, "threshold")
+  if(thres < 1) thres <- floor(thres * nrow(x))
+  
+  # TODO move to check_feature, keep check_*() for df
+  # output of `\link{prepare_ml}()` or a tibble 
+  # data_check <- if(inherits(x, "martini_ml")) {
+  #   x$data$prep$train
+  # }else if (is.null(x)) {
+  #     cli::cli_abort("Please check your input. Currently NULL.")
+  #   }else if (!is.data.frame(x)) {
+  #     cli::cli_abort("Please check your input. Should be a data frame.")
+  #   }else{
+  #   x
+  # }
+  if (is.null(x)) {
+    cli::cli_abort("Please check your input. Currently NULL.")
+  }else if (!is.data.frame(x)) {
+    cli::cli_abort("Please check your input. Should be a data frame.")
+  }
+  
+  data_check <-x
+  
+  # determine all class distributions
+  fct_counts <- data_check %>% 
+    dplyr::select(dplyr::where(is.factor), dplyr::where(is.character)) %>% 
+    purrr::map(~{
+      tibble::tibble(fct = .x) %>% 
+        dplyr::count(fct, sort = TRUE)
+    }) 
+  
+  # determine size of smallest class per factor
+  min_counts <- fct_counts %>% 
+    purrr::map_int(
+      ~.x %>% dplyr::slice_min(n) %>%  
+        dplyr::pull(n) %>% 
+        unique()
+    )
+  
+  # get names of 'risky' factors
+  risky <- purrr::keep(min_counts, ~{.x < thres}) %>% 
+    names()
+  
+  # determine overall minimum of class sizes (named)
+  overall_min <- if(length(fct_counts) == 0) {
+    NA_integer_
+  } else{
+    min_counts %>% sort() %>% magrittr::extract(1)
+  }
+  
+  
+  out <- list(
+    vars = risky,
+    counts = fct_counts[risky], 
+    overall_min = overall_min, 
+    finding = length(risky) > 0, 
+    threshold = thres, 
+    check = "check_freq()"
   )
-}
-}else {
- # out$log_skewness <- list(NULL)
+  
+  if (!quiet) {
+    if (length(risky) > 0 ) {
+      cli::cli_inform(c(
+        'i' = '{cli::qty(risky)}The following factor{?s} {?has/have} low frequencies (<{thres}) in at least one class: \n{risky}'
+      )
+      )
+    } else{
+      cli::cli_text(
+        c("No factors with low frequency class (<{thres}) detected in data set.")
+      )
+      
+    }
+  } 
+  
+  invisible(out)
 }
 
 
-# other_ml ####
-# inform about potentially ambiguous 'other_ml' group  
-# recycle prepare_ml_other()   
-if (check_other) {
-  other2_class <- get_default(step_other2, "other")
+#' Check for occurrence of level to cause issue with lumping
+#'
+#' @param other2_class name of class to check for. 
+#' If NULL (the default), uses the default of [step_other2()]'s argument
+#' `other`.
+#' @inheritParams check_freq 
+#' 
+#' @export
+#' @inherit check_freq return
+#'
+check_other_class <- function(
+    x,  
+    other2_class = NULL, 
+    quiet        = FALSE
+){
+  
+  other2_class <- other2_class %||% get_default(step_other2, "other")
+  
   cols_with_class_other2 <- x %>% 
-    dplyr::select(dplyr::where(is.character), dplyr::where(is.factor)) %>% 
+    dplyr::select(
+      dplyr::where(is.character), 
+      dplyr::where(is.factor)
+    ) %>% 
     purrr::map_lgl(~ any(.x == other2_class)) %>% 
     purrr::keep(isTRUE) %>% 
     names()
+  
+  
   if (length(cols_with_class_other2) > 0 && ! quiet) {
-    if(verbose){
+    
+    cli::cli_inform(c(
+      "Low frequency classes may be pooled during ML data prep into a class {other2_class} in {.fn prepare_ml}.",
+      "i" = "Note that {other2_class} is already a value in {cli::qty(cols_with_class_other2)}column{?s} {cols_with_class_other2}.",
+      "*" = "See {.fn step_other2} for details on downstream processing and modify your data as needed before proceeding."
+    ))
+    
+  }
+  
+  counts <- x %>% 
+    dplyr::select(tidyselect::any_of(cols_with_class_other2)) %>% 
+    purrr::map(~{
+      forcats::fct_count(.x, sort = TRUE) 
+    }) 
+  
+  out <- list(
+    vars = cols_with_class_other2,
+    counts = counts, 
+    finding = length(cols_with_class_other2) > 0,
+    class = other2_class, 
+    check = "check_other_class()"
+  )
+  
+  invisible(out)
+}
+
+
+#' Check for the proportion of non-missing values 
+#'
+#' @param thres Minimum proportion of data available
+#' @inheritParams check_freq
+#'
+#' @inherit check_freq return
+#' 
+#' @export
+check_non_missing <- function(
+    x,
+    thres = NULL,
+    quiet = FALSE
+){
+  
+  thres <- get_default(prepare_ml, "thres_imp")
+  high_miss <- x %>% 
+    purrr::map_dbl(~ {(!is.na(.x)) %>% mean()}) %>% 
+    purrr::keep(~{.x <= thres})
+  
+  
+  if (length(high_miss) > 0 && ! quiet) {
+    cli::cli_inform(c(
+      paste0(
+      "i" = "Variables with a high proportion of missing values ", 
+        #"(default >{get_default(prepare_ml, 'thres_imp')*100}% non-missing) ", 
+        "will be discarded instead of imputed during ML preparation."
+      ),
+      "!" = paste0(
+        "For the tested threshold of {thres*100}% ",
+        "{cli::qty(length(high_miss))}the following variable{?s} would be discarded: {names(high_miss)}."
+      ),
+      "*" = "See {.fun recipes::step_filter_missing} for details."
+    )
+    )
+  }
+  
+  out <- list(
+    vars = names(high_miss),
+    prop_missing = high_miss, 
+    finding = length(high_miss) > 0,
+    threshold = thres, 
+    check = "check_non_missing()"
+  )
+  
+  invisible(out)
+}
+
+
+#' Check for variables that resemble count variables
+#'
+#' Identify variables that only have only (non-negative) integer values and a 
+#' relatively small number of distinct values 
+#'
+#' @param thres number of distinct integer values 
+#' @param non_neg logical controlling whether to only consider variables
+#'  with non-negative values. Defaults to TRUE.
+#' @inheritParams check_freq
+#' 
+#' @inherit check_freq return
+#' 
+#' @export
+check_count <- function(
+    x,
+    thres   = NULL,
+    non_neg = TRUE,
+    quiet   = FALSE
+){
+  
+  x_count <- x %>%
+    dplyr::select(-tidyselect::any_of(".id")) %>%
+    dplyr::select(dplyr::where(is.numeric)) %>%
+    dplyr::mutate(dplyr::across(1:dplyr::last_col(), as.character))
+  
+  looks_like_count <- x_count %>%
+    purrr::keep(~ {
+      (readr::guess_parser(.x, guess_integer = TRUE) == "integer") &&
+        ifelse(non_neg, all(.x >= 0, na.rm = TRUE), TRUE) &&
+        dplyr::n_distinct(.x) <= thres
+    }) %>%
+    names()
+  
+  if (!quiet) {
+    if(length(looks_like_count) > 0){
       cli::cli_inform(c(
-        "Low frequency classes may be pooled during ML data prep into a class {other2_class} in {.fn prepare_ml}.",
-        "i" = "Note that {other2_class} is already a value in column{?s} {cols_with_class_other2}.",
-        "*" = "See {.fn step_other2} for details and modify your data as needed before proceeding."
+        "i" = "{cli::qty(looks_like_count)}Data set {? contains a/contains} numeric variable{?s} with only positive integer values and few distinct values: {looks_like_count}.",
+        "*" = "{cli::qty(looks_like_count)}Please check whether conversion to factor{?s} is appropriate."
       ))
     } else {
       cli::cli_inform(c(
-        "Note that {other2_class} is already a value in column{?s} {cols_with_class_other2}.",
-        "*" = "Run {.fn check_feature} on your feature matrix for details."
+        "i" = "Data set was checked for numeric variables that might need conversion to factor.",
+        "v" = "None identified."
       ))
-    }
-  }
-}
-
-# proportion NA ####
-if(check_NA){
+    }}
   
-  thres_imp <-  get_default(prepare_ml, "thres_imp")
-  cols_high_miss <- x %>% 
-    purrr::map_lgl(~ {!is.na(.x) %>% mean() %>% magrittr::is_less_than(thres_imp)}) %>% 
-    purrr::keep(isTRUE) %>% 
-    names()
-  out$filter_missing <- cols_high_miss
+  out <- list(
+    vars = looks_like_count,
+    #n_distinct = high_miss, 
+    finding = length(looks_like_count) > 0,
+    threshold = thres, 
+    check = "check_count()"
+  )
   
-  if (length(cols_high_miss) > 0 && ! quiet) {
-    cli::cli_inform(c(
-      "Variables with a high proportion of missing values will be discarded instead of imputed.",
-      "i" = "By default, at least {thres_imp*100}% of data must be available.",
-      "i" = "Note that {other2_class} is already a value in column{?s} {cols_high_miss}.",
-      "*" = "See {.fn step_other2} for details and modify your data as needed before proceeding."
-    )
-    )
-  }
-}
-
-
-# ordinalscores ####
-if (check_count) {
-  x_count <- x %>% 
-    dplyr::select(-tidyselect::any_of(".id")) %>% 
-    dplyr::select(dplyr::where(is.numeric)) %>% 
-    dplyr::mutate(dplyr::across(1:dplyr::last_col(), as.character))
+  invisible(out)
   
-  looks_like_count <- x_count %>% 
-    purrr::map_lgl(~ {
-      (readr::guess_parser(.x, guess_integer = TRUE) == "integer") &&
-        all(.x >= 0) &&
-        dplyr::n_distinct(.x <= thres_count_distinct)
-    }) %>% 
-    purrr::keep(isTRUE) %>% 
-    names()
-  
-  if(!quiet){
-    cli::cli_inform(
-      "{cli::qty(looks_like_count)}Data set contains {?''/a} numeric variable{?s} with only positive integer values and few distinct values.",
-      "*" = "{cli::qty(looks_like_count)}Please check whether conversion to factor{?s} is appropriate."
-    )
-  }
-  
-  out$count_vars <- looks_like_count
-}
-
-# RETURN ####
-out
-
 }

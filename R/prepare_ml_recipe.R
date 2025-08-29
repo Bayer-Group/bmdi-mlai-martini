@@ -4,9 +4,11 @@
 #'
 #' @param data raw data set to create recipe for
 #' @param custom_recipe if NULL, recipe will be created
-#' @param corr_method,corr_use defaulting to corr_method "pearson" and corr_use "pairwise.complete.obs"
+#' @param corr_method,corr_use defaulting to `corr_method` "pearson" and 
+#' `corr_use` "pairwise.complete.obs"
 #' @param thres_list,step_list named list objects collecting all threshold values 
-#' and step selection info, resp. please refer to the documentation of the `thres_*` and `prep_step_*` arguments 
+#' and step selection info, resp. please refer to the documentation of 
+#' the `thres_*` and `prep_step_*` arguments 
 #' in \code{\link{prepare_ml}()} for detailed documentation and list entry names.
 #' @inheritParams prepare_ml
 #'
@@ -259,7 +261,7 @@ prepare_ml_recipe <- function(
   }
   
   # ... extract log-transformed variables ####
-  if (step_used$prep_step_log) {
+  if (is.null(custom_recipe) && step_used$prep_step_log) {
     
     number_step_log <- recipes::tidy(rcp_prep) %>% 
       dplyr::pull(type) %>% 
@@ -268,7 +270,18 @@ prepare_ml_recipe <- function(
     vars_log <- rcp_prep$steps[[number_step_log]]$columns
     
   } else {
-    vars_log <- NULL
+    
+    number_step_log <- recipes::tidy(rcp_prep) %>% 
+      dplyr::pull(type) %>% 
+      magrittr::equals("log") %>% 
+      which()
+    
+    vars_log <- if (length(number_step_log) > 0) {
+      rcp_prep$steps[[number_step_log]]$columns
+    } else {
+      character() 
+    }
+     
   }
   
   tibble::lst(

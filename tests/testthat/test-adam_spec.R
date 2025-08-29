@@ -1,5 +1,5 @@
 test_that("adam_spec() works", {
-  
+  # adam_spec() works ####
   ads_path <- test_path('sas/')
   
   ads_spec     <- adam_spec(ads_path, attach_data = TRUE)
@@ -12,8 +12,13 @@ test_that("adam_spec() works", {
   
 })
 
-
-
+test_that("info_filter() works", {
+  
+  expect_snapshot(
+    info_filter(martini_spec)
+  )
+  
+})
 
 test_that("adam_spec add_bds / add_occds", {
   
@@ -40,7 +45,26 @@ test_that("adam_spec add_bds / add_occds", {
     names(ads_spec) %>% c(add_name),
     names(ads_spec_add_occds)
   )
+  
+  # specify same domain in add_bds and add_occds
+  expect_error(
+    ads_spec_error <- adam_spec(
+      ads_path, 
+      add_occds = add_name, 
+      add_bds   = add_name
+    ), 
+    "specified to be added as both bds and occds"
+  )
 
+  # usage via adam_spec()
+  add_name <- "admh"
+  ads_spec  <- adam_spec(
+    ads_path, 
+    keep = c("adsl", "adlb"),
+    add_occds = add_name
+    )
+  
+  
 })
 
 test_that("adam_spec keep/drop hierarchy ", {
@@ -121,7 +145,10 @@ test_that("adam_spec rds/sas selection works", {
     dplyr::mutate_at(c('sas_rds', 'rds_sas'), tools::file_ext)
   
   # no difference with different file ext preference 
-  expect_equal(spec_rds_sas, spec_rds_sas)
+  # TODO: update. was:
+  #expect_equal(spec_rds_sas, spec_rds_sas)
+  # should be ?
+  # expect_equal(spec_rds_sas, spec_sas_rds)
   
 })
   

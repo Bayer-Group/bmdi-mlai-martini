@@ -218,3 +218,13 @@ corr_stretch <- function(
 #   dplyr::filter(abs(r) > thres_used$thres_corr)
 
 length0_to_null <- function(x) if (length(x) == 0) NULL else x
+
+
+
+hide_cli_id <- function(x){
+  stringr::str_replace(
+    x, 
+    "^cli-\\d*-\\d*$",
+    "<cli-12345-678>"
+  )
+}

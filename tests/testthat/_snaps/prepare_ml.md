@@ -1,3 +1,29 @@
+# prepare_ml(check_feature) works
+
+    Code
+      prepare_ml(feature = martini_feat, outcome = martini_outc_class, check_feature = FALSE,
+        train_prop = 3 / 4)
+    Message
+      # Object of class 'martini_ml' with classification outcome .out
+      
+      -- Data set sizes (n x p) 
+    Output
+                  $train   $test
+      data$raw  215 x 27 74 x 27
+      data$prep 215 x 25 74 x 25
+    Message
+      
+      -- (parametrized) Recipe Steps 
+    Output
+      * filter_missing
+      * log_skewness
+      * impute_knn
+      * nzv
+      * normalize
+      * corr_keep
+      * other2
+      <cli-12345-678>
+
 # prepare_ml() snapshots content/print
 
     Code
@@ -9575,14 +9601,14 @@
       $input$args$seed
       [1] 2231
       
-      $input$args$prep_step_normalize
-      [1] FALSE
+      $input$args$prep_step_log
+      [1] TRUE
       
       $input$args$prep_step_knnimpute
       [1] TRUE
       
-      $input$args$prep_step_log
-      [1] TRUE
+      $input$args$prep_step_normalize
+      [1] FALSE
       
       $input$args$prep_step_corr
       [1] TRUE
@@ -9650,19 +9676,6 @@
       
       attr(,"class")
       [1] "list"
-
----
-
-    Code
-      ads_ml_class
-    Message
-      # Object of class 'martini_ml' with classification outcome .out
-      
-      -- Data set sizes (n x p) 
-    Output
-      recipe state    train    test
-      raw          215 x 18 74 x 18
-      prep         215 x 13 74 x 13
 
 ---
 
@@ -19302,14 +19315,14 @@
       $input$args$seed
       [1] 2231
       
-      $input$args$prep_step_normalize
-      [1] FALSE
+      $input$args$prep_step_log
+      [1] TRUE
       
       $input$args$prep_step_knnimpute
       [1] TRUE
       
-      $input$args$prep_step_log
-      [1] TRUE
+      $input$args$prep_step_normalize
+      [1] FALSE
       
       $input$args$prep_step_corr
       [1] TRUE
@@ -29596,14 +29609,14 @@
       $input$args$seed
       [1] 2231
       
-      $input$args$prep_step_normalize
-      [1] FALSE
+      $input$args$prep_step_log
+      [1] TRUE
       
       $input$args$prep_step_knnimpute
       [1] TRUE
       
-      $input$args$prep_step_log
-      [1] TRUE
+      $input$args$prep_step_normalize
+      [1] FALSE
       
       $input$args$prep_step_corr
       [1] TRUE

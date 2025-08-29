@@ -317,33 +317,6 @@ test_that("`strings_as_factors = TRUE` in `recipe` works as expected", {
   
 })
 
-test_that("imputation works", {
-  
-  n_total  <- 10
-  n_remove <- 1
-  
-  d_rec_in <- dplyr::left_join(
-    martini_feat, 
-    martini_outc_class, 
-    by = dplyr::join_by(.id)
-    ) %>%
-    dplyr::select(-.id)
-  
-  prepare_ml(
-    martini_feat, 
-    martini_outc_class
-  )
-  
-  recipe_impute <-  recipes::recipe(.out ~ ., data = d_rec_in) %>% 
-    # assume still missings after knn
- #  recipes::step_impute_knn(., recipes::all_predictors(), -tidyselect::any_of(vars_imp_ignore)) %>% 
-      # simple imputation for values that could not be imputed by knn
-      recipes::step_impute_median(recipes::all_numeric_predictors()) %>% 
-      recipes::step_impute_mode(  recipes::all_nominal_predictors())
-  recipe_impute_prepped <- prep(recipe_impute)
-  bake(recipe_impute_prepped, new_data = NULL)
-  
-})
 
 test_that("repeated measurement implementation works", {
   #'repeated measurement implementation works'  ####
@@ -377,8 +350,65 @@ test_that("repeated measurement implementation works", {
   
 })
 
+test_that("prepare_ml(check_feature) works", {  
+  # prepare_ml(check_feature) works ####
+  
+  expect_message(
+    p <- prepare_ml(
+      feature = martini_feat,
+      outcome = martini_outc_class, 
+      check_feature = TRUE
+    ), 
+    "No issues were detected"
+  )
+  
+  expect_message(
+    prepare_ml(
+      feature = martini_feat,
+      outcome = martini_outc_class, 
+      check_feature = TRUE
+    ), 
+    "No issues were detected"
+  )
+  
+  expect_snapshot(
+    prepare_ml(
+      feature = martini_feat,
+      outcome = martini_outc_class, 
+      check_feature = FALSE,
+      train_prop = 3/4
+    ),
+    transform = hide_cli_id
+  )
+  
+})
+
+
+
+# test_that("prepare_ml(custom_recipe) works", {  
+#   
+#   # prepare_ml(custom_recipe) ####
+#   ml_custom <- prepare_ml(
+#     feature = martini_feat, 
+#     outcome = martini_outc_class, 
+#     outcome_name = ".out", 
+#     custom_recipe = martini_ml_class$recipe$raw %>% 
+#       #recipes::step_pca(recipes::all_numeric_predictors())
+#       recipes::step_sample(20)
+#   )
+#   #debugonce(prepare_ml)
+#   
+#   # print
+#   expect_snapshot(
+#     ml_custom
+#   )
+#   
+#})
+
+
 test_that("get_data(martini_ml) works", {  
-  #get_data(martini_ml) works ####
+  
+  # get_data(martini_ml) works ####
   
   expect_s3_class(
     get_data(martini_ml_regr, type = "prep"),
@@ -406,7 +436,7 @@ test_that("get_data(martini_ml) works", {
     
 })
   
-test_that("prepare_ml() snapshots content/print",{
+test_that("prepare_ml() snapshots content/print", {
   # prepare_ml snapshots content/print ####                 
   
   #skip_on_ci()
@@ -421,6 +451,7 @@ test_that("prepare_ml() snapshots content/print",{
         "AVISIT == 'Baseline'",
         "ADSNAME == 'ADLB' & AVISIT == 'Visit 1'",
         "ABLFL == 'Y'"
+       #, "MHOCCUR == 'Y' | is.na(MHOCCUR)"
       ),
       attach_data = TRUE
     ) %>% 
@@ -437,7 +468,8 @@ test_that("prepare_ml() snapshots content/print",{
     prep_step_dummy     = FALSE,
     prep_step_normalize = FALSE,
     vars_imp_ignore     = ".trt",
-    seed                = 2231
+    seed                = 2231,
+    train_prop          = 3/4
   )
   
   # remove file path information in console output (will be a different tmp file path each time the test is run)
@@ -451,11 +483,12 @@ test_that("prepare_ml() snapshots content/print",{
       magrittr::set_attr('class', 'list') %>% # snapshot object not print
       purrr::modify_tree(leaf = tibble_to_JSON)
   )
-  # snapshot print
-  expect_snapshot(
-    ads_ml_class
-  )
-  # dummy expectation to avoid 'skip due to empty test' message (snapshots only)
+  
+  # # pkg data # todo: modify before snapshotting
+  # expect_snapshot(martini_ml_class)
+  # expect_snapshot(martini_ml_regr)
+  # expect_snapshot(martini_ml_surv)
+  # 
   expect_visible(
     ads_ml_class
   )
@@ -471,7 +504,8 @@ test_that("prepare_ml() snapshots content/print",{
     prep_step_dummy     = FALSE,
     prep_step_normalize = FALSE,
     vars_imp_ignore     = ".trt",
-    seed                = 2231
+    seed                = 2231,
+    train_prop          = 3/4
   )
   
   # remove file path information in console output (will be a different tmp file path each time the test is run)
@@ -496,7 +530,8 @@ test_that("prepare_ml() snapshots content/print",{
     prep_step_dummy     = FALSE,
     prep_step_normalize = FALSE,
     vars_imp_ignore     = ".trt",
-    seed                = 2231
+    seed                = 2231, 
+    train_prop          = 3/4
   )
   
   # remove file path information in console output (will be a different tmp file path each time the test is run)
@@ -510,8 +545,6 @@ test_that("prepare_ml() snapshots content/print",{
       magrittr::set_attr('class', 'list') %>% # snapshot object not print
       purrr::modify_tree(leaf = tibble_to_JSON)
   )
-  
-  
   
 })
 

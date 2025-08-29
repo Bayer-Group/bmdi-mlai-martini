@@ -1,3 +1,14 @@
+# info_filter() works
+
+    Code
+      info_filter(martini_spec)
+    Message
+      v 4 filters could be applied:
+        - adsl: ITTFL == 'Y'
+        - adlb: AVISIT == 'Baseline'
+        - advs: AVISIT == 'Baseline'
+        - admh: MHOCCUR == 'Y' | is.na(MHOCCUR)
+
 # adam_spec snapshots
 
     Code

@@ -25,7 +25,8 @@
 #'to be specified, `c(.time = "<time-coln>", .status = "<status-coln>")` 
 #'for survival and 
 #'`c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")` 
-#'for repeated measurements, resp. See Details section.
+#'for repeated measurements (`r lifecycle::badge("experimental")`),
+#' resp. See Details section.
 #'@param level_order level order for a classification outcome.
 #' Default \code{NULL} keeps the natural order (only used for classification).
 #'@param prep_recipe `r lifecycle::badge("deprecated")` Please use `custom_recipe`
@@ -35,14 +36,12 @@
 #'preparation. Please refer to the details section to learn about the 
 #'individual recipe steps.
 #'@param train_prop the proportion of data to be used for the training set. 
-#'Has to be in \[0.5;1.0\]. Defaults to 3/4, keeping a quarter of the data 
-#'for testing.
+#'Has to be in \[0.5;1.0\]. Defaults to 1, making use of the full data set.
 #'@param strata_trt boolean. Expand default stratum variable (\code{.out} 
 #'for classification, \code{.status} for tte, \code{NULL} for regression)
-#'by trt (if character, else ignored). Defaults to FALSE, but is highly 
-#'recommended to be set to TRUE.
+#'by trt (if character, else ignored). Defaults to TRUE.
 #'@param seed optionally set a seed before the data splitting. 
-#'@param prep_step_knnimpute,prep_step_log,prep_step_normalize,prep_step_corr,prep_step_dummy
+#'@param prep_step_log,prep_step_knnimpute,prep_step_normalize,prep_step_corr,prep_step_dummy
 #'logicals determining whether or not the corresponding step function should 
 #'be included in the recipe, possibly specified further using additional 
 #'parameters (`thres_*`, `log_base`, `one_hot`). Please refer to the details 
@@ -85,18 +84,18 @@
 #'@param vars_keep_corr choose these variables over other options when removing
 #'variables due to high correlation in \code{recipes::step_corr()}. 
 #'See \code{recipes::step_rm()} below for details. 
-#'@param vars_ordinalscore  column names of ordinal factor variables to be 
-#'converted into numeric scores. Defaults to NULL.
+#'@param vars_ordinalscore column names of ordinal factor variables to be 
+#'converted into numeric scores (using `as.numeric()`). Defaults to NULL.
 #'@param vars_no_trafo character vector defining variables that should be
-#' excluded from transformation steps such as log transformation and/or normalization
-#'  (if applicable). Defaults to NULL.
+#'excluded from transformation steps such as log transformation and/or normalization
+#'(if applicable). Defaults to NULL.
 #'@param log_base base to use for log-transformation in 
 #'\code{recipes::step_log()}. Defaults to _exp(1)_.
 #'@param outlier_remove,outlier_ctrl For outcome mode regression only, see 
 #'\code{\link{prepare_ml_outcome}()}
 #'for details on how outliers are removed from outcome variables.
 #'`outlier_remove` defaults to FALSE, `outlier_ctrl` to `list(coef = 3)`.
-#'@param custom_recipe custom, pre-defined \code{recipes::recipe()} that may be 
+#'@param custom_recipe `r lifecycle::badge("experimental")` custom, pre-defined \code{recipes::recipe()} that may be 
 #'provided for data preparation. Defaults to NULL, yielding {{martini}}'s default
 #'preparation (please refer to the details section to learn about the 
 #'default recipe steps).
@@ -242,13 +241,13 @@ prepare_ml <- function(
   outcome,
   outcome_name = NULL,
   level_order  = NULL,
-  train_prop   = 3 / 4,
-  strata_trt   = FALSE,
+  train_prop   = 1,
+  strata_trt   = TRUE,
   seed         = 1130, # TODO default to NULL?
   
-  prep_step_normalize = TRUE,
-  prep_step_knnimpute = TRUE,
   prep_step_log       = TRUE,
+  prep_step_knnimpute = TRUE,
+  prep_step_normalize = TRUE,
   prep_step_corr      = TRUE,
   prep_step_dummy     = FALSE,
   
@@ -275,7 +274,7 @@ prepare_ml <- function(
   custom_recipe  = NULL,
   prep_recipe    = NULL,
   
-  quiet          = TRUE, 
+  quiet          = FALSE, 
   check_feature  = TRUE
     
 ) {
@@ -295,6 +294,14 @@ prepare_ml <- function(
       what = "prepare_ml(prep_recipe)", 
       details = "Please use argument `custom_recipe` instead."
     )
+  }
+  
+  if (!missing(strata_trt) && !".trt" %in% colnames(feature) && strata_trt) {
+    cli::cli_inform(cli::col_silver(paste(
+        "No treatment variable '.trt' was detected in the data set.", 
+        "Argument `strata_trt` was set to TRUE but will be ignored."
+    )))
+    strata_trt <- FALSE
   }
   
   # argument checks
@@ -378,15 +385,11 @@ prepare_ml <- function(
   }
   
   # FEATURE ####
-  if(check_feature){
+  if (check_feature) {
     res_check_feat <- check_feature(
       feature,
-      check_low_freq = TRUE,
-      check_outlier = TRUE,
-      quiet = FALSE,
-      verbose = FALSE
+      quiet = FALSE
     )
-    
   }
   
   # MERGE OUTCOME AND FEATURE  ####
@@ -448,7 +451,7 @@ prepare_ml <- function(
   rcp_output <- prepare_ml_recipe(
     
     data         = d_train_raw,
-    custom_recipe  = prep_recipe,
+    custom_recipe  = custom_recipe,
     
     corr_method = "pearson",
     corr_use    = "pairwise.complete.obs",
@@ -674,53 +677,62 @@ prepare_ml <- function(
   
   # prevent error in joining logtr column
   if (is.null(vars$vars_log)) vars$vars_log <- NA_character_
+  
   the_dict <- NULL
   if (!is.null(attr(feature, "dict"))) {
+    
     the_dict <- dplyr::bind_rows(
       outcome_dict,
       attr(feature, "dict")  
-    ) %>% 
-      dplyr::left_join(
-        ., 
+    ) 
+    
+    if (length(vars$vars_log) > 0){ 
+      
+      the_dict <- dplyr::left_join(
+        the_dict, 
         tibble::tibble(
           param = vars$vars_log,
           logtr = "Y"
         ),
         by = c("param")
       )
+    }
     
-    # add alternative label with correlated variables
-    add_labels <- high_corr %>% 
-      dplyr::left_join(
-        the_dict %>% 
-          dplyr::select(column, "label_x" = label) %>% 
-          dplyr::distinct(),
-        by = c("x" = "column")
-      ) %>% 
-      dplyr::left_join(
-        the_dict %>% 
-          dplyr::select(column, "label_y" = label) %>% 
-          dplyr::distinct(), 
-        by = c("y" = "column")
-      ) %>% 
-      dplyr::select(-r) %>% 
-      dplyr::group_by(x, label_x) %>% 
-      dplyr::summarize(
-        label2  = paste0(unique(x),       " (", paste(y, collapse = ", "), ")"),
-        label3  = paste0(unique(label_x), " (", paste(label_y, collapse = ", "), ")"), 
-        .groups = "drop"
-      ) %>% 
-      dplyr::select("column" = x, tidyselect::everything(), -label_x)
     
-    the_dict <- dplyr::left_join(
-      the_dict, 
-      add_labels,
-      by = "column"
-    ) %>% 
-      dplyr::mutate(
-        label2 = dplyr::coalesce(label2, column),
-        label3 = dplyr::coalesce(label3, label)
-      )
+    # add alternative label to dict with correlated variables
+    if(!is.null(high_corr)){
+      add_labels <- high_corr %>% 
+        dplyr::left_join(
+          the_dict %>% 
+            dplyr::select(column, "label_x" = label) %>% 
+            dplyr::distinct(),
+          by = c("x" = "column")
+        ) %>% 
+        dplyr::left_join(
+          the_dict %>% 
+            dplyr::select(column, "label_y" = label) %>% 
+            dplyr::distinct(), 
+          by = c("y" = "column")
+        ) %>% 
+        dplyr::select(-r) %>% 
+        dplyr::group_by(x, label_x) %>% 
+        dplyr::summarize(
+          label2  = paste0(unique(x),       " (", paste(y, collapse = ", "), ")"),
+          label3  = paste0(unique(label_x), " (", paste(label_y, collapse = ", "), ")"), 
+          .groups = "drop"
+        ) %>% 
+        dplyr::select("column" = x, tidyselect::everything(), -label_x)
+      
+      the_dict <- dplyr::left_join(
+        the_dict, 
+        add_labels,
+        by = "column"
+      ) %>% 
+        dplyr::mutate(
+          label2 = dplyr::coalesce(label2, column),
+          label3 = dplyr::coalesce(label3, label)
+        )
+    }
     
   }
   
@@ -842,20 +854,12 @@ prepare_ml_data_split <- function(
       # anyways to make it extendable by strata_trt = TRUE
       {if (outcome_mode == "regression") {
         dplyr::mutate(., .strata = "")
-      } else {.}
-      }
-    
-    # extend strata variable by treatment
-    if (strata_trt) {
-      if (! ".trt" %in% colnames(data)) {
-        usethis::ui_info(crayon::silver(paste(
-          "No treatment variable was detected in the data set.", 
-          "Argument strata_trt was set to TRUE but will be ignored.")))
-      } else {
-        data <- data %>% 
-          dplyr::mutate(.strata = paste0(.strata, .trt, sep = "_"))
-      }  
-    }
+      } else {.}} %>% 
+      
+      # extend strata variable by treatment
+      {if (strata_trt) {
+        dplyr::mutate(., .strata = paste0(.strata, .trt, sep = "_"))
+      } else {.}}
     
     if (!c(".rmtime") %in% names(data)) {
       

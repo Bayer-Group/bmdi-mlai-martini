@@ -31,7 +31,7 @@ build_occds <- function(
         dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))       
       
       if(md5 != spec$md5){
-        usethis::ui_info(crayon::silver(paste0('\t',  
+        usethis::ui_info(cli::col_silver(paste0('\t',  
           spec$spec_id, 
           ': The spec was created from a file with a different md5 checksum. \n'))
         )
