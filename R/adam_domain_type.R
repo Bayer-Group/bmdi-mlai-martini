@@ -179,12 +179,12 @@ adam_domain_type <- function(
         ), 
         cli::col_blue(paste(doms_ignored, collapse = ', ')) %>% cli::style_bold(),
         cli::col_silver(sep = '',
-          '\nYou may consider using the ', usethis::ui_code('add_bds'),
+          '\nYou may consider using the ', 
+          usethis::ui_code('add_bds'), '/' , usethis::ui_code('add_occds'),
           ' argument in ', usethis::ui_code('adam_spec()'),
-          ' to add bds-type data.\n'
+          ' to process the data sets.\n'
         )
       ))
-      cat('\n')
     }
       
     attr(file_info, 'unknown_domains') <- doms_ignored

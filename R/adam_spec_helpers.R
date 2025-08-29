@@ -551,15 +551,15 @@ check_occds_occur <-  function(
     filter_suggested <- "--OCCUR == 'Y' | is.na(--OCCUR)"
     
     cli::cli_inform(c(
-      "i" = paste0(
+      "i" = cli::col_silver(paste0(
         "{if(!is.null(domain)) paste0(stringr::str_to_lower(domain), ': ')}", 
         "{cli::qty(contains_N)}The column{?s} {contains_N} contain{?s/} {no_char}/{as.character(no_num)} values", 
         ifelse(length(filters) > 0, " after using applicable filters", ""),
-        "."),
-      "*" = paste0(
+        ".")),
+      "*" = cli::col_silver(paste0(
         "Please check if an additional filter is required",
         " such as {.code ", filter_suggested, "}."
-      )
+      ))
     ))
   }
   
