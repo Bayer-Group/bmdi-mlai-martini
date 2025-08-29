@@ -507,7 +507,7 @@ import_info <- function(
 #' defaults to NULL, in which case no filters are applied.
 #' @param quiet whether to suppress messaging in the console. defaults to FALSE.
 #' @param no_char,no_num values that code for 'no' in pre-specified list of 
-#' events. defaults to `N` and `1` for character and numeric variables, resp.
+#' events. defaults to `N` and `0` for character and numeric variables, resp.
 #'
 #' @return invisibly returns character vector of potentially problematic columns. 
 #' (Invisible) return value has length 0 if no problems were detected.
@@ -548,25 +548,18 @@ check_occds_occur <-  function(
   
   if (length(contains_N) > 0 && !quiet) {
     
-    filter_suggested <- #if(isTRUE(stringr::str_to_lower(domain) %in% c("adcm", "admh"))) {
-      #domain %>% 
-      #  stringr::str_remove('^..') %>% 
-      #  stringr::str_to_upper() %>% 
-      #  paste0("OCCUR != 'N'")
-      # would need additional check if suggested CMOCCUR is in contains_N
-    #}else 
-      "--OCCUR != 'N'" #  or --OCCURN != 1"
+    filter_suggested <- "--OCCUR == 'Y' | is.na(--OCCUR)"
     
     cli::cli_inform(c(
       "i" = paste0(
         "{if(!is.null(domain)) paste0(stringr::str_to_lower(domain), ': ')}", 
-        "The column{?s} {contains_N} contain{?s/} {no_char}/{no_num} values", 
+        "{cli::qty(contains_N)}The column{?s} {contains_N} contain{?s/} {no_char}/{as.character(no_num)} values", 
         ifelse(length(filters) > 0, " after using applicable filters", ""),
         "."),
       "*" = paste0(
         "Please check if an additional filter is required",
-        " such as ", filter_suggested,
-        ".")
+        " such as {.code ", filter_suggested, "}."
+      )
     ))
   }
   

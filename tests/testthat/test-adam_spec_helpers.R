@@ -44,35 +44,37 @@ test_that("check_occds_occur() works", {
   n <- 5
   data_occds <- tibble::tibble(
     col1 = 1:n,
-    OKoccur = c("", "Y", "", "Y", ""),
-    ERRoccur =  c("N", "Y", "", "Y", "")
+    OKoccur  = c(NA, "Y", NA, "Y", NA),
+    OKoccurN = c(NA,  1 , NA,  1 , NA),
+    ERoccur  = c("N", "Y", NA, "Y", NA),
+    ERoccurN = c( 0 ,  1 , NA,  1 , NA)
   )
   
-  # issue in ERRoccur
+  # N/0 occurrence issue in ERoccur and ERoccurN
   expect_message(
     res1 <- check_occds_occur(
      data_occds, 
      domain = NULL, 
      filters = NULL
     ), 
-    "ERRoccur"
+    "ERoccur and ERoccurN"
   )
-  expect_equal(
+  expect_setequal(
     res1,  
-    "ERRoccur"
+    c("ERoccur", "ERoccurN")
   )
   
-  # no issue: filtered correctly
+  # no issue: filtered correctly, no remaining 0/N values
   expect_no_message(
     res2 <- check_occds_occur(
       data_occds, 
       domain = NULL, 
-      filters = "ERRoccur != 'N'"
+      filters = "ERoccur == 'Y' | is.na(ERoccur)"
     )
   )
   expect_length(res2, 0)
   
-  # no colname matches '.{1,3}occur'
+  # no colname matches '--OCCUR(N)'
   expect_no_message(
     res3 <- check_occds_occur(
       data = mtcars
@@ -81,15 +83,16 @@ test_that("check_occds_occur() works", {
   expect_length(res3, 0)
   
   
-  # no OCCUR colname matches has N
+  # no OCCUR colname matches has N or 0
   expect_no_message(
     res4 <- check_occds_occur(
-      data = data_occds %>% dplyr::select(-tidyselect::any_of("ERRoccur"))
+      data = data_occds %>% 
+        dplyr::select(-tidyselect::starts_with("ERoccur"))
     )
   )
   expect_length(res4, 0)
   
-  # domain used correctly
+  # domain used correctly to prefix message
   dom_name <- 'ADXY'
   expect_message(
     res5 <- check_occds_occur(
@@ -98,14 +101,20 @@ test_that("check_occds_occur() works", {
     ), 
     stringr::str_to_lower(dom_name)
   )
-  expect_length(res5, 1)
+  expect_length(res5, 2)
   
   # pluralization used correctly
   expect_message(
-    res6 <- check_occds_occur(
-      data = data_occds %>% dplyr::mutate(ER2occur = ERRoccur)
+    check_occds_occur(
+      data = data_occds %>% dplyr::select(-ERoccurN)
     ), 
-    "columns ER.occur and ER.occur contain"
+    "column ERoccur contains"
+  )
+  expect_message(
+    res6 <- check_occds_occur(
+      data = data_occds
+    ), 
+    "columns ERoccur and ERoccurN contain"
   )
   expect_length(res6, 2)
   
