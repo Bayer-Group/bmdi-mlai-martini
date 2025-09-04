@@ -271,7 +271,7 @@ prep.step_corr_keep <- function(x, recipe, training, info = NULL, ...) {
   )
   #recipes:::check_number_decimal(x$threshold, min = 0, max = 1, arg = "threshold")
   do.call(
-    utils::getFromNamespace("check_number_decimal", "recipes"),
+    utils::getFromNamespace("check_number_decimal", "rlang"),
     list(x = x$threshold, min = 0, max = 1, arg = "threshold")
   )
   use <- x$use

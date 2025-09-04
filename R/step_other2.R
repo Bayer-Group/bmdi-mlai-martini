@@ -161,13 +161,13 @@ prep.step_other2 <- function(x, training, info = NULL, ...) {
   if (x$threshold >= 1) {
     # check_number_whole(x$threshold, arg = "threshold", min = 1)
     do.call(
-      utils::getFromNamespace("check_number_whole", "recipes"),
+      utils::getFromNamespace("check_number_whole", "rlang"),
       list(x = x$threshold, arg = "threshold", min = 1)
     )
   } else {
     #check_number_decimal(x$threshold, arg = "threshold", min = 0)
     do.call(
-      utils::getFromNamespace("check_number_decimal", "recipes"),
+      utils::getFromNamespace("check_number_decimal", "rlang"),
       list(x = x$threshold, arg = "threshold", min = 0)
     )
   }

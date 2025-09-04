@@ -35,7 +35,7 @@ Imports:
     purrr,
     readr,
     recipes (>= 0.1.16),
-    rlang,
+    rlang (>= 1.1.0),
     rsample,
     stats,
     stringr,
