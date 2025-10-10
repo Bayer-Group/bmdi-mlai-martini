@@ -329,7 +329,12 @@ prep.step_corr_keep <- function(x, recipe, training, info = NULL, ...) {
 
 #' @exportS3Method 
 bake.step_corr_keep <- function(object, new_data, ...) {
-  new_data <- recipes::recipes_remove_cols(new_data, object)
+  already_in_recipes <- exists('recipes_remove_cols', where = asNamespace('recipes'), mode = 'function')
+  new_data <- if(already_in_recipes){
+    recipes::recipes_remove_cols(new_data, object)
+  }else{ # fallback: copy in martini
+    martini_recipes_remove_cols(new_data, object)
+  }
   new_data
 }
 
@@ -375,4 +380,60 @@ tunable.step_corr_keep <- function(x, ...) {
     component = "step_corr_keep",
     component_id = x$id
   )
+}
+
+
+#' Removes original columns if options apply
+#'
+#' This helper function should be used whenever the argument
+#' `keep_original_cols` is used in a function.
+#'
+#' @param new_data A tibble.
+#' @param object A step object.
+#' @param col_names A character vector, denoting columns to remove.
+#' @return new_data with `col_names` removed if `get_keep_original_cols(object)
+#'   == TRUE` or `object$preserve == TRUE`.
+#' @keywords internal
+#'
+#' @seealso [developer_functions]
+#'
+#' @export
+martini_remove_original_cols <- function(new_data, object, col_names) {
+  keep_original_cols <- get_keep_original_cols(object)
+  if (any(isFALSE(object$preserve), !keep_original_cols)) {
+    new_data <- martini_remove_original_cols(new_data, object, col_names)
+  }
+  new_data
+}
+
+#' Removes columns if options apply
+#'
+#' This helper function removes columns based on character vectors.
+#'
+#' @param new_data A tibble.
+#' @param object A step object.
+#' @param col_names A character vector, denoting columns to remove. Will
+#'   overwrite `object$removals` if set.
+#'
+#' @return `new_data` with column names removed if specified by `col_names` or
+#'   `object$removals`.
+#' @keywords internal
+#'
+#' @seealso [developer_functions]
+#'
+#' @export
+martini_remove_original_cols <- function(new_data, object, col_names = character()) {
+  if (length(col_names) > 0) {
+    removals <- col_names
+  } else if (length(object$removals) > 0) {
+    removals <- object$removals
+  } else {
+    return(new_data)
+  }
+  
+  if (length(removals) > 0) {
+    # drop = FALSE in case someone uses this on a data.frame
+    new_data <- new_data[, !(colnames(new_data) %in% removals), drop = FALSE]
+  }
+  new_data
 }
