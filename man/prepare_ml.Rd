@@ -34,7 +34,7 @@ prepare_ml(
   outlier_remove = FALSE,
   outlier_ctrl = list(coef = 3),
   custom_recipe = NULL,
-  prep_recipe = deprecated(),
+  prep_recipe = NULL,
   quiet = FALSE,
   check_feature = TRUE
 )

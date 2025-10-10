@@ -272,7 +272,7 @@ prepare_ml <- function(
   outlier_ctrl        = list(coef = 3),
     
   custom_recipe  = NULL,
-  prep_recipe    = deprecated(),
+  prep_recipe    = NULL, #deprecated(),
   
   quiet          = FALSE, 
   check_feature  = TRUE
