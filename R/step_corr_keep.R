@@ -401,12 +401,12 @@ tunable.step_corr_keep <- function(x, ...) {
 martini_remove_original_cols <- function(new_data, object, col_names) {
   keep_original_cols <- get_keep_original_cols(object)
   if (any(isFALSE(object$preserve), !keep_original_cols)) {
-    new_data <- martini_remove_original_cols(new_data, object, col_names)
+    new_data <- martini_recipes_remove_cols(new_data, object, col_names)
   }
   new_data
 }
 
-#' Removes columns if options apply
+##' Removes columns if options apply
 #'
 #' This helper function removes columns based on character vectors.
 #'
@@ -422,7 +422,7 @@ martini_remove_original_cols <- function(new_data, object, col_names) {
 #' @seealso [developer_functions]
 #'
 #' @export
-martini_remove_original_cols <- function(new_data, object, col_names = character()) {
+martini_recipes_remove_cols <- function(new_data, object, col_names = character()) {
   if (length(col_names) > 0) {
     removals <- col_names
   } else if (length(object$removals) > 0) {
