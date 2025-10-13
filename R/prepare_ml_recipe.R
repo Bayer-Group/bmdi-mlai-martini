@@ -168,9 +168,6 @@ prepare_ml_recipe <- function(
         recipes::step_naomit(., recipes::all_predictors(), skip = FALSE)   
       }} %>% 
       
-      # ... ... omit observations with missing data in case not prep_step_knnimpute = FALSE ####
-      #recipes::step_naomit(recipes::all_predictors(), skip = FALSE) %>%   
-      
       # ... ... undo log transformation ####
       {if (!step_used$prep_step_log) {
         step_log_skewness_undo(
@@ -195,7 +192,7 @@ prepare_ml_recipe <- function(
         )
       }else{.}} %>% 
 
-      # ... ... remove highly correlated variables with a twist #### 
+      # ... ... remove highly correlated variables #### 
       {if (step_used$prep_step_corr) {
         step_corr_keep(
           ., 

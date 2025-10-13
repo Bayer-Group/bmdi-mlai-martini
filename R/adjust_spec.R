@@ -51,7 +51,7 @@ adjust_spec <- function(
     spec[[entry]][["dict"]]      <- create_dict(spec[[entry]])
     spec[[entry]][["data_info"]] <- data_info(spec[[entry]])
     attr(spec[[entry]], "data_info_ok") <- TRUE
-    # COMBAK restructure to attribute on entry level instead of global for spec
+
   }else{
     
     attr(spec[[entry]], "data_info_ok") <- FALSE
@@ -278,7 +278,7 @@ check_adjust <- function(spec, entry, modifications){
     
     check_dupl_ctrl <- is.list(modifications[["dupl_ctrl"]]) &&
       # full list needs to be provided
-      setequal(c('values_fn', 'arrange'), names(modifications[["dupl_ctrl"]])) 
+      setequal(c("values_fn", "arrange"), names(modifications[["dupl_ctrl"]])) 
     
     if (!check_dupl_ctrl) {
       
@@ -315,7 +315,12 @@ check_adjust <- function(spec, entry, modifications){
       user_arrange <- modifications[["dupl_ctrl"]]$arrange
       #browser()
       if (!is.null(spec[[entry]][['data']])) {
-        safely_arranged <- purrr::safely(dplyr::arrange)(spec[[entry]][['data']], !!! rlang::parse_exprs(user_arrange))
+        safely_arranged <- purrr::safely(
+          dplyr::arrange
+        )(
+          spec[[entry]][['data']], 
+          !!! rlang::parse_exprs(user_arrange)
+        )
         check_passed_arrange <- is.null(safely_arranged$error) || is.null(user_arrange)
        # misspecified_cols <- user_arrange %>% setdiff(names(spec[[entry]][['data']]))
       } else { 
@@ -354,15 +359,18 @@ check_adjust <- function(spec, entry, modifications){
 #' 
 #' @description
 #' Helper function to make adjustments to the filter of the spec object built by
-#' `adam_spec()` to be used with the pipe.
+#' `adam_spec()` to be used with the pipe, keeping consistency with other
+#' spec entries (`dict` and `data_info`) and attributes used by `build()`.
 #' 
 #' @param spec `martini_spec` object to modify
 #' @param filter character vector of filter conditions
-#' @param append logical, if TRUE, append filter to existing filter(s), else replace
+#' @param append logical, if TRUE (default), append `filter`
+#'  to existing filter(s), else replace
 #' 
 #' @details
-#' The function checks if the filter can be applied to the data attached to the spec.
-#' If the data is not attached, the filter will be added to the spec as is.
+#' The function checks if `filter` can be applied to
+#' the data attached to the spec.
+#' If the data is not attached, the `filter` will be added to the spec as-is.
 #' 
 #' @return A modified version of `spec` to be used as input to `build()`
 #' @export
@@ -392,6 +400,7 @@ adjust_filter <- function(spec, filter, append = TRUE){
         as.logical()
       spec[[.x]][["filter"]] <<- filter_update[keep_filter]
       
+      # create_dict() & data_info() use (updated) filter entry in spec[[.x]]
       spec[[.x]][["dict"]]      <<- create_dict(spec[[.x]])
       spec[[.x]][["data_info"]] <<- data_info(spec[[.x]])
       
@@ -454,7 +463,6 @@ adjust_adsl_factors <- function(spec, fctrs, entry = "adsl"){
   stopifnot(entry %in% names(spec))
   stopifnot(inherits(fctrs, "list"))
   stopifnot(rlang::is_named(fctrs))
-  
   
  # discard ignored ones, set names, then boils down to purrr::list_modify()
   fctrs_used <- check_adjust_adsl_factors(
@@ -657,7 +665,7 @@ adjust_adsl_select <- function(
     add  = NULL,
     drop = NULL,
     select = NULL,
-    entry   = 'adsl'
+    entry   = "adsl"
 ){
   
   # CHECK specified modifications ####

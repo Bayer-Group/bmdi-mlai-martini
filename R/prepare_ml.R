@@ -167,7 +167,7 @@
 #'numeric and `.status` is binary with 0 coding for censored, and 1 coding
 #'for event. Currently, only right-censoring is supported. 
 #' 
-#'For repeated measurements, specify `outcome_name` as 
+#'For repeated measurements (experimental), specify `outcome_name` as 
 #'`c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")`. 
 #'The outcome mode will be guessed as regression or classification according 
 #'to the type of the column specified in `.out`. 

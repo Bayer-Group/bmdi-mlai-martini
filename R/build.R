@@ -15,7 +15,7 @@
 #'  (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}
 #' @param rm boolean. defaults to FALSE. if TRUE, a repeated measurement feature
 #'  matrix with an additional `.rmtime` column 
-#' is prepared. (experimental.)
+#' is prepared. `r lifecycle::badge("experimental")`
 #'
 #' @return
 #' 

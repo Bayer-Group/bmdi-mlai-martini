@@ -55,12 +55,17 @@
 #' Please refer to the documentations of the `adam_spec_*()` functions for full details.
 #'
 #' @return  
-#' \code{adam_spec()} returns named list of specifications that can be passed to the \code{\link{build}()} function. 
-#' Each element contains the specification for a single data set and is named with the domain abbreviation (e.g. adsl, adqskccq).
-#' The list can be manually adjusted if required, e.g. adding further specifications or altering existing ones. See the documentation
+#' \code{adam_spec()} returns named list of specifications that can be
+#'  passed to the \code{\link{build}()} function. 
+#' Each element contains the specification for a single data set and 
+#' is named with the domain abbreviation (e.g. adsl, adlb).
+#' The list can be manually adjusted if required,
+#' e.g. adding further specifications or altering existing ones. 
+#' See the documentation
 #' of the `adam_spec_*()` for a detailed description of the output object.
 #' 
-#' @seealso \code{\link{adam_spec_adsl}()}, \code{\link{adam_spec_bds}()},  \code{\link{adam_spec_occds}()}
+#' @seealso \code{\link{adam_spec_adsl}()}, 
+#' \code{\link{adam_spec_bds}()},  \code{\link{adam_spec_occds}()}
 #'
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
@@ -80,12 +85,12 @@ adam_spec <- function(
   trt         = "TRT01A",
   add_bds     = NULL,
   add_occds   = NULL,
-  file_ext    = c('rds', 'sas7bdat'),
+  file_ext    = c("rds", "sas7bdat"),
   fct_levels  = NULL,
   catalog_file = NULL
 ){
   
-  file_ext <- rlang::arg_match(file_ext, c('rds', 'sas7bdat'), multiple = TRUE)
+  file_ext <- rlang::arg_match(file_ext, c("rds", "sas7bdat"), multiple = TRUE)
   stopifnot(length(file_ext) > 0)
   
   # deprecation ####
@@ -118,9 +123,9 @@ adam_spec <- function(
   if (!is.null(add_bds) && any(!add_bds %in% file_info$domain)) {
     
     usethis::ui_oops(paste0(
-      '\nThe following domain(s) specified in ', '`add_bds`',
-      ' were not found in ', '`path`', ':\n  ',
-      paste(setdiff(add_bds, file_info$domain), collapse = ', ') %>% 
+      "\nThe following domain(s) specified in ", "`add_bds`",
+      " were not found in ", "`path`", ":\n  ",
+      paste(setdiff(add_bds, file_info$domain), collapse = ", ") %>% 
         cli::style_bold() %>%  
         cli::col_blue()
     ))
@@ -129,9 +134,9 @@ adam_spec <- function(
   if (!is.null(add_occds) && any(!add_occds %in% file_info$domain)) {
     
     usethis::ui_oops(paste0(
-      '\nThe following domain(s) specified in ', '`add_occds`',
-      ' were not found in ', '`path`', ':\n  ',
-      paste(setdiff(add_occds, file_info$domain), collapse = ', ') %>% 
+      "\nThe following domain(s) specified in ", "`add_occds`",
+      " were not found in ", "`path`", ":\n  ",
+      paste(setdiff(add_occds, file_info$domain), collapse = ", ") %>% 
         cli::style_bold() %>%  
         cli::col_blue()
     ))
@@ -205,11 +210,11 @@ adam_spec <- function(
   # output ####
   
   # NOTE attribute will not be explicitly created, if filter is NULL
-  attr(spec, 'filter') <- filter
+  attr(spec, "filter") <- filter
   
   purrr::walk(names(spec), ~{
-    attr(spec[[.x]], 'filter_ok')    <<- TRUE
-    attr(spec[[.x]], 'data_info_ok') <<- TRUE
+    attr(spec[[.x]], "filter_ok")    <<- TRUE
+    attr(spec[[.x]], "data_info_ok") <<- TRUE
   })
   
   class(spec) <- c("martini_spec", class(spec))
