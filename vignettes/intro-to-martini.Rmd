@@ -86,7 +86,9 @@ In general, this automatically created specification may be used with the subseq
 
 The `filter` argument takes a character vector of valid filter expressions. A filter will be applied to a particular data only if its application yields a non-empty tibble (i.e. no error thrown, at least one row is selected). Common filters may be based on visit or treatment information, as well as flags indicating analysis sets.
 
-The `pre_study` argument allows to conveniently reduce e.g. medical history records to data that is available at baseline based on the study day.
+<!-- The `pre_study` argument allows to conveniently reduce e.g.  -->
+<!-- medical history records to data that is available at baseline -->
+<!-- based on the study day. -->
 
 ```{r}
 filters  <- c(
@@ -97,8 +99,7 @@ filters  <- c(
 
 ads_spec <- adam_spec(
   path, 
-  filter    = filters, 
-  pre_study = TRUE
+  filter    = filters
 )
 ```
 

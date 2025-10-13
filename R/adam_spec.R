@@ -20,7 +20,8 @@
 #' the output. Defaults to TRUE.
 #' @param id,trt id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()} 
 #' for details).
-#' @param pre_study boolean. Include only pre-study events from occurrence data sets 
+#' @param pre_study `r lifecycle::badge("deprecated")`. boolean.
+#' Include only pre-study events from occurrence data sets 
 #' (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.
 #' @param file_ext only rds and sas7bdat data sets are allowed (e.g. \code{file_ext = 'rds'}). User may select
 #' only sas7bdat, only rds or set a priorization rule (\code{file_ext = c('rds', 'sas7bdat')}, see Details).
@@ -71,7 +72,7 @@ adam_spec <- function(
   filter      = NULL,
   keep        = NULL,
   drop        = NULL,
-  pre_study   = FALSE,
+  pre_study   = lifecycle::deprecated(),
   attach_data = TRUE,
   id          = "SUBJID", 
   #TODO switch default to USUBJID
@@ -86,6 +87,20 @@ adam_spec <- function(
   
   file_ext <- rlang::arg_match(file_ext, c('rds', 'sas7bdat'), multiple = TRUE)
   stopifnot(length(file_ext) > 0)
+  
+  # deprecation ####
+  if (lifecycle::is_present(pre_study)) {
+    
+    # Signal the deprecation to the user
+    lifecycle::deprecate_warn(
+      "0.6.5", 
+      "adam_spec(pre_study = )", 
+      "adam_spec(filter = )"
+    )
+    
+    # Deal with the deprecated argument for compatibility
+    pre_study <- FALSE
+  }
   
   # identify type for selected files in path (adsl/bds/occds) #####
   file_info <- adam_domain_type(
@@ -177,8 +192,8 @@ adam_spec <- function(
       append(
         purrr::map(files_occds, ~ adam_spec_occds(
           file = .x, id = id,
-          filter = filter, attach_data = attach_data, 
-          pre_study = pre_study
+          filter = filter, attach_data = attach_data
+          #, pre_study = pre_study
         ))
       )
     

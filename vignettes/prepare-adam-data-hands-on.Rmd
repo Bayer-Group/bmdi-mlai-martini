@@ -365,8 +365,9 @@ If a filter should be applied to only one particular ads domain and not
 considered for the other domains, just add the respective `ADSNAME` column 
 (for standard data sets), e.g. `"ADSNAME == 'ADVS' & AVISIT == 'Visit 1'"`.
 
-The `pre_study` argument allows to conveniently reduce occurrence data sets 
-(e.g. medical history records) to data that is available at baseline based on the study day.
+<!-- The `pre_study` argument allows to conveniently reduce occurrence data sets  -->
+<!-- (e.g. medical history records) to data that is available  -->
+<!-- at baseline based on the study day. -->
 
 Filters have to be adjusted for the data at hand, find below a list of exemplary filters:
 
@@ -395,8 +396,7 @@ filters  <- c(
 
 ads_spec <- adam_spec(
   path, 
-  filter    = filters, 
-  pre_study = TRUE
+  filter = filters
 )
 ```
 
@@ -405,10 +405,11 @@ An overview of applied and discarded filters from the filters provided to
 as well as when printing the object to the console. 
 The filter set that was originally provided to `\link{adam_spec}()` is stored 
 in the `filter` attribute of the resulting object. 
-Note that the print will only refer to this initial filter set and 
-ignore any manual adjustments. 
-We strongly advise to not change filters using spec adjustments
-but only by rerunning `\link{adam_spec}()` to assure proper checks.
+
+<!-- Note that the print will only refer to this initial filter set and  -->
+<!-- ignore any manual adjustments.  -->
+<!-- We strongly advise to not change filters using spec adjustments -->
+<!-- but only by rerunning `\link{adam_spec}()` to assure proper checks. -->
 
 Always double check the filters that were not applied, typically it is due to
 
@@ -416,6 +417,7 @@ Always double check the filters that were not applied, typically it is due to
 * misspecified filter expressions (e.g. `=` instead of `==`)
 * targeted domain no longer included in the analysis
 
+For any updates of the originally provided set of filters, use `adjust_filter()`.
 
 ```{r}
 ads_spec
@@ -423,16 +425,38 @@ ads_spec
 
 ***
 
-**`add_bds`**
+### Domain selection
+
+For standard data sets names included in `martini`'s internal library, 
+use parameters `keep/drop` to select data sets for the analysis. 
+To use data sets outside of this collection use `add_bds`/`add_occds`.
+
+**`keep`/`drop`**
+
+Use `keep/drop` arguments in `adam_spec()` to select/deselect particular 
+data sets in the folder `path` for your analysis. 
+Only selected files will be read in order to create a specification, 
+so these parameters directly impact run time.
+
+An example for a reasonable exclusion of a data set would be e.g. 
+a data set on biomarkers that were measured only for a small subpopulation 
+(by default, data sets are combined using 
+`inner_join()`, 
+but it's a parameter to `build()`).
+
+
+**`add_bds`/`add_occds`**
 
 `adam_spec()` will print a list of domains that are not processed automatically,
 which are the ones that are not included in the internal package
 library of domains and corresponding data types.
 
-You may use the `add_bds` argument of `adam_spec()` to force them being treated 
-as bds data sets. For these added data sets, it is particularly important 
+You may use the `add_bds`/`add_occds` arguments of `adam_spec()` 
+to force them being treated as bds and occds data sets, resp.. 
+For these added data sets, it is particularly important 
 to check the automated column selection (in the resulting spec object) 
-and adjust as needed using `adjust_spec()`.
+and adjust as needed using `adjust_spec()` before proceeding to the `build()`
+stage.
 
 ```{r, eval = FALSE}
 ads_spec <- adam_spec(

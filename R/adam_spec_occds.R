@@ -27,7 +27,7 @@
 #' positive number of rows. Defaults to NULL. 
 #' @param count boolean, defaults to FALSE. 
 #' @param pre_study boolean. filter the data set to pre_study observations
-#'  based on non-negative values in `time`
+#'  based on non-negative values in `time`, defaults to FALSE.
 #' @param attach_data boolean. attach the imported raw data in \code{data} 
 #' slot of output object
 #' 
@@ -52,12 +52,12 @@
 #' @details 
 #' For file names 'adae.sas7bdat', 'adcm.sas7bdat' and 'admh.sas7bdat', 
 #' values for
-#' arguments \code{label} will be guessed if not provided, the same goes
-#'  for \code{time} if `pre_study=TRUE`. 
+#' arguments \code{label} will be guessed if not provided.
+#  the same goes for \code{time} if `pre_study=TRUE`# -> deprecated. 
 #' Please refer to \code{adam_guess()} for details on guessing procedure.  
 #' Function will exit if \code{label} is neither provided nor can be guessed.
-#' If a pre-study filter is requested, the function will escape if \code{time}
-#'  is neither provided nor can be guessed. 
+#' If a pre-study filter is requested, the function will exit if \code{time}
+#' is neither provided nor can be guessed. 
 #' Note that the original values in the \code{label} column will end up being 
 #' the parameter labels, 
 #' not the parameters in the ML feature matrix. These might be modified later 
@@ -78,7 +78,7 @@ adam_spec_occds <- function(
     filter      = NULL,
     count       = TRUE, # NOTE: add further options (weights, scoring matrix, ...)
     time        = NULL,
-    pre_study   = FALSE,
+    pre_study   = FALSE, # lifecycle::deprecated()
     attach_data = FALSE
 ){
   
@@ -90,6 +90,20 @@ adam_spec_occds <- function(
       paste0(
         'At least one of ', usethis::ui_code('data'), ' or ',
         usethis::ui_code('file'), ' need to be provided.\n'))
+  }
+  
+  # deprecation ####
+  if (lifecycle::is_present(pre_study)) {
+    
+    # Signal the deprecation to the user
+    lifecycle::deprecate_warn(
+      "0.6.5", 
+      "adam_spec_occds(pre_study = )", 
+      "adam_spec_occds(filter = )"
+    )
+    
+    # Deal with the deprecated argument for compatibility
+    pre_study <- FALSE
   }
   
   # import ####

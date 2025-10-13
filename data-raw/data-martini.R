@@ -17,7 +17,8 @@ filters  <- c(
 )
 
 martini_spec <- adam_spec(
-  ads_path, filter = filters, attach_data = TRUE, pre_study = TRUE
+  ads_path, filter = filters, attach_data = TRUE
+  # pre_study = TRUE # deprecated
   ) %>% 
   adjust_adsl_select(drop = "AGEGR01") %>% 
   adjust_adsl_select(drop = "BMI") %>% 
