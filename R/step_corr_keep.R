@@ -391,13 +391,10 @@ tunable.step_corr_keep <- function(x, ...) {
 #' @param new_data A tibble.
 #' @param object A step object.
 #' @param col_names A character vector, denoting columns to remove.
-#' @return new_data with `col_names` removed if `get_keep_original_cols(object)
-#'   == TRUE` or `object$preserve == TRUE`.
-#' @keywords internal
+#' @return new_data with `col_names` removed if 
+#' `get_keep_original_cols(object)== TRUE` or `object$preserve == TRUE`.
 #'
-#' @seealso [developer_functions]
-#'
-#' @export
+#' @author this function is basically a copy of recipes::remove_original_cols()
 martini_remove_original_cols <- function(new_data, object, col_names) {
   keep_original_cols <- get_keep_original_cols(object)
   if (any(isFALSE(object$preserve), !keep_original_cols)) {
@@ -417,9 +414,7 @@ martini_remove_original_cols <- function(new_data, object, col_names) {
 #'
 #' @return `new_data` with column names removed if specified by `col_names` or
 #'   `object$removals`.
-#' @keywords internal
-#'
-#' @seealso [developer_functions]
+#' @author this function is basically a copy of recipes::recipes_remove_cols()
 #'
 #' @export
 martini_recipes_remove_cols <- function(new_data, object, col_names = character()) {
