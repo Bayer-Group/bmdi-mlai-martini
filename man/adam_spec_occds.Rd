@@ -47,7 +47,7 @@ via \code{pre_study} argument). Defaults to NULL, will be guessed if not set
 (see Details).}
 
 \item{pre_study}{boolean. filter the data set to pre_study observations
-based on non-negative values in \code{time}}
+based on non-negative values in \code{time}, defaults to FALSE.}
 
 \item{attach_data}{boolean. attach the imported raw data in \code{data}
 slot of output object}
@@ -82,11 +82,10 @@ data into wide format and prepare the data filter.
 \details{
 For file names 'adae.sas7bdat', 'adcm.sas7bdat' and 'admh.sas7bdat',
 values for
-arguments \code{label} will be guessed if not provided, the same goes
-for \code{time} if \code{pre_study=TRUE}.
+arguments \code{label} will be guessed if not provided.
 Please refer to \code{adam_guess()} for details on guessing procedure.
 Function will exit if \code{label} is neither provided nor can be guessed.
-If a pre-study filter is requested, the function will escape if \code{time}
+If a pre-study filter is requested, the function will exit if \code{time}
 is neither provided nor can be guessed.
 Note that the original values in the \code{label} column will end up being
 the parameter labels,

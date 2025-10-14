@@ -21,7 +21,6 @@ overwrite \code{object$removals} if set.}
 \description{
 This helper function removes columns based on character vectors.
 }
-\seealso{
-\link{developer_functions}
+\author{
+this function is basically a copy of recipes::recipes_remove_cols()
 }
-\keyword{internal}

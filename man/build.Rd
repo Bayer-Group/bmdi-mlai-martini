@@ -17,7 +17,7 @@ of the data sets containing the .ids to keep
 
 \item{rm}{boolean. defaults to FALSE. if TRUE, a repeated measurement feature
 matrix with an additional \code{.rmtime} column
-is prepared. (experimental.)}
+is prepared. \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
 }
 \value{
 \code{build()} returns a wide data set with one row per subject and standardized column names for the subject id (\code{.id})

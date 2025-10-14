@@ -9,7 +9,7 @@ adam_spec(
   filter = NULL,
   keep = NULL,
   drop = NULL,
-  pre_study = FALSE,
+  pre_study = lifecycle::deprecated(),
   attach_data = TRUE,
   id = "SUBJID",
   trt = "TRT01A",
@@ -31,7 +31,8 @@ to create the specification for (e.g. \code{c('adsl', 'advs'))}).
 If both \code{keep} and \code{drop} are specified, only \code{keep} will be used.
 Both default to NULL, which means that all (known) domains are included.}
 
-\item{pre_study}{boolean. Include only pre-study events from occurrence data sets
+\item{pre_study}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}. boolean.
+Include only pre-study events from occurrence data sets
 (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.}
 
 \item{attach_data}{boolean indicating whether the imported raw data is included in
@@ -57,9 +58,13 @@ and/or setting the level order for factors in an adsl data set
 Ignored if \code{file} is not a sas7bdat file.}
 }
 \value{
-\code{adam_spec()} returns named list of specifications that can be passed to the \code{\link{build}()} function.
-Each element contains the specification for a single data set and is named with the domain abbreviation (e.g. adsl, adqskccq).
-The list can be manually adjusted if required, e.g. adding further specifications or altering existing ones. See the documentation
+\code{adam_spec()} returns named list of specifications that can be
+passed to the \code{\link{build}()} function.
+Each element contains the specification for a single data set and
+is named with the domain abbreviation (e.g. adsl, adlb).
+The list can be manually adjusted if required,
+e.g. adding further specifications or altering existing ones.
+See the documentation
 of the \verb{adam_spec_*()} for a detailed description of the output object.
 }
 \description{
@@ -96,5 +101,6 @@ Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }
 
 \seealso{
-\code{\link{adam_spec_adsl}()}, \code{\link{adam_spec_bds}()},  \code{\link{adam_spec_occds}()}
+\code{\link{adam_spec_adsl}()},
+\code{\link{adam_spec_bds}()},  \code{\link{adam_spec_occds}()}
 }

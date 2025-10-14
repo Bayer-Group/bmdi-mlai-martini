@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_feature.R
 \name{check_other_class}
 \alias{check_other_class}
-\title{Check for occurrence of level to cause issue with lumping}
+\title{Check for occurrence of level that would cause issue with lumping}
 \usage{
 check_other_class(x, other2_class = NULL, quiet = FALSE)
 }
@@ -20,5 +20,5 @@ defaults to FALSE.}
 invisibly returns a list for downstream use in \code{\link[=check_feature]{check_feature()}}
 }
 \description{
-Check for occurrence of level to cause issue with lumping
+Check for occurrence of level that would cause issue with lumping
 }

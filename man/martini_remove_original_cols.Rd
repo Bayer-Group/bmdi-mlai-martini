@@ -14,13 +14,13 @@ martini_remove_original_cols(new_data, object, col_names)
 \item{col_names}{A character vector, denoting columns to remove.}
 }
 \value{
-new_data with \code{col_names} removed if \code{get_keep_original_cols(object) == TRUE} or \code{object$preserve == TRUE}.
+new_data with \code{col_names} removed if
+\code{get_keep_original_cols(object)== TRUE} or \code{object$preserve == TRUE}.
 }
 \description{
 This helper function should be used whenever the argument
 \code{keep_original_cols} is used in a function.
 }
-\seealso{
-\link{developer_functions}
+\author{
+this function is basically a copy of recipes::remove_original_cols()
 }
-\keyword{internal}

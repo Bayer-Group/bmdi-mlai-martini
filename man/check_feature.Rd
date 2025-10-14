@@ -10,10 +10,13 @@ check_feature(
   check_other = TRUE,
   check_missing = TRUE,
   check_count = TRUE,
+  check_nzv = TRUE,
   quiet = FALSE,
   thres_count = 30,
   thres_low_freq = NULL,
   thres_missing = NULL,
+  thres_nzv_freq = NULL,
+  thres_nzv_unique = NULL,
   ...
 )
 }
@@ -40,6 +43,6 @@ character of length 0 for empty sets.
 NULL if not tested at all.
 }
 \description{
-Running \code{check_feature()} is by default run in \code{\link[=prepare_ml]{prepare_ml()}} on the
+\code{check_feature()} is by default run in \code{\link[=prepare_ml]{prepare_ml()}} on the
 input \code{feature} to notify the user on sources of potential issues.
 }

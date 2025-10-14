@@ -281,7 +281,7 @@ measurements: For survival analysis, specify column names for 'time' and
 numeric and \code{.status} is binary with 0 coding for censored, and 1 coding
 for event. Currently, only right-censoring is supported.
 
-For repeated measurements, specify \code{outcome_name} as
+For repeated measurements (experimental), specify \code{outcome_name} as
 \code{c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")}.
 The outcome mode will be guessed as regression or classification according
 to the type of the column specified in \code{.out}.
