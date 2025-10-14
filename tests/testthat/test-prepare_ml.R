@@ -306,7 +306,7 @@ test_that("`strings_as_factors = TRUE` in `recipe` works as expected", {
     train_prop = 1
   )
   
-  # -id should be the only column of type character
+  # .id should be the only column of type character
   expect_equal(
     ml_class$data$prep$train %>% 
       purrr::map_lgl(is.character) %>% 

@@ -79,12 +79,11 @@ prepare_ml_recipe <- function(
   }
   
   
-  
   # select recipe steps to include ####
   step_default <- args(prepare_ml) %>%
     as.list() %>% 
     head(-1) %>% 
-    purrr::keep_at(., names(.) %>% stringr::str_subset('prep_step'))
+    purrr::keep_at(., names(.) %>% stringr::str_subset("prep_step"))
   
   if(!is.null(step_list)){
     step_used <- purrr::imap(step_default, ~{step_list[[.y]] %||% .x})
@@ -117,13 +116,31 @@ prepare_ml_recipe <- function(
     rcp <- recipes::recipe(
       formula = the_formula, 
       data = data,
-      # `strings_as_factors` only affects variables with role 'outcome' and 
-      # 'predictor'. 'ID' is not affected, even though it is not defined yet 
+      # recipes >= 1.3.0: `strings_as_factors` only affects variables with role
+      # 'outcome' and 'predictor'. 
+      # Role 'ID' is not affected, even though it is not defined yet 
       # (but in the next step)
-      strings_as_factors = TRUE
+      strings_as_factors = packageVersion("recipes") >= package_version("1.3.0")
+      # <  1.3.0: recipe ----, step_mutate, prep FALSE
+      # >= 1.3.0: recipe TRUE, ----       , prep FALSE (overwritten)
     ) %>% 
       
-      recipes::update_role(tidyselect::any_of(c(".id", ".rmtime")), new_role = "ID") %>% 
+      recipes::update_role(
+        tidyselect::any_of(c(".id", ".rmtime")), 
+        new_role = "ID"
+      ) %>% 
+      {
+       if (packageVersion("recipes") < package_version("1.3.0")) {
+         recipes::step_mutate_at(
+           ., 
+           recipes::all_string_predictors(), 
+           fn = factor
+         )
+       } else {.}
+      } %>% 
+      
+      # ... ... omit observations with missing endpoint ####
+      recipes::step_naomit(recipes::all_outcomes(), skip = FALSE) %>% 
       
       # ... ... make clean levels ####
       recipes::step_mutate_at(
@@ -142,9 +159,6 @@ prepare_ml_recipe <- function(
       {if (thres_used$thres_imp>0) {
         recipes::step_filter_missing(., recipes::all_predictors(), threshold = 1-thres_used$thres_imp)
       }else{.}} %>% 
-      
-      # ... ... omit observations with missing endpoint ####
-      recipes::step_naomit(recipes::all_outcomes(), skip = FALSE) %>% 
       
       # ... ... omit observations with missing data in variables excluded from imputation ####
       recipes::step_naomit(tidyselect::any_of(vars_imp_ignore), skip = FALSE) %>%   
@@ -234,7 +248,8 @@ prepare_ml_recipe <- function(
   rcp_prep <- rcp %>% 
     {purrr::quietly(recipes::prep)(
       ., 
-      retain = TRUE
+      retain = TRUE, 
+      strings_as_factors = FALSE
       #, log_changes        = TRUE,
       #  fresh              = TRUE
       # retain
