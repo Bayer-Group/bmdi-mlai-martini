@@ -968,10 +968,76 @@ ml_data <- prepare_ml(
 )
 ```
 
+
 Please refer to the section on outcome preparation and the help page 
 of `prepare_ml()` for information on the
 required structure of `outcome` for single vs repeated measurement outcomes 
 and different outcome types.
+
+***
+
+## Input checks
+
+**`feature`**
+
+By default (`check_feature = TRUE`) `prepare_ml()` will run a check on the 
+provided `feature` data, which can also be run as stand-alone function 
+(`check_feature(feature`).
+The main checks include
+
+* low frequency classes: factors with size of the smallest class per factor 
+* missing proportion: identify variables that would be removed during ML prep
+(according to `prepare_ml()`'s default threshold)
+* (near) zero variance: constant variables and variables that are highly 
+sparse and unbalanced would be removed during ML prep 
+(using `prepare_ml()`'s default thresholds for frequency ratio and 
+percent of unique values)
+* potential factor conversion: 
+identify numeric variables that only have 'few' distinct integer non-negative
+values resembling count variables and might be considered as factors in the
+analysis  
+
+The user will be informed about the findings of the checks, the function 
+does not make any changes to the data.
+Note, that the results may differ slightly 
+in the actual data preprocessing for two reasons: 
+a) here, the checks are run individually and other preparation steps 
+conducted prior can change the input data and
+b) thresholds are parametrized in both `prepare_ml()` and `check_feature()`, 
+so make sure they match
+
+Nevertheless, running `check_feature()` is a convenient way to 
+help catching problems in the data preparation early, see which variables
+might be subject to removal and avoid downstream issues.
+
+```{r}
+check_feature(martini_feat)
+```
+```{r}
+check_nzv(martini_feat)
+```
+
+In some applications with data splitting (`train_prop < 1`), 
+downstream issues were observed in combination with using `ranger`,
+if the training data set contains factors with low frequency classes. 
+These may cause issues in the tuning process, 
+most likely in the cross-validation steps. 
+Apparently, this issue is known and 
+according to the repo is being worked on. 
+Since there is no generally best solution on the data prep side, 
+we provide a helper function that may 
+at least help in the identification of the variables causing the issue:
+
+`check_freq()` will check the prepped training data of a given ml object 
+(result of `prepare_ml()`) 
+for factors that may cause problems in this regard.
+
+```{r}
+d_ml %>%  
+  check_freq(thres = 25)
+```
+In case factors with low frequency classes are identified, 
+the corresponding frequency tables are returned in a list.
 
 
 
@@ -1025,11 +1091,12 @@ For most applications, `prep_step_dummy` should be set to `FALSE`.
 
 As of martini version 0.6.5, the data preparation contains the following steps
 
-* clean factor levels to avoid downstream issues
+
+* omit observations with missing endpoint
+* clean factor levels of to avoid downstream issues
 * add explicit NAs to selected factor variables 
 (for variables listed in `vars_fct_expl_na`) 
 * removal of variables with a high missing value rate (controlled by `thres_imp`)
-* omit observations with missing endpoint
 * omit observations with missing data in variables excluded from imputation 
 (controlled by `vars_imp_ignore`)
 * log transformation for highly skewed variables to improve imputation performance
@@ -1048,10 +1115,8 @@ If imputation is skipped altogether, observations with missing values are remove
 (controlled by `prep_step_corr`, `thres_corr`, `vars_keep_corr`). 
 For ease of interpretability of the results, the user can pre-specify variables 
 to keep over others from a correlated group.
-* Pooling infrequent factor levels (controlled by `thres_lump`)
-
-<!-- * vars_ordinalscore  -->
-* dummy coding (controlled by `prep_step_dummy` and `one_hot`)
+* Pooling infrequent factor levels (controlled by `thres_lump`)  
+* Dummy coding (controlled by `prep_step_dummy` and `one_hot`)
 
 ***
 
@@ -1124,29 +1189,6 @@ and the untrained (`$raw`) version.
 
 The latter one is required for example for tuning purposes and/or the 
 assessment of the generalization error in the downstream workflow.
-
-### Avoiding downstream issues 
-
-In some applications, issues were observed if the training data set contains
-factors with low frequency classes. 
-These may cause issues in the tuning process, 
-most likely in the cross-validation steps. 
-Please note, that this is in fact an issue with the implementation of `ranger`,
-which according to the repo is being worked on. 
-Since there is no generally best solution on the data prep side, 
-we provide a helper function that may 
-at least help in the identification of the variables causing the issue:
-
-`check_freq()` will check the prepped training data of a given ml object 
-(result of `prepare_ml()`) 
-for factors that may cause problems in this regard.
-
-```{r}
-d_ml %>%  
-  check_freq(thres = 25)
-```
-In case factors with low frequency classes are identified, 
-the corresponding frequency tables are returned in a list.
 
 
 ***
