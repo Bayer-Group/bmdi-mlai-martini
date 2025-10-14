@@ -1,6 +1,6 @@
 #' check feature matrix
 #' 
-#' Running `check_feature()` is by default run in [prepare_ml()] on the 
+#' `check_feature()` is by default run in [prepare_ml()] on the 
 #' input `feature` to notify the user on sources of potential issues. 
 #' 
 #'
@@ -27,10 +27,13 @@ check_feature <- function(
   check_other    = TRUE,
   check_missing  = TRUE,
   check_count    = TRUE,
+  check_nzv      = TRUE,
   quiet          = FALSE,
   thres_count    = 30,
   thres_low_freq = NULL,
   thres_missing  = NULL,
+  thres_nzv_freq   = NULL, 
+  thres_nzv_unique = NULL,
   ...
 ){
   
@@ -58,10 +61,22 @@ if (check_other) {
 if (check_missing) { 
   out$missing <- check_non_missing(x, thres = thres_missing, quiet = quiet_checks)
 } else {
-  out$missing <-  list(NULL)
+  out$missing <- list(NULL)
 }
 
-# 
+# nzv ####
+if (check_nzv) { 
+  out$nzv <- check_nzv(
+    x, 
+    thres_freq = thres_nzv_freq, 
+    thres_unique = thres_nzv_unique,
+    quiet = quiet_checks
+  )
+} else {
+  out$nzv <- list(NULL)
+}
+
+
 # # counts ####
 if (check_count) {
   out$count <- check_count(x, thres = thres_count, quiet = quiet_checks)
@@ -156,7 +171,7 @@ check_freq <- function(
     cli::cli_abort("Please check your input. Should be a data frame.")
   }
   
-  data_check <-x
+  data_check <- x
   
   # determine all class distributions
   fct_counts <- data_check %>% 
@@ -213,7 +228,7 @@ check_freq <- function(
 }
 
 
-#' Check for occurrence of level to cause issue with lumping
+#' Check for occurrence of level that would cause issue with lumping
 #'
 #' @param other2_class name of class to check for. 
 #' If NULL (the default), uses the default of [step_other2()]'s argument
@@ -291,9 +306,8 @@ check_non_missing <- function(
   
   if (length(high_miss) > 0 && ! quiet) {
     cli::cli_inform(c(
-      paste0(
-      "i" = "Variables with a high proportion of missing values ", 
-        #"(default >{get_default(prepare_ml, 'thres_imp')*100}% non-missing) ", 
+      "i" = paste0(
+        "Variables with a high proportion of missing values ", 
         "will be discarded instead of imputed during ML preparation."
       ),
       "!" = paste0(
@@ -365,7 +379,6 @@ check_count <- function(
   
   out <- list(
     vars = looks_like_count,
-    #n_distinct = high_miss, 
     finding = length(looks_like_count) > 0,
     threshold = thres, 
     check = "check_count()"
@@ -373,4 +386,81 @@ check_count <- function(
   
   invisible(out)
   
+}
+
+
+
+#' Check (near) zero variance
+#'
+#' @param thres_freq,thres_unique by default (`NULL`), the respective 
+#' default of `prepare_ml()` is used
+#' @inheritParams check_freq
+#'
+#' @inherit check_freq return
+#' 
+#' @export
+check_nzv <- function(
+    x,
+    thres_freq   = NULL,
+    thres_unique = NULL,
+    quiet = FALSE
+){
+  
+  thres_freq   <- get_default(prepare_ml, "thres_nzv_freq")
+  thres_unique <- get_default(prepare_ml, "thres_nzv_unique")
+  
+  constant <- x %>%  
+    purrr::map_lgl(~ {dplyr::n_distinct(.x) == 1}) %>% 
+    purrr::keep(isTRUE) %>% 
+    names()
+  
+  nzv <- recipes::recipe(x) %>% 
+    recipes::update_role(
+      tidyselect::everything(), 
+      new_role = 'predictor'
+    ) %>% 
+    recipes::step_nzv(
+      recipes::all_predictors(),
+      freq_cut = thres_freq,
+      unique_cut = thres_unique
+    ) %>% 
+    recipes::prep() %>% 
+    recipes::tidy(number = 1) %>% 
+    dplyr::pull(.data$terms)
+  
+  if (! quiet) {
+    if (length(nzv) > 0 ) {
+      cli::cli_inform(c(
+        "i" = paste0(
+          "Variables that are either constant or highly sparse and ", 
+          "unbalanced will be discarded during ML preparation."
+        ),
+        "!" = paste0(
+          "For the tested thresholds of {thres_freq} (frequency ratio) and ",
+          "{thres_unique} (unique value percent) ",
+          "{cli::qty(length(c(constant, nzv)))}the following variable{?s} ",
+          "would be discarded: {nzv}."
+        ),
+        "*" = "See {.fun recipes::step_nzv} for details."
+      )
+      )
+    } else {
+      cli::cli_inform(c(
+        "i" = paste0(
+          "Data set was checked for (near) zero variables that would be ",
+          "discarded instead of imputed during ML preparation."
+          ),
+        "v" = "None identified."
+      ))
+    }
+  }
+  
+  out <- list(
+    vars = tibble::lst(constant, nzv = setdiff(nzv, constant)),
+    finding = length(nzv) > 0,
+    threshold = c(unique = thres_unique, freq = thres_freq), 
+    check = "check_nzv()"
+  )
+  
+  invisible(out)
 }
