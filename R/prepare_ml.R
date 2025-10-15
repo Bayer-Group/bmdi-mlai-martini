@@ -287,7 +287,7 @@ prepare_ml <- function(
 ) {
   
   # deprecated
-  if(!missing(thres_count)){
+  if(lifecycle::is_present(thres_count)){
     lifecycle::deprecate_warn(
       when = "0.7.0",
       what = "prepare_ml(thres_count)", 
@@ -295,7 +295,7 @@ prepare_ml <- function(
     )
   }
   
-  if(!missing(prep_recipe)){
+  if(lifecycle::is_present(prep_recipe)){
     lifecycle::deprecate_warn(
       when = "0.7.0",
       what = "prepare_ml(prep_recipe)", 
@@ -303,7 +303,7 @@ prepare_ml <- function(
     )
   }
   
-  if(!missing(vars_ordinalscore)){
+  if(lifecycle::is_present(vars_ordinalscore)){
     lifecycle::deprecate_warn(
       when = "0.7.0",
       what = "prepare_ml(vars_ordinalscore = )", 
