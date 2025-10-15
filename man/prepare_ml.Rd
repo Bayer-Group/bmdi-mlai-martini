@@ -18,7 +18,6 @@ prepare_ml(
   prep_step_corr = TRUE,
   prep_step_dummy = FALSE,
   thres_log = 2,
-  thres_count = 10,
   thres_corr = 0.9,
   thres_lump = 0.05,
   thres_imp = 0.8,
@@ -26,7 +25,6 @@ prepare_ml(
   thres_nzv_unique = 10,
   vars_imp_ignore = c(".trt"),
   vars_fct_expl_na = NULL,
-  vars_ordinalscore = NULL,
   vars_keep_corr = NULL,
   vars_no_trafo = NULL,
   one_hot = NULL,
@@ -34,9 +32,11 @@ prepare_ml(
   outlier_remove = FALSE,
   outlier_ctrl = list(coef = 3),
   custom_recipe = NULL,
-  prep_recipe = NULL,
   quiet = FALSE,
-  check_feature = TRUE
+  check_feature = TRUE,
+  prep_recipe = lifecycle::deprecated(),
+  vars_ordinalscore = lifecycle::deprecated(),
+  thres_count = lifecycle::deprecated()
 )
 }
 \arguments{
@@ -77,11 +77,6 @@ section for the full list of recipe steps.}
 if \code{prep_step_log = TRUE}, all observations are positive, and
 \code{e1071::skewness() > thres_log}, where \code{thres_log} defaults to 2.}
 
-\item{thres_count}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} integer variables with
-no more than \code{thres_count} distinct values are considered as count variables
-and are excluded from the log-transformation and normalization.
-Defaults to 10.}
-
 \item{thres_corr}{if \code{prep_step_corr = TRUE}, \code{thres_corr} is passed
 to \code{recipes::step_corr()}'s \code{threshold} argument with a default
 of 0.9 to remove highly correlated features}
@@ -114,9 +109,6 @@ variables will be removed. Removal is documented in \code{removed$rows}.}
 \item{vars_fct_expl_na}{column names of factors for which NAs should be
 treated as an explicit factor level. Defaults to NULL.}
 
-\item{vars_ordinalscore}{column names of ordinal factor variables to be
-converted into numeric scores (using \code{as.numeric()}). Defaults to NULL.}
-
 \item{vars_keep_corr}{choose these variables over other options when removing
 variables due to high correlation in \code{recipes::step_corr()}.
 See \code{recipes::step_rm()} below for details.}
@@ -141,13 +133,6 @@ provided for data preparation. Defaults to NULL, yielding {{martini}}'s default
 preparation (please refer to the details section to learn about the
 default recipe steps).}
 
-\item{prep_recipe}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{custom_recipe}
-argument instead.
-custom, pre-defined \code{recipes::recipe()} may be
-provided for data preparation. Defaults to NULL, yielding a data-driven
-preparation. Please refer to the details section to learn about the
-individual recipe steps.}
-
 \item{quiet}{boolean. Suppress messages during outcome preparation to the
 console on NA and outlier removal, resp. Defaults to \code{FALSE}.}
 
@@ -155,6 +140,25 @@ console on NA and outlier removal, resp. Defaults to \code{FALSE}.}
 input of \code{feature} to identify sources for potential downstream issues
 such as low frequency classes in a character/factor column.
 defaults to TRUE.}
+
+\item{prep_recipe}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{custom_recipe}
+argument instead.
+custom, pre-defined \code{recipes::recipe()} may be
+provided for data preparation. Defaults to NULL, yielding a data-driven
+preparation. Please refer to the details section to learn about the
+individual recipe steps.}
+
+\item{vars_ordinalscore}{column names of ordinal factor variables to be
+converted into numeric scores (using \code{as.numeric()}). Defaults to NULL.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}.
+Please handle factors individually prior to calling \code{prepare_ml()}.}
+
+\item{thres_count}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} non-negative
+integer variables with
+no more than \code{thres_count} distinct values are considered as count variables
+and are excluded from the log-transformation and normalization. Please use
+\code{check_count()} on the feature input to identify variables that resemble
+counts and handle appropriately prior to calling \code{prepare_ml()}.}
 }
 \value{
 \code{prepare_ml()} produces an object of class \code{martini_ml}, a nested list
