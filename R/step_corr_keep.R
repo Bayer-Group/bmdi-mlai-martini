@@ -396,7 +396,7 @@ tunable.step_corr_keep <- function(x, ...) {
 #'
 #' @author this function is basically a copy of recipes::remove_original_cols()
 martini_remove_original_cols <- function(new_data, object, col_names) {
-  keep_original_cols <- get_keep_original_cols(object)
+  keep_original_cols <- recipes::get_keep_original_cols(object)
   if (any(isFALSE(object$preserve), !keep_original_cols)) {
     new_data <- martini_recipes_remove_cols(new_data, object, col_names)
   }
