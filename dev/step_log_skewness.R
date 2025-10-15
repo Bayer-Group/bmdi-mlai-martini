@@ -294,8 +294,12 @@ prep.step_log_skewed_undo <- function(x, training, info = NULL, ...) {
 #' @exportS3Method 
 bake.step_log_skewed_undo <- function(object, new_data, ...) {
   
-  already_in_recipes <- exists('recipes_remove_cols', where = asNamespace('recipes'), mode = 'function')
-  new_data <- if(already_in_recipes){
+  already_in_recipes <- exists(
+    "recipes_remove_cols", 
+    where = asNamespace("recipes"),
+    mode = "function"
+  )
+  new_data <- if (already_in_recipes) {
     recipes::recipes_remove_cols(new_data, object)
   }else{ # fallback: copy in martini
     martini_recipes_remove_cols(new_data, object)

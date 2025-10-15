@@ -48,7 +48,7 @@
 #' proportion (or frequency) in the training set is less than `threshold`.
 #'
 #' If no pooling is done the data are unmodified (although character data may be
-#' changed to factors based on the value of `strings_as_factors` in [prep()]).
+#' changed to factors based on the value of `strings_as_factors` in [prep()/recipe()]).
 #' Otherwise, a factor is always returned with different factor levels.
 #'
 #' If `threshold` is less than the largest category proportion, all levels
