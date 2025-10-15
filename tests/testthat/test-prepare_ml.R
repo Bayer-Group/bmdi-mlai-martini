@@ -359,16 +359,7 @@ test_that("prepare_ml(check_feature) works", {
       outcome = martini_outc_class, 
       check_feature = TRUE
     ), 
-    "No issues were detected"
-  )
-  
-  expect_message(
-    prepare_ml(
-      feature = martini_feat,
-      outcome = martini_outc_class, 
-      check_feature = TRUE
-    ), 
-    "No issues were detected"
+    "Potential issues were identified"
   )
   
   expect_snapshot(

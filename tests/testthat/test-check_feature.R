@@ -164,7 +164,7 @@ test_that("check_non_missing() works", {
     df["only_one_kept"]
   )
   
-  # check_non_missing selects same columns as recipe step
+  # verify that check_non_missing selects same columns as recipe step
   expect_setequal(
     res_check$vars,
     tidy(rcp_prepped, 1)$terms
@@ -228,7 +228,8 @@ test_that("check_nzv() works", {
       thres_freq = thres_freq,
       thres_unique = thres_unique,
       quiet = FALSE
-    )
+    ),
+    "var_const and var_nzv"
   )
   
   removed <- recipes::recipe(df) %>% 
@@ -249,12 +250,6 @@ test_that("check_nzv() works", {
   expect_equal(
     removed,
     c("var_const", "var_nzv")
-  )
-  
-  # check_non_missing selects same columns as recipe step
-  expect_setequal(
-    res_check$vars,
-    tidy(rcp_prepped, 1)$terms
   )
   
 })
