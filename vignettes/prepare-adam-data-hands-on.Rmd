@@ -505,7 +505,7 @@ so these parameters directly impact run time.
 An example for a reasonable exclusion of a data set would be e.g. 
 a data set on biomarkers that were measured only for a small subpopulation 
 (by default, data sets are combined using 
-`inner_join()`, 
+`dplyr::full_join()`, 
 but it's a parameter to `build()`).
 
 

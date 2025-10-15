@@ -2,7 +2,9 @@
 
 ## breaking changes
 
-
+* `build(join = )` default changed from `dplyr::inner_join()` to
+`dplyr::full_join()`, which is equivalent to "adsl" (if included) according
+to CDISC standards
 
 
 * the prepare_ml() output object structure has changed

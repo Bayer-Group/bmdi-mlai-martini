@@ -23,7 +23,10 @@ test_that("build() correctly passes parameters to build_bds()", {
   
   data_build_bds <- build_bds(spec_arrange$adlb)$data
   
-  data_build <- build(spec_arrange)
+  data_build <- build(
+    spec_arrange, 
+    join = dplyr::inner_join
+  )
   
   expect_equal(
     data_build %>% dplyr::select(tidyselect::all_of(data_build_bds %>% names())),
@@ -43,7 +46,10 @@ test_that("build() correctly passes parameters to build_bds()", {
   
   data_build_bds <- build_bds(spec_arrange$adlb)$data
   
-  data_build <- build(spec_arrange)
+  data_build <- build(
+    spec_arrange, 
+    join = dplyr::inner_join
+  )
   
   expect_equal(
     data_build %>% dplyr::select(tidyselect::all_of(data_build_bds %>% names())),
