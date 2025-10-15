@@ -19144,9 +19144,10 @@
       ID:         1
       
       -- Operations 
+      * Variable mutation for: recipes::all_string_predictors()
+      * Removing rows with NA values in: recipes::all_outcomes()
       * Variable mutation for: recipes::all_factor_predictors()
       * Missing value column filter on: recipes::all_predictors()
-      * Removing rows with NA values in: recipes::all_outcomes()
       * Removing rows with NA values in: tidyselect::any_of(vars_imp_ignore)
       * Log transformation on: recipes::all_numeric_predictors(), ...
       * K-nearest neighbor imputation for: recipes::all_predictors()
@@ -19173,13 +19174,14 @@
       Training data contained 216 data points and 213 incomplete rows.
       
       -- Operations 
+      * Variable mutation for: <none> | Trained
+      * Removing rows with NA values in: .out | Trained
       * Variable mutation for: .trt, AGEGR01, SEX, RACE | Trained
       * Missing value column filter removed: LAB1, LAB2, LAB3 | Trained
-      * Removing rows with NA values in: .out | Trained
       * Removing rows with NA values in: .trt | Trained
       * Log transformation on: <none> | Trained
       * K-nearest neighbor imputation for: .trt, AGEGR01, SEX, RACE, ... | Trained
-      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, ... | Trained
+      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, BPSYS, ... | Trained
       * Mode imputation for: .trt, AGEGR01, SEX, RACE | Trained
       * Zero variance filter removed: cardiac_arrhythmias | Trained
       * Sparse, unbalanced variable filter removed: <none> | Trained
@@ -28506,7 +28508,7 @@
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "WHITE",
+          "RACE": "ASIAN",
           "AGE": 51,
           "BMI_advs": 27.2,
           "BPDIA": 69,
@@ -29444,9 +29446,10 @@
       ID:         1
       
       -- Operations 
+      * Variable mutation for: recipes::all_string_predictors()
+      * Removing rows with NA values in: recipes::all_outcomes()
       * Variable mutation for: recipes::all_factor_predictors()
       * Missing value column filter on: recipes::all_predictors()
-      * Removing rows with NA values in: recipes::all_outcomes()
       * Removing rows with NA values in: tidyselect::any_of(vars_imp_ignore)
       * Log transformation on: recipes::all_numeric_predictors(), ...
       * K-nearest neighbor imputation for: recipes::all_predictors()
@@ -29473,13 +29476,14 @@
       Training data contained 215 data points and 212 incomplete rows.
       
       -- Operations 
+      * Variable mutation for: <none> | Trained
+      * Removing rows with NA values in: .time, .status | Trained
       * Variable mutation for: .trt, AGEGR01, SEX, RACE | Trained
       * Missing value column filter removed: LAB1, LAB2, LAB3 | Trained
-      * Removing rows with NA values in: .time .status | Trained
       * Removing rows with NA values in: .trt | Trained
       * Log transformation on: <none> | Trained
       * K-nearest neighbor imputation for: .trt, AGEGR01, SEX, RACE, ... | Trained
-      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, ... | Trained
+      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, BPSYS, ... | Trained
       * Mode imputation for: .trt, AGEGR01, SEX, RACE | Trained
       * Zero variance filter removed: cardiac_arrhythmias | Trained
       * Sparse, unbalanced variable filter removed: <none> | Trained
