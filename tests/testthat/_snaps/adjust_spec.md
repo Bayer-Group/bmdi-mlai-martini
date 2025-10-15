@@ -17,8 +17,8 @@
         advs PARAMCD AVAL  AVALU AVISIT
       
         Key columns used in occds-type data sets
-        name label   value valuen count time  
-        admh MHDECOD NA    NA     FALSE MHSTDY
+        name label   value valuen count
+        admh MHDECOD NA    NA     FALSE
       
         Filter information 
     Message
@@ -48,8 +48,8 @@
         advs PARAMCD AVAL  AVALU AVISIT
       
         Key columns used in occds-type data sets
-        name label   value valuen count time  
-        admh MHDECOD NA    NA     FALSE MHSTDY
+        name label   value valuen count
+        admh MHDECOD NA    NA     FALSE
       
         Filter information 
     Message
@@ -79,8 +79,8 @@
         advs PARAMCD AVAL  AVALU AVISIT
       
         Key columns used in occds-type data sets
-        name label   value valuen count time  
-        admh MHDECOD NA    NA     FALSE MHSTDY
+        name label   value valuen count
+        admh MHDECOD NA    NA     FALSE
       
         Filter information 
     Message

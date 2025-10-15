@@ -28,8 +28,8 @@
         advs PARAMCD AVAL  AVALU AVISIT
       
         Key columns used in occds-type data sets
-        name label  value valuen count time  
-        admh MHHLGT NA    NA     TRUE  MHSTDY
+        name label  value valuen count
+        admh MHHLGT NA    NA     TRUE 
 
 ---
 
@@ -347,9 +347,6 @@
       
       $admh$valuen
       NULL
-      
-      $admh$time
-      [1] "MHSTDY"
       
       $admh$count
       [1] TRUE

@@ -225,9 +225,7 @@ prepare_col_selection <- function(
       "id"     = list(column = dots$id,     required = TRUE),
       "label"  = list(column = dots$label,  required = TRUE),
       "value"  = list(column = dots$value,  required = FALSE),
-      "valuen" = list(column = dots$valuen, required = FALSE),
-      # only used for pre_study filter (to be deprecated)
-      "time"   = list(column = dots$time,   required = FALSE)
+      "valuen" = list(column = dots$valuen, required = FALSE)
     )
   }
   
