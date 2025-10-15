@@ -51,7 +51,7 @@
           "BPSYS": 119,
           "HR": 84,
           "WEIGHT": 90.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -68,7 +68,7 @@
           "BPSYS": 116,
           "HR": 69,
           "WEIGHT": 116.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -85,7 +85,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -118,7 +118,7 @@
           "BPDIA": 68,
           "BPSYS": 102,
           "WEIGHT": 95.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -135,7 +135,7 @@
           "BPSYS": 95,
           "HR": 71,
           "WEIGHT": 71.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -151,7 +151,7 @@
           "BPSYS": 116,
           "HR": 78,
           "WEIGHT": 84.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3
         },
         {
@@ -168,7 +168,7 @@
           "BPSYS": 92,
           "HR": 56,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -185,7 +185,7 @@
           "BPSYS": 122,
           "HR": 66,
           "WEIGHT": 64.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -202,7 +202,7 @@
           "BPSYS": 136,
           "HR": 50,
           "WEIGHT": 88.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -218,7 +218,7 @@
           "BPDIA": 82,
           "BPSYS": 125,
           "HR": 76,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -235,7 +235,7 @@
           "BPSYS": 134,
           "HR": 48,
           "WEIGHT": 64.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -252,7 +252,7 @@
           "BPSYS": 128,
           "HR": 68,
           "WEIGHT": 80.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -269,7 +269,7 @@
           "BPSYS": 109,
           "HR": 63,
           "WEIGHT": 68,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -286,7 +286,7 @@
           "BPSYS": 137,
           "HR": 74,
           "WEIGHT": 108.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -303,7 +303,7 @@
           "BPSYS": 111,
           "HR": 80,
           "WEIGHT": 59.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -337,7 +337,7 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 99.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -354,7 +354,7 @@
           "BPSYS": 129,
           "HR": 67,
           "WEIGHT": 65.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -370,7 +370,7 @@
           "BPSYS": 134,
           "HR": 44,
           "WEIGHT": 47.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -387,7 +387,7 @@
           "BPSYS": 134,
           "HR": 50,
           "WEIGHT": 106.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -404,7 +404,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 54.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -420,7 +420,7 @@
           "BPSYS": 106,
           "HR": 74,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -437,7 +437,7 @@
           "BPSYS": 119,
           "HR": 82,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -454,7 +454,7 @@
           "BPSYS": 115,
           "HR": 72,
           "WEIGHT": 88.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -469,7 +469,7 @@
           "BPSYS": 98,
           "HR": 69,
           "WEIGHT": 101.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -486,7 +486,7 @@
           "BPSYS": 98,
           "HR": 73,
           "WEIGHT": 86.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -502,7 +502,7 @@
           "BPDIA": 65,
           "BPSYS": 109,
           "WEIGHT": 66.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -519,7 +519,7 @@
           "BPSYS": 115,
           "HR": 59,
           "WEIGHT": 73.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -536,7 +536,7 @@
           "BPSYS": 144,
           "HR": 79,
           "WEIGHT": 94.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -553,7 +553,7 @@
           "BPSYS": 103,
           "HR": 62,
           "WEIGHT": 39.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -570,7 +570,7 @@
           "BPSYS": 108,
           "HR": 64,
           "WEIGHT": 103.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3
         },
         {
@@ -587,7 +587,7 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 95.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -604,7 +604,7 @@
           "BPSYS": 128,
           "HR": 71,
           "WEIGHT": 54.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -621,7 +621,7 @@
           "BPSYS": 132,
           "HR": 61,
           "WEIGHT": 100,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -638,7 +638,7 @@
           "BPSYS": 125,
           "HR": 70,
           "WEIGHT": 62.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -654,7 +654,7 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 70.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -671,7 +671,7 @@
           "BPSYS": 121,
           "HR": 79,
           "WEIGHT": 64.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -688,7 +688,7 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 41.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -722,7 +722,7 @@
           "BPSYS": 110,
           "HR": 80,
           "WEIGHT": 86.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -739,7 +739,7 @@
           "BPSYS": 120,
           "HR": 64,
           "WEIGHT": 84.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -756,7 +756,7 @@
           "BPSYS": 99,
           "HR": 62,
           "WEIGHT": 73,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -773,7 +773,7 @@
           "BPSYS": 137,
           "HR": 69,
           "WEIGHT": 93.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -790,7 +790,7 @@
           "BPSYS": 141,
           "HR": 63,
           "WEIGHT": 78.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -807,7 +807,7 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 105.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -824,7 +824,7 @@
           "BPSYS": 108,
           "HR": 78,
           "WEIGHT": 85,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -841,7 +841,7 @@
           "BPSYS": 135,
           "HR": 79,
           "WEIGHT": 69.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -875,7 +875,7 @@
           "BPSYS": 125,
           "HR": 77,
           "WEIGHT": 113.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -892,7 +892,7 @@
           "BPSYS": 122,
           "HR": 81,
           "WEIGHT": 77,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -909,7 +909,7 @@
           "BPSYS": 143,
           "HR": 86,
           "WEIGHT": 82.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -929,7 +929,7 @@
           "BPSYS": 116,
           "HR": 79,
           "WEIGHT": 92.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -948,7 +948,7 @@
           "BPSYS": 105,
           "HR": 86,
           "WEIGHT": 51.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -965,7 +965,7 @@
           "BPSYS": 141,
           "HR": 75,
           "WEIGHT": 112.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -982,7 +982,7 @@
           "BPSYS": 152,
           "HR": 69,
           "WEIGHT": 50.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -999,7 +999,7 @@
           "BPSYS": 130,
           "HR": 70,
           "WEIGHT": 73,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -1015,7 +1015,7 @@
           "BPSYS": 114,
           "HR": 58,
           "WEIGHT": 66.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1032,7 +1032,7 @@
           "BPSYS": 117,
           "HR": 93,
           "WEIGHT": 110.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1049,7 +1049,7 @@
           "BPSYS": 108,
           "HR": 67,
           "WEIGHT": 88.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -1066,7 +1066,7 @@
           "BPSYS": 100,
           "HR": 81,
           "WEIGHT": 66.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -1082,7 +1082,7 @@
           "BPSYS": 114,
           "HR": 53,
           "WEIGHT": 65.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1099,7 +1099,7 @@
           "BPSYS": 107,
           "HR": 39,
           "WEIGHT": 53.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1115,7 +1115,7 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 96.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1132,7 +1132,7 @@
           "BPSYS": 96,
           "HR": 64,
           "WEIGHT": 67.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1149,7 +1149,7 @@
           "BPSYS": 98,
           "HR": 89,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -1166,7 +1166,7 @@
           "BPSYS": 129,
           "HR": 62,
           "WEIGHT": 46.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -1183,7 +1183,7 @@
           "BPSYS": 106,
           "HR": 73,
           "WEIGHT": 53.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1200,7 +1200,7 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -1217,7 +1217,7 @@
           "BPSYS": 108,
           "HR": 72,
           "WEIGHT": 74.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1234,7 +1234,7 @@
           "BPSYS": 112,
           "HR": 76,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1251,7 +1251,7 @@
           "BPSYS": 117,
           "HR": 80,
           "WEIGHT": 71.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1268,7 +1268,7 @@
           "BPSYS": 124,
           "HR": 60,
           "WEIGHT": 80.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -1285,7 +1285,7 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 82.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -1302,7 +1302,7 @@
           "BPSYS": 143,
           "HR": 78,
           "WEIGHT": 66,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -1319,7 +1319,7 @@
           "BPSYS": 115,
           "HR": 63,
           "WEIGHT": 66.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1336,7 +1336,7 @@
           "BPSYS": 124,
           "HR": 68,
           "WEIGHT": 78.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -1353,7 +1353,7 @@
           "BPSYS": 94,
           "HR": 67,
           "WEIGHT": 76.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -1370,7 +1370,7 @@
           "BPSYS": 113,
           "HR": 71,
           "WEIGHT": 56.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -1387,7 +1387,7 @@
           "BPSYS": 116,
           "HR": 50,
           "WEIGHT": 74.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1404,7 +1404,7 @@
           "BPSYS": 113,
           "HR": 72,
           "WEIGHT": 66.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -1421,7 +1421,7 @@
           "BPSYS": 118,
           "HR": 96,
           "WEIGHT": 60.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -1438,7 +1438,7 @@
           "BPSYS": 117,
           "HR": 79,
           "WEIGHT": 88,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1455,7 +1455,7 @@
           "BPSYS": 99,
           "HR": 64,
           "WEIGHT": 60.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1472,7 +1472,7 @@
           "BPSYS": 119,
           "HR": 62,
           "WEIGHT": 62.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -1489,7 +1489,7 @@
           "BPSYS": 101,
           "HR": 45,
           "WEIGHT": 55.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -1506,7 +1506,7 @@
           "BPSYS": 111,
           "HR": 59,
           "WEIGHT": 54.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -1523,7 +1523,7 @@
           "BPSYS": 114,
           "HR": 71,
           "WEIGHT": 86.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1540,7 +1540,7 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 94.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -1557,7 +1557,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 61.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -1574,7 +1574,7 @@
           "BPSYS": 106,
           "HR": 68,
           "WEIGHT": 101.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -1591,7 +1591,7 @@
           "BPSYS": 128,
           "HR": 62,
           "WEIGHT": 92.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -1608,7 +1608,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 75,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -1625,7 +1625,7 @@
           "BPSYS": 124,
           "HR": 48,
           "WEIGHT": 63.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -1642,7 +1642,7 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 48.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -1659,7 +1659,7 @@
           "BPSYS": 123,
           "HR": 85,
           "WEIGHT": 100,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1676,7 +1676,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 89.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1693,7 +1693,7 @@
           "BPSYS": 111,
           "HR": 82,
           "WEIGHT": 114.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1710,7 +1710,7 @@
           "BPSYS": 121,
           "HR": 60,
           "WEIGHT": 81.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1744,7 +1744,7 @@
           "BPSYS": 126,
           "HR": 84,
           "WEIGHT": 75.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1761,7 +1761,7 @@
           "BPSYS": 134,
           "HR": 67,
           "WEIGHT": 111.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -1777,7 +1777,7 @@
           "BPSYS": 128,
           "HR": 56,
           "WEIGHT": 62.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1794,7 +1794,7 @@
           "BPSYS": 96,
           "HR": 84,
           "WEIGHT": 78.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1811,7 +1811,7 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 82.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1828,7 +1828,7 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 103.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -1845,7 +1845,7 @@
           "BPSYS": 135,
           "HR": 76,
           "WEIGHT": 67,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -1862,7 +1862,7 @@
           "BPSYS": 128,
           "HR": 86,
           "WEIGHT": 93.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1879,7 +1879,7 @@
           "BPSYS": 124,
           "HR": 76,
           "WEIGHT": 65.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1896,7 +1896,7 @@
           "BPSYS": 117,
           "HR": 77,
           "WEIGHT": 115.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1913,7 +1913,7 @@
           "BPSYS": 95,
           "HR": 46,
           "WEIGHT": 50.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -1930,7 +1930,7 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 79.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -1947,7 +1947,7 @@
           "BPSYS": 137,
           "HR": 78,
           "WEIGHT": 96.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -1981,7 +1981,7 @@
           "BPSYS": 123,
           "HR": 49,
           "WEIGHT": 96.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -1998,7 +1998,7 @@
           "BPSYS": 95,
           "HR": 72,
           "WEIGHT": 101.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2015,7 +2015,7 @@
           "BPSYS": 162,
           "HR": 86,
           "WEIGHT": 84,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2032,7 +2032,7 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 81.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2049,7 +2049,7 @@
           "BPSYS": 95,
           "HR": 87,
           "WEIGHT": 99.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2066,7 +2066,7 @@
           "BPSYS": 98,
           "HR": 55,
           "WEIGHT": 70.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2083,7 +2083,7 @@
           "BPSYS": 131,
           "HR": 77,
           "WEIGHT": 120.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -2100,7 +2100,7 @@
           "BPSYS": 105,
           "HR": 48,
           "WEIGHT": 64.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -2117,7 +2117,7 @@
           "BPSYS": 112,
           "HR": 57,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -2134,7 +2134,7 @@
           "BPSYS": 136,
           "HR": 66,
           "WEIGHT": 113.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -2151,7 +2151,7 @@
           "BPSYS": 113,
           "HR": 63,
           "WEIGHT": 66.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -2168,7 +2168,7 @@
           "BPSYS": 100,
           "HR": 75,
           "WEIGHT": 65.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2185,7 +2185,7 @@
           "BPSYS": 96,
           "HR": 85,
           "WEIGHT": 96.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2219,7 +2219,7 @@
           "BPSYS": 132,
           "HR": 54,
           "WEIGHT": 95.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -2236,7 +2236,7 @@
           "BPSYS": 115,
           "HR": 68,
           "WEIGHT": 81.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2253,7 +2253,7 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 98.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2270,7 +2270,7 @@
           "BPSYS": 106,
           "HR": 55,
           "WEIGHT": 59.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2287,7 +2287,7 @@
           "BPSYS": 105,
           "HR": 66,
           "WEIGHT": 55.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2304,7 +2304,7 @@
           "BPSYS": 111,
           "HR": 67,
           "WEIGHT": 85.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -2321,7 +2321,7 @@
           "BPSYS": 129,
           "HR": 65,
           "WEIGHT": 82.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2355,7 +2355,7 @@
           "BPSYS": 83,
           "HR": 89,
           "WEIGHT": 75.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -2372,7 +2372,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 109.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2389,7 +2389,7 @@
           "BPSYS": 126,
           "HR": 56,
           "WEIGHT": 75.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -2406,7 +2406,7 @@
           "BPSYS": 96,
           "HR": 72,
           "WEIGHT": 76.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2423,7 +2423,7 @@
           "BPSYS": 119,
           "HR": 65,
           "WEIGHT": 98.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2440,7 +2440,7 @@
           "BPSYS": 99,
           "HR": 68,
           "WEIGHT": 70.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2457,7 +2457,7 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 57.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2474,7 +2474,7 @@
           "BPSYS": 121,
           "HR": 53,
           "WEIGHT": 90.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2491,7 +2491,7 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 65.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2508,7 +2508,7 @@
           "BPSYS": 134,
           "HR": 70,
           "WEIGHT": 92,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2528,7 +2528,7 @@
           "BPSYS": 134,
           "HR": 64,
           "WEIGHT": 106,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2545,7 +2545,7 @@
           "BPSYS": 127,
           "HR": 59,
           "WEIGHT": 79.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -2562,7 +2562,7 @@
           "BPSYS": 127,
           "HR": 75,
           "WEIGHT": 77.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -2579,7 +2579,7 @@
           "BPSYS": 95,
           "HR": 64,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2595,7 +2595,7 @@
           "BPSYS": 101,
           "HR": 56,
           "WEIGHT": 57.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -2612,7 +2612,7 @@
           "BPSYS": 124,
           "HR": 80,
           "WEIGHT": 97.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -2629,7 +2629,7 @@
           "BPSYS": 101,
           "HR": 71,
           "WEIGHT": 115,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -2646,7 +2646,7 @@
           "BPSYS": 117,
           "HR": 70,
           "WEIGHT": 85.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -2663,7 +2663,7 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 99,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2680,7 +2680,7 @@
           "BPSYS": 140,
           "HR": 71,
           "WEIGHT": 86.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -2697,7 +2697,7 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 96.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2714,7 +2714,7 @@
           "BPSYS": 109,
           "HR": 81,
           "WEIGHT": 105.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2731,7 +2731,7 @@
           "BPSYS": 142,
           "HR": 74,
           "WEIGHT": 90.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2748,7 +2748,7 @@
           "BPSYS": 108,
           "HR": 74,
           "WEIGHT": 79.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2765,7 +2765,7 @@
           "BPSYS": 138,
           "HR": 67,
           "WEIGHT": 98.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2782,7 +2782,7 @@
           "BPSYS": 110,
           "HR": 63,
           "WEIGHT": 61.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2799,7 +2799,7 @@
           "BPSYS": 121,
           "HR": 58,
           "WEIGHT": 72.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2816,7 +2816,7 @@
           "BPSYS": 122,
           "HR": 70,
           "WEIGHT": 80.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2833,7 +2833,7 @@
           "BPSYS": 97,
           "HR": 71,
           "WEIGHT": 73.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2850,7 +2850,7 @@
           "BPSYS": 100,
           "HR": 70,
           "WEIGHT": 75.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2866,7 +2866,7 @@
           "BPSYS": 109,
           "HR": 42,
           "WEIGHT": 62.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2883,7 +2883,7 @@
           "BPSYS": 92,
           "HR": 76,
           "WEIGHT": 72.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2900,7 +2900,7 @@
           "BPSYS": 118,
           "HR": 65,
           "WEIGHT": 82.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2917,7 +2917,7 @@
           "BPSYS": 129,
           "HR": 63,
           "WEIGHT": 90.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -2949,7 +2949,7 @@
           "BPSYS": 140,
           "HR": 74,
           "WEIGHT": 74.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -2966,7 +2966,7 @@
           "BPSYS": 112,
           "HR": 77,
           "WEIGHT": 54.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -2983,7 +2983,7 @@
           "BPSYS": 134,
           "HR": 66,
           "WEIGHT": 126.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -3000,7 +3000,7 @@
           "BPSYS": 109,
           "HR": 87,
           "WEIGHT": 89.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -3017,7 +3017,7 @@
           "BPSYS": 115,
           "HR": 75,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -3033,7 +3033,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 123.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3049,7 +3049,7 @@
           "BPSYS": 113,
           "HR": 52,
           "WEIGHT": 87.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -3066,7 +3066,7 @@
           "BPSYS": 93,
           "HR": 74,
           "WEIGHT": 92.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -3083,7 +3083,7 @@
           "BPSYS": 103,
           "HR": 89,
           "WEIGHT": 78.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -3100,7 +3100,7 @@
           "BPSYS": 118,
           "HR": 64,
           "WEIGHT": 63.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -3117,7 +3117,7 @@
           "BPSYS": 140,
           "HR": 66,
           "WEIGHT": 88.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3133,7 +3133,7 @@
           "BPSYS": 128,
           "HR": 83,
           "WEIGHT": 79.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3150,7 +3150,7 @@
           "BPSYS": 122,
           "HR": 72,
           "WEIGHT": 69.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3184,7 +3184,7 @@
           "BPSYS": 138,
           "HR": 65,
           "WEIGHT": 122.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3201,7 +3201,7 @@
           "BPSYS": 130,
           "HR": 56,
           "WEIGHT": 97.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -3218,7 +3218,7 @@
           "BPSYS": 134,
           "HR": 69,
           "WEIGHT": 67.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -3235,7 +3235,7 @@
           "BPSYS": 125,
           "HR": 71,
           "WEIGHT": 87.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3252,7 +3252,7 @@
           "BPSYS": 103,
           "HR": 71,
           "WEIGHT": 68.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -3268,7 +3268,7 @@
           "BPDIA": 79,
           "HR": 72,
           "WEIGHT": 75.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -3285,7 +3285,7 @@
           "BPSYS": 113,
           "HR": 83,
           "WEIGHT": 66.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3302,7 +3302,7 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 73.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -3319,7 +3319,7 @@
           "BPSYS": 117,
           "HR": 67,
           "WEIGHT": 75.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3336,7 +3336,7 @@
           "BPSYS": 148,
           "HR": 55,
           "WEIGHT": 96.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3353,7 +3353,7 @@
           "BPSYS": 107,
           "HR": 75,
           "WEIGHT": 126.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -3370,7 +3370,7 @@
           "BPSYS": 140,
           "HR": 61,
           "WEIGHT": 88.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -3386,7 +3386,7 @@
           "BPSYS": 121,
           "HR": 76,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -3402,7 +3402,7 @@
           "BPSYS": 119,
           "HR": 61,
           "WEIGHT": 105.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3419,7 +3419,7 @@
           "BPSYS": 144,
           "HR": 75,
           "WEIGHT": 71.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -3435,7 +3435,7 @@
           "BPSYS": 135,
           "HR": 67,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3452,7 +3452,7 @@
           "BPSYS": 91,
           "HR": 73,
           "WEIGHT": 83.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3469,7 +3469,7 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 104.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -3486,7 +3486,7 @@
           "BPSYS": 129,
           "HR": 61,
           "WEIGHT": 80.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -3503,7 +3503,7 @@
           "BPSYS": 95,
           "HR": 57,
           "WEIGHT": 54,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3520,7 +3520,7 @@
           "BPSYS": 131,
           "HR": 58,
           "WEIGHT": 96.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3537,7 +3537,7 @@
           "BPSYS": 121,
           "HR": 78,
           "WEIGHT": 69.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3554,7 +3554,7 @@
           "BPSYS": 95,
           "HR": 78,
           "WEIGHT": 97.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3571,7 +3571,7 @@
           "BPSYS": 115,
           "HR": 40,
           "WEIGHT": 106.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3588,7 +3588,7 @@
           "BPSYS": 103,
           "HR": 98,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3622,7 +3622,7 @@
           "BPSYS": 92,
           "HR": 58,
           "WEIGHT": 77.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -3639,7 +3639,7 @@
           "BPSYS": 107,
           "HR": 73,
           "WEIGHT": 68.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3655,7 +3655,7 @@
           "BPSYS": 114,
           "HR": 54,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3672,7 +3672,7 @@
           "BPSYS": 143,
           "HR": 66,
           "WEIGHT": 101.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         }
       ] 
@@ -3696,7 +3696,7 @@
           "BPSYS": 111,
           "HR": 63,
           "WEIGHT": 89.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3713,7 +3713,7 @@
           "BPSYS": 128,
           "HR": 64,
           "WEIGHT": 95.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3730,7 +3730,7 @@
           "BPSYS": 101,
           "HR": 80,
           "WEIGHT": 73.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3747,7 +3747,7 @@
           "BPSYS": 133,
           "HR": 60,
           "WEIGHT": 64.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3764,7 +3764,7 @@
           "BPSYS": 111,
           "HR": 57,
           "WEIGHT": 79.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -3781,7 +3781,7 @@
           "BPSYS": 139,
           "HR": 82,
           "WEIGHT": 90.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3798,7 +3798,7 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 97.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3814,7 +3814,7 @@
           "BPSYS": 122,
           "HR": 78,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3831,7 +3831,7 @@
           "BPSYS": 143,
           "HR": 68,
           "WEIGHT": 87.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3848,7 +3848,7 @@
           "BPSYS": 97,
           "HR": 49,
           "WEIGHT": 96.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3865,7 +3865,7 @@
           "BPSYS": 142,
           "HR": 63,
           "WEIGHT": 98.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3882,7 +3882,7 @@
           "BPSYS": 130,
           "HR": 74,
           "WEIGHT": 67.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3899,7 +3899,7 @@
           "BPSYS": 108,
           "HR": 56,
           "WEIGHT": 82.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3916,7 +3916,7 @@
           "BPSYS": 108,
           "HR": 50,
           "WEIGHT": 91.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -3933,7 +3933,7 @@
           "BPSYS": 110,
           "HR": 79,
           "WEIGHT": 97.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3950,7 +3950,7 @@
           "BPSYS": 131,
           "HR": 73,
           "WEIGHT": 65.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -3967,7 +3967,7 @@
           "BPSYS": 135,
           "HR": 85,
           "WEIGHT": 102.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -3984,7 +3984,7 @@
           "BPSYS": 124,
           "HR": 62,
           "WEIGHT": 75.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -4000,7 +4000,7 @@
           "BPSYS": 123,
           "HR": 61,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4017,7 +4017,7 @@
           "BPSYS": 101,
           "HR": 92,
           "WEIGHT": 57.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4034,7 +4034,7 @@
           "BPSYS": 123,
           "HR": 82,
           "WEIGHT": 67.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -4051,7 +4051,7 @@
           "BPSYS": 128,
           "HR": 50,
           "WEIGHT": 87.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4068,7 +4068,7 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 59,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4085,7 +4085,7 @@
           "BPSYS": 103,
           "HR": 48,
           "WEIGHT": 70.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -4102,7 +4102,7 @@
           "BPSYS": 144,
           "HR": 80,
           "WEIGHT": 101.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4119,7 +4119,7 @@
           "BPSYS": 127,
           "HR": 66,
           "WEIGHT": 102.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4136,7 +4136,7 @@
           "BPSYS": 110,
           "HR": 55,
           "WEIGHT": 65.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -4153,7 +4153,7 @@
           "BPSYS": 142,
           "HR": 78,
           "WEIGHT": 66.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4169,7 +4169,7 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 81.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -4186,7 +4186,7 @@
           "BPSYS": 98,
           "HR": 71,
           "WEIGHT": 73.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4203,7 +4203,7 @@
           "BPSYS": 126,
           "HR": 83,
           "WEIGHT": 67,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -4220,7 +4220,7 @@
           "BPSYS": 126,
           "HR": 78,
           "WEIGHT": 86,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4237,7 +4237,7 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 57.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4254,7 +4254,7 @@
           "BPSYS": 145,
           "HR": 69,
           "WEIGHT": 90.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4271,7 +4271,7 @@
           "BPSYS": 138,
           "HR": 86,
           "WEIGHT": 71.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4288,7 +4288,7 @@
           "BPSYS": 113,
           "HR": 66,
           "WEIGHT": 36.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4305,7 +4305,7 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 92.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4322,7 +4322,7 @@
           "BPSYS": 120,
           "HR": 61,
           "WEIGHT": 61.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4339,7 +4339,7 @@
           "BPSYS": 107,
           "HR": 71,
           "WEIGHT": 93.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4355,7 +4355,7 @@
           "BPDIA": 71,
           "HR": 81,
           "WEIGHT": 112.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4372,7 +4372,7 @@
           "BPSYS": 133,
           "HR": 69,
           "WEIGHT": 83.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4389,7 +4389,7 @@
           "BPSYS": 121,
           "HR": 68,
           "WEIGHT": 102.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4406,7 +4406,7 @@
           "BPSYS": 93,
           "HR": 86,
           "WEIGHT": 92.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4423,7 +4423,7 @@
           "BPSYS": 117,
           "HR": 62,
           "WEIGHT": 70,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -4438,7 +4438,7 @@
           "BPSYS": 110,
           "HR": 53,
           "WEIGHT": 93.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4455,7 +4455,7 @@
           "BPSYS": 134,
           "HR": 65,
           "WEIGHT": 101.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -4471,7 +4471,7 @@
           "BPSYS": 122,
           "HR": 92,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4488,7 +4488,7 @@
           "BPSYS": 84,
           "HR": 71,
           "WEIGHT": 92.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4505,7 +4505,7 @@
           "BPSYS": 120,
           "HR": 62,
           "WEIGHT": 72.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4522,7 +4522,7 @@
           "BPSYS": 123,
           "HR": 59,
           "WEIGHT": 89,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4539,7 +4539,7 @@
           "BPSYS": 134,
           "HR": 81,
           "WEIGHT": 69.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -4556,7 +4556,7 @@
           "BPSYS": 127,
           "HR": 86,
           "WEIGHT": 108.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4572,7 +4572,7 @@
           "BPDIA": 74,
           "BPSYS": 125,
           "WEIGHT": 106,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4589,7 +4589,7 @@
           "BPSYS": 92,
           "HR": 88,
           "WEIGHT": 98.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4606,7 +4606,7 @@
           "BPSYS": 127,
           "HR": 89,
           "WEIGHT": 110.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4623,7 +4623,7 @@
           "BPSYS": 99,
           "HR": 50,
           "WEIGHT": 81,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -4640,7 +4640,7 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 75.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4657,7 +4657,7 @@
           "BPSYS": 103,
           "HR": 77,
           "WEIGHT": 79.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -4674,7 +4674,7 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 93.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4691,7 +4691,7 @@
           "BPSYS": 95,
           "HR": 74,
           "WEIGHT": 100.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4708,7 +4708,7 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 91.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4725,7 +4725,7 @@
           "BPSYS": 110,
           "HR": 60,
           "WEIGHT": 59.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4742,7 +4742,7 @@
           "BPSYS": 128,
           "HR": 87,
           "WEIGHT": 85.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -4759,7 +4759,7 @@
           "BPSYS": 111,
           "HR": 64,
           "WEIGHT": 79.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4776,7 +4776,7 @@
           "BPSYS": 125,
           "HR": 44,
           "WEIGHT": 62.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4793,7 +4793,7 @@
           "BPSYS": 101,
           "HR": 77,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4810,7 +4810,7 @@
           "BPSYS": 110,
           "HR": 67,
           "WEIGHT": 88.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -4827,7 +4827,7 @@
           "BPSYS": 126,
           "HR": 74,
           "WEIGHT": 91.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -4844,7 +4844,7 @@
           "BPSYS": 109,
           "HR": 80,
           "WEIGHT": 106.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -4861,7 +4861,7 @@
           "BPSYS": 125,
           "HR": 56,
           "WEIGHT": 90.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -4877,7 +4877,7 @@
           "BPDIA": 61,
           "BPSYS": 108,
           "HR": 59,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -4894,7 +4894,7 @@
           "BPSYS": 130,
           "HR": 83,
           "WEIGHT": 77.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -4928,7 +4928,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 84.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         }
       ] 
@@ -4949,6 +4949,7 @@
           "BPSYS": 119,
           "HR": 84,
           "WEIGHT": 90.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -4964,6 +4965,7 @@
           "BPSYS": 116,
           "HR": 69,
           "WEIGHT": 116.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -4979,6 +4981,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -4994,6 +4997,7 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 82,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5007,8 +5011,9 @@
           "BMI_advs": 28.9,
           "BPDIA": 68,
           "BPSYS": 102,
-          "HR": 70.8,
+          "HR": 76,
           "WEIGHT": 95.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5024,6 +5029,7 @@
           "BPSYS": 95,
           "HR": 71,
           "WEIGHT": 71.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5039,6 +5045,7 @@
           "BPSYS": 116,
           "HR": 78,
           "WEIGHT": 84.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3,
           ".out": "event"
         },
@@ -5054,6 +5061,7 @@
           "BPSYS": 92,
           "HR": 56,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5069,6 +5077,7 @@
           "BPSYS": 122,
           "HR": 66,
           "WEIGHT": 64.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5084,6 +5093,7 @@
           "BPSYS": 136,
           "HR": 50,
           "WEIGHT": 88.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5098,7 +5108,8 @@
           "BPDIA": 82,
           "BPSYS": 125,
           "HR": 76,
-          "WEIGHT": 94.56,
+          "WEIGHT": 93.14,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5114,6 +5125,7 @@
           "BPSYS": 134,
           "HR": 48,
           "WEIGHT": 64.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
@@ -5129,6 +5141,7 @@
           "BPSYS": 128,
           "HR": 68,
           "WEIGHT": 80.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5144,6 +5157,7 @@
           "BPSYS": 109,
           "HR": 63,
           "WEIGHT": 68,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5159,6 +5173,7 @@
           "BPSYS": 137,
           "HR": 74,
           "WEIGHT": 108.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5174,6 +5189,7 @@
           "BPSYS": 111,
           "HR": 80,
           "WEIGHT": 59.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5189,6 +5205,7 @@
           "BPSYS": 98,
           "HR": 90,
           "WEIGHT": 95.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5204,6 +5221,7 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 99.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5219,6 +5237,7 @@
           "BPSYS": 129,
           "HR": 67,
           "WEIGHT": 65.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5234,6 +5253,7 @@
           "BPSYS": 134,
           "HR": 44,
           "WEIGHT": 47.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
@@ -5249,6 +5269,7 @@
           "BPSYS": 134,
           "HR": 50,
           "WEIGHT": 106.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5264,6 +5285,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 54.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5279,6 +5301,7 @@
           "BPSYS": 106,
           "HR": 74,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5294,6 +5317,7 @@
           "BPSYS": 119,
           "HR": 82,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5309,6 +5333,7 @@
           "BPSYS": 115,
           "HR": 72,
           "WEIGHT": 88.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5319,11 +5344,12 @@
           "SEX": "F",
           "RACE": "BLACK",
           "AGE": 68,
-          "BMI_advs": 27.38,
+          "BMI_advs": 27.88,
           "BPDIA": 64,
           "BPSYS": 98,
           "HR": 69,
           "WEIGHT": 101.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5339,6 +5365,7 @@
           "BPSYS": 98,
           "HR": 73,
           "WEIGHT": 86.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5354,6 +5381,7 @@
           "BPSYS": 109,
           "HR": 65.4,
           "WEIGHT": 66.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5369,6 +5397,7 @@
           "BPSYS": 115,
           "HR": 59,
           "WEIGHT": 73.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5384,6 +5413,7 @@
           "BPSYS": 144,
           "HR": 79,
           "WEIGHT": 94.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
@@ -5399,6 +5429,7 @@
           "BPSYS": 103,
           "HR": 62,
           "WEIGHT": 39.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5414,6 +5445,7 @@
           "BPSYS": 108,
           "HR": 64,
           "WEIGHT": 103.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3,
           ".out": "event"
         },
@@ -5429,6 +5461,7 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 95.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5444,6 +5477,7 @@
           "BPSYS": 128,
           "HR": 71,
           "WEIGHT": 54.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5459,6 +5493,7 @@
           "BPSYS": 132,
           "HR": 61,
           "WEIGHT": 100,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5474,6 +5509,7 @@
           "BPSYS": 125,
           "HR": 70,
           "WEIGHT": 62.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5485,10 +5521,11 @@
           "RACE": "WHITE",
           "AGE": 83,
           "BMI_advs": 26.3,
-          "BPDIA": 65.6,
+          "BPDIA": 71,
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 70.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5504,6 +5541,7 @@
           "BPSYS": 121,
           "HR": 79,
           "WEIGHT": 64.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5519,6 +5557,7 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 41.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
@@ -5534,6 +5573,7 @@
           "BPSYS": 116,
           "HR": 61,
           "WEIGHT": 61,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5549,6 +5589,7 @@
           "BPSYS": 110,
           "HR": 80,
           "WEIGHT": 86.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5564,6 +5605,7 @@
           "BPSYS": 120,
           "HR": 64,
           "WEIGHT": 84.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5579,6 +5621,7 @@
           "BPSYS": 99,
           "HR": 62,
           "WEIGHT": 73,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5594,6 +5637,7 @@
           "BPSYS": 137,
           "HR": 69,
           "WEIGHT": 93.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5609,6 +5653,7 @@
           "BPSYS": 141,
           "HR": 63,
           "WEIGHT": 78.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
@@ -5624,6 +5669,7 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 105.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5639,6 +5685,7 @@
           "BPSYS": 108,
           "HR": 78,
           "WEIGHT": 85,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5654,6 +5701,7 @@
           "BPSYS": 135,
           "HR": 79,
           "WEIGHT": 69.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5669,6 +5717,7 @@
           "BPSYS": 134,
           "HR": 52,
           "WEIGHT": 117.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5684,6 +5733,7 @@
           "BPSYS": 125,
           "HR": 77,
           "WEIGHT": 113.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5699,6 +5749,7 @@
           "BPSYS": 122,
           "HR": 81,
           "WEIGHT": 77,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5714,6 +5765,7 @@
           "BPSYS": 143,
           "HR": 86,
           "WEIGHT": 82.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5729,6 +5781,7 @@
           "BPSYS": 116,
           "HR": 79,
           "WEIGHT": 92.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5744,6 +5797,7 @@
           "BPSYS": 105,
           "HR": 86,
           "WEIGHT": 51.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5759,6 +5813,7 @@
           "BPSYS": 141,
           "HR": 75,
           "WEIGHT": 112.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5774,6 +5829,7 @@
           "BPSYS": 152,
           "HR": 69,
           "WEIGHT": 50.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5789,6 +5845,7 @@
           "BPSYS": 130,
           "HR": 70,
           "WEIGHT": 73,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
@@ -5804,6 +5861,7 @@
           "BPSYS": 114,
           "HR": 58,
           "WEIGHT": 66.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5819,6 +5877,7 @@
           "BPSYS": 117,
           "HR": 93,
           "WEIGHT": 110.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5834,6 +5893,7 @@
           "BPSYS": 108,
           "HR": 67,
           "WEIGHT": 88.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5849,6 +5909,7 @@
           "BPSYS": 100,
           "HR": 81,
           "WEIGHT": 66.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5864,6 +5925,7 @@
           "BPSYS": 114,
           "HR": 53,
           "WEIGHT": 65.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5879,6 +5941,7 @@
           "BPSYS": 107,
           "HR": 39,
           "WEIGHT": 53.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5894,6 +5957,7 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 96.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5909,6 +5973,7 @@
           "BPSYS": 96,
           "HR": 64,
           "WEIGHT": 67.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5924,6 +5989,7 @@
           "BPSYS": 98,
           "HR": 89,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5939,6 +6005,7 @@
           "BPSYS": 129,
           "HR": 62,
           "WEIGHT": 46.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5954,6 +6021,7 @@
           "BPSYS": 106,
           "HR": 73,
           "WEIGHT": 53.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5969,6 +6037,7 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -5984,6 +6053,7 @@
           "BPSYS": 108,
           "HR": 72,
           "WEIGHT": 74.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -5999,6 +6069,7 @@
           "BPSYS": 112,
           "HR": 76,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6014,6 +6085,7 @@
           "BPSYS": 117,
           "HR": 80,
           "WEIGHT": 71.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6029,6 +6101,7 @@
           "BPSYS": 124,
           "HR": 60,
           "WEIGHT": 80.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -6044,6 +6117,7 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 82.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6059,6 +6133,7 @@
           "BPSYS": 143,
           "HR": 78,
           "WEIGHT": 66,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -6074,6 +6149,7 @@
           "BPSYS": 115,
           "HR": 63,
           "WEIGHT": 66.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6089,6 +6165,7 @@
           "BPSYS": 124,
           "HR": 68,
           "WEIGHT": 78.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -6104,6 +6181,7 @@
           "BPSYS": 94,
           "HR": 67,
           "WEIGHT": 76.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -6119,6 +6197,7 @@
           "BPSYS": 113,
           "HR": 71,
           "WEIGHT": 56.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6134,6 +6213,7 @@
           "BPSYS": 116,
           "HR": 50,
           "WEIGHT": 74.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6149,6 +6229,7 @@
           "BPSYS": 113,
           "HR": 72,
           "WEIGHT": 66.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -6164,6 +6245,7 @@
           "BPSYS": 118,
           "HR": 96,
           "WEIGHT": 60.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -6179,6 +6261,7 @@
           "BPSYS": 117,
           "HR": 79,
           "WEIGHT": 88,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6194,6 +6277,7 @@
           "BPSYS": 99,
           "HR": 64,
           "WEIGHT": 60.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6209,6 +6293,7 @@
           "BPSYS": 119,
           "HR": 62,
           "WEIGHT": 62.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -6224,6 +6309,7 @@
           "BPSYS": 101,
           "HR": 45,
           "WEIGHT": 55.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
@@ -6239,6 +6325,7 @@
           "BPSYS": 111,
           "HR": 59,
           "WEIGHT": 54.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -6254,6 +6341,7 @@
           "BPSYS": 114,
           "HR": 71,
           "WEIGHT": 86.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6269,6 +6357,7 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 94.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6284,6 +6373,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 61.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6299,6 +6389,7 @@
           "BPSYS": 106,
           "HR": 68,
           "WEIGHT": 101.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -6314,6 +6405,7 @@
           "BPSYS": 128,
           "HR": 62,
           "WEIGHT": 92.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -6329,6 +6421,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 75,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6344,6 +6437,7 @@
           "BPSYS": 124,
           "HR": 48,
           "WEIGHT": 63.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -6359,6 +6453,7 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 48.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -6374,6 +6469,7 @@
           "BPSYS": 123,
           "HR": 85,
           "WEIGHT": 100,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6389,6 +6485,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 89.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -6404,6 +6501,7 @@
           "BPSYS": 111,
           "HR": 82,
           "WEIGHT": 114.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6419,6 +6517,7 @@
           "BPSYS": 121,
           "HR": 60,
           "WEIGHT": 81.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6434,6 +6533,7 @@
           "BPSYS": 109,
           "HR": 83,
           "WEIGHT": 98.1,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -6449,6 +6549,7 @@
           "BPSYS": 126,
           "HR": 84,
           "WEIGHT": 75.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6464,6 +6565,7 @@
           "BPSYS": 134,
           "HR": 67,
           "WEIGHT": 111.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -6475,10 +6577,11 @@
           "RACE": "WHITE",
           "AGE": 60,
           "BMI_advs": 26,
-          "BPDIA": 70.4,
+          "BPDIA": 73,
           "BPSYS": 128,
           "HR": 56,
           "WEIGHT": 62.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6494,6 +6597,7 @@
           "BPSYS": 96,
           "HR": 84,
           "WEIGHT": 78.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6509,6 +6613,7 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 82.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6524,6 +6629,7 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 103.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6539,6 +6645,7 @@
           "BPSYS": 135,
           "HR": 76,
           "WEIGHT": 67,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -6554,6 +6661,7 @@
           "BPSYS": 128,
           "HR": 86,
           "WEIGHT": 93.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6569,6 +6677,7 @@
           "BPSYS": 124,
           "HR": 76,
           "WEIGHT": 65.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6584,6 +6693,7 @@
           "BPSYS": 117,
           "HR": 77,
           "WEIGHT": 115.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6599,6 +6709,7 @@
           "BPSYS": 95,
           "HR": 46,
           "WEIGHT": 50.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6614,6 +6725,7 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 79.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -6629,6 +6741,7 @@
           "BPSYS": 137,
           "HR": 78,
           "WEIGHT": 96.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6644,6 +6757,7 @@
           "BPSYS": 107,
           "HR": 66,
           "WEIGHT": 94.5,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6659,6 +6773,7 @@
           "BPSYS": 123,
           "HR": 49,
           "WEIGHT": 96.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -6674,6 +6789,7 @@
           "BPSYS": 95,
           "HR": 72,
           "WEIGHT": 101.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -6689,6 +6805,7 @@
           "BPSYS": 162,
           "HR": 86,
           "WEIGHT": 84,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6704,6 +6821,7 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 81.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6719,6 +6837,7 @@
           "BPSYS": 95,
           "HR": 87,
           "WEIGHT": 99.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -6734,6 +6853,7 @@
           "BPSYS": 98,
           "HR": 55,
           "WEIGHT": 70.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6749,6 +6869,7 @@
           "BPSYS": 131,
           "HR": 77,
           "WEIGHT": 120.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -6764,6 +6885,7 @@
           "BPSYS": 105,
           "HR": 48,
           "WEIGHT": 64.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -6779,6 +6901,7 @@
           "BPSYS": 112,
           "HR": 57,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6794,6 +6917,7 @@
           "BPSYS": 136,
           "HR": 66,
           "WEIGHT": 113.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6809,6 +6933,7 @@
           "BPSYS": 113,
           "HR": 63,
           "WEIGHT": 66.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6824,6 +6949,7 @@
           "BPSYS": 100,
           "HR": 75,
           "WEIGHT": 65.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -6839,6 +6965,7 @@
           "BPSYS": 96,
           "HR": 85,
           "WEIGHT": 96.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -6854,6 +6981,7 @@
           "BPSYS": 106,
           "HR": 62,
           "WEIGHT": 72,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -6869,6 +6997,7 @@
           "BPSYS": 132,
           "HR": 54,
           "WEIGHT": 95.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -6884,6 +7013,7 @@
           "BPSYS": 115,
           "HR": 68,
           "WEIGHT": 81.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6899,6 +7029,7 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 98.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -6914,6 +7045,7 @@
           "BPSYS": 106,
           "HR": 55,
           "WEIGHT": 59.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6929,6 +7061,7 @@
           "BPSYS": 105,
           "HR": 66,
           "WEIGHT": 55.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -6944,6 +7077,7 @@
           "BPSYS": 111,
           "HR": 67,
           "WEIGHT": 85.7,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6959,6 +7093,7 @@
           "BPSYS": 129,
           "HR": 65,
           "WEIGHT": 82.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -6974,6 +7109,7 @@
           "BPSYS": 105,
           "HR": 72,
           "WEIGHT": 77.4,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -6989,6 +7125,7 @@
           "BPSYS": 83,
           "HR": 89,
           "WEIGHT": 75.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7004,6 +7141,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 109.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7019,6 +7157,7 @@
           "BPSYS": 126,
           "HR": 56,
           "WEIGHT": 75.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7034,6 +7173,7 @@
           "BPSYS": 96,
           "HR": 72,
           "WEIGHT": 76.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7049,6 +7189,7 @@
           "BPSYS": 119,
           "HR": 65,
           "WEIGHT": 98.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7064,6 +7205,7 @@
           "BPSYS": 99,
           "HR": 68,
           "WEIGHT": 70.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7079,6 +7221,7 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 57.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7094,6 +7237,7 @@
           "BPSYS": 121,
           "HR": 53,
           "WEIGHT": 90.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7109,6 +7253,7 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 65.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7124,6 +7269,7 @@
           "BPSYS": 134,
           "HR": 70,
           "WEIGHT": 92,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7139,6 +7285,7 @@
           "BPSYS": 134,
           "HR": 64,
           "WEIGHT": 106,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7154,6 +7301,7 @@
           "BPSYS": 127,
           "HR": 59,
           "WEIGHT": 79.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7169,6 +7317,7 @@
           "BPSYS": 127,
           "HR": 75,
           "WEIGHT": 77.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7184,6 +7333,7 @@
           "BPSYS": 95,
           "HR": 64,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7199,6 +7349,7 @@
           "BPSYS": 101,
           "HR": 56,
           "WEIGHT": 57.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7214,6 +7365,7 @@
           "BPSYS": 124,
           "HR": 80,
           "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -7229,6 +7381,7 @@
           "BPSYS": 101,
           "HR": 71,
           "WEIGHT": 115,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7244,6 +7397,7 @@
           "BPSYS": 117,
           "HR": 70,
           "WEIGHT": 85.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -7259,6 +7413,7 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 99,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7274,6 +7429,7 @@
           "BPSYS": 140,
           "HR": 71,
           "WEIGHT": 86.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -7289,6 +7445,7 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 96.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7304,6 +7461,7 @@
           "BPSYS": 109,
           "HR": 81,
           "WEIGHT": 105.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7319,6 +7477,7 @@
           "BPSYS": 142,
           "HR": 74,
           "WEIGHT": 90.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7334,6 +7493,7 @@
           "BPSYS": 108,
           "HR": 74,
           "WEIGHT": 79.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7349,6 +7509,7 @@
           "BPSYS": 138,
           "HR": 67,
           "WEIGHT": 98.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7364,6 +7525,7 @@
           "BPSYS": 110,
           "HR": 63,
           "WEIGHT": 61.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7379,6 +7541,7 @@
           "BPSYS": 121,
           "HR": 58,
           "WEIGHT": 72.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7394,6 +7557,7 @@
           "BPSYS": 122,
           "HR": 70,
           "WEIGHT": 80.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7409,6 +7573,7 @@
           "BPSYS": 97,
           "HR": 71,
           "WEIGHT": 73.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7424,6 +7589,7 @@
           "BPSYS": 100,
           "HR": 70,
           "WEIGHT": 75.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7439,6 +7605,7 @@
           "BPSYS": 109,
           "HR": 42,
           "WEIGHT": 62.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7454,6 +7621,7 @@
           "BPSYS": 92,
           "HR": 76,
           "WEIGHT": 72.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7469,6 +7637,7 @@
           "BPSYS": 118,
           "HR": 65,
           "WEIGHT": 82.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7484,6 +7653,7 @@
           "BPSYS": 129,
           "HR": 63,
           "WEIGHT": 90.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7499,6 +7669,7 @@
           "BPSYS": 123,
           "HR": 60,
           "WEIGHT": 65.8,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7510,10 +7681,11 @@
           "RACE": "WHITE",
           "AGE": 74,
           "BMI_advs": 28.1,
-          "BPDIA": 70.4,
+          "BPDIA": 66.6,
           "BPSYS": 140,
           "HR": 74,
           "WEIGHT": 74.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7529,6 +7701,7 @@
           "BPSYS": 112,
           "HR": 77,
           "WEIGHT": 54.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7544,6 +7717,7 @@
           "BPSYS": 134,
           "HR": 66,
           "WEIGHT": 126.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -7559,6 +7733,7 @@
           "BPSYS": 109,
           "HR": 87,
           "WEIGHT": 89.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7574,6 +7749,7 @@
           "BPSYS": 115,
           "HR": 75,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7589,6 +7765,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 123.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7600,10 +7777,11 @@
           "RACE": "WHITE",
           "AGE": 60,
           "BMI_advs": 28.5,
-          "BPDIA": 64.4,
+          "BPDIA": 65.4,
           "BPSYS": 113,
           "HR": 52,
           "WEIGHT": 87.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -7619,6 +7797,7 @@
           "BPSYS": 93,
           "HR": 74,
           "WEIGHT": 92.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7634,6 +7813,7 @@
           "BPSYS": 103,
           "HR": 89,
           "WEIGHT": 78.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7649,6 +7829,7 @@
           "BPSYS": 118,
           "HR": 64,
           "WEIGHT": 63.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7664,6 +7845,7 @@
           "BPSYS": 140,
           "HR": 66,
           "WEIGHT": 88.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7679,6 +7861,7 @@
           "BPSYS": 128,
           "HR": 83,
           "WEIGHT": 79.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7694,6 +7877,7 @@
           "BPSYS": 122,
           "HR": 72,
           "WEIGHT": 69.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7709,6 +7893,7 @@
           "BPSYS": 125,
           "HR": 59,
           "WEIGHT": 80.6,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7724,6 +7909,7 @@
           "BPSYS": 138,
           "HR": 65,
           "WEIGHT": 122.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7739,6 +7925,7 @@
           "BPSYS": 130,
           "HR": 56,
           "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7754,6 +7941,7 @@
           "BPSYS": 134,
           "HR": 69,
           "WEIGHT": 67.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7769,6 +7957,7 @@
           "BPSYS": 125,
           "HR": 71,
           "WEIGHT": 87.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7784,6 +7973,7 @@
           "BPSYS": 103,
           "HR": 71,
           "WEIGHT": 68.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7796,9 +7986,10 @@
           "AGE": 49,
           "BMI_advs": 32.4,
           "BPDIA": 79,
-          "BPSYS": 128.8,
+          "BPSYS": 123.4,
           "HR": 72,
           "WEIGHT": 75.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7814,6 +8005,7 @@
           "BPSYS": 113,
           "HR": 83,
           "WEIGHT": 66.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7829,6 +8021,7 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 73.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7844,6 +8037,7 @@
           "BPSYS": 117,
           "HR": 67,
           "WEIGHT": 75.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7859,6 +8053,7 @@
           "BPSYS": 148,
           "HR": 55,
           "WEIGHT": 96.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7874,6 +8069,7 @@
           "BPSYS": 107,
           "HR": 75,
           "WEIGHT": 126.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7889,6 +8085,7 @@
           "BPSYS": 140,
           "HR": 61,
           "WEIGHT": 88.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -7904,6 +8101,7 @@
           "BPSYS": 121,
           "HR": 76,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7912,13 +8110,14 @@
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "WHITE",
+          "RACE": "ASIAN",
           "AGE": 58,
           "BMI_advs": 38,
           "BPDIA": 68,
           "BPSYS": 119,
           "HR": 61,
           "WEIGHT": 105.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7934,6 +8133,7 @@
           "BPSYS": 144,
           "HR": 75,
           "WEIGHT": 71.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7949,6 +8149,7 @@
           "BPSYS": 135,
           "HR": 67,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7964,6 +8165,7 @@
           "BPSYS": 91,
           "HR": 73,
           "WEIGHT": 83.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -7979,6 +8181,7 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 104.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -7994,6 +8197,7 @@
           "BPSYS": 129,
           "HR": 61,
           "WEIGHT": 80.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8009,6 +8213,7 @@
           "BPSYS": 95,
           "HR": 57,
           "WEIGHT": 54,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8024,6 +8229,7 @@
           "BPSYS": 131,
           "HR": 58,
           "WEIGHT": 96.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8039,6 +8245,7 @@
           "BPSYS": 121,
           "HR": 78,
           "WEIGHT": 69.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8054,6 +8261,7 @@
           "BPSYS": 95,
           "HR": 78,
           "WEIGHT": 97.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8069,6 +8277,7 @@
           "BPSYS": 115,
           "HR": 40,
           "WEIGHT": 106.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8084,6 +8293,7 @@
           "BPSYS": 103,
           "HR": 98,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8099,6 +8309,7 @@
           "BPSYS": 93,
           "HR": 64,
           "WEIGHT": 80.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8114,6 +8325,7 @@
           "BPSYS": 92,
           "HR": 58,
           "WEIGHT": 77.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8129,6 +8341,7 @@
           "BPSYS": 107,
           "HR": 73,
           "WEIGHT": 68.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8144,6 +8357,7 @@
           "BPSYS": 114,
           "HR": 54,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8159,6 +8373,7 @@
           "BPSYS": 143,
           "HR": 66,
           "WEIGHT": 101.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         }
@@ -8178,6 +8393,7 @@
           "BPSYS": 111,
           "HR": 63,
           "WEIGHT": 89.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -8193,6 +8409,7 @@
           "BPSYS": 128,
           "HR": 64,
           "WEIGHT": 95.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8208,6 +8425,7 @@
           "BPSYS": 101,
           "HR": 80,
           "WEIGHT": 73.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8223,6 +8441,7 @@
           "BPSYS": 133,
           "HR": 60,
           "WEIGHT": 64.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -8238,6 +8457,7 @@
           "BPSYS": 111,
           "HR": 57,
           "WEIGHT": 79.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8253,6 +8473,7 @@
           "BPSYS": 139,
           "HR": 82,
           "WEIGHT": 90.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -8268,6 +8489,7 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 97.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8283,6 +8505,7 @@
           "BPSYS": 122,
           "HR": 78,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -8298,6 +8521,7 @@
           "BPSYS": 143,
           "HR": 68,
           "WEIGHT": 87.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8313,6 +8537,7 @@
           "BPSYS": 97,
           "HR": 49,
           "WEIGHT": 96.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -8328,6 +8553,7 @@
           "BPSYS": 142,
           "HR": 63,
           "WEIGHT": 98.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8343,6 +8569,7 @@
           "BPSYS": 130,
           "HR": 74,
           "WEIGHT": 67.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -8358,6 +8585,7 @@
           "BPSYS": 108,
           "HR": 56,
           "WEIGHT": 82.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -8373,6 +8601,7 @@
           "BPSYS": 108,
           "HR": 50,
           "WEIGHT": 91.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8388,6 +8617,7 @@
           "BPSYS": 110,
           "HR": 79,
           "WEIGHT": 97.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8403,6 +8633,7 @@
           "BPSYS": 131,
           "HR": 73,
           "WEIGHT": 65.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8418,6 +8649,7 @@
           "BPSYS": 135,
           "HR": 85,
           "WEIGHT": 102.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8433,6 +8665,7 @@
           "BPSYS": 124,
           "HR": 62,
           "WEIGHT": 75.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8448,6 +8681,7 @@
           "BPSYS": 123,
           "HR": 61,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -8463,6 +8697,7 @@
           "BPSYS": 101,
           "HR": 92,
           "WEIGHT": 57.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -8478,6 +8713,7 @@
           "BPSYS": 123,
           "HR": 82,
           "WEIGHT": 67.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -8493,6 +8729,7 @@
           "BPSYS": 128,
           "HR": 50,
           "WEIGHT": 87.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -8508,6 +8745,7 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 59,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -8523,6 +8761,7 @@
           "BPSYS": 103,
           "HR": 48,
           "WEIGHT": 70.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -8538,6 +8777,7 @@
           "BPSYS": 144,
           "HR": 80,
           "WEIGHT": 101.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8553,6 +8793,7 @@
           "BPSYS": 127,
           "HR": 66,
           "WEIGHT": 102.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8568,6 +8809,7 @@
           "BPSYS": 110,
           "HR": 55,
           "WEIGHT": 65.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8583,6 +8825,7 @@
           "BPSYS": 142,
           "HR": 78,
           "WEIGHT": 66.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -8591,13 +8834,14 @@
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "BLACK",
+          "RACE": "WHITE",
           "AGE": 51,
           "BMI_advs": 27.2,
           "BPDIA": 69,
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 81.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -8613,6 +8857,7 @@
           "BPSYS": 98,
           "HR": 71,
           "WEIGHT": 73.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -8628,6 +8873,7 @@
           "BPSYS": 126,
           "HR": 83,
           "WEIGHT": 67,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -8643,6 +8889,7 @@
           "BPSYS": 126,
           "HR": 78,
           "WEIGHT": 86,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -8658,6 +8905,7 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 57.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8673,6 +8921,7 @@
           "BPSYS": 145,
           "HR": 69,
           "WEIGHT": 90.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -8688,6 +8937,7 @@
           "BPSYS": 138,
           "HR": 86,
           "WEIGHT": 71.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -8703,6 +8953,7 @@
           "BPSYS": 113,
           "HR": 66,
           "WEIGHT": 36.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8718,6 +8969,7 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 92.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8733,6 +8985,7 @@
           "BPSYS": 120,
           "HR": 61,
           "WEIGHT": 61.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -8748,6 +9001,7 @@
           "BPSYS": 107,
           "HR": 71,
           "WEIGHT": 93.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8760,9 +9014,10 @@
           "AGE": 79,
           "BMI_advs": 35.7,
           "BPDIA": 71,
-          "BPSYS": 120.4,
+          "BPSYS": 117.6,
           "HR": 81,
           "WEIGHT": 112.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8778,6 +9033,7 @@
           "BPSYS": 133,
           "HR": 69,
           "WEIGHT": 83.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -8793,6 +9049,7 @@
           "BPSYS": 121,
           "HR": 68,
           "WEIGHT": 102.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -8808,6 +9065,7 @@
           "BPSYS": 93,
           "HR": 86,
           "WEIGHT": 92.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -8823,6 +9081,7 @@
           "BPSYS": 117,
           "HR": 62,
           "WEIGHT": 70,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8833,11 +9092,12 @@
           "SEX": "F",
           "RACE": "WHITE",
           "AGE": 61,
-          "BMI_advs": 25.76,
+          "BMI_advs": 25.4,
           "BPDIA": 68,
           "BPSYS": 110,
           "HR": 53,
           "WEIGHT": 93.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8853,6 +9113,7 @@
           "BPSYS": 134,
           "HR": 65,
           "WEIGHT": 101.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -8868,6 +9129,7 @@
           "BPSYS": 122,
           "HR": 92,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -8883,6 +9145,7 @@
           "BPSYS": 84,
           "HR": 71,
           "WEIGHT": 92.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -8898,6 +9161,7 @@
           "BPSYS": 120,
           "HR": 62,
           "WEIGHT": 72.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8913,6 +9177,7 @@
           "BPSYS": 123,
           "HR": 59,
           "WEIGHT": 89,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8928,6 +9193,7 @@
           "BPSYS": 134,
           "HR": 81,
           "WEIGHT": 69.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -8943,6 +9209,7 @@
           "BPSYS": 127,
           "HR": 86,
           "WEIGHT": 108.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -8956,8 +9223,9 @@
           "BMI_advs": 34.5,
           "BPDIA": 74,
           "BPSYS": 125,
-          "HR": 63.6,
+          "HR": 61.2,
           "WEIGHT": 106,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8973,6 +9241,7 @@
           "BPSYS": 92,
           "HR": 88,
           "WEIGHT": 98.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -8988,6 +9257,7 @@
           "BPSYS": 127,
           "HR": 89,
           "WEIGHT": 110.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -9003,6 +9273,7 @@
           "BPSYS": 99,
           "HR": 50,
           "WEIGHT": 81,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -9018,6 +9289,7 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 75.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -9033,6 +9305,7 @@
           "BPSYS": 103,
           "HR": 77,
           "WEIGHT": 79.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -9048,6 +9321,7 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 93.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -9063,6 +9337,7 @@
           "BPSYS": 95,
           "HR": 74,
           "WEIGHT": 100.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -9078,6 +9353,7 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 91.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -9093,6 +9369,7 @@
           "BPSYS": 110,
           "HR": 60,
           "WEIGHT": 59.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -9108,6 +9385,7 @@
           "BPSYS": 128,
           "HR": 87,
           "WEIGHT": 85.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -9123,6 +9401,7 @@
           "BPSYS": 111,
           "HR": 64,
           "WEIGHT": 79.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -9138,6 +9417,7 @@
           "BPSYS": 125,
           "HR": 44,
           "WEIGHT": 62.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -9153,6 +9433,7 @@
           "BPSYS": 101,
           "HR": 77,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -9168,6 +9449,7 @@
           "BPSYS": 110,
           "HR": 67,
           "WEIGHT": 88.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
@@ -9183,6 +9465,7 @@
           "BPSYS": 126,
           "HR": 74,
           "WEIGHT": 91.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
@@ -9198,6 +9481,7 @@
           "BPSYS": 109,
           "HR": 80,
           "WEIGHT": 106.7,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -9213,6 +9497,7 @@
           "BPSYS": 125,
           "HR": 56,
           "WEIGHT": 90.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
@@ -9227,7 +9512,8 @@
           "BPDIA": 61,
           "BPSYS": 108,
           "HR": 59,
-          "WEIGHT": 92.72,
+          "WEIGHT": 95.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
@@ -9243,6 +9529,7 @@
           "BPSYS": 130,
           "HR": 83,
           "WEIGHT": 77.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
@@ -9258,6 +9545,7 @@
           "BPSYS": 100,
           "HR": 85,
           "WEIGHT": 58.6,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
@@ -9273,6 +9561,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 84.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         }
@@ -9560,7 +9849,7 @@
       [1] "LAB1" "LAB2" "LAB3"
       
       $removed$cols$zv
-      [1] "cardiac_arrhythmias"
+      NULL
       
       $removed$cols$nzv
       NULL
@@ -9619,9 +9908,6 @@
       $input$args$thres_log
       [1] 2
       
-      $input$args$thres_count
-      [1] 10
-      
       $input$args$thres_corr
       [1] 0.9
       
@@ -9641,9 +9927,6 @@
       [1] ".trt"
       
       $input$args$vars_fct_expl_na
-      NULL
-      
-      $input$args$vars_ordinalscore
       NULL
       
       $input$args$vars_keep_corr
@@ -9704,7 +9987,7 @@
           "BPSYS": 119,
           "HR": 84,
           "WEIGHT": 90.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -9724,7 +10007,7 @@
           "BPSYS": 111,
           "HR": 63,
           "WEIGHT": 89.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -9741,7 +10024,7 @@
           "BPSYS": 111,
           "HR": 82,
           "WEIGHT": 114.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -9758,7 +10041,7 @@
           "BPSYS": 121,
           "HR": 60,
           "WEIGHT": 81.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -9792,7 +10075,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -9826,7 +10109,7 @@
           "BPSYS": 128,
           "HR": 64,
           "WEIGHT": 95.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -9843,7 +10126,7 @@
           "BPSYS": 101,
           "HR": 80,
           "WEIGHT": 73.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -9860,7 +10143,7 @@
           "BPSYS": 133,
           "HR": 60,
           "WEIGHT": 64.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -9876,7 +10159,7 @@
           "BPDIA": 68,
           "BPSYS": 102,
           "WEIGHT": 95.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -9893,7 +10176,7 @@
           "BPSYS": 134,
           "HR": 67,
           "WEIGHT": 111.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -9910,7 +10193,7 @@
           "BPSYS": 95,
           "HR": 71,
           "WEIGHT": 71.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -9926,7 +10209,7 @@
           "BPSYS": 116,
           "HR": 78,
           "WEIGHT": 84.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3
         },
         {
@@ -9943,7 +10226,7 @@
           "BPSYS": 136,
           "HR": 50,
           "WEIGHT": 88.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -9959,7 +10242,7 @@
           "BPDIA": 82,
           "BPSYS": 125,
           "HR": 76,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -9976,7 +10259,7 @@
           "BPSYS": 96,
           "HR": 84,
           "WEIGHT": 78.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -9993,7 +10276,7 @@
           "BPSYS": 139,
           "HR": 82,
           "WEIGHT": 90.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10010,7 +10293,7 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 97.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10027,7 +10310,7 @@
           "BPSYS": 134,
           "HR": 48,
           "WEIGHT": 64.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -10044,7 +10327,7 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 82.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10061,7 +10344,7 @@
           "BPSYS": 128,
           "HR": 68,
           "WEIGHT": 80.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10078,7 +10361,7 @@
           "BPSYS": 143,
           "HR": 68,
           "WEIGHT": 87.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10095,7 +10378,7 @@
           "BPSYS": 137,
           "HR": 74,
           "WEIGHT": 108.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10112,7 +10395,7 @@
           "BPSYS": 111,
           "HR": 80,
           "WEIGHT": 59.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10129,7 +10412,7 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 103.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -10146,7 +10429,7 @@
           "BPSYS": 135,
           "HR": 76,
           "WEIGHT": 67,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10163,7 +10446,7 @@
           "BPSYS": 128,
           "HR": 86,
           "WEIGHT": 93.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10180,7 +10463,7 @@
           "BPSYS": 124,
           "HR": 76,
           "WEIGHT": 65.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10197,7 +10480,7 @@
           "BPSYS": 117,
           "HR": 77,
           "WEIGHT": 115.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10214,7 +10497,7 @@
           "BPSYS": 95,
           "HR": 46,
           "WEIGHT": 50.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10231,7 +10514,7 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 99.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10248,7 +10531,7 @@
           "BPSYS": 137,
           "HR": 78,
           "WEIGHT": 96.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -10281,7 +10564,7 @@
           "BPSYS": 134,
           "HR": 44,
           "WEIGHT": 47.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -10298,7 +10581,7 @@
           "BPSYS": 123,
           "HR": 49,
           "WEIGHT": 96.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10314,7 +10597,7 @@
           "BPSYS": 123,
           "HR": 61,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10331,7 +10614,7 @@
           "BPSYS": 134,
           "HR": 50,
           "WEIGHT": 106.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10348,7 +10631,7 @@
           "BPSYS": 162,
           "HR": 86,
           "WEIGHT": 84,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10364,7 +10647,7 @@
           "BPSYS": 106,
           "HR": 74,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10381,7 +10664,7 @@
           "BPSYS": 123,
           "HR": 82,
           "WEIGHT": 67.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -10398,7 +10681,7 @@
           "BPSYS": 119,
           "HR": 82,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -10415,7 +10698,7 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 81.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10432,7 +10715,7 @@
           "BPSYS": 127,
           "HR": 66,
           "WEIGHT": 102.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10449,7 +10732,7 @@
           "BPSYS": 98,
           "HR": 73,
           "WEIGHT": 86.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10465,7 +10748,7 @@
           "BPDIA": 65,
           "BPSYS": 109,
           "WEIGHT": 66.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -10482,7 +10765,7 @@
           "BPSYS": 142,
           "HR": 78,
           "WEIGHT": 66.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10499,7 +10782,7 @@
           "BPSYS": 95,
           "HR": 87,
           "WEIGHT": 99.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10516,7 +10799,7 @@
           "BPSYS": 98,
           "HR": 55,
           "WEIGHT": 70.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10533,7 +10816,7 @@
           "BPSYS": 144,
           "HR": 79,
           "WEIGHT": 94.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -10550,7 +10833,7 @@
           "BPSYS": 131,
           "HR": 77,
           "WEIGHT": 120.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -10567,7 +10850,7 @@
           "BPSYS": 103,
           "HR": 62,
           "WEIGHT": 39.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -10584,7 +10867,7 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 95.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10601,7 +10884,7 @@
           "BPSYS": 105,
           "HR": 48,
           "WEIGHT": 64.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -10618,7 +10901,7 @@
           "BPSYS": 126,
           "HR": 83,
           "WEIGHT": 67,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -10635,7 +10918,7 @@
           "BPSYS": 128,
           "HR": 71,
           "WEIGHT": 54.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10652,7 +10935,7 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 57.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10669,7 +10952,7 @@
           "BPSYS": 138,
           "HR": 86,
           "WEIGHT": 71.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10686,7 +10969,7 @@
           "BPSYS": 132,
           "HR": 61,
           "WEIGHT": 100,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10703,7 +10986,7 @@
           "BPSYS": 125,
           "HR": 70,
           "WEIGHT": 62.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10720,7 +11003,7 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 92.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10737,7 +11020,7 @@
           "BPSYS": 121,
           "HR": 79,
           "WEIGHT": 64.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10754,7 +11037,7 @@
           "BPSYS": 120,
           "HR": 61,
           "WEIGHT": 61.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10771,7 +11054,7 @@
           "BPSYS": 121,
           "HR": 68,
           "WEIGHT": 102.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10788,7 +11071,7 @@
           "BPSYS": 93,
           "HR": 86,
           "WEIGHT": 92.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10805,7 +11088,7 @@
           "BPSYS": 96,
           "HR": 85,
           "WEIGHT": 96.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10856,7 +11139,7 @@
           "BPSYS": 115,
           "HR": 68,
           "WEIGHT": 81.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10873,7 +11156,7 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 98.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10890,7 +11173,7 @@
           "BPSYS": 110,
           "HR": 80,
           "WEIGHT": 86.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10907,7 +11190,7 @@
           "BPSYS": 99,
           "HR": 62,
           "WEIGHT": 73,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -10924,7 +11207,7 @@
           "BPSYS": 137,
           "HR": 69,
           "WEIGHT": 93.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10941,7 +11224,7 @@
           "BPSYS": 141,
           "HR": 63,
           "WEIGHT": 78.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -10958,7 +11241,7 @@
           "BPSYS": 105,
           "HR": 66,
           "WEIGHT": 55.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -10975,7 +11258,7 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 105.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -10992,7 +11275,7 @@
           "BPSYS": 84,
           "HR": 71,
           "WEIGHT": 92.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11009,7 +11292,7 @@
           "BPSYS": 111,
           "HR": 67,
           "WEIGHT": 85.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -11026,7 +11309,7 @@
           "BPSYS": 120,
           "HR": 62,
           "WEIGHT": 72.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11043,7 +11326,7 @@
           "BPSYS": 129,
           "HR": 65,
           "WEIGHT": 82.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11077,7 +11360,7 @@
           "BPSYS": 135,
           "HR": 79,
           "WEIGHT": 69.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11094,7 +11377,7 @@
           "BPSYS": 83,
           "HR": 89,
           "WEIGHT": 75.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -11111,7 +11394,7 @@
           "BPSYS": 127,
           "HR": 86,
           "WEIGHT": 108.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11128,7 +11411,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 109.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11162,7 +11445,7 @@
           "BPSYS": 126,
           "HR": 56,
           "WEIGHT": 75.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -11179,7 +11462,7 @@
           "BPSYS": 99,
           "HR": 50,
           "WEIGHT": 81,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -11196,7 +11479,7 @@
           "BPSYS": 96,
           "HR": 72,
           "WEIGHT": 76.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11213,7 +11496,7 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 75.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11230,7 +11513,7 @@
           "BPSYS": 99,
           "HR": 68,
           "WEIGHT": 70.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11247,7 +11530,7 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 91.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11264,7 +11547,7 @@
           "BPSYS": 128,
           "HR": 87,
           "WEIGHT": 85.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -11281,7 +11564,7 @@
           "BPSYS": 111,
           "HR": 64,
           "WEIGHT": 79.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11298,7 +11581,7 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 57.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11315,7 +11598,7 @@
           "BPSYS": 125,
           "HR": 77,
           "WEIGHT": 113.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11332,7 +11615,7 @@
           "BPSYS": 121,
           "HR": 53,
           "WEIGHT": 90.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11349,7 +11632,7 @@
           "BPSYS": 125,
           "HR": 44,
           "WEIGHT": 62.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11366,7 +11649,7 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 65.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11383,7 +11666,7 @@
           "BPSYS": 126,
           "HR": 74,
           "WEIGHT": 91.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11400,7 +11683,7 @@
           "BPSYS": 109,
           "HR": 80,
           "WEIGHT": 106.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -11417,7 +11700,7 @@
           "BPSYS": 134,
           "HR": 70,
           "WEIGHT": 92,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11437,7 +11720,7 @@
           "BPSYS": 116,
           "HR": 79,
           "WEIGHT": 92.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11454,7 +11737,7 @@
           "BPSYS": 127,
           "HR": 75,
           "WEIGHT": 77.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -11471,7 +11754,7 @@
           "BPSYS": 95,
           "HR": 64,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11488,7 +11771,7 @@
           "BPSYS": 101,
           "HR": 71,
           "WEIGHT": 115,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -11505,7 +11788,7 @@
           "BPSYS": 117,
           "HR": 70,
           "WEIGHT": 85.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -11521,7 +11804,7 @@
           "BPSYS": 114,
           "HR": 58,
           "WEIGHT": 66.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11538,7 +11821,7 @@
           "BPSYS": 111,
           "HR": 57,
           "WEIGHT": 79.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -11555,7 +11838,7 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 99,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11572,7 +11855,7 @@
           "BPSYS": 140,
           "HR": 71,
           "WEIGHT": 86.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -11589,7 +11872,7 @@
           "BPSYS": 108,
           "HR": 67,
           "WEIGHT": 88.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -11606,7 +11889,7 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 96.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11623,7 +11906,7 @@
           "BPSYS": 100,
           "HR": 81,
           "WEIGHT": 66.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11639,7 +11922,7 @@
           "BPSYS": 114,
           "HR": 53,
           "WEIGHT": 65.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11656,7 +11939,7 @@
           "BPSYS": 142,
           "HR": 63,
           "WEIGHT": 98.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11673,7 +11956,7 @@
           "BPSYS": 130,
           "HR": 74,
           "WEIGHT": 67.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11690,7 +11973,7 @@
           "BPSYS": 109,
           "HR": 81,
           "WEIGHT": 105.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11706,7 +11989,7 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 96.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11723,7 +12006,7 @@
           "BPSYS": 142,
           "HR": 74,
           "WEIGHT": 90.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11740,7 +12023,7 @@
           "BPSYS": 108,
           "HR": 74,
           "WEIGHT": 79.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11757,7 +12040,7 @@
           "BPSYS": 138,
           "HR": 67,
           "WEIGHT": 98.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11774,7 +12057,7 @@
           "BPSYS": 110,
           "HR": 79,
           "WEIGHT": 97.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11791,7 +12074,7 @@
           "BPSYS": 131,
           "HR": 73,
           "WEIGHT": 65.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11808,7 +12091,7 @@
           "BPSYS": 110,
           "HR": 63,
           "WEIGHT": 61.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11825,7 +12108,7 @@
           "BPSYS": 96,
           "HR": 64,
           "WEIGHT": 67.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11842,7 +12125,7 @@
           "BPSYS": 135,
           "HR": 85,
           "WEIGHT": 102.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -11859,7 +12142,7 @@
           "BPSYS": 121,
           "HR": 58,
           "WEIGHT": 72.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11876,7 +12159,7 @@
           "BPSYS": 122,
           "HR": 70,
           "WEIGHT": 80.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11893,7 +12176,7 @@
           "BPSYS": 97,
           "HR": 71,
           "WEIGHT": 73.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11909,7 +12192,7 @@
           "BPSYS": 109,
           "HR": 42,
           "WEIGHT": 62.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -11926,7 +12209,7 @@
           "BPSYS": 92,
           "HR": 76,
           "WEIGHT": 72.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11943,7 +12226,7 @@
           "BPSYS": 129,
           "HR": 63,
           "WEIGHT": 90.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -11975,7 +12258,7 @@
           "BPSYS": 140,
           "HR": 74,
           "WEIGHT": 74.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -11992,7 +12275,7 @@
           "BPSYS": 112,
           "HR": 77,
           "WEIGHT": 54.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12009,7 +12292,7 @@
           "BPSYS": 109,
           "HR": 87,
           "WEIGHT": 89.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -12026,7 +12309,7 @@
           "BPSYS": 115,
           "HR": 75,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -12042,7 +12325,7 @@
           "BPSYS": 113,
           "HR": 52,
           "WEIGHT": 87.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -12059,7 +12342,7 @@
           "BPSYS": 93,
           "HR": 74,
           "WEIGHT": 92.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -12076,7 +12359,7 @@
           "BPSYS": 101,
           "HR": 92,
           "WEIGHT": 57.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -12093,7 +12376,7 @@
           "BPSYS": 128,
           "HR": 50,
           "WEIGHT": 87.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12110,7 +12393,7 @@
           "BPSYS": 103,
           "HR": 89,
           "WEIGHT": 78.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -12127,7 +12410,7 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -12144,7 +12427,7 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 59,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -12161,7 +12444,7 @@
           "BPSYS": 103,
           "HR": 48,
           "WEIGHT": 70.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -12178,7 +12461,7 @@
           "BPSYS": 108,
           "HR": 72,
           "WEIGHT": 74.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12195,7 +12478,7 @@
           "BPSYS": 140,
           "HR": 66,
           "WEIGHT": 88.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12211,7 +12494,7 @@
           "BPSYS": 128,
           "HR": 83,
           "WEIGHT": 79.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -12228,7 +12511,7 @@
           "BPSYS": 112,
           "HR": 76,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12245,7 +12528,7 @@
           "BPSYS": 144,
           "HR": 80,
           "WEIGHT": 101.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12262,7 +12545,7 @@
           "BPSYS": 117,
           "HR": 80,
           "WEIGHT": 71.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12279,7 +12562,7 @@
           "BPSYS": 124,
           "HR": 60,
           "WEIGHT": 80.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -12296,7 +12579,7 @@
           "BPSYS": 122,
           "HR": 72,
           "WEIGHT": 69.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12313,7 +12596,7 @@
           "BPSYS": 110,
           "HR": 55,
           "WEIGHT": 65.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -12330,7 +12613,7 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 82.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -12364,7 +12647,7 @@
           "BPSYS": 143,
           "HR": 78,
           "WEIGHT": 66,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -12381,7 +12664,7 @@
           "BPSYS": 138,
           "HR": 65,
           "WEIGHT": 122.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -12398,7 +12681,7 @@
           "BPSYS": 115,
           "HR": 63,
           "WEIGHT": 66.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12415,7 +12698,7 @@
           "BPSYS": 126,
           "HR": 78,
           "WEIGHT": 86,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12432,7 +12715,7 @@
           "BPSYS": 124,
           "HR": 68,
           "WEIGHT": 78.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -12449,7 +12732,7 @@
           "BPSYS": 145,
           "HR": 69,
           "WEIGHT": 90.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12466,7 +12749,7 @@
           "BPSYS": 94,
           "HR": 67,
           "WEIGHT": 76.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -12483,7 +12766,7 @@
           "BPSYS": 130,
           "HR": 56,
           "WEIGHT": 97.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -12500,7 +12783,7 @@
           "BPSYS": 113,
           "HR": 71,
           "WEIGHT": 56.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -12517,7 +12800,7 @@
           "BPSYS": 116,
           "HR": 50,
           "WEIGHT": 74.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12534,7 +12817,7 @@
           "BPSYS": 113,
           "HR": 72,
           "WEIGHT": 66.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -12551,7 +12834,7 @@
           "BPSYS": 113,
           "HR": 66,
           "WEIGHT": 36.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -12568,7 +12851,7 @@
           "BPSYS": 118,
           "HR": 96,
           "WEIGHT": 60.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -12585,7 +12868,7 @@
           "BPSYS": 134,
           "HR": 69,
           "WEIGHT": 67.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -12602,7 +12885,7 @@
           "BPSYS": 107,
           "HR": 71,
           "WEIGHT": 93.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12619,7 +12902,7 @@
           "BPSYS": 125,
           "HR": 71,
           "WEIGHT": 87.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -12635,7 +12918,7 @@
           "BPDIA": 79,
           "HR": 72,
           "WEIGHT": 75.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -12652,7 +12935,7 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 73.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -12669,7 +12952,7 @@
           "BPSYS": 99,
           "HR": 64,
           "WEIGHT": 60.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12686,7 +12969,7 @@
           "BPSYS": 117,
           "HR": 62,
           "WEIGHT": 70,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -12703,7 +12986,7 @@
           "BPSYS": 148,
           "HR": 55,
           "WEIGHT": 96.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -12720,7 +13003,7 @@
           "BPSYS": 119,
           "HR": 62,
           "WEIGHT": 62.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -12737,7 +13020,7 @@
           "BPSYS": 107,
           "HR": 75,
           "WEIGHT": 126.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -12754,7 +13037,7 @@
           "BPSYS": 140,
           "HR": 61,
           "WEIGHT": 88.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -12769,7 +13052,7 @@
           "BPSYS": 110,
           "HR": 53,
           "WEIGHT": 93.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12785,7 +13068,7 @@
           "BPSYS": 121,
           "HR": 76,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -12802,7 +13085,7 @@
           "BPSYS": 134,
           "HR": 65,
           "WEIGHT": 101.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -12818,7 +13101,7 @@
           "BPSYS": 122,
           "HR": 92,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -12835,7 +13118,7 @@
           "BPSYS": 111,
           "HR": 59,
           "WEIGHT": 54.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -12852,7 +13135,7 @@
           "BPSYS": 114,
           "HR": 71,
           "WEIGHT": 86.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12868,7 +13151,7 @@
           "BPSYS": 135,
           "HR": 67,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12885,7 +13168,7 @@
           "BPSYS": 91,
           "HR": 73,
           "WEIGHT": 83.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12902,7 +13185,7 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 104.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -12919,7 +13202,7 @@
           "BPSYS": 134,
           "HR": 81,
           "WEIGHT": 69.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -12936,7 +13219,7 @@
           "BPSYS": 129,
           "HR": 61,
           "WEIGHT": 80.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -12952,7 +13235,7 @@
           "BPDIA": 74,
           "BPSYS": 125,
           "WEIGHT": 106,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12969,7 +13252,7 @@
           "BPSYS": 92,
           "HR": 88,
           "WEIGHT": 98.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -12986,7 +13269,7 @@
           "BPSYS": 127,
           "HR": 89,
           "WEIGHT": 110.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13003,7 +13286,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 61.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -13020,7 +13303,7 @@
           "BPSYS": 95,
           "HR": 57,
           "WEIGHT": 54,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13037,7 +13320,7 @@
           "BPSYS": 131,
           "HR": 58,
           "WEIGHT": 96.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13054,7 +13337,7 @@
           "BPSYS": 121,
           "HR": 78,
           "WEIGHT": 69.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13071,7 +13354,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 75,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -13088,7 +13371,7 @@
           "BPSYS": 103,
           "HR": 77,
           "WEIGHT": 79.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -13105,7 +13388,7 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 48.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13122,7 +13405,7 @@
           "BPSYS": 95,
           "HR": 78,
           "WEIGHT": 97.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13139,7 +13422,7 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 93.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13173,7 +13456,7 @@
           "BPSYS": 92,
           "HR": 58,
           "WEIGHT": 77.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -13190,7 +13473,7 @@
           "BPSYS": 95,
           "HR": 74,
           "WEIGHT": 100.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13207,7 +13490,7 @@
           "BPSYS": 110,
           "HR": 60,
           "WEIGHT": 59.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13224,7 +13507,7 @@
           "BPSYS": 107,
           "HR": 73,
           "WEIGHT": 68.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13241,7 +13524,7 @@
           "BPSYS": 101,
           "HR": 77,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13258,7 +13541,7 @@
           "BPSYS": 125,
           "HR": 56,
           "WEIGHT": 90.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13275,7 +13558,7 @@
           "BPSYS": 123,
           "HR": 85,
           "WEIGHT": 100,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13291,7 +13574,7 @@
           "BPSYS": 114,
           "HR": 54,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13308,7 +13591,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 89.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13325,7 +13608,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 84.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13342,7 +13625,7 @@
           "BPSYS": 143,
           "HR": 66,
           "WEIGHT": 101.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         }
       ] 
@@ -13365,7 +13648,7 @@
           "BPSYS": 105,
           "HR": 86,
           "WEIGHT": 51.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13385,7 +13668,7 @@
           "BPSYS": 134,
           "HR": 64,
           "WEIGHT": 106,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13402,7 +13685,7 @@
           "BPSYS": 116,
           "HR": 69,
           "WEIGHT": 116.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13419,7 +13702,7 @@
           "BPSYS": 127,
           "HR": 59,
           "WEIGHT": 79.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -13436,7 +13719,7 @@
           "BPSYS": 141,
           "HR": 75,
           "WEIGHT": 112.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13453,7 +13736,7 @@
           "BPSYS": 126,
           "HR": 84,
           "WEIGHT": 75.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13469,7 +13752,7 @@
           "BPSYS": 101,
           "HR": 56,
           "WEIGHT": 57.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -13486,7 +13769,7 @@
           "BPSYS": 124,
           "HR": 80,
           "WEIGHT": 97.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -13503,7 +13786,7 @@
           "BPSYS": 152,
           "HR": 69,
           "WEIGHT": 50.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13520,7 +13803,7 @@
           "BPSYS": 130,
           "HR": 70,
           "WEIGHT": 73,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -13537,7 +13820,7 @@
           "BPSYS": 92,
           "HR": 56,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13554,7 +13837,7 @@
           "BPSYS": 122,
           "HR": 66,
           "WEIGHT": 64.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13570,7 +13853,7 @@
           "BPSYS": 128,
           "HR": 56,
           "WEIGHT": 62.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13587,7 +13870,7 @@
           "BPSYS": 117,
           "HR": 93,
           "WEIGHT": 110.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13604,7 +13887,7 @@
           "BPSYS": 109,
           "HR": 63,
           "WEIGHT": 68,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -13620,7 +13903,7 @@
           "BPSYS": 122,
           "HR": 78,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13637,7 +13920,7 @@
           "BPSYS": 97,
           "HR": 49,
           "WEIGHT": 96.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13654,7 +13937,7 @@
           "BPSYS": 108,
           "HR": 56,
           "WEIGHT": 82.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13671,7 +13954,7 @@
           "BPSYS": 107,
           "HR": 39,
           "WEIGHT": 53.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13688,7 +13971,7 @@
           "BPSYS": 108,
           "HR": 50,
           "WEIGHT": 91.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13722,7 +14005,7 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 79.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13739,7 +14022,7 @@
           "BPSYS": 100,
           "HR": 70,
           "WEIGHT": 75.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13756,7 +14039,7 @@
           "BPSYS": 124,
           "HR": 62,
           "WEIGHT": 75.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -13773,7 +14056,7 @@
           "BPSYS": 118,
           "HR": 65,
           "WEIGHT": 82.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13790,7 +14073,7 @@
           "BPSYS": 129,
           "HR": 67,
           "WEIGHT": 65.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -13807,7 +14090,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 54.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13824,7 +14107,7 @@
           "BPSYS": 134,
           "HR": 66,
           "WEIGHT": 126.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -13841,7 +14124,7 @@
           "BPSYS": 95,
           "HR": 72,
           "WEIGHT": 101.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13857,7 +14140,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 123.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13874,7 +14157,7 @@
           "BPSYS": 98,
           "HR": 89,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -13891,7 +14174,7 @@
           "BPSYS": 129,
           "HR": 62,
           "WEIGHT": 46.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -13908,7 +14191,7 @@
           "BPSYS": 115,
           "HR": 72,
           "WEIGHT": 88.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -13925,7 +14208,7 @@
           "BPSYS": 106,
           "HR": 73,
           "WEIGHT": 53.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13942,7 +14225,7 @@
           "BPSYS": 118,
           "HR": 64,
           "WEIGHT": 63.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -13957,7 +14240,7 @@
           "BPSYS": 98,
           "HR": 69,
           "WEIGHT": 101.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -13973,7 +14256,7 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 81.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -13990,7 +14273,7 @@
           "BPSYS": 98,
           "HR": 71,
           "WEIGHT": 73.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -14007,7 +14290,7 @@
           "BPSYS": 115,
           "HR": 59,
           "WEIGHT": 73.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -14024,7 +14307,7 @@
           "BPSYS": 108,
           "HR": 64,
           "WEIGHT": 103.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3
         },
         {
@@ -14041,7 +14324,7 @@
           "BPSYS": 112,
           "HR": 57,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -14057,7 +14340,7 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 70.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -14074,7 +14357,7 @@
           "BPSYS": 117,
           "HR": 79,
           "WEIGHT": 88,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -14091,7 +14374,7 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 41.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -14108,7 +14391,7 @@
           "BPSYS": 136,
           "HR": 66,
           "WEIGHT": 113.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -14125,7 +14408,7 @@
           "BPSYS": 113,
           "HR": 63,
           "WEIGHT": 66.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -14142,7 +14425,7 @@
           "BPSYS": 103,
           "HR": 71,
           "WEIGHT": 68.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -14158,7 +14441,7 @@
           "BPDIA": 71,
           "HR": 81,
           "WEIGHT": 112.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -14175,7 +14458,7 @@
           "BPSYS": 133,
           "HR": 69,
           "WEIGHT": 83.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -14192,7 +14475,7 @@
           "BPSYS": 113,
           "HR": 83,
           "WEIGHT": 66.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -14209,7 +14492,7 @@
           "BPSYS": 100,
           "HR": 75,
           "WEIGHT": 65.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -14226,7 +14509,7 @@
           "BPSYS": 117,
           "HR": 67,
           "WEIGHT": 75.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -14243,7 +14526,7 @@
           "BPSYS": 132,
           "HR": 54,
           "WEIGHT": 95.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -14260,7 +14543,7 @@
           "BPSYS": 106,
           "HR": 55,
           "WEIGHT": 59.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -14277,7 +14560,7 @@
           "BPSYS": 120,
           "HR": 64,
           "WEIGHT": 84.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -14294,7 +14577,7 @@
           "BPSYS": 101,
           "HR": 45,
           "WEIGHT": 55.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -14310,7 +14593,7 @@
           "BPSYS": 119,
           "HR": 61,
           "WEIGHT": 105.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -14327,7 +14610,7 @@
           "BPSYS": 144,
           "HR": 75,
           "WEIGHT": 71.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -14344,7 +14627,7 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 94.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -14361,7 +14644,7 @@
           "BPSYS": 108,
           "HR": 78,
           "WEIGHT": 85,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -14378,7 +14661,7 @@
           "BPSYS": 123,
           "HR": 59,
           "WEIGHT": 89,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -14395,7 +14678,7 @@
           "BPSYS": 106,
           "HR": 68,
           "WEIGHT": 101.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -14412,7 +14695,7 @@
           "BPSYS": 128,
           "HR": 62,
           "WEIGHT": 92.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -14429,7 +14712,7 @@
           "BPSYS": 124,
           "HR": 48,
           "WEIGHT": 63.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -14446,7 +14729,7 @@
           "BPSYS": 119,
           "HR": 65,
           "WEIGHT": 98.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -14463,7 +14746,7 @@
           "BPSYS": 115,
           "HR": 40,
           "WEIGHT": 106.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -14480,7 +14763,7 @@
           "BPSYS": 103,
           "HR": 98,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -14497,7 +14780,7 @@
           "BPSYS": 122,
           "HR": 81,
           "WEIGHT": 77,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -14514,7 +14797,7 @@
           "BPSYS": 143,
           "HR": 86,
           "WEIGHT": 82.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -14531,7 +14814,7 @@
           "BPSYS": 110,
           "HR": 67,
           "WEIGHT": 88.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -14547,7 +14830,7 @@
           "BPDIA": 61,
           "BPSYS": 108,
           "HR": 59,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -14564,7 +14847,7 @@
           "BPSYS": 130,
           "HR": 83,
           "WEIGHT": 77.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -14602,6 +14885,7 @@
           "BPSYS": 119,
           "HR": 84,
           "WEIGHT": 90.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.49
         },
@@ -14617,6 +14901,7 @@
           "BPSYS": 111,
           "HR": 63,
           "WEIGHT": 89.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.04
         },
@@ -14632,6 +14917,7 @@
           "BPSYS": 111,
           "HR": 82,
           "WEIGHT": 114.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.02
         },
@@ -14647,6 +14933,7 @@
           "BPSYS": 121,
           "HR": 60,
           "WEIGHT": 81.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.44
         },
@@ -14662,6 +14949,7 @@
           "BPSYS": 109,
           "HR": 83,
           "WEIGHT": 98.1,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 2,
           ".out": -0.09
         },
@@ -14677,6 +14965,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.37
         },
@@ -14692,6 +14981,7 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 82,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": -0.28
         },
@@ -14707,6 +14997,7 @@
           "BPSYS": 128,
           "HR": 64,
           "WEIGHT": 95.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.58
         },
@@ -14722,6 +15013,7 @@
           "BPSYS": 101,
           "HR": 80,
           "WEIGHT": 73.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.36
         },
@@ -14737,6 +15029,7 @@
           "BPSYS": 133,
           "HR": 60,
           "WEIGHT": 64.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.23
         },
@@ -14750,8 +15043,9 @@
           "BMI_advs": 28.9,
           "BPDIA": 68,
           "BPSYS": 102,
-          "HR": 72,
+          "HR": 73.2,
           "WEIGHT": 95.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.41
         },
@@ -14767,6 +15061,7 @@
           "BPSYS": 134,
           "HR": 67,
           "WEIGHT": 111.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": 0.16
         },
@@ -14782,6 +15077,7 @@
           "BPSYS": 95,
           "HR": 71,
           "WEIGHT": 71.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.03
         },
@@ -14797,6 +15093,7 @@
           "BPSYS": 116,
           "HR": 78,
           "WEIGHT": 84.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3,
           ".out": 2.02
         },
@@ -14812,6 +15109,7 @@
           "BPSYS": 136,
           "HR": 50,
           "WEIGHT": 88.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.19
         },
@@ -14827,6 +15125,7 @@
           "BPSYS": 125,
           "HR": 76,
           "WEIGHT": 87.42,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.62
         },
@@ -14842,6 +15141,7 @@
           "BPSYS": 96,
           "HR": 84,
           "WEIGHT": 78.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.28
         },
@@ -14857,6 +15157,7 @@
           "BPSYS": 139,
           "HR": 82,
           "WEIGHT": 90.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.75
         },
@@ -14872,6 +15173,7 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 97.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.91
         },
@@ -14887,6 +15189,7 @@
           "BPSYS": 134,
           "HR": 48,
           "WEIGHT": 64.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": -0.61
         },
@@ -14902,6 +15205,7 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 82.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.46
         },
@@ -14917,6 +15221,7 @@
           "BPSYS": 128,
           "HR": 68,
           "WEIGHT": 80.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.42
         },
@@ -14932,6 +15237,7 @@
           "BPSYS": 143,
           "HR": 68,
           "WEIGHT": 87.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.01
         },
@@ -14947,6 +15253,7 @@
           "BPSYS": 137,
           "HR": 74,
           "WEIGHT": 108.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.72
         },
@@ -14962,6 +15269,7 @@
           "BPSYS": 111,
           "HR": 80,
           "WEIGHT": 59.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.61
         },
@@ -14977,6 +15285,7 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 103.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.21
         },
@@ -14992,6 +15301,7 @@
           "BPSYS": 135,
           "HR": 76,
           "WEIGHT": 67,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.86
         },
@@ -15007,6 +15317,7 @@
           "BPSYS": 128,
           "HR": 86,
           "WEIGHT": 93.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.52
         },
@@ -15022,6 +15333,7 @@
           "BPSYS": 124,
           "HR": 76,
           "WEIGHT": 65.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.62
         },
@@ -15037,6 +15349,7 @@
           "BPSYS": 117,
           "HR": 77,
           "WEIGHT": 115.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.24
         },
@@ -15052,6 +15365,7 @@
           "BPSYS": 95,
           "HR": 46,
           "WEIGHT": 50.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.59
         },
@@ -15067,6 +15381,7 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 99.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.2
         },
@@ -15082,6 +15397,7 @@
           "BPSYS": 137,
           "HR": 78,
           "WEIGHT": 96.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.23
         },
@@ -15097,6 +15413,7 @@
           "BPSYS": 107,
           "HR": 66,
           "WEIGHT": 94.5,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": -1.11
         },
@@ -15112,6 +15429,7 @@
           "BPSYS": 134,
           "HR": 44,
           "WEIGHT": 47.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": 2.53
         },
@@ -15127,6 +15445,7 @@
           "BPSYS": 123,
           "HR": 49,
           "WEIGHT": 96.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.29
         },
@@ -15142,6 +15461,7 @@
           "BPSYS": 123,
           "HR": 61,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.06
         },
@@ -15157,6 +15477,7 @@
           "BPSYS": 134,
           "HR": 50,
           "WEIGHT": 106.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 2.76
         },
@@ -15172,6 +15493,7 @@
           "BPSYS": 162,
           "HR": 86,
           "WEIGHT": 84,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1
         },
@@ -15187,6 +15509,7 @@
           "BPSYS": 106,
           "HR": 74,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.06
         },
@@ -15202,6 +15525,7 @@
           "BPSYS": 123,
           "HR": 82,
           "WEIGHT": 67.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.13
         },
@@ -15217,6 +15541,7 @@
           "BPSYS": 119,
           "HR": 82,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.4
         },
@@ -15232,6 +15557,7 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 81.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.15
         },
@@ -15247,6 +15573,7 @@
           "BPSYS": 127,
           "HR": 66,
           "WEIGHT": 102.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.4
         },
@@ -15262,6 +15589,7 @@
           "BPSYS": 98,
           "HR": 73,
           "WEIGHT": 86.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.14
         },
@@ -15275,8 +15603,9 @@
           "BMI_advs": 22.6,
           "BPDIA": 65,
           "BPSYS": 109,
-          "HR": 76.2,
+          "HR": 67.6,
           "WEIGHT": 66.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.44
         },
@@ -15292,6 +15621,7 @@
           "BPSYS": 142,
           "HR": 78,
           "WEIGHT": 66.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.82
         },
@@ -15307,6 +15637,7 @@
           "BPSYS": 95,
           "HR": 87,
           "WEIGHT": 99.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.2
         },
@@ -15322,6 +15653,7 @@
           "BPSYS": 98,
           "HR": 55,
           "WEIGHT": 70.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.67
         },
@@ -15337,6 +15669,7 @@
           "BPSYS": 144,
           "HR": 79,
           "WEIGHT": 94.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.08
         },
@@ -15352,6 +15685,7 @@
           "BPSYS": 131,
           "HR": 77,
           "WEIGHT": 120.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.58
         },
@@ -15367,6 +15701,7 @@
           "BPSYS": 103,
           "HR": 62,
           "WEIGHT": 39.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.47
         },
@@ -15382,6 +15717,7 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 95.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.66
         },
@@ -15397,6 +15733,7 @@
           "BPSYS": 105,
           "HR": 48,
           "WEIGHT": 64.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.58
         },
@@ -15412,6 +15749,7 @@
           "BPSYS": 126,
           "HR": 83,
           "WEIGHT": 67,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -1.18
         },
@@ -15427,6 +15765,7 @@
           "BPSYS": 128,
           "HR": 71,
           "WEIGHT": 54.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.34
         },
@@ -15442,6 +15781,7 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 57.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.07
         },
@@ -15457,6 +15797,7 @@
           "BPSYS": 138,
           "HR": 86,
           "WEIGHT": 71.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 2.6
         },
@@ -15472,6 +15813,7 @@
           "BPSYS": 132,
           "HR": 61,
           "WEIGHT": 100,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.48
         },
@@ -15487,6 +15829,7 @@
           "BPSYS": 125,
           "HR": 70,
           "WEIGHT": 62.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1
         },
@@ -15502,6 +15845,7 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 92.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.38
         },
@@ -15517,6 +15861,7 @@
           "BPSYS": 121,
           "HR": 79,
           "WEIGHT": 64.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.7
         },
@@ -15532,6 +15877,7 @@
           "BPSYS": 120,
           "HR": 61,
           "WEIGHT": 61.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.03
         },
@@ -15547,6 +15893,7 @@
           "BPSYS": 121,
           "HR": 68,
           "WEIGHT": 102.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.04
         },
@@ -15562,6 +15909,7 @@
           "BPSYS": 93,
           "HR": 86,
           "WEIGHT": 92.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.86
         },
@@ -15577,6 +15925,7 @@
           "BPSYS": 96,
           "HR": 85,
           "WEIGHT": 96.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.24
         },
@@ -15592,6 +15941,7 @@
           "BPSYS": 116,
           "HR": 61,
           "WEIGHT": 61,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": 1.23
         },
@@ -15607,6 +15957,7 @@
           "BPSYS": 106,
           "HR": 62,
           "WEIGHT": 72,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 2,
           ".out": -1.36
         },
@@ -15622,6 +15973,7 @@
           "BPSYS": 115,
           "HR": 68,
           "WEIGHT": 81.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.38
         },
@@ -15637,6 +15989,7 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 98.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.42
         },
@@ -15652,6 +16005,7 @@
           "BPSYS": 110,
           "HR": 80,
           "WEIGHT": 86.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.94
         },
@@ -15667,6 +16021,7 @@
           "BPSYS": 99,
           "HR": 62,
           "WEIGHT": 73,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.37
         },
@@ -15682,6 +16037,7 @@
           "BPSYS": 137,
           "HR": 69,
           "WEIGHT": 93.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.8
         },
@@ -15697,6 +16053,7 @@
           "BPSYS": 141,
           "HR": 63,
           "WEIGHT": 78.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.36
         },
@@ -15712,6 +16069,7 @@
           "BPSYS": 105,
           "HR": 66,
           "WEIGHT": 55.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.39
         },
@@ -15727,6 +16085,7 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 105.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.8
         },
@@ -15742,6 +16101,7 @@
           "BPSYS": 84,
           "HR": 71,
           "WEIGHT": 92.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.43
         },
@@ -15757,6 +16117,7 @@
           "BPSYS": 111,
           "HR": 67,
           "WEIGHT": 85.7,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.16
         },
@@ -15772,6 +16133,7 @@
           "BPSYS": 120,
           "HR": 62,
           "WEIGHT": 72.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.14
         },
@@ -15787,6 +16149,7 @@
           "BPSYS": 129,
           "HR": 65,
           "WEIGHT": 82.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.95
         },
@@ -15802,6 +16165,7 @@
           "BPSYS": 105,
           "HR": 72,
           "WEIGHT": 77.4,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": -0.22
         },
@@ -15817,6 +16181,7 @@
           "BPSYS": 135,
           "HR": 79,
           "WEIGHT": 69.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.14
         },
@@ -15832,6 +16197,7 @@
           "BPSYS": 83,
           "HR": 89,
           "WEIGHT": 75.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.36
         },
@@ -15847,6 +16213,7 @@
           "BPSYS": 127,
           "HR": 86,
           "WEIGHT": 108.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.58
         },
@@ -15862,6 +16229,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 109.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.75
         },
@@ -15877,6 +16245,7 @@
           "BPSYS": 134,
           "HR": 52,
           "WEIGHT": 117.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": 0.41
         },
@@ -15892,6 +16261,7 @@
           "BPSYS": 126,
           "HR": 56,
           "WEIGHT": 75.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.22
         },
@@ -15907,6 +16277,7 @@
           "BPSYS": 99,
           "HR": 50,
           "WEIGHT": 81,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.08
         },
@@ -15922,6 +16293,7 @@
           "BPSYS": 96,
           "HR": 72,
           "WEIGHT": 76.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.67
         },
@@ -15937,6 +16309,7 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 75.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.7
         },
@@ -15952,6 +16325,7 @@
           "BPSYS": 99,
           "HR": 68,
           "WEIGHT": 70.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.52
         },
@@ -15967,6 +16341,7 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 91.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.97
         },
@@ -15982,6 +16357,7 @@
           "BPSYS": 128,
           "HR": 87,
           "WEIGHT": 85.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.79
         },
@@ -15997,6 +16373,7 @@
           "BPSYS": 111,
           "HR": 64,
           "WEIGHT": 79.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.44
         },
@@ -16012,6 +16389,7 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 57.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.12
         },
@@ -16027,6 +16405,7 @@
           "BPSYS": 125,
           "HR": 77,
           "WEIGHT": 113.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.4
         },
@@ -16042,6 +16421,7 @@
           "BPSYS": 121,
           "HR": 53,
           "WEIGHT": 90.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.59
         },
@@ -16057,6 +16437,7 @@
           "BPSYS": 125,
           "HR": 44,
           "WEIGHT": 62.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.55
         },
@@ -16072,6 +16453,7 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 65.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.42
         },
@@ -16087,6 +16469,7 @@
           "BPSYS": 126,
           "HR": 74,
           "WEIGHT": 91.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.01
         },
@@ -16102,6 +16485,7 @@
           "BPSYS": 109,
           "HR": 80,
           "WEIGHT": 106.7,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -1.04
         },
@@ -16117,6 +16501,7 @@
           "BPSYS": 134,
           "HR": 70,
           "WEIGHT": 92,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.18
         },
@@ -16132,6 +16517,7 @@
           "BPSYS": 116,
           "HR": 79,
           "WEIGHT": 92.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.62
         },
@@ -16147,6 +16533,7 @@
           "BPSYS": 127,
           "HR": 75,
           "WEIGHT": 77.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.97
         },
@@ -16162,6 +16549,7 @@
           "BPSYS": 95,
           "HR": 64,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.25
         },
@@ -16177,6 +16565,7 @@
           "BPSYS": 101,
           "HR": 71,
           "WEIGHT": 115,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.64
         },
@@ -16192,6 +16581,7 @@
           "BPSYS": 117,
           "HR": 70,
           "WEIGHT": 85.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": 1.33
         },
@@ -16200,13 +16590,14 @@
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
-          "RACE": "WHITE",
+          "RACE": "ASIAN",
           "AGE": 77,
           "BMI_advs": 20.7,
           "BPDIA": 82,
           "BPSYS": 114,
           "HR": 58,
           "WEIGHT": 66.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.1
         },
@@ -16222,6 +16613,7 @@
           "BPSYS": 111,
           "HR": 57,
           "WEIGHT": 79.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -1.46
         },
@@ -16237,6 +16629,7 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 99,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.23
         },
@@ -16252,6 +16645,7 @@
           "BPSYS": 140,
           "HR": 71,
           "WEIGHT": 86.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.14
         },
@@ -16267,6 +16661,7 @@
           "BPSYS": 108,
           "HR": 67,
           "WEIGHT": 88.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.2
         },
@@ -16282,6 +16677,7 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 96.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -2.04
         },
@@ -16297,6 +16693,7 @@
           "BPSYS": 100,
           "HR": 81,
           "WEIGHT": 66.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.36
         },
@@ -16312,6 +16709,7 @@
           "BPSYS": 114,
           "HR": 53,
           "WEIGHT": 65.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.89
         },
@@ -16327,6 +16725,7 @@
           "BPSYS": 142,
           "HR": 63,
           "WEIGHT": 98.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.76
         },
@@ -16342,6 +16741,7 @@
           "BPSYS": 130,
           "HR": 74,
           "WEIGHT": 67.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.88
         },
@@ -16357,6 +16757,7 @@
           "BPSYS": 109,
           "HR": 81,
           "WEIGHT": 105.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.32
         },
@@ -16372,6 +16773,7 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 96.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.8
         },
@@ -16387,6 +16789,7 @@
           "BPSYS": 142,
           "HR": 74,
           "WEIGHT": 90.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -2
         },
@@ -16402,6 +16805,7 @@
           "BPSYS": 108,
           "HR": 74,
           "WEIGHT": 79.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.05
         },
@@ -16417,6 +16821,7 @@
           "BPSYS": 138,
           "HR": 67,
           "WEIGHT": 98.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.3
         },
@@ -16432,6 +16837,7 @@
           "BPSYS": 110,
           "HR": 79,
           "WEIGHT": 97.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.95
         },
@@ -16447,6 +16853,7 @@
           "BPSYS": 131,
           "HR": 73,
           "WEIGHT": 65.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.62
         },
@@ -16462,6 +16869,7 @@
           "BPSYS": 110,
           "HR": 63,
           "WEIGHT": 61.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.64
         },
@@ -16477,6 +16885,7 @@
           "BPSYS": 96,
           "HR": 64,
           "WEIGHT": 67.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.64
         },
@@ -16492,6 +16901,7 @@
           "BPSYS": 135,
           "HR": 85,
           "WEIGHT": 102.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.16
         },
@@ -16507,6 +16917,7 @@
           "BPSYS": 121,
           "HR": 58,
           "WEIGHT": 72.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.76
         },
@@ -16522,6 +16933,7 @@
           "BPSYS": 122,
           "HR": 70,
           "WEIGHT": 80.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.07
         },
@@ -16537,6 +16949,7 @@
           "BPSYS": 97,
           "HR": 71,
           "WEIGHT": 73.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.05
         },
@@ -16552,6 +16965,7 @@
           "BPSYS": 109,
           "HR": 42,
           "WEIGHT": 62.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.58
         },
@@ -16567,6 +16981,7 @@
           "BPSYS": 92,
           "HR": 76,
           "WEIGHT": 72.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.68
         },
@@ -16582,6 +16997,7 @@
           "BPSYS": 129,
           "HR": 63,
           "WEIGHT": 90.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.4
         },
@@ -16597,6 +17013,7 @@
           "BPSYS": 123,
           "HR": 60,
           "WEIGHT": 65.8,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": -0.73
         },
@@ -16608,10 +17025,11 @@
           "RACE": "WHITE",
           "AGE": 74,
           "BMI_advs": 28.1,
-          "BPDIA": 75.8,
+          "BPDIA": 71.8,
           "BPSYS": 140,
           "HR": 74,
           "WEIGHT": 74.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.96
         },
@@ -16627,6 +17045,7 @@
           "BPSYS": 112,
           "HR": 77,
           "WEIGHT": 54.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.46
         },
@@ -16642,6 +17061,7 @@
           "BPSYS": 109,
           "HR": 87,
           "WEIGHT": 89.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -1.47
         },
@@ -16657,6 +17077,7 @@
           "BPSYS": 115,
           "HR": 75,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.72
         },
@@ -16668,10 +17089,11 @@
           "RACE": "WHITE",
           "AGE": 60,
           "BMI_advs": 28.5,
-          "BPDIA": 71.8,
+          "BPDIA": 65,
           "BPSYS": 113,
           "HR": 52,
           "WEIGHT": 87.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": -1.87
         },
@@ -16687,6 +17109,7 @@
           "BPSYS": 93,
           "HR": 74,
           "WEIGHT": 92.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.16
         },
@@ -16702,6 +17125,7 @@
           "BPSYS": 101,
           "HR": 92,
           "WEIGHT": 57.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.2
         },
@@ -16717,6 +17141,7 @@
           "BPSYS": 128,
           "HR": 50,
           "WEIGHT": 87.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.23
         },
@@ -16732,6 +17157,7 @@
           "BPSYS": 103,
           "HR": 89,
           "WEIGHT": 78.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.22
         },
@@ -16747,6 +17173,7 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.19
         },
@@ -16762,6 +17189,7 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 59,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.47
         },
@@ -16777,6 +17205,7 @@
           "BPSYS": 103,
           "HR": 48,
           "WEIGHT": 70.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.96
         },
@@ -16792,6 +17221,7 @@
           "BPSYS": 108,
           "HR": 72,
           "WEIGHT": 74.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.03
         },
@@ -16807,6 +17237,7 @@
           "BPSYS": 140,
           "HR": 66,
           "WEIGHT": 88.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.21
         },
@@ -16822,6 +17253,7 @@
           "BPSYS": 128,
           "HR": 83,
           "WEIGHT": 79.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.36
         },
@@ -16837,6 +17269,7 @@
           "BPSYS": 112,
           "HR": 76,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.62
         },
@@ -16852,6 +17285,7 @@
           "BPSYS": 144,
           "HR": 80,
           "WEIGHT": 101.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.75
         },
@@ -16867,6 +17301,7 @@
           "BPSYS": 117,
           "HR": 80,
           "WEIGHT": 71.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.33
         },
@@ -16882,6 +17317,7 @@
           "BPSYS": 124,
           "HR": 60,
           "WEIGHT": 80.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.23
         },
@@ -16897,6 +17333,7 @@
           "BPSYS": 122,
           "HR": 72,
           "WEIGHT": 69.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.25
         },
@@ -16912,6 +17349,7 @@
           "BPSYS": 110,
           "HR": 55,
           "WEIGHT": 65.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.02
         },
@@ -16927,6 +17365,7 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 82.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -1.05
         },
@@ -16942,6 +17381,7 @@
           "BPSYS": 125,
           "HR": 59,
           "WEIGHT": 80.6,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": -1.55
         },
@@ -16957,6 +17397,7 @@
           "BPSYS": 143,
           "HR": 78,
           "WEIGHT": 66,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.43
         },
@@ -16972,6 +17413,7 @@
           "BPSYS": 138,
           "HR": 65,
           "WEIGHT": 122.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.47
         },
@@ -16987,6 +17429,7 @@
           "BPSYS": 115,
           "HR": 63,
           "WEIGHT": 66.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.5
         },
@@ -17002,6 +17445,7 @@
           "BPSYS": 126,
           "HR": 78,
           "WEIGHT": 86,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.14
         },
@@ -17017,6 +17461,7 @@
           "BPSYS": 124,
           "HR": 68,
           "WEIGHT": 78.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.85
         },
@@ -17032,6 +17477,7 @@
           "BPSYS": 145,
           "HR": 69,
           "WEIGHT": 90.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.25
         },
@@ -17047,6 +17493,7 @@
           "BPSYS": 94,
           "HR": 67,
           "WEIGHT": 76.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.99
         },
@@ -17062,6 +17509,7 @@
           "BPSYS": 130,
           "HR": 56,
           "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.8
         },
@@ -17077,6 +17525,7 @@
           "BPSYS": 113,
           "HR": 71,
           "WEIGHT": 56.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.86
         },
@@ -17092,6 +17541,7 @@
           "BPSYS": 116,
           "HR": 50,
           "WEIGHT": 74.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.29
         },
@@ -17107,6 +17557,7 @@
           "BPSYS": 113,
           "HR": 72,
           "WEIGHT": 66.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.7
         },
@@ -17122,6 +17573,7 @@
           "BPSYS": 113,
           "HR": 66,
           "WEIGHT": 36.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.24
         },
@@ -17137,6 +17589,7 @@
           "BPSYS": 118,
           "HR": 96,
           "WEIGHT": 60.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.82
         },
@@ -17152,6 +17605,7 @@
           "BPSYS": 134,
           "HR": 69,
           "WEIGHT": 67.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.2
         },
@@ -17167,6 +17621,7 @@
           "BPSYS": 107,
           "HR": 71,
           "WEIGHT": 93.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.36
         },
@@ -17182,6 +17637,7 @@
           "BPSYS": 125,
           "HR": 71,
           "WEIGHT": 87.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.56
         },
@@ -17194,9 +17650,10 @@
           "AGE": 49,
           "BMI_advs": 32.4,
           "BPDIA": 79,
-          "BPSYS": 129,
+          "BPSYS": 120,
           "HR": 72,
           "WEIGHT": 75.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 1.5
         },
@@ -17212,6 +17669,7 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 73.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.54
         },
@@ -17227,6 +17685,7 @@
           "BPSYS": 99,
           "HR": 64,
           "WEIGHT": 60.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.1
         },
@@ -17242,6 +17701,7 @@
           "BPSYS": 117,
           "HR": 62,
           "WEIGHT": 70,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.95
         },
@@ -17257,6 +17717,7 @@
           "BPSYS": 148,
           "HR": 55,
           "WEIGHT": 96.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.51
         },
@@ -17272,6 +17733,7 @@
           "BPSYS": 119,
           "HR": 62,
           "WEIGHT": 62.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.23
         },
@@ -17287,6 +17749,7 @@
           "BPSYS": 107,
           "HR": 75,
           "WEIGHT": 126.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -2.91
         },
@@ -17302,6 +17765,7 @@
           "BPSYS": 140,
           "HR": 61,
           "WEIGHT": 88.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.42
         },
@@ -17312,11 +17776,12 @@
           "SEX": "F",
           "RACE": "WHITE",
           "AGE": 61,
-          "BMI_advs": 24.76,
+          "BMI_advs": 26.82,
           "BPDIA": 68,
           "BPSYS": 110,
           "HR": 53,
           "WEIGHT": 93.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.01
         },
@@ -17332,6 +17797,7 @@
           "BPSYS": 121,
           "HR": 76,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.9
         },
@@ -17347,6 +17813,7 @@
           "BPSYS": 134,
           "HR": 65,
           "WEIGHT": 101.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.96
         },
@@ -17362,6 +17829,7 @@
           "BPSYS": 122,
           "HR": 92,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.14
         },
@@ -17377,6 +17845,7 @@
           "BPSYS": 111,
           "HR": 59,
           "WEIGHT": 54.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 3.14
         },
@@ -17392,6 +17861,7 @@
           "BPSYS": 114,
           "HR": 71,
           "WEIGHT": 86.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.14
         },
@@ -17407,6 +17877,7 @@
           "BPSYS": 135,
           "HR": 67,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.37
         },
@@ -17422,6 +17893,7 @@
           "BPSYS": 91,
           "HR": 73,
           "WEIGHT": 83.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.3
         },
@@ -17437,6 +17909,7 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 104.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -1.55
         },
@@ -17452,6 +17925,7 @@
           "BPSYS": 134,
           "HR": 81,
           "WEIGHT": 69.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": 0.53
         },
@@ -17467,6 +17941,7 @@
           "BPSYS": 129,
           "HR": 61,
           "WEIGHT": 80.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -1.16
         },
@@ -17480,8 +17955,9 @@
           "BMI_advs": 34.5,
           "BPDIA": 74,
           "BPSYS": 125,
-          "HR": 73,
+          "HR": 67.8,
           "WEIGHT": 106,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.97
         },
@@ -17497,6 +17973,7 @@
           "BPSYS": 92,
           "HR": 88,
           "WEIGHT": 98.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.3
         },
@@ -17512,6 +17989,7 @@
           "BPSYS": 127,
           "HR": 89,
           "WEIGHT": 110.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.75
         },
@@ -17527,6 +18005,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 61.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 1.68
         },
@@ -17542,6 +18021,7 @@
           "BPSYS": 95,
           "HR": 57,
           "WEIGHT": 54,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.62
         },
@@ -17557,6 +18037,7 @@
           "BPSYS": 131,
           "HR": 58,
           "WEIGHT": 96.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.96
         },
@@ -17572,6 +18053,7 @@
           "BPSYS": 121,
           "HR": 78,
           "WEIGHT": 69.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.57
         },
@@ -17587,6 +18069,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 75,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.03
         },
@@ -17602,6 +18085,7 @@
           "BPSYS": 103,
           "HR": 77,
           "WEIGHT": 79.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.32
         },
@@ -17617,6 +18101,7 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 48.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.08
         },
@@ -17632,6 +18117,7 @@
           "BPSYS": 95,
           "HR": 78,
           "WEIGHT": 97.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.71
         },
@@ -17647,6 +18133,7 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 93.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.07
         },
@@ -17662,6 +18149,7 @@
           "BPSYS": 93,
           "HR": 64,
           "WEIGHT": 80.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": -0.7
         },
@@ -17677,6 +18165,7 @@
           "BPSYS": 92,
           "HR": 58,
           "WEIGHT": 77.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -1.28
         },
@@ -17692,6 +18181,7 @@
           "BPSYS": 95,
           "HR": 74,
           "WEIGHT": 100.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.87
         },
@@ -17707,6 +18197,7 @@
           "BPSYS": 110,
           "HR": 60,
           "WEIGHT": 59.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.58
         },
@@ -17722,6 +18213,7 @@
           "BPSYS": 107,
           "HR": 73,
           "WEIGHT": 68.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.13
         },
@@ -17737,6 +18229,7 @@
           "BPSYS": 101,
           "HR": 77,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.03
         },
@@ -17752,6 +18245,7 @@
           "BPSYS": 125,
           "HR": 56,
           "WEIGHT": 90.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 2.26
         },
@@ -17767,6 +18261,7 @@
           "BPSYS": 123,
           "HR": 85,
           "WEIGHT": 100,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.47
         },
@@ -17782,6 +18277,7 @@
           "BPSYS": 114,
           "HR": 54,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.3
         },
@@ -17797,6 +18293,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 89.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.95
         },
@@ -17812,6 +18309,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 84.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.8
         },
@@ -17827,6 +18325,7 @@
           "BPSYS": 143,
           "HR": 66,
           "WEIGHT": 101.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.74
         }
@@ -17846,6 +18345,7 @@
           "BPSYS": 105,
           "HR": 86,
           "WEIGHT": 51.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0
         },
@@ -17861,6 +18361,7 @@
           "BPSYS": 134,
           "HR": 64,
           "WEIGHT": 106,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.11
         },
@@ -17876,6 +18377,7 @@
           "BPSYS": 116,
           "HR": 69,
           "WEIGHT": 116.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.12
         },
@@ -17891,6 +18393,7 @@
           "BPSYS": 127,
           "HR": 59,
           "WEIGHT": 79.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -2.57
         },
@@ -17906,6 +18409,7 @@
           "BPSYS": 141,
           "HR": 75,
           "WEIGHT": 112.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.74
         },
@@ -17921,6 +18425,7 @@
           "BPSYS": 126,
           "HR": 84,
           "WEIGHT": 75.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.01
         },
@@ -17936,6 +18441,7 @@
           "BPSYS": 101,
           "HR": 56,
           "WEIGHT": 57.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.58
         },
@@ -17951,6 +18457,7 @@
           "BPSYS": 124,
           "HR": 80,
           "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -2.18
         },
@@ -17966,6 +18473,7 @@
           "BPSYS": 152,
           "HR": 69,
           "WEIGHT": 50.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.79
         },
@@ -17981,6 +18489,7 @@
           "BPSYS": 130,
           "HR": 70,
           "WEIGHT": 73,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": 0.55
         },
@@ -17996,6 +18505,7 @@
           "BPSYS": 92,
           "HR": 56,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.01
         },
@@ -18011,6 +18521,7 @@
           "BPSYS": 122,
           "HR": 66,
           "WEIGHT": 64.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.84
         },
@@ -18022,10 +18533,11 @@
           "RACE": "WHITE",
           "AGE": 60,
           "BMI_advs": 26,
-          "BPDIA": 68.2,
+          "BPDIA": 70.8,
           "BPSYS": 128,
           "HR": 56,
           "WEIGHT": 62.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.2
         },
@@ -18041,6 +18553,7 @@
           "BPSYS": 117,
           "HR": 93,
           "WEIGHT": 110.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.04
         },
@@ -18056,6 +18569,7 @@
           "BPSYS": 109,
           "HR": 63,
           "WEIGHT": 68,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -1.26
         },
@@ -18071,6 +18585,7 @@
           "BPSYS": 122,
           "HR": 78,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.03
         },
@@ -18086,6 +18601,7 @@
           "BPSYS": 97,
           "HR": 49,
           "WEIGHT": 96.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.34
         },
@@ -18101,6 +18617,7 @@
           "BPSYS": 108,
           "HR": 56,
           "WEIGHT": 82.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.87
         },
@@ -18116,6 +18633,7 @@
           "BPSYS": 107,
           "HR": 39,
           "WEIGHT": 53.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.33
         },
@@ -18131,6 +18649,7 @@
           "BPSYS": 108,
           "HR": 50,
           "WEIGHT": 91.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.07
         },
@@ -18146,6 +18665,7 @@
           "BPSYS": 98,
           "HR": 90,
           "WEIGHT": 95.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": 1.29
         },
@@ -18161,6 +18681,7 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 79.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1
         },
@@ -18176,6 +18697,7 @@
           "BPSYS": 100,
           "HR": 70,
           "WEIGHT": 75.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.22
         },
@@ -18191,6 +18713,7 @@
           "BPSYS": 124,
           "HR": 62,
           "WEIGHT": 75.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.25
         },
@@ -18206,6 +18729,7 @@
           "BPSYS": 118,
           "HR": 65,
           "WEIGHT": 82.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.1
         },
@@ -18221,6 +18745,7 @@
           "BPSYS": 129,
           "HR": 67,
           "WEIGHT": 65.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.42
         },
@@ -18236,6 +18761,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 54.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.37
         },
@@ -18251,6 +18777,7 @@
           "BPSYS": 134,
           "HR": 66,
           "WEIGHT": 126.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": 0.41
         },
@@ -18266,6 +18793,7 @@
           "BPSYS": 95,
           "HR": 72,
           "WEIGHT": 101.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.46
         },
@@ -18281,6 +18809,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 123.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.42
         },
@@ -18296,6 +18825,7 @@
           "BPSYS": 98,
           "HR": 89,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -1.38
         },
@@ -18311,6 +18841,7 @@
           "BPSYS": 129,
           "HR": 62,
           "WEIGHT": 46.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.23
         },
@@ -18326,6 +18857,7 @@
           "BPSYS": 115,
           "HR": 72,
           "WEIGHT": 88.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.42
         },
@@ -18341,6 +18873,7 @@
           "BPSYS": 106,
           "HR": 73,
           "WEIGHT": 53.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.35
         },
@@ -18356,6 +18889,7 @@
           "BPSYS": 118,
           "HR": 64,
           "WEIGHT": 63.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.17
         },
@@ -18366,11 +18900,12 @@
           "SEX": "F",
           "RACE": "BLACK",
           "AGE": 68,
-          "BMI_advs": 24.52,
+          "BMI_advs": 25.74,
           "BPDIA": 64,
           "BPSYS": 98,
           "HR": 69,
           "WEIGHT": 101.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.19
         },
@@ -18386,6 +18921,7 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 81.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -1.49
         },
@@ -18401,6 +18937,7 @@
           "BPSYS": 98,
           "HR": 71,
           "WEIGHT": 73.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.05
         },
@@ -18416,6 +18953,7 @@
           "BPSYS": 115,
           "HR": 59,
           "WEIGHT": 73.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.78
         },
@@ -18431,6 +18969,7 @@
           "BPSYS": 108,
           "HR": 64,
           "WEIGHT": 103.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3,
           ".out": 2.19
         },
@@ -18446,6 +18985,7 @@
           "BPSYS": 112,
           "HR": 57,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.66
         },
@@ -18457,10 +18997,11 @@
           "RACE": "WHITE",
           "AGE": 83,
           "BMI_advs": 26.3,
-          "BPDIA": 67.2,
+          "BPDIA": 72.2,
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 70.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.19
         },
@@ -18476,6 +19017,7 @@
           "BPSYS": 117,
           "HR": 79,
           "WEIGHT": 88,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.98
         },
@@ -18491,6 +19033,7 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 41.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": 2.62
         },
@@ -18506,6 +19049,7 @@
           "BPSYS": 136,
           "HR": 66,
           "WEIGHT": 113.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.44
         },
@@ -18521,6 +19065,7 @@
           "BPSYS": 113,
           "HR": 63,
           "WEIGHT": 66.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.6
         },
@@ -18536,6 +19081,7 @@
           "BPSYS": 103,
           "HR": 71,
           "WEIGHT": 68.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -1.41
         },
@@ -18551,6 +19097,7 @@
           "BPSYS": 111.4,
           "HR": 81,
           "WEIGHT": 112.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.03
         },
@@ -18566,6 +19113,7 @@
           "BPSYS": 133,
           "HR": 69,
           "WEIGHT": 83.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.28
         },
@@ -18581,6 +19129,7 @@
           "BPSYS": 113,
           "HR": 83,
           "WEIGHT": 66.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.54
         },
@@ -18596,6 +19145,7 @@
           "BPSYS": 100,
           "HR": 75,
           "WEIGHT": 65.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.17
         },
@@ -18611,6 +19161,7 @@
           "BPSYS": 117,
           "HR": 67,
           "WEIGHT": 75.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.08
         },
@@ -18626,6 +19177,7 @@
           "BPSYS": 132,
           "HR": 54,
           "WEIGHT": 95.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.63
         },
@@ -18641,6 +19193,7 @@
           "BPSYS": 106,
           "HR": 55,
           "WEIGHT": 59.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.04
         },
@@ -18656,6 +19209,7 @@
           "BPSYS": 120,
           "HR": 64,
           "WEIGHT": 84.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.86
         },
@@ -18671,6 +19225,7 @@
           "BPSYS": 101,
           "HR": 45,
           "WEIGHT": 55.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.93
         },
@@ -18686,6 +19241,7 @@
           "BPSYS": 119,
           "HR": 61,
           "WEIGHT": 105.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.24
         },
@@ -18701,6 +19257,7 @@
           "BPSYS": 144,
           "HR": 75,
           "WEIGHT": 71.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.14
         },
@@ -18716,6 +19273,7 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 94.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.54
         },
@@ -18731,6 +19289,7 @@
           "BPSYS": 108,
           "HR": 78,
           "WEIGHT": 85,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.66
         },
@@ -18746,6 +19305,7 @@
           "BPSYS": 123,
           "HR": 59,
           "WEIGHT": 89,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.22
         },
@@ -18761,6 +19321,7 @@
           "BPSYS": 106,
           "HR": 68,
           "WEIGHT": 101.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.24
         },
@@ -18776,6 +19337,7 @@
           "BPSYS": 128,
           "HR": 62,
           "WEIGHT": 92.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.25
         },
@@ -18791,6 +19353,7 @@
           "BPSYS": 124,
           "HR": 48,
           "WEIGHT": 63.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.52
         },
@@ -18806,6 +19369,7 @@
           "BPSYS": 119,
           "HR": 65,
           "WEIGHT": 98.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.67
         },
@@ -18821,6 +19385,7 @@
           "BPSYS": 115,
           "HR": 40,
           "WEIGHT": 106.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.16
         },
@@ -18836,6 +19401,7 @@
           "BPSYS": 103,
           "HR": 98,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.68
         },
@@ -18851,6 +19417,7 @@
           "BPSYS": 122,
           "HR": 81,
           "WEIGHT": 77,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.82
         },
@@ -18866,6 +19433,7 @@
           "BPSYS": 143,
           "HR": 86,
           "WEIGHT": 82.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.27
         },
@@ -18881,6 +19449,7 @@
           "BPSYS": 110,
           "HR": 67,
           "WEIGHT": 88.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.71
         },
@@ -18895,7 +19464,8 @@
           "BPDIA": 61,
           "BPSYS": 108,
           "HR": 59,
-          "WEIGHT": 96.24,
+          "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.13
         },
@@ -18911,6 +19481,7 @@
           "BPSYS": 130,
           "HR": 83,
           "WEIGHT": 77.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0
         },
@@ -18926,6 +19497,7 @@
           "BPSYS": 100,
           "HR": 85,
           "WEIGHT": 58.6,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": -1.83
         }
@@ -19132,63 +19704,6 @@
       ] 
       
       $recipe
-      $recipe$raw
-    Message
-      
-      -- Recipe ----------------------------------------------------------------------
-      
-      -- Inputs 
-      Number of variables by role
-      outcome:    1
-      predictor: 16
-      ID:         1
-      
-      -- Operations 
-      * Variable mutation for: recipes::all_string_predictors()
-      * Removing rows with NA values in: recipes::all_outcomes()
-      * Variable mutation for: recipes::all_factor_predictors()
-      * Missing value column filter on: recipes::all_predictors()
-      * Removing rows with NA values in: tidyselect::any_of(vars_imp_ignore)
-      * Log transformation on: recipes::all_numeric_predictors(), ...
-      * K-nearest neighbor imputation for: recipes::all_predictors()
-      * Median imputation for: recipes::all_numeric_predictors()
-      * Mode imputation for: recipes::all_nominal_predictors()
-      * Zero variance filter on: recipes::all_predictors()
-      * Sparse, unbalanced variable filter on: recipes::all_predictors()
-      * Correlation filter on: recipes::all_numeric_predictors()
-      * Collapsing factor levels for: recipes::all_nominal_predictors()
-    Output
-      
-      $recipe$prep
-    Message
-      
-      -- Recipe ----------------------------------------------------------------------
-      
-      -- Inputs 
-      Number of variables by role
-      outcome:    1
-      predictor: 16
-      ID:         1
-      
-      -- Training information 
-      Training data contained 216 data points and 213 incomplete rows.
-      
-      -- Operations 
-      * Variable mutation for: <none> | Trained
-      * Removing rows with NA values in: .out | Trained
-      * Variable mutation for: .trt, AGEGR01, SEX, RACE | Trained
-      * Missing value column filter removed: LAB1, LAB2, LAB3 | Trained
-      * Removing rows with NA values in: .trt | Trained
-      * Log transformation on: <none> | Trained
-      * K-nearest neighbor imputation for: .trt, AGEGR01, SEX, RACE, ... | Trained
-      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, BPSYS, ... | Trained
-      * Mode imputation for: .trt, AGEGR01, SEX, RACE | Trained
-      * Zero variance filter removed: cardiac_arrhythmias | Trained
-      * Sparse, unbalanced variable filter removed: <none> | Trained
-      * Correlation filter on: BMI_adsl | Trained
-      * Collapsing factor levels for: <none> | Trained
-    Output
-      
       $recipe$params
       $recipe$params$thres_log
       $recipe$params$thres_log$value
@@ -19276,7 +19791,7 @@
       [1] "LAB1" "LAB2" "LAB3"
       
       $removed$cols$zv
-      [1] "cardiac_arrhythmias"
+      NULL
       
       $removed$cols$nzv
       NULL
@@ -19335,9 +19850,6 @@
       $input$args$thres_log
       [1] 2
       
-      $input$args$thres_count
-      [1] 10
-      
       $input$args$thres_corr
       [1] 0.9
       
@@ -19357,9 +19869,6 @@
       [1] ".trt"
       
       $input$args$vars_fct_expl_na
-      NULL
-      
-      $input$args$vars_ordinalscore
       NULL
       
       $input$args$vars_keep_corr
@@ -19436,7 +19945,7 @@
           "BPSYS": 133,
           "HR": 60,
           "WEIGHT": 64.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -19454,7 +19963,7 @@
           "BPSYS": 134,
           "HR": 67,
           "WEIGHT": 111.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -19472,7 +19981,7 @@
           "BPSYS": 139,
           "HR": 82,
           "WEIGHT": 90.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -19490,7 +19999,7 @@
           "BPSYS": 134,
           "HR": 48,
           "WEIGHT": 64.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -19508,7 +20017,7 @@
           "BPSYS": 109,
           "HR": 63,
           "WEIGHT": 68,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -19526,7 +20035,7 @@
           "BPSYS": 143,
           "HR": 68,
           "WEIGHT": 87.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -19544,7 +20053,7 @@
           "BPSYS": 97,
           "HR": 49,
           "WEIGHT": 96.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -19562,7 +20071,7 @@
           "BPSYS": 111,
           "HR": 80,
           "WEIGHT": 59.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -19580,7 +20089,7 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 103.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -19598,7 +20107,7 @@
           "BPSYS": 124,
           "HR": 76,
           "WEIGHT": 65.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -19616,7 +20125,7 @@
           "BPSYS": 95,
           "HR": 46,
           "WEIGHT": 50.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -19634,7 +20143,7 @@
           "BPSYS": 137,
           "HR": 78,
           "WEIGHT": 96.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -19652,7 +20161,7 @@
           "BPSYS": 95,
           "HR": 72,
           "WEIGHT": 101.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -19670,7 +20179,7 @@
           "BPSYS": 123,
           "HR": 82,
           "WEIGHT": 67.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -19688,7 +20197,7 @@
           "BPSYS": 115,
           "HR": 72,
           "WEIGHT": 88.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -19704,7 +20213,7 @@
           "BPSYS": 98,
           "HR": 69,
           "WEIGHT": 101.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -19722,7 +20231,7 @@
           "BPSYS": 127,
           "HR": 66,
           "WEIGHT": 102.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -19740,7 +20249,7 @@
           "BPSYS": 98,
           "HR": 71,
           "WEIGHT": 73.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -19758,7 +20267,7 @@
           "BPSYS": 98,
           "HR": 55,
           "WEIGHT": 70.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -19776,7 +20285,7 @@
           "BPSYS": 131,
           "HR": 77,
           "WEIGHT": 120.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -19794,7 +20303,7 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 95.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -19812,7 +20321,7 @@
           "BPSYS": 112,
           "HR": 57,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -19830,7 +20339,7 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 92.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -19848,7 +20357,7 @@
           "BPSYS": 121,
           "HR": 79,
           "WEIGHT": 64.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -19866,7 +20375,7 @@
           "BPSYS": 113,
           "HR": 63,
           "WEIGHT": 66.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -19884,7 +20393,7 @@
           "BPSYS": 93,
           "HR": 86,
           "WEIGHT": 92.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -19902,7 +20411,7 @@
           "BPSYS": 96,
           "HR": 85,
           "WEIGHT": 96.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -19920,7 +20429,7 @@
           "BPSYS": 132,
           "HR": 54,
           "WEIGHT": 95.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -19938,7 +20447,7 @@
           "BPSYS": 115,
           "HR": 68,
           "WEIGHT": 81.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -19956,7 +20465,7 @@
           "BPSYS": 120,
           "HR": 64,
           "WEIGHT": 84.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -19974,7 +20483,7 @@
           "BPSYS": 141,
           "HR": 63,
           "WEIGHT": 78.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -19992,7 +20501,7 @@
           "BPSYS": 84,
           "HR": 71,
           "WEIGHT": 92.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -20010,7 +20519,7 @@
           "BPSYS": 108,
           "HR": 78,
           "WEIGHT": 85,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -20028,7 +20537,7 @@
           "BPSYS": 129,
           "HR": 65,
           "WEIGHT": 82.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -20046,7 +20555,7 @@
           "BPSYS": 135,
           "HR": 79,
           "WEIGHT": 69.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -20082,7 +20591,7 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 75.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20100,7 +20609,7 @@
           "BPSYS": 119,
           "HR": 65,
           "WEIGHT": 98.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -20118,7 +20627,7 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 57.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20136,7 +20645,7 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 65.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20153,7 +20662,7 @@
           "BPDIA": 61,
           "BPSYS": 108,
           "HR": 59,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -20174,7 +20683,7 @@
           "BPSYS": 116,
           "HR": 79,
           "WEIGHT": 92.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -20195,7 +20704,7 @@
           "BPSYS": 134,
           "HR": 64,
           "WEIGHT": 106,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20213,7 +20722,7 @@
           "BPSYS": 141,
           "HR": 75,
           "WEIGHT": 112.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20231,7 +20740,7 @@
           "BPSYS": 127,
           "HR": 75,
           "WEIGHT": 77.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -20249,7 +20758,7 @@
           "BPSYS": 95,
           "HR": 64,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20266,7 +20775,7 @@
           "BPSYS": 101,
           "HR": 56,
           "WEIGHT": 57.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -20284,7 +20793,7 @@
           "BPSYS": 124,
           "HR": 80,
           "WEIGHT": 97.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -20302,7 +20811,7 @@
           "BPSYS": 101,
           "HR": 71,
           "WEIGHT": 115,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -20319,7 +20828,7 @@
           "BPSYS": 114,
           "HR": 58,
           "WEIGHT": 66.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20337,7 +20846,7 @@
           "BPSYS": 111,
           "HR": 57,
           "WEIGHT": 79.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -20354,7 +20863,7 @@
           "BPSYS": 122,
           "HR": 78,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20372,7 +20881,7 @@
           "BPSYS": 108,
           "HR": 67,
           "WEIGHT": 88.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -20390,7 +20899,7 @@
           "BPSYS": 142,
           "HR": 63,
           "WEIGHT": 98.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -20408,7 +20917,7 @@
           "BPSYS": 108,
           "HR": 74,
           "WEIGHT": 79.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20426,7 +20935,7 @@
           "BPSYS": 110,
           "HR": 63,
           "WEIGHT": 61.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20444,7 +20953,7 @@
           "BPSYS": 96,
           "HR": 64,
           "WEIGHT": 67.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20462,7 +20971,7 @@
           "BPSYS": 121,
           "HR": 58,
           "WEIGHT": 72.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20480,7 +20989,7 @@
           "BPSYS": 97,
           "HR": 71,
           "WEIGHT": 73.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -20497,7 +21006,7 @@
           "BPSYS": 109,
           "HR": 42,
           "WEIGHT": 62.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20515,7 +21024,7 @@
           "BPSYS": 124,
           "HR": 62,
           "WEIGHT": 75.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -20550,7 +21059,7 @@
           "BPSYS": 112,
           "HR": 77,
           "WEIGHT": 54.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20568,7 +21077,7 @@
           "BPSYS": 109,
           "HR": 87,
           "WEIGHT": 89.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -20586,7 +21095,7 @@
           "BPSYS": 115,
           "HR": 75,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -20603,7 +21112,7 @@
           "BPSYS": 113,
           "HR": 52,
           "WEIGHT": 87.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -20621,7 +21130,7 @@
           "BPSYS": 93,
           "HR": 74,
           "WEIGHT": 92.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -20639,7 +21148,7 @@
           "BPSYS": 98,
           "HR": 89,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -20657,7 +21166,7 @@
           "BPSYS": 129,
           "HR": 62,
           "WEIGHT": 46.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -20675,7 +21184,7 @@
           "BPSYS": 128,
           "HR": 50,
           "WEIGHT": 87.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20693,7 +21202,7 @@
           "BPSYS": 108,
           "HR": 72,
           "WEIGHT": 74.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20710,7 +21219,7 @@
           "BPSYS": 128,
           "HR": 83,
           "WEIGHT": 79.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -20728,7 +21237,7 @@
           "BPSYS": 112,
           "HR": 76,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20746,7 +21255,7 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 82.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -20764,7 +21273,7 @@
           "BPSYS": 143,
           "HR": 78,
           "WEIGHT": 66,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -20782,7 +21291,7 @@
           "BPSYS": 115,
           "HR": 63,
           "WEIGHT": 66.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20800,7 +21309,7 @@
           "BPSYS": 94,
           "HR": 67,
           "WEIGHT": 76.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -20818,7 +21327,7 @@
           "BPSYS": 113,
           "HR": 71,
           "WEIGHT": 56.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -20836,7 +21345,7 @@
           "BPSYS": 113,
           "HR": 72,
           "WEIGHT": 66.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -20854,7 +21363,7 @@
           "BPSYS": 107,
           "HR": 71,
           "WEIGHT": 93.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20872,7 +21381,7 @@
           "BPSYS": 125,
           "HR": 71,
           "WEIGHT": 87.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -20890,7 +21399,7 @@
           "BPSYS": 103,
           "HR": 71,
           "WEIGHT": 68.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -20907,7 +21416,7 @@
           "BPDIA": 71,
           "HR": 81,
           "WEIGHT": 112.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -20924,7 +21433,7 @@
           "BPDIA": 79,
           "HR": 72,
           "WEIGHT": 75.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -20942,7 +21451,7 @@
           "BPSYS": 133,
           "HR": 69,
           "WEIGHT": 83.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -20960,7 +21469,7 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 73.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -20978,7 +21487,7 @@
           "BPSYS": 117,
           "HR": 67,
           "WEIGHT": 75.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -20996,7 +21505,7 @@
           "BPSYS": 107,
           "HR": 75,
           "WEIGHT": 126.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -21014,7 +21523,7 @@
           "BPSYS": 140,
           "HR": 61,
           "WEIGHT": 88.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -21032,7 +21541,7 @@
           "BPSYS": 101,
           "HR": 45,
           "WEIGHT": 55.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -21049,7 +21558,7 @@
           "BPSYS": 119,
           "HR": 61,
           "WEIGHT": 105.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21067,7 +21576,7 @@
           "BPSYS": 144,
           "HR": 75,
           "WEIGHT": 71.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -21085,7 +21594,7 @@
           "BPSYS": 114,
           "HR": 71,
           "WEIGHT": 86.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21102,7 +21611,7 @@
           "BPSYS": 135,
           "HR": 67,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21119,7 +21628,7 @@
           "BPDIA": 74,
           "BPSYS": 125,
           "WEIGHT": 106,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21137,7 +21646,7 @@
           "BPSYS": 92,
           "HR": 88,
           "WEIGHT": 98.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21155,7 +21664,7 @@
           "BPSYS": 127,
           "HR": 89,
           "WEIGHT": 110.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21173,7 +21682,7 @@
           "BPSYS": 106,
           "HR": 68,
           "WEIGHT": 101.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21191,7 +21700,7 @@
           "BPSYS": 95,
           "HR": 57,
           "WEIGHT": 54,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21209,7 +21718,7 @@
           "BPSYS": 131,
           "HR": 58,
           "WEIGHT": 96.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21227,7 +21736,7 @@
           "BPSYS": 128,
           "HR": 62,
           "WEIGHT": 92.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21245,7 +21754,7 @@
           "BPSYS": 103,
           "HR": 77,
           "WEIGHT": 79.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -21263,7 +21772,7 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 48.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21281,7 +21790,7 @@
           "BPSYS": 115,
           "HR": 40,
           "WEIGHT": 106.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21317,7 +21826,7 @@
           "BPSYS": 92,
           "HR": 58,
           "WEIGHT": 77.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -21335,7 +21844,7 @@
           "BPSYS": 107,
           "HR": 73,
           "WEIGHT": 68.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21353,7 +21862,7 @@
           "BPSYS": 101,
           "HR": 77,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21371,7 +21880,7 @@
           "BPSYS": 110,
           "HR": 67,
           "WEIGHT": 88.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -21389,7 +21898,7 @@
           "BPSYS": 123,
           "HR": 85,
           "WEIGHT": 100,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21407,7 +21916,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 89.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21425,7 +21934,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 84.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21446,7 +21955,7 @@
           "BPSYS": 119,
           "HR": 84,
           "WEIGHT": 90.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21464,7 +21973,7 @@
           "BPSYS": 116,
           "HR": 69,
           "WEIGHT": 116.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21500,7 +22009,7 @@
           "BPSYS": 126,
           "HR": 84,
           "WEIGHT": 75.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21518,7 +22027,7 @@
           "BPSYS": 128,
           "HR": 64,
           "WEIGHT": 95.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21535,7 +22044,7 @@
           "BPDIA": 68,
           "BPSYS": 102,
           "WEIGHT": 95.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21553,7 +22062,7 @@
           "BPSYS": 95,
           "HR": 71,
           "WEIGHT": 71.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -21570,7 +22079,7 @@
           "BPSYS": 116,
           "HR": 78,
           "WEIGHT": 84.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3
         },
         {
@@ -21588,7 +22097,7 @@
           "BPSYS": 92,
           "HR": 56,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21606,7 +22115,7 @@
           "BPSYS": 122,
           "HR": 66,
           "WEIGHT": 64.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21623,7 +22132,7 @@
           "BPSYS": 128,
           "HR": 56,
           "WEIGHT": 62.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21641,7 +22150,7 @@
           "BPSYS": 136,
           "HR": 50,
           "WEIGHT": 88.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21658,7 +22167,7 @@
           "BPDIA": 82,
           "BPSYS": 125,
           "HR": 76,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21676,7 +22185,7 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 82.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21694,7 +22203,7 @@
           "BPSYS": 128,
           "HR": 68,
           "WEIGHT": 80.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21712,7 +22221,7 @@
           "BPSYS": 137,
           "HR": 74,
           "WEIGHT": 108.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21730,7 +22239,7 @@
           "BPSYS": 135,
           "HR": 76,
           "WEIGHT": 67,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21748,7 +22257,7 @@
           "BPSYS": 128,
           "HR": 86,
           "WEIGHT": 93.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21766,7 +22275,7 @@
           "BPSYS": 108,
           "HR": 50,
           "WEIGHT": 91.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21802,7 +22311,7 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 99.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21819,7 +22328,7 @@
           "BPSYS": 134,
           "HR": 44,
           "WEIGHT": 47.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -21837,7 +22346,7 @@
           "BPSYS": 134,
           "HR": 50,
           "WEIGHT": 106.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21855,7 +22364,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 54.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21873,7 +22382,7 @@
           "BPSYS": 162,
           "HR": 86,
           "WEIGHT": 84,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21890,7 +22399,7 @@
           "BPSYS": 106,
           "HR": 74,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21908,7 +22417,7 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 81.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21926,7 +22435,7 @@
           "BPSYS": 98,
           "HR": 73,
           "WEIGHT": 86.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21943,7 +22452,7 @@
           "BPDIA": 65,
           "BPSYS": 109,
           "WEIGHT": 66.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -21961,7 +22470,7 @@
           "BPSYS": 142,
           "HR": 78,
           "WEIGHT": 66.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -21979,7 +22488,7 @@
           "BPSYS": 95,
           "HR": 87,
           "WEIGHT": 99.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -21997,7 +22506,7 @@
           "BPSYS": 115,
           "HR": 59,
           "WEIGHT": 73.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22015,7 +22524,7 @@
           "BPSYS": 144,
           "HR": 79,
           "WEIGHT": 94.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -22033,7 +22542,7 @@
           "BPSYS": 103,
           "HR": 62,
           "WEIGHT": 39.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -22051,7 +22560,7 @@
           "BPSYS": 108,
           "HR": 64,
           "WEIGHT": 103.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3
         },
         {
@@ -22069,7 +22578,7 @@
           "BPSYS": 105,
           "HR": 48,
           "WEIGHT": 64.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -22087,7 +22596,7 @@
           "BPSYS": 128,
           "HR": 71,
           "WEIGHT": 54.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22105,7 +22614,7 @@
           "BPSYS": 138,
           "HR": 86,
           "WEIGHT": 71.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22123,7 +22632,7 @@
           "BPSYS": 132,
           "HR": 61,
           "WEIGHT": 100,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22141,7 +22650,7 @@
           "BPSYS": 125,
           "HR": 70,
           "WEIGHT": 62.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22159,7 +22668,7 @@
           "BPSYS": 121,
           "HR": 68,
           "WEIGHT": 102.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22195,7 +22704,7 @@
           "BPSYS": 110,
           "HR": 80,
           "WEIGHT": 86.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22213,7 +22722,7 @@
           "BPSYS": 106,
           "HR": 55,
           "WEIGHT": 59.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22231,7 +22740,7 @@
           "BPSYS": 137,
           "HR": 69,
           "WEIGHT": 93.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22249,7 +22758,7 @@
           "BPSYS": 111,
           "HR": 67,
           "WEIGHT": 85.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -22267,7 +22776,7 @@
           "BPSYS": 120,
           "HR": 62,
           "WEIGHT": 72.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22303,7 +22812,7 @@
           "BPSYS": 126,
           "HR": 56,
           "WEIGHT": 75.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -22321,7 +22830,7 @@
           "BPSYS": 99,
           "HR": 50,
           "WEIGHT": 81,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -22339,7 +22848,7 @@
           "BPSYS": 96,
           "HR": 72,
           "WEIGHT": 76.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22357,7 +22866,7 @@
           "BPSYS": 99,
           "HR": 68,
           "WEIGHT": 70.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22375,7 +22884,7 @@
           "BPSYS": 128,
           "HR": 87,
           "WEIGHT": 85.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -22393,7 +22902,7 @@
           "BPSYS": 111,
           "HR": 64,
           "WEIGHT": 79.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22411,7 +22920,7 @@
           "BPSYS": 125,
           "HR": 77,
           "WEIGHT": 113.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22429,7 +22938,7 @@
           "BPSYS": 122,
           "HR": 81,
           "WEIGHT": 77,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22447,7 +22956,7 @@
           "BPSYS": 125,
           "HR": 44,
           "WEIGHT": 62.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22465,7 +22974,7 @@
           "BPSYS": 126,
           "HR": 74,
           "WEIGHT": 91.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22483,7 +22992,7 @@
           "BPSYS": 130,
           "HR": 83,
           "WEIGHT": 77.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -22503,7 +23012,7 @@
           "BPSYS": 105,
           "HR": 86,
           "WEIGHT": 51.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22521,7 +23030,7 @@
           "BPSYS": 117,
           "HR": 70,
           "WEIGHT": 85.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -22539,7 +23048,7 @@
           "BPSYS": 152,
           "HR": 69,
           "WEIGHT": 50.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22557,7 +23066,7 @@
           "BPSYS": 130,
           "HR": 70,
           "WEIGHT": 73,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -22575,7 +23084,7 @@
           "BPSYS": 140,
           "HR": 71,
           "WEIGHT": 86.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -22593,7 +23102,7 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 96.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22611,7 +23120,7 @@
           "BPSYS": 100,
           "HR": 81,
           "WEIGHT": 66.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22628,7 +23137,7 @@
           "BPSYS": 114,
           "HR": 53,
           "WEIGHT": 65.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22646,7 +23155,7 @@
           "BPSYS": 108,
           "HR": 56,
           "WEIGHT": 82.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22664,7 +23173,7 @@
           "BPSYS": 142,
           "HR": 74,
           "WEIGHT": 90.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22682,7 +23191,7 @@
           "BPSYS": 138,
           "HR": 67,
           "WEIGHT": 98.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22700,7 +23209,7 @@
           "BPSYS": 110,
           "HR": 79,
           "WEIGHT": 97.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22718,7 +23227,7 @@
           "BPSYS": 131,
           "HR": 73,
           "WEIGHT": 65.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22736,7 +23245,7 @@
           "BPSYS": 122,
           "HR": 70,
           "WEIGHT": 80.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22754,7 +23263,7 @@
           "BPSYS": 100,
           "HR": 70,
           "WEIGHT": 75.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22772,7 +23281,7 @@
           "BPSYS": 92,
           "HR": 76,
           "WEIGHT": 72.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22790,7 +23299,7 @@
           "BPSYS": 118,
           "HR": 65,
           "WEIGHT": 82.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22807,7 +23316,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 123.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22825,7 +23334,7 @@
           "BPSYS": 101,
           "HR": 92,
           "WEIGHT": 57.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22843,7 +23352,7 @@
           "BPSYS": 103,
           "HR": 89,
           "WEIGHT": 78.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -22861,7 +23370,7 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -22879,7 +23388,7 @@
           "BPSYS": 103,
           "HR": 48,
           "WEIGHT": 70.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -22897,7 +23406,7 @@
           "BPSYS": 118,
           "HR": 64,
           "WEIGHT": 63.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -22915,7 +23424,7 @@
           "BPSYS": 140,
           "HR": 66,
           "WEIGHT": 88.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22933,7 +23442,7 @@
           "BPSYS": 117,
           "HR": 80,
           "WEIGHT": 71.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -22951,7 +23460,7 @@
           "BPSYS": 124,
           "HR": 60,
           "WEIGHT": 80.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -22969,7 +23478,7 @@
           "BPSYS": 110,
           "HR": 55,
           "WEIGHT": 65.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -23005,7 +23514,7 @@
           "BPSYS": 138,
           "HR": 65,
           "WEIGHT": 122.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23023,7 +23532,7 @@
           "BPSYS": 126,
           "HR": 78,
           "WEIGHT": 86,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23041,7 +23550,7 @@
           "BPSYS": 145,
           "HR": 69,
           "WEIGHT": 90.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23059,7 +23568,7 @@
           "BPSYS": 130,
           "HR": 56,
           "WEIGHT": 97.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -23077,7 +23586,7 @@
           "BPSYS": 116,
           "HR": 50,
           "WEIGHT": 74.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23095,7 +23604,7 @@
           "BPSYS": 118,
           "HR": 96,
           "WEIGHT": 60.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23113,7 +23622,7 @@
           "BPSYS": 99,
           "HR": 64,
           "WEIGHT": 60.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23131,7 +23640,7 @@
           "BPSYS": 117,
           "HR": 62,
           "WEIGHT": 70,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -23147,7 +23656,7 @@
           "BPSYS": 110,
           "HR": 53,
           "WEIGHT": 93.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23165,7 +23674,7 @@
           "BPSYS": 111,
           "HR": 59,
           "WEIGHT": 54.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23183,7 +23692,7 @@
           "BPSYS": 123,
           "HR": 59,
           "WEIGHT": 89,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23201,7 +23710,7 @@
           "BPSYS": 121,
           "HR": 78,
           "WEIGHT": 69.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23219,7 +23728,7 @@
           "BPSYS": 124,
           "HR": 48,
           "WEIGHT": 63.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23237,7 +23746,7 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 93.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23254,7 +23763,7 @@
           "BPSYS": 114,
           "HR": 54,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         }
       ] 
@@ -23279,7 +23788,7 @@
           "BPSYS": 111,
           "HR": 63,
           "WEIGHT": 89.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23297,7 +23806,7 @@
           "BPSYS": 127,
           "HR": 59,
           "WEIGHT": 79.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -23315,7 +23824,7 @@
           "BPSYS": 111,
           "HR": 82,
           "WEIGHT": 114.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23333,7 +23842,7 @@
           "BPSYS": 121,
           "HR": 60,
           "WEIGHT": 81.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23351,7 +23860,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23369,7 +23878,7 @@
           "BPSYS": 101,
           "HR": 80,
           "WEIGHT": 73.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23387,7 +23896,7 @@
           "BPSYS": 96,
           "HR": 84,
           "WEIGHT": 78.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23405,7 +23914,7 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 97.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23423,7 +23932,7 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 99,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23441,7 +23950,7 @@
           "BPSYS": 117,
           "HR": 93,
           "WEIGHT": 110.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23459,7 +23968,7 @@
           "BPSYS": 130,
           "HR": 74,
           "WEIGHT": 67.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23477,7 +23986,7 @@
           "BPSYS": 109,
           "HR": 81,
           "WEIGHT": 105.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23495,7 +24004,7 @@
           "BPSYS": 107,
           "HR": 39,
           "WEIGHT": 53.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23512,7 +24021,7 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 96.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23530,7 +24039,7 @@
           "BPSYS": 117,
           "HR": 77,
           "WEIGHT": 115.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23548,7 +24057,7 @@
           "BPSYS": 135,
           "HR": 85,
           "WEIGHT": 102.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -23566,7 +24075,7 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 79.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23584,7 +24093,7 @@
           "BPSYS": 129,
           "HR": 67,
           "WEIGHT": 65.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -23620,7 +24129,7 @@
           "BPSYS": 123,
           "HR": 49,
           "WEIGHT": 96.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23638,7 +24147,7 @@
           "BPSYS": 129,
           "HR": 63,
           "WEIGHT": 90.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23655,7 +24164,7 @@
           "BPSYS": 123,
           "HR": 61,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23672,7 +24181,7 @@
           "BPSYS": 140,
           "HR": 74,
           "WEIGHT": 74.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -23690,7 +24199,7 @@
           "BPSYS": 134,
           "HR": 66,
           "WEIGHT": 126.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -23708,7 +24217,7 @@
           "BPSYS": 119,
           "HR": 82,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -23726,7 +24235,7 @@
           "BPSYS": 106,
           "HR": 73,
           "WEIGHT": 53.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23744,7 +24253,7 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 59,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23762,7 +24271,7 @@
           "BPSYS": 144,
           "HR": 80,
           "WEIGHT": 101.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23780,7 +24289,7 @@
           "BPSYS": 122,
           "HR": 72,
           "WEIGHT": 69.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23797,7 +24306,7 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 81.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -23815,7 +24324,7 @@
           "BPSYS": 126,
           "HR": 83,
           "WEIGHT": 67,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -23833,7 +24342,7 @@
           "BPSYS": 124,
           "HR": 68,
           "WEIGHT": 78.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23851,7 +24360,7 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 57.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23868,7 +24377,7 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 70.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23886,7 +24395,7 @@
           "BPSYS": 113,
           "HR": 66,
           "WEIGHT": 36.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -23904,7 +24413,7 @@
           "BPSYS": 117,
           "HR": 79,
           "WEIGHT": 88,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23922,7 +24431,7 @@
           "BPSYS": 134,
           "HR": 69,
           "WEIGHT": 67.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -23940,7 +24449,7 @@
           "BPSYS": 120,
           "HR": 61,
           "WEIGHT": 61.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -23958,7 +24467,7 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 41.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -23976,7 +24485,7 @@
           "BPSYS": 136,
           "HR": 66,
           "WEIGHT": 113.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -23994,7 +24503,7 @@
           "BPSYS": 113,
           "HR": 83,
           "WEIGHT": 66.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -24012,7 +24521,7 @@
           "BPSYS": 100,
           "HR": 75,
           "WEIGHT": 65.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -24048,7 +24557,7 @@
           "BPSYS": 148,
           "HR": 55,
           "WEIGHT": 96.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -24066,7 +24575,7 @@
           "BPSYS": 119,
           "HR": 62,
           "WEIGHT": 62.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -24084,7 +24593,7 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 98.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -24102,7 +24611,7 @@
           "BPSYS": 99,
           "HR": 62,
           "WEIGHT": 73,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -24119,7 +24628,7 @@
           "BPSYS": 121,
           "HR": 76,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -24137,7 +24646,7 @@
           "BPSYS": 105,
           "HR": 66,
           "WEIGHT": 55.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -24155,7 +24664,7 @@
           "BPSYS": 134,
           "HR": 65,
           "WEIGHT": 101.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -24172,7 +24681,7 @@
           "BPSYS": 122,
           "HR": 92,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -24190,7 +24699,7 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 105.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -24208,7 +24717,7 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 94.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -24226,7 +24735,7 @@
           "BPSYS": 91,
           "HR": 73,
           "WEIGHT": 83.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -24244,7 +24753,7 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 104.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
@@ -24262,7 +24771,7 @@
           "BPSYS": 134,
           "HR": 81,
           "WEIGHT": 69.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
@@ -24280,7 +24789,7 @@
           "BPSYS": 83,
           "HR": 89,
           "WEIGHT": 75.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
@@ -24298,7 +24807,7 @@
           "BPSYS": 127,
           "HR": 86,
           "WEIGHT": 108.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -24316,7 +24825,7 @@
           "BPSYS": 129,
           "HR": 61,
           "WEIGHT": 80.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -24334,7 +24843,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 109.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -24352,7 +24861,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 61.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -24370,7 +24879,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 75,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -24388,7 +24897,7 @@
           "BPSYS": 95,
           "HR": 78,
           "WEIGHT": 97.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -24406,7 +24915,7 @@
           "BPSYS": 103,
           "HR": 98,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -24424,7 +24933,7 @@
           "BPSYS": 95,
           "HR": 74,
           "WEIGHT": 100.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -24442,7 +24951,7 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 91.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -24460,7 +24969,7 @@
           "BPSYS": 110,
           "HR": 60,
           "WEIGHT": 59.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -24478,7 +24987,7 @@
           "BPSYS": 121,
           "HR": 53,
           "WEIGHT": 90.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -24496,7 +25005,7 @@
           "BPSYS": 143,
           "HR": 86,
           "WEIGHT": 82.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -24514,7 +25023,7 @@
           "BPSYS": 109,
           "HR": 80,
           "WEIGHT": 106.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
@@ -24532,7 +25041,7 @@
           "BPSYS": 125,
           "HR": 56,
           "WEIGHT": 90.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
@@ -24550,7 +25059,7 @@
           "BPSYS": 134,
           "HR": 70,
           "WEIGHT": 92,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
@@ -24586,7 +25095,7 @@
           "BPSYS": 143,
           "HR": 66,
           "WEIGHT": 101.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         }
       ] 
@@ -24607,6 +25116,7 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 82,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".time": 13,
           ".status": 0
@@ -24623,6 +25133,7 @@
           "BPSYS": 133,
           "HR": 60,
           "WEIGHT": 64.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 4,
           ".status": 0
@@ -24639,6 +25150,7 @@
           "BPSYS": 134,
           "HR": 67,
           "WEIGHT": 111.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".time": 95,
           ".status": 0
@@ -24655,6 +25167,7 @@
           "BPSYS": 139,
           "HR": 82,
           "WEIGHT": 90.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 49,
           ".status": 0
@@ -24671,6 +25184,7 @@
           "BPSYS": 134,
           "HR": 48,
           "WEIGHT": 64.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".time": 148,
           ".status": 0
@@ -24687,6 +25201,7 @@
           "BPSYS": 109,
           "HR": 63,
           "WEIGHT": 68,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 54,
           ".status": 0
@@ -24703,6 +25218,7 @@
           "BPSYS": 143,
           "HR": 68,
           "WEIGHT": 87.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 11,
           ".status": 0
@@ -24719,6 +25235,7 @@
           "BPSYS": 97,
           "HR": 49,
           "WEIGHT": 96.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 81,
           ".status": 0
@@ -24735,6 +25252,7 @@
           "BPSYS": 111,
           "HR": 80,
           "WEIGHT": 59.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 109,
           ".status": 0
@@ -24751,6 +25269,7 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 103.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 127,
           ".status": 0
@@ -24767,6 +25286,7 @@
           "BPSYS": 124,
           "HR": 76,
           "WEIGHT": 65.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -24783,6 +25303,7 @@
           "BPSYS": 95,
           "HR": 46,
           "WEIGHT": 50.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 60,
           ".status": 0
@@ -24799,6 +25320,7 @@
           "BPSYS": 137,
           "HR": 78,
           "WEIGHT": 96.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 48,
           ".status": 0
@@ -24815,6 +25337,7 @@
           "BPSYS": 95,
           "HR": 72,
           "WEIGHT": 101.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 41,
           ".status": 0
@@ -24831,6 +25354,7 @@
           "BPSYS": 123,
           "HR": 82,
           "WEIGHT": 67.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 93,
           ".status": 0
@@ -24847,6 +25371,7 @@
           "BPSYS": 115,
           "HR": 72,
           "WEIGHT": 88.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 99,
           ".status": 0
@@ -24858,11 +25383,12 @@
           "SEX": "F",
           "RACE": "BLACK",
           "AGE": 68,
-          "BMI_advs": 28.04,
+          "BMI_advs": 27.88,
           "BPDIA": 64,
           "BPSYS": 98,
           "HR": 69,
           "WEIGHT": 101.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 30,
           ".status": 0
@@ -24879,6 +25405,7 @@
           "BPSYS": 127,
           "HR": 66,
           "WEIGHT": 102.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 87,
           ".status": 0
@@ -24895,6 +25422,7 @@
           "BPSYS": 98,
           "HR": 71,
           "WEIGHT": 73.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 180,
           ".status": 0
@@ -24911,6 +25439,7 @@
           "BPSYS": 98,
           "HR": 55,
           "WEIGHT": 70.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -24927,6 +25456,7 @@
           "BPSYS": 131,
           "HR": 77,
           "WEIGHT": 120.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 11,
           ".status": 0
@@ -24943,6 +25473,7 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 95.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 52,
           ".status": 0
@@ -24959,6 +25490,7 @@
           "BPSYS": 112,
           "HR": 57,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -24975,6 +25507,7 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 92.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 24,
           ".status": 0
@@ -24991,6 +25524,7 @@
           "BPSYS": 121,
           "HR": 79,
           "WEIGHT": 64.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 160,
           ".status": 0
@@ -25007,6 +25541,7 @@
           "BPSYS": 113,
           "HR": 63,
           "WEIGHT": 66.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 37,
           ".status": 0
@@ -25023,6 +25558,7 @@
           "BPSYS": 93,
           "HR": 86,
           "WEIGHT": 92.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 58,
           ".status": 0
@@ -25039,6 +25575,7 @@
           "BPSYS": 96,
           "HR": 85,
           "WEIGHT": 96.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 10,
           ".status": 0
@@ -25055,6 +25592,7 @@
           "BPSYS": 132,
           "HR": 54,
           "WEIGHT": 95.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 228,
           ".status": 0
@@ -25071,6 +25609,7 @@
           "BPSYS": 115,
           "HR": 68,
           "WEIGHT": 81.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 125,
           ".status": 0
@@ -25087,6 +25626,7 @@
           "BPSYS": 120,
           "HR": 64,
           "WEIGHT": 84.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 56,
           ".status": 0
@@ -25103,6 +25643,7 @@
           "BPSYS": 141,
           "HR": 63,
           "WEIGHT": 78.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 270,
           ".status": 0
@@ -25119,6 +25660,7 @@
           "BPSYS": 84,
           "HR": 71,
           "WEIGHT": 92.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 140,
           ".status": 0
@@ -25135,6 +25677,7 @@
           "BPSYS": 108,
           "HR": 78,
           "WEIGHT": 85,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 12,
           ".status": 0
@@ -25151,6 +25694,7 @@
           "BPSYS": 129,
           "HR": 65,
           "WEIGHT": 82.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 30,
           ".status": 0
@@ -25167,6 +25711,7 @@
           "BPSYS": 135,
           "HR": 79,
           "WEIGHT": 69.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 270,
           ".status": 0
@@ -25183,6 +25728,7 @@
           "BPSYS": 134,
           "HR": 52,
           "WEIGHT": 117.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".time": 33,
           ".status": 0
@@ -25199,6 +25745,7 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 75.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 144,
           ".status": 0
@@ -25215,6 +25762,7 @@
           "BPSYS": 119,
           "HR": 65,
           "WEIGHT": 98.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 40,
           ".status": 0
@@ -25231,6 +25779,7 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 57.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 10,
           ".status": 0
@@ -25247,6 +25796,7 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 65.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 38,
           ".status": 0
@@ -25262,7 +25812,8 @@
           "BPDIA": 61,
           "BPSYS": 108,
           "HR": 59,
-          "WEIGHT": 91.88,
+          "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 270,
           ".status": 0
@@ -25279,6 +25830,7 @@
           "BPSYS": 116,
           "HR": 79,
           "WEIGHT": 92.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 51,
           ".status": 0
@@ -25295,6 +25847,7 @@
           "BPSYS": 134,
           "HR": 64,
           "WEIGHT": 106,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 88,
           ".status": 0
@@ -25311,6 +25864,7 @@
           "BPSYS": 141,
           "HR": 75,
           "WEIGHT": 112.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 46,
           ".status": 0
@@ -25327,6 +25881,7 @@
           "BPSYS": 127,
           "HR": 75,
           "WEIGHT": 77.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 134,
           ".status": 0
@@ -25343,6 +25898,7 @@
           "BPSYS": 95,
           "HR": 64,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 32,
           ".status": 0
@@ -25359,6 +25915,7 @@
           "BPSYS": 101,
           "HR": 56,
           "WEIGHT": 57.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 145,
           ".status": 0
@@ -25375,6 +25932,7 @@
           "BPSYS": 124,
           "HR": 80,
           "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 68,
           ".status": 0
@@ -25391,6 +25949,7 @@
           "BPSYS": 101,
           "HR": 71,
           "WEIGHT": 115,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 65,
           ".status": 0
@@ -25407,6 +25966,7 @@
           "BPSYS": 114,
           "HR": 58,
           "WEIGHT": 66.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 69,
           ".status": 0
@@ -25423,6 +25983,7 @@
           "BPSYS": 111,
           "HR": 57,
           "WEIGHT": 79.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -25439,6 +26000,7 @@
           "BPSYS": 122,
           "HR": 78,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 32,
           ".status": 0
@@ -25455,6 +26017,7 @@
           "BPSYS": 108,
           "HR": 67,
           "WEIGHT": 88.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 209,
           ".status": 0
@@ -25471,6 +26034,7 @@
           "BPSYS": 142,
           "HR": 63,
           "WEIGHT": 98.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 5,
           ".status": 0
@@ -25487,6 +26051,7 @@
           "BPSYS": 108,
           "HR": 74,
           "WEIGHT": 79.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 44,
           ".status": 0
@@ -25503,6 +26068,7 @@
           "BPSYS": 110,
           "HR": 63,
           "WEIGHT": 61.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 56,
           ".status": 0
@@ -25519,6 +26085,7 @@
           "BPSYS": 96,
           "HR": 64,
           "WEIGHT": 67.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -25535,6 +26102,7 @@
           "BPSYS": 121,
           "HR": 58,
           "WEIGHT": 72.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 107,
           ".status": 0
@@ -25551,6 +26119,7 @@
           "BPSYS": 97,
           "HR": 71,
           "WEIGHT": 73.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 124,
           ".status": 0
@@ -25567,6 +26136,7 @@
           "BPSYS": 109,
           "HR": 42,
           "WEIGHT": 62.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 57,
           ".status": 0
@@ -25583,6 +26153,7 @@
           "BPSYS": 124,
           "HR": 62,
           "WEIGHT": 75.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 55,
           ".status": 0
@@ -25599,6 +26170,7 @@
           "BPSYS": 123,
           "HR": 60,
           "WEIGHT": 65.8,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".time": 74,
           ".status": 0
@@ -25615,6 +26187,7 @@
           "BPSYS": 112,
           "HR": 77,
           "WEIGHT": 54.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -25631,6 +26204,7 @@
           "BPSYS": 109,
           "HR": 87,
           "WEIGHT": 89.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 158,
           ".status": 0
@@ -25647,6 +26221,7 @@
           "BPSYS": 115,
           "HR": 75,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 33,
           ".status": 0
@@ -25663,6 +26238,7 @@
           "BPSYS": 113,
           "HR": 52,
           "WEIGHT": 87.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".time": 29,
           ".status": 0
@@ -25679,6 +26255,7 @@
           "BPSYS": 93,
           "HR": 74,
           "WEIGHT": 92.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 35,
           ".status": 0
@@ -25695,6 +26272,7 @@
           "BPSYS": 98,
           "HR": 89,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 153,
           ".status": 0
@@ -25711,6 +26289,7 @@
           "BPSYS": 129,
           "HR": 62,
           "WEIGHT": 46.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 137,
           ".status": 0
@@ -25727,6 +26306,7 @@
           "BPSYS": 128,
           "HR": 50,
           "WEIGHT": 87.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 53,
           ".status": 0
@@ -25743,6 +26323,7 @@
           "BPSYS": 108,
           "HR": 72,
           "WEIGHT": 74.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -25759,6 +26340,7 @@
           "BPSYS": 128,
           "HR": 83,
           "WEIGHT": 79.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 84,
           ".status": 0
@@ -25775,6 +26357,7 @@
           "BPSYS": 112,
           "HR": 76,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 51,
           ".status": 0
@@ -25791,6 +26374,7 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 82.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 34,
           ".status": 0
@@ -25807,6 +26391,7 @@
           "BPSYS": 143,
           "HR": 78,
           "WEIGHT": 66,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 98,
           ".status": 0
@@ -25823,6 +26408,7 @@
           "BPSYS": 115,
           "HR": 63,
           "WEIGHT": 66.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 206,
           ".status": 0
@@ -25839,6 +26425,7 @@
           "BPSYS": 94,
           "HR": 67,
           "WEIGHT": 76.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 19,
           ".status": 0
@@ -25855,6 +26442,7 @@
           "BPSYS": 113,
           "HR": 71,
           "WEIGHT": 56.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 155,
           ".status": 0
@@ -25871,6 +26459,7 @@
           "BPSYS": 113,
           "HR": 72,
           "WEIGHT": 66.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 49,
           ".status": 0
@@ -25887,6 +26476,7 @@
           "BPSYS": 107,
           "HR": 71,
           "WEIGHT": 93.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 71,
           ".status": 0
@@ -25903,6 +26493,7 @@
           "BPSYS": 125,
           "HR": 71,
           "WEIGHT": 87.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 125,
           ".status": 0
@@ -25919,6 +26510,7 @@
           "BPSYS": 103,
           "HR": 71,
           "WEIGHT": 68.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 15,
           ".status": 0
@@ -25935,6 +26527,7 @@
           "BPSYS": 113.6,
           "HR": 81,
           "WEIGHT": 112.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 104,
           ".status": 0
@@ -25948,9 +26541,10 @@
           "AGE": 49,
           "BMI_advs": 32.4,
           "BPDIA": 79,
-          "BPSYS": 127.8,
+          "BPSYS": 118.2,
           "HR": 72,
           "WEIGHT": 75.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 91,
           ".status": 0
@@ -25967,6 +26561,7 @@
           "BPSYS": 133,
           "HR": 69,
           "WEIGHT": 83.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 24,
           ".status": 0
@@ -25983,6 +26578,7 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 73.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 221,
           ".status": 0
@@ -25999,6 +26595,7 @@
           "BPSYS": 117,
           "HR": 67,
           "WEIGHT": 75.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 270,
           ".status": 0
@@ -26015,6 +26612,7 @@
           "BPSYS": 107,
           "HR": 75,
           "WEIGHT": 126.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 270,
           ".status": 0
@@ -26031,6 +26629,7 @@
           "BPSYS": 140,
           "HR": 61,
           "WEIGHT": 88.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 14,
           ".status": 0
@@ -26047,6 +26646,7 @@
           "BPSYS": 101,
           "HR": 45,
           "WEIGHT": 55.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 93,
           ".status": 0
@@ -26063,6 +26663,7 @@
           "BPSYS": 119,
           "HR": 61,
           "WEIGHT": 105.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -26079,6 +26680,7 @@
           "BPSYS": 144,
           "HR": 75,
           "WEIGHT": 71.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 30,
           ".status": 0
@@ -26095,6 +26697,7 @@
           "BPSYS": 114,
           "HR": 71,
           "WEIGHT": 86.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 147,
           ".status": 0
@@ -26111,6 +26714,7 @@
           "BPSYS": 135,
           "HR": 67,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -26125,8 +26729,9 @@
           "BMI_advs": 34.5,
           "BPDIA": 74,
           "BPSYS": 125,
-          "HR": 66.4,
+          "HR": 63.2,
           "WEIGHT": 106,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 29,
           ".status": 0
@@ -26143,6 +26748,7 @@
           "BPSYS": 92,
           "HR": 88,
           "WEIGHT": 98.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -26159,6 +26765,7 @@
           "BPSYS": 127,
           "HR": 89,
           "WEIGHT": 110.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 158,
           ".status": 0
@@ -26175,6 +26782,7 @@
           "BPSYS": 106,
           "HR": 68,
           "WEIGHT": 101.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 36,
           ".status": 0
@@ -26191,6 +26799,7 @@
           "BPSYS": 95,
           "HR": 57,
           "WEIGHT": 54,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 270,
           ".status": 0
@@ -26207,6 +26816,7 @@
           "BPSYS": 131,
           "HR": 58,
           "WEIGHT": 96.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 60,
           ".status": 0
@@ -26223,6 +26833,7 @@
           "BPSYS": 128,
           "HR": 62,
           "WEIGHT": 92.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 71,
           ".status": 0
@@ -26239,6 +26850,7 @@
           "BPSYS": 103,
           "HR": 77,
           "WEIGHT": 79.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 61,
           ".status": 0
@@ -26255,6 +26867,7 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 48.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 3,
           ".status": 0
@@ -26271,6 +26884,7 @@
           "BPSYS": 115,
           "HR": 40,
           "WEIGHT": 106.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 92,
           ".status": 0
@@ -26287,6 +26901,7 @@
           "BPSYS": 93,
           "HR": 64,
           "WEIGHT": 80.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".time": 41,
           ".status": 0
@@ -26303,6 +26918,7 @@
           "BPSYS": 92,
           "HR": 58,
           "WEIGHT": 77.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 107,
           ".status": 0
@@ -26319,6 +26935,7 @@
           "BPSYS": 107,
           "HR": 73,
           "WEIGHT": 68.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 247,
           ".status": 0
@@ -26335,6 +26952,7 @@
           "BPSYS": 101,
           "HR": 77,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 137,
           ".status": 0
@@ -26351,6 +26969,7 @@
           "BPSYS": 110,
           "HR": 67,
           "WEIGHT": 88.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 123,
           ".status": 0
@@ -26367,6 +26986,7 @@
           "BPSYS": 123,
           "HR": 85,
           "WEIGHT": 100,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 113,
           ".status": 0
@@ -26383,6 +27003,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 89.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 3,
           ".status": 0
@@ -26399,6 +27020,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 84.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 135,
           ".status": 0
@@ -26415,6 +27037,7 @@
           "BPSYS": 119,
           "HR": 84,
           "WEIGHT": 90.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 102,
           ".status": 1
@@ -26431,6 +27054,7 @@
           "BPSYS": 116,
           "HR": 69,
           "WEIGHT": 116.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 9,
           ".status": 1
@@ -26447,6 +27071,7 @@
           "BPSYS": 109,
           "HR": 83,
           "WEIGHT": 98.1,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 2,
           ".time": 63,
           ".status": 1
@@ -26463,6 +27088,7 @@
           "BPSYS": 126,
           "HR": 84,
           "WEIGHT": 75.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 43,
           ".status": 1
@@ -26479,6 +27105,7 @@
           "BPSYS": 128,
           "HR": 64,
           "WEIGHT": 95.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 239,
           ".status": 1
@@ -26493,8 +27120,9 @@
           "BMI_advs": 28.9,
           "BPDIA": 68,
           "BPSYS": 102,
-          "HR": 68.6,
+          "HR": 72.6,
           "WEIGHT": 95.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 116,
           ".status": 1
@@ -26511,6 +27139,7 @@
           "BPSYS": 95,
           "HR": 71,
           "WEIGHT": 71.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 27,
           ".status": 1
@@ -26527,6 +27156,7 @@
           "BPSYS": 116,
           "HR": 78,
           "WEIGHT": 84.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3,
           ".time": 4,
           ".status": 1
@@ -26543,6 +27173,7 @@
           "BPSYS": 92,
           "HR": 56,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 28,
           ".status": 1
@@ -26559,6 +27190,7 @@
           "BPSYS": 122,
           "HR": 66,
           "WEIGHT": 64.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 241,
           ".status": 1
@@ -26571,10 +27203,11 @@
           "RACE": "WHITE",
           "AGE": 60,
           "BMI_advs": 26,
-          "BPDIA": 69.6,
+          "BPDIA": 67.6,
           "BPSYS": 128,
           "HR": 56,
           "WEIGHT": 62.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 71,
           ".status": 1
@@ -26591,6 +27224,7 @@
           "BPSYS": 136,
           "HR": 50,
           "WEIGHT": 88.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 3,
           ".status": 1
@@ -26606,7 +27240,8 @@
           "BPDIA": 82,
           "BPSYS": 125,
           "HR": 76,
-          "WEIGHT": 83.38,
+          "WEIGHT": 83.24,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 5,
           ".status": 1
@@ -26623,6 +27258,7 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 82.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 101,
           ".status": 1
@@ -26639,6 +27275,7 @@
           "BPSYS": 128,
           "HR": 68,
           "WEIGHT": 80.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 21,
           ".status": 1
@@ -26655,6 +27292,7 @@
           "BPSYS": 137,
           "HR": 74,
           "WEIGHT": 108.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 39,
           ".status": 1
@@ -26671,6 +27309,7 @@
           "BPSYS": 135,
           "HR": 76,
           "WEIGHT": 67,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 266,
           ".status": 1
@@ -26687,6 +27326,7 @@
           "BPSYS": 128,
           "HR": 86,
           "WEIGHT": 93.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 27,
           ".status": 1
@@ -26703,6 +27343,7 @@
           "BPSYS": 108,
           "HR": 50,
           "WEIGHT": 91.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 132,
           ".status": 1
@@ -26719,6 +27360,7 @@
           "BPSYS": 98,
           "HR": 90,
           "WEIGHT": 95.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".time": 7,
           ".status": 1
@@ -26735,6 +27377,7 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 99.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 23,
           ".status": 1
@@ -26751,6 +27394,7 @@
           "BPSYS": 134,
           "HR": 44,
           "WEIGHT": 47.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".time": 8,
           ".status": 1
@@ -26767,6 +27411,7 @@
           "BPSYS": 134,
           "HR": 50,
           "WEIGHT": 106.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 10,
           ".status": 1
@@ -26783,6 +27428,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 54.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 11,
           ".status": 1
@@ -26799,6 +27445,7 @@
           "BPSYS": 162,
           "HR": 86,
           "WEIGHT": 84,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 1,
           ".status": 1
@@ -26815,6 +27462,7 @@
           "BPSYS": 106,
           "HR": 74,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 216,
           ".status": 1
@@ -26831,6 +27479,7 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 81.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 59,
           ".status": 1
@@ -26847,6 +27496,7 @@
           "BPSYS": 98,
           "HR": 73,
           "WEIGHT": 86.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 3,
           ".status": 1
@@ -26861,8 +27511,9 @@
           "BMI_advs": 22.6,
           "BPDIA": 65,
           "BPSYS": 109,
-          "HR": 62.2,
+          "HR": 61,
           "WEIGHT": 66.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 248,
           ".status": 1
@@ -26879,6 +27530,7 @@
           "BPSYS": 142,
           "HR": 78,
           "WEIGHT": 66.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 10,
           ".status": 1
@@ -26895,6 +27547,7 @@
           "BPSYS": 95,
           "HR": 87,
           "WEIGHT": 99.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 82,
           ".status": 1
@@ -26911,6 +27564,7 @@
           "BPSYS": 115,
           "HR": 59,
           "WEIGHT": 73.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 65,
           ".status": 1
@@ -26927,6 +27581,7 @@
           "BPSYS": 144,
           "HR": 79,
           "WEIGHT": 94.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 175,
           ".status": 1
@@ -26943,6 +27598,7 @@
           "BPSYS": 103,
           "HR": 62,
           "WEIGHT": 39.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 7,
           ".status": 1
@@ -26959,6 +27615,7 @@
           "BPSYS": 108,
           "HR": 64,
           "WEIGHT": 103.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3,
           ".time": 1,
           ".status": 1
@@ -26975,6 +27632,7 @@
           "BPSYS": 105,
           "HR": 48,
           "WEIGHT": 64.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 53,
           ".status": 1
@@ -26991,6 +27649,7 @@
           "BPSYS": 128,
           "HR": 71,
           "WEIGHT": 54.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 4,
           ".status": 1
@@ -27007,6 +27666,7 @@
           "BPSYS": 138,
           "HR": 86,
           "WEIGHT": 71.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 5,
           ".status": 1
@@ -27023,6 +27683,7 @@
           "BPSYS": 132,
           "HR": 61,
           "WEIGHT": 100,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 47,
           ".status": 1
@@ -27039,6 +27700,7 @@
           "BPSYS": 125,
           "HR": 70,
           "WEIGHT": 62.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 37,
           ".status": 1
@@ -27055,6 +27717,7 @@
           "BPSYS": 121,
           "HR": 68,
           "WEIGHT": 102.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 182,
           ".status": 1
@@ -27071,6 +27734,7 @@
           "BPSYS": 116,
           "HR": 61,
           "WEIGHT": 61,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".time": 7,
           ".status": 1
@@ -27087,6 +27751,7 @@
           "BPSYS": 110,
           "HR": 80,
           "WEIGHT": 86.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 61,
           ".status": 1
@@ -27103,6 +27768,7 @@
           "BPSYS": 106,
           "HR": 55,
           "WEIGHT": 59.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 56,
           ".status": 1
@@ -27119,6 +27785,7 @@
           "BPSYS": 137,
           "HR": 69,
           "WEIGHT": 93.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 35,
           ".status": 1
@@ -27135,6 +27802,7 @@
           "BPSYS": 111,
           "HR": 67,
           "WEIGHT": 85.7,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 10,
           ".status": 1
@@ -27151,6 +27819,7 @@
           "BPSYS": 120,
           "HR": 62,
           "WEIGHT": 72.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 21,
           ".status": 1
@@ -27167,6 +27836,7 @@
           "BPSYS": 105,
           "HR": 72,
           "WEIGHT": 77.4,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".time": 7,
           ".status": 1
@@ -27183,6 +27853,7 @@
           "BPSYS": 126,
           "HR": 56,
           "WEIGHT": 75.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 240,
           ".status": 1
@@ -27199,6 +27870,7 @@
           "BPSYS": 99,
           "HR": 50,
           "WEIGHT": 81,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 194,
           ".status": 1
@@ -27215,6 +27887,7 @@
           "BPSYS": 96,
           "HR": 72,
           "WEIGHT": 76.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 19,
           ".status": 1
@@ -27231,6 +27904,7 @@
           "BPSYS": 99,
           "HR": 68,
           "WEIGHT": 70.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 142,
           ".status": 1
@@ -27247,6 +27921,7 @@
           "BPSYS": 128,
           "HR": 87,
           "WEIGHT": 85.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 169,
           ".status": 1
@@ -27263,6 +27938,7 @@
           "BPSYS": 111,
           "HR": 64,
           "WEIGHT": 79.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 1,
           ".status": 1
@@ -27279,6 +27955,7 @@
           "BPSYS": 125,
           "HR": 77,
           "WEIGHT": 113.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 69,
           ".status": 1
@@ -27295,6 +27972,7 @@
           "BPSYS": 122,
           "HR": 81,
           "WEIGHT": 77,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 25,
           ".status": 1
@@ -27311,6 +27989,7 @@
           "BPSYS": 125,
           "HR": 44,
           "WEIGHT": 62.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 72,
           ".status": 1
@@ -27327,6 +28006,7 @@
           "BPSYS": 126,
           "HR": 74,
           "WEIGHT": 91.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 121,
           ".status": 1
@@ -27343,6 +28023,7 @@
           "BPSYS": 130,
           "HR": 83,
           "WEIGHT": 77.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 67,
           ".status": 1
@@ -27359,6 +28040,7 @@
           "BPSYS": 105,
           "HR": 86,
           "WEIGHT": 51.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 71,
           ".status": 1
@@ -27375,6 +28057,7 @@
           "BPSYS": 117,
           "HR": 70,
           "WEIGHT": 85.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 15,
           ".status": 1
@@ -27391,6 +28074,7 @@
           "BPSYS": 152,
           "HR": 69,
           "WEIGHT": 50.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 13,
           ".status": 1
@@ -27407,6 +28091,7 @@
           "BPSYS": 130,
           "HR": 70,
           "WEIGHT": 73,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 5,
           ".status": 1
@@ -27423,6 +28108,7 @@
           "BPSYS": 140,
           "HR": 71,
           "WEIGHT": 86.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 31,
           ".status": 1
@@ -27439,6 +28125,7 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 96.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 54,
           ".status": 1
@@ -27455,6 +28142,7 @@
           "BPSYS": 100,
           "HR": 81,
           "WEIGHT": 66.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 21,
           ".status": 1
@@ -27471,6 +28159,7 @@
           "BPSYS": 114,
           "HR": 53,
           "WEIGHT": 65.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 24,
           ".status": 1
@@ -27487,6 +28176,7 @@
           "BPSYS": 108,
           "HR": 56,
           "WEIGHT": 82.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 9,
           ".status": 1
@@ -27503,6 +28193,7 @@
           "BPSYS": 142,
           "HR": 74,
           "WEIGHT": 90.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 160,
           ".status": 1
@@ -27519,6 +28210,7 @@
           "BPSYS": 138,
           "HR": 67,
           "WEIGHT": 98.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 191,
           ".status": 1
@@ -27535,6 +28227,7 @@
           "BPSYS": 110,
           "HR": 79,
           "WEIGHT": 97.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 42,
           ".status": 1
@@ -27551,6 +28244,7 @@
           "BPSYS": 131,
           "HR": 73,
           "WEIGHT": 65.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 152,
           ".status": 1
@@ -27567,6 +28261,7 @@
           "BPSYS": 122,
           "HR": 70,
           "WEIGHT": 80.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 15,
           ".status": 1
@@ -27583,6 +28278,7 @@
           "BPSYS": 100,
           "HR": 70,
           "WEIGHT": 75.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 16,
           ".status": 1
@@ -27599,6 +28295,7 @@
           "BPSYS": 92,
           "HR": 76,
           "WEIGHT": 72.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 98,
           ".status": 1
@@ -27615,6 +28312,7 @@
           "BPSYS": 118,
           "HR": 65,
           "WEIGHT": 82.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 160,
           ".status": 1
@@ -27624,13 +28322,14 @@
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
-          "RACE": "BLACK",
+          "RACE": "ASIAN",
           "AGE": 83,
           "BMI_advs": 36.6,
           "BPDIA": 75,
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 123.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 1,
           ".status": 1
@@ -27647,6 +28346,7 @@
           "BPSYS": 101,
           "HR": 92,
           "WEIGHT": 57.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 46,
           ".status": 1
@@ -27663,6 +28363,7 @@
           "BPSYS": 103,
           "HR": 89,
           "WEIGHT": 78.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 1,
           ".status": 1
@@ -27679,6 +28380,7 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 63,
           ".status": 1
@@ -27695,6 +28397,7 @@
           "BPSYS": 103,
           "HR": 48,
           "WEIGHT": 70.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 144,
           ".status": 1
@@ -27711,6 +28414,7 @@
           "BPSYS": 118,
           "HR": 64,
           "WEIGHT": 63.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 26,
           ".status": 1
@@ -27727,6 +28431,7 @@
           "BPSYS": 140,
           "HR": 66,
           "WEIGHT": 88.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 113,
           ".status": 1
@@ -27743,6 +28448,7 @@
           "BPSYS": 117,
           "HR": 80,
           "WEIGHT": 71.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 139,
           ".status": 1
@@ -27759,6 +28465,7 @@
           "BPSYS": 124,
           "HR": 60,
           "WEIGHT": 80.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 11,
           ".status": 1
@@ -27775,6 +28482,7 @@
           "BPSYS": 110,
           "HR": 55,
           "WEIGHT": 65.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 6,
           ".status": 1
@@ -27791,6 +28499,7 @@
           "BPSYS": 125,
           "HR": 59,
           "WEIGHT": 80.6,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".time": 51,
           ".status": 1
@@ -27807,6 +28516,7 @@
           "BPSYS": 138,
           "HR": 65,
           "WEIGHT": 122.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 187,
           ".status": 1
@@ -27823,6 +28533,7 @@
           "BPSYS": 126,
           "HR": 78,
           "WEIGHT": 86,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 36,
           ".status": 1
@@ -27839,6 +28550,7 @@
           "BPSYS": 145,
           "HR": 69,
           "WEIGHT": 90.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 4,
           ".status": 1
@@ -27855,6 +28567,7 @@
           "BPSYS": 130,
           "HR": 56,
           "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 32,
           ".status": 1
@@ -27871,6 +28584,7 @@
           "BPSYS": 116,
           "HR": 50,
           "WEIGHT": 74.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 43,
           ".status": 1
@@ -27887,6 +28601,7 @@
           "BPSYS": 118,
           "HR": 96,
           "WEIGHT": 60.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 11,
           ".status": 1
@@ -27903,6 +28618,7 @@
           "BPSYS": 99,
           "HR": 64,
           "WEIGHT": 60.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 15,
           ".status": 1
@@ -27919,6 +28635,7 @@
           "BPSYS": 117,
           "HR": 62,
           "WEIGHT": 70,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 28,
           ".status": 1
@@ -27930,11 +28647,12 @@
           "SEX": "F",
           "RACE": "WHITE",
           "AGE": 61,
-          "BMI_advs": 26.06,
+          "BMI_advs": 26.8,
           "BPDIA": 68,
           "BPSYS": 110,
           "HR": 53,
           "WEIGHT": 93.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 36,
           ".status": 1
@@ -27951,6 +28669,7 @@
           "BPSYS": 111,
           "HR": 59,
           "WEIGHT": 54.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 1,
           ".status": 1
@@ -27967,6 +28686,7 @@
           "BPSYS": 123,
           "HR": 59,
           "WEIGHT": 89,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 21,
           ".status": 1
@@ -27983,6 +28703,7 @@
           "BPSYS": 121,
           "HR": 78,
           "WEIGHT": 69.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 11,
           ".status": 1
@@ -27999,6 +28720,7 @@
           "BPSYS": 124,
           "HR": 48,
           "WEIGHT": 63.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 85,
           ".status": 1
@@ -28015,6 +28737,7 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 93.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 6,
           ".status": 1
@@ -28031,6 +28754,7 @@
           "BPSYS": 114,
           "HR": 54,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 99,
           ".status": 1
@@ -28051,6 +28775,7 @@
           "BPSYS": 111,
           "HR": 63,
           "WEIGHT": 89.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 69,
           ".status": 1
@@ -28067,6 +28792,7 @@
           "BPSYS": 127,
           "HR": 59,
           "WEIGHT": 79.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 35,
           ".status": 0
@@ -28083,6 +28809,7 @@
           "BPSYS": 111,
           "HR": 82,
           "WEIGHT": 114.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 49,
           ".status": 1
@@ -28099,6 +28826,7 @@
           "BPSYS": 121,
           "HR": 60,
           "WEIGHT": 81.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 66,
           ".status": 1
@@ -28115,6 +28843,7 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 33,
           ".status": 1
@@ -28131,6 +28860,7 @@
           "BPSYS": 101,
           "HR": 80,
           "WEIGHT": 73.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 6,
           ".status": 0
@@ -28147,6 +28877,7 @@
           "BPSYS": 96,
           "HR": 84,
           "WEIGHT": 78.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 80,
           ".status": 1
@@ -28163,6 +28894,7 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 97.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 60,
           ".status": 0
@@ -28179,6 +28911,7 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 99,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -28195,6 +28928,7 @@
           "BPSYS": 117,
           "HR": 93,
           "WEIGHT": 110.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 158,
           ".status": 0
@@ -28211,6 +28945,7 @@
           "BPSYS": 130,
           "HR": 74,
           "WEIGHT": 67.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 70,
           ".status": 1
@@ -28227,6 +28962,7 @@
           "BPSYS": 109,
           "HR": 81,
           "WEIGHT": 105.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 29,
           ".status": 0
@@ -28243,6 +28979,7 @@
           "BPSYS": 107,
           "HR": 39,
           "WEIGHT": 53.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 195,
           ".status": 0
@@ -28259,6 +28996,7 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 96.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 105,
           ".status": 0
@@ -28275,6 +29013,7 @@
           "BPSYS": 117,
           "HR": 77,
           "WEIGHT": 115.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 23,
           ".status": 0
@@ -28291,6 +29030,7 @@
           "BPSYS": 135,
           "HR": 85,
           "WEIGHT": 102.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 23,
           ".status": 0
@@ -28307,6 +29047,7 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 79.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 73,
           ".status": 1
@@ -28323,6 +29064,7 @@
           "BPSYS": 129,
           "HR": 67,
           "WEIGHT": 65.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 147,
           ".status": 0
@@ -28339,6 +29081,7 @@
           "BPSYS": 107,
           "HR": 66,
           "WEIGHT": 94.5,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".time": 98,
           ".status": 1
@@ -28355,6 +29098,7 @@
           "BPSYS": 123,
           "HR": 49,
           "WEIGHT": 96.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 72,
           ".status": 0
@@ -28371,6 +29115,7 @@
           "BPSYS": 129,
           "HR": 63,
           "WEIGHT": 90.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 19,
           ".status": 0
@@ -28387,6 +29132,7 @@
           "BPSYS": 123,
           "HR": 61,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 6,
           ".status": 1
@@ -28399,10 +29145,11 @@
           "RACE": "WHITE",
           "AGE": 74,
           "BMI_advs": 28.1,
-          "BPDIA": 68.2,
+          "BPDIA": 64.4,
           "BPSYS": 140,
           "HR": 74,
           "WEIGHT": 74.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 24,
           ".status": 0
@@ -28419,6 +29166,7 @@
           "BPSYS": 134,
           "HR": 66,
           "WEIGHT": 126.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 39,
           ".status": 1
@@ -28435,6 +29183,7 @@
           "BPSYS": 119,
           "HR": 82,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 62,
           ".status": 0
@@ -28451,6 +29200,7 @@
           "BPSYS": 106,
           "HR": 73,
           "WEIGHT": 53.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 133,
           ".status": 1
@@ -28467,6 +29217,7 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 59,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 2,
           ".status": 1
@@ -28483,6 +29234,7 @@
           "BPSYS": 144,
           "HR": 80,
           "WEIGHT": 101.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 110,
           ".status": 0
@@ -28499,6 +29251,7 @@
           "BPSYS": 122,
           "HR": 72,
           "WEIGHT": 69.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -28515,6 +29268,7 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 81.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 225,
           ".status": 0
@@ -28531,6 +29285,7 @@
           "BPSYS": 126,
           "HR": 83,
           "WEIGHT": 67,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 115,
           ".status": 0
@@ -28547,6 +29302,7 @@
           "BPSYS": 124,
           "HR": 68,
           "WEIGHT": 78.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 60,
           ".status": 0
@@ -28563,6 +29319,7 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 57.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 29,
           ".status": 1
@@ -28575,10 +29332,11 @@
           "RACE": "WHITE",
           "AGE": 83,
           "BMI_advs": 26.3,
-          "BPDIA": 69.8,
+          "BPDIA": 76.8,
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 70.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 16,
           ".status": 1
@@ -28595,6 +29353,7 @@
           "BPSYS": 113,
           "HR": 66,
           "WEIGHT": 36.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 29,
           ".status": 1
@@ -28611,6 +29370,7 @@
           "BPSYS": 117,
           "HR": 79,
           "WEIGHT": 88,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 23,
           ".status": 1
@@ -28627,6 +29387,7 @@
           "BPSYS": 134,
           "HR": 69,
           "WEIGHT": 67.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -28643,6 +29404,7 @@
           "BPSYS": 120,
           "HR": 61,
           "WEIGHT": 61.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 7,
           ".status": 1
@@ -28659,6 +29421,7 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 41.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 30,
           ".status": 1
@@ -28675,6 +29438,7 @@
           "BPSYS": 136,
           "HR": 66,
           "WEIGHT": 113.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 104,
           ".status": 1
@@ -28691,6 +29455,7 @@
           "BPSYS": 113,
           "HR": 83,
           "WEIGHT": 66.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 213,
           ".status": 1
@@ -28707,6 +29472,7 @@
           "BPSYS": 100,
           "HR": 75,
           "WEIGHT": 65.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 99,
           ".status": 1
@@ -28723,6 +29489,7 @@
           "BPSYS": 106,
           "HR": 62,
           "WEIGHT": 72,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 2,
           ".time": 49,
           ".status": 0
@@ -28739,6 +29506,7 @@
           "BPSYS": 148,
           "HR": 55,
           "WEIGHT": 96.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 119,
           ".status": 0
@@ -28755,6 +29523,7 @@
           "BPSYS": 119,
           "HR": 62,
           "WEIGHT": 62.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 86,
           ".status": 1
@@ -28771,6 +29540,7 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 98.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 6,
           ".status": 0
@@ -28787,6 +29557,7 @@
           "BPSYS": 99,
           "HR": 62,
           "WEIGHT": 73,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 60,
           ".status": 0
@@ -28803,6 +29574,7 @@
           "BPSYS": 121,
           "HR": 76,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 58,
           ".status": 0
@@ -28819,6 +29591,7 @@
           "BPSYS": 105,
           "HR": 66,
           "WEIGHT": 55.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 3,
           ".status": 1
@@ -28835,6 +29608,7 @@
           "BPSYS": 134,
           "HR": 65,
           "WEIGHT": 101.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 71,
           ".status": 1
@@ -28851,6 +29625,7 @@
           "BPSYS": 122,
           "HR": 92,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 48,
           ".status": 1
@@ -28867,6 +29642,7 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 105.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 29,
           ".status": 1
@@ -28883,6 +29659,7 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 94.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 41,
           ".status": 1
@@ -28899,6 +29676,7 @@
           "BPSYS": 91,
           "HR": 73,
           "WEIGHT": 83.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -28915,6 +29693,7 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 104.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 270,
           ".status": 0
@@ -28931,6 +29710,7 @@
           "BPSYS": 134,
           "HR": 81,
           "WEIGHT": 69.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".time": 25,
           ".status": 0
@@ -28947,6 +29727,7 @@
           "BPSYS": 83,
           "HR": 89,
           "WEIGHT": 75.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 51,
           ".status": 1
@@ -28963,6 +29744,7 @@
           "BPSYS": 127,
           "HR": 86,
           "WEIGHT": 108.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 124,
           ".status": 0
@@ -28979,6 +29761,7 @@
           "BPSYS": 129,
           "HR": 61,
           "WEIGHT": 80.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
@@ -28995,6 +29778,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 109.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 11,
           ".status": 1
@@ -29011,6 +29795,7 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 61.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 5,
           ".status": 0
@@ -29027,6 +29812,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 75,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 63,
           ".status": 1
@@ -29043,6 +29829,7 @@
           "BPSYS": 95,
           "HR": 78,
           "WEIGHT": 97.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 87,
           ".status": 0
@@ -29059,6 +29846,7 @@
           "BPSYS": 103,
           "HR": 98,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 58,
           ".status": 0
@@ -29075,6 +29863,7 @@
           "BPSYS": 95,
           "HR": 74,
           "WEIGHT": 100.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 67,
           ".status": 1
@@ -29091,6 +29880,7 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 91.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 81,
           ".status": 0
@@ -29107,6 +29897,7 @@
           "BPSYS": 110,
           "HR": 60,
           "WEIGHT": 59.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 13,
           ".status": 0
@@ -29123,6 +29914,7 @@
           "BPSYS": 121,
           "HR": 53,
           "WEIGHT": 90.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 219,
           ".status": 1
@@ -29139,6 +29931,7 @@
           "BPSYS": 143,
           "HR": 86,
           "WEIGHT": 82.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 7,
           ".status": 1
@@ -29155,6 +29948,7 @@
           "BPSYS": 109,
           "HR": 80,
           "WEIGHT": 106.7,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 168,
           ".status": 0
@@ -29171,6 +29965,7 @@
           "BPSYS": 125,
           "HR": 56,
           "WEIGHT": 90.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 46,
           ".status": 1
@@ -29187,6 +29982,7 @@
           "BPSYS": 134,
           "HR": 70,
           "WEIGHT": 92,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 20,
           ".status": 0
@@ -29203,6 +29999,7 @@
           "BPSYS": 100,
           "HR": 85,
           "WEIGHT": 58.6,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".time": 51,
           ".status": 0
@@ -29219,6 +30016,7 @@
           "BPSYS": 143,
           "HR": 66,
           "WEIGHT": 101.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 217,
           ".status": 1
@@ -29434,63 +30232,6 @@
       ] 
       
       $recipe
-      $recipe$raw
-    Message
-      
-      -- Recipe ----------------------------------------------------------------------
-      
-      -- Inputs 
-      Number of variables by role
-      outcome:    2
-      predictor: 16
-      ID:         1
-      
-      -- Operations 
-      * Variable mutation for: recipes::all_string_predictors()
-      * Removing rows with NA values in: recipes::all_outcomes()
-      * Variable mutation for: recipes::all_factor_predictors()
-      * Missing value column filter on: recipes::all_predictors()
-      * Removing rows with NA values in: tidyselect::any_of(vars_imp_ignore)
-      * Log transformation on: recipes::all_numeric_predictors(), ...
-      * K-nearest neighbor imputation for: recipes::all_predictors()
-      * Median imputation for: recipes::all_numeric_predictors()
-      * Mode imputation for: recipes::all_nominal_predictors()
-      * Zero variance filter on: recipes::all_predictors()
-      * Sparse, unbalanced variable filter on: recipes::all_predictors()
-      * Correlation filter on: recipes::all_numeric_predictors()
-      * Collapsing factor levels for: recipes::all_nominal_predictors()
-    Output
-      
-      $recipe$prep
-    Message
-      
-      -- Recipe ----------------------------------------------------------------------
-      
-      -- Inputs 
-      Number of variables by role
-      outcome:    2
-      predictor: 16
-      ID:         1
-      
-      -- Training information 
-      Training data contained 215 data points and 212 incomplete rows.
-      
-      -- Operations 
-      * Variable mutation for: <none> | Trained
-      * Removing rows with NA values in: .time, .status | Trained
-      * Variable mutation for: .trt, AGEGR01, SEX, RACE | Trained
-      * Missing value column filter removed: LAB1, LAB2, LAB3 | Trained
-      * Removing rows with NA values in: .trt | Trained
-      * Log transformation on: <none> | Trained
-      * K-nearest neighbor imputation for: .trt, AGEGR01, SEX, RACE, ... | Trained
-      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, BPSYS, ... | Trained
-      * Mode imputation for: .trt, AGEGR01, SEX, RACE | Trained
-      * Zero variance filter removed: cardiac_arrhythmias | Trained
-      * Sparse, unbalanced variable filter removed: <none> | Trained
-      * Correlation filter on: BMI_adsl | Trained
-      * Collapsing factor levels for: <none> | Trained
-    Output
-      
       $recipe$params
       $recipe$params$thres_log
       $recipe$params$thres_log$value
@@ -29572,7 +30313,7 @@
       [1] "LAB1" "LAB2" "LAB3"
       
       $removed$cols$zv
-      [1] "cardiac_arrhythmias"
+      NULL
       
       $removed$cols$nzv
       NULL
@@ -29631,9 +30372,6 @@
       $input$args$thres_log
       [1] 2
       
-      $input$args$thres_count
-      [1] 10
-      
       $input$args$thres_corr
       [1] 0.9
       
@@ -29653,9 +30391,6 @@
       [1] ".trt"
       
       $input$args$vars_fct_expl_na
-      NULL
-      
-      $input$args$vars_ordinalscore
       NULL
       
       $input$args$vars_keep_corr

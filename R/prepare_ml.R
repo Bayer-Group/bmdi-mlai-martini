@@ -63,10 +63,6 @@
 #'@param thres_nzv_freq,thres_nzv_unique parameters passed to
 #'\code{recipes::step_nzv()} with defaults 
 #'\code{thres_nzv_freq = 95/5)} and \code{thres_nzv_unique = 10} 
-#'@param thres_count `r lifecycle::badge("deprecated")` integer variables with 
-#'no more than `thres_count` distinct values are considered as count variables 
-#'and are excluded from the log-transformation and normalization.
-#' Defaults to 10.
 #'@param thres_lump threshold used in \code{step_other2()}. 
 #'If at least two classes of a factor have low frequencies/proportions, they 
 #'will be lumped into a class
@@ -84,8 +80,6 @@
 #'@param vars_keep_corr choose these variables over other options when removing
 #'variables due to high correlation in \code{recipes::step_corr()}. 
 #'See \code{recipes::step_rm()} below for details. 
-#'@param vars_ordinalscore column names of ordinal factor variables to be 
-#'converted into numeric scores (using `as.numeric()`). Defaults to NULL.
 #'@param vars_no_trafo character vector defining variables that should be
 #'excluded from transformation steps such as log transformation and/or normalization
 #'(if applicable). Defaults to NULL.
@@ -105,7 +99,19 @@
 #'input of `feature` to identify sources for potential downstream issues
 #'such as low frequency classes in a character/factor column. 
 #'defaults to TRUE.
-#'
+#'@param vars_ordinalscore column names of ordinal factor variables to be 
+#'converted into numeric scores (using `as.numeric()`). Defaults to NULL. 
+#'`r lifecycle::badge("deprecated")`.
+#' Please handle factors individually prior to calling `prepare_ml()`.
+#'@param thres_count `r lifecycle::badge("deprecated")` non-negative
+#' integer variables with 
+#'no more than `thres_count` distinct values are considered as count variables 
+#'and are excluded from the log-transformation and normalization. Please use 
+#'`check_count()` on the feature input to identify variables that resemble 
+#'counts and handle appropriately prior to calling `prepare_ml()`.
+# Defaults to 10.
+
+
 #'@details 
 #'
 #'The following order of recipe steps for data preparation will be applied
@@ -252,7 +258,6 @@ prepare_ml <- function(
   prep_step_dummy     = FALSE,
   
   thres_log           = 2,
-  thres_count         = 10,
   thres_corr          = 0.9,
   thres_lump          = 0.05,
   thres_imp           = 0.8,
@@ -261,7 +266,6 @@ prepare_ml <- function(
   
   vars_imp_ignore     = c(".trt"),
   vars_fct_expl_na    = NULL,
-  vars_ordinalscore   = NULL,
   vars_keep_corr      = NULL,
   vars_no_trafo       = NULL,
   
@@ -272,11 +276,14 @@ prepare_ml <- function(
   outlier_ctrl        = list(coef = 3),
     
   custom_recipe  = NULL,
-  prep_recipe    = NULL, #deprecated(),
   
   quiet          = FALSE, 
-  check_feature  = TRUE
-    
+  check_feature  = TRUE,
+  
+  prep_recipe       = lifecycle::deprecated(),
+  vars_ordinalscore = lifecycle::deprecated(),
+  thres_count       = lifecycle::deprecated()
+  
 ) {
   
   # deprecated
@@ -288,11 +295,21 @@ prepare_ml <- function(
     )
   }
   
-  if(!missing(thres_count)){
+  if(!missing(prep_recipe)){
     lifecycle::deprecate_warn(
       when = "0.7.0",
       what = "prepare_ml(prep_recipe)", 
-      details = "Please use argument `custom_recipe` instead."
+      details = "Please use argument `custom_recipe` instead (experimental)."
+    )
+  }
+  
+  if(!missing(vars_ordinalscore)){
+    lifecycle::deprecate_warn(
+      when = "0.7.0",
+      what = "prepare_ml(vars_ordinalscore = )", 
+      details = paste0(
+        "Please handle factors individually prior to calling `prepare_ml()`."
+      )
     )
   }
   
@@ -458,7 +475,6 @@ prepare_ml <- function(
     
     thres_list = tibble::lst(
       thres_log,
-      thres_count,
       thres_corr,
       thres_lump,
       thres_imp,
@@ -476,7 +492,6 @@ prepare_ml <- function(
     
     vars_imp_ignore     = vars_imp_ignore,
     vars_fct_expl_na    = vars_fct_expl_na,
-    vars_ordinalscore   = vars_ordinalscore,
     vars_keep_corr      = vars_keep_corr,
     vars_no_trafo       = vars_no_trafo,
     

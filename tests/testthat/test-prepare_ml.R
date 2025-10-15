@@ -441,8 +441,8 @@ test_that("prepare_ml() snapshots content/print", {
       filter = c(
         "AVISIT == 'Baseline'",
         "ADSNAME == 'ADLB' & AVISIT == 'Visit 1'",
-        "ABLFL == 'Y'"
-       #, "MHOCCUR == 'Y' | is.na(MHOCCUR)"
+        "ABLFL == 'Y'",
+        "MHOCCUR == 'Y' | is.na(MHOCCUR)"
       ),
       attach_data = TRUE
     ) %>% 
@@ -468,6 +468,9 @@ test_that("prepare_ml() snapshots content/print", {
   # recipe will have different step and environment ids in each run
   ads_ml_class$recipe$raw   <- NULL
   ads_ml_class$recipe$prep  <- NULL
+  # deprecated arguments 
+  ads_ml_class$input$args$vars_ordinalscore <- NULL
+  ads_ml_class$input$args$thres_count       <- NULL
   
   expect_snapshot(
     ads_ml_class %>% 
@@ -502,8 +505,10 @@ test_that("prepare_ml() snapshots content/print", {
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_regr$source <- NULL
   # recipe will have different step and environment ids in each run
-  ads_ml_class$recipe$raw   <- NULL
-  ads_ml_class$recipe$prep  <- NULL
+  ads_ml_regr$recipe$raw   <- NULL
+  ads_ml_regr$recipe$prep  <- NULL
+  ads_ml_regr$input$args$vars_ordinalscore <- NULL
+  ads_ml_regr$input$args$thres_count       <- NULL
   
   expect_snapshot(
     ads_ml_regr %>% 
@@ -528,8 +533,10 @@ test_that("prepare_ml() snapshots content/print", {
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_surv$source <- NULL
   # recipe will have different step and environment ids in each run
-  ads_ml_class$recipe$raw   <- NULL
-  ads_ml_class$recipe$prep  <- NULL
+  ads_ml_surv$recipe$raw   <- NULL
+  ads_ml_surv$recipe$prep  <- NULL
+  ads_ml_surv$input$args$vars_ordinalscore <- NULL
+  ads_ml_surv$input$args$thres_count       <- NULL
   
   expect_snapshot(
     ads_ml_surv %>% 

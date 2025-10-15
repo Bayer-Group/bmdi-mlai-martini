@@ -7,7 +7,7 @@
 #' @param corr_method,corr_use defaulting to `corr_method` "pearson" and 
 #' `corr_use` "pairwise.complete.obs"
 #' @param thres_list,step_list named list objects collecting all threshold values 
-#' and step selection info, resp. please refer to the documentation of 
+#' and step selection info, resp. Please refer to the documentation of 
 #' the `thres_*` and `prep_step_*` arguments 
 #' in \code{\link{prepare_ml}()} for detailed documentation and list entry names.
 #' @inheritParams prepare_ml
@@ -41,7 +41,6 @@ prepare_ml_recipe <- function(
   
   vars_imp_ignore     = c(".trt"),
   vars_fct_expl_na    = NULL,
-  vars_ordinalscore   = NULL,
   vars_keep_corr      = NULL,
   vars_no_trafo       = NULL,
   
@@ -59,13 +58,12 @@ prepare_ml_recipe <- function(
   thres_default <- tibble::lst(
     
     # using recipe defaults where available
-    thres_lump       = get_default(recipes::step_other, 'threshold'), 
-    thres_nzv_freq   = get_default(recipes::step_nzv,   'freq_cut'),
-    thres_nzv_unique = get_default(recipes::step_nzv,   'unique_cut'),
-    thres_corr       = get_default(recipes::step_corr,  'threshold'),
+    thres_lump       = get_default(step_other2,       'threshold'), 
+    thres_nzv_freq   = get_default(recipes::step_nzv, 'freq_cut'),
+    thres_nzv_unique = get_default(recipes::step_nzv, 'unique_cut'),
+    thres_corr       = get_default(step_corr_keep,    'threshold'),
     
     # no recipes equivalent
-    thres_count = get_default(prepare_ml, 'thres_count'),   
     thres_log   = get_default(prepare_ml, 'thres_log'),    
     thres_imp   = get_default(prepare_ml, 'thres_imp')  
     
@@ -152,12 +150,20 @@ prepare_ml_recipe <- function(
       
       # ... ... add explicit NAs to selected factor variables (optional) ####
       {if (!is.null(vars_fct_expl_na)) {
-        recipes::step_mutate_at(., vars_fct_expl_na, ~ fct_na_to_level(.x, level = "missing"))
+        recipes::step_mutate_at(
+          ., 
+          vars_fct_expl_na, 
+          ~ fct_na_to_level(.x, level = "missing")
+        )
       }else{.}} %>% 
         
       # ... ... exclude variables with too many missings ####
       {if (thres_used$thres_imp>0) {
-        recipes::step_filter_missing(., recipes::all_predictors(), threshold = 1-thres_used$thres_imp)
+        recipes::step_filter_missing(
+          ., 
+          recipes::all_predictors(), 
+          threshold = 1-thres_used$thres_imp
+        )
       }else{.}} %>% 
       
       # ... ... omit observations with missing data in variables excluded from imputation ####
@@ -226,9 +232,6 @@ prepare_ml_recipe <- function(
       ) %>%  
         
       # ... ... factor handling ####
-      {if (!is.null(vars_ordinalscore)) {
-        recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ))
-      }else{.}} %>%  
         
       #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
       # ... ... dummy coding ####
@@ -304,9 +307,7 @@ prepare_ml_recipe <- function(
       vars_fct_expl_na,
       vars_imp_ignore,
       vars_keep_corr,
-      
-      vars_log,
-      vars_ordinalscore
+      vars_log
     ),
     high_corr = corr_tibble,
     steps = step_used,

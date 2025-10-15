@@ -36,6 +36,8 @@
 * `vars_count` deprecated in favor of `vars_no_trafo`: count variables are no
 longer guessed and automatically excluded from transformation, but need
 to be specified by the user. 
+* `vars_ordinalscore` deprecated.
+
 
 ## major changes
 
