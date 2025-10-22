@@ -118,7 +118,7 @@ corrr_mini <- function(
     
     # upper and lower triangle individually, 
     index_lower <- utils::combn(seq_along(colnames(res_cor)), 2) %>% t()
-    index_upper <- index_lower[, 2:1]
+    index_upper <- index_lower[, 2:1, drop = FALSE]
     
     stretch_lower <- tibble::tibble(
       x = rownames(res_cor)[index_lower[ , 1]], 

@@ -10,4 +10,12 @@ test_that("corrr_mini works", {
     dplyr::arrange(x, y)
   
   expect_equal(cor1, cor2)
+  
+  # test edge case of just 2 numeric features
+  expect_no_error(
+    martini_feat %>% 
+      dplyr::select(BMI, WEIGHT) %>% 
+      corrr_mini()
+  )
+  
 })
