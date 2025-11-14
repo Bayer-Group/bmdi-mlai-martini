@@ -27,7 +27,8 @@ test_that("adam_spec_bds works", {
   ns_spec  <- adam_spec_bds(
     file  = file_adlb_rename,
     param = ns_param,
-    value = "LBSTRESC"
+    value = "LBSTRESC", 
+    id    = "SUBJID"
   )
   testthat::expect_equal(
     ns_spec[['param']],
@@ -36,7 +37,7 @@ test_that("adam_spec_bds works", {
   
   # TEST 'data' parameter ####
   
-  spec_bds_file <- adam_spec_bds(file = file_adlb)
+  spec_bds_file <- adam_spec_bds(file = file_adlb, id = "SUBJID")
   
   spec_bds_data <- adam_spec_bds(
     data   = haven::read_sas(file_adlb),
@@ -45,7 +46,8 @@ test_that("adam_spec_bds works", {
     time   = "AVISIT",
     unit   = "AVALU",
     label  = "PARAM",
-    domain = "adlb"
+    domain = "adlb",
+    id     = "SUBJID"
   )
   
   testthat::expect_equal(

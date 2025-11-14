@@ -2,6 +2,8 @@
 
 ## breaking changes
 
+
+* default for id column changed to USUBJID according to ADaM implementation guide
 * `build(join = )` default changed from `dplyr::inner_join()` to
 `dplyr::full_join()`, which is equivalent to "adsl" (if included) according
 to CDISC standards

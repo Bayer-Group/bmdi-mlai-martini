@@ -9,7 +9,7 @@
 #' @param data tibble with the data in adsl format for which the specification
 #'  is created
 #' @param file the path of the sas(7bdat) or rds file to process
-#' @param id name of id (e.g. SUBJIDN, SUBJID) column to keep.
+#' @param id name of id (e.g. USUBJID, SUBJIDN) column to keep.
 #' Highly redundant variables will not be included in the suggested set of columns returned in \code{select} (see Details).
 #' @param trt column to be used as the treatment variable. All other predefined treatment variables (see Details) are added
 #' to the \code{drop_list}. If NULL, all treatment variables will be added to the \code{drop_list}.
@@ -82,7 +82,7 @@
 adam_spec_adsl <- function(
     file         = NULL,
     data         = NULL,
-    id           = 'SUBJID',
+    id           = "USUBJID",
     trt          = NULL,
     keep         = NULL, 
     drop         = NULL,
@@ -290,7 +290,7 @@ adam_spec_adsl <- function(
  #' defaults all possible categories: 
  #' `dttm`, `constant`, `combined`, `flag`, `factor`, `redundant`
  #' @param id,trt user-selected column names in `data` for ID and treatment column,
- #' defaulting to `SUBJID` and `TRT01A`, resp.
+ #' defaulting to `USUBJID` and `TRT01A`, resp.
  #' @param clmn_flag (factor and redundants only) character vector of names identified as flags
  #' @param black_list character vector of columns that should be dropped for 
  #' most analyses, see details.

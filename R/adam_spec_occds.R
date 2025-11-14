@@ -63,7 +63,7 @@
 adam_spec_occds <- function(
     file        = NULL,
     data        = NULL,
-    id          = 'SUBJID', 
+    id          = "USUBJID", 
     label       = NULL,
     value       = NULL,
     valuen      = NULL,

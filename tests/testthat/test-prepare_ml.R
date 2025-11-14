@@ -444,7 +444,8 @@ test_that("prepare_ml() snapshots content/print", {
         "ABLFL == 'Y'",
         "MHOCCUR == 'Y' | is.na(MHOCCUR)"
       ),
-      attach_data = TRUE
+      attach_data = TRUE, 
+      id = "SUBJID"
     ) %>% 
     build(join = "adsl")
   
@@ -474,7 +475,7 @@ test_that("prepare_ml() snapshots content/print", {
   
   expect_snapshot(
     ads_ml_class %>% 
-      magrittr::set_attr('class', 'list') %>% # snapshot object not print
+      magrittr::set_attr('class', 'list') %>% # snapshot object not print method
       purrr::modify_tree(leaf = tibble_to_JSON)
   )
   
@@ -512,7 +513,7 @@ test_that("prepare_ml() snapshots content/print", {
   
   expect_snapshot(
     ads_ml_regr %>% 
-      magrittr::set_attr('class', 'list') %>% # snapshot object not print
+      magrittr::set_attr('class', 'list') %>% # snapshot object not print method
       purrr::modify_tree(leaf = tibble_to_JSON)
   )
   
@@ -540,7 +541,7 @@ test_that("prepare_ml() snapshots content/print", {
   
   expect_snapshot(
     ads_ml_surv %>% 
-      magrittr::set_attr('class', 'list') %>% # snapshot object not print
+      magrittr::set_attr('class', 'list') %>% # snapshot object not print method
       purrr::modify_tree(leaf = tibble_to_JSON)
   )
   

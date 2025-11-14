@@ -3,7 +3,7 @@ test_that("build_out_tte works", {
   cut  <- 20
   unit <- 'days'
   data <- tibble::tribble(
-    ~SUBJID, ~AVAL, ~CNSR,
+    ~USUBJID, ~AVAL, ~CNSR,
       10001, 10,    0,
       10002, 30,    0,
       10003, 10,    1,

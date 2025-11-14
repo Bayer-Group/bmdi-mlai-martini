@@ -79,9 +79,7 @@ adam_spec <- function(
   drop        = NULL,
   pre_study   = lifecycle::deprecated(),
   attach_data = TRUE,
-  id          = "SUBJID", 
-  #TODO switch default to USUBJID
-  # ADaMIG Within a given study, USUBJID is the key variable that links the ADSL to other datasets (both SDTM and ADaM).
+  id          = "USUBJID", 
   trt         = "TRT01A",
   add_bds     = NULL,
   add_occds   = NULL,

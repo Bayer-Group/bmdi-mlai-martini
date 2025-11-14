@@ -2,7 +2,7 @@
 test_that("build_bds/pivot_prepare_bds duplicate messaging", {
   
   file_adlb     <- test_path("sas/adlb.sas7bdat")
-  ads_spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE)
+  ads_spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE, id = "SUBJID")
   
   # test duplicate messaging ####
   
@@ -42,7 +42,7 @@ test_that("pivot_prepare_bds - values_fn deduced correctly", {
   
   # ... values_fn is specified ####
   
-  spec <- adam_spec_bds(file_adlb, attach_data = TRUE)
+  spec <- adam_spec_bds(file_adlb, attach_data = TRUE, id = "SUBJID")
   
   spec$values_fn <- mean
 
@@ -58,7 +58,7 @@ test_that("pivot_prepare_bds - values_fn deduced correctly", {
   
   # ... values_fn is NULL ####
   
-  spec <- adam_spec_bds(file_adlb, attach_data = TRUE)
+  spec <- adam_spec_bds(file_adlb, attach_data = TRUE, id = "SUBJID")
   
   values_fn_out <- pivot_prepare_bds(
     bds_full = spec$data,
@@ -75,7 +75,7 @@ test_that("pivot_prepare_bds - values_fn deduced correctly", {
 test_that("pivot_prepare_bds - names_from argument deduced correctly", {
   
   file_adlb <- test_path("sas/adlb.sas7bdat")
-  spec      <- adam_spec_bds(file_adlb, attach_data = TRUE)
+  spec      <- adam_spec_bds(file_adlb, attach_data = TRUE, id = "SUBJID")
   
   # data in adlb.sas7bdat contains multiple time points (Visit 1-3)
   # -> names_from should be length 2, param and time
@@ -86,11 +86,13 @@ test_that("pivot_prepare_bds - names_from argument deduced correctly", {
   spec_single <- adam_spec_bds(
     file_adlb,
     attach_data = TRUE,
-    filter      = c(paste0(spec$time, " == '", time_single, "'"))
+    filter      = c(paste0(spec$time, " == '", time_single, "'")),
+    id = "SUBJID"
   )
   spec_multi  <- adam_spec_bds(
     file_adlb,
-    attach_data = TRUE
+    attach_data = TRUE, 
+    id = "SUBJID"
   )
   
   pivot_single <- pivot_prepare_bds(
@@ -118,18 +120,20 @@ test_that("pivot_prepare_bds - names_from argument deduced correctly", {
 test_that("build_bds - dict matches data set", {
   # TODO colnames have to match dict entries 1:1
   file_adlb <- test_path("sas/adlb.sas7bdat")
-  spec      <- adam_spec_bds(file_adlb, attach_data = TRUE)
+  spec      <- adam_spec_bds(file_adlb, attach_data = TRUE, id = "SUBJID")
   
   time_single <- spec$data[[spec$time]] %>% head(1)
   
   spec_single <- adam_spec_bds(
     file_adlb,
     attach_data = TRUE,
-    filter      = c(paste0(spec$time, " == '", time_single, "'"))
+    filter      = c(paste0(spec$time, " == '", time_single, "'")),
+    id          = "SUBJID"
   )
   spec_multi  <- adam_spec_bds(
     file_adlb,
-    attach_data = TRUE
+    attach_data = TRUE,
+    id = "SUBJID"
   )
   
   bds_wide_single <- build_bds(spec_single)
@@ -150,7 +154,7 @@ test_that("build_bds - dict matches data set", {
 
 test_that("build_bds conversion to factor/numeric from AVALC", {
   file_adlb <- testthat::test_path("sas/adlb.sas7bdat")
-  spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE)
+  spec_adlb <- adam_spec_bds(file_adlb, attach_data = TRUE, id = "SUBJID")
   
   spec_adlb$data <- spec_adlb$data %>% 
     dplyr::mutate(AVALC = as.character(AVAL)) %>% 
