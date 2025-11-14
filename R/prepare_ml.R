@@ -221,9 +221,9 @@
 #' 
 #'## Data preparation and documentation
 #' 
-#'Within the recipe entry  
-#'\code{raw} contains the unprepared recipe object, 
-#'\code{prep} contains the prepared recipe object, 
+#'Within the `recipe` entry  
+#'\code{raw} contains the untrained recipe object (prior to `prep()`), 
+#'\code{prep} contains the fully trained recipe object, 
 #'\code{params} documents the parameters/thresholds used in the data 
 #'preparation, giving bare \code{value} slots, as well as a verbose description
 #' in \code{text}.

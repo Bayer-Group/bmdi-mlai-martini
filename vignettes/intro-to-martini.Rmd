@@ -57,7 +57,7 @@ In the setting of clinical studies, we assume that a set of analysis data sets (
 After specifying the folder location
 
 ```{r}
-path <- 'path/to/sasfiles'
+path <- "path/to/sasfiles"
 ```
 
 the command
@@ -72,11 +72,16 @@ will
 
 <!-- TODO add mail  -->
 
-* create a _preprocessing specification_ in the form of a list, where each entry describes the required information to extract relevant information from a particular data set and reshape the data into wide format. The structure of these entries depends on the type of data set (adsl/bds/occds).
+* create a _preprocessing specification_ in the form of a list,
+where each entry describes the required information to extract relevant 
+information from a particular data set and reshape the data into wide format. 
+The structure of these entries depends on the type of data set (adsl/bds/occds).
 * generate md5 checksums
 * check applicability of provided filters 
 
-In general, this automatically created specification may be used with the subsequent workflow, however, in practice, it will be modified by the user to match specific requirements.
+In general, this automatically created specification may be used with the 
+subsequent workflow, however, in practice, it will be modified by the user
+to match specific requirements.
 
 
 
@@ -84,7 +89,11 @@ In general, this automatically created specification may be used with the subseq
 
 **Filters**
 
-The `filter` argument takes a character vector of valid filter expressions. A filter will be applied to a particular data only if its application yields a non-empty tibble (i.e. no error thrown, at least one row is selected). Common filters may be based on visit or treatment information, as well as flags indicating analysis sets.
+The `filter` argument takes a character vector of valid filter expressions. 
+A filter will be applied to a particular data only if its application yields 
+a non-empty tibble (i.e. no error thrown, at least one row is selected). 
+Common filters may be based on visit or treatment information, 
+as well as flags indicating analysis sets.
 
 <!-- The `pre_study` argument allows to conveniently reduce e.g.  -->
 <!-- medical history records to data that is available at baseline -->
@@ -139,7 +148,7 @@ The variables to be selected from the `adsl` data set are stored in `ads_spec$ad
 ads_spec$adsl$select <- ads_spec$adsl$select %>% 
   
   # remove post baseline information
-  setdiff(c('DEATHFL')) %>% 
+  setdiff(c("DEATHFL")) %>% 
  
   # categoricals with a continuous version 
   str_subset("AGEGR|BMIGR|WEIGGR|RACEGR", negate = TRUE) 
@@ -155,8 +164,13 @@ If additional variables shall be included in the analysis that are not extracted
 
 **factor level order**
 
-In order to change factor level names and/or their order, update the `factor_levels` entry of the corresponding data set in the _spec_ object. The information is stored in a list, where the entries are named after the column containing the factor levels (i.e. TRT01A instead of TRT01AN).
-This is often used to specify the order of the treatment variable to control the order in the result presentation.
+In order to change factor level names and/or their order, 
+update the `factor_levels` entry of the corresponding data 
+set in the _spec_ object. The information is stored in a list,
+where the entries are named after the column containing the factor levels
+(i.e. TRT01A instead of TRT01AN).
+This is often used to specify the order of the treatment variable to
+control the order in the result presentation.
 
 <!-- TODO CHECK in the original data set (i.e. before renaming?) -->
 
@@ -171,7 +185,9 @@ ads_spec$adsl$factor_levels$TRT01A <- ads_spec$adsl$factor_levels$TRT01A %>% na.
 If any manual changes need to be made to the data sets themselves,
 the `attach_data` parameter of `ads_spec()` needs to be set to `TRUE`. 
 In this case, top level entry of `spec` will have a `data` slot where 
-the data set is stored and used by the `ads_build()` function. Just like the other slots, it may be adjusted by the user in an intermediate step as shown in the following.
+the data set is stored and used by the `ads_build()` function. 
+Just like the other slots, it may be adjusted by the user
+in an intermediate step as shown in the following.
 
 
 
@@ -186,13 +202,18 @@ var_unknown
 
 # recode "unknowns" as NA
 ads_spec$adsl$data <- ads_spec$adsl$data %>% 
-  mutate_at(var_unknown, ~if_else(str_to_lower(.x) %in% c("u", "unknown"), NA_character_, .x))
+  mutate_at(
+    var_unknown,
+    ~if_else(str_to_lower(.x) %in% c("u", "unknown"), NA_character_, .x)
+  )
 
 ```
 
 **add data**
 
-Adding data on a subject level is a special case of changing data: overwrite the data slot of the subject level spec (again, make sure to set `attach_data = TRUE`) by the extended data set.
+Adding data on a subject level is a special case of changing data: 
+overwrite the data slot of the subject level spec
+(again, make sure to set `attach_data = TRUE`) by the extended data set.
 
 ```{r}
 ads_spec$adsl$data <- left_join(
@@ -215,7 +236,11 @@ ads_spec$admh$label <- "MHBODSYS"
 
 ### ads_build()
 
-Based on a given `ads_spec` object (modified or generated fully automatically), the `ads_build()` function will _execute_ the extraction of the relevant information according to the ads_spec entries and combine everything into a wide data set with one row per _id_. This data set is the basis for the feature matrix used later on for machine learning.
+Based on a given `ads_spec` object (modified or generated fully automatically),
+the `ads_build()` function will _execute_ the extraction of the 
+relevant information according to the ads_spec entries and combine 
+everything into a wide data set with one row per _id_. This data set 
+is the basis for the feature matrix used later on for machine learning.
 
 ```{r}
 feature <- ads_build(spec)
@@ -224,9 +249,12 @@ feature <- ads_build(spec)
 
 #### Relevant helper functions
 
-Internally, `ads_build()` will call the appropriate `build_*()` function for each data type (adsl/bds/occds). 
+Internally, `ads_build()` will call the appropriate `build_*()` 
+function for each data type (adsl/bds/occds). 
 
-While `spec_bds()` and `spec_occds()` are rather similar in the sense that only few columns need to be extracted and reshaped, a lot more steps are required for the preparation of adsl.
+While `spec_bds()` and `spec_occds()` are rather similar in the 
+sense that only few columns need to be extracted and reshaped,
+a lot more steps are required for the preparation of adsl.
 
 <!-- link to build_ads() etc -->
 
@@ -248,7 +276,10 @@ While `spec_bds()` and `spec_occds()` are rather similar in the sense that only 
 
 ### prepare_ml()
 
-Once all potential features are available in a single data set, the `prepare_ml()` function will take care of the data preprocessing required for machine learning analysis based on the provided outcome data (see below for recommended preparation)
+Once all potential features are available in a single data set,
+the `prepare_ml()` function will take care of the data preprocessing 
+required for machine learning analysis based on the provided outcome
+data (see below for recommended preparation)
 
 ```{r}
 ml_data <- prepare_ml(
@@ -257,7 +288,9 @@ ml_data <- prepare_ml(
 )
 ```
 
-While each step is optional and parametrized to provide maximum flexibility to the user, default parameters were chosen carefully and may be considered appropriate for a large number of analyses.
+While each step is optional and parametrized to provide maximum 
+flexibility to the user, default parameters were chosen carefully
+and may be considered appropriate for a large number of analyses.
 
 The preprocessing includes the following steps
 
@@ -271,13 +304,19 @@ The preprocessing includes the following steps
 
 #### outcome preparation 
 
-It is recommended to prepare an _outcome_ data set containing information on each endpoint that might be of interest including tte endpoints for which one endpoint is described by two columns (time and censor). 
+It is recommended to prepare an _outcome_ data set containing information
+on each endpoint that might be of interest including tte endpoints for 
+which one endpoint is described by two columns (time and censor). 
 
 **tte**
 
-Time to event endpoints may be analyzed as-is or as a binary version (event yes/no). Since the analysis of survival endpoints is computationally much more expensive than for classification, the latter may be used for initial runs.
+Time to event endpoints may be analyzed as-is or as a binary version 
+(event yes/no). Since the analysis of survival endpoints is 
+computationally much more expensive than for classification, 
+the latter may be used for initial runs.
 
-Use the function `binarize_tte()` in order to derive binary endpoints from a tte outcome.
+Use the function `binarize_tte()` in order to derive binary
+endpoints from a tte outcome.
 
 
 

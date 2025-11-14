@@ -169,6 +169,7 @@ under observation) and the resulting outcome distribution
 
 
 **Note for use with Bayer internal pipeline**
+
 Please note that currently, only binary classification is 
 fully supported by the MARTINI pipeline.
 
@@ -1089,7 +1090,7 @@ For most applications, `prep_step_dummy` should be set to `FALSE`.
 
 **Pre-processing**
 
-As of martini version 0.6.5, the data preparation contains the following steps
+As of martini version 0.7.0, the data preparation contains the following steps
 
 
 * omit observations with missing endpoint
