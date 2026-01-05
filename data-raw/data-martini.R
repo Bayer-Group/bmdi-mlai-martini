@@ -220,5 +220,32 @@ ads_path %>%
           tools::file_path_sans_ext() %>% paste0(".rds")))
   })
 
+}
+
+if(FALSE){
+# 
+flights_rec <- 
+  recipe(arr_delay ~ ., data = train_data) %>% 
+  update_role(flight, time_hour, new_role = "ID") %>% 
+  step_date(date, features = c("dow", "month")) %>%               
+  step_holiday(date, 
+               holidays = timeDate::listHolidays("US"), 
+               keep_original_cols = FALSE) %>% 
+  step_dummy(all_nominal_predictors()) %>% 
+  step_zv(all_predictors())
+
+lr_mod <- 
+  logistic_reg() %>% 
+  set_engine("glm")
+
+flights_wflow <- 
+  workflow() %>% 
+  add_model(lr_mod) %>% 
+  add_recipe(flights_rec)
+
+flights_wflow
+
+
+
 
 }
