@@ -7,7 +7,7 @@
 adam_spec_adsl(
   file = NULL,
   data = NULL,
-  id = "SUBJID",
+  id = "USUBJID",
   trt = NULL,
   keep = NULL,
   drop = NULL,
@@ -23,7 +23,7 @@ adam_spec_adsl(
 \item{data}{tibble with the data in adsl format for which the specification
 is created}
 
-\item{id}{name of id (e.g. SUBJIDN, SUBJID) column to keep.
+\item{id}{name of id (e.g. USUBJID, SUBJIDN) column to keep.
 Highly redundant variables will not be included in the suggested set of columns returned in \code{select} (see Details).}
 
 \item{trt}{column to be used as the treatment variable. All other predefined treatment variables (see Details) are added

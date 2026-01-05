@@ -11,7 +11,7 @@ adam_spec(
   drop = NULL,
   pre_study = lifecycle::deprecated(),
   attach_data = TRUE,
-  id = "SUBJID",
+  id = "USUBJID",
   trt = "TRT01A",
   add_bds = NULL,
   add_occds = NULL,

@@ -48,7 +48,7 @@ No conversion of the time is done to \code{unit}.
 
 Column mapping defaults are chosen to match ADaM adtte data sets:
 \describe{
-\item{\code{id}}{\code{'SUBJID'}}
+\item{\code{id}}{\code{'USUBJID'}}
 \item{\code{time}}{\code{'AVAL'}}
 \item{\code{censor}}{\code{'CNSR'}}
 }

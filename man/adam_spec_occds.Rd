@@ -7,14 +7,12 @@
 adam_spec_occds(
   file = NULL,
   data = NULL,
-  id = "SUBJID",
+  id = "USUBJID",
   label = NULL,
   value = NULL,
   valuen = NULL,
   filter = NULL,
   count = TRUE,
-  time = NULL,
-  pre_study = FALSE,
   attach_data = FALSE
 )
 }
@@ -41,13 +39,6 @@ Individual filters will only be considered if the resulting data set has
 positive number of rows. Defaults to NULL.}
 
 \item{count}{boolean, defaults to FALSE.}
-
-\item{time}{name of the column that is used for time filtering (if required
-via \code{pre_study} argument). Defaults to NULL, will be guessed if not set
-(see Details).}
-
-\item{pre_study}{boolean. filter the data set to pre_study observations
-based on non-negative values in \code{time}, defaults to FALSE.}
 
 \item{attach_data}{boolean. attach the imported raw data in \code{data}
 slot of output object}
@@ -85,8 +76,6 @@ values for
 arguments \code{label} will be guessed if not provided.
 Please refer to \code{adam_guess()} for details on guessing procedure.
 Function will exit if \code{label} is neither provided nor can be guessed.
-If a pre-study filter is requested, the function will exit if \code{time}
-is neither provided nor can be guessed.
 Note that the original values in the \code{label} column will end up being
 the parameter labels,
 not the parameters in the ML feature matrix. These might be modified later
