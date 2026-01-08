@@ -4,7 +4,7 @@
 #'
 #' @param data raw data set to create recipe for
 #' @param custom_recipe if NULL, recipe will be created
-#' @param corr_method,corr_use defaulting to `corr_method` "pearson" and 
+#' @param corr_method,corr_use defaulting to `corr_method` "spearman" and 
 #' `corr_use` "pairwise.complete.obs"
 #' @param thres_list,step_list named list objects collecting all threshold values 
 #' and step selection info, resp. Please refer to the documentation of 
@@ -33,7 +33,7 @@ prepare_ml_recipe <- function(
   data, 
   
   custom_recipe = NULL,
-  corr_method = "pearson",
+  corr_method = "spearman",
   corr_use    = "pairwise.complete.obs",
   
   thres_list = NULL,
@@ -58,14 +58,14 @@ prepare_ml_recipe <- function(
   thres_default <- tibble::lst(
     
     # using recipe defaults where available
-    thres_lump       = get_default(step_other2,       'threshold'), 
-    thres_nzv_freq   = get_default(recipes::step_nzv, 'freq_cut'),
-    thres_nzv_unique = get_default(recipes::step_nzv, 'unique_cut'),
-    thres_corr       = get_default(step_corr_keep,    'threshold'),
+    thres_lump       = get_default(step_other2,       "threshold"), 
+    thres_nzv_freq   = get_default(recipes::step_nzv, "freq_cut"),
+    thres_nzv_unique = get_default(recipes::step_nzv, "unique_cut"),
+    thres_corr       = get_default(step_corr_keep,    "threshold"),
     
     # no recipes equivalent
-    thres_log   = get_default(prepare_ml, 'thres_log'),    
-    thres_imp   = get_default(prepare_ml, 'thres_imp')  
+    thres_log   = get_default(prepare_ml, "thres_log"),    
+    thres_imp   = get_default(prepare_ml, "thres_imp")  
     
   )
   
@@ -118,7 +118,7 @@ prepare_ml_recipe <- function(
       # 'outcome' and 'predictor'. 
       # Role 'ID' is not affected, even though it is not defined yet 
       # (but in the next step)
-      strings_as_factors = packageVersion("recipes") >= package_version("1.3.0")
+      strings_as_factors = utils::packageVersion("recipes") >= package_version("1.3.0")
       # <  1.3.0: recipe ----, step_mutate, prep FALSE
       # >= 1.3.0: recipe TRUE, ----       , prep FALSE (overwritten)
     ) %>% 
@@ -128,7 +128,7 @@ prepare_ml_recipe <- function(
         new_role = "ID"
       ) %>% 
       {
-       if (packageVersion("recipes") < package_version("1.3.0")) {
+       if (utils::packageVersion("recipes") < package_version("1.3.0")) {
          recipes::step_mutate_at(
            ., 
            recipes::all_string_predictors(), 

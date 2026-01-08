@@ -85,11 +85,14 @@
 #'(if applicable). Defaults to NULL.
 #'@param log_base base to use for log-transformation in 
 #'\code{recipes::step_log()}. Defaults to _exp(1)_.
+#'@param corr_method passed to stats::cor(), defaults to "spearman" to tailor 
+#'to use of random forests.
 #'@param outlier_remove,outlier_ctrl For outcome mode regression only, see 
 #'\code{\link{prepare_ml_outcome}()}
 #'for details on how outliers are removed from outcome variables.
 #'`outlier_remove` defaults to FALSE, `outlier_ctrl` to `list(coef = 3)`.
-#'@param custom_recipe `r lifecycle::badge("experimental")` custom, pre-defined \code{recipes::recipe()} that may be 
+#'@param custom_recipe `r lifecycle::badge("experimental")` custom, pre-defined 
+#'\code{recipes::recipe()} that may be 
 #'provided for data preparation. Defaults to NULL, yielding {{martini}}'s default
 #'preparation (please refer to the details section to learn about the 
 #'default recipe steps).
@@ -272,9 +275,10 @@ prepare_ml <- function(
   one_hot             = NULL,
   
   log_base            = exp(1),
+  corr_method         = "spearman",
   outlier_remove      = FALSE,
   outlier_ctrl        = list(coef = 3),
-    
+  
   custom_recipe  = NULL,
   
   quiet          = FALSE, 
@@ -467,10 +471,10 @@ prepare_ml <- function(
   
   rcp_output <- prepare_ml_recipe(
     
-    data         = d_train_raw,
+    data           = d_train_raw,
     custom_recipe  = custom_recipe,
     
-    corr_method = "pearson",
+    corr_method = corr_method,
     corr_use    = "pairwise.complete.obs",
     
     thres_list = tibble::lst(

@@ -18,7 +18,7 @@
 #' @param use A character string for the `use` argument to the [stats::cor()]
 #'   function.
 #' @param method A character string for the `method` argument to the
-#'   [stats::cor()] function.
+#'   [stats::cor()] function, defaults to `spearman`
 #' @param removals A character string that contains the names of columns that
 #'   should be removed. These values are not determined until [prep()] is
 #'   called.
@@ -121,7 +121,7 @@ step_corr_keep <- function(
   trained = FALSE,
   threshold = 0.9,
   use = "pairwise.complete.obs",
-  method = "pearson",
+  method = "spearman",
   keep = NULL,
   removals = NULL,
   high_corr = NULL,
@@ -186,7 +186,7 @@ corr_keep_filter <-
     wts = NULL,
     cutoff = .90,
     use = "pairwise.complete.obs",
-    method = "pearson",
+    method = "spearman",
     keep = NULL
   ) {
     x <- recipes::correlations(x, wts = wts, use = use, method = method)
@@ -329,7 +329,11 @@ prep.step_corr_keep <- function(x, recipe, training, info = NULL, ...) {
 
 #' @exportS3Method 
 bake.step_corr_keep <- function(object, new_data, ...) {
-  already_in_recipes <- exists('recipes_remove_cols', where = asNamespace('recipes'), mode = 'function')
+  already_in_recipes <- exists(
+    "recipes_remove_cols",
+    where = asNamespace("recipes"), 
+    mode = "function"
+  )
   new_data <- if(already_in_recipes){
     recipes::recipes_remove_cols(new_data, object)
   }else{ # fallback: copy in martini
