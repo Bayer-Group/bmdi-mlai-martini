@@ -1,4 +1,4 @@
-test_that("prepare_ml_recipe() works", {
+test_that("prepare_ml_recipe() returns list", {
   
   martini_feat_char <- martini_feat %>% 
     dplyr::mutate(.id = stringr::str_pad(.id, width = 5, pad = "0")) %>% 
@@ -21,7 +21,7 @@ test_that("prepare_ml_recipe() works", {
     # `strings_as_factors` only affects variables with role 'outcome' and 
     # 'predictor'. Role 'ID' is not affected, even though it is not defined yet 
     # (but in the next step)
-    strings_as_factors = packageVersion("recipes") >= package_version("1.3.0")
+    strings_as_factors = utils::packageVersion("recipes") >= package_version("1.3.0")
   ) %>% 
     recipes::update_role(
       tidyselect::any_of(c(".id", ".rmtime")), 
@@ -74,7 +74,7 @@ test_that("prepare_ml_recipe() works", {
     "list"
   )
 
-  
-
-  
 })
+
+
+
