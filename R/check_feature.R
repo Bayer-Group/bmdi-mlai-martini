@@ -5,11 +5,12 @@
 #' 
 #'
 #' @param x feature matrix to check, such as the output of [build()].
-#' @param check_low_freq,check_other,check_missing,check_count 
+#' @param check_low_freq,check_other,check_missing,check_count,check_nzv 
 #' logicals to control which checks to include. All default to TRUE.
 #' @param quiet logical controlling whether any informative messages are 
 #' printed to the console. Defaults to FALSE.
-#' @param thres_count [check_count()]
+#' @param thres_count passed to  [check_count()]
+#' @param thres_nzv_freq,thres_nzv_unique passed to [check_nzv()]
 #' @param thres_low_freq passed to [check_freq()]
 #' @param thres_missing passed to [check_non_missing()]
 #' @param ... arguments to be passed to other methods
@@ -399,6 +400,8 @@ check_count <- function(
 #' @inherit check_freq return
 #' 
 #' @export
+#' @importFrom rlang .data
+
 check_nzv <- function(
     x,
     thres_freq   = NULL,
