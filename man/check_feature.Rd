@@ -23,16 +23,18 @@ check_feature(
 \arguments{
 \item{x}{feature matrix to check, such as the output of \code{\link[=build]{build()}}.}
 
-\item{check_low_freq, check_other, check_missing, check_count}{logicals to control which checks to include. All default to TRUE.}
+\item{check_low_freq, check_other, check_missing, check_count, check_nzv}{logicals to control which checks to include. All default to TRUE.}
 
 \item{quiet}{logical controlling whether any informative messages are
 printed to the console. Defaults to FALSE.}
 
-\item{thres_count}{\code{\link[=check_count]{check_count()}}}
+\item{thres_count}{passed to  \code{\link[=check_count]{check_count()}}}
 
 \item{thres_low_freq}{passed to \code{\link[=check_freq]{check_freq()}}}
 
 \item{thres_missing}{passed to \code{\link[=check_non_missing]{check_non_missing()}}}
+
+\item{thres_nzv_freq, thres_nzv_unique}{passed to \code{\link[=check_nzv]{check_nzv()}}}
 
 \item{...}{arguments to be passed to other methods}
 }

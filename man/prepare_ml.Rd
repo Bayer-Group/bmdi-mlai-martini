@@ -29,6 +29,7 @@ prepare_ml(
   vars_no_trafo = NULL,
   one_hot = NULL,
   log_base = exp(1),
+  corr_method = "spearman",
   outlier_remove = FALSE,
   outlier_ctrl = list(coef = 3),
   custom_recipe = NULL,
@@ -123,12 +124,16 @@ hot encoding over dummy encoding}
 \item{log_base}{base to use for log-transformation in
 \code{recipes::step_log()}. Defaults to \emph{exp(1)}.}
 
+\item{corr_method}{passed to stats::cor(), defaults to "spearman" to tailor
+to use of random forests.}
+
 \item{outlier_remove, outlier_ctrl}{For outcome mode regression only, see
 \code{\link{prepare_ml_outcome}()}
 for details on how outliers are removed from outcome variables.
 \code{outlier_remove} defaults to FALSE, \code{outlier_ctrl} to \code{list(coef = 3)}.}
 
-\item{custom_recipe}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} custom, pre-defined \code{recipes::recipe()} that may be
+\item{custom_recipe}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} custom, pre-defined
+\code{recipes::recipe()} that may be
 provided for data preparation. Defaults to NULL, yielding {{martini}}'s default
 preparation (please refer to the details section to learn about the
 default recipe steps).}

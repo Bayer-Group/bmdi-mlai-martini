@@ -7,7 +7,7 @@
 prepare_ml_recipe(
   data,
   custom_recipe = NULL,
-  corr_method = "pearson",
+  corr_method = "spearman",
   corr_use = "pairwise.complete.obs",
   thres_list = NULL,
   step_list = NULL,
@@ -24,7 +24,7 @@ prepare_ml_recipe(
 
 \item{custom_recipe}{if NULL, recipe will be created}
 
-\item{corr_method, corr_use}{defaulting to \code{corr_method} "pearson" and
+\item{corr_method, corr_use}{defaulting to \code{corr_method} "spearman" and
 \code{corr_use} "pairwise.complete.obs"}
 
 \item{thres_list, step_list}{named list objects collecting all threshold values

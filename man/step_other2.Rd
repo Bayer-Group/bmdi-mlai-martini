@@ -70,7 +70,8 @@ The overall proportion (or total counts) of the categories are computed. The
 proportion (or frequency) in the training set is less than \code{threshold}.
 
 If no pooling is done the data are unmodified (although character data may be
-changed to factors based on the value of \code{strings_as_factors} in \code{\link[=prep()/recipe]{prep()/recipe()}}).
+changed to factors based on the value of \code{strings_as_factors} in
+\code{\link[recipes:prep]{recipes::prep()}}/\code{\link[recipes:recipe]{recipes::recipe()}}).
 Otherwise, a factor is always returned with different factor levels.
 
 If \code{threshold} is less than the largest category proportion, all levels
