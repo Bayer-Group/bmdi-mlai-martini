@@ -124,7 +124,7 @@ hot encoding over dummy encoding}
 \item{log_base}{base to use for log-transformation in
 \code{recipes::step_log()}. Defaults to \emph{exp(1)}.}
 
-\item{corr_method}{passed to stats::cor(), defaults to "spearman" to tailor
+\item{corr_method}{passed to stats::cor(), defaults to \code{"spearman"} to tailor
 to use of random forests.}
 
 \item{outlier_remove, outlier_ctrl}{For outcome mode regression only, see
