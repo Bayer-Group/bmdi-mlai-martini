@@ -14,7 +14,7 @@ test_that("step_corr_keep() works", {
     X <- MASS::mvrnorm(n = 100, mu = rep(0, p), Sigma = corrm) %>% 
       tibble::as_tibble(.name_repair = ~paste0("V", 1:p))
     
-    corrX <- list(pearson = cor(X), spearman = cor(X, method = 'spearman'));
+    corrX <- list(pearson = cor(X), spearman = cor(X, method = "spearman"));
     cor_V1V2 <- purrr::map_dbl(corrX, ~.x[1, 2])
     
   })

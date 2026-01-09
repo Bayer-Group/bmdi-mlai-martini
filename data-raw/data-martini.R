@@ -184,7 +184,7 @@ purrr::walk(c(
     cur_pkg_data(.x) %>% waldo_ignore(),
     get(.x) %>% waldo_ignore(),
     ignore_formula_env = TRUE,
-    max_diffs = Inf,
+    max_diffs = Inf
   ) %>% print()
 })
 
@@ -244,8 +244,6 @@ flights_wflow <-
   add_recipe(flights_rec)
 
 flights_wflow
-
-
 
 
 }
