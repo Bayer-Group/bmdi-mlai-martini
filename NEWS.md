@@ -7,6 +7,9 @@
 * `build(join = )` default changed from `dplyr::inner_join()` to
 `dplyr::full_join()`, which is equivalent to "adsl" (if included) according
 to CDISC standards
+* default for correlation method for  `prepare_ml()`s `prep_step_corr` is now
+`spearman` instead of `pearson` in consistency with our major use case with random forests.
+Can be controlled via `prepare_ml(corr_method)`.
 
 
 * the prepare_ml() output object structure has changed
