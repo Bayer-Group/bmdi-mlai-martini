@@ -322,12 +322,12 @@ test_that("repeated measurement implementation works", {
   #'repeated measurement implementation works'  ####
   
   ads_build <- martini_spec %>% 
-    adjust_spec(entry = "adlb", filter = "") %>% 
+    adjust_filter(filter = NULL) %>% # = "") %>% 
     build(rm = TRUE)
   
   outcome_regr <- martini_spec$adlb$data %>% 
     dplyr::filter(PARAMCD == "HDL") %>% 
-    dplyr::rename(tidyselect::all_of(c(".id" = "SUBJID"))) %>% 
+    dplyr::rename(tidyselect::all_of(c(".id" = "USUBJID"))) %>% 
     dplyr::mutate(AVISIT = forcats::fct_reorder(AVISIT, AVISITN))
   
   ml_regr <- prepare_ml(
@@ -398,7 +398,7 @@ test_that("prepare_ml(check_feature) works", {
 
 test_that("prepare_ml(corr_method) works", {  
   
-  # derive correlations of HB and HCT at time of correlation filter for spearman and pearson
+  # derive correlations of HB and HCT at time of correlation filter for "spearman" and "pearson"
   cors <- purrr::map(
     c("pearson", "spearman") %>% purrr::set_names(),
     ~prepare_ml(
@@ -488,7 +488,8 @@ test_that("prepare_ml() snapshots content/print", {
       attach_data = TRUE, 
       id = "SUBJID"
     ) %>% 
-    build(join = "adsl")
+    build(join = "adsl") %>% 
+    dplyr::mutate(.id = paste0("17501", .id) %>% as.numeric())
   
   # classification ####
   
