@@ -2,11 +2,17 @@
 
     Code
       adjust_adsl_select(spec = martini_spec, select = c("SUBJID", "TRT01A", "SEX"))
+    Condition
+      Warning:
+      The identifier column contained in the subject level data set must be selected.
+      ! According to the specified modifications, the identifier column USUBJID is not part of the selected columns.
+      i The column USUBJID will be added to the selection.
+      * If the use of an alternative `id` column was intended, please re-run `adam_spec()` with the `id` argument.
     Output
       
         Content
         name type   size nsubj ncol
-        adsl adsl   128K   289    3
+        adsl adsl   128K   289    4
         adlb bds   1.31M   289   11
         advs bds    448K   289    5
         admh occds  192K   282    5
@@ -17,8 +23,8 @@
         advs PARAMCD AVAL  AVALU AVISIT
       
         Key columns used in occds-type data sets
-        name label   value valuen count time  
-        admh MHDECOD NA    NA     FALSE MHSTDY
+        name label   value valuen count
+        admh MHDECOD NA    NA     FALSE
       
         Filter information 
     Message
@@ -48,8 +54,8 @@
         advs PARAMCD AVAL  AVALU AVISIT
       
         Key columns used in occds-type data sets
-        name label   value valuen count time  
-        admh MHDECOD NA    NA     FALSE MHSTDY
+        name label   value valuen count
+        admh MHDECOD NA    NA     FALSE
       
         Filter information 
     Message
@@ -79,8 +85,8 @@
         advs PARAMCD AVAL  AVALU AVISIT
       
         Key columns used in occds-type data sets
-        name label   value valuen count time  
-        admh MHDECOD NA    NA     FALSE MHSTDY
+        name label   value valuen count
+        admh MHDECOD NA    NA     FALSE
       
         Filter information 
     Message

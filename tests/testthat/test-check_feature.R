@@ -135,7 +135,7 @@ test_that("check_non_missing() works", {
   n <- 10
   p <- get_default(prepare_ml, "thres_imp")
   df <- tibble::tibble(
-    all_miss = rep(NA, 10), 
+    all_miss = rep(NA, n), 
     only_one_kept = c(NA, 1:(n-1)),
     threshold = c(NA, NA, 1:(n*p)) 
   )
@@ -164,7 +164,7 @@ test_that("check_non_missing() works", {
     df["only_one_kept"]
   )
   
-  # check_non_missing selects same columns as recipe step
+  # verify that check_non_missing selects same columns as recipe step
   expect_setequal(
     res_check$vars,
     tidy(rcp_prepped, 1)$terms
@@ -208,4 +208,48 @@ test_that("check_count() works", {
     )$vars,
     c("guess_fct", "guess_count", "ints_with_neg")
   )
+})
+
+test_that("check_nzv() works", {
+  
+  n <- 1000
+  thres_freq   <- get_default(prepare_ml, "thres_nzv_freq")
+  thres_unique <- get_default(prepare_ml, "thres_nzv_unique")
+  
+  df <- tibble::tibble(
+    var_const = rep(1, n), 
+    var_nzv = c(1, rep(2, n-1)), 
+    keep = 1:n
+  )
+  
+  expect_message(
+    res_check <- check_nzv(
+      df,
+      thres_freq = thres_freq,
+      thres_unique = thres_unique,
+      quiet = FALSE
+    ),
+    "var_const and var_nzv"
+  )
+  
+  removed <- recipes::recipe(df) %>% 
+    recipes::update_role(
+      tidyselect::everything(), 
+      new_role = 'predictor'
+    ) %>% 
+    recipes::step_nzv(recipes::all_predictors(),
+      freq_cut = thres_freq,
+      unique_cut = thres_unique
+    ) %>% 
+    recipes::prep() %>% 
+    recipes::tidy(number = 1) %>% 
+    dplyr::pull(terms)
+  
+  
+  # for reference: step_nzv() works as expected
+  expect_equal(
+    removed,
+    c("var_const", "var_nzv")
+  )
+  
 })

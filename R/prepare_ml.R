@@ -63,10 +63,6 @@
 #'@param thres_nzv_freq,thres_nzv_unique parameters passed to
 #'\code{recipes::step_nzv()} with defaults 
 #'\code{thres_nzv_freq = 95/5)} and \code{thres_nzv_unique = 10} 
-#'@param thres_count `r lifecycle::badge("deprecated")` integer variables with 
-#'no more than `thres_count` distinct values are considered as count variables 
-#'and are excluded from the log-transformation and normalization.
-#' Defaults to 10.
 #'@param thres_lump threshold used in \code{step_other2()}. 
 #'If at least two classes of a factor have low frequencies/proportions, they 
 #'will be lumped into a class
@@ -84,18 +80,19 @@
 #'@param vars_keep_corr choose these variables over other options when removing
 #'variables due to high correlation in \code{recipes::step_corr()}. 
 #'See \code{recipes::step_rm()} below for details. 
-#'@param vars_ordinalscore column names of ordinal factor variables to be 
-#'converted into numeric scores (using `as.numeric()`). Defaults to NULL.
 #'@param vars_no_trafo character vector defining variables that should be
 #'excluded from transformation steps such as log transformation and/or normalization
 #'(if applicable). Defaults to NULL.
 #'@param log_base base to use for log-transformation in 
 #'\code{recipes::step_log()}. Defaults to _exp(1)_.
+#'@param corr_method passed to stats::cor(), defaults to `"spearman"` to tailor 
+#'to use of random forests.
 #'@param outlier_remove,outlier_ctrl For outcome mode regression only, see 
 #'\code{\link{prepare_ml_outcome}()}
 #'for details on how outliers are removed from outcome variables.
 #'`outlier_remove` defaults to FALSE, `outlier_ctrl` to `list(coef = 3)`.
-#'@param custom_recipe `r lifecycle::badge("experimental")` custom, pre-defined \code{recipes::recipe()} that may be 
+#'@param custom_recipe `r lifecycle::badge("experimental")` custom, pre-defined 
+#'\code{recipes::recipe()} that may be 
 #'provided for data preparation. Defaults to NULL, yielding {{martini}}'s default
 #'preparation (please refer to the details section to learn about the 
 #'default recipe steps).
@@ -105,7 +102,19 @@
 #'input of `feature` to identify sources for potential downstream issues
 #'such as low frequency classes in a character/factor column. 
 #'defaults to TRUE.
-#'
+#'@param vars_ordinalscore column names of ordinal factor variables to be 
+#'converted into numeric scores (using `as.numeric()`). Defaults to NULL. 
+#'`r lifecycle::badge("deprecated")`.
+#' Please handle factors individually prior to calling `prepare_ml()`.
+#'@param thres_count `r lifecycle::badge("deprecated")` non-negative
+#' integer variables with 
+#'no more than `thres_count` distinct values are considered as count variables 
+#'and are excluded from the log-transformation and normalization. Please use 
+#'`check_count()` on the feature input to identify variables that resemble 
+#'counts and handle appropriately prior to calling `prepare_ml()`.
+# Defaults to 10.
+
+
 #'@details 
 #'
 #'The following order of recipe steps for data preparation will be applied
@@ -167,7 +176,7 @@
 #'numeric and `.status` is binary with 0 coding for censored, and 1 coding
 #'for event. Currently, only right-censoring is supported. 
 #' 
-#'For repeated measurements, specify `outcome_name` as 
+#'For repeated measurements (experimental), specify `outcome_name` as 
 #'`c('.rmtime' =  "<timepoint-coln>", '.out' = "<endpoint-coln>")`. 
 #'The outcome mode will be guessed as regression or classification according 
 #'to the type of the column specified in `.out`. 
@@ -215,9 +224,9 @@
 #' 
 #'## Data preparation and documentation
 #' 
-#'Within the recipe entry  
-#'\code{raw} contains the unprepared recipe object, 
-#'\code{prep} contains the prepared recipe object, 
+#'Within the `recipe` entry  
+#'\code{raw} contains the untrained recipe object (prior to `prep()`), 
+#'\code{prep} contains the fully trained recipe object, 
 #'\code{params} documents the parameters/thresholds used in the data 
 #'preparation, giving bare \code{value} slots, as well as a verbose description
 #' in \code{text}.
@@ -252,7 +261,6 @@ prepare_ml <- function(
   prep_step_dummy     = FALSE,
   
   thres_log           = 2,
-  thres_count         = 10,
   thres_corr          = 0.9,
   thres_lump          = 0.05,
   thres_imp           = 0.8,
@@ -261,26 +269,28 @@ prepare_ml <- function(
   
   vars_imp_ignore     = c(".trt"),
   vars_fct_expl_na    = NULL,
-  vars_ordinalscore   = NULL,
   vars_keep_corr      = NULL,
   vars_no_trafo       = NULL,
   
   one_hot             = NULL,
   
   log_base            = exp(1),
+  corr_method         = "spearman",
   outlier_remove      = FALSE,
   outlier_ctrl        = list(coef = 3),
-    
+  
   custom_recipe  = NULL,
-  prep_recipe    = NULL,
   
   quiet          = FALSE, 
-  check_feature  = TRUE
-    
+  check_feature  = TRUE,
+  
+  prep_recipe       = lifecycle::deprecated(),
+  vars_ordinalscore = lifecycle::deprecated(),
+  thres_count       = lifecycle::deprecated()
 ) {
   
   # deprecated
-  if(!missing(thres_count)){
+  if(lifecycle::is_present(thres_count)){
     lifecycle::deprecate_warn(
       when = "0.7.0",
       what = "prepare_ml(thres_count)", 
@@ -288,11 +298,21 @@ prepare_ml <- function(
     )
   }
   
-  if(!missing(thres_count)){
+  if(lifecycle::is_present(prep_recipe)){
     lifecycle::deprecate_warn(
       when = "0.7.0",
       what = "prepare_ml(prep_recipe)", 
-      details = "Please use argument `custom_recipe` instead."
+      details = "Please use argument `custom_recipe` instead (experimental)."
+    )
+  }
+  
+  if(lifecycle::is_present(vars_ordinalscore)){
+    lifecycle::deprecate_warn(
+      when = "0.7.0",
+      what = "prepare_ml(vars_ordinalscore = )", 
+      details = paste0(
+        "Please handle factors individually prior to calling `prepare_ml()`."
+      )
     )
   }
   
@@ -450,15 +470,14 @@ prepare_ml <- function(
   
   rcp_output <- prepare_ml_recipe(
     
-    data         = d_train_raw,
+    data           = d_train_raw,
     custom_recipe  = custom_recipe,
     
-    corr_method = "pearson",
+    corr_method = corr_method,
     corr_use    = "pairwise.complete.obs",
     
     thres_list = tibble::lst(
       thres_log,
-      thres_count,
       thres_corr,
       thres_lump,
       thres_imp,
@@ -476,7 +495,6 @@ prepare_ml <- function(
     
     vars_imp_ignore     = vars_imp_ignore,
     vars_fct_expl_na    = vars_fct_expl_na,
-    vars_ordinalscore   = vars_ordinalscore,
     vars_keep_corr      = vars_keep_corr,
     vars_no_trafo       = vars_no_trafo,
     

@@ -8,21 +8,21 @@ test_that("adam_spec_adsl works", {
     filter      = filter
   )
   
-  expect_type(spec, 'list')
+  expect_type(spec, "list")
   
 })
 
 test_that("adsl_identify works", {
   
-  adsl_data <- haven::read_sas(file.path(test_path('sas', 'adsl.sas7bdat')))
+  adsl_data <- haven::read_sas(file.path(test_path("sas", "adsl.sas7bdat")))
   adsl_data <- adsl_data %>% labelled::remove_var_label()
   type_sel      <- c(
     # adsl only
-    'dttm',
+    "dttm",
     # using dict
-    'combined', 
+    "combined", 
     # using flag results
-    'factor'
+    "factor"
   )
   
   test <- adsl_identify(adsl_data, type = type_sel)

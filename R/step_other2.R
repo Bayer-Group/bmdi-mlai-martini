@@ -48,7 +48,8 @@
 #' proportion (or frequency) in the training set is less than `threshold`.
 #'
 #' If no pooling is done the data are unmodified (although character data may be
-#' changed to factors based on the value of `strings_as_factors` in [prep()]).
+#' changed to factors based on the value of `strings_as_factors` in 
+#' [recipes::prep()]/[recipes::recipe()]).
 #' Otherwise, a factor is always returned with different factor levels.
 #'
 #' If `threshold` is less than the largest category proportion, all levels
@@ -161,13 +162,13 @@ prep.step_other2 <- function(x, training, info = NULL, ...) {
   if (x$threshold >= 1) {
     # check_number_whole(x$threshold, arg = "threshold", min = 1)
     do.call(
-      utils::getFromNamespace("check_number_whole", "recipes"),
+      utils::getFromNamespace("check_number_whole", "rlang"),
       list(x = x$threshold, arg = "threshold", min = 1)
     )
   } else {
     #check_number_decimal(x$threshold, arg = "threshold", min = 0)
     do.call(
-      utils::getFromNamespace("check_number_decimal", "recipes"),
+      utils::getFromNamespace("check_number_decimal", "rlang"),
       list(x = x$threshold, arg = "threshold", min = 0)
     )
   }

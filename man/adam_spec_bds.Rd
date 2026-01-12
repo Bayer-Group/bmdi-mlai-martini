@@ -7,7 +7,7 @@
 adam_spec_bds(
   file = NULL,
   data = NULL,
-  id = "SUBJID",
+  id = "USUBJID",
   param = NULL,
   label = NULL,
   unit = NULL,

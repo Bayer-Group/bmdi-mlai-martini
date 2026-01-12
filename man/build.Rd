@@ -4,7 +4,7 @@
 \alias{build}
 \title{Build the feature matrix from various sources according to a specification object}
 \usage{
-build(spec, join = dplyr::inner_join, rm = FALSE)
+build(spec, join = dplyr::full_join, rm = FALSE)
 }
 \arguments{
 \item{spec}{a specification object as provided by \code{\link{adam_spec}()}
@@ -13,15 +13,19 @@ build(spec, join = dplyr::inner_join, rm = FALSE)
 \item{join}{either function to join data sets (e.g. \code{dplyr::full_join()}
 or a character (vector) giving the names
 of the data sets containing the .ids to keep
-(e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}}
+(e.g. \code{join = c('adxb', 'adlb')}).
+Defaults to \code{dplyr::full_join},
+which is equivalent to 'adsl' (if included) according to CDISC standards.}
 
 \item{rm}{boolean. defaults to FALSE. if TRUE, a repeated measurement feature
 matrix with an additional \code{.rmtime} column
-is prepared. (experimental.)}
+is prepared. \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
 }
 \value{
-\code{build()} returns a wide data set with one row per subject and standardized column names for the subject id (\code{.id})
-and the treatment variable (\code{.trt}), if it is provided in the \code{spec} object. Objects with additional information on
+\code{build()} returns a wide data set with one row per subject and
+standardized column names for the subject id (\code{.id})
+and the treatment variable (\code{.trt}), if it is provided in the
+\code{spec} object. Objects with additional information on
 the data are provided in the attributes of the returned object.
 
 \item{\code{dict}}{

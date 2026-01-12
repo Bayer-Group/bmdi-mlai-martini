@@ -7,13 +7,12 @@
 prepare_ml_recipe(
   data,
   custom_recipe = NULL,
-  corr_method = "pearson",
+  corr_method = "spearman",
   corr_use = "pairwise.complete.obs",
   thres_list = NULL,
   step_list = NULL,
   vars_imp_ignore = c(".trt"),
   vars_fct_expl_na = NULL,
-  vars_ordinalscore = NULL,
   vars_keep_corr = NULL,
   vars_no_trafo = NULL,
   one_hot,
@@ -25,11 +24,11 @@ prepare_ml_recipe(
 
 \item{custom_recipe}{if NULL, recipe will be created}
 
-\item{corr_method, corr_use}{defaulting to \code{corr_method} "pearson" and
-\code{corr_use} "pairwise.complete.obs"}
+\item{corr_method, corr_use}{defaulting to \code{corr_method} \code{"spearman"} and
+\code{corr_use} \code{"pairwise.complete.obs"}}
 
 \item{thres_list, step_list}{named list objects collecting all threshold values
-and step selection info, resp. please refer to the documentation of
+and step selection info, resp. Please refer to the documentation of
 the \verb{thres_*} and \verb{prep_step_*} arguments
 in \code{\link{prepare_ml}()} for detailed documentation and list entry names.}
 
@@ -40,9 +39,6 @@ variables will be removed. Removal is documented in \code{removed$rows}.}
 
 \item{vars_fct_expl_na}{column names of factors for which NAs should be
 treated as an explicit factor level. Defaults to NULL.}
-
-\item{vars_ordinalscore}{column names of ordinal factor variables to be
-converted into numeric scores (using \code{as.numeric()}). Defaults to NULL.}
 
 \item{vars_keep_corr}{choose these variables over other options when removing
 variables due to high correlation in \code{recipes::step_corr()}.

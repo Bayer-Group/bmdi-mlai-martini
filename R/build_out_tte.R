@@ -17,7 +17,7 @@
 #'
 #' Column mapping defaults are chosen to match ADaM adtte data sets: 
 #' \describe{
-#'   \item{`id`}{`'SUBJID'`}
+#'   \item{`id`}{`'USUBJID'`}
 #'   \item{`time`}{`'AVAL'`}
 #'   \item{`censor`}{`'CNSR'`}
 #' }
@@ -53,7 +53,7 @@ build_out_tte <- function(
 ){
  
   columns_used <- list(
-    id     = 'SUBJID',
+    id     = 'USUBJID',
     time   = 'AVAL',
     censor = 'CNSR',
     status = NULL

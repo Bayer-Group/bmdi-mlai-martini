@@ -47,8 +47,7 @@ adam_guess <- function(
       label = c(
         "BDG01", "SCL01C", "CL01C", "DRUGRP1",
         "HLGT", "HLT", "BODSYS", "SOC", "DECOD", "CAT"
-      ),
-      time = c("STDY")
+      )
     ) %>% 
       purrr::map(~{paste0(.x, "$") %>% paste(collapse = "|")})
     

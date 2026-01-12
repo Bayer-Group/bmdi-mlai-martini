@@ -11,7 +11,7 @@ step_corr_keep(
   trained = FALSE,
   threshold = 0.9,
   use = "pairwise.complete.obs",
-  method = "pearson",
+  method = "spearman",
   keep = NULL,
   removals = NULL,
   high_corr = NULL,
@@ -39,7 +39,7 @@ resulting absolute correlations are less than this value.}
 function.}
 
 \item{method}{A character string for the \code{method} argument to the
-\code{\link[stats:cor]{stats::cor()}} function.}
+\code{\link[stats:cor]{stats::cor()}} function, defaults to \code{spearman}}
 
 \item{keep}{A character vector, containing variables that should be kept.
 These will be prioritized when selecting a representative from a

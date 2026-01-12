@@ -14,6 +14,9 @@ test_that("step_corr_keep() works", {
     X <- MASS::mvrnorm(n = 100, mu = rep(0, p), Sigma = corrm) %>% 
       tibble::as_tibble(.name_repair = ~paste0("V", 1:p))
     
+    corrX <- list(pearson = cor(X), spearman = cor(X, method = "spearman"));
+    cor_V1V2 <- purrr::map_dbl(corrX, ~.x[1, 2])
+    
   })
   
   rec_base <- recipes::recipe(~., data = X) 
@@ -64,5 +67,39 @@ test_that("step_corr_keep() works", {
   expect_equal(rec_keep2_prep$steps[[1]]$removals, "V2")
   
   expect_s3_class(rec_keep2_prep$steps[[1]]$high_corr, "tbl_df")
+  
+  # test that method argument works, should default to spearman
+  # threshold set between cor spearman < pearson
+  # -> one method should discard one variable, one should keep all
+  vars_kept <- c("pearson", "spearman") %>% 
+    purrr::set_names() %>% 
+    purrr::map(
+      ~ rec_base %>% 
+        step_corr_keep(
+          recipes::all_numeric_predictors(),
+          threshold = mean(cor_V1V2),
+          method = .x,
+          keep = c("V2")
+        ) %>% 
+        recipes::prep() %>%
+        bake(new_data = NULL) %>% 
+        names()
+    )
+  
+  # for the larger correlation, variable is removed
+  expect_lt(
+    vars_kept[[cor_V1V2 %>% which.max() %>% names()]] %>% length(),
+    vars_kept[[cor_V1V2 %>% which.min() %>% names()]] %>% length()
+  )
+  
+  #... more specifically, V2 is retained, V1 subject to removal
+  expect_equal(
+    sum(c(
+      "V1" %in% vars_kept[[cor_V1V2 %>% which.max() %>% names()]],
+      "V1" %in% vars_kept[[cor_V1V2 %>% which.min() %>% names()]]
+    )),
+    1
+  )
+  
   
 })

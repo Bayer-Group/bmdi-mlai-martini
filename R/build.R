@@ -12,15 +12,19 @@
 #' @param join either function to join data sets (e.g. \code{dplyr::full_join()}
 #'  or a character (vector) giving the names
 #' of the data sets containing the .ids to keep
-#'  (e.g. \code{join = c('adxb', 'adlb')}). defaults to \code{dplyr::inner_join}
+#'  (e.g. \code{join = c('adxb', 'adlb')}). 
+#'  Defaults to \code{dplyr::full_join}, 
+#'  which is equivalent to 'adsl' (if included) according to CDISC standards.
 #' @param rm boolean. defaults to FALSE. if TRUE, a repeated measurement feature
 #'  matrix with an additional `.rmtime` column 
-#' is prepared. (experimental.)
+#' is prepared. `r lifecycle::badge("experimental")`
 #'
 #' @return
 #' 
-#' \code{build()} returns a wide data set with one row per subject and standardized column names for the subject id (`.id`)
-#' and the treatment variable (`.trt`), if it is provided in the \code{spec} object. Objects with additional information on
+#' \code{build()} returns a wide data set with one row per subject and 
+#' standardized column names for the subject id (`.id`)
+#' and the treatment variable (`.trt`), if it is provided in the 
+#' \code{spec} object. Objects with additional information on
 #' the data are provided in the attributes of the returned object.
 #' 
 #' \item{`dict`}{
@@ -60,7 +64,7 @@
 
 build <- function(
   spec, 
-  join = dplyr::inner_join,
+  join = dplyr::full_join,
   rm   = FALSE
 ){
   

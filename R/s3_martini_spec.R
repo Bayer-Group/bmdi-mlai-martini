@@ -82,7 +82,7 @@ print.martini_spec <- function(x, ...){
   
   if (any(purrr::map_chr(x, "type") == "occds")) {
     
-    occds_keys  <- c("label", "value", "valuen", "count", "time")
+    occds_keys  <- c("label", "value", "valuen", "count") 
     
     txt_occds <- c("name", occds_keys) %>% 
       rlang::set_names() %>% 

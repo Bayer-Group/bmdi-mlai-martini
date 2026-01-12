@@ -29,10 +29,11 @@ knitr::opts_chunk$set(
 
 **Package**
 
-The `martini` package is part of a pipeline for machine learning and artificial 
-intelligence, that aims to assess the relation of information stored in
-clinical study data with a given outcome while meeting the validation and 
-documentation standards for software that is used in clinical trials.  
+The `martini` package was developed as part of a pipeline for machine learning 
+and artificial intelligence, that aims to assess the relation of information 
+stored in clinical study data with a given outcome while meeting 
+the validation and documentation standards for software 
+that is used in clinical trials.  
 
 `martini` provides a convenient framework to gather information 
 from different clinical data sets and to combine them into a 
@@ -64,18 +65,23 @@ please refer to the individual help pages for full details.
 
 **Vignette**
 
-This vignette serves as a hands-on tutorial on the usage of the `martini` package. 
-It clearly outlines the required steps to get from an ads folder to a 
-machine learning data set, listing a number of commonly required adaptations along the way. 
+This vignette serves as a hands-on tutorial on the usage 
+of the `martini` package. 
+It clearly outlines the required steps to get from an ads folder (containing
+analysis data sets in ADaM format) to a 
+machine learning data set, listing a number of 
+commonly required adaptations along the way. 
 <!-- gives valuable advice -->
 
-The package comes with a number of example data sets, ranging from raw sas data sets to be read in, 
-to data objects representing intermediate steps (e.g. `martini_spec`, `martini_feat`) 
-as well as the final output object (`martini_ml_class`) for further use in the 
+The package comes with a number of example data sets, 
+ranging from raw sas data sets to be read in, 
+to data objects representing intermediate steps 
+(e.g. `martini_spec`, `martini_feat`) 
+as well as the final output object (e.g. `martini_ml_class`) 
+for further use in the 
 <!-- TODO additional data package to include multiple endpoints? Cover only classification here-->
 <!-- TODO adjust package names-->
 <!-- `MARTINImodtune` and/or `MARTINIreport` -->
-
 modules of the pipeline. 
 
 
@@ -97,14 +103,14 @@ path %>%
 ```
 
 where `path` would be defined as the location where the ADaM data sets
-are stored in `.sas7bdat` format. 
+are stored in `.sas7bdat` or `.rds` format. 
 The chart below highlights the main workflow and lists related
 helper functions (mostly internal).
 
 
-```{r, out.width='100%', eval = TRUE, echo = FALSE, fig.cap = 'Overview of `martini` functions. The basic workflow from ads path to ML data object is accomplished by the main functions (turquoise), which make use of the (mostly internal) helper functions shown below. '}
+```{r, out.width='100%', eval = TRUE, echo = FALSE, fig.cap = 'Overview of `martini` functions. The basic workflow from ads path to ML data object is accomplished by the main functions (turquoise), which make use of the (mostly internal) helper functions shown below.'}
 
-knitr::include_graphics('img/martini-high-level.png')
+knitr::include_graphics("img/martini-high-level.png")
 ```
 
 <!-- ![](img/martini-high-level.png){width=100%} -->
@@ -114,33 +120,34 @@ knitr::include_graphics('img/martini-high-level.png')
 
 # Outcome preparation
 
+**Format**
+
 It is recommended to clearly define the outcome of interest and prepare 
 the _outcome_ data set independently from the feature engineering process. 
-The outcome data set may contain information on different endpoints in a single tibble, 
+The outcome data set may contain information on different endpoints
+in a single tibble, 
 with one row per `id` and the different outcomes in the columns.
-In practice, separate data sets for each outcome are preferable for large studies,
+In practice, separate data sets for each outcome are preferable 
+for large studies,
 considering the potentially higher preparation times.
 For time-to-event data, each endpoint is described by two columns
 (representing time and status, resp.). 
 
-Since the analysis of survival endpoints is computationally much more expensive
-than for classification, the latter may be used for initial runs 
-by using a dichotomized version of the endpoint (i.e. event yes/no in given time frame). 
-When binarizing time-to-event endpoints, please pay attention 
-to the study duration (potentially reduce to subjects with minimum time 
-under observation) and the resulting outcome distribution 
-(highly unbalanced data, low event rate?).
+For survival, the outcome information is coded in 
+two separate columns, e.g. `days` and `event`.
+Note that in this case, for the specification of the outcome names 
+for `prepare_ml()`, a named vector is expected in the survival case, 
+e.g. `outcome_names = c(.time = 'days', .status = 'event')`.
 
-The package comes with two exemplary outcome data sets,
-one for classification, one for a regression problem. 
-Both are two column tibbles with an `.id` and an `.out` column, 
+
+**Example data sets**
+
+The package comes with three exemplary outcome data sets,
+one each for classification, regression and survival tasks. 
+For regression and classification, 
+both are two column tibbles with an `.id` and an `.out` column, 
 where in the classification example shown below,
 the `.out` variable is a factor with two levels (event/no event). 
-
-For survival, the outcome information would be coded in two separate columns, e.g. `days` and `event`.
-Note that for the specification of the outcome names for `prepare_ml()`,
-a named vector is expected in the survival case, e.g. `outcome_names = c(.time = 'days', .status = 'event')`.
-
 
 ```{r}
 martini_outc_class %>% 
@@ -149,7 +156,22 @@ martini_outc_class %>%
   kableExtra::kable_styling(full_width = FALSE)
 ```
 
-Please note that currently, only binary classification is fully supported by the MARTINI pipeline.
+**Development shortcut**
+
+Since the analysis of survival endpoints is computationally much more expensive
+than for classification, the latter may be used for initial runs 
+by using a dichotomized version of the endpoint 
+(i.e. event yes/no in given time frame). 
+When binarizing time-to-event endpoints, please pay attention 
+to the study duration (potentially reduce to subjects with minimum time 
+under observation) and the resulting outcome distribution 
+(highly unbalanced data, low event rate?).
+
+
+**Note for use with Bayer internal pipeline**
+
+Please note that currently, only binary classification is 
+fully supported by the MARTINI pipeline.
 
 ***
 
@@ -163,14 +185,15 @@ the user has the option to prepare either a tte outcome or a binarized version.
 In the latter case, a duration of interest has to be specified in `cut` 
 and the resulting endpoint translates to e.g. `event in first 2 years (yes/no)`. 
 Make sure, that the scale of `cut` matches the scale of the time column, 
-i.e. if `AVAL` is in days, `cut` has to be in days, no conversion is done internally.
+i.e. if `AVAL` is in days, `cut` has to be in days, 
+no conversion is done internally.
 `cut` is provided as numeric, not object of class duration.
 
 ```{r}
 build_out_tte(
   
   # either file or data have to be provided
-  file    = 'adtte.sas7bdat',
+  file    = "adtte.sas7bdat",
   
   # select e.g. parameter of interest, subset to population
   filter  = 'PARAMCD == "CVDEATH"', 
@@ -200,22 +223,29 @@ Assume an example study containing four data sets in
 * admh (occds, long format)
 
 These data sets will be used to illustrate how to make manual adaptations 
-in order to customize the preparation process to a particular analysis and research task.  
+in order to customize the preparation process to a particular
+analysis and research task.  
 
 In addition to these raw data sets, the following data sets are available 
-as examples for the intermediate data sets produced during the preparation process:
+as examples for the intermediate data sets produced 
+during the preparation process:
 
 * **`martini_spec`** result of `adam_spec()` applied to ads folder 
-* **`martini_feat`** result of `build()`, a wide data set containing information of all selected domains
-* **`martini_outc_regr`, `martini_outc_class`** prepared outcome data sets (in practice, e.g. from adtte)
-* **`martini_ml_regr`, `martini_ml_class`** result of `prepare_ml()`, to be used in `MARTINImodtune` and/or `MARTINIreport` 
-
+* **`martini_feat`** result of `build()`, a wide data set containing 
+information of all selected domains
+* **`martini_outc_regr`, `martini_outc_class`, `martini_outc_surv`**
+prepared outcome data sets 
+(in practice, e.g. from adtte)
+* **`martini_ml_regr`, `martini_ml_class`, `martini_ml_surv`** 
+result of `prepare_ml()`, objects of type `martini_ml` containing 
+ML ready data and documentation of data preparation steps
 
 
 
 We will focus on the description of the main functions, 
 but each package function (exported or not) has its own help page, 
-so feel free to learn more about the detailed functionality on the individual pages. 
+so feel free to learn more about the detailed functionality
+on the individual pages. 
 <!-- TODO or the 'MARTINI in depth' vignette -->
 
 ***
@@ -223,7 +253,8 @@ so feel free to learn more about the detailed functionality on the individual pa
 # Getting started
 
 In the setting of clinical studies, we assume that a set of analysis 
-data sets (ads) is stored in `.sas7bdat` format in a single folder `path`. 
+data sets (ads) is stored in `.sas7bdat` or `.rds` format 
+in a single folder `path`. 
 
 After specifying the folder location
 
@@ -231,7 +262,8 @@ After specifying the folder location
 # path <- 'path/to/sasfiles'
 path <- system.file(
   "martini_example_study", "ads", 
-  package = "martini", mustWork = TRUE
+  package = "martini",
+  mustWork = TRUE
 )
 ```
 
@@ -244,20 +276,27 @@ adam_domain_type(path)
 ```
 
 returns a tibble with the name of the domain, its mapped ADaM data types
-(occds/adsl/bds) along with the full file path. 
+(occds/adsl/bds) as well as the full file path. 
 For domains with `type=='none'` no mapping information is available (yet) 
 and the data set would not be processed automatically.
 
-In case a particular domain is required for your analysis but not included 
-in the current list, please get in touch with the package maintainers 
-(<a href="mailto:sebastian.voss.ext@bayer.com">Sebastian Voss</a>, 
-<a href="mailto:maike.ahrens.ext@bayer.com">Maike Ahrens</a>).
+<!-- In case a particular domain is required for your analysis but not included  -->
+<!-- in the current list, please get in touch with the package maintainers  -->
+<!-- (<a href="mailto:sebastian.voss.ext@bayer.com">Sebastian Voss</a>,  -->
+<!-- <a href="mailto:maike.ahrens.ext@bayer.com">Maike Ahrens</a>). -->
 <!-- TODO add details on:
 ... or use the appropriate internal functions `ads_spec_*` and `build_*` to process the data set. -->
 
 ```{r domain type, eval = TRUE}
 adam_domain_type(path)
 ```
+
+In case a particular domain is required for your analysis but not included
+in the current list, use [adam_spec()]'s parameters 
+`add_occds` and `add_bds`, respectively, to specify names of additional 
+data sets to process.
+
+
 ***
 
 # TL;DR
@@ -309,15 +348,18 @@ corresponding data set (adsl/bds/occds).
 Among other steps, `adam_spec()` will
 
 * generate md5 checksums 
-* identify data sets that can be processed automatically (by matching file names against an internal library)
+* identify data sets that can be processed automatically 
+(by matching file names against an internal library)
 * check applicability of provided filters
 * create a parameter dictionary 
 
 In general, this automatically created specification may be used with 
-the subsequent workflow, however, in practice, it will be modified by the user to match specific requirements.
+the subsequent workflow, however, in practice,
+it will be modified by the user to match specific requirements.
 
 
-Printing the spec object to the console will provide information on data set size, 
+Printing the `martini_spec` object to the console will provide information 
+on data set size, 
 derived numbers of columns and subjects (after filter application).
 
 ```{r adam_spec, eval = TRUE}
@@ -333,8 +375,12 @@ ads_spec %>% str(max.level = 1)
 
 **adsl column selection**
 
-In contrast to occds and bds type data, an automated column selection 
-is required for the wide format adsl data sets.  
+In contrast to occds and bds type data, column selection from the 
+(already) wide format adsl data sets usually contains a larger number of
+columns.  
+
+`martini` generates a starting point for the selection by excluding columns
+based on different heuristics.
 
 Reasons for column exclusion are documented in the `drop_list` entry of 
 the corresponding spec entry. Exclusion criteria include, 
@@ -349,26 +395,46 @@ ads_spec$adsl$drop_list %>% names()
 
 ***
 
-## Important parameters
+## Important parameters of `adam_spec()`
 
-**Filters**
+```{r, eval = FALSE}
+# selection of adam_spec() parameters covered in more detail in this section
+adam_spec(
+  filter = NULL,
+  attach_data = TRUE,
+  keep = NULL,
+  drop = NULL,
+  add_bds = NULL,
+  add_occds = NULL,
+  fct_levels = NULL
+)
+```
 
-The `filter` argument takes a character vector of expressions to be passed to `dplyr::filter()`. 
+
+
+### Filters
+
+The `filter` argument takes a character vector of expressions to be
+passed to `dplyr::filter()`. 
 A filter will be applied to a particular data set only if its (individual) 
-application yields a non-empty tibble (i.e. no error thrown, at least one row is selected). 
-In addition, the function will throw a message, if the combination of all valid filters 
-would yield an empty data set. 
+application yields a non-empty tibble (i.e. no error thrown, 
+at least one row is selected). 
+In addition, the function will throw a message, if the combination of all 
+valid filters would yield an empty data set. 
 
 Common filters may be based on visit or treatment information,
 as well as flags indicating analysis sets.
 If a filter should be applied to only one particular ads domain and not 
 considered for the other domains, just add the respective `ADSNAME` column 
-(for standard data sets), e.g. `"ADSNAME == 'ADVS' & AVISIT == 'Visit 1'"`.
+(which should be available according to CDISC standards), 
+e.g. `"ADSNAME == 'ADVS' & AVISIT == 'Visit 1'"`.
 
-The `pre_study` argument allows to conveniently reduce occurrence data sets 
-(e.g. medical history records) to data that is available at baseline based on the study day.
+<!-- The `pre_study` argument allows to conveniently reduce occurrence data sets  -->
+<!-- (e.g. medical history records) to data that is available  -->
+<!-- at baseline based on the study day. -->
 
-Filters have to be adjusted for the data at hand, find below a list of exemplary filters:
+Filters have to be adjusted for the data at hand,
+find below a list of exemplary filters:
 
 ```{r}
 filters  <- c(
@@ -395,8 +461,7 @@ filters  <- c(
 
 ads_spec <- adam_spec(
   path, 
-  filter    = filters, 
-  pre_study = TRUE
+  filter = filters
 )
 ```
 
@@ -405,10 +470,11 @@ An overview of applied and discarded filters from the filters provided to
 as well as when printing the object to the console. 
 The filter set that was originally provided to `\link{adam_spec}()` is stored 
 in the `filter` attribute of the resulting object. 
-Note that the print will only refer to this initial filter set and 
-ignore any manual adjustments. 
-We strongly advise to not change filters using spec adjustments
-but only by rerunning `\link{adam_spec}()` to assure proper checks.
+
+<!-- Note that the print will only refer to this initial filter set and  -->
+<!-- ignore any manual adjustments.  -->
+<!-- We strongly advise to not change filters using spec adjustments -->
+<!-- but only by rerunning `\link{adam_spec}()` to assure proper checks. -->
 
 Always double check the filters that were not applied, typically it is due to
 
@@ -416,6 +482,7 @@ Always double check the filters that were not applied, typically it is due to
 * misspecified filter expressions (e.g. `=` instead of `==`)
 * targeted domain no longer included in the analysis
 
+For any updates of the originally provided set of filters, use `adjust_filter()`.
 
 ```{r}
 ads_spec
@@ -423,16 +490,38 @@ ads_spec
 
 ***
 
-**`add_bds`**
+### Domain selection
+
+For standard data sets names included in `martini`'s internal library, 
+use parameters `keep/drop` to select data sets for the analysis. 
+To use data sets outside of this collection use `add_bds`/`add_occds`.
+
+**`keep`/`drop`**
+
+Use `keep/drop` arguments in `adam_spec()` to select/deselect particular 
+data sets in the folder `path` for your analysis. 
+Only selected files will be read in order to create a specification, 
+so these parameters directly impact run time.
+
+An example for a reasonable exclusion of a data set would be e.g. 
+a data set on biomarkers that were measured only for a small subpopulation 
+(by default, data sets are combined using 
+`dplyr::full_join()`, 
+but it's a parameter to `build()`).
+
+
+**`add_bds`/`add_occds`**
 
 `adam_spec()` will print a list of domains that are not processed automatically,
 which are the ones that are not included in the internal package
 library of domains and corresponding data types.
 
-You may use the `add_bds` argument of `adam_spec()` to force them being treated 
-as bds data sets. For these added data sets, it is particularly important 
+You may use the `add_bds`/`add_occds` arguments of `adam_spec()` 
+to force them being treated as bds and occds data sets, resp.. 
+For these added data sets, it is particularly important 
 to check the automated column selection (in the resulting spec object) 
-and adjust as needed using `adjust_spec()`.
+and adjust as needed using `adjust_spec()` before proceeding to the `build()`
+stage.
 
 ```{r, eval = FALSE}
 ads_spec <- adam_spec(
@@ -447,26 +536,13 @@ ads_spec
 
 ***
 
-**Domain selection**
-
-Use `keep/drop` arguments in `adam_spec()` to select/deselect particular 
-data sets in the folder `path` for your analysis. 
-Only selected files will be read in order to create a specification, 
-so these parameters directly impact run time.
-
-An example for a reasonable exclusion of a data set would be e.g. 
-a data set on biomarkers that were measured only for a small subpopulation 
-(by default, data sets are combined using `inner_join()`, but it's a parameter to `build()`).
-
-
-***
-
-**Attach data**
+### Attach data
 
 In order to create a data set specification, the data set has to be read first
 which may take a considerable amount of time for large files.
 For a more time-efficient usage, the data sets may be stored directly in the 
-`ads_spec` object from where the actual execution of the preparation will be conducted. 
+`ads_spec` object from where the actual execution 
+of the preparation will be conducted. 
 
 In the current implementation, if changes to any of the data sets shall 
 be made (see below), all data sets have to be attached. 
@@ -481,13 +557,15 @@ ads_spec <- adam_spec(
 
 ***
 
-**Using rds data**
+### Using rds data
 
 For martini version >=0.5.1, not only \code{sas7bdat} files but also data in rds
 format may be used (see \code{file_ext} argument in \code{adam_spec()}).
 
-If for instance, only particular treatment groups or visits are considered for an analysis , 
-filtering the original \code{sas7bdat} data sets and storing them as \code{rds}, may speed up
+If for instance, only particular treatment groups or visits are 
+considered for an analysis, 
+filtering the original \code{sas7bdat} data sets and storing 
+them as \code{rds}, may speed up
 the data preparation significantly for larger data sets.
 
 Suppose all domains of interest are available in a subset/filtered version and 
@@ -496,92 +574,48 @@ stored as \code{rds} data in \code{path}.
 ```{r}
 ads_spec <- adam_spec(
   path, 
-  file_ext = 'rds'
+  file_ext = "rds"
 )
 ```
 
 ***
 
 
-## Manual adaptations 
+## Adaptations to `adam_spec()`
 
-After the initial spec was created, the user should inspect the object
+After the initial `martini_spec` object was created, 
+the user should inspect the object
 and make necessary adjustments. It is strongly recommended to use the build-in
 helper functions where possible, since they provide some basic checks of
 the desired modifications in terms of consistency and applicability.
 
-### Variable selection from adsl
+Some entries are protected from such adjustments altogether, 
+for adjustments of entries `filter`, `factor_levels` and column selection
+from adsl the respective specialized functions should be used 
+(`adjust_filter()`, `adjust_adsl_factors()`, and `adjust_adsl_select()`, resp., 
+see separate subsections below).
 
-A common task is to review and adjust the automated variable selection from
-adsl by inspecting `martini_spec$adsl$dict`
-(or simply `martini_spec$adsl$select`). 
-
-Reasons for dropping variables from the automated selection 
-may include but are not limited to:
-
-*  post baseline information (MARTINI pipeline aims at assessing the relation 
-of baseline information with a given outcome. Consequently, outcome-related
-information should be removed (e.g. death flag))
-* variables are available in both a continuous as well as categorical version 
-(e.g. age, BMI, weight), there is no automated selection available
-* different groupings based on the same variable (e.g. country group)
-
-The adjustment can be accomplished by using the `adjust_adsl_select()`
-function, which allows to either add or drop variables from the automated 
-selection.
-Small adjustments can be made using the `drop` and `add` arguments, but the 
-user can also provide the exact set of variables to extract using the 
-`select` argument. In the latter case, make sure to include the variables
-with special roles `id` and `trt` in the `adam_spec()` function to avoid the
-corresponding warnings.
-
-```{r}
-martini_spec <- martini_spec %>% 
-  adjust_adsl_select(
-    add  = c('BMI'),
-    drop = c('AGE')
-  )
-
-martini_spec <- martini_spec %>% 
-  adjust_adsl_select(
-    select = c("SUBJID", "TRT01A", "SEX", "RACE", "AGE", "BMI")
-  )
-
-# warnings for missing id and trt
-martini_spec <- martini_spec %>% 
-  adjust_adsl_select(
-    select = c("SEX", "RACE", "AGE", "BMI")
-  )
-```
+For other adjustments, the `adjust_spec()` function allows to adjust the 
+parameter of a particular entry of the `martini_spec` object, 
+related to the data extraction, 
+such as `param` and `label` for bds entries or `value` and `count` for 
+occds entries.
 
 
 
-For large data sets, the creation of the `select` vector may be cumbersome.
-In this case, it may be helpful to extract the current selection and adjust it
-using e.g. the `stringr::str_subset()` function to make use of
-regular expressions.
+### Filters
 
+The function `adjust_filter()` allows to update the set of filters 
+for the `martini_spec` object.
+If an error in the filter expression is detected
+during the inspection of the spec object, e.g. in the filter information
+section of the console output from printing, the set of filters can be adjusted 
+easily without rerunning the `adam_spec()` as long as the data is attached.
+If no data is attached, the filter checks cannot be performed and `adam_spec()` 
+should be re-run to avoid any downstream issues.
 
-```{r spec remove adsl columns}
-user_selection <- ads_spec$adsl$select %>% 
-  
-  # remove post baseline information
-  setdiff(c('DEATHFL')) %>% 
- 
-  # categoricals with a continuous version 
-  str_subset("AGEGR|BMIGR|WEIGGR|RACEGR", negate = TRUE) %>% 
-
-  # several grouped versions available
-  str_subset("CNTYGR[2-7]") 
-
-```
-
-The removal of variables that are not derived from adsl, but from one of the 
-long format data sets, the removal is actual accomplished by applying a 
-filter, please refer to the section on `adjust_filter()` for more
-information.
-
-### Factor levels in adsl
+### Handling adsl
+**Factor levels in adsl**
 
 The function `adjust_adsl_factors()` can be used to adjust or expand the
 factor level list. The level order will determine for example the display order 
@@ -626,29 +660,146 @@ martini_spec <- martini_spec %>%
 
 
 
-### Filters
 
-The function `adjust_filter()` allows to update the set of filters 
-for the `martini_spec` object.
-If an error in the filter expression is detected
-during the inspection of the spec object, e.g. in the filter information
-section of the console output from printing, the set of filters can be adjusted 
-easily without rerunning the `adam_spec()` as long as the data is attached.
-If no data is attached, the filter checks cannot be performed and `adam_spec()` 
-should be re-run to avoid any downstream issues.
+**Variable selection from adsl**
 
-### General adjustments
+A common task is to review and adjust the automated variable selection from
+adsl by inspecting `martini_spec$adsl$dict`
+(or simply `martini_spec$adsl$select`). 
 
-The `adjust_spec()` function allows to adjust the parameter of 
-a particular entry of the spec object, related to the data extraction, 
-such as `param` and `label` for bds entries or  `value` and `count` for 
-occds entries.
+Reasons for dropping variables from the automated selection 
+may include but are not limited to:
 
-Some entries are protected from manual adjustments altogether, 
-adjustments of entries `filter`, `factor_levels` and column selection from adsl
-the respective specialized functions should be used 
-(`adjust_filter()`, `adjust_adsl_select()`, `adjust_adsl_factors()`).
+*  post baseline information (MARTINI pipeline aims at assessing the relation 
+of baseline information with a given outcome. Consequently, outcome-related
+information should be removed (e.g. death flag))
+* variables are available in both a continuous as well as categorical version 
+(e.g. age, BMI, weight, potentially across domains), 
+there is no automated selection available
+* different groupings based on the same variable (e.g. country group)
 
+The adjustment can be accomplished by using the `adjust_adsl_select()`
+function, which allows to either add or drop variables from the automated 
+selection.
+Small adjustments can be made using the `drop` and `add` arguments, but the 
+user can also provide the exact set of variables to extract using the 
+`select` argument. In the latter case, make sure to include the variables
+with special roles `id` and `trt` in the `adam_spec()` function to avoid the
+corresponding warnings.
+
+```{r}
+martini_spec <- martini_spec %>% 
+  adjust_adsl_select(
+    add  = c("BMI"),
+    drop = c("AGE")
+  )
+
+martini_spec <- martini_spec %>% 
+  adjust_adsl_select(
+    select = c("SUBJID", "TRT01A", "SEX", "RACE", "AGE", "BMI")
+  )
+
+# warnings for missing id and trt
+martini_spec <- martini_spec %>% 
+  adjust_adsl_select(
+    select = c("SEX", "RACE", "AGE", "BMI")
+  )
+```
+
+
+
+For large data sets, the creation of the `select` vector may be cumbersome.
+In this case, it may be helpful to extract the current selection and adjust it
+using e.g. the `stringr::str_subset()` function to make use of
+regular expressions.
+
+
+```{r spec remove adsl columns}
+user_selection <- ads_spec$adsl$select %>% 
+  
+  # remove post baseline information
+  setdiff(c('DEATHFL')) %>% 
+ 
+  # categoricals with a continuous version 
+  str_subset("AGEGR|BMIGR|WEIGGR|RACEGR", negate = TRUE) %>% 
+
+  # several grouped versions available
+  str_subset("CNTYGR[2-7]") 
+
+```
+
+The removal of variables that are not derived from adsl, but from one of the 
+long format data sets, the removal is actual accomplished by applying a 
+filter, please refer to the section on `adjust_filter()` for more
+information.
+
+
+
+
+
+<!-- TODO explain label for count FALSE in occds by checking freq distribution of columns  -->
+
+***
+
+
+
+
+<!-- **Add data** -->
+
+<!-- Adding data on a subject level is a special case of _changing data_: overwrite the data slot of the subject level spec (again, make sure to set `attach_data = TRUE`) by the extended data set. -->
+<!-- Make sure to also adjust the dictionary by adding the variable description(s) and other relevant information. -->
+
+<!-- ads_spec$adsl$data <- left_join( -->
+<!--   ads_spec$adsl$data, -->
+<!--   additional_data -->
+<!-- ) -->
+
+
+<!-- TODO: write example for new entry added data -->
+
+<!-- In order to add new (external) data, simply add a new entry in the existing `ads_spec` object. -->
+<!-- Depending on the type of data to add, create a list that has the same structure as the relevant exemplary one above.  -->
+
+<!-- Assuming you want to add subject level data, the  -->
+
+<!-- ads_spec$add <- list( -->
+<!--   file = file_to_add, -->
+<!--   md5  = tools::md5sum(file), -->
+<!--   data = additional_data, -->
+<!--   type = "adsl", -->
+<!--   ... -->
+<!-- ) -->
+
+
+<!-- This approach is preferable to adding data e.g. to the data slot of  -->
+<!-- `adsl` since it makes sure that the extracted variables will appear  -->
+<!-- in the data dictionary with the appropriate data source (name of spec entry).  -->
+
+<!-- *** -->
+
+### General adaptations using `adjust_spec()`
+
+**Change data set label**
+
+`adam_spec()` automatically selects a `label` column in occds data sets
+(e.g. admh), that controls the categorization of the occurrences
+and defines the variables that are created by the `build()` function.
+If you need a more or less detailed categorization,
+you need to change the `label` entry.
+
+```{r spec change label}
+# change label column in admh
+ads_spec %>% 
+  adjust_spec(
+    id = "admh",
+    label = "MHBODSYS"
+  )
+
+# equivalent to
+# ads_spec $admh$label <- "MHBODSYS"
+```
+
+***
 
 **Value column for bds type data**
 
@@ -679,86 +830,36 @@ exact data structure:
     (e.g. based on PARAMCD) and choosing the appropriate value column for each
     subset
 
+### Handling of occurrence data
 
+When trying to extract information from an occurrence data set 
+(such as admh or adcm) in a binary manner 
+(e.g. particular medication yes/no), a lot of the resulting variables may
+be discarded in the data preparation process due to near-zero variance.  
+In order to keep at least some information, the default for occds data
+set preparation is to simply _count the number of entries_, 
+as commonly a higher number of entries roughly translates to a worse status.
 
+If the count option is used, check that none of the entries is 
+equivalent to no record (e.g. value 'none' in adjuvant therapy). 
+These values should be excluded using the `filter` parameter 
+in the `adam_spec()` function beforehand.  
 
-<!-- TODO explain label for count FALSE in occds by checking freq distribution of columns  -->
-
-***
-
-
-
-
-**Add data**
-
-<!-- Adding data on a subject level is a special case of _changing data_: overwrite the data slot of the subject level spec (again, make sure to set `attach_data = TRUE`) by the extended data set. -->
-<!-- Make sure to also adjust the dictionary by adding the variable description(s) and other relevant information. -->
-
-```{r, include=FALSE}
-ads_spec$adsl$data <- left_join(
-  ads_spec$adsl$data,
-  additional_data
-)
-```
-
-
-<!-- TODO: write example for new entry added data -->
-
-In order to add new (external) data, simply add a new entry in the existing `ads_spec` object.
-Depending on the type of data to add, create a list that has the same structure as the relevant exemplary one above. 
-
-<!-- Assuming you want to add subject level data, the  -->
-
-```{r}
-ads_spec$add <- list(
-  file = file_to_add,
-  md5  = tools::md5sum(file),
-  data = additional_data,
-  type = 'adsl',
-  ...
-)
-```
-
-This approach is preferable to adding data e.g. to the data slot of `adsl` since it makes sure that the extracted variables will appear in the data dictionary with the appropriate data source (name of spec entry). 
-
-***
-
-**Change data set label**
-
-`adam_spec()` automatically selects a `label` column in occds data sets (e.g. admh), that controls the categorization of the occurrences and defines the variables that are created by the `build()` function. If you need a more or less detailed categorization, you need to change the `label` entry.
-
-```{r spec change label}
-# change label column in admh
-ads_spec %>% 
-  adjust_spec(
-    id = 'admh',
-    label = "MHBODSYS"
-  )
-
-# equivalent to
-# ads_spec $admh$label <- "MHBODSYS"
-```
-
-***
-
-**Handling of occurrence data**
-
-When trying to extract information from an occurrence data set (such as admh, adcm, adxa) in a binary manner (e.g. particular medication yes/no), a lot of the resulting variables may be discarded in the data preparation process due to near-zero variance.  
-In order to keep at least some information, the default for occds data set preparation is to simply _count the number of entries_, as commonly a higher number of entries roughly translates to a worse status.
-
-If the count option is used, check that none of the entries is equivalent to no record (e.g. value 'none' in adjuvant therapy). These values should be excluded using the filter parameter in the `adam_spec()` function beforehand.  
-
-If instead individual variables should be derived, the user may set the `count` value in the corresponding spec to 'FALSE'.
+If instead individual variables should be derived, 
+the user may set the `count` value in the corresponding spec to 'FALSE'.
 
 ```{r count occurence}
 ads_spec$admh$count <- FALSE
 ```
 
-If one does not opt for the count option, but for individual variables, there is also the possibility to specify a `valuen` column, which in the case of adae may be set to the column indicating the severity of the event. Analogously, a `value` entry may be provided for non-numeric information, e.g. 
+If one does not opt for the count option, but for individual variables, 
+there is also the possibility to specify a `valuen` column, which in the 
+case of adae may be set to the column indicating the severity of the event.
+Analogously, a `value` entry may be provided for non-numeric information, e.g. 
 
 ```{r}
 ads_spec %>% 
-  adjust_spec('admh', value = 'MHPRESP')
+  adjust_spec("admh", value = "MHPRESP")
 
 # equivalent to
 # ads_spec$admh$value <- 'MHPRESP'
@@ -766,13 +867,24 @@ ads_spec %>%
 
 ***
 
+
+
 # `build()`
 
-Based on a given `ads_spec` object (modified or generated fully automatically), the `build()` function will _execute_ the extraction of the relevant information according to the `ads_spec` entries and combine everything into a single (wide) data set. This data set is the basis for the feature matrix used later on for machine learning.
-
+Based on a given `ads_spec` object (modified or generated fully automatically),
+the `build()` function will _execute_ the extraction of the relevant 
+information according to the `ads_spec` entries and combine everything 
+into a single (wide) data set. This data set is the basis for 
+the feature matrix used later on for machine learning.
 By default, the resulting (wide) data set will have one row per _id_.
-For the analysis of **repeated measurement** outcomes, one row needs to correspond
-to one subject at a given timepoint, which can be achieved by setting `rm = TRUE`.
+
+
+**repeated measurements**
+
+For the analysis of **repeated measurement** outcomes, 
+one row needs to correspond to one subject at a given timepoint,
+which can be achieved by setting `rm = TRUE` 
+(`r lifecycle::badge("experimental")`).
 
 ```{r}
 feature <- build(
@@ -811,14 +923,21 @@ feature <- build(
 
 **Adding or modifying wide data set after build()** 
 
-The output object of `build()` is a wide data set, with a dictionary attribute
+The output object of `build()` is a wide data set,
+with a dictionary attribute
 containing information on the variables and their origin. 
-If the data set is to be used with the martini pipeline it is crucial that the
+If the data set is to be used with the martini pipeline 
+(or any custom workflow that uses the dictionary),
+it is crucial that the
 dictionary is consistent with the provided data set.
+
+
+Common modification steps at this stage include
 
 * recoding of factors (e.g. summarising levels)
 * deriving new variables (e.g. clinical index or summary scores 
-from questionnaires or interaction terms)
+from questionnaires or interaction terms) with or without keeping
+the original variables
 
 ```{r change data after build}
 
@@ -830,7 +949,6 @@ feature <- feature %>%
     TRUE ~ "I"
   ) %>% factor())
 
-# 
 
 ```
 
@@ -851,8 +969,76 @@ ml_data <- prepare_ml(
 )
 ```
 
-Please refer to the help pages of `prepare_ml()` for information on the
-required structure of `outcome` for single vs repeated measurement outcomes.
+
+Please refer to the section on outcome preparation and the help page 
+of `prepare_ml()` for information on the
+required structure of `outcome` for single vs repeated measurement outcomes 
+and different outcome types.
+
+***
+
+## Input checks
+
+**`feature`**
+
+By default (`check_feature = TRUE`) `prepare_ml()` will run a check on the 
+provided `feature` data, which can also be run as stand-alone function 
+(`check_feature(feature`).
+The main checks include
+
+* low frequency classes: factors with size of the smallest class per factor 
+* missing proportion: identify variables that would be removed during ML prep
+(according to `prepare_ml()`'s default threshold)
+* (near) zero variance: constant variables and variables that are highly 
+sparse and unbalanced would be removed during ML prep 
+(using `prepare_ml()`'s default thresholds for frequency ratio and 
+percent of unique values)
+* potential factor conversion: 
+identify numeric variables that only have 'few' distinct integer non-negative
+values resembling count variables and might be considered as factors in the
+analysis  
+
+The user will be informed about the findings of the checks, the function 
+does not make any changes to the data.
+Note, that the results may differ slightly 
+in the actual data preprocessing for two reasons: 
+a) here, the checks are run individually and other preparation steps 
+conducted prior can change the input data and
+b) thresholds are parametrized in both `prepare_ml()` and `check_feature()`, 
+so make sure they match
+
+Nevertheless, running `check_feature()` is a convenient way to 
+help catching problems in the data preparation early, see which variables
+might be subject to removal and avoid downstream issues.
+
+```{r}
+check_feature(martini_feat)
+```
+```{r}
+check_nzv(martini_feat)
+```
+
+In some applications with data splitting (`train_prop < 1`), 
+downstream issues were observed in combination with using `ranger`,
+if the training data set contains factors with low frequency classes. 
+These may cause issues in the tuning process, 
+most likely in the cross-validation steps. 
+Apparently, this issue is known and 
+according to the repo is being worked on. 
+Since there is no generally best solution on the data prep side, 
+we provide a helper function that may 
+at least help in the identification of the variables causing the issue:
+
+`check_freq()` will check the prepped training data of a given ml object 
+(result of `prepare_ml()`) 
+for factors that may cause problems in this regard.
+
+```{r}
+d_ml %>%  
+  check_freq(thres = 25)
+```
+In case factors with low frequency classes are identified, 
+the corresponding frequency tables are returned in a list.
 
 
 
@@ -861,15 +1047,27 @@ required structure of `outcome` for single vs repeated measurement outcomes.
 
 **Data splitting**
 
-Splitting the data in training and test data will create a 3:1 split by default, 
-stratified by outcome if appropriate. To include treatment information 
-in the stratification, set `strata_trt = TRUE`.
+`prepare_ml()` has a `train_prop` argument that controls the data splitting 
+into training and test set. However, by default splitting is skipped 
+(i.e. `train_prop = 1`), since data size in the clinical setting 
+is typically rather limited and the full data set should be used for 
+association studies. 
+
+Cross-validation approaches are suggested to estimate generalization error.
+
+If data splitting however is part of your workflow, it is by default done 
+in a stratified manner accounting for `outcome` and if 
+a treatment variable is declared, accounting for it as well 
+(the latter is controlled via `strata_trt` argument of `prepare_ml()`, 
+defaulting to `TRUE`).
 
 ***
 
 **Preprocessing**
 
-While each step is optional and parametrized to provide maximum flexibility to the user, default parameters were chosen carefully and may be considered appropriate for a large number of analyses.
+While each step is optional and parametrized to provide maximum flexibility
+to the user, default parameters were chosen carefully and may be 
+considered appropriate for a large number of analyses.
 
 The preprocessing includes the following steps
 
@@ -881,13 +1079,45 @@ The preprocessing includes the following steps
 * imputation
 * dummy coding
 
-**NOTE:** Please be aware that in the initial versions, dummy coding was set to `TRUE` by default. From version 0.2 on, the default is `FALSE` which is appropriate for most applications.
+**NOTE:** Please be aware that in the initial versions, 
+dummy coding was set to `TRUE` by default. From version 0.2 on, 
+the default is `FALSE` which is appropriate for most applications.
 
 <!--This will most likely be changed with future versions, but in a major update, 
 since changing the default behaviour would break existing code. 
 For most applications, `prep_step_dummy` should be set to `FALSE`.
 -->
 
+**Pre-processing**
+
+As of martini version 0.7.0, the data preparation contains the following steps
+
+
+* omit observations with missing endpoint
+* clean factor levels of to avoid downstream issues
+* add explicit NAs to selected factor variables 
+(for variables listed in `vars_fct_expl_na`) 
+* removal of variables with a high missing value rate (controlled by `thres_imp`)
+* omit observations with missing data in variables excluded from imputation 
+(controlled by `vars_imp_ignore`)
+* log transformation for highly skewed variables to improve imputation performance
+(controlled by `thres_log`, `vars_no_trafo`)
+* imputation using knn (if `prep_step_knnimpute`)
+knn is followed by median and mode imputation as knn may 
+occasionally result in some values not being imputed.
+If imputation is skipped altogether, observations with missing values are removed.
+* back transformation of log-transformed variables to original scale 
+(controlled by `prep_step_log`, `thres_log`)
+* removal of (near) zero variance variables 
+(controlled by `thres_nzv_freq`, `thres_nzv_freq`)
+* normalization of numeric predictors 
+(controlled by `prep_step_normalize`, `vars_no_trafo`)
+* Decorrelation by removing some variables with correlation to other predictors
+(controlled by `prep_step_corr`, `thres_corr`, `vars_keep_corr`). 
+For ease of interpretability of the results, the user can pre-specify variables 
+to keep over others from a correlated group.
+* Pooling infrequent factor levels (controlled by `thres_lump`)  
+* Dummy coding (controlled by `prep_step_dummy` and `one_hot`)
 
 ***
 
@@ -900,79 +1130,77 @@ d_ml <- martini_ml_class
 str(d_ml, max.level = 2)
 ```
 
-Description of the `d_ml` entries (taken from `martini::prepare_ml()` documentation)
+<!-- Description of the `d_ml` entries (taken from `martini::prepare_ml()` documentation) -->
 
 ***
 
 ### Data sets
 
-`prepare_ml()` produces a list that contains the data set both with (`data$prep`) and without (`data$raw`) applying the specified ML preparation steps. 
-Both versions are split in `train` and `test` set. 
-In addition, `split` contains the combined `rsample::initial_split()` object that the `train` and `test` data was extracted from. 
-Depending on the programming workflow, one might be more convenient to use than the other. 
+`prepare_ml()` produces an object of class `martini_ml`, 
+a list that contains the data set both 
+with (`data$prep`) and without (`data$raw`) 
+applying the specified ML preparation steps. 
+Both versions are split in `train` and `test` set 
+(if `train_prop = 1` and no data splitting is performed, 
+the test slots are `NULL`)
 
-For convenient extraction of the full, i.e. unsplit, data set, one may use `get_data():
+For convenient extraction of the full, i.e. unsplit,
+data set, one may use the helper function `get_data()`, 
+selecting either raw or prepared data: 
 
 ```{r}
 # by default, prepared data is extracted
 prep <- get_data(d_ml)
 
 # get raw version of data
-raw  <- get_data(d_ml, type = 'raw')
+raw  <- get_data(d_ml, type = "raw")
 
 # keep information on which set the observation was in (train/test)
-raw  <- get_data(d_ml, type = 'raw', split_id = 'train_test')
+raw  <- get_data(d_ml, type = "raw", split_id = "train_test")
 
 ```
 
-either raw or prepared data 
+
 
 The slot `outcome` contains a list giving 
-`name`, the standardized names of the output column in the data sets 
+`name`, the standardized names of the output column in the returned data sets 
 (`.out` for regression/classification, `.time` and `.status` for survival), 
 as well as `mode`, 
 a character string of the outcome mode regression/classification/survival.
 
-The dictionary available as an attribute of feature is updated with 
-information on the outcome variable and the log-transformation 
-and available from the `dict` slot, NULL if no such attribute is defined.
+The dictionary that is available an attribute of the input `feature`
+is updated with 
+information on the outcome variable and the (possible) log-transformation 
+and available from the `dict` slot, `NULL` if no such attribute was defined
+for the input.
 Columns `label2` and `label3` provide additional information on correlation 
 structure in the data set: <variable kept> (variables removed for correlation).
 
 The `source` slot simply passes the source attribute of feature, 
-NULL if no such attribute is defined. If `build()` from the 
+`NULL` if no such attribute was defined. If `build()` from the 
 `martini` package was used to generate `feature`, this attribute lists 
 the full paths of the files that were used in data generation of feature.
 
 ***
+### recipes
 
-### Avoiding downstream issues 
+The recipe used for data preparation is returned in the `recipe` entry of 
+the `martini_ml` object in both the fully trained (`$prep`) 
+and the untrained (`$raw`) version. 
 
-In some applications, issues were observed if the training data set contains
-factors with low frequency classes. 
-These may cause issues in the tuning process, most likely in the cross-validation steps. 
-Please note, that this is in fact an issue with the implementation of `ranger`,
-which is currently being worked on. 
-Since there is no generally best solution on the data prep side, 
-we provide a helper function  that may 
-at least help in the identification of the variables causing the issue:
-
-`check_freq()` will check the prepped training data of a given ml object (result of `prepare_ml()`) 
-for factors that may cause problems in this regard.
-
-```{r}
-d_ml %>%  
-  check_freq(thres = 25)
-```
-In case factors with low frequency classes are identified, 
-the corresponding frequency tables are returned in a list.
+The latter one is required for example for tuning purposes and/or the 
+assessment of the generalization error in the downstream workflow.
 
 
 ***
 
 ### Data preparation and documentation
 
-* `prep_recipe` contains the prepared recipe object, `prep_params` documents the parameters/thresholds used in the data preparation, giving bare `value` slots, as well as a verbose description in `text`. `removed` gives a list of removed `rows` and `columns` along with the information on why/in which recipe step the data was removed.  
+* `prep_recipe` contains the prepared recipe object, `prep_params`
+documents the parameters/thresholds used in the data preparation, 
+giving bare `value` slots, as well as a verbose description in `text`.
+`removed` gives a list of removed `rows` and `columns` along with 
+the information on why/in which recipe step the data was removed.  
 
 * If `data$prep` has less columns than `data$raw`, 
 details on removal can be found in `d_ml$removed$cols`.  
@@ -987,10 +1215,15 @@ d_ml$removed$cols %>%
   rename(reason = name, `variable removed` = value)
 ```
 
-* If `data$prep` has less rows than `data$raw`, details on removal can be found in `d_ml$removed$rows`. Observations are removed if 
+* If `data$prep` has less rows than `data$raw`,
+details on removal can be found in `d_ml$removed$rows`.
+Observations are removed if 
   * no outcome is available
-  * outcome value was identified as outlier (regression only, optional, parametrized)
-  * the value for a variable is missing, that is excluded from imputation (e.g. trt), but the missing value proportion is considered low enough that the observations are dropped (instead of dropping the variable)
+  * outcome value was identified as outlier 
+  (regression only, optional, parametrized)
+  * the value for a variable is missing, that is excluded from imputation 
+  (e.g. trt), but the missing value proportion is considered low enough 
+  that the observations are dropped (instead of dropping the variable)
   
   
 
@@ -1004,7 +1237,8 @@ d_ml$data$raw %>%
   filter(.id %in% d_ml$removed$rows$na_feature)
 ```
 
-For validation and transparency, all domains used for feature extraction are listed with full paths and md5 check sums.
+For validation and transparency, all domains used for feature extraction 
+are listed with full paths and md5 check sums.
 
 ```{r}
 d_ml$source
@@ -1014,10 +1248,10 @@ d_ml$source
 
 # Group specific modelling (e.g. treatment versus placebo)
 
-In order to assess treatment interactions, a group specific modelling approach
-has been established for the MARTINI pipeline (#melon app). 
+In order to assess treatment interactions and treatment heterogeneity, 
+the so-called T-learner provides a naive approach of group specific modelling.
 For the comparability of results across groups, it is crucial that the data 
-preparation is identical (e.g. in terms of coefficients for the normalization). 
+preparation is identical (e.g. in terms of coefficients for normalization). 
 
 Given an output object of `prepare_ml()` and a character defining the name of
 the `by` variable (factor) to split by, `prepare_ml_split()` will return
@@ -1026,7 +1260,9 @@ of the MARTINI modules. Note that the `by` variable is constant in each subset,
 thus removed from the feature set in the prepared data, 
 but still available in the raw data sets.
 
-
+Please note, that this is not a recommendation to use the T-learner since 
+other methods have been shown to be better suited, but we were asked to provide
+this feature for entry level assessment.
 
 <!-- TODO add value list for prepare_ml() -->
 

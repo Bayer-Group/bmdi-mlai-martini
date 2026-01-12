@@ -5,11 +5,13 @@
     Message
       i Data set was checked for causes for potential downstream issues with ML preparation.
       ! Potential issues were identified.
-      * Run check_freq() on the input to `prepare_ml()`'s `feature` to learn more.
+      * Run check_freq() and check_nzv() on the input to `prepare_ml()`'s `feature` to learn more.
     Output
       $summary
-             check_freq() check_other_class() check_non_missing()       check_count() 
-                     TRUE               FALSE               FALSE               FALSE 
+             check_freq() check_other_class() check_non_missing()         check_nzv() 
+                     TRUE               FALSE               FALSE                TRUE 
+            check_count() 
+                    FALSE 
       
       $details
       $details$low_freq
@@ -76,6 +78,26 @@
       
       $details$missing$check
       [1] "check_non_missing()"
+      
+      
+      $details$nzv
+      $details$nzv$vars
+      $details$nzv$vars$constant
+      character(0)
+      
+      $details$nzv$vars$nzv
+      [1] "angina_pectoris"
+      
+      
+      $details$nzv$finding
+      [1] TRUE
+      
+      $details$nzv$threshold
+      unique   freq 
+          10     19 
+      
+      $details$nzv$check
+      [1] "check_nzv()"
       
       
       $details$count

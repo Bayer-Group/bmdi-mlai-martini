@@ -10,8 +10,7 @@ test_that("original_scale() works", {
       skw1 = exp(rnorm(n, mean = 1, sd = 2)),
       skw2 = exp(rnorm(n, mean = 0, sd = 1)),
       skw_corr = skw2 *2,
-      # add a constant (skewness = NaN)
-      const = rep(1,n)
+      const = rep(1,n) # (skewness NaN for constant)
     )
     d_out <- tibble::tibble(
       .id  = 1:n,
@@ -22,7 +21,7 @@ test_that("original_scale() works", {
   
   
   # log & norm
-  x <- prepare_ml(
+  res_prep <- prepare_ml(
     feature    = d_feat,
     outcome    = d_out, 
     train_prop = .75,
@@ -31,8 +30,10 @@ test_that("original_scale() works", {
     check_feature = FALSE
   )
   
-  get_trafo_params(x$recipe$prep)
-  back_trafo_skw1 <- original_scale_fun(x$recipe$prep, 'skw1')
+  x <- res_prep$recipe$prep
+  
+  get_trafo_params(x)
+  back_trafo_skw1 <- original_scale_fun(x, 'skw1')
   get_data(x, type = 'prep', split_id = 'set')
   back_trafo_skw1(get_data(x, type = 'prep', split_id = 'set')$skw1)
   
@@ -40,7 +41,7 @@ test_that("original_scale() works", {
   get_data(x, type = 'raw')
   
   # log only
-  x <- prepare_ml(
+  res_prep <- prepare_ml(
     feature    = d_feat,
     outcome    = d_out, 
     train_prop = .75,
@@ -49,33 +50,62 @@ test_that("original_scale() works", {
     check_feature = FALSE
   )
   
+  x <- res_prep$recipe$prep
   res_back_trafo <- original_scale(x)
   
 })
 
-original_scale_fun <- function(x, term){ 
-
+#' function for back transformation 
+#' 
+#' Create a function for back transformation of a single term from a trained 
+#' recipe. Steps considered are [step_log_skewness()] and 
+#' [recipes::step_normalize()]
+#'
+#' @param x a [recipes::fully_trained()] recipe
+#' @param term term to extract (trained) transformation parameters for
+#'
+#' @return
+#' @export
+#'
+original_scale_fun <- function(x, term, info_back_trafo = NULL){ 
+  
+  # TODO polish error 
   stopifnot(inherits(x, "recipe"))
-  stopifnot(
-    purrr::map_lgl(x$steps, recipes::is_trained) %>% all()
-  )
+  stopifnot(recipes::fully_trained(x))
   
-   info_back_trafo <- get_trafo_params(x)
-   
-   term_params <- info_back_trafo %>% dplyr::filter(terms == term)
-   
-   function(y){
-     if (!is.na(term_params$sd)) {
-       y <-  y * term_params$sd + term_params$mean
-     }
-     if (!is.na(term_params$base)) {
-       y <- term_params$base ** y
-     }
-     y
-   }
-   
-  
+  if (is.null(info_back_trafo)) {
+    info_back_trafo <- get_trafo_params(x)
+  } else{# rough check
+    stopifnot(inherits(info_back_trafo, "df"))
+    stopifnot("terms" %in% colnames(info_back_trafo))
+    stopifnot(
+      ("base" %in% colnames(info_back_trafo)) &&
+        all(c("mean", "sd") %in% colnames(info_back_trafo)) 
+    )
   }
+  
+  stopifnot(term %in% info_back_trafo$terms)
+  
+  term_params <- info_back_trafo %>% dplyr::filter(terms == term)
+  
+  function(y){
+    if (!is.na(term_params$sd)) {
+      y <- y * term_params$sd + term_params$mean
+    }
+    if (!is.na(term_params$base)) {
+      y <- term_params$base ** y
+    }
+    y
+  }
+  
+}
+
+test_that("original_scale_fun() works", {
+  
+  x <- martini_ml_class$recipe$prep
+  #  get_trafo_params(x)
+  original_scale_fun(x, info_back_trafo = NULL)
+})
 
 original_scale <- function(x){ # x  object of class martini_ml 
 
@@ -107,34 +137,124 @@ original_scale <- function(x){ # x  object of class martini_ml
   
 }
    
-get_trafo_params <- function(
-    x # only uses $recipe$prep
-    ){
-  stopifnot(inherits(x, "recipe"))
-  stopifnot(
-    purrr::map_lgl(x$steps, recipes::is_trained) %>% all()
+test_that("get_trafo_params() works", {
+  # get_trafo_params() works ####
+  
+  # log AND unlog steps-> no back trafo required
+  params_shared <- list(
+    feature    = martini_feat,
+    outcome    = martini_outc_class, 
+    check_feature = FALSE,
+    quiet = TRUE
   )
+  x <- do.call(
+    prepare_ml,
+    list(
+      params_shared, 
+      prep_step_normalize = FALSE, 
+      prep_step_log = FALSE)
+  )$recipe$prep
+  
+   get_trafo_params(x)
+   
+   # no trafo steps
+   x <- prepare_ml(
+     feature    = martini_feat,
+     outcome    = martini_outc_class, 
+     prep_step_normalize = FALSE, 
+     prep_step_log = FALSE, # TRUE: only log, no undo
+     check_feature = FALSE,
+     quiet = TRUE
+   )$recipe$prep
+   
+   get_trafo_params(x)
+  
+  
+  
+})
+
+#' Extract transformation parameters from recipe
+#' 
+#' Parameters required for back transformation are extracted only from 
+#' [recipes::step_normalize()] and the custom martini step (combination)
+#' [step_log_skewness()]/[step_log_skewness_undo()]
+#' 
+#'
+#' @param x a fully trained recipe, e.g. the entry martini_ml$recipe$prep
+#'
+#' @return If at least one term is on a different scale in the $prep 
+#' data slot, a tibble with column names terms, base, mean and sd.
+#' 
+#' NULL if no back transformation is required, either because the 
+#' respective steps were not included in the recipe or if log transformation 
+#' log transformation was done just for imputation and has already been 
+#' reversed in a recipe step.
+#' @export
+#'
+#'
+get_trafo_params <- function(
+    x 
+    ){
+  
+  stopifnot(inherits(x, "recipe"))
+  stopifnot(recipes::fully_trained(x))
+  # would work if only log/undo or normalize are trained (if part of recipe)
   
   tidy_recipe <- recipes::tidy(x)
+  
+  no_back_trafo <- tidy_recipe$type %>% 
+    purrr::none(~stringr::str_detect(., "log_skewness|normali.e"))
+  
+  # no_back_trafo_out <- tibble::tibble(
+  #   terms = character(), 
+  #   log_base = numeric(),
+  #   sd = numeric(),
+  #   mean = numeric()
+  # )
+  # exit due to no log_skewness or normalize step
+  if(no_back_trafo) return(NULL) #return(no_back_trafo_out)
   
   relevant_steps <- tidy_recipe %>% 
     dplyr::filter(stringr::str_detect(type, "log_skewness|normali.e")) %>% 
     dplyr::select(type, number) %>% 
     tibble::deframe() %>% 
-    purrr::map(~{recipes::tidy(x, .x)})
+    purrr::map(~{recipes::tidy(x, .x) %>% dplyr::select(-id)})
   
-  info_back_trafo <- dplyr::full_join(
-    relevant_steps$log_skewness %>% 
-      purrr::discard_at(relevant_steps$log_skewness_undo$terms %||% character()) %>% 
-      dplyr::select(terms, base),
-    relevant_steps$normalize %>% 
+  params_back <- list()
+  
+  # get terms that were actually transformed
+  terms_log <- setdiff(
+      relevant_steps$log_skewness$terms,
+      relevant_steps$log_skewness_undo$terms
+    )
+  terms_norm <- unique(relevant_steps$normalize$terms)
+  
+  
+  if (length(terms_log) > 0) {
+    params_back$log <- relevant_steps$log_skewness %>% 
+      dplyr::select(terms, base) %>% 
+      dplyr::filter(terms %in% terms_log)
+  }
+  
+   if (length(terms_norm) > 0) {
+    params_back$norm <- relevant_steps$normalize %>% 
       dplyr::select(terms, statistic, value) %>% 
-      # pivoting empty data set results in tibble of size 0 x 1
-      tidyr::pivot_wider(names_from = statistic),
-    by = "terms"
-  )
+      tidyr::pivot_wider(names_from = statistic)
+   }
   
-  info_back_trafo
+  # exit due to no variable selected for resp trafo
+  if (length(params) == 0) return(NULL)
+  
+  trafo_params <- params_back %>%
+    purrr::reduce(dplyr::full_join) %>% 
+    {if (length(terms_norm) == 0) {
+      dplyr::mutate(., sd = NA_real_, mean = NA_real_)
+    } else{.}} %>% 
+    {if (length(terms_log) == 0) {
+      dplyr::mutate(., base = NA_real_)
+    } else{.}}
+  
+  trafo_params
   
 }
 

@@ -306,7 +306,7 @@ test_that("`strings_as_factors = TRUE` in `recipe` works as expected", {
     train_prop = 1
   )
   
-  # -id should be the only column of type character
+  # .id should be the only column of type character
   expect_equal(
     ml_class$data$prep$train %>% 
       purrr::map_lgl(is.character) %>% 
@@ -322,12 +322,12 @@ test_that("repeated measurement implementation works", {
   #'repeated measurement implementation works'  ####
   
   ads_build <- martini_spec %>% 
-    adjust_spec(entry = "adlb", filter = "") %>% 
+    adjust_filter(filter = NULL) %>% # = "") %>% 
     build(rm = TRUE)
   
   outcome_regr <- martini_spec$adlb$data %>% 
     dplyr::filter(PARAMCD == "HDL") %>% 
-    dplyr::rename(tidyselect::all_of(c(".id" = "SUBJID"))) %>% 
+    dplyr::rename(tidyselect::all_of(c(".id" = "USUBJID"))) %>% 
     dplyr::mutate(AVISIT = forcats::fct_reorder(AVISIT, AVISITN))
   
   ml_regr <- prepare_ml(
@@ -359,16 +359,7 @@ test_that("prepare_ml(check_feature) works", {
       outcome = martini_outc_class, 
       check_feature = TRUE
     ), 
-    "No issues were detected"
-  )
-  
-  expect_message(
-    prepare_ml(
-      feature = martini_feat,
-      outcome = martini_outc_class, 
-      check_feature = TRUE
-    ), 
-    "No issues were detected"
+    "Potential issues were identified"
   )
   
   expect_snapshot(
@@ -404,6 +395,48 @@ test_that("prepare_ml(check_feature) works", {
 #   )
 #   
 #})
+
+test_that("prepare_ml(corr_method) works", {  
+  
+  # derive correlations of HB and HCT at time of correlation filter for "spearman" and "pearson"
+  cors <- purrr::map(
+    c("pearson", "spearman") %>% purrr::set_names(),
+    ~prepare_ml(
+      feature = martini_feat,
+      outcome = martini_outc_class, 
+      corr_method = .x,
+      thres_corr = .8, #mean(cors), 
+      check_feature = FALSE
+    )$high_corr %>% 
+      dplyr::filter(x == "HB", y == "HCT")
+  ) %>% 
+    purrr::list_rbind(names_to = "method") %>% 
+    dplyr::select(method, r) %>% 
+    tibble::deframe()
+ 
+  removals <- purrr::map(
+    c("pearson", "spearman") %>% purrr::set_names(),
+    ~prepare_ml(
+      feature = martini_feat,
+      outcome = martini_outc_class, 
+      corr_method = .x,
+      thres_corr = mean(cors),
+      vars_keep_corr = "HB",
+      check_feature = FALSE
+    )$removed$cols$corr_keep
+  )
+  
+  # only for one of pearson or spearman should one of the variables have been removed
+  expect_equal(
+    removals %>% 
+      purrr::map_lgl(
+        ~length(intersect(.x, c("HB", "HCT"))) == 1
+      ) %>%
+      sum(),
+    1
+  )
+})
+
 
 
 test_that("get_data(martini_ml) works", {  
@@ -450,12 +483,14 @@ test_that("prepare_ml() snapshots content/print", {
       filter = c(
         "AVISIT == 'Baseline'",
         "ADSNAME == 'ADLB' & AVISIT == 'Visit 1'",
-        "ABLFL == 'Y'"
-       #, "MHOCCUR == 'Y' | is.na(MHOCCUR)"
+        "ABLFL == 'Y'",
+        "MHOCCUR == 'Y' | is.na(MHOCCUR)"
       ),
-      attach_data = TRUE
+      attach_data = TRUE, 
+      id = "SUBJID"
     ) %>% 
-    build(join = "adsl")
+    build(join = "adsl") %>% 
+    dplyr::mutate(.id = paste0("17501", .id) %>% as.numeric())
   
   # classification ####
   
@@ -477,10 +512,13 @@ test_that("prepare_ml() snapshots content/print", {
   # recipe will have different step and environment ids in each run
   ads_ml_class$recipe$raw   <- NULL
   ads_ml_class$recipe$prep  <- NULL
+  # deprecated arguments 
+  ads_ml_class$input$args$vars_ordinalscore <- NULL
+  ads_ml_class$input$args$thres_count       <- NULL
   
   expect_snapshot(
     ads_ml_class %>% 
-      magrittr::set_attr('class', 'list') %>% # snapshot object not print
+      magrittr::set_attr("class", "list") %>% # snapshot object not print method
       purrr::modify_tree(leaf = tibble_to_JSON)
   )
   
@@ -511,12 +549,14 @@ test_that("prepare_ml() snapshots content/print", {
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_regr$source <- NULL
   # recipe will have different step and environment ids in each run
-  ads_ml_class$recipe$raw   <- NULL
-  ads_ml_class$recipe$prep  <- NULL
+  ads_ml_regr$recipe$raw   <- NULL
+  ads_ml_regr$recipe$prep  <- NULL
+  ads_ml_regr$input$args$vars_ordinalscore <- NULL
+  ads_ml_regr$input$args$thres_count       <- NULL
   
   expect_snapshot(
     ads_ml_regr %>% 
-      magrittr::set_attr('class', 'list') %>% # snapshot object not print
+      magrittr::set_attr("class", "list") %>% # snapshot object not print method
       purrr::modify_tree(leaf = tibble_to_JSON)
   )
   
@@ -537,12 +577,14 @@ test_that("prepare_ml() snapshots content/print", {
   # remove file path information in console output (will be a different tmp file path each time the test is run)
   ads_ml_surv$source <- NULL
   # recipe will have different step and environment ids in each run
-  ads_ml_class$recipe$raw   <- NULL
-  ads_ml_class$recipe$prep  <- NULL
+  ads_ml_surv$recipe$raw   <- NULL
+  ads_ml_surv$recipe$prep  <- NULL
+  ads_ml_surv$input$args$vars_ordinalscore <- NULL
+  ads_ml_surv$input$args$thres_count       <- NULL
   
   expect_snapshot(
     ads_ml_surv %>% 
-      magrittr::set_attr('class', 'list') %>% # snapshot object not print
+      magrittr::set_attr("class", "list") %>% # snapshot object not the print method
       purrr::modify_tree(leaf = tibble_to_JSON)
   )
   

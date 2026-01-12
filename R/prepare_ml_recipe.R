@@ -4,10 +4,10 @@
 #'
 #' @param data raw data set to create recipe for
 #' @param custom_recipe if NULL, recipe will be created
-#' @param corr_method,corr_use defaulting to `corr_method` "pearson" and 
-#' `corr_use` "pairwise.complete.obs"
+#' @param corr_method,corr_use defaulting to `corr_method` `"spearman"` and 
+#' `corr_use` `"pairwise.complete.obs"`
 #' @param thres_list,step_list named list objects collecting all threshold values 
-#' and step selection info, resp. please refer to the documentation of 
+#' and step selection info, resp. Please refer to the documentation of 
 #' the `thres_*` and `prep_step_*` arguments 
 #' in \code{\link{prepare_ml}()} for detailed documentation and list entry names.
 #' @inheritParams prepare_ml
@@ -33,7 +33,7 @@ prepare_ml_recipe <- function(
   data, 
   
   custom_recipe = NULL,
-  corr_method = "pearson",
+  corr_method = "spearman",
   corr_use    = "pairwise.complete.obs",
   
   thres_list = NULL,
@@ -41,7 +41,6 @@ prepare_ml_recipe <- function(
   
   vars_imp_ignore     = c(".trt"),
   vars_fct_expl_na    = NULL,
-  vars_ordinalscore   = NULL,
   vars_keep_corr      = NULL,
   vars_no_trafo       = NULL,
   
@@ -59,15 +58,14 @@ prepare_ml_recipe <- function(
   thres_default <- tibble::lst(
     
     # using recipe defaults where available
-    thres_lump       = get_default(recipes::step_other, 'threshold'), 
-    thres_nzv_freq   = get_default(recipes::step_nzv,   'freq_cut'),
-    thres_nzv_unique = get_default(recipes::step_nzv,   'unique_cut'),
-    thres_corr       = get_default(recipes::step_corr,  'threshold'),
+    thres_lump       = get_default(step_other2,       "threshold"), 
+    thres_nzv_freq   = get_default(recipes::step_nzv, "freq_cut"),
+    thres_nzv_unique = get_default(recipes::step_nzv, "unique_cut"),
+    thres_corr       = get_default(step_corr_keep,    "threshold"),
     
     # no recipes equivalent
-    thres_count = get_default(prepare_ml, 'thres_count'),   
-    thres_log   = get_default(prepare_ml, 'thres_log'),    
-    thres_imp   = get_default(prepare_ml, 'thres_imp')  
+    thres_log   = get_default(prepare_ml, "thres_log"),    
+    thres_imp   = get_default(prepare_ml, "thres_imp")  
     
   )
   
@@ -79,12 +77,11 @@ prepare_ml_recipe <- function(
   }
   
   
-  
   # select recipe steps to include ####
   step_default <- args(prepare_ml) %>%
     as.list() %>% 
     head(-1) %>% 
-    purrr::keep_at(., names(.) %>% stringr::str_subset('prep_step'))
+    purrr::keep_at(., names(.) %>% stringr::str_subset("prep_step"))
   
   if(!is.null(step_list)){
     step_used <- purrr::imap(step_default, ~{step_list[[.y]] %||% .x})
@@ -117,13 +114,31 @@ prepare_ml_recipe <- function(
     rcp <- recipes::recipe(
       formula = the_formula, 
       data = data,
-      # `strings_as_factors` only affects variables with role 'outcome' and 
-      # 'predictor'. 'ID' is not affected, even though it is not defined yet 
+      # recipes >= 1.3.0: `strings_as_factors` only affects variables with role
+      # 'outcome' and 'predictor'. 
+      # Role 'ID' is not affected, even though it is not defined yet 
       # (but in the next step)
-      strings_as_factors = TRUE
+      strings_as_factors = utils::packageVersion("recipes") >= package_version("1.3.0")
+      # <  1.3.0: recipe ----, step_mutate, prep FALSE
+      # >= 1.3.0: recipe TRUE, ----       , prep FALSE (overwritten)
     ) %>% 
       
-      recipes::update_role(tidyselect::any_of(c(".id", ".rmtime")), new_role = "ID") %>% 
+      recipes::update_role(
+        tidyselect::any_of(c(".id", ".rmtime")), 
+        new_role = "ID"
+      ) %>% 
+      {
+       if (utils::packageVersion("recipes") < package_version("1.3.0")) {
+         recipes::step_mutate_at(
+           ., 
+           recipes::all_string_predictors(), 
+           fn = factor
+         )
+       } else {.}
+      } %>% 
+      
+      # ... ... omit observations with missing endpoint ####
+      recipes::step_naomit(recipes::all_outcomes(), skip = FALSE) %>% 
       
       # ... ... make clean levels ####
       recipes::step_mutate_at(
@@ -135,16 +150,21 @@ prepare_ml_recipe <- function(
       
       # ... ... add explicit NAs to selected factor variables (optional) ####
       {if (!is.null(vars_fct_expl_na)) {
-        recipes::step_mutate_at(., vars_fct_expl_na, ~ fct_na_to_level(.x, level = "missing"))
+        recipes::step_mutate_at(
+          ., 
+          vars_fct_expl_na, 
+          ~ fct_na_to_level(.x, level = "missing")
+        )
       }else{.}} %>% 
         
       # ... ... exclude variables with too many missings ####
       {if (thres_used$thres_imp>0) {
-        recipes::step_filter_missing(., recipes::all_predictors(), threshold = 1-thres_used$thres_imp)
+        recipes::step_filter_missing(
+          ., 
+          recipes::all_predictors(), 
+          threshold = 1-thres_used$thres_imp
+        )
       }else{.}} %>% 
-      
-      # ... ... omit observations with missing endpoint ####
-      recipes::step_naomit(recipes::all_outcomes(), skip = FALSE) %>% 
       
       # ... ... omit observations with missing data in variables excluded from imputation ####
       recipes::step_naomit(tidyselect::any_of(vars_imp_ignore), skip = FALSE) %>%   
@@ -167,9 +187,6 @@ prepare_ml_recipe <- function(
       } else {
         recipes::step_naomit(., recipes::all_predictors(), skip = FALSE)   
       }} %>% 
-      
-      # ... ... omit observations with missing data in case not prep_step_knnimpute = FALSE ####
-      #recipes::step_naomit(recipes::all_predictors(), skip = FALSE) %>%   
       
       # ... ... undo log transformation ####
       {if (!step_used$prep_step_log) {
@@ -195,7 +212,7 @@ prepare_ml_recipe <- function(
         )
       }else{.}} %>% 
 
-      # ... ... remove highly correlated variables with a twist #### 
+      # ... ... remove highly correlated variables #### 
       {if (step_used$prep_step_corr) {
         step_corr_keep(
           ., 
@@ -215,9 +232,6 @@ prepare_ml_recipe <- function(
       ) %>%  
         
       # ... ... factor handling ####
-      {if (!is.null(vars_ordinalscore)) {
-        recipes::step_ordinalscore(.,  tidyselect::any_of(!! vars_ordinalscore ))
-      }else{.}} %>%  
         
       #  step_novel(all_nominal(), -all_outcomes(), -has_role("ID")) %>% 
       # ... ... dummy coding ####
@@ -237,7 +251,8 @@ prepare_ml_recipe <- function(
   rcp_prep <- rcp %>% 
     {purrr::quietly(recipes::prep)(
       ., 
-      retain = TRUE
+      retain = TRUE, 
+      strings_as_factors = FALSE
       #, log_changes        = TRUE,
       #  fresh              = TRUE
       # retain
@@ -292,9 +307,7 @@ prepare_ml_recipe <- function(
       vars_fct_expl_na,
       vars_imp_ignore,
       vars_keep_corr,
-      
-      vars_log,
-      vars_ordinalscore
+      vars_log
     ),
     high_corr = corr_tibble,
     steps = step_used,

@@ -35,7 +35,7 @@
       $data$raw$train
       [
         {
-          ".id": 10002,
+          ".id": 1750110002,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -51,11 +51,11 @@
           "BPSYS": 119,
           "HR": 84,
           "WEIGHT": 90.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10006,
+          ".id": 1750110006,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -68,11 +68,11 @@
           "BPSYS": 116,
           "HR": 69,
           "WEIGHT": 116.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10015,
+          ".id": 1750110015,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -85,11 +85,11 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10017,
+          ".id": 1750110017,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -106,7 +106,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10026,
+          ".id": 1750110026,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -118,11 +118,11 @@
           "BPDIA": 68,
           "BPSYS": 102,
           "WEIGHT": 95.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10030,
+          ".id": 1750110030,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -135,11 +135,11 @@
           "BPSYS": 95,
           "HR": 71,
           "WEIGHT": 71.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10031,
+          ".id": 1750110031,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -151,11 +151,11 @@
           "BPSYS": 116,
           "HR": 78,
           "WEIGHT": 84.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3
         },
         {
-          ".id": 10032,
+          ".id": 1750110032,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -168,11 +168,11 @@
           "BPSYS": 92,
           "HR": 56,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10034,
+          ".id": 1750110034,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -185,11 +185,11 @@
           "BPSYS": 122,
           "HR": 66,
           "WEIGHT": 64.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10037,
+          ".id": 1750110037,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -202,11 +202,11 @@
           "BPSYS": 136,
           "HR": 50,
           "WEIGHT": 88.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10038,
+          ".id": 1750110038,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -218,11 +218,11 @@
           "BPDIA": 82,
           "BPSYS": 125,
           "HR": 76,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10043,
+          ".id": 1750110043,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -235,11 +235,11 @@
           "BPSYS": 134,
           "HR": 48,
           "WEIGHT": 64.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10046,
+          ".id": 1750110046,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -252,11 +252,11 @@
           "BPSYS": 128,
           "HR": 68,
           "WEIGHT": 80.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10048,
+          ".id": 1750110048,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -269,11 +269,11 @@
           "BPSYS": 109,
           "HR": 63,
           "WEIGHT": 68,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10056,
+          ".id": 1750110056,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -286,11 +286,11 @@
           "BPSYS": 137,
           "HR": 74,
           "WEIGHT": 108.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10058,
+          ".id": 1750110058,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -303,11 +303,11 @@
           "BPSYS": 111,
           "HR": 80,
           "WEIGHT": 59.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10083,
+          ".id": 1750110083,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -324,7 +324,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10085,
+          ".id": 1750110085,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -337,11 +337,11 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 99.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10096,
+          ".id": 1750110096,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -354,11 +354,11 @@
           "BPSYS": 129,
           "HR": 67,
           "WEIGHT": 65.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10098,
+          ".id": 1750110098,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -370,11 +370,11 @@
           "BPSYS": 134,
           "HR": 44,
           "WEIGHT": 47.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10104,
+          ".id": 1750110104,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -387,11 +387,11 @@
           "BPSYS": 134,
           "HR": 50,
           "WEIGHT": 106.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10106,
+          ".id": 1750110106,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -404,11 +404,11 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 54.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10113,
+          ".id": 1750110113,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -420,11 +420,11 @@
           "BPSYS": 106,
           "HR": 74,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10124,
+          ".id": 1750110124,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -437,11 +437,11 @@
           "BPSYS": 119,
           "HR": 82,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10127,
+          ".id": 1750110127,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -454,11 +454,11 @@
           "BPSYS": 115,
           "HR": 72,
           "WEIGHT": 88.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10140,
+          ".id": 1750110140,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -469,11 +469,11 @@
           "BPSYS": 98,
           "HR": 69,
           "WEIGHT": 101.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10142,
+          ".id": 1750110142,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -486,11 +486,11 @@
           "BPSYS": 98,
           "HR": 73,
           "WEIGHT": 86.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10145,
+          ".id": 1750110145,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -502,11 +502,11 @@
           "BPDIA": 65,
           "BPSYS": 109,
           "WEIGHT": 66.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10156,
+          ".id": 1750110156,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -519,11 +519,11 @@
           "BPSYS": 115,
           "HR": 59,
           "WEIGHT": 73.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10157,
+          ".id": 1750110157,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -536,11 +536,11 @@
           "BPSYS": 144,
           "HR": 79,
           "WEIGHT": 94.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10159,
+          ".id": 1750110159,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -553,11 +553,11 @@
           "BPSYS": 103,
           "HR": 62,
           "WEIGHT": 39.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10161,
+          ".id": 1750110161,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -570,11 +570,11 @@
           "BPSYS": 108,
           "HR": 64,
           "WEIGHT": 103.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3
         },
         {
-          ".id": 10163,
+          ".id": 1750110163,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -587,11 +587,11 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 95.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10169,
+          ".id": 1750110169,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -604,11 +604,11 @@
           "BPSYS": 128,
           "HR": 71,
           "WEIGHT": 54.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10180,
+          ".id": 1750110180,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -621,11 +621,11 @@
           "BPSYS": 132,
           "HR": 61,
           "WEIGHT": 100,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10181,
+          ".id": 1750110181,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -638,11 +638,11 @@
           "BPSYS": 125,
           "HR": 70,
           "WEIGHT": 62.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10182,
+          ".id": 1750110182,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -654,11 +654,11 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 70.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10192,
+          ".id": 1750110192,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -671,11 +671,11 @@
           "BPSYS": 121,
           "HR": 79,
           "WEIGHT": 64.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10194,
+          ".id": 1750110194,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -688,11 +688,11 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 41.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10214,
+          ".id": 1750110214,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -709,7 +709,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10225,
+          ".id": 1750110225,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -722,11 +722,11 @@
           "BPSYS": 110,
           "HR": 80,
           "WEIGHT": 86.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10227,
+          ".id": 1750110227,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -739,11 +739,11 @@
           "BPSYS": 120,
           "HR": 64,
           "WEIGHT": 84.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10229,
+          ".id": 1750110229,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -756,11 +756,11 @@
           "BPSYS": 99,
           "HR": 62,
           "WEIGHT": 73,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10231,
+          ".id": 1750110231,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -773,11 +773,11 @@
           "BPSYS": 137,
           "HR": 69,
           "WEIGHT": 93.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10232,
+          ".id": 1750110232,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -790,11 +790,11 @@
           "BPSYS": 141,
           "HR": 63,
           "WEIGHT": 78.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10243,
+          ".id": 1750110243,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -807,11 +807,11 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 105.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10249,
+          ".id": 1750110249,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -824,11 +824,11 @@
           "BPSYS": 108,
           "HR": 78,
           "WEIGHT": 85,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10259,
+          ".id": 1750110259,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -841,11 +841,11 @@
           "BPSYS": 135,
           "HR": 79,
           "WEIGHT": 69.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10266,
+          ".id": 1750110266,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -862,7 +862,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10300,
+          ".id": 1750110300,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -875,11 +875,11 @@
           "BPSYS": 125,
           "HR": 77,
           "WEIGHT": 113.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10302,
+          ".id": 1750110302,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -892,11 +892,11 @@
           "BPSYS": 122,
           "HR": 81,
           "WEIGHT": 77,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10303,
+          ".id": 1750110303,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -909,11 +909,11 @@
           "BPSYS": 143,
           "HR": 86,
           "WEIGHT": 82.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10001,
+          ".id": 1750110001,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -929,11 +929,11 @@
           "BPSYS": 116,
           "HR": 79,
           "WEIGHT": 92.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10003,
+          ".id": 1750110003,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -948,11 +948,11 @@
           "BPSYS": 105,
           "HR": 86,
           "WEIGHT": 51.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10008,
+          ".id": 1750110008,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -965,11 +965,11 @@
           "BPSYS": 141,
           "HR": 75,
           "WEIGHT": 112.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10027,
+          ".id": 1750110027,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -982,11 +982,11 @@
           "BPSYS": 152,
           "HR": 69,
           "WEIGHT": 50.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10029,
+          ".id": 1750110029,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -999,11 +999,11 @@
           "BPSYS": 130,
           "HR": 70,
           "WEIGHT": 73,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10033,
+          ".id": 1750110033,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1015,11 +1015,11 @@
           "BPSYS": 114,
           "HR": 58,
           "WEIGHT": 66.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10047,
+          ".id": 1750110047,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1032,11 +1032,11 @@
           "BPSYS": 117,
           "HR": 93,
           "WEIGHT": 110.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10051,
+          ".id": 1750110051,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1049,11 +1049,11 @@
           "BPSYS": 108,
           "HR": 67,
           "WEIGHT": 88.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10055,
+          ".id": 1750110055,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1066,11 +1066,11 @@
           "BPSYS": 100,
           "HR": 81,
           "WEIGHT": 66.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10059,
+          ".id": 1750110059,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1082,11 +1082,11 @@
           "BPSYS": 114,
           "HR": 53,
           "WEIGHT": 65.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10066,
+          ".id": 1750110066,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1099,11 +1099,11 @@
           "BPSYS": 107,
           "HR": 39,
           "WEIGHT": 53.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10069,
+          ".id": 1750110069,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1115,11 +1115,11 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 96.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10082,
+          ".id": 1750110082,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1132,11 +1132,11 @@
           "BPSYS": 96,
           "HR": 64,
           "WEIGHT": 67.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10117,
+          ".id": 1750110117,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -1149,11 +1149,11 @@
           "BPSYS": 98,
           "HR": 89,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10123,
+          ".id": 1750110123,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1166,11 +1166,11 @@
           "BPSYS": 129,
           "HR": 62,
           "WEIGHT": 46.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10128,
+          ".id": 1750110128,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1183,11 +1183,11 @@
           "BPSYS": 106,
           "HR": 73,
           "WEIGHT": 53.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10129,
+          ".id": 1750110129,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1200,11 +1200,11 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10133,
+          ".id": 1750110133,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1217,11 +1217,11 @@
           "BPSYS": 108,
           "HR": 72,
           "WEIGHT": 74.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10138,
+          ".id": 1750110138,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -1234,11 +1234,11 @@
           "BPSYS": 112,
           "HR": 76,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10143,
+          ".id": 1750110143,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -1251,11 +1251,11 @@
           "BPSYS": 117,
           "HR": 80,
           "WEIGHT": 71.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10144,
+          ".id": 1750110144,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1268,11 +1268,11 @@
           "BPSYS": 124,
           "HR": 60,
           "WEIGHT": 80.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10154,
+          ".id": 1750110154,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -1285,11 +1285,11 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 82.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10162,
+          ".id": 1750110162,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1302,11 +1302,11 @@
           "BPSYS": 143,
           "HR": 78,
           "WEIGHT": 66,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10166,
+          ".id": 1750110166,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1319,11 +1319,11 @@
           "BPSYS": 115,
           "HR": 63,
           "WEIGHT": 66.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10172,
+          ".id": 1750110172,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -1336,11 +1336,11 @@
           "BPSYS": 124,
           "HR": 68,
           "WEIGHT": 78.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10177,
+          ".id": 1750110177,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1353,11 +1353,11 @@
           "BPSYS": 94,
           "HR": 67,
           "WEIGHT": 76.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10183,
+          ".id": 1750110183,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -1370,11 +1370,11 @@
           "BPSYS": 113,
           "HR": 71,
           "WEIGHT": 56.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10184,
+          ".id": 1750110184,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1387,11 +1387,11 @@
           "BPSYS": 116,
           "HR": 50,
           "WEIGHT": 74.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10185,
+          ".id": 1750110185,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1404,11 +1404,11 @@
           "BPSYS": 113,
           "HR": 72,
           "WEIGHT": 66.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10187,
+          ".id": 1750110187,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -1421,11 +1421,11 @@
           "BPSYS": 118,
           "HR": 96,
           "WEIGHT": 60.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10189,
+          ".id": 1750110189,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1438,11 +1438,11 @@
           "BPSYS": 117,
           "HR": 79,
           "WEIGHT": 88,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10208,
+          ".id": 1750110208,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -1455,11 +1455,11 @@
           "BPSYS": 99,
           "HR": 64,
           "WEIGHT": 60.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10218,
+          ".id": 1750110218,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1472,11 +1472,11 @@
           "BPSYS": 119,
           "HR": 62,
           "WEIGHT": 62.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10228,
+          ".id": 1750110228,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1489,11 +1489,11 @@
           "BPSYS": 101,
           "HR": 45,
           "WEIGHT": 55.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10239,
+          ".id": 1750110239,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1506,11 +1506,11 @@
           "BPSYS": 111,
           "HR": 59,
           "WEIGHT": 54.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10242,
+          ".id": 1750110242,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1523,11 +1523,11 @@
           "BPSYS": 114,
           "HR": 71,
           "WEIGHT": 86.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10247,
+          ".id": 1750110247,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1540,11 +1540,11 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 94.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10271,
+          ".id": 1750110271,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1557,11 +1557,11 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 61.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10272,
+          ".id": 1750110272,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -1574,11 +1574,11 @@
           "BPSYS": 106,
           "HR": 68,
           "WEIGHT": 101.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10279,
+          ".id": 1750110279,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1591,11 +1591,11 @@
           "BPSYS": 128,
           "HR": 62,
           "WEIGHT": 92.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10280,
+          ".id": 1750110280,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -1608,11 +1608,11 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 75,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10282,
+          ".id": 1750110282,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1625,11 +1625,11 @@
           "BPSYS": 124,
           "HR": 48,
           "WEIGHT": 63.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10283,
+          ".id": 1750110283,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1642,11 +1642,11 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 48.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10314,
+          ".id": 1750110314,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -1659,11 +1659,11 @@
           "BPSYS": 123,
           "HR": 85,
           "WEIGHT": 100,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10317,
+          ".id": 1750110317,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -1676,11 +1676,11 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 89.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10009,
+          ".id": 1750110009,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -1693,11 +1693,11 @@
           "BPSYS": 111,
           "HR": 82,
           "WEIGHT": 114.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10010,
+          ".id": 1750110010,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -1710,11 +1710,11 @@
           "BPSYS": 121,
           "HR": 60,
           "WEIGHT": 81.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10012,
+          ".id": 1750110012,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -1731,7 +1731,7 @@
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10014,
+          ".id": 1750110014,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -1744,11 +1744,11 @@
           "BPSYS": 126,
           "HR": 84,
           "WEIGHT": 75.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10028,
+          ".id": 1750110028,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -1761,11 +1761,11 @@
           "BPSYS": 134,
           "HR": 67,
           "WEIGHT": 111.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10036,
+          ".id": 1750110036,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -1777,11 +1777,11 @@
           "BPSYS": 128,
           "HR": 56,
           "WEIGHT": 62.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10039,
+          ".id": 1750110039,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -1794,11 +1794,11 @@
           "BPSYS": 96,
           "HR": 84,
           "WEIGHT": 78.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10044,
+          ".id": 1750110044,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -1811,11 +1811,11 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 82.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10062,
+          ".id": 1750110062,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -1828,11 +1828,11 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 103.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10067,
+          ".id": 1750110067,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -1845,11 +1845,11 @@
           "BPSYS": 135,
           "HR": 76,
           "WEIGHT": 67,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10070,
+          ".id": 1750110070,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -1862,11 +1862,11 @@
           "BPSYS": 128,
           "HR": 86,
           "WEIGHT": 93.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10071,
+          ".id": 1750110071,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -1879,11 +1879,11 @@
           "BPSYS": 124,
           "HR": 76,
           "WEIGHT": 65.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10073,
+          ".id": 1750110073,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -1896,11 +1896,11 @@
           "BPSYS": 117,
           "HR": 77,
           "WEIGHT": 115.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10080,
+          ".id": 1750110080,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -1913,11 +1913,11 @@
           "BPSYS": 95,
           "HR": 46,
           "WEIGHT": 50.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10089,
+          ".id": 1750110089,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -1930,11 +1930,11 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 79.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10092,
+          ".id": 1750110092,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -1947,11 +1947,11 @@
           "BPSYS": 137,
           "HR": 78,
           "WEIGHT": 96.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10097,
+          ".id": 1750110097,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -1968,7 +1968,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10100,
+          ".id": 1750110100,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -1981,11 +1981,11 @@
           "BPSYS": 123,
           "HR": 49,
           "WEIGHT": 96.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10109,
+          ".id": 1750110109,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -1998,11 +1998,11 @@
           "BPSYS": 95,
           "HR": 72,
           "WEIGHT": 101.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10110,
+          ".id": 1750110110,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2015,11 +2015,11 @@
           "BPSYS": 162,
           "HR": 86,
           "WEIGHT": 84,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10134,
+          ".id": 1750110134,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2032,11 +2032,11 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 81.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10153,
+          ".id": 1750110153,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -2049,11 +2049,11 @@
           "BPSYS": 95,
           "HR": 87,
           "WEIGHT": 99.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10155,
+          ".id": 1750110155,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -2066,11 +2066,11 @@
           "BPSYS": 98,
           "HR": 55,
           "WEIGHT": 70.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10158,
+          ".id": 1750110158,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -2083,11 +2083,11 @@
           "BPSYS": 131,
           "HR": 77,
           "WEIGHT": 120.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10164,
+          ".id": 1750110164,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -2100,11 +2100,11 @@
           "BPSYS": 105,
           "HR": 48,
           "WEIGHT": 64.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10170,
+          ".id": 1750110170,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2117,11 +2117,11 @@
           "BPSYS": 112,
           "HR": 57,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10195,
+          ".id": 1750110195,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -2134,11 +2134,11 @@
           "BPSYS": 136,
           "HR": 66,
           "WEIGHT": 113.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10197,
+          ".id": 1750110197,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2151,11 +2151,11 @@
           "BPSYS": 113,
           "HR": 63,
           "WEIGHT": 66.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10209,
+          ".id": 1750110209,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2168,11 +2168,11 @@
           "BPSYS": 100,
           "HR": 75,
           "WEIGHT": 65.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10213,
+          ".id": 1750110213,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2185,11 +2185,11 @@
           "BPSYS": 96,
           "HR": 85,
           "WEIGHT": 96.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10215,
+          ".id": 1750110215,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2206,7 +2206,7 @@
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10219,
+          ".id": 1750110219,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -2219,11 +2219,11 @@
           "BPSYS": 132,
           "HR": 54,
           "WEIGHT": 95.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10220,
+          ".id": 1750110220,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -2236,11 +2236,11 @@
           "BPSYS": 115,
           "HR": 68,
           "WEIGHT": 81.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10223,
+          ".id": 1750110223,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2253,11 +2253,11 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 98.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10226,
+          ".id": 1750110226,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -2270,11 +2270,11 @@
           "BPSYS": 106,
           "HR": 55,
           "WEIGHT": 59.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10234,
+          ".id": 1750110234,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -2287,11 +2287,11 @@
           "BPSYS": 105,
           "HR": 66,
           "WEIGHT": 55.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10250,
+          ".id": 1750110250,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -2304,11 +2304,11 @@
           "BPSYS": 111,
           "HR": 67,
           "WEIGHT": 85.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10253,
+          ".id": 1750110253,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2321,11 +2321,11 @@
           "BPSYS": 129,
           "HR": 65,
           "WEIGHT": 82.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10258,
+          ".id": 1750110258,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -2342,7 +2342,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10260,
+          ".id": 1750110260,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2355,11 +2355,11 @@
           "BPSYS": 83,
           "HR": 89,
           "WEIGHT": 75.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10263,
+          ".id": 1750110263,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2372,11 +2372,11 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 109.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10267,
+          ".id": 1750110267,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2389,11 +2389,11 @@
           "BPSYS": 126,
           "HR": 56,
           "WEIGHT": 75.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10274,
+          ".id": 1750110274,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2406,11 +2406,11 @@
           "BPSYS": 96,
           "HR": 72,
           "WEIGHT": 76.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10285,
+          ".id": 1750110285,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -2423,11 +2423,11 @@
           "BPSYS": 119,
           "HR": 65,
           "WEIGHT": 98.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10291,
+          ".id": 1750110291,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -2440,11 +2440,11 @@
           "BPSYS": 99,
           "HR": 68,
           "WEIGHT": 70.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10299,
+          ".id": 1750110299,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2457,11 +2457,11 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 57.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10301,
+          ".id": 1750110301,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -2474,11 +2474,11 @@
           "BPSYS": 121,
           "HR": 53,
           "WEIGHT": 90.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10307,
+          ".id": 1750110307,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -2491,11 +2491,11 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 65.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10312,
+          ".id": 1750110312,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -2508,11 +2508,11 @@
           "BPSYS": 134,
           "HR": 70,
           "WEIGHT": 92,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10004,
+          ".id": 1750110004,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -2528,11 +2528,11 @@
           "BPSYS": 134,
           "HR": 64,
           "WEIGHT": 106,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10007,
+          ".id": 1750110007,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -2545,11 +2545,11 @@
           "BPSYS": 127,
           "HR": 59,
           "WEIGHT": 79.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10011,
+          ".id": 1750110011,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -2562,11 +2562,11 @@
           "BPSYS": 127,
           "HR": 75,
           "WEIGHT": 77.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10013,
+          ".id": 1750110013,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -2579,11 +2579,11 @@
           "BPSYS": 95,
           "HR": 64,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10019,
+          ".id": 1750110019,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -2595,11 +2595,11 @@
           "BPSYS": 101,
           "HR": 56,
           "WEIGHT": 57.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10021,
+          ".id": 1750110021,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -2612,11 +2612,11 @@
           "BPSYS": 124,
           "HR": 80,
           "WEIGHT": 97.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10023,
+          ".id": 1750110023,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -2629,11 +2629,11 @@
           "BPSYS": 101,
           "HR": 71,
           "WEIGHT": 115,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10025,
+          ".id": 1750110025,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -2646,11 +2646,11 @@
           "BPSYS": 117,
           "HR": 70,
           "WEIGHT": 85.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10045,
+          ".id": 1750110045,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -2663,11 +2663,11 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 99,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10049,
+          ".id": 1750110049,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -2680,11 +2680,11 @@
           "BPSYS": 140,
           "HR": 71,
           "WEIGHT": 86.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10054,
+          ".id": 1750110054,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -2697,11 +2697,11 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 96.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10063,
+          ".id": 1750110063,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -2714,11 +2714,11 @@
           "BPSYS": 109,
           "HR": 81,
           "WEIGHT": 105.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10072,
+          ".id": 1750110072,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -2731,11 +2731,11 @@
           "BPSYS": 142,
           "HR": 74,
           "WEIGHT": 90.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10074,
+          ".id": 1750110074,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -2748,11 +2748,11 @@
           "BPSYS": 108,
           "HR": 74,
           "WEIGHT": 79.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10076,
+          ".id": 1750110076,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -2765,11 +2765,11 @@
           "BPSYS": 138,
           "HR": 67,
           "WEIGHT": 98.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10081,
+          ".id": 1750110081,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -2782,11 +2782,11 @@
           "BPSYS": 110,
           "HR": 63,
           "WEIGHT": 61.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10086,
+          ".id": 1750110086,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -2799,11 +2799,11 @@
           "BPSYS": 121,
           "HR": 58,
           "WEIGHT": 72.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10087,
+          ".id": 1750110087,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -2816,11 +2816,11 @@
           "BPSYS": 122,
           "HR": 70,
           "WEIGHT": 80.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10088,
+          ".id": 1750110088,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -2833,11 +2833,11 @@
           "BPSYS": 97,
           "HR": 71,
           "WEIGHT": 73.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10090,
+          ".id": 1750110090,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -2850,11 +2850,11 @@
           "BPSYS": 100,
           "HR": 70,
           "WEIGHT": 75.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10091,
+          ".id": 1750110091,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -2866,11 +2866,11 @@
           "BPSYS": 109,
           "HR": 42,
           "WEIGHT": 62.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10093,
+          ".id": 1750110093,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -2883,11 +2883,11 @@
           "BPSYS": 92,
           "HR": 76,
           "WEIGHT": 72.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10095,
+          ".id": 1750110095,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -2900,11 +2900,11 @@
           "BPSYS": 118,
           "HR": 65,
           "WEIGHT": 82.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10101,
+          ".id": 1750110101,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -2917,11 +2917,11 @@
           "BPSYS": 129,
           "HR": 63,
           "WEIGHT": 90.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10102,
+          ".id": 1750110102,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -2937,7 +2937,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10105,
+          ".id": 1750110105,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -2949,11 +2949,11 @@
           "BPSYS": 140,
           "HR": 74,
           "WEIGHT": 74.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10107,
+          ".id": 1750110107,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -2966,11 +2966,11 @@
           "BPSYS": 112,
           "HR": 77,
           "WEIGHT": 54.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10108,
+          ".id": 1750110108,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -2983,11 +2983,11 @@
           "BPSYS": 134,
           "HR": 66,
           "WEIGHT": 126.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10111,
+          ".id": 1750110111,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3000,11 +3000,11 @@
           "BPSYS": 109,
           "HR": 87,
           "WEIGHT": 89.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10112,
+          ".id": 1750110112,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3017,11 +3017,11 @@
           "BPSYS": 115,
           "HR": 75,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10114,
+          ".id": 1750110114,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -3033,11 +3033,11 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 123.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10115,
+          ".id": 1750110115,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3049,11 +3049,11 @@
           "BPSYS": 113,
           "HR": 52,
           "WEIGHT": 87.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10116,
+          ".id": 1750110116,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3066,11 +3066,11 @@
           "BPSYS": 93,
           "HR": 74,
           "WEIGHT": 92.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10126,
+          ".id": 1750110126,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3083,11 +3083,11 @@
           "BPSYS": 103,
           "HR": 89,
           "WEIGHT": 78.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10135,
+          ".id": 1750110135,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3100,11 +3100,11 @@
           "BPSYS": 118,
           "HR": 64,
           "WEIGHT": 63.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10136,
+          ".id": 1750110136,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3117,11 +3117,11 @@
           "BPSYS": 140,
           "HR": 66,
           "WEIGHT": 88.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10137,
+          ".id": 1750110137,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -3133,11 +3133,11 @@
           "BPSYS": 128,
           "HR": 83,
           "WEIGHT": 79.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10146,
+          ".id": 1750110146,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3150,11 +3150,11 @@
           "BPSYS": 122,
           "HR": 72,
           "WEIGHT": 69.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10160,
+          ".id": 1750110160,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3171,7 +3171,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10165,
+          ".id": 1750110165,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3184,11 +3184,11 @@
           "BPSYS": 138,
           "HR": 65,
           "WEIGHT": 122.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10179,
+          ".id": 1750110179,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3201,11 +3201,11 @@
           "BPSYS": 130,
           "HR": 56,
           "WEIGHT": 97.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10190,
+          ".id": 1750110190,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3218,11 +3218,11 @@
           "BPSYS": 134,
           "HR": 69,
           "WEIGHT": 67.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10198,
+          ".id": 1750110198,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -3235,11 +3235,11 @@
           "BPSYS": 125,
           "HR": 71,
           "WEIGHT": 87.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10199,
+          ".id": 1750110199,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3252,11 +3252,11 @@
           "BPSYS": 103,
           "HR": 71,
           "WEIGHT": 68.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10201,
+          ".id": 1750110201,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3268,11 +3268,11 @@
           "BPDIA": 79,
           "HR": 72,
           "WEIGHT": 75.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10203,
+          ".id": 1750110203,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -3285,11 +3285,11 @@
           "BPSYS": 113,
           "HR": 83,
           "WEIGHT": 66.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10206,
+          ".id": 1750110206,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3302,11 +3302,11 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 73.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10216,
+          ".id": 1750110216,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3319,11 +3319,11 @@
           "BPSYS": 117,
           "HR": 67,
           "WEIGHT": 75.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10217,
+          ".id": 1750110217,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -3336,11 +3336,11 @@
           "BPSYS": 148,
           "HR": 55,
           "WEIGHT": 96.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10222,
+          ".id": 1750110222,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3353,11 +3353,11 @@
           "BPSYS": 107,
           "HR": 75,
           "WEIGHT": 126.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10224,
+          ".id": 1750110224,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -3370,11 +3370,11 @@
           "BPSYS": 140,
           "HR": 61,
           "WEIGHT": 88.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10233,
+          ".id": 1750110233,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3386,11 +3386,11 @@
           "BPSYS": 121,
           "HR": 76,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10237,
+          ".id": 1750110237,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3402,11 +3402,11 @@
           "BPSYS": 119,
           "HR": 61,
           "WEIGHT": 105.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10241,
+          ".id": 1750110241,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3419,11 +3419,11 @@
           "BPSYS": 144,
           "HR": 75,
           "WEIGHT": 71.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10244,
+          ".id": 1750110244,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -3435,11 +3435,11 @@
           "BPSYS": 135,
           "HR": 67,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10248,
+          ".id": 1750110248,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3452,11 +3452,11 @@
           "BPSYS": 91,
           "HR": 73,
           "WEIGHT": 83.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10255,
+          ".id": 1750110255,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3469,11 +3469,11 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 104.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10262,
+          ".id": 1750110262,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -3486,11 +3486,11 @@
           "BPSYS": 129,
           "HR": 61,
           "WEIGHT": 80.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10275,
+          ".id": 1750110275,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3503,11 +3503,11 @@
           "BPSYS": 95,
           "HR": 57,
           "WEIGHT": 54,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10277,
+          ".id": 1750110277,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3520,11 +3520,11 @@
           "BPSYS": 131,
           "HR": 58,
           "WEIGHT": 96.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10278,
+          ".id": 1750110278,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3537,11 +3537,11 @@
           "BPSYS": 121,
           "HR": 78,
           "WEIGHT": 69.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10284,
+          ".id": 1750110284,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3554,11 +3554,11 @@
           "BPSYS": 95,
           "HR": 78,
           "WEIGHT": 97.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10287,
+          ".id": 1750110287,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3571,11 +3571,11 @@
           "BPSYS": 115,
           "HR": 40,
           "WEIGHT": 106.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10288,
+          ".id": 1750110288,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -3588,11 +3588,11 @@
           "BPSYS": 103,
           "HR": 98,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10289,
+          ".id": 1750110289,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3609,7 +3609,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10290,
+          ".id": 1750110290,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3622,11 +3622,11 @@
           "BPSYS": 92,
           "HR": 58,
           "WEIGHT": 77.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10297,
+          ".id": 1750110297,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3639,11 +3639,11 @@
           "BPSYS": 107,
           "HR": 73,
           "WEIGHT": 68.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10316,
+          ".id": 1750110316,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -3655,11 +3655,11 @@
           "BPSYS": 114,
           "HR": 54,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10320,
+          ".id": 1750110320,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -3672,7 +3672,7 @@
           "BPSYS": 143,
           "HR": 66,
           "WEIGHT": 101.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         }
       ] 
@@ -3680,7 +3680,7 @@
       $data$raw$test
       [
         {
-          ".id": 10005,
+          ".id": 1750110005,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -3696,11 +3696,11 @@
           "BPSYS": 111,
           "HR": 63,
           "WEIGHT": 89.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10018,
+          ".id": 1750110018,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -3713,11 +3713,11 @@
           "BPSYS": 128,
           "HR": 64,
           "WEIGHT": 95.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10022,
+          ".id": 1750110022,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -3730,11 +3730,11 @@
           "BPSYS": 101,
           "HR": 80,
           "WEIGHT": 73.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10024,
+          ".id": 1750110024,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -3747,11 +3747,11 @@
           "BPSYS": 133,
           "HR": 60,
           "WEIGHT": 64.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10040,
+          ".id": 1750110040,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3764,11 +3764,11 @@
           "BPSYS": 111,
           "HR": 57,
           "WEIGHT": 79.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10041,
+          ".id": 1750110041,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -3781,11 +3781,11 @@
           "BPSYS": 139,
           "HR": 82,
           "WEIGHT": 90.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10042,
+          ".id": 1750110042,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -3798,11 +3798,11 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 97.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10050,
+          ".id": 1750110050,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3814,11 +3814,11 @@
           "BPSYS": 122,
           "HR": 78,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10052,
+          ".id": 1750110052,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -3831,11 +3831,11 @@
           "BPSYS": 143,
           "HR": 68,
           "WEIGHT": 87.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10053,
+          ".id": 1750110053,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -3848,11 +3848,11 @@
           "BPSYS": 97,
           "HR": 49,
           "WEIGHT": 96.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10060,
+          ".id": 1750110060,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3865,11 +3865,11 @@
           "BPSYS": 142,
           "HR": 63,
           "WEIGHT": 98.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10061,
+          ".id": 1750110061,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3882,11 +3882,11 @@
           "BPSYS": 130,
           "HR": 74,
           "WEIGHT": 67.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10064,
+          ".id": 1750110064,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -3899,11 +3899,11 @@
           "BPSYS": 108,
           "HR": 56,
           "WEIGHT": 82.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10075,
+          ".id": 1750110075,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -3916,11 +3916,11 @@
           "BPSYS": 108,
           "HR": 50,
           "WEIGHT": 91.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10077,
+          ".id": 1750110077,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -3933,11 +3933,11 @@
           "BPSYS": 110,
           "HR": 79,
           "WEIGHT": 97.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10079,
+          ".id": 1750110079,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3950,11 +3950,11 @@
           "BPSYS": 131,
           "HR": 73,
           "WEIGHT": 65.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10084,
+          ".id": 1750110084,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -3967,11 +3967,11 @@
           "BPSYS": 135,
           "HR": 85,
           "WEIGHT": 102.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10094,
+          ".id": 1750110094,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -3984,11 +3984,11 @@
           "BPSYS": 124,
           "HR": 62,
           "WEIGHT": 75.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10103,
+          ".id": 1750110103,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -4000,11 +4000,11 @@
           "BPSYS": 123,
           "HR": 61,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10118,
+          ".id": 1750110118,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -4017,11 +4017,11 @@
           "BPSYS": 101,
           "HR": 92,
           "WEIGHT": 57.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10122,
+          ".id": 1750110122,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -4034,11 +4034,11 @@
           "BPSYS": 123,
           "HR": 82,
           "WEIGHT": 67.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10125,
+          ".id": 1750110125,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -4051,11 +4051,11 @@
           "BPSYS": 128,
           "HR": 50,
           "WEIGHT": 87.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10130,
+          ".id": 1750110130,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -4068,11 +4068,11 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 59,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10132,
+          ".id": 1750110132,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -4085,11 +4085,11 @@
           "BPSYS": 103,
           "HR": 48,
           "WEIGHT": 70.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10139,
+          ".id": 1750110139,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -4102,11 +4102,11 @@
           "BPSYS": 144,
           "HR": 80,
           "WEIGHT": 101.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10141,
+          ".id": 1750110141,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -4119,11 +4119,11 @@
           "BPSYS": 127,
           "HR": 66,
           "WEIGHT": 102.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10147,
+          ".id": 1750110147,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -4136,11 +4136,11 @@
           "BPSYS": 110,
           "HR": 55,
           "WEIGHT": 65.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10149,
+          ".id": 1750110149,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -4153,11 +4153,11 @@
           "BPSYS": 142,
           "HR": 78,
           "WEIGHT": 66.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10150,
+          ".id": 1750110150,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -4169,11 +4169,11 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 81.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10152,
+          ".id": 1750110152,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -4186,11 +4186,11 @@
           "BPSYS": 98,
           "HR": 71,
           "WEIGHT": 73.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10167,
+          ".id": 1750110167,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -4203,11 +4203,11 @@
           "BPSYS": 126,
           "HR": 83,
           "WEIGHT": 67,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10168,
+          ".id": 1750110168,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -4220,11 +4220,11 @@
           "BPSYS": 126,
           "HR": 78,
           "WEIGHT": 86,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10173,
+          ".id": 1750110173,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -4237,11 +4237,11 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 57.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10175,
+          ".id": 1750110175,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -4254,11 +4254,11 @@
           "BPSYS": 145,
           "HR": 69,
           "WEIGHT": 90.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10176,
+          ".id": 1750110176,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -4271,11 +4271,11 @@
           "BPSYS": 138,
           "HR": 86,
           "WEIGHT": 71.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10186,
+          ".id": 1750110186,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -4288,11 +4288,11 @@
           "BPSYS": 113,
           "HR": 66,
           "WEIGHT": 36.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10191,
+          ".id": 1750110191,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -4305,11 +4305,11 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 92.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10193,
+          ".id": 1750110193,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -4322,11 +4322,11 @@
           "BPSYS": 120,
           "HR": 61,
           "WEIGHT": 61.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10196,
+          ".id": 1750110196,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -4339,11 +4339,11 @@
           "BPSYS": 107,
           "HR": 71,
           "WEIGHT": 93.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10200,
+          ".id": 1750110200,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -4355,11 +4355,11 @@
           "BPDIA": 71,
           "HR": 81,
           "WEIGHT": 112.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10202,
+          ".id": 1750110202,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -4372,11 +4372,11 @@
           "BPSYS": 133,
           "HR": 69,
           "WEIGHT": 83.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10205,
+          ".id": 1750110205,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -4389,11 +4389,11 @@
           "BPSYS": 121,
           "HR": 68,
           "WEIGHT": 102.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10210,
+          ".id": 1750110210,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -4406,11 +4406,11 @@
           "BPSYS": 93,
           "HR": 86,
           "WEIGHT": 92.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10211,
+          ".id": 1750110211,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -4423,11 +4423,11 @@
           "BPSYS": 117,
           "HR": 62,
           "WEIGHT": 70,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10230,
+          ".id": 1750110230,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -4438,11 +4438,11 @@
           "BPSYS": 110,
           "HR": 53,
           "WEIGHT": 93.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10235,
+          ".id": 1750110235,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -4455,11 +4455,11 @@
           "BPSYS": 134,
           "HR": 65,
           "WEIGHT": 101.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10238,
+          ".id": 1750110238,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -4471,11 +4471,11 @@
           "BPSYS": 122,
           "HR": 92,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10245,
+          ".id": 1750110245,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -4488,11 +4488,11 @@
           "BPSYS": 84,
           "HR": 71,
           "WEIGHT": 92.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10251,
+          ".id": 1750110251,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -4505,11 +4505,11 @@
           "BPSYS": 120,
           "HR": 62,
           "WEIGHT": 72.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10254,
+          ".id": 1750110254,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -4522,11 +4522,11 @@
           "BPSYS": 123,
           "HR": 59,
           "WEIGHT": 89,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10257,
+          ".id": 1750110257,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -4539,11 +4539,11 @@
           "BPSYS": 134,
           "HR": 81,
           "WEIGHT": 69.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10261,
+          ".id": 1750110261,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -4556,11 +4556,11 @@
           "BPSYS": 127,
           "HR": 86,
           "WEIGHT": 108.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10264,
+          ".id": 1750110264,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -4572,11 +4572,11 @@
           "BPDIA": 74,
           "BPSYS": 125,
           "WEIGHT": 106,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10269,
+          ".id": 1750110269,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -4589,11 +4589,11 @@
           "BPSYS": 92,
           "HR": 88,
           "WEIGHT": 98.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10270,
+          ".id": 1750110270,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -4606,11 +4606,11 @@
           "BPSYS": 127,
           "HR": 89,
           "WEIGHT": 110.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10273,
+          ".id": 1750110273,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -4623,11 +4623,11 @@
           "BPSYS": 99,
           "HR": 50,
           "WEIGHT": 81,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10276,
+          ".id": 1750110276,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -4640,11 +4640,11 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 75.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10281,
+          ".id": 1750110281,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -4657,11 +4657,11 @@
           "BPSYS": 103,
           "HR": 77,
           "WEIGHT": 79.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10286,
+          ".id": 1750110286,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -4674,11 +4674,11 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 93.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10293,
+          ".id": 1750110293,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -4691,11 +4691,11 @@
           "BPSYS": 95,
           "HR": 74,
           "WEIGHT": 100.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10294,
+          ".id": 1750110294,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -4708,11 +4708,11 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 91.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10295,
+          ".id": 1750110295,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -4725,11 +4725,11 @@
           "BPSYS": 110,
           "HR": 60,
           "WEIGHT": 59.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10296,
+          ".id": 1750110296,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -4742,11 +4742,11 @@
           "BPSYS": 128,
           "HR": 87,
           "WEIGHT": 85.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10298,
+          ".id": 1750110298,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -4759,11 +4759,11 @@
           "BPSYS": 111,
           "HR": 64,
           "WEIGHT": 79.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10305,
+          ".id": 1750110305,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -4776,11 +4776,11 @@
           "BPSYS": 125,
           "HR": 44,
           "WEIGHT": 62.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10306,
+          ".id": 1750110306,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -4793,11 +4793,11 @@
           "BPSYS": 101,
           "HR": 77,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10308,
+          ".id": 1750110308,
           ".out": "no event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -4810,11 +4810,11 @@
           "BPSYS": 110,
           "HR": 67,
           "WEIGHT": 88.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10309,
+          ".id": 1750110309,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -4827,11 +4827,11 @@
           "BPSYS": 126,
           "HR": 74,
           "WEIGHT": 91.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10310,
+          ".id": 1750110310,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -4844,11 +4844,11 @@
           "BPSYS": 109,
           "HR": 80,
           "WEIGHT": 106.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10311,
+          ".id": 1750110311,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -4861,11 +4861,11 @@
           "BPSYS": 125,
           "HR": 56,
           "WEIGHT": 90.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10313,
+          ".id": 1750110313,
           ".out": "event",
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -4877,11 +4877,11 @@
           "BPDIA": 61,
           "BPSYS": 108,
           "HR": 59,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10315,
+          ".id": 1750110315,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -4894,11 +4894,11 @@
           "BPSYS": 130,
           "HR": 83,
           "WEIGHT": 77.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10318,
+          ".id": 1750110318,
           ".out": "no event",
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -4915,7 +4915,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10319,
+          ".id": 1750110319,
           ".out": "event",
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -4928,7 +4928,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 84.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         }
       ] 
@@ -4938,7 +4938,7 @@
       $data$prep$train
       [
         {
-          ".id": 10002,
+          ".id": 1750110002,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -4949,11 +4949,12 @@
           "BPSYS": 119,
           "HR": 84,
           "WEIGHT": 90.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10006,
+          ".id": 1750110006,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -4964,11 +4965,12 @@
           "BPSYS": 116,
           "HR": 69,
           "WEIGHT": 116.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10015,
+          ".id": 1750110015,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -4979,11 +4981,12 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10017,
+          ".id": 1750110017,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -4994,11 +4997,12 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 82,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10026,
+          ".id": 1750110026,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5007,13 +5011,14 @@
           "BMI_advs": 28.9,
           "BPDIA": 68,
           "BPSYS": 102,
-          "HR": 70.8,
+          "HR": 76,
           "WEIGHT": 95.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10030,
+          ".id": 1750110030,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -5024,11 +5029,12 @@
           "BPSYS": 95,
           "HR": 71,
           "WEIGHT": 71.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10031,
+          ".id": 1750110031,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -5039,11 +5045,12 @@
           "BPSYS": 116,
           "HR": 78,
           "WEIGHT": 84.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3,
           ".out": "event"
         },
         {
-          ".id": 10032,
+          ".id": 1750110032,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -5054,11 +5061,12 @@
           "BPSYS": 92,
           "HR": 56,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10034,
+          ".id": 1750110034,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -5069,11 +5077,12 @@
           "BPSYS": 122,
           "HR": 66,
           "WEIGHT": 64.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10037,
+          ".id": 1750110037,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -5084,11 +5093,12 @@
           "BPSYS": 136,
           "HR": 50,
           "WEIGHT": 88.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10038,
+          ".id": 1750110038,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -5098,12 +5108,13 @@
           "BPDIA": 82,
           "BPSYS": 125,
           "HR": 76,
-          "WEIGHT": 94.56,
+          "WEIGHT": 93.14,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10043,
+          ".id": 1750110043,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -5114,11 +5125,12 @@
           "BPSYS": 134,
           "HR": 48,
           "WEIGHT": 64.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
         {
-          ".id": 10046,
+          ".id": 1750110046,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -5129,11 +5141,12 @@
           "BPSYS": 128,
           "HR": 68,
           "WEIGHT": 80.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10048,
+          ".id": 1750110048,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5144,11 +5157,12 @@
           "BPSYS": 109,
           "HR": 63,
           "WEIGHT": 68,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10056,
+          ".id": 1750110056,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -5159,11 +5173,12 @@
           "BPSYS": 137,
           "HR": 74,
           "WEIGHT": 108.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10058,
+          ".id": 1750110058,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -5174,11 +5189,12 @@
           "BPSYS": 111,
           "HR": 80,
           "WEIGHT": 59.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10083,
+          ".id": 1750110083,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -5189,11 +5205,12 @@
           "BPSYS": 98,
           "HR": 90,
           "WEIGHT": 95.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10085,
+          ".id": 1750110085,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -5204,11 +5221,12 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 99.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10096,
+          ".id": 1750110096,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5219,11 +5237,12 @@
           "BPSYS": 129,
           "HR": 67,
           "WEIGHT": 65.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10098,
+          ".id": 1750110098,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -5234,11 +5253,12 @@
           "BPSYS": 134,
           "HR": 44,
           "WEIGHT": 47.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
         {
-          ".id": 10104,
+          ".id": 1750110104,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -5249,11 +5269,12 @@
           "BPSYS": 134,
           "HR": 50,
           "WEIGHT": 106.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10106,
+          ".id": 1750110106,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -5264,11 +5285,12 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 54.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10113,
+          ".id": 1750110113,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -5279,11 +5301,12 @@
           "BPSYS": 106,
           "HR": 74,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10124,
+          ".id": 1750110124,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -5294,11 +5317,12 @@
           "BPSYS": 119,
           "HR": 82,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10127,
+          ".id": 1750110127,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -5309,26 +5333,28 @@
           "BPSYS": 115,
           "HR": 72,
           "WEIGHT": 88.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10140,
+          ".id": 1750110140,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
           "RACE": "BLACK",
           "AGE": 68,
-          "BMI_advs": 27.38,
+          "BMI_advs": 27.88,
           "BPDIA": 64,
           "BPSYS": 98,
           "HR": 69,
           "WEIGHT": 101.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10142,
+          ".id": 1750110142,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -5339,11 +5365,12 @@
           "BPSYS": 98,
           "HR": 73,
           "WEIGHT": 86.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10145,
+          ".id": 1750110145,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -5354,11 +5381,12 @@
           "BPSYS": 109,
           "HR": 65.4,
           "WEIGHT": 66.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10156,
+          ".id": 1750110156,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -5369,11 +5397,12 @@
           "BPSYS": 115,
           "HR": 59,
           "WEIGHT": 73.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10157,
+          ".id": 1750110157,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5384,11 +5413,12 @@
           "BPSYS": 144,
           "HR": 79,
           "WEIGHT": 94.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
         {
-          ".id": 10159,
+          ".id": 1750110159,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -5399,11 +5429,12 @@
           "BPSYS": 103,
           "HR": 62,
           "WEIGHT": 39.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10161,
+          ".id": 1750110161,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5414,11 +5445,12 @@
           "BPSYS": 108,
           "HR": 64,
           "WEIGHT": 103.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3,
           ".out": "event"
         },
         {
-          ".id": 10163,
+          ".id": 1750110163,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5429,11 +5461,12 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 95.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10169,
+          ".id": 1750110169,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -5444,11 +5477,12 @@
           "BPSYS": 128,
           "HR": 71,
           "WEIGHT": 54.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10180,
+          ".id": 1750110180,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -5459,11 +5493,12 @@
           "BPSYS": 132,
           "HR": 61,
           "WEIGHT": 100,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10181,
+          ".id": 1750110181,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5474,26 +5509,28 @@
           "BPSYS": 125,
           "HR": 70,
           "WEIGHT": 62.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10182,
+          ".id": 1750110182,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
           "RACE": "WHITE",
           "AGE": 83,
           "BMI_advs": 26.3,
-          "BPDIA": 65.6,
+          "BPDIA": 71,
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 70.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10192,
+          ".id": 1750110192,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -5504,11 +5541,12 @@
           "BPSYS": 121,
           "HR": 79,
           "WEIGHT": 64.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10194,
+          ".id": 1750110194,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5519,11 +5557,12 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 41.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
         {
-          ".id": 10214,
+          ".id": 1750110214,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -5534,11 +5573,12 @@
           "BPSYS": 116,
           "HR": 61,
           "WEIGHT": 61,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10225,
+          ".id": 1750110225,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -5549,11 +5589,12 @@
           "BPSYS": 110,
           "HR": 80,
           "WEIGHT": 86.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10227,
+          ".id": 1750110227,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -5564,11 +5605,12 @@
           "BPSYS": 120,
           "HR": 64,
           "WEIGHT": 84.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10229,
+          ".id": 1750110229,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -5579,11 +5621,12 @@
           "BPSYS": 99,
           "HR": 62,
           "WEIGHT": 73,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10231,
+          ".id": 1750110231,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5594,11 +5637,12 @@
           "BPSYS": 137,
           "HR": 69,
           "WEIGHT": 93.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10232,
+          ".id": 1750110232,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -5609,11 +5653,12 @@
           "BPSYS": 141,
           "HR": 63,
           "WEIGHT": 78.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
         {
-          ".id": 10243,
+          ".id": 1750110243,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -5624,11 +5669,12 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 105.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10249,
+          ".id": 1750110249,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -5639,11 +5685,12 @@
           "BPSYS": 108,
           "HR": 78,
           "WEIGHT": 85,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10259,
+          ".id": 1750110259,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -5654,11 +5701,12 @@
           "BPSYS": 135,
           "HR": 79,
           "WEIGHT": 69.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10266,
+          ".id": 1750110266,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -5669,11 +5717,12 @@
           "BPSYS": 134,
           "HR": 52,
           "WEIGHT": 117.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10300,
+          ".id": 1750110300,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -5684,11 +5733,12 @@
           "BPSYS": 125,
           "HR": 77,
           "WEIGHT": 113.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10302,
+          ".id": 1750110302,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -5699,11 +5749,12 @@
           "BPSYS": 122,
           "HR": 81,
           "WEIGHT": 77,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10303,
+          ".id": 1750110303,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5714,11 +5765,12 @@
           "BPSYS": 143,
           "HR": 86,
           "WEIGHT": 82.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10001,
+          ".id": 1750110001,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -5729,11 +5781,12 @@
           "BPSYS": 116,
           "HR": 79,
           "WEIGHT": 92.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10003,
+          ".id": 1750110003,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -5744,11 +5797,12 @@
           "BPSYS": 105,
           "HR": 86,
           "WEIGHT": 51.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10008,
+          ".id": 1750110008,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -5759,11 +5813,12 @@
           "BPSYS": 141,
           "HR": 75,
           "WEIGHT": 112.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10027,
+          ".id": 1750110027,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -5774,11 +5829,12 @@
           "BPSYS": 152,
           "HR": 69,
           "WEIGHT": 50.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10029,
+          ".id": 1750110029,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -5789,11 +5845,12 @@
           "BPSYS": 130,
           "HR": 70,
           "WEIGHT": 73,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
         {
-          ".id": 10033,
+          ".id": 1750110033,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5804,11 +5861,12 @@
           "BPSYS": 114,
           "HR": 58,
           "WEIGHT": 66.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10047,
+          ".id": 1750110047,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5819,11 +5877,12 @@
           "BPSYS": 117,
           "HR": 93,
           "WEIGHT": 110.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10051,
+          ".id": 1750110051,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -5834,11 +5893,12 @@
           "BPSYS": 108,
           "HR": 67,
           "WEIGHT": 88.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10055,
+          ".id": 1750110055,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5849,11 +5909,12 @@
           "BPSYS": 100,
           "HR": 81,
           "WEIGHT": 66.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10059,
+          ".id": 1750110059,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -5864,11 +5925,12 @@
           "BPSYS": 114,
           "HR": 53,
           "WEIGHT": 65.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10066,
+          ".id": 1750110066,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -5879,11 +5941,12 @@
           "BPSYS": 107,
           "HR": 39,
           "WEIGHT": 53.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10069,
+          ".id": 1750110069,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -5894,11 +5957,12 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 96.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10082,
+          ".id": 1750110082,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -5909,11 +5973,12 @@
           "BPSYS": 96,
           "HR": 64,
           "WEIGHT": 67.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10117,
+          ".id": 1750110117,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -5924,11 +5989,12 @@
           "BPSYS": 98,
           "HR": 89,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10123,
+          ".id": 1750110123,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -5939,11 +6005,12 @@
           "BPSYS": 129,
           "HR": 62,
           "WEIGHT": 46.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10128,
+          ".id": 1750110128,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -5954,11 +6021,12 @@
           "BPSYS": 106,
           "HR": 73,
           "WEIGHT": 53.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10129,
+          ".id": 1750110129,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -5969,11 +6037,12 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10133,
+          ".id": 1750110133,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -5984,11 +6053,12 @@
           "BPSYS": 108,
           "HR": 72,
           "WEIGHT": 74.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10138,
+          ".id": 1750110138,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -5999,11 +6069,12 @@
           "BPSYS": 112,
           "HR": 76,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10143,
+          ".id": 1750110143,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -6014,11 +6085,12 @@
           "BPSYS": 117,
           "HR": 80,
           "WEIGHT": 71.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10144,
+          ".id": 1750110144,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -6029,11 +6101,12 @@
           "BPSYS": 124,
           "HR": 60,
           "WEIGHT": 80.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10154,
+          ".id": 1750110154,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -6044,11 +6117,12 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 82.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10162,
+          ".id": 1750110162,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -6059,11 +6133,12 @@
           "BPSYS": 143,
           "HR": 78,
           "WEIGHT": 66,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10166,
+          ".id": 1750110166,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -6074,11 +6149,12 @@
           "BPSYS": 115,
           "HR": 63,
           "WEIGHT": 66.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10172,
+          ".id": 1750110172,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -6089,11 +6165,12 @@
           "BPSYS": 124,
           "HR": 68,
           "WEIGHT": 78.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10177,
+          ".id": 1750110177,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -6104,11 +6181,12 @@
           "BPSYS": 94,
           "HR": 67,
           "WEIGHT": 76.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10183,
+          ".id": 1750110183,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -6119,11 +6197,12 @@
           "BPSYS": 113,
           "HR": 71,
           "WEIGHT": 56.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10184,
+          ".id": 1750110184,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -6134,11 +6213,12 @@
           "BPSYS": 116,
           "HR": 50,
           "WEIGHT": 74.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10185,
+          ".id": 1750110185,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -6149,11 +6229,12 @@
           "BPSYS": 113,
           "HR": 72,
           "WEIGHT": 66.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10187,
+          ".id": 1750110187,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -6164,11 +6245,12 @@
           "BPSYS": 118,
           "HR": 96,
           "WEIGHT": 60.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10189,
+          ".id": 1750110189,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -6179,11 +6261,12 @@
           "BPSYS": 117,
           "HR": 79,
           "WEIGHT": 88,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10208,
+          ".id": 1750110208,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -6194,11 +6277,12 @@
           "BPSYS": 99,
           "HR": 64,
           "WEIGHT": 60.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10218,
+          ".id": 1750110218,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -6209,11 +6293,12 @@
           "BPSYS": 119,
           "HR": 62,
           "WEIGHT": 62.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10228,
+          ".id": 1750110228,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -6224,11 +6309,12 @@
           "BPSYS": 101,
           "HR": 45,
           "WEIGHT": 55.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
         {
-          ".id": 10239,
+          ".id": 1750110239,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -6239,11 +6325,12 @@
           "BPSYS": 111,
           "HR": 59,
           "WEIGHT": 54.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10242,
+          ".id": 1750110242,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -6254,11 +6341,12 @@
           "BPSYS": 114,
           "HR": 71,
           "WEIGHT": 86.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10247,
+          ".id": 1750110247,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -6269,11 +6357,12 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 94.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10271,
+          ".id": 1750110271,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -6284,11 +6373,12 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 61.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10272,
+          ".id": 1750110272,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -6299,11 +6389,12 @@
           "BPSYS": 106,
           "HR": 68,
           "WEIGHT": 101.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10279,
+          ".id": 1750110279,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -6314,11 +6405,12 @@
           "BPSYS": 128,
           "HR": 62,
           "WEIGHT": 92.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10280,
+          ".id": 1750110280,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -6329,11 +6421,12 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 75,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10282,
+          ".id": 1750110282,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -6344,11 +6437,12 @@
           "BPSYS": 124,
           "HR": 48,
           "WEIGHT": 63.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10283,
+          ".id": 1750110283,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -6359,11 +6453,12 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 48.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10314,
+          ".id": 1750110314,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -6374,11 +6469,12 @@
           "BPSYS": 123,
           "HR": 85,
           "WEIGHT": 100,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10317,
+          ".id": 1750110317,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -6389,11 +6485,12 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 89.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10009,
+          ".id": 1750110009,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -6404,11 +6501,12 @@
           "BPSYS": 111,
           "HR": 82,
           "WEIGHT": 114.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10010,
+          ".id": 1750110010,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -6419,11 +6517,12 @@
           "BPSYS": 121,
           "HR": 60,
           "WEIGHT": 81.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10012,
+          ".id": 1750110012,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -6434,11 +6533,12 @@
           "BPSYS": 109,
           "HR": 83,
           "WEIGHT": 98.1,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10014,
+          ".id": 1750110014,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -6449,11 +6549,12 @@
           "BPSYS": 126,
           "HR": 84,
           "WEIGHT": 75.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10028,
+          ".id": 1750110028,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -6464,26 +6565,28 @@
           "BPSYS": 134,
           "HR": 67,
           "WEIGHT": 111.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10036,
+          ".id": 1750110036,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
           "RACE": "WHITE",
           "AGE": 60,
           "BMI_advs": 26,
-          "BPDIA": 70.4,
+          "BPDIA": 73,
           "BPSYS": 128,
           "HR": 56,
           "WEIGHT": 62.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10039,
+          ".id": 1750110039,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -6494,11 +6597,12 @@
           "BPSYS": 96,
           "HR": 84,
           "WEIGHT": 78.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10044,
+          ".id": 1750110044,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -6509,11 +6613,12 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 82.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10062,
+          ".id": 1750110062,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -6524,11 +6629,12 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 103.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10067,
+          ".id": 1750110067,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -6539,11 +6645,12 @@
           "BPSYS": 135,
           "HR": 76,
           "WEIGHT": 67,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10070,
+          ".id": 1750110070,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -6554,11 +6661,12 @@
           "BPSYS": 128,
           "HR": 86,
           "WEIGHT": 93.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10071,
+          ".id": 1750110071,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -6569,11 +6677,12 @@
           "BPSYS": 124,
           "HR": 76,
           "WEIGHT": 65.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10073,
+          ".id": 1750110073,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -6584,11 +6693,12 @@
           "BPSYS": 117,
           "HR": 77,
           "WEIGHT": 115.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10080,
+          ".id": 1750110080,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -6599,11 +6709,12 @@
           "BPSYS": 95,
           "HR": 46,
           "WEIGHT": 50.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10089,
+          ".id": 1750110089,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -6614,11 +6725,12 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 79.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10092,
+          ".id": 1750110092,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -6629,11 +6741,12 @@
           "BPSYS": 137,
           "HR": 78,
           "WEIGHT": 96.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10097,
+          ".id": 1750110097,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -6644,11 +6757,12 @@
           "BPSYS": 107,
           "HR": 66,
           "WEIGHT": 94.5,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10100,
+          ".id": 1750110100,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -6659,11 +6773,12 @@
           "BPSYS": 123,
           "HR": 49,
           "WEIGHT": 96.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10109,
+          ".id": 1750110109,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -6674,11 +6789,12 @@
           "BPSYS": 95,
           "HR": 72,
           "WEIGHT": 101.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10110,
+          ".id": 1750110110,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -6689,11 +6805,12 @@
           "BPSYS": 162,
           "HR": 86,
           "WEIGHT": 84,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10134,
+          ".id": 1750110134,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -6704,11 +6821,12 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 81.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10153,
+          ".id": 1750110153,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -6719,11 +6837,12 @@
           "BPSYS": 95,
           "HR": 87,
           "WEIGHT": 99.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10155,
+          ".id": 1750110155,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -6734,11 +6853,12 @@
           "BPSYS": 98,
           "HR": 55,
           "WEIGHT": 70.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10158,
+          ".id": 1750110158,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -6749,11 +6869,12 @@
           "BPSYS": 131,
           "HR": 77,
           "WEIGHT": 120.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10164,
+          ".id": 1750110164,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -6764,11 +6885,12 @@
           "BPSYS": 105,
           "HR": 48,
           "WEIGHT": 64.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10170,
+          ".id": 1750110170,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -6779,11 +6901,12 @@
           "BPSYS": 112,
           "HR": 57,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10195,
+          ".id": 1750110195,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -6794,11 +6917,12 @@
           "BPSYS": 136,
           "HR": 66,
           "WEIGHT": 113.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10197,
+          ".id": 1750110197,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -6809,11 +6933,12 @@
           "BPSYS": 113,
           "HR": 63,
           "WEIGHT": 66.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10209,
+          ".id": 1750110209,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -6824,11 +6949,12 @@
           "BPSYS": 100,
           "HR": 75,
           "WEIGHT": 65.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10213,
+          ".id": 1750110213,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -6839,11 +6965,12 @@
           "BPSYS": 96,
           "HR": 85,
           "WEIGHT": 96.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10215,
+          ".id": 1750110215,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -6854,11 +6981,12 @@
           "BPSYS": 106,
           "HR": 62,
           "WEIGHT": 72,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10219,
+          ".id": 1750110219,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -6869,11 +6997,12 @@
           "BPSYS": 132,
           "HR": 54,
           "WEIGHT": 95.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10220,
+          ".id": 1750110220,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -6884,11 +7013,12 @@
           "BPSYS": 115,
           "HR": 68,
           "WEIGHT": 81.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10223,
+          ".id": 1750110223,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -6899,11 +7029,12 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 98.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10226,
+          ".id": 1750110226,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -6914,11 +7045,12 @@
           "BPSYS": 106,
           "HR": 55,
           "WEIGHT": 59.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10234,
+          ".id": 1750110234,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -6929,11 +7061,12 @@
           "BPSYS": 105,
           "HR": 66,
           "WEIGHT": 55.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10250,
+          ".id": 1750110250,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -6944,11 +7077,12 @@
           "BPSYS": 111,
           "HR": 67,
           "WEIGHT": 85.7,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10253,
+          ".id": 1750110253,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -6959,11 +7093,12 @@
           "BPSYS": 129,
           "HR": 65,
           "WEIGHT": 82.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10258,
+          ".id": 1750110258,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -6974,11 +7109,12 @@
           "BPSYS": 105,
           "HR": 72,
           "WEIGHT": 77.4,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10260,
+          ".id": 1750110260,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -6989,11 +7125,12 @@
           "BPSYS": 83,
           "HR": 89,
           "WEIGHT": 75.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10263,
+          ".id": 1750110263,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -7004,11 +7141,12 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 109.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10267,
+          ".id": 1750110267,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -7019,11 +7157,12 @@
           "BPSYS": 126,
           "HR": 56,
           "WEIGHT": 75.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10274,
+          ".id": 1750110274,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -7034,11 +7173,12 @@
           "BPSYS": 96,
           "HR": 72,
           "WEIGHT": 76.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10285,
+          ".id": 1750110285,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7049,11 +7189,12 @@
           "BPSYS": 119,
           "HR": 65,
           "WEIGHT": 98.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10291,
+          ".id": 1750110291,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7064,11 +7205,12 @@
           "BPSYS": 99,
           "HR": 68,
           "WEIGHT": 70.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10299,
+          ".id": 1750110299,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -7079,11 +7221,12 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 57.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10301,
+          ".id": 1750110301,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7094,11 +7237,12 @@
           "BPSYS": 121,
           "HR": 53,
           "WEIGHT": 90.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10307,
+          ".id": 1750110307,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -7109,11 +7253,12 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 65.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10312,
+          ".id": 1750110312,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -7124,11 +7269,12 @@
           "BPSYS": 134,
           "HR": 70,
           "WEIGHT": 92,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10004,
+          ".id": 1750110004,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -7139,11 +7285,12 @@
           "BPSYS": 134,
           "HR": 64,
           "WEIGHT": 106,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10007,
+          ".id": 1750110007,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7154,11 +7301,12 @@
           "BPSYS": 127,
           "HR": 59,
           "WEIGHT": 79.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10011,
+          ".id": 1750110011,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7169,11 +7317,12 @@
           "BPSYS": 127,
           "HR": 75,
           "WEIGHT": 77.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10013,
+          ".id": 1750110013,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -7184,11 +7333,12 @@
           "BPSYS": 95,
           "HR": 64,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10019,
+          ".id": 1750110019,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -7199,11 +7349,12 @@
           "BPSYS": 101,
           "HR": 56,
           "WEIGHT": 57.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10021,
+          ".id": 1750110021,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7214,11 +7365,12 @@
           "BPSYS": 124,
           "HR": 80,
           "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10023,
+          ".id": 1750110023,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7229,11 +7381,12 @@
           "BPSYS": 101,
           "HR": 71,
           "WEIGHT": 115,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10025,
+          ".id": 1750110025,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -7244,11 +7397,12 @@
           "BPSYS": 117,
           "HR": 70,
           "WEIGHT": 85.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10045,
+          ".id": 1750110045,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7259,11 +7413,12 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 99,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10049,
+          ".id": 1750110049,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -7274,11 +7429,12 @@
           "BPSYS": 140,
           "HR": 71,
           "WEIGHT": 86.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10054,
+          ".id": 1750110054,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7289,11 +7445,12 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 96.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10063,
+          ".id": 1750110063,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7304,11 +7461,12 @@
           "BPSYS": 109,
           "HR": 81,
           "WEIGHT": 105.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10072,
+          ".id": 1750110072,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -7319,11 +7477,12 @@
           "BPSYS": 142,
           "HR": 74,
           "WEIGHT": 90.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10074,
+          ".id": 1750110074,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -7334,11 +7493,12 @@
           "BPSYS": 108,
           "HR": 74,
           "WEIGHT": 79.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10076,
+          ".id": 1750110076,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7349,11 +7509,12 @@
           "BPSYS": 138,
           "HR": 67,
           "WEIGHT": 98.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10081,
+          ".id": 1750110081,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7364,11 +7525,12 @@
           "BPSYS": 110,
           "HR": 63,
           "WEIGHT": 61.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10086,
+          ".id": 1750110086,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -7379,11 +7541,12 @@
           "BPSYS": 121,
           "HR": 58,
           "WEIGHT": 72.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10087,
+          ".id": 1750110087,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7394,11 +7557,12 @@
           "BPSYS": 122,
           "HR": 70,
           "WEIGHT": 80.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10088,
+          ".id": 1750110088,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7409,11 +7573,12 @@
           "BPSYS": 97,
           "HR": 71,
           "WEIGHT": 73.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10090,
+          ".id": 1750110090,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -7424,11 +7589,12 @@
           "BPSYS": 100,
           "HR": 70,
           "WEIGHT": 75.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10091,
+          ".id": 1750110091,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7439,11 +7605,12 @@
           "BPSYS": 109,
           "HR": 42,
           "WEIGHT": 62.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10093,
+          ".id": 1750110093,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7454,11 +7621,12 @@
           "BPSYS": 92,
           "HR": 76,
           "WEIGHT": 72.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10095,
+          ".id": 1750110095,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7469,11 +7637,12 @@
           "BPSYS": 118,
           "HR": 65,
           "WEIGHT": 82.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10101,
+          ".id": 1750110101,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -7484,11 +7653,12 @@
           "BPSYS": 129,
           "HR": 63,
           "WEIGHT": 90.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10102,
+          ".id": 1750110102,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -7499,26 +7669,28 @@
           "BPSYS": 123,
           "HR": 60,
           "WEIGHT": 65.8,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10105,
+          ".id": 1750110105,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
           "RACE": "WHITE",
           "AGE": 74,
           "BMI_advs": 28.1,
-          "BPDIA": 70.4,
+          "BPDIA": 66.6,
           "BPSYS": 140,
           "HR": 74,
           "WEIGHT": 74.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10107,
+          ".id": 1750110107,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -7529,11 +7701,12 @@
           "BPSYS": 112,
           "HR": 77,
           "WEIGHT": 54.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10108,
+          ".id": 1750110108,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7544,11 +7717,12 @@
           "BPSYS": 134,
           "HR": 66,
           "WEIGHT": 126.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10111,
+          ".id": 1750110111,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -7559,11 +7733,12 @@
           "BPSYS": 109,
           "HR": 87,
           "WEIGHT": 89.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10112,
+          ".id": 1750110112,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -7574,11 +7749,12 @@
           "BPSYS": 115,
           "HR": 75,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10114,
+          ".id": 1750110114,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -7589,26 +7765,28 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 123.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10115,
+          ".id": 1750110115,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
           "RACE": "WHITE",
           "AGE": 60,
           "BMI_advs": 28.5,
-          "BPDIA": 64.4,
+          "BPDIA": 65.4,
           "BPSYS": 113,
           "HR": 52,
           "WEIGHT": 87.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10116,
+          ".id": 1750110116,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -7619,11 +7797,12 @@
           "BPSYS": 93,
           "HR": 74,
           "WEIGHT": 92.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10126,
+          ".id": 1750110126,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -7634,11 +7813,12 @@
           "BPSYS": 103,
           "HR": 89,
           "WEIGHT": 78.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10135,
+          ".id": 1750110135,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7649,11 +7829,12 @@
           "BPSYS": 118,
           "HR": 64,
           "WEIGHT": 63.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10136,
+          ".id": 1750110136,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -7664,11 +7845,12 @@
           "BPSYS": 140,
           "HR": 66,
           "WEIGHT": 88.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10137,
+          ".id": 1750110137,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7679,11 +7861,12 @@
           "BPSYS": 128,
           "HR": 83,
           "WEIGHT": 79.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10146,
+          ".id": 1750110146,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -7694,11 +7877,12 @@
           "BPSYS": 122,
           "HR": 72,
           "WEIGHT": 69.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10160,
+          ".id": 1750110160,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -7709,11 +7893,12 @@
           "BPSYS": 125,
           "HR": 59,
           "WEIGHT": 80.6,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10165,
+          ".id": 1750110165,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -7724,11 +7909,12 @@
           "BPSYS": 138,
           "HR": 65,
           "WEIGHT": 122.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10179,
+          ".id": 1750110179,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -7739,11 +7925,12 @@
           "BPSYS": 130,
           "HR": 56,
           "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10190,
+          ".id": 1750110190,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7754,11 +7941,12 @@
           "BPSYS": 134,
           "HR": 69,
           "WEIGHT": 67.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10198,
+          ".id": 1750110198,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -7769,11 +7957,12 @@
           "BPSYS": 125,
           "HR": 71,
           "WEIGHT": 87.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10199,
+          ".id": 1750110199,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7784,11 +7973,12 @@
           "BPSYS": 103,
           "HR": 71,
           "WEIGHT": 68.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10201,
+          ".id": 1750110201,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7796,14 +7986,15 @@
           "AGE": 49,
           "BMI_advs": 32.4,
           "BPDIA": 79,
-          "BPSYS": 128.8,
+          "BPSYS": 123.4,
           "HR": 72,
           "WEIGHT": 75.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10203,
+          ".id": 1750110203,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7814,11 +8005,12 @@
           "BPSYS": 113,
           "HR": 83,
           "WEIGHT": 66.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10206,
+          ".id": 1750110206,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7829,11 +8021,12 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 73.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10216,
+          ".id": 1750110216,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -7844,11 +8037,12 @@
           "BPSYS": 117,
           "HR": 67,
           "WEIGHT": 75.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10217,
+          ".id": 1750110217,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7859,11 +8053,12 @@
           "BPSYS": 148,
           "HR": 55,
           "WEIGHT": 96.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10222,
+          ".id": 1750110222,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -7874,11 +8069,12 @@
           "BPSYS": 107,
           "HR": 75,
           "WEIGHT": 126.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10224,
+          ".id": 1750110224,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -7889,11 +8085,12 @@
           "BPSYS": 140,
           "HR": 61,
           "WEIGHT": 88.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10233,
+          ".id": 1750110233,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -7904,26 +8101,28 @@
           "BPSYS": 121,
           "HR": 76,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10237,
+          ".id": 1750110237,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "WHITE",
+          "RACE": "ASIAN",
           "AGE": 58,
           "BMI_advs": 38,
           "BPDIA": 68,
           "BPSYS": 119,
           "HR": 61,
           "WEIGHT": 105.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10241,
+          ".id": 1750110241,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -7934,11 +8133,12 @@
           "BPSYS": 144,
           "HR": 75,
           "WEIGHT": 71.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10244,
+          ".id": 1750110244,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7949,11 +8149,12 @@
           "BPSYS": 135,
           "HR": 67,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10248,
+          ".id": 1750110248,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -7964,11 +8165,12 @@
           "BPSYS": 91,
           "HR": 73,
           "WEIGHT": 83.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10255,
+          ".id": 1750110255,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -7979,11 +8181,12 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 104.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10262,
+          ".id": 1750110262,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -7994,11 +8197,12 @@
           "BPSYS": 129,
           "HR": 61,
           "WEIGHT": 80.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10275,
+          ".id": 1750110275,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -8009,11 +8213,12 @@
           "BPSYS": 95,
           "HR": 57,
           "WEIGHT": 54,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10277,
+          ".id": 1750110277,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8024,11 +8229,12 @@
           "BPSYS": 131,
           "HR": 58,
           "WEIGHT": 96.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10278,
+          ".id": 1750110278,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8039,11 +8245,12 @@
           "BPSYS": 121,
           "HR": 78,
           "WEIGHT": 69.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10284,
+          ".id": 1750110284,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -8054,11 +8261,12 @@
           "BPSYS": 95,
           "HR": 78,
           "WEIGHT": 97.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10287,
+          ".id": 1750110287,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -8069,11 +8277,12 @@
           "BPSYS": 115,
           "HR": 40,
           "WEIGHT": 106.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10288,
+          ".id": 1750110288,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -8084,11 +8293,12 @@
           "BPSYS": 103,
           "HR": 98,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10289,
+          ".id": 1750110289,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8099,11 +8309,12 @@
           "BPSYS": 93,
           "HR": 64,
           "WEIGHT": 80.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10290,
+          ".id": 1750110290,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -8114,11 +8325,12 @@
           "BPSYS": 92,
           "HR": 58,
           "WEIGHT": 77.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10297,
+          ".id": 1750110297,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8129,11 +8341,12 @@
           "BPSYS": 107,
           "HR": 73,
           "WEIGHT": 68.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10316,
+          ".id": 1750110316,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -8144,11 +8357,12 @@
           "BPSYS": 114,
           "HR": 54,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10320,
+          ".id": 1750110320,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -8159,6 +8373,7 @@
           "BPSYS": 143,
           "HR": 66,
           "WEIGHT": 101.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         }
@@ -8167,7 +8382,7 @@
       $data$prep$test
       [
         {
-          ".id": 10005,
+          ".id": 1750110005,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -8178,11 +8393,12 @@
           "BPSYS": 111,
           "HR": 63,
           "WEIGHT": 89.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10018,
+          ".id": 1750110018,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -8193,11 +8409,12 @@
           "BPSYS": 128,
           "HR": 64,
           "WEIGHT": 95.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10022,
+          ".id": 1750110022,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -8208,11 +8425,12 @@
           "BPSYS": 101,
           "HR": 80,
           "WEIGHT": 73.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10024,
+          ".id": 1750110024,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -8223,11 +8441,12 @@
           "BPSYS": 133,
           "HR": 60,
           "WEIGHT": 64.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10040,
+          ".id": 1750110040,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -8238,11 +8457,12 @@
           "BPSYS": 111,
           "HR": 57,
           "WEIGHT": 79.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10041,
+          ".id": 1750110041,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -8253,11 +8473,12 @@
           "BPSYS": 139,
           "HR": 82,
           "WEIGHT": 90.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10042,
+          ".id": 1750110042,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8268,11 +8489,12 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 97.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10050,
+          ".id": 1750110050,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8283,11 +8505,12 @@
           "BPSYS": 122,
           "HR": 78,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10052,
+          ".id": 1750110052,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8298,11 +8521,12 @@
           "BPSYS": 143,
           "HR": 68,
           "WEIGHT": 87.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10053,
+          ".id": 1750110053,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -8313,11 +8537,12 @@
           "BPSYS": 97,
           "HR": 49,
           "WEIGHT": 96.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10060,
+          ".id": 1750110060,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -8328,11 +8553,12 @@
           "BPSYS": 142,
           "HR": 63,
           "WEIGHT": 98.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10061,
+          ".id": 1750110061,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -8343,11 +8569,12 @@
           "BPSYS": 130,
           "HR": 74,
           "WEIGHT": 67.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10064,
+          ".id": 1750110064,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -8358,11 +8585,12 @@
           "BPSYS": 108,
           "HR": 56,
           "WEIGHT": 82.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10075,
+          ".id": 1750110075,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -8373,11 +8601,12 @@
           "BPSYS": 108,
           "HR": 50,
           "WEIGHT": 91.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10077,
+          ".id": 1750110077,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -8388,11 +8617,12 @@
           "BPSYS": 110,
           "HR": 79,
           "WEIGHT": 97.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10079,
+          ".id": 1750110079,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -8403,11 +8633,12 @@
           "BPSYS": 131,
           "HR": 73,
           "WEIGHT": 65.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10084,
+          ".id": 1750110084,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -8418,11 +8649,12 @@
           "BPSYS": 135,
           "HR": 85,
           "WEIGHT": 102.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10094,
+          ".id": 1750110094,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -8433,11 +8665,12 @@
           "BPSYS": 124,
           "HR": 62,
           "WEIGHT": 75.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10103,
+          ".id": 1750110103,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -8448,11 +8681,12 @@
           "BPSYS": 123,
           "HR": 61,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10118,
+          ".id": 1750110118,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -8463,11 +8697,12 @@
           "BPSYS": 101,
           "HR": 92,
           "WEIGHT": 57.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10122,
+          ".id": 1750110122,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -8478,11 +8713,12 @@
           "BPSYS": 123,
           "HR": 82,
           "WEIGHT": 67.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10125,
+          ".id": 1750110125,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8493,11 +8729,12 @@
           "BPSYS": 128,
           "HR": 50,
           "WEIGHT": 87.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10130,
+          ".id": 1750110130,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8508,11 +8745,12 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 59,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10132,
+          ".id": 1750110132,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8523,11 +8761,12 @@
           "BPSYS": 103,
           "HR": 48,
           "WEIGHT": 70.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10139,
+          ".id": 1750110139,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -8538,11 +8777,12 @@
           "BPSYS": 144,
           "HR": 80,
           "WEIGHT": 101.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10141,
+          ".id": 1750110141,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -8553,11 +8793,12 @@
           "BPSYS": 127,
           "HR": 66,
           "WEIGHT": 102.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10147,
+          ".id": 1750110147,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -8568,11 +8809,12 @@
           "BPSYS": 110,
           "HR": 55,
           "WEIGHT": 65.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10149,
+          ".id": 1750110149,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -8583,26 +8825,28 @@
           "BPSYS": 142,
           "HR": 78,
           "WEIGHT": 66.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10150,
+          ".id": 1750110150,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "BLACK",
+          "RACE": "WHITE",
           "AGE": 51,
           "BMI_advs": 27.2,
           "BPDIA": 69,
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 81.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10152,
+          ".id": 1750110152,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -8613,11 +8857,12 @@
           "BPSYS": 98,
           "HR": 71,
           "WEIGHT": 73.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10167,
+          ".id": 1750110167,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -8628,11 +8873,12 @@
           "BPSYS": 126,
           "HR": 83,
           "WEIGHT": 67,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10168,
+          ".id": 1750110168,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -8643,11 +8889,12 @@
           "BPSYS": 126,
           "HR": 78,
           "WEIGHT": 86,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10173,
+          ".id": 1750110173,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -8658,11 +8905,12 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 57.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10175,
+          ".id": 1750110175,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -8673,11 +8921,12 @@
           "BPSYS": 145,
           "HR": 69,
           "WEIGHT": 90.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10176,
+          ".id": 1750110176,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -8688,11 +8937,12 @@
           "BPSYS": 138,
           "HR": 86,
           "WEIGHT": 71.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10186,
+          ".id": 1750110186,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -8703,11 +8953,12 @@
           "BPSYS": 113,
           "HR": 66,
           "WEIGHT": 36.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10191,
+          ".id": 1750110191,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -8718,11 +8969,12 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 92.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10193,
+          ".id": 1750110193,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -8733,11 +8985,12 @@
           "BPSYS": 120,
           "HR": 61,
           "WEIGHT": 61.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10196,
+          ".id": 1750110196,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -8748,11 +9001,12 @@
           "BPSYS": 107,
           "HR": 71,
           "WEIGHT": 93.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10200,
+          ".id": 1750110200,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -8760,14 +9014,15 @@
           "AGE": 79,
           "BMI_advs": 35.7,
           "BPDIA": 71,
-          "BPSYS": 120.4,
+          "BPSYS": 117.6,
           "HR": 81,
           "WEIGHT": 112.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10202,
+          ".id": 1750110202,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8778,11 +9033,12 @@
           "BPSYS": 133,
           "HR": 69,
           "WEIGHT": 83.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10205,
+          ".id": 1750110205,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8793,11 +9049,12 @@
           "BPSYS": 121,
           "HR": 68,
           "WEIGHT": 102.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10210,
+          ".id": 1750110210,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -8808,11 +9065,12 @@
           "BPSYS": 93,
           "HR": 86,
           "WEIGHT": 92.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10211,
+          ".id": 1750110211,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -8823,26 +9081,28 @@
           "BPSYS": 117,
           "HR": 62,
           "WEIGHT": 70,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10230,
+          ".id": 1750110230,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
           "RACE": "WHITE",
           "AGE": 61,
-          "BMI_advs": 25.76,
+          "BMI_advs": 25.4,
           "BPDIA": 68,
           "BPSYS": 110,
           "HR": 53,
           "WEIGHT": 93.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10235,
+          ".id": 1750110235,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -8853,11 +9113,12 @@
           "BPSYS": 134,
           "HR": 65,
           "WEIGHT": 101.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10238,
+          ".id": 1750110238,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8868,11 +9129,12 @@
           "BPSYS": 122,
           "HR": 92,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10245,
+          ".id": 1750110245,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -8883,11 +9145,12 @@
           "BPSYS": 84,
           "HR": 71,
           "WEIGHT": 92.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10251,
+          ".id": 1750110251,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -8898,11 +9161,12 @@
           "BPSYS": 120,
           "HR": 62,
           "WEIGHT": 72.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10254,
+          ".id": 1750110254,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -8913,11 +9177,12 @@
           "BPSYS": 123,
           "HR": 59,
           "WEIGHT": 89,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10257,
+          ".id": 1750110257,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -8928,11 +9193,12 @@
           "BPSYS": 134,
           "HR": 81,
           "WEIGHT": 69.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10261,
+          ".id": 1750110261,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -8943,11 +9209,12 @@
           "BPSYS": 127,
           "HR": 86,
           "WEIGHT": 108.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10264,
+          ".id": 1750110264,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -8956,13 +9223,14 @@
           "BMI_advs": 34.5,
           "BPDIA": 74,
           "BPSYS": 125,
-          "HR": 63.6,
+          "HR": 61.2,
           "WEIGHT": 106,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10269,
+          ".id": 1750110269,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -8973,11 +9241,12 @@
           "BPSYS": 92,
           "HR": 88,
           "WEIGHT": 98.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10270,
+          ".id": 1750110270,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -8988,11 +9257,12 @@
           "BPSYS": 127,
           "HR": 89,
           "WEIGHT": 110.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10273,
+          ".id": 1750110273,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -9003,11 +9273,12 @@
           "BPSYS": 99,
           "HR": 50,
           "WEIGHT": 81,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10276,
+          ".id": 1750110276,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -9018,11 +9289,12 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 75.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10281,
+          ".id": 1750110281,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -9033,11 +9305,12 @@
           "BPSYS": 103,
           "HR": 77,
           "WEIGHT": 79.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10286,
+          ".id": 1750110286,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -9048,11 +9321,12 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 93.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10293,
+          ".id": 1750110293,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -9063,11 +9337,12 @@
           "BPSYS": 95,
           "HR": 74,
           "WEIGHT": 100.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10294,
+          ".id": 1750110294,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -9078,11 +9353,12 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 91.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10295,
+          ".id": 1750110295,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -9093,11 +9369,12 @@
           "BPSYS": 110,
           "HR": 60,
           "WEIGHT": 59.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10296,
+          ".id": 1750110296,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -9108,11 +9385,12 @@
           "BPSYS": 128,
           "HR": 87,
           "WEIGHT": 85.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10298,
+          ".id": 1750110298,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -9123,11 +9401,12 @@
           "BPSYS": 111,
           "HR": 64,
           "WEIGHT": 79.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10305,
+          ".id": 1750110305,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -9138,11 +9417,12 @@
           "BPSYS": 125,
           "HR": 44,
           "WEIGHT": 62.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10306,
+          ".id": 1750110306,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -9153,11 +9433,12 @@
           "BPSYS": 101,
           "HR": 77,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10308,
+          ".id": 1750110308,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -9168,11 +9449,12 @@
           "BPSYS": 110,
           "HR": 67,
           "WEIGHT": 88.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "no event"
         },
         {
-          ".id": 10309,
+          ".id": 1750110309,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -9183,11 +9465,12 @@
           "BPSYS": 126,
           "HR": 74,
           "WEIGHT": 91.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         },
         {
-          ".id": 10310,
+          ".id": 1750110310,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -9198,11 +9481,12 @@
           "BPSYS": 109,
           "HR": 80,
           "WEIGHT": 106.7,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10311,
+          ".id": 1750110311,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -9213,11 +9497,12 @@
           "BPSYS": 125,
           "HR": 56,
           "WEIGHT": 90.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": "event"
         },
         {
-          ".id": 10313,
+          ".id": 1750110313,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -9227,12 +9512,13 @@
           "BPDIA": 61,
           "BPSYS": 108,
           "HR": 59,
-          "WEIGHT": 92.72,
+          "WEIGHT": 95.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": "event"
         },
         {
-          ".id": 10315,
+          ".id": 1750110315,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -9243,11 +9529,12 @@
           "BPSYS": 130,
           "HR": 83,
           "WEIGHT": 77.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": "no event"
         },
         {
-          ".id": 10318,
+          ".id": 1750110318,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -9258,11 +9545,12 @@
           "BPSYS": 100,
           "HR": 85,
           "WEIGHT": 58.6,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": "no event"
         },
         {
-          ".id": 10319,
+          ".id": 1750110319,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -9273,6 +9561,7 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 84.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": "event"
         }
@@ -9560,7 +9849,7 @@
       [1] "LAB1" "LAB2" "LAB3"
       
       $removed$cols$zv
-      [1] "cardiac_arrhythmias"
+      NULL
       
       $removed$cols$nzv
       NULL
@@ -9619,9 +9908,6 @@
       $input$args$thres_log
       [1] 2
       
-      $input$args$thres_count
-      [1] 10
-      
       $input$args$thres_corr
       [1] 0.9
       
@@ -9643,9 +9929,6 @@
       $input$args$vars_fct_expl_na
       NULL
       
-      $input$args$vars_ordinalscore
-      NULL
-      
       $input$args$vars_keep_corr
       NULL
       
@@ -9657,6 +9940,9 @@
       
       $input$args$log_base
       [1] 2.718282
+      
+      $input$args$corr_method
+      [1] "spearman"
       
       $input$args$outlier_remove
       [1] FALSE
@@ -9688,7 +9974,7 @@
       $data$raw$train
       [
         {
-          ".id": 10002,
+          ".id": 1750110002,
           ".out": 0.49,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -9704,11 +9990,11 @@
           "BPSYS": 119,
           "HR": 84,
           "WEIGHT": 90.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10005,
+          ".id": 1750110005,
           ".out": 0.04,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -9724,11 +10010,11 @@
           "BPSYS": 111,
           "HR": 63,
           "WEIGHT": 89.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10009,
+          ".id": 1750110009,
           ".out": -0.02,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -9741,11 +10027,11 @@
           "BPSYS": 111,
           "HR": 82,
           "WEIGHT": 114.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10010,
+          ".id": 1750110010,
           ".out": 0.44,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -9758,11 +10044,11 @@
           "BPSYS": 121,
           "HR": 60,
           "WEIGHT": 81.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10012,
+          ".id": 1750110012,
           ".out": -0.09,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -9779,7 +10065,7 @@
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10015,
+          ".id": 1750110015,
           ".out": 0.37,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -9792,11 +10078,11 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10017,
+          ".id": 1750110017,
           ".out": -0.28,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -9813,7 +10099,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10018,
+          ".id": 1750110018,
           ".out": -0.58,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -9826,11 +10112,11 @@
           "BPSYS": 128,
           "HR": 64,
           "WEIGHT": 95.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10022,
+          ".id": 1750110022,
           ".out": 0.36,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -9843,11 +10129,11 @@
           "BPSYS": 101,
           "HR": 80,
           "WEIGHT": 73.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10024,
+          ".id": 1750110024,
           ".out": 1.23,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -9860,11 +10146,11 @@
           "BPSYS": 133,
           "HR": 60,
           "WEIGHT": 64.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10026,
+          ".id": 1750110026,
           ".out": 0.41,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -9876,11 +10162,11 @@
           "BPDIA": 68,
           "BPSYS": 102,
           "WEIGHT": 95.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10028,
+          ".id": 1750110028,
           ".out": 0.16,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -9893,11 +10179,11 @@
           "BPSYS": 134,
           "HR": 67,
           "WEIGHT": 111.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10030,
+          ".id": 1750110030,
           ".out": 0.03,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -9910,11 +10196,11 @@
           "BPSYS": 95,
           "HR": 71,
           "WEIGHT": 71.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10031,
+          ".id": 1750110031,
           ".out": 2.02,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -9926,11 +10212,11 @@
           "BPSYS": 116,
           "HR": 78,
           "WEIGHT": 84.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3
         },
         {
-          ".id": 10037,
+          ".id": 1750110037,
           ".out": 0.19,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -9943,11 +10229,11 @@
           "BPSYS": 136,
           "HR": 50,
           "WEIGHT": 88.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10038,
+          ".id": 1750110038,
           ".out": 0.62,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -9959,11 +10245,11 @@
           "BPDIA": 82,
           "BPSYS": 125,
           "HR": 76,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10039,
+          ".id": 1750110039,
           ".out": 0.28,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -9976,11 +10262,11 @@
           "BPSYS": 96,
           "HR": 84,
           "WEIGHT": 78.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10041,
+          ".id": 1750110041,
           ".out": 0.75,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -9993,11 +10279,11 @@
           "BPSYS": 139,
           "HR": 82,
           "WEIGHT": 90.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10042,
+          ".id": 1750110042,
           ".out": 0.91,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10010,11 +10296,11 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 97.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10043,
+          ".id": 1750110043,
           ".out": -0.61,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10027,11 +10313,11 @@
           "BPSYS": 134,
           "HR": 48,
           "WEIGHT": 64.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10044,
+          ".id": 1750110044,
           ".out": 0.46,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10044,11 +10330,11 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 82.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10046,
+          ".id": 1750110046,
           ".out": 1.42,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10061,11 +10347,11 @@
           "BPSYS": 128,
           "HR": 68,
           "WEIGHT": 80.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10052,
+          ".id": 1750110052,
           ".out": -0.01,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10078,11 +10364,11 @@
           "BPSYS": 143,
           "HR": 68,
           "WEIGHT": 87.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10056,
+          ".id": 1750110056,
           ".out": 0.72,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10095,11 +10381,11 @@
           "BPSYS": 137,
           "HR": 74,
           "WEIGHT": 108.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10058,
+          ".id": 1750110058,
           ".out": -0.61,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10112,11 +10398,11 @@
           "BPSYS": 111,
           "HR": 80,
           "WEIGHT": 59.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10062,
+          ".id": 1750110062,
           ".out": -0.21,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10129,11 +10415,11 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 103.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10067,
+          ".id": 1750110067,
           ".out": -0.86,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10146,11 +10432,11 @@
           "BPSYS": 135,
           "HR": 76,
           "WEIGHT": 67,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10070,
+          ".id": 1750110070,
           ".out": 1.52,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10163,11 +10449,11 @@
           "BPSYS": 128,
           "HR": 86,
           "WEIGHT": 93.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10071,
+          ".id": 1750110071,
           ".out": -0.62,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10180,11 +10466,11 @@
           "BPSYS": 124,
           "HR": 76,
           "WEIGHT": 65.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10073,
+          ".id": 1750110073,
           ".out": 0.24,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10197,11 +10483,11 @@
           "BPSYS": 117,
           "HR": 77,
           "WEIGHT": 115.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10080,
+          ".id": 1750110080,
           ".out": -0.59,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10214,11 +10500,11 @@
           "BPSYS": 95,
           "HR": 46,
           "WEIGHT": 50.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10085,
+          ".id": 1750110085,
           ".out": 1.2,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10231,11 +10517,11 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 99.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10092,
+          ".id": 1750110092,
           ".out": -0.23,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10248,11 +10534,11 @@
           "BPSYS": 137,
           "HR": 78,
           "WEIGHT": 96.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10097,
+          ".id": 1750110097,
           ".out": -1.11,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10269,7 +10555,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10098,
+          ".id": 1750110098,
           ".out": 2.53,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10281,11 +10567,11 @@
           "BPSYS": 134,
           "HR": 44,
           "WEIGHT": 47.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10100,
+          ".id": 1750110100,
           ".out": 0.29,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10298,11 +10584,11 @@
           "BPSYS": 123,
           "HR": 49,
           "WEIGHT": 96.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10103,
+          ".id": 1750110103,
           ".out": 1.06,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10314,11 +10600,11 @@
           "BPSYS": 123,
           "HR": 61,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10104,
+          ".id": 1750110104,
           ".out": 2.76,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10331,11 +10617,11 @@
           "BPSYS": 134,
           "HR": 50,
           "WEIGHT": 106.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10110,
+          ".id": 1750110110,
           ".out": 1,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10348,11 +10634,11 @@
           "BPSYS": 162,
           "HR": 86,
           "WEIGHT": 84,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10113,
+          ".id": 1750110113,
           ".out": -1.06,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10364,11 +10650,11 @@
           "BPSYS": 106,
           "HR": 74,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10122,
+          ".id": 1750110122,
           ".out": -0.13,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10381,11 +10667,11 @@
           "BPSYS": 123,
           "HR": 82,
           "WEIGHT": 67.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10124,
+          ".id": 1750110124,
           ".out": -0.4,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10398,11 +10684,11 @@
           "BPSYS": 119,
           "HR": 82,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10134,
+          ".id": 1750110134,
           ".out": 1.15,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10415,11 +10701,11 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 81.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10141,
+          ".id": 1750110141,
           ".out": 0.4,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10432,11 +10718,11 @@
           "BPSYS": 127,
           "HR": 66,
           "WEIGHT": 102.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10142,
+          ".id": 1750110142,
           ".out": -0.14,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10449,11 +10735,11 @@
           "BPSYS": 98,
           "HR": 73,
           "WEIGHT": 86.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10145,
+          ".id": 1750110145,
           ".out": -0.44,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10465,11 +10751,11 @@
           "BPDIA": 65,
           "BPSYS": 109,
           "WEIGHT": 66.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10149,
+          ".id": 1750110149,
           ".out": 0.82,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10482,11 +10768,11 @@
           "BPSYS": 142,
           "HR": 78,
           "WEIGHT": 66.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10153,
+          ".id": 1750110153,
           ".out": 0.2,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10499,11 +10785,11 @@
           "BPSYS": 95,
           "HR": 87,
           "WEIGHT": 99.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10155,
+          ".id": 1750110155,
           ".out": -0.67,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10516,11 +10802,11 @@
           "BPSYS": 98,
           "HR": 55,
           "WEIGHT": 70.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10157,
+          ".id": 1750110157,
           ".out": -0.08,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10533,11 +10819,11 @@
           "BPSYS": 144,
           "HR": 79,
           "WEIGHT": 94.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10158,
+          ".id": 1750110158,
           ".out": -0.58,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10550,11 +10836,11 @@
           "BPSYS": 131,
           "HR": 77,
           "WEIGHT": 120.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10159,
+          ".id": 1750110159,
           ".out": 0.47,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10567,11 +10853,11 @@
           "BPSYS": 103,
           "HR": 62,
           "WEIGHT": 39.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10163,
+          ".id": 1750110163,
           ".out": 0.66,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10584,11 +10870,11 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 95.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10164,
+          ".id": 1750110164,
           ".out": 0.58,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10601,11 +10887,11 @@
           "BPSYS": 105,
           "HR": 48,
           "WEIGHT": 64.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10167,
+          ".id": 1750110167,
           ".out": -1.18,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10618,11 +10904,11 @@
           "BPSYS": 126,
           "HR": 83,
           "WEIGHT": 67,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10169,
+          ".id": 1750110169,
           ".out": 1.34,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10635,11 +10921,11 @@
           "BPSYS": 128,
           "HR": 71,
           "WEIGHT": 54.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10173,
+          ".id": 1750110173,
           ".out": -0.07,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10652,11 +10938,11 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 57.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10176,
+          ".id": 1750110176,
           ".out": 2.6,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10669,11 +10955,11 @@
           "BPSYS": 138,
           "HR": 86,
           "WEIGHT": 71.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10180,
+          ".id": 1750110180,
           ".out": 1.48,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10686,11 +10972,11 @@
           "BPSYS": 132,
           "HR": 61,
           "WEIGHT": 100,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10181,
+          ".id": 1750110181,
           ".out": -1,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10703,11 +10989,11 @@
           "BPSYS": 125,
           "HR": 70,
           "WEIGHT": 62.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10191,
+          ".id": 1750110191,
           ".out": -0.38,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10720,11 +11006,11 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 92.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10192,
+          ".id": 1750110192,
           ".out": -0.7,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10737,11 +11023,11 @@
           "BPSYS": 121,
           "HR": 79,
           "WEIGHT": 64.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10193,
+          ".id": 1750110193,
           ".out": 0.03,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10754,11 +11040,11 @@
           "BPSYS": 120,
           "HR": 61,
           "WEIGHT": 61.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10205,
+          ".id": 1750110205,
           ".out": 0.04,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10771,11 +11057,11 @@
           "BPSYS": 121,
           "HR": 68,
           "WEIGHT": 102.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10210,
+          ".id": 1750110210,
           ".out": 0.86,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10788,11 +11074,11 @@
           "BPSYS": 93,
           "HR": 86,
           "WEIGHT": 92.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10213,
+          ".id": 1750110213,
           ".out": 1.24,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10805,11 +11091,11 @@
           "BPSYS": 96,
           "HR": 85,
           "WEIGHT": 96.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10214,
+          ".id": 1750110214,
           ".out": 1.23,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10826,7 +11112,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10215,
+          ".id": 1750110215,
           ".out": -1.36,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10843,7 +11129,7 @@
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10220,
+          ".id": 1750110220,
           ".out": -0.38,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10856,11 +11142,11 @@
           "BPSYS": 115,
           "HR": 68,
           "WEIGHT": 81.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10223,
+          ".id": 1750110223,
           ".out": -1.42,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10873,11 +11159,11 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 98.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10225,
+          ".id": 1750110225,
           ".out": 0.94,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10890,11 +11176,11 @@
           "BPSYS": 110,
           "HR": 80,
           "WEIGHT": 86.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10229,
+          ".id": 1750110229,
           ".out": -0.37,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10907,11 +11193,11 @@
           "BPSYS": 99,
           "HR": 62,
           "WEIGHT": 73,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10231,
+          ".id": 1750110231,
           ".out": 0.8,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10924,11 +11210,11 @@
           "BPSYS": 137,
           "HR": 69,
           "WEIGHT": 93.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10232,
+          ".id": 1750110232,
           ".out": -0.36,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10941,11 +11227,11 @@
           "BPSYS": 141,
           "HR": 63,
           "WEIGHT": 78.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10234,
+          ".id": 1750110234,
           ".out": 0.39,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -10958,11 +11244,11 @@
           "BPSYS": 105,
           "HR": 66,
           "WEIGHT": 55.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10243,
+          ".id": 1750110243,
           ".out": 0.8,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -10975,11 +11261,11 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 105.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10245,
+          ".id": 1750110245,
           ".out": 0.43,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -10992,11 +11278,11 @@
           "BPSYS": 84,
           "HR": 71,
           "WEIGHT": 92.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10250,
+          ".id": 1750110250,
           ".out": -0.16,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -11009,11 +11295,11 @@
           "BPSYS": 111,
           "HR": 67,
           "WEIGHT": 85.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10251,
+          ".id": 1750110251,
           ".out": -1.14,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -11026,11 +11312,11 @@
           "BPSYS": 120,
           "HR": 62,
           "WEIGHT": 72.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10253,
+          ".id": 1750110253,
           ".out": -0.95,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -11043,11 +11329,11 @@
           "BPSYS": 129,
           "HR": 65,
           "WEIGHT": 82.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10258,
+          ".id": 1750110258,
           ".out": -0.22,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -11064,7 +11350,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10259,
+          ".id": 1750110259,
           ".out": -0.14,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -11077,11 +11363,11 @@
           "BPSYS": 135,
           "HR": 79,
           "WEIGHT": 69.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10260,
+          ".id": 1750110260,
           ".out": -0.36,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -11094,11 +11380,11 @@
           "BPSYS": 83,
           "HR": 89,
           "WEIGHT": 75.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10261,
+          ".id": 1750110261,
           ".out": -0.58,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -11111,11 +11397,11 @@
           "BPSYS": 127,
           "HR": 86,
           "WEIGHT": 108.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10263,
+          ".id": 1750110263,
           ".out": 0.75,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -11128,11 +11414,11 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 109.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10266,
+          ".id": 1750110266,
           ".out": 0.41,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -11149,7 +11435,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10267,
+          ".id": 1750110267,
           ".out": -0.22,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -11162,11 +11448,11 @@
           "BPSYS": 126,
           "HR": 56,
           "WEIGHT": 75.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10273,
+          ".id": 1750110273,
           ".out": -0.08,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -11179,11 +11465,11 @@
           "BPSYS": 99,
           "HR": 50,
           "WEIGHT": 81,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10274,
+          ".id": 1750110274,
           ".out": -0.67,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -11196,11 +11482,11 @@
           "BPSYS": 96,
           "HR": 72,
           "WEIGHT": 76.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10276,
+          ".id": 1750110276,
           ".out": 0.7,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -11213,11 +11499,11 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 75.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10291,
+          ".id": 1750110291,
           ".out": -0.52,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -11230,11 +11516,11 @@
           "BPSYS": 99,
           "HR": 68,
           "WEIGHT": 70.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10294,
+          ".id": 1750110294,
           ".out": -1.97,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -11247,11 +11533,11 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 91.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10296,
+          ".id": 1750110296,
           ".out": 0.79,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -11264,11 +11550,11 @@
           "BPSYS": 128,
           "HR": 87,
           "WEIGHT": 85.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10298,
+          ".id": 1750110298,
           ".out": 1.44,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -11281,11 +11567,11 @@
           "BPSYS": 111,
           "HR": 64,
           "WEIGHT": 79.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10299,
+          ".id": 1750110299,
           ".out": -0.12,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -11298,11 +11584,11 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 57.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10300,
+          ".id": 1750110300,
           ".out": 1.4,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -11315,11 +11601,11 @@
           "BPSYS": 125,
           "HR": 77,
           "WEIGHT": 113.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10301,
+          ".id": 1750110301,
           ".out": -0.59,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -11332,11 +11618,11 @@
           "BPSYS": 121,
           "HR": 53,
           "WEIGHT": 90.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10305,
+          ".id": 1750110305,
           ".out": 0.55,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -11349,11 +11635,11 @@
           "BPSYS": 125,
           "HR": 44,
           "WEIGHT": 62.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10307,
+          ".id": 1750110307,
           ".out": 1.42,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -11366,11 +11652,11 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 65.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10309,
+          ".id": 1750110309,
           ".out": -0.01,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -11383,11 +11669,11 @@
           "BPSYS": 126,
           "HR": 74,
           "WEIGHT": 91.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10310,
+          ".id": 1750110310,
           ".out": -1.04,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -11400,11 +11686,11 @@
           "BPSYS": 109,
           "HR": 80,
           "WEIGHT": 106.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10312,
+          ".id": 1750110312,
           ".out": 0.18,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -11417,11 +11703,11 @@
           "BPSYS": 134,
           "HR": 70,
           "WEIGHT": 92,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10001,
+          ".id": 1750110001,
           ".out": 0.62,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -11437,11 +11723,11 @@
           "BPSYS": 116,
           "HR": 79,
           "WEIGHT": 92.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10011,
+          ".id": 1750110011,
           ".out": -0.97,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -11454,11 +11740,11 @@
           "BPSYS": 127,
           "HR": 75,
           "WEIGHT": 77.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10013,
+          ".id": 1750110013,
           ".out": -0.25,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -11471,11 +11757,11 @@
           "BPSYS": 95,
           "HR": 64,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10023,
+          ".id": 1750110023,
           ".out": -0.64,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -11488,11 +11774,11 @@
           "BPSYS": 101,
           "HR": 71,
           "WEIGHT": 115,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10025,
+          ".id": 1750110025,
           ".out": 1.33,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -11505,11 +11791,11 @@
           "BPSYS": 117,
           "HR": 70,
           "WEIGHT": 85.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10033,
+          ".id": 1750110033,
           ".out": 1.1,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -11521,11 +11807,11 @@
           "BPSYS": 114,
           "HR": 58,
           "WEIGHT": 66.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10040,
+          ".id": 1750110040,
           ".out": -1.46,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -11538,11 +11824,11 @@
           "BPSYS": 111,
           "HR": 57,
           "WEIGHT": 79.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10045,
+          ".id": 1750110045,
           ".out": -1.23,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -11555,11 +11841,11 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 99,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10049,
+          ".id": 1750110049,
           ".out": -0.14,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -11572,11 +11858,11 @@
           "BPSYS": 140,
           "HR": 71,
           "WEIGHT": 86.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10051,
+          ".id": 1750110051,
           ".out": -0.2,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -11589,11 +11875,11 @@
           "BPSYS": 108,
           "HR": 67,
           "WEIGHT": 88.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10054,
+          ".id": 1750110054,
           ".out": -2.04,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -11606,11 +11892,11 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 96.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10055,
+          ".id": 1750110055,
           ".out": 0.36,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -11623,11 +11909,11 @@
           "BPSYS": 100,
           "HR": 81,
           "WEIGHT": 66.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10059,
+          ".id": 1750110059,
           ".out": 0.89,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -11639,11 +11925,11 @@
           "BPSYS": 114,
           "HR": 53,
           "WEIGHT": 65.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10060,
+          ".id": 1750110060,
           ".out": -1.76,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -11656,11 +11942,11 @@
           "BPSYS": 142,
           "HR": 63,
           "WEIGHT": 98.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10061,
+          ".id": 1750110061,
           ".out": 0.88,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -11673,11 +11959,11 @@
           "BPSYS": 130,
           "HR": 74,
           "WEIGHT": 67.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10063,
+          ".id": 1750110063,
           ".out": -0.32,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -11690,11 +11976,11 @@
           "BPSYS": 109,
           "HR": 81,
           "WEIGHT": 105.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10069,
+          ".id": 1750110069,
           ".out": -0.8,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -11706,11 +11992,11 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 96.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10072,
+          ".id": 1750110072,
           ".out": -2,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -11723,11 +12009,11 @@
           "BPSYS": 142,
           "HR": 74,
           "WEIGHT": 90.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10074,
+          ".id": 1750110074,
           ".out": 0.05,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -11740,11 +12026,11 @@
           "BPSYS": 108,
           "HR": 74,
           "WEIGHT": 79.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10076,
+          ".id": 1750110076,
           ".out": -0.3,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -11757,11 +12043,11 @@
           "BPSYS": 138,
           "HR": 67,
           "WEIGHT": 98.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10077,
+          ".id": 1750110077,
           ".out": -0.95,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -11774,11 +12060,11 @@
           "BPSYS": 110,
           "HR": 79,
           "WEIGHT": 97.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10079,
+          ".id": 1750110079,
           ".out": -0.62,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -11791,11 +12077,11 @@
           "BPSYS": 131,
           "HR": 73,
           "WEIGHT": 65.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10081,
+          ".id": 1750110081,
           ".out": -0.64,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -11808,11 +12094,11 @@
           "BPSYS": 110,
           "HR": 63,
           "WEIGHT": 61.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10082,
+          ".id": 1750110082,
           ".out": -0.64,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -11825,11 +12111,11 @@
           "BPSYS": 96,
           "HR": 64,
           "WEIGHT": 67.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10084,
+          ".id": 1750110084,
           ".out": 0.16,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -11842,11 +12128,11 @@
           "BPSYS": 135,
           "HR": 85,
           "WEIGHT": 102.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10086,
+          ".id": 1750110086,
           ".out": -0.76,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -11859,11 +12145,11 @@
           "BPSYS": 121,
           "HR": 58,
           "WEIGHT": 72.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10087,
+          ".id": 1750110087,
           ".out": -0.07,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -11876,11 +12162,11 @@
           "BPSYS": 122,
           "HR": 70,
           "WEIGHT": 80.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10088,
+          ".id": 1750110088,
           ".out": -1.05,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -11893,11 +12179,11 @@
           "BPSYS": 97,
           "HR": 71,
           "WEIGHT": 73.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10091,
+          ".id": 1750110091,
           ".out": -0.58,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -11909,11 +12195,11 @@
           "BPSYS": 109,
           "HR": 42,
           "WEIGHT": 62.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10093,
+          ".id": 1750110093,
           ".out": -0.68,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -11926,11 +12212,11 @@
           "BPSYS": 92,
           "HR": 76,
           "WEIGHT": 72.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10101,
+          ".id": 1750110101,
           ".out": -1.4,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -11943,11 +12229,11 @@
           "BPSYS": 129,
           "HR": 63,
           "WEIGHT": 90.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10102,
+          ".id": 1750110102,
           ".out": -0.73,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -11963,7 +12249,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10105,
+          ".id": 1750110105,
           ".out": -0.96,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -11975,11 +12261,11 @@
           "BPSYS": 140,
           "HR": 74,
           "WEIGHT": 74.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10107,
+          ".id": 1750110107,
           ".out": -0.46,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -11992,11 +12278,11 @@
           "BPSYS": 112,
           "HR": 77,
           "WEIGHT": 54.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10111,
+          ".id": 1750110111,
           ".out": -1.47,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12009,11 +12295,11 @@
           "BPSYS": 109,
           "HR": 87,
           "WEIGHT": 89.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10112,
+          ".id": 1750110112,
           ".out": -0.72,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12026,11 +12312,11 @@
           "BPSYS": 115,
           "HR": 75,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10115,
+          ".id": 1750110115,
           ".out": -1.87,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12042,11 +12328,11 @@
           "BPSYS": 113,
           "HR": 52,
           "WEIGHT": 87.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10116,
+          ".id": 1750110116,
           ".out": 0.16,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12059,11 +12345,11 @@
           "BPSYS": 93,
           "HR": 74,
           "WEIGHT": 92.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10118,
+          ".id": 1750110118,
           ".out": 0.2,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12076,11 +12362,11 @@
           "BPSYS": 101,
           "HR": 92,
           "WEIGHT": 57.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10125,
+          ".id": 1750110125,
           ".out": -0.23,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12093,11 +12379,11 @@
           "BPSYS": 128,
           "HR": 50,
           "WEIGHT": 87.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10126,
+          ".id": 1750110126,
           ".out": -0.22,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12110,11 +12396,11 @@
           "BPSYS": 103,
           "HR": 89,
           "WEIGHT": 78.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10129,
+          ".id": 1750110129,
           ".out": 0.19,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12127,11 +12413,11 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10130,
+          ".id": 1750110130,
           ".out": 1.47,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12144,11 +12430,11 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 59,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10132,
+          ".id": 1750110132,
           ".out": -0.96,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12161,11 +12447,11 @@
           "BPSYS": 103,
           "HR": 48,
           "WEIGHT": 70.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10133,
+          ".id": 1750110133,
           ".out": -0.03,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12178,11 +12464,11 @@
           "BPSYS": 108,
           "HR": 72,
           "WEIGHT": 74.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10136,
+          ".id": 1750110136,
           ".out": 0.21,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12195,11 +12481,11 @@
           "BPSYS": 140,
           "HR": 66,
           "WEIGHT": 88.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10137,
+          ".id": 1750110137,
           ".out": -0.36,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12211,11 +12497,11 @@
           "BPSYS": 128,
           "HR": 83,
           "WEIGHT": 79.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10138,
+          ".id": 1750110138,
           ".out": 0.62,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12228,11 +12514,11 @@
           "BPSYS": 112,
           "HR": 76,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10139,
+          ".id": 1750110139,
           ".out": -0.75,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12245,11 +12531,11 @@
           "BPSYS": 144,
           "HR": 80,
           "WEIGHT": 101.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10143,
+          ".id": 1750110143,
           ".out": 0.33,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12262,11 +12548,11 @@
           "BPSYS": 117,
           "HR": 80,
           "WEIGHT": 71.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10144,
+          ".id": 1750110144,
           ".out": 1.23,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12279,11 +12565,11 @@
           "BPSYS": 124,
           "HR": 60,
           "WEIGHT": 80.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10146,
+          ".id": 1750110146,
           ".out": -1.25,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12296,11 +12582,11 @@
           "BPSYS": 122,
           "HR": 72,
           "WEIGHT": 69.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10147,
+          ".id": 1750110147,
           ".out": -0.02,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12313,11 +12599,11 @@
           "BPSYS": 110,
           "HR": 55,
           "WEIGHT": 65.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10154,
+          ".id": 1750110154,
           ".out": -1.05,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12330,11 +12616,11 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 82.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10160,
+          ".id": 1750110160,
           ".out": -1.55,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12351,7 +12637,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10162,
+          ".id": 1750110162,
           ".out": -0.43,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12364,11 +12650,11 @@
           "BPSYS": 143,
           "HR": 78,
           "WEIGHT": 66,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10165,
+          ".id": 1750110165,
           ".out": -1.47,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12381,11 +12667,11 @@
           "BPSYS": 138,
           "HR": 65,
           "WEIGHT": 122.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10166,
+          ".id": 1750110166,
           ".out": -1.5,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12398,11 +12684,11 @@
           "BPSYS": 115,
           "HR": 63,
           "WEIGHT": 66.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10168,
+          ".id": 1750110168,
           ".out": 0.14,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12415,11 +12701,11 @@
           "BPSYS": 126,
           "HR": 78,
           "WEIGHT": 86,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10172,
+          ".id": 1750110172,
           ".out": -0.85,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12432,11 +12718,11 @@
           "BPSYS": 124,
           "HR": 68,
           "WEIGHT": 78.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10175,
+          ".id": 1750110175,
           ".out": 1.25,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12449,11 +12735,11 @@
           "BPSYS": 145,
           "HR": 69,
           "WEIGHT": 90.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10177,
+          ".id": 1750110177,
           ".out": 0.99,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12466,11 +12752,11 @@
           "BPSYS": 94,
           "HR": 67,
           "WEIGHT": 76.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10179,
+          ".id": 1750110179,
           ".out": 0.8,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12483,11 +12769,11 @@
           "BPSYS": 130,
           "HR": 56,
           "WEIGHT": 97.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10183,
+          ".id": 1750110183,
           ".out": -0.86,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12500,11 +12786,11 @@
           "BPSYS": 113,
           "HR": 71,
           "WEIGHT": 56.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10184,
+          ".id": 1750110184,
           ".out": 1.29,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12517,11 +12803,11 @@
           "BPSYS": 116,
           "HR": 50,
           "WEIGHT": 74.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10185,
+          ".id": 1750110185,
           ".out": -0.7,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12534,11 +12820,11 @@
           "BPSYS": 113,
           "HR": 72,
           "WEIGHT": 66.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10186,
+          ".id": 1750110186,
           ".out": 1.24,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12551,11 +12837,11 @@
           "BPSYS": 113,
           "HR": 66,
           "WEIGHT": 36.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10187,
+          ".id": 1750110187,
           ".out": 1.82,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12568,11 +12854,11 @@
           "BPSYS": 118,
           "HR": 96,
           "WEIGHT": 60.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10190,
+          ".id": 1750110190,
           ".out": -0.2,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12585,11 +12871,11 @@
           "BPSYS": 134,
           "HR": 69,
           "WEIGHT": 67.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10196,
+          ".id": 1750110196,
           ".out": -1.36,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12602,11 +12888,11 @@
           "BPSYS": 107,
           "HR": 71,
           "WEIGHT": 93.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10198,
+          ".id": 1750110198,
           ".out": -0.56,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12619,11 +12905,11 @@
           "BPSYS": 125,
           "HR": 71,
           "WEIGHT": 87.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10201,
+          ".id": 1750110201,
           ".out": 1.5,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12635,11 +12921,11 @@
           "BPDIA": 79,
           "HR": 72,
           "WEIGHT": 75.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10206,
+          ".id": 1750110206,
           ".out": 0.54,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12652,11 +12938,11 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 73.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10208,
+          ".id": 1750110208,
           ".out": 0.1,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12669,11 +12955,11 @@
           "BPSYS": 99,
           "HR": 64,
           "WEIGHT": 60.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10211,
+          ".id": 1750110211,
           ".out": 0.95,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12686,11 +12972,11 @@
           "BPSYS": 117,
           "HR": 62,
           "WEIGHT": 70,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10217,
+          ".id": 1750110217,
           ".out": -1.51,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12703,11 +12989,11 @@
           "BPSYS": 148,
           "HR": 55,
           "WEIGHT": 96.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10218,
+          ".id": 1750110218,
           ".out": 0.23,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12720,11 +13006,11 @@
           "BPSYS": 119,
           "HR": 62,
           "WEIGHT": 62.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10222,
+          ".id": 1750110222,
           ".out": -2.91,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12737,11 +13023,11 @@
           "BPSYS": 107,
           "HR": 75,
           "WEIGHT": 126.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10224,
+          ".id": 1750110224,
           ".out": -0.42,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12754,11 +13040,11 @@
           "BPSYS": 140,
           "HR": 61,
           "WEIGHT": 88.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10230,
+          ".id": 1750110230,
           ".out": 1.01,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12769,11 +13055,11 @@
           "BPSYS": 110,
           "HR": 53,
           "WEIGHT": 93.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10233,
+          ".id": 1750110233,
           ".out": -0.9,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12785,11 +13071,11 @@
           "BPSYS": 121,
           "HR": 76,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10235,
+          ".id": 1750110235,
           ".out": 0.96,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12802,11 +13088,11 @@
           "BPSYS": 134,
           "HR": 65,
           "WEIGHT": 101.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10238,
+          ".id": 1750110238,
           ".out": -0.14,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12818,11 +13104,11 @@
           "BPSYS": 122,
           "HR": 92,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10239,
+          ".id": 1750110239,
           ".out": 3.14,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12835,11 +13121,11 @@
           "BPSYS": 111,
           "HR": 59,
           "WEIGHT": 54.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10242,
+          ".id": 1750110242,
           ".out": 0.14,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12852,11 +13138,11 @@
           "BPSYS": 114,
           "HR": 71,
           "WEIGHT": 86.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10244,
+          ".id": 1750110244,
           ".out": -0.37,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12868,11 +13154,11 @@
           "BPSYS": 135,
           "HR": 67,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10248,
+          ".id": 1750110248,
           ".out": -1.3,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12885,11 +13171,11 @@
           "BPSYS": 91,
           "HR": 73,
           "WEIGHT": 83.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10255,
+          ".id": 1750110255,
           ".out": -1.55,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12902,11 +13188,11 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 104.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10257,
+          ".id": 1750110257,
           ".out": 0.53,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12919,11 +13205,11 @@
           "BPSYS": 134,
           "HR": 81,
           "WEIGHT": 69.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10262,
+          ".id": 1750110262,
           ".out": -1.16,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -12936,11 +13222,11 @@
           "BPSYS": 129,
           "HR": 61,
           "WEIGHT": 80.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10264,
+          ".id": 1750110264,
           ".out": -0.97,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -12952,11 +13238,11 @@
           "BPDIA": 74,
           "BPSYS": 125,
           "WEIGHT": 106,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10269,
+          ".id": 1750110269,
           ".out": -1.3,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12969,11 +13255,11 @@
           "BPSYS": 92,
           "HR": 88,
           "WEIGHT": 98.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10270,
+          ".id": 1750110270,
           ".out": -1.75,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -12986,11 +13272,11 @@
           "BPSYS": 127,
           "HR": 89,
           "WEIGHT": 110.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10271,
+          ".id": 1750110271,
           ".out": 1.68,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -13003,11 +13289,11 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 61.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10275,
+          ".id": 1750110275,
           ".out": 0.62,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13020,11 +13306,11 @@
           "BPSYS": 95,
           "HR": 57,
           "WEIGHT": 54,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10277,
+          ".id": 1750110277,
           ".out": -0.96,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13037,11 +13323,11 @@
           "BPSYS": 131,
           "HR": 58,
           "WEIGHT": 96.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10278,
+          ".id": 1750110278,
           ".out": 0.57,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13054,11 +13340,11 @@
           "BPSYS": 121,
           "HR": 78,
           "WEIGHT": 69.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10280,
+          ".id": 1750110280,
           ".out": 0.03,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -13071,11 +13357,11 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 75,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10281,
+          ".id": 1750110281,
           ".out": -0.32,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -13088,11 +13374,11 @@
           "BPSYS": 103,
           "HR": 77,
           "WEIGHT": 79.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10283,
+          ".id": 1750110283,
           ".out": 1.08,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13105,11 +13391,11 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 48.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10284,
+          ".id": 1750110284,
           ".out": -0.71,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -13122,11 +13408,11 @@
           "BPSYS": 95,
           "HR": 78,
           "WEIGHT": 97.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10286,
+          ".id": 1750110286,
           ".out": 0.07,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13139,11 +13425,11 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 93.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10289,
+          ".id": 1750110289,
           ".out": -0.7,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13160,7 +13446,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10290,
+          ".id": 1750110290,
           ".out": -1.28,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13173,11 +13459,11 @@
           "BPSYS": 92,
           "HR": 58,
           "WEIGHT": 77.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10293,
+          ".id": 1750110293,
           ".out": 0.87,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -13190,11 +13476,11 @@
           "BPSYS": 95,
           "HR": 74,
           "WEIGHT": 100.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10295,
+          ".id": 1750110295,
           ".out": -1.58,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13207,11 +13493,11 @@
           "BPSYS": 110,
           "HR": 60,
           "WEIGHT": 59.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10297,
+          ".id": 1750110297,
           ".out": 0.13,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13224,11 +13510,11 @@
           "BPSYS": 107,
           "HR": 73,
           "WEIGHT": 68.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10306,
+          ".id": 1750110306,
           ".out": -1.03,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -13241,11 +13527,11 @@
           "BPSYS": 101,
           "HR": 77,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10311,
+          ".id": 1750110311,
           ".out": 2.26,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -13258,11 +13544,11 @@
           "BPSYS": 125,
           "HR": 56,
           "WEIGHT": 90.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10314,
+          ".id": 1750110314,
           ".out": 0.47,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -13275,11 +13561,11 @@
           "BPSYS": 123,
           "HR": 85,
           "WEIGHT": 100,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10316,
+          ".id": 1750110316,
           ".out": 0.3,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -13291,11 +13577,11 @@
           "BPSYS": 114,
           "HR": 54,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10317,
+          ".id": 1750110317,
           ".out": 0.95,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13308,11 +13594,11 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 89.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10319,
+          ".id": 1750110319,
           ".out": -0.8,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13325,11 +13611,11 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 84.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10320,
+          ".id": 1750110320,
           ".out": -0.74,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -13342,7 +13628,7 @@
           "BPSYS": 143,
           "HR": 66,
           "WEIGHT": 101.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         }
       ] 
@@ -13350,7 +13636,7 @@
       $data$raw$test
       [
         {
-          ".id": 10003,
+          ".id": 1750110003,
           ".out": -0,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -13365,11 +13651,11 @@
           "BPSYS": 105,
           "HR": 86,
           "WEIGHT": 51.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10004,
+          ".id": 1750110004,
           ".out": -1.11,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -13385,11 +13671,11 @@
           "BPSYS": 134,
           "HR": 64,
           "WEIGHT": 106,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10006,
+          ".id": 1750110006,
           ".out": 1.12,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -13402,11 +13688,11 @@
           "BPSYS": 116,
           "HR": 69,
           "WEIGHT": 116.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10007,
+          ".id": 1750110007,
           ".out": -2.57,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13419,11 +13705,11 @@
           "BPSYS": 127,
           "HR": 59,
           "WEIGHT": 79.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10008,
+          ".id": 1750110008,
           ".out": -1.74,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -13436,11 +13722,11 @@
           "BPSYS": 141,
           "HR": 75,
           "WEIGHT": 112.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10014,
+          ".id": 1750110014,
           ".out": 1.01,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -13453,11 +13739,11 @@
           "BPSYS": 126,
           "HR": 84,
           "WEIGHT": 75.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10019,
+          ".id": 1750110019,
           ".out": -0.58,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -13469,11 +13755,11 @@
           "BPSYS": 101,
           "HR": 56,
           "WEIGHT": 57.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10021,
+          ".id": 1750110021,
           ".out": -2.18,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13486,11 +13772,11 @@
           "BPSYS": 124,
           "HR": 80,
           "WEIGHT": 97.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10027,
+          ".id": 1750110027,
           ".out": 1.79,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13503,11 +13789,11 @@
           "BPSYS": 152,
           "HR": 69,
           "WEIGHT": 50.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10029,
+          ".id": 1750110029,
           ".out": 0.55,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13520,11 +13806,11 @@
           "BPSYS": 130,
           "HR": 70,
           "WEIGHT": 73,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10032,
+          ".id": 1750110032,
           ".out": 0.01,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -13537,11 +13823,11 @@
           "BPSYS": 92,
           "HR": 56,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10034,
+          ".id": 1750110034,
           ".out": 0.84,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -13554,11 +13840,11 @@
           "BPSYS": 122,
           "HR": 66,
           "WEIGHT": 64.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10036,
+          ".id": 1750110036,
           ".out": -0.2,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -13570,11 +13856,11 @@
           "BPSYS": 128,
           "HR": 56,
           "WEIGHT": 62.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10047,
+          ".id": 1750110047,
           ".out": -0.04,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -13587,11 +13873,11 @@
           "BPSYS": 117,
           "HR": 93,
           "WEIGHT": 110.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10048,
+          ".id": 1750110048,
           ".out": -1.26,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -13604,11 +13890,11 @@
           "BPSYS": 109,
           "HR": 63,
           "WEIGHT": 68,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10050,
+          ".id": 1750110050,
           ".out": 0.03,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13620,11 +13906,11 @@
           "BPSYS": 122,
           "HR": 78,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10053,
+          ".id": 1750110053,
           ".out": -0.34,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -13637,11 +13923,11 @@
           "BPSYS": 97,
           "HR": 49,
           "WEIGHT": 96.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10064,
+          ".id": 1750110064,
           ".out": -0.87,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -13654,11 +13940,11 @@
           "BPSYS": 108,
           "HR": 56,
           "WEIGHT": 82.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10066,
+          ".id": 1750110066,
           ".out": 0.33,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13671,11 +13957,11 @@
           "BPSYS": 107,
           "HR": 39,
           "WEIGHT": 53.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10075,
+          ".id": 1750110075,
           ".out": 0.07,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -13688,11 +13974,11 @@
           "BPSYS": 108,
           "HR": 50,
           "WEIGHT": 91.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10083,
+          ".id": 1750110083,
           ".out": 1.29,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -13709,7 +13995,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10089,
+          ".id": 1750110089,
           ".out": 1,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -13722,11 +14008,11 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 79.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10090,
+          ".id": 1750110090,
           ".out": -1.22,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -13739,11 +14025,11 @@
           "BPSYS": 100,
           "HR": 70,
           "WEIGHT": 75.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10094,
+          ".id": 1750110094,
           ".out": -0.25,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13756,11 +14042,11 @@
           "BPSYS": 124,
           "HR": 62,
           "WEIGHT": 75.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10095,
+          ".id": 1750110095,
           ".out": -1.1,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13773,11 +14059,11 @@
           "BPSYS": 118,
           "HR": 65,
           "WEIGHT": 82.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10096,
+          ".id": 1750110096,
           ".out": -0.42,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -13790,11 +14076,11 @@
           "BPSYS": 129,
           "HR": 67,
           "WEIGHT": 65.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10106,
+          ".id": 1750110106,
           ".out": 1.37,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -13807,11 +14093,11 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 54.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10108,
+          ".id": 1750110108,
           ".out": 0.41,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -13824,11 +14110,11 @@
           "BPSYS": 134,
           "HR": 66,
           "WEIGHT": 126.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10109,
+          ".id": 1750110109,
           ".out": -0.46,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -13841,11 +14127,11 @@
           "BPSYS": 95,
           "HR": 72,
           "WEIGHT": 101.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10114,
+          ".id": 1750110114,
           ".out": -0.42,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -13857,11 +14143,11 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 123.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10117,
+          ".id": 1750110117,
           ".out": -1.38,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -13874,11 +14160,11 @@
           "BPSYS": 98,
           "HR": 89,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10123,
+          ".id": 1750110123,
           ".out": 0.23,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13891,11 +14177,11 @@
           "BPSYS": 129,
           "HR": 62,
           "WEIGHT": 46.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10127,
+          ".id": 1750110127,
           ".out": -0.42,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -13908,11 +14194,11 @@
           "BPSYS": 115,
           "HR": 72,
           "WEIGHT": 88.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10128,
+          ".id": 1750110128,
           ".out": -0.35,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -13925,11 +14211,11 @@
           "BPSYS": 106,
           "HR": 73,
           "WEIGHT": 53.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10135,
+          ".id": 1750110135,
           ".out": 0.17,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13942,11 +14228,11 @@
           "BPSYS": 118,
           "HR": 64,
           "WEIGHT": 63.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10140,
+          ".id": 1750110140,
           ".out": -0.19,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -13957,11 +14243,11 @@
           "BPSYS": 98,
           "HR": 69,
           "WEIGHT": 101.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10150,
+          ".id": 1750110150,
           ".out": -1.49,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -13973,11 +14259,11 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 81.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10152,
+          ".id": 1750110152,
           ".out": 1.05,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -13990,11 +14276,11 @@
           "BPSYS": 98,
           "HR": 71,
           "WEIGHT": 73.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10156,
+          ".id": 1750110156,
           ".out": 0.78,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -14007,11 +14293,11 @@
           "BPSYS": 115,
           "HR": 59,
           "WEIGHT": 73.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10161,
+          ".id": 1750110161,
           ".out": 2.19,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -14024,11 +14310,11 @@
           "BPSYS": 108,
           "HR": 64,
           "WEIGHT": 103.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3
         },
         {
-          ".id": 10170,
+          ".id": 1750110170,
           ".out": -0.66,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -14041,11 +14327,11 @@
           "BPSYS": 112,
           "HR": 57,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10182,
+          ".id": 1750110182,
           ".out": 0.19,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -14057,11 +14343,11 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 70.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10189,
+          ".id": 1750110189,
           ".out": 0.98,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -14074,11 +14360,11 @@
           "BPSYS": 117,
           "HR": 79,
           "WEIGHT": 88,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10194,
+          ".id": 1750110194,
           ".out": 2.62,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -14091,11 +14377,11 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 41.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10195,
+          ".id": 1750110195,
           ".out": 0.44,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -14108,11 +14394,11 @@
           "BPSYS": 136,
           "HR": 66,
           "WEIGHT": 113.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10197,
+          ".id": 1750110197,
           ".out": -0.6,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -14125,11 +14411,11 @@
           "BPSYS": 113,
           "HR": 63,
           "WEIGHT": 66.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10199,
+          ".id": 1750110199,
           ".out": -1.41,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -14142,11 +14428,11 @@
           "BPSYS": 103,
           "HR": 71,
           "WEIGHT": 68.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10200,
+          ".id": 1750110200,
           ".out": -1.03,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -14158,11 +14444,11 @@
           "BPDIA": 71,
           "HR": 81,
           "WEIGHT": 112.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10202,
+          ".id": 1750110202,
           ".out": 0.28,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -14175,11 +14461,11 @@
           "BPSYS": 133,
           "HR": 69,
           "WEIGHT": 83.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10203,
+          ".id": 1750110203,
           ".out": -1.54,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -14192,11 +14478,11 @@
           "BPSYS": 113,
           "HR": 83,
           "WEIGHT": 66.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10209,
+          ".id": 1750110209,
           ".out": 0.17,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -14209,11 +14495,11 @@
           "BPSYS": 100,
           "HR": 75,
           "WEIGHT": 65.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10216,
+          ".id": 1750110216,
           ".out": -0.08,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -14226,11 +14512,11 @@
           "BPSYS": 117,
           "HR": 67,
           "WEIGHT": 75.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10219,
+          ".id": 1750110219,
           ".out": 0.63,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -14243,11 +14529,11 @@
           "BPSYS": 132,
           "HR": 54,
           "WEIGHT": 95.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10226,
+          ".id": 1750110226,
           ".out": 0.04,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -14260,11 +14546,11 @@
           "BPSYS": 106,
           "HR": 55,
           "WEIGHT": 59.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10227,
+          ".id": 1750110227,
           ".out": 0.86,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -14277,11 +14563,11 @@
           "BPSYS": 120,
           "HR": 64,
           "WEIGHT": 84.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10228,
+          ".id": 1750110228,
           ".out": -0.93,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -14294,11 +14580,11 @@
           "BPSYS": 101,
           "HR": 45,
           "WEIGHT": 55.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10237,
+          ".id": 1750110237,
           ".out": -1.24,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -14310,11 +14596,11 @@
           "BPSYS": 119,
           "HR": 61,
           "WEIGHT": 105.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10241,
+          ".id": 1750110241,
           ".out": -0.14,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -14327,11 +14613,11 @@
           "BPSYS": 144,
           "HR": 75,
           "WEIGHT": 71.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10247,
+          ".id": 1750110247,
           ".out": -0.54,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -14344,11 +14630,11 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 94.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10249,
+          ".id": 1750110249,
           ".out": -0.66,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -14361,11 +14647,11 @@
           "BPSYS": 108,
           "HR": 78,
           "WEIGHT": 85,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10254,
+          ".id": 1750110254,
           ".out": 0.22,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -14378,11 +14664,11 @@
           "BPSYS": 123,
           "HR": 59,
           "WEIGHT": 89,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10272,
+          ".id": 1750110272,
           ".out": -1.24,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -14395,11 +14681,11 @@
           "BPSYS": 106,
           "HR": 68,
           "WEIGHT": 101.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10279,
+          ".id": 1750110279,
           ".out": 1.25,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -14412,11 +14698,11 @@
           "BPSYS": 128,
           "HR": 62,
           "WEIGHT": 92.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10282,
+          ".id": 1750110282,
           ".out": -0.52,
           ".trt": "TRT",
           "AGEGR01": "< 60",
@@ -14429,11 +14715,11 @@
           "BPSYS": 124,
           "HR": 48,
           "WEIGHT": 63.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10285,
+          ".id": 1750110285,
           ".out": -0.67,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -14446,11 +14732,11 @@
           "BPSYS": 119,
           "HR": 65,
           "WEIGHT": 98.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10287,
+          ".id": 1750110287,
           ".out": -0.16,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -14463,11 +14749,11 @@
           "BPSYS": 115,
           "HR": 40,
           "WEIGHT": 106.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10288,
+          ".id": 1750110288,
           ".out": -1.68,
           ".trt": "TRT",
           "AGEGR01": ">=75",
@@ -14480,11 +14766,11 @@
           "BPSYS": 103,
           "HR": 98,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10302,
+          ".id": 1750110302,
           ".out": 0.82,
           ".trt": "PLC",
           "AGEGR01": "60 - <75",
@@ -14497,11 +14783,11 @@
           "BPSYS": 122,
           "HR": 81,
           "WEIGHT": 77,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10303,
+          ".id": 1750110303,
           ".out": 1.27,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -14514,11 +14800,11 @@
           "BPSYS": 143,
           "HR": 86,
           "WEIGHT": 82.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10308,
+          ".id": 1750110308,
           ".out": -0.71,
           ".trt": "TRT",
           "AGEGR01": "60 - <75",
@@ -14531,11 +14817,11 @@
           "BPSYS": 110,
           "HR": 67,
           "WEIGHT": 88.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10313,
+          ".id": 1750110313,
           ".out": -0.13,
           ".trt": "PLC",
           "AGEGR01": "< 60",
@@ -14547,11 +14833,11 @@
           "BPDIA": 61,
           "BPSYS": 108,
           "HR": 59,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10315,
+          ".id": 1750110315,
           ".out": 0,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -14564,11 +14850,11 @@
           "BPSYS": 130,
           "HR": 83,
           "WEIGHT": 77.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10318,
+          ".id": 1750110318,
           ".out": -1.83,
           ".trt": "PLC",
           "AGEGR01": ">=75",
@@ -14591,7 +14877,7 @@
       $data$prep$train
       [
         {
-          ".id": 10002,
+          ".id": 1750110002,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -14602,11 +14888,12 @@
           "BPSYS": 119,
           "HR": 84,
           "WEIGHT": 90.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.49
         },
         {
-          ".id": 10005,
+          ".id": 1750110005,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -14617,11 +14904,12 @@
           "BPSYS": 111,
           "HR": 63,
           "WEIGHT": 89.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.04
         },
         {
-          ".id": 10009,
+          ".id": 1750110009,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -14632,11 +14920,12 @@
           "BPSYS": 111,
           "HR": 82,
           "WEIGHT": 114.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.02
         },
         {
-          ".id": 10010,
+          ".id": 1750110010,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -14647,11 +14936,12 @@
           "BPSYS": 121,
           "HR": 60,
           "WEIGHT": 81.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.44
         },
         {
-          ".id": 10012,
+          ".id": 1750110012,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -14662,11 +14952,12 @@
           "BPSYS": 109,
           "HR": 83,
           "WEIGHT": 98.1,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 2,
           ".out": -0.09
         },
         {
-          ".id": 10015,
+          ".id": 1750110015,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -14677,11 +14968,12 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.37
         },
         {
-          ".id": 10017,
+          ".id": 1750110017,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -14692,11 +14984,12 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 82,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": -0.28
         },
         {
-          ".id": 10018,
+          ".id": 1750110018,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -14707,11 +15000,12 @@
           "BPSYS": 128,
           "HR": 64,
           "WEIGHT": 95.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.58
         },
         {
-          ".id": 10022,
+          ".id": 1750110022,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -14722,11 +15016,12 @@
           "BPSYS": 101,
           "HR": 80,
           "WEIGHT": 73.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.36
         },
         {
-          ".id": 10024,
+          ".id": 1750110024,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -14737,11 +15032,12 @@
           "BPSYS": 133,
           "HR": 60,
           "WEIGHT": 64.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.23
         },
         {
-          ".id": 10026,
+          ".id": 1750110026,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -14750,13 +15046,14 @@
           "BMI_advs": 28.9,
           "BPDIA": 68,
           "BPSYS": 102,
-          "HR": 72,
+          "HR": 73.2,
           "WEIGHT": 95.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.41
         },
         {
-          ".id": 10028,
+          ".id": 1750110028,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -14767,11 +15064,12 @@
           "BPSYS": 134,
           "HR": 67,
           "WEIGHT": 111.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": 0.16
         },
         {
-          ".id": 10030,
+          ".id": 1750110030,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -14782,11 +15080,12 @@
           "BPSYS": 95,
           "HR": 71,
           "WEIGHT": 71.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.03
         },
         {
-          ".id": 10031,
+          ".id": 1750110031,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -14797,11 +15096,12 @@
           "BPSYS": 116,
           "HR": 78,
           "WEIGHT": 84.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3,
           ".out": 2.02
         },
         {
-          ".id": 10037,
+          ".id": 1750110037,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -14812,11 +15112,12 @@
           "BPSYS": 136,
           "HR": 50,
           "WEIGHT": 88.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.19
         },
         {
-          ".id": 10038,
+          ".id": 1750110038,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -14827,11 +15128,12 @@
           "BPSYS": 125,
           "HR": 76,
           "WEIGHT": 87.42,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.62
         },
         {
-          ".id": 10039,
+          ".id": 1750110039,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -14842,11 +15144,12 @@
           "BPSYS": 96,
           "HR": 84,
           "WEIGHT": 78.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.28
         },
         {
-          ".id": 10041,
+          ".id": 1750110041,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -14857,11 +15160,12 @@
           "BPSYS": 139,
           "HR": 82,
           "WEIGHT": 90.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.75
         },
         {
-          ".id": 10042,
+          ".id": 1750110042,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -14872,11 +15176,12 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 97.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.91
         },
         {
-          ".id": 10043,
+          ".id": 1750110043,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -14887,11 +15192,12 @@
           "BPSYS": 134,
           "HR": 48,
           "WEIGHT": 64.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": -0.61
         },
         {
-          ".id": 10044,
+          ".id": 1750110044,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -14902,11 +15208,12 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 82.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.46
         },
         {
-          ".id": 10046,
+          ".id": 1750110046,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -14917,11 +15224,12 @@
           "BPSYS": 128,
           "HR": 68,
           "WEIGHT": 80.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.42
         },
         {
-          ".id": 10052,
+          ".id": 1750110052,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -14932,11 +15240,12 @@
           "BPSYS": 143,
           "HR": 68,
           "WEIGHT": 87.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.01
         },
         {
-          ".id": 10056,
+          ".id": 1750110056,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -14947,11 +15256,12 @@
           "BPSYS": 137,
           "HR": 74,
           "WEIGHT": 108.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.72
         },
         {
-          ".id": 10058,
+          ".id": 1750110058,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -14962,11 +15272,12 @@
           "BPSYS": 111,
           "HR": 80,
           "WEIGHT": 59.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.61
         },
         {
-          ".id": 10062,
+          ".id": 1750110062,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -14977,11 +15288,12 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 103.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.21
         },
         {
-          ".id": 10067,
+          ".id": 1750110067,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -14992,11 +15304,12 @@
           "BPSYS": 135,
           "HR": 76,
           "WEIGHT": 67,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.86
         },
         {
-          ".id": 10070,
+          ".id": 1750110070,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -15007,11 +15320,12 @@
           "BPSYS": 128,
           "HR": 86,
           "WEIGHT": 93.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.52
         },
         {
-          ".id": 10071,
+          ".id": 1750110071,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -15022,11 +15336,12 @@
           "BPSYS": 124,
           "HR": 76,
           "WEIGHT": 65.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.62
         },
         {
-          ".id": 10073,
+          ".id": 1750110073,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15037,11 +15352,12 @@
           "BPSYS": 117,
           "HR": 77,
           "WEIGHT": 115.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.24
         },
         {
-          ".id": 10080,
+          ".id": 1750110080,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15052,11 +15368,12 @@
           "BPSYS": 95,
           "HR": 46,
           "WEIGHT": 50.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.59
         },
         {
-          ".id": 10085,
+          ".id": 1750110085,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -15067,11 +15384,12 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 99.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.2
         },
         {
-          ".id": 10092,
+          ".id": 1750110092,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -15082,11 +15400,12 @@
           "BPSYS": 137,
           "HR": 78,
           "WEIGHT": 96.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.23
         },
         {
-          ".id": 10097,
+          ".id": 1750110097,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15097,11 +15416,12 @@
           "BPSYS": 107,
           "HR": 66,
           "WEIGHT": 94.5,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": -1.11
         },
         {
-          ".id": 10098,
+          ".id": 1750110098,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -15112,11 +15432,12 @@
           "BPSYS": 134,
           "HR": 44,
           "WEIGHT": 47.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": 2.53
         },
         {
-          ".id": 10100,
+          ".id": 1750110100,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -15127,11 +15448,12 @@
           "BPSYS": 123,
           "HR": 49,
           "WEIGHT": 96.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.29
         },
         {
-          ".id": 10103,
+          ".id": 1750110103,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -15142,11 +15464,12 @@
           "BPSYS": 123,
           "HR": 61,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.06
         },
         {
-          ".id": 10104,
+          ".id": 1750110104,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -15157,11 +15480,12 @@
           "BPSYS": 134,
           "HR": 50,
           "WEIGHT": 106.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 2.76
         },
         {
-          ".id": 10110,
+          ".id": 1750110110,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -15172,11 +15496,12 @@
           "BPSYS": 162,
           "HR": 86,
           "WEIGHT": 84,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1
         },
         {
-          ".id": 10113,
+          ".id": 1750110113,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -15187,11 +15512,12 @@
           "BPSYS": 106,
           "HR": 74,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.06
         },
         {
-          ".id": 10122,
+          ".id": 1750110122,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -15202,11 +15528,12 @@
           "BPSYS": 123,
           "HR": 82,
           "WEIGHT": 67.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.13
         },
         {
-          ".id": 10124,
+          ".id": 1750110124,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -15217,11 +15544,12 @@
           "BPSYS": 119,
           "HR": 82,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.4
         },
         {
-          ".id": 10134,
+          ".id": 1750110134,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -15232,11 +15560,12 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 81.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.15
         },
         {
-          ".id": 10141,
+          ".id": 1750110141,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -15247,11 +15576,12 @@
           "BPSYS": 127,
           "HR": 66,
           "WEIGHT": 102.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.4
         },
         {
-          ".id": 10142,
+          ".id": 1750110142,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -15262,11 +15592,12 @@
           "BPSYS": 98,
           "HR": 73,
           "WEIGHT": 86.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.14
         },
         {
-          ".id": 10145,
+          ".id": 1750110145,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -15275,13 +15606,14 @@
           "BMI_advs": 22.6,
           "BPDIA": 65,
           "BPSYS": 109,
-          "HR": 76.2,
+          "HR": 67.6,
           "WEIGHT": 66.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.44
         },
         {
-          ".id": 10149,
+          ".id": 1750110149,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -15292,11 +15624,12 @@
           "BPSYS": 142,
           "HR": 78,
           "WEIGHT": 66.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.82
         },
         {
-          ".id": 10153,
+          ".id": 1750110153,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -15307,11 +15640,12 @@
           "BPSYS": 95,
           "HR": 87,
           "WEIGHT": 99.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.2
         },
         {
-          ".id": 10155,
+          ".id": 1750110155,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -15322,11 +15656,12 @@
           "BPSYS": 98,
           "HR": 55,
           "WEIGHT": 70.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.67
         },
         {
-          ".id": 10157,
+          ".id": 1750110157,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15337,11 +15672,12 @@
           "BPSYS": 144,
           "HR": 79,
           "WEIGHT": 94.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.08
         },
         {
-          ".id": 10158,
+          ".id": 1750110158,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15352,11 +15688,12 @@
           "BPSYS": 131,
           "HR": 77,
           "WEIGHT": 120.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.58
         },
         {
-          ".id": 10159,
+          ".id": 1750110159,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -15367,11 +15704,12 @@
           "BPSYS": 103,
           "HR": 62,
           "WEIGHT": 39.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.47
         },
         {
-          ".id": 10163,
+          ".id": 1750110163,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15382,11 +15720,12 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 95.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.66
         },
         {
-          ".id": 10164,
+          ".id": 1750110164,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15397,11 +15736,12 @@
           "BPSYS": 105,
           "HR": 48,
           "WEIGHT": 64.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.58
         },
         {
-          ".id": 10167,
+          ".id": 1750110167,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15412,11 +15752,12 @@
           "BPSYS": 126,
           "HR": 83,
           "WEIGHT": 67,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -1.18
         },
         {
-          ".id": 10169,
+          ".id": 1750110169,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -15427,11 +15768,12 @@
           "BPSYS": 128,
           "HR": 71,
           "WEIGHT": 54.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.34
         },
         {
-          ".id": 10173,
+          ".id": 1750110173,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -15442,11 +15784,12 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 57.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.07
         },
         {
-          ".id": 10176,
+          ".id": 1750110176,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -15457,11 +15800,12 @@
           "BPSYS": 138,
           "HR": 86,
           "WEIGHT": 71.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 2.6
         },
         {
-          ".id": 10180,
+          ".id": 1750110180,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -15472,11 +15816,12 @@
           "BPSYS": 132,
           "HR": 61,
           "WEIGHT": 100,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.48
         },
         {
-          ".id": 10181,
+          ".id": 1750110181,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15487,11 +15832,12 @@
           "BPSYS": 125,
           "HR": 70,
           "WEIGHT": 62.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1
         },
         {
-          ".id": 10191,
+          ".id": 1750110191,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -15502,11 +15848,12 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 92.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.38
         },
         {
-          ".id": 10192,
+          ".id": 1750110192,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -15517,11 +15864,12 @@
           "BPSYS": 121,
           "HR": 79,
           "WEIGHT": 64.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.7
         },
         {
-          ".id": 10193,
+          ".id": 1750110193,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -15532,11 +15880,12 @@
           "BPSYS": 120,
           "HR": 61,
           "WEIGHT": 61.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.03
         },
         {
-          ".id": 10205,
+          ".id": 1750110205,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -15547,11 +15896,12 @@
           "BPSYS": 121,
           "HR": 68,
           "WEIGHT": 102.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.04
         },
         {
-          ".id": 10210,
+          ".id": 1750110210,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -15562,11 +15912,12 @@
           "BPSYS": 93,
           "HR": 86,
           "WEIGHT": 92.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.86
         },
         {
-          ".id": 10213,
+          ".id": 1750110213,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -15577,11 +15928,12 @@
           "BPSYS": 96,
           "HR": 85,
           "WEIGHT": 96.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.24
         },
         {
-          ".id": 10214,
+          ".id": 1750110214,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -15592,11 +15944,12 @@
           "BPSYS": 116,
           "HR": 61,
           "WEIGHT": 61,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": 1.23
         },
         {
-          ".id": 10215,
+          ".id": 1750110215,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -15607,11 +15960,12 @@
           "BPSYS": 106,
           "HR": 62,
           "WEIGHT": 72,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 2,
           ".out": -1.36
         },
         {
-          ".id": 10220,
+          ".id": 1750110220,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15622,11 +15976,12 @@
           "BPSYS": 115,
           "HR": 68,
           "WEIGHT": 81.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.38
         },
         {
-          ".id": 10223,
+          ".id": 1750110223,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -15637,11 +15992,12 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 98.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.42
         },
         {
-          ".id": 10225,
+          ".id": 1750110225,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -15652,11 +16008,12 @@
           "BPSYS": 110,
           "HR": 80,
           "WEIGHT": 86.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.94
         },
         {
-          ".id": 10229,
+          ".id": 1750110229,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -15667,11 +16024,12 @@
           "BPSYS": 99,
           "HR": 62,
           "WEIGHT": 73,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.37
         },
         {
-          ".id": 10231,
+          ".id": 1750110231,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15682,11 +16040,12 @@
           "BPSYS": 137,
           "HR": 69,
           "WEIGHT": 93.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.8
         },
         {
-          ".id": 10232,
+          ".id": 1750110232,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -15697,11 +16056,12 @@
           "BPSYS": 141,
           "HR": 63,
           "WEIGHT": 78.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.36
         },
         {
-          ".id": 10234,
+          ".id": 1750110234,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -15712,11 +16072,12 @@
           "BPSYS": 105,
           "HR": 66,
           "WEIGHT": 55.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.39
         },
         {
-          ".id": 10243,
+          ".id": 1750110243,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -15727,11 +16088,12 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 105.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.8
         },
         {
-          ".id": 10245,
+          ".id": 1750110245,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -15742,11 +16104,12 @@
           "BPSYS": 84,
           "HR": 71,
           "WEIGHT": 92.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.43
         },
         {
-          ".id": 10250,
+          ".id": 1750110250,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -15757,11 +16120,12 @@
           "BPSYS": 111,
           "HR": 67,
           "WEIGHT": 85.7,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.16
         },
         {
-          ".id": 10251,
+          ".id": 1750110251,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15772,11 +16136,12 @@
           "BPSYS": 120,
           "HR": 62,
           "WEIGHT": 72.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.14
         },
         {
-          ".id": 10253,
+          ".id": 1750110253,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -15787,11 +16152,12 @@
           "BPSYS": 129,
           "HR": 65,
           "WEIGHT": 82.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.95
         },
         {
-          ".id": 10258,
+          ".id": 1750110258,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15802,11 +16168,12 @@
           "BPSYS": 105,
           "HR": 72,
           "WEIGHT": 77.4,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": -0.22
         },
         {
-          ".id": 10259,
+          ".id": 1750110259,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -15817,11 +16184,12 @@
           "BPSYS": 135,
           "HR": 79,
           "WEIGHT": 69.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.14
         },
         {
-          ".id": 10260,
+          ".id": 1750110260,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -15832,11 +16200,12 @@
           "BPSYS": 83,
           "HR": 89,
           "WEIGHT": 75.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.36
         },
         {
-          ".id": 10261,
+          ".id": 1750110261,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -15847,11 +16216,12 @@
           "BPSYS": 127,
           "HR": 86,
           "WEIGHT": 108.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.58
         },
         {
-          ".id": 10263,
+          ".id": 1750110263,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -15862,11 +16232,12 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 109.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.75
         },
         {
-          ".id": 10266,
+          ".id": 1750110266,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -15877,11 +16248,12 @@
           "BPSYS": 134,
           "HR": 52,
           "WEIGHT": 117.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": 0.41
         },
         {
-          ".id": 10267,
+          ".id": 1750110267,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -15892,11 +16264,12 @@
           "BPSYS": 126,
           "HR": 56,
           "WEIGHT": 75.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.22
         },
         {
-          ".id": 10273,
+          ".id": 1750110273,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -15907,11 +16280,12 @@
           "BPSYS": 99,
           "HR": 50,
           "WEIGHT": 81,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.08
         },
         {
-          ".id": 10274,
+          ".id": 1750110274,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -15922,11 +16296,12 @@
           "BPSYS": 96,
           "HR": 72,
           "WEIGHT": 76.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.67
         },
         {
-          ".id": 10276,
+          ".id": 1750110276,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -15937,11 +16312,12 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 75.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.7
         },
         {
-          ".id": 10291,
+          ".id": 1750110291,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -15952,11 +16328,12 @@
           "BPSYS": 99,
           "HR": 68,
           "WEIGHT": 70.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.52
         },
         {
-          ".id": 10294,
+          ".id": 1750110294,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -15967,11 +16344,12 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 91.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.97
         },
         {
-          ".id": 10296,
+          ".id": 1750110296,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -15982,11 +16360,12 @@
           "BPSYS": 128,
           "HR": 87,
           "WEIGHT": 85.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.79
         },
         {
-          ".id": 10298,
+          ".id": 1750110298,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -15997,11 +16376,12 @@
           "BPSYS": 111,
           "HR": 64,
           "WEIGHT": 79.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.44
         },
         {
-          ".id": 10299,
+          ".id": 1750110299,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -16012,11 +16392,12 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 57.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.12
         },
         {
-          ".id": 10300,
+          ".id": 1750110300,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -16027,11 +16408,12 @@
           "BPSYS": 125,
           "HR": 77,
           "WEIGHT": 113.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.4
         },
         {
-          ".id": 10301,
+          ".id": 1750110301,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16042,11 +16424,12 @@
           "BPSYS": 121,
           "HR": 53,
           "WEIGHT": 90.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.59
         },
         {
-          ".id": 10305,
+          ".id": 1750110305,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -16057,11 +16440,12 @@
           "BPSYS": 125,
           "HR": 44,
           "WEIGHT": 62.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.55
         },
         {
-          ".id": 10307,
+          ".id": 1750110307,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -16072,11 +16456,12 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 65.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.42
         },
         {
-          ".id": 10309,
+          ".id": 1750110309,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -16087,11 +16472,12 @@
           "BPSYS": 126,
           "HR": 74,
           "WEIGHT": 91.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.01
         },
         {
-          ".id": 10310,
+          ".id": 1750110310,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -16102,11 +16488,12 @@
           "BPSYS": 109,
           "HR": 80,
           "WEIGHT": 106.7,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -1.04
         },
         {
-          ".id": 10312,
+          ".id": 1750110312,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -16117,11 +16504,12 @@
           "BPSYS": 134,
           "HR": 70,
           "WEIGHT": 92,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.18
         },
         {
-          ".id": 10001,
+          ".id": 1750110001,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16132,11 +16520,12 @@
           "BPSYS": 116,
           "HR": 79,
           "WEIGHT": 92.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.62
         },
         {
-          ".id": 10011,
+          ".id": 1750110011,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16147,11 +16536,12 @@
           "BPSYS": 127,
           "HR": 75,
           "WEIGHT": 77.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.97
         },
         {
-          ".id": 10013,
+          ".id": 1750110013,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -16162,11 +16552,12 @@
           "BPSYS": 95,
           "HR": 64,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.25
         },
         {
-          ".id": 10023,
+          ".id": 1750110023,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16177,11 +16568,12 @@
           "BPSYS": 101,
           "HR": 71,
           "WEIGHT": 115,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.64
         },
         {
-          ".id": 10025,
+          ".id": 1750110025,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -16192,26 +16584,28 @@
           "BPSYS": 117,
           "HR": 70,
           "WEIGHT": 85.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": 1.33
         },
         {
-          ".id": 10033,
+          ".id": 1750110033,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
-          "RACE": "WHITE",
+          "RACE": "ASIAN",
           "AGE": 77,
           "BMI_advs": 20.7,
           "BPDIA": 82,
           "BPSYS": 114,
           "HR": 58,
           "WEIGHT": 66.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.1
         },
         {
-          ".id": 10040,
+          ".id": 1750110040,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -16222,11 +16616,12 @@
           "BPSYS": 111,
           "HR": 57,
           "WEIGHT": 79.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -1.46
         },
         {
-          ".id": 10045,
+          ".id": 1750110045,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -16237,11 +16632,12 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 99,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.23
         },
         {
-          ".id": 10049,
+          ".id": 1750110049,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -16252,11 +16648,12 @@
           "BPSYS": 140,
           "HR": 71,
           "WEIGHT": 86.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.14
         },
         {
-          ".id": 10051,
+          ".id": 1750110051,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -16267,11 +16664,12 @@
           "BPSYS": 108,
           "HR": 67,
           "WEIGHT": 88.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.2
         },
         {
-          ".id": 10054,
+          ".id": 1750110054,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16282,11 +16680,12 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 96.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -2.04
         },
         {
-          ".id": 10055,
+          ".id": 1750110055,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -16297,11 +16696,12 @@
           "BPSYS": 100,
           "HR": 81,
           "WEIGHT": 66.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.36
         },
         {
-          ".id": 10059,
+          ".id": 1750110059,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -16312,11 +16712,12 @@
           "BPSYS": 114,
           "HR": 53,
           "WEIGHT": 65.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.89
         },
         {
-          ".id": 10060,
+          ".id": 1750110060,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -16327,11 +16728,12 @@
           "BPSYS": 142,
           "HR": 63,
           "WEIGHT": 98.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.76
         },
         {
-          ".id": 10061,
+          ".id": 1750110061,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -16342,11 +16744,12 @@
           "BPSYS": 130,
           "HR": 74,
           "WEIGHT": 67.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.88
         },
         {
-          ".id": 10063,
+          ".id": 1750110063,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -16357,11 +16760,12 @@
           "BPSYS": 109,
           "HR": 81,
           "WEIGHT": 105.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.32
         },
         {
-          ".id": 10069,
+          ".id": 1750110069,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16372,11 +16776,12 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 96.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.8
         },
         {
-          ".id": 10072,
+          ".id": 1750110072,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -16387,11 +16792,12 @@
           "BPSYS": 142,
           "HR": 74,
           "WEIGHT": 90.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -2
         },
         {
-          ".id": 10074,
+          ".id": 1750110074,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -16402,11 +16808,12 @@
           "BPSYS": 108,
           "HR": 74,
           "WEIGHT": 79.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.05
         },
         {
-          ".id": 10076,
+          ".id": 1750110076,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -16417,11 +16824,12 @@
           "BPSYS": 138,
           "HR": 67,
           "WEIGHT": 98.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.3
         },
         {
-          ".id": 10077,
+          ".id": 1750110077,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16432,11 +16840,12 @@
           "BPSYS": 110,
           "HR": 79,
           "WEIGHT": 97.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.95
         },
         {
-          ".id": 10079,
+          ".id": 1750110079,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -16447,11 +16856,12 @@
           "BPSYS": 131,
           "HR": 73,
           "WEIGHT": 65.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.62
         },
         {
-          ".id": 10081,
+          ".id": 1750110081,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -16462,11 +16872,12 @@
           "BPSYS": 110,
           "HR": 63,
           "WEIGHT": 61.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.64
         },
         {
-          ".id": 10082,
+          ".id": 1750110082,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16477,11 +16888,12 @@
           "BPSYS": 96,
           "HR": 64,
           "WEIGHT": 67.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.64
         },
         {
-          ".id": 10084,
+          ".id": 1750110084,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -16492,11 +16904,12 @@
           "BPSYS": 135,
           "HR": 85,
           "WEIGHT": 102.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.16
         },
         {
-          ".id": 10086,
+          ".id": 1750110086,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -16507,11 +16920,12 @@
           "BPSYS": 121,
           "HR": 58,
           "WEIGHT": 72.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.76
         },
         {
-          ".id": 10087,
+          ".id": 1750110087,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16522,11 +16936,12 @@
           "BPSYS": 122,
           "HR": 70,
           "WEIGHT": 80.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.07
         },
         {
-          ".id": 10088,
+          ".id": 1750110088,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -16537,11 +16952,12 @@
           "BPSYS": 97,
           "HR": 71,
           "WEIGHT": 73.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.05
         },
         {
-          ".id": 10091,
+          ".id": 1750110091,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16552,11 +16968,12 @@
           "BPSYS": 109,
           "HR": 42,
           "WEIGHT": 62.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.58
         },
         {
-          ".id": 10093,
+          ".id": 1750110093,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -16567,11 +16984,12 @@
           "BPSYS": 92,
           "HR": 76,
           "WEIGHT": 72.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.68
         },
         {
-          ".id": 10101,
+          ".id": 1750110101,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -16582,11 +17000,12 @@
           "BPSYS": 129,
           "HR": 63,
           "WEIGHT": 90.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.4
         },
         {
-          ".id": 10102,
+          ".id": 1750110102,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -16597,26 +17016,28 @@
           "BPSYS": 123,
           "HR": 60,
           "WEIGHT": 65.8,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": -0.73
         },
         {
-          ".id": 10105,
+          ".id": 1750110105,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
           "RACE": "WHITE",
           "AGE": 74,
           "BMI_advs": 28.1,
-          "BPDIA": 75.8,
+          "BPDIA": 71.8,
           "BPSYS": 140,
           "HR": 74,
           "WEIGHT": 74.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.96
         },
         {
-          ".id": 10107,
+          ".id": 1750110107,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -16627,11 +17048,12 @@
           "BPSYS": 112,
           "HR": 77,
           "WEIGHT": 54.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.46
         },
         {
-          ".id": 10111,
+          ".id": 1750110111,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -16642,11 +17064,12 @@
           "BPSYS": 109,
           "HR": 87,
           "WEIGHT": 89.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -1.47
         },
         {
-          ".id": 10112,
+          ".id": 1750110112,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -16657,26 +17080,28 @@
           "BPSYS": 115,
           "HR": 75,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.72
         },
         {
-          ".id": 10115,
+          ".id": 1750110115,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
           "RACE": "WHITE",
           "AGE": 60,
           "BMI_advs": 28.5,
-          "BPDIA": 71.8,
+          "BPDIA": 65,
           "BPSYS": 113,
           "HR": 52,
           "WEIGHT": 87.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": -1.87
         },
         {
-          ".id": 10116,
+          ".id": 1750110116,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -16687,11 +17112,12 @@
           "BPSYS": 93,
           "HR": 74,
           "WEIGHT": 92.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.16
         },
         {
-          ".id": 10118,
+          ".id": 1750110118,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -16702,11 +17128,12 @@
           "BPSYS": 101,
           "HR": 92,
           "WEIGHT": 57.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.2
         },
         {
-          ".id": 10125,
+          ".id": 1750110125,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -16717,11 +17144,12 @@
           "BPSYS": 128,
           "HR": 50,
           "WEIGHT": 87.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.23
         },
         {
-          ".id": 10126,
+          ".id": 1750110126,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -16732,11 +17160,12 @@
           "BPSYS": 103,
           "HR": 89,
           "WEIGHT": 78.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.22
         },
         {
-          ".id": 10129,
+          ".id": 1750110129,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -16747,11 +17176,12 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.19
         },
         {
-          ".id": 10130,
+          ".id": 1750110130,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -16762,11 +17192,12 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 59,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.47
         },
         {
-          ".id": 10132,
+          ".id": 1750110132,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -16777,11 +17208,12 @@
           "BPSYS": 103,
           "HR": 48,
           "WEIGHT": 70.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.96
         },
         {
-          ".id": 10133,
+          ".id": 1750110133,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -16792,11 +17224,12 @@
           "BPSYS": 108,
           "HR": 72,
           "WEIGHT": 74.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.03
         },
         {
-          ".id": 10136,
+          ".id": 1750110136,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -16807,11 +17240,12 @@
           "BPSYS": 140,
           "HR": 66,
           "WEIGHT": 88.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.21
         },
         {
-          ".id": 10137,
+          ".id": 1750110137,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16822,11 +17256,12 @@
           "BPSYS": 128,
           "HR": 83,
           "WEIGHT": 79.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.36
         },
         {
-          ".id": 10138,
+          ".id": 1750110138,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -16837,11 +17272,12 @@
           "BPSYS": 112,
           "HR": 76,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.62
         },
         {
-          ".id": 10139,
+          ".id": 1750110139,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16852,11 +17288,12 @@
           "BPSYS": 144,
           "HR": 80,
           "WEIGHT": 101.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.75
         },
         {
-          ".id": 10143,
+          ".id": 1750110143,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -16867,11 +17304,12 @@
           "BPSYS": 117,
           "HR": 80,
           "WEIGHT": 71.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.33
         },
         {
-          ".id": 10144,
+          ".id": 1750110144,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16882,11 +17320,12 @@
           "BPSYS": 124,
           "HR": 60,
           "WEIGHT": 80.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.23
         },
         {
-          ".id": 10146,
+          ".id": 1750110146,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -16897,11 +17336,12 @@
           "BPSYS": 122,
           "HR": 72,
           "WEIGHT": 69.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.25
         },
         {
-          ".id": 10147,
+          ".id": 1750110147,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -16912,11 +17352,12 @@
           "BPSYS": 110,
           "HR": 55,
           "WEIGHT": 65.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.02
         },
         {
-          ".id": 10154,
+          ".id": 1750110154,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -16927,11 +17368,12 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 82.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -1.05
         },
         {
-          ".id": 10160,
+          ".id": 1750110160,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -16942,11 +17384,12 @@
           "BPSYS": 125,
           "HR": 59,
           "WEIGHT": 80.6,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": -1.55
         },
         {
-          ".id": 10162,
+          ".id": 1750110162,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -16957,11 +17400,12 @@
           "BPSYS": 143,
           "HR": 78,
           "WEIGHT": 66,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.43
         },
         {
-          ".id": 10165,
+          ".id": 1750110165,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -16972,11 +17416,12 @@
           "BPSYS": 138,
           "HR": 65,
           "WEIGHT": 122.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.47
         },
         {
-          ".id": 10166,
+          ".id": 1750110166,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -16987,11 +17432,12 @@
           "BPSYS": 115,
           "HR": 63,
           "WEIGHT": 66.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.5
         },
         {
-          ".id": 10168,
+          ".id": 1750110168,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -17002,11 +17448,12 @@
           "BPSYS": 126,
           "HR": 78,
           "WEIGHT": 86,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.14
         },
         {
-          ".id": 10172,
+          ".id": 1750110172,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -17017,11 +17464,12 @@
           "BPSYS": 124,
           "HR": 68,
           "WEIGHT": 78.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.85
         },
         {
-          ".id": 10175,
+          ".id": 1750110175,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -17032,11 +17480,12 @@
           "BPSYS": 145,
           "HR": 69,
           "WEIGHT": 90.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.25
         },
         {
-          ".id": 10177,
+          ".id": 1750110177,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -17047,11 +17496,12 @@
           "BPSYS": 94,
           "HR": 67,
           "WEIGHT": 76.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.99
         },
         {
-          ".id": 10179,
+          ".id": 1750110179,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -17062,11 +17512,12 @@
           "BPSYS": 130,
           "HR": 56,
           "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.8
         },
         {
-          ".id": 10183,
+          ".id": 1750110183,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -17077,11 +17528,12 @@
           "BPSYS": 113,
           "HR": 71,
           "WEIGHT": 56.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.86
         },
         {
-          ".id": 10184,
+          ".id": 1750110184,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -17092,11 +17544,12 @@
           "BPSYS": 116,
           "HR": 50,
           "WEIGHT": 74.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.29
         },
         {
-          ".id": 10185,
+          ".id": 1750110185,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17107,11 +17560,12 @@
           "BPSYS": 113,
           "HR": 72,
           "WEIGHT": 66.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.7
         },
         {
-          ".id": 10186,
+          ".id": 1750110186,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -17122,11 +17576,12 @@
           "BPSYS": 113,
           "HR": 66,
           "WEIGHT": 36.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.24
         },
         {
-          ".id": 10187,
+          ".id": 1750110187,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -17137,11 +17592,12 @@
           "BPSYS": 118,
           "HR": 96,
           "WEIGHT": 60.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.82
         },
         {
-          ".id": 10190,
+          ".id": 1750110190,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17152,11 +17608,12 @@
           "BPSYS": 134,
           "HR": 69,
           "WEIGHT": 67.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.2
         },
         {
-          ".id": 10196,
+          ".id": 1750110196,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -17167,11 +17624,12 @@
           "BPSYS": 107,
           "HR": 71,
           "WEIGHT": 93.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.36
         },
         {
-          ".id": 10198,
+          ".id": 1750110198,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -17182,11 +17640,12 @@
           "BPSYS": 125,
           "HR": 71,
           "WEIGHT": 87.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.56
         },
         {
-          ".id": 10201,
+          ".id": 1750110201,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17194,14 +17653,15 @@
           "AGE": 49,
           "BMI_advs": 32.4,
           "BPDIA": 79,
-          "BPSYS": 129,
+          "BPSYS": 120,
           "HR": 72,
           "WEIGHT": 75.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 1.5
         },
         {
-          ".id": 10206,
+          ".id": 1750110206,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17212,11 +17672,12 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 73.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.54
         },
         {
-          ".id": 10208,
+          ".id": 1750110208,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -17227,11 +17688,12 @@
           "BPSYS": 99,
           "HR": 64,
           "WEIGHT": 60.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.1
         },
         {
-          ".id": 10211,
+          ".id": 1750110211,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -17242,11 +17704,12 @@
           "BPSYS": 117,
           "HR": 62,
           "WEIGHT": 70,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.95
         },
         {
-          ".id": 10217,
+          ".id": 1750110217,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -17257,11 +17720,12 @@
           "BPSYS": 148,
           "HR": 55,
           "WEIGHT": 96.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.51
         },
         {
-          ".id": 10218,
+          ".id": 1750110218,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17272,11 +17736,12 @@
           "BPSYS": 119,
           "HR": 62,
           "WEIGHT": 62.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.23
         },
         {
-          ".id": 10222,
+          ".id": 1750110222,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17287,11 +17752,12 @@
           "BPSYS": 107,
           "HR": 75,
           "WEIGHT": 126.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -2.91
         },
         {
-          ".id": 10224,
+          ".id": 1750110224,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -17302,26 +17768,28 @@
           "BPSYS": 140,
           "HR": 61,
           "WEIGHT": 88.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.42
         },
         {
-          ".id": 10230,
+          ".id": 1750110230,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
           "RACE": "WHITE",
           "AGE": 61,
-          "BMI_advs": 24.76,
+          "BMI_advs": 26.82,
           "BPDIA": 68,
           "BPSYS": 110,
           "HR": 53,
           "WEIGHT": 93.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.01
         },
         {
-          ".id": 10233,
+          ".id": 1750110233,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -17332,11 +17800,12 @@
           "BPSYS": 121,
           "HR": 76,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.9
         },
         {
-          ".id": 10235,
+          ".id": 1750110235,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -17347,11 +17816,12 @@
           "BPSYS": 134,
           "HR": 65,
           "WEIGHT": 101.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.96
         },
         {
-          ".id": 10238,
+          ".id": 1750110238,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -17362,11 +17832,12 @@
           "BPSYS": 122,
           "HR": 92,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.14
         },
         {
-          ".id": 10239,
+          ".id": 1750110239,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17377,11 +17848,12 @@
           "BPSYS": 111,
           "HR": 59,
           "WEIGHT": 54.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 3.14
         },
         {
-          ".id": 10242,
+          ".id": 1750110242,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -17392,11 +17864,12 @@
           "BPSYS": 114,
           "HR": 71,
           "WEIGHT": 86.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.14
         },
         {
-          ".id": 10244,
+          ".id": 1750110244,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -17407,11 +17880,12 @@
           "BPSYS": 135,
           "HR": 67,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.37
         },
         {
-          ".id": 10248,
+          ".id": 1750110248,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -17422,11 +17896,12 @@
           "BPSYS": 91,
           "HR": 73,
           "WEIGHT": 83.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.3
         },
         {
-          ".id": 10255,
+          ".id": 1750110255,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -17437,11 +17912,12 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 104.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -1.55
         },
         {
-          ".id": 10257,
+          ".id": 1750110257,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -17452,11 +17928,12 @@
           "BPSYS": 134,
           "HR": 81,
           "WEIGHT": 69.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".out": 0.53
         },
         {
-          ".id": 10262,
+          ".id": 1750110262,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -17467,11 +17944,12 @@
           "BPSYS": 129,
           "HR": 61,
           "WEIGHT": 80.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -1.16
         },
         {
-          ".id": 10264,
+          ".id": 1750110264,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -17480,13 +17958,14 @@
           "BMI_advs": 34.5,
           "BPDIA": 74,
           "BPSYS": 125,
-          "HR": 73,
+          "HR": 67.8,
           "WEIGHT": 106,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.97
         },
         {
-          ".id": 10269,
+          ".id": 1750110269,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -17497,11 +17976,12 @@
           "BPSYS": 92,
           "HR": 88,
           "WEIGHT": 98.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.3
         },
         {
-          ".id": 10270,
+          ".id": 1750110270,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17512,11 +17992,12 @@
           "BPSYS": 127,
           "HR": 89,
           "WEIGHT": 110.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.75
         },
         {
-          ".id": 10271,
+          ".id": 1750110271,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -17527,11 +18008,12 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 61.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 1.68
         },
         {
-          ".id": 10275,
+          ".id": 1750110275,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17542,11 +18024,12 @@
           "BPSYS": 95,
           "HR": 57,
           "WEIGHT": 54,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.62
         },
         {
-          ".id": 10277,
+          ".id": 1750110277,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -17557,11 +18040,12 @@
           "BPSYS": 131,
           "HR": 58,
           "WEIGHT": 96.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.96
         },
         {
-          ".id": 10278,
+          ".id": 1750110278,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -17572,11 +18056,12 @@
           "BPSYS": 121,
           "HR": 78,
           "WEIGHT": 69.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.57
         },
         {
-          ".id": 10280,
+          ".id": 1750110280,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -17587,11 +18072,12 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 75,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.03
         },
         {
-          ".id": 10281,
+          ".id": 1750110281,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -17602,11 +18088,12 @@
           "BPSYS": 103,
           "HR": 77,
           "WEIGHT": 79.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.32
         },
         {
-          ".id": 10283,
+          ".id": 1750110283,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17617,11 +18104,12 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 48.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.08
         },
         {
-          ".id": 10284,
+          ".id": 1750110284,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -17632,11 +18120,12 @@
           "BPSYS": 95,
           "HR": 78,
           "WEIGHT": 97.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.71
         },
         {
-          ".id": 10286,
+          ".id": 1750110286,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17647,11 +18136,12 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 93.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.07
         },
         {
-          ".id": 10289,
+          ".id": 1750110289,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -17662,11 +18152,12 @@
           "BPSYS": 93,
           "HR": 64,
           "WEIGHT": 80.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": -0.7
         },
         {
-          ".id": 10290,
+          ".id": 1750110290,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17677,11 +18168,12 @@
           "BPSYS": 92,
           "HR": 58,
           "WEIGHT": 77.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -1.28
         },
         {
-          ".id": 10293,
+          ".id": 1750110293,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -17692,11 +18184,12 @@
           "BPSYS": 95,
           "HR": 74,
           "WEIGHT": 100.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.87
         },
         {
-          ".id": 10295,
+          ".id": 1750110295,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17707,11 +18200,12 @@
           "BPSYS": 110,
           "HR": 60,
           "WEIGHT": 59.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.58
         },
         {
-          ".id": 10297,
+          ".id": 1750110297,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -17722,11 +18216,12 @@
           "BPSYS": 107,
           "HR": 73,
           "WEIGHT": 68.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.13
         },
         {
-          ".id": 10306,
+          ".id": 1750110306,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -17737,11 +18232,12 @@
           "BPSYS": 101,
           "HR": 77,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.03
         },
         {
-          ".id": 10311,
+          ".id": 1750110311,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -17752,11 +18248,12 @@
           "BPSYS": 125,
           "HR": 56,
           "WEIGHT": 90.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 2.26
         },
         {
-          ".id": 10314,
+          ".id": 1750110314,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -17767,11 +18264,12 @@
           "BPSYS": 123,
           "HR": 85,
           "WEIGHT": 100,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.47
         },
         {
-          ".id": 10316,
+          ".id": 1750110316,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -17782,11 +18280,12 @@
           "BPSYS": 114,
           "HR": 54,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.3
         },
         {
-          ".id": 10317,
+          ".id": 1750110317,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -17797,11 +18296,12 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 89.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.95
         },
         {
-          ".id": 10319,
+          ".id": 1750110319,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -17812,11 +18312,12 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 84.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.8
         },
         {
-          ".id": 10320,
+          ".id": 1750110320,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -17827,6 +18328,7 @@
           "BPSYS": 143,
           "HR": 66,
           "WEIGHT": 101.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.74
         }
@@ -17835,7 +18337,7 @@
       $data$prep$test
       [
         {
-          ".id": 10003,
+          ".id": 1750110003,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -17846,11 +18348,12 @@
           "BPSYS": 105,
           "HR": 86,
           "WEIGHT": 51.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0
         },
         {
-          ".id": 10004,
+          ".id": 1750110004,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -17861,11 +18364,12 @@
           "BPSYS": 134,
           "HR": 64,
           "WEIGHT": 106,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.11
         },
         {
-          ".id": 10006,
+          ".id": 1750110006,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17876,11 +18380,12 @@
           "BPSYS": 116,
           "HR": 69,
           "WEIGHT": 116.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.12
         },
         {
-          ".id": 10007,
+          ".id": 1750110007,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17891,11 +18396,12 @@
           "BPSYS": 127,
           "HR": 59,
           "WEIGHT": 79.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -2.57
         },
         {
-          ".id": 10008,
+          ".id": 1750110008,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -17906,11 +18412,12 @@
           "BPSYS": 141,
           "HR": 75,
           "WEIGHT": 112.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.74
         },
         {
-          ".id": 10014,
+          ".id": 1750110014,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -17921,11 +18428,12 @@
           "BPSYS": 126,
           "HR": 84,
           "WEIGHT": 75.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.01
         },
         {
-          ".id": 10019,
+          ".id": 1750110019,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -17936,11 +18444,12 @@
           "BPSYS": 101,
           "HR": 56,
           "WEIGHT": 57.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.58
         },
         {
-          ".id": 10021,
+          ".id": 1750110021,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17951,11 +18460,12 @@
           "BPSYS": 124,
           "HR": 80,
           "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -2.18
         },
         {
-          ".id": 10027,
+          ".id": 1750110027,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17966,11 +18476,12 @@
           "BPSYS": 152,
           "HR": 69,
           "WEIGHT": 50.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.79
         },
         {
-          ".id": 10029,
+          ".id": 1750110029,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -17981,11 +18492,12 @@
           "BPSYS": 130,
           "HR": 70,
           "WEIGHT": 73,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": 0.55
         },
         {
-          ".id": 10032,
+          ".id": 1750110032,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -17996,11 +18508,12 @@
           "BPSYS": 92,
           "HR": 56,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.01
         },
         {
-          ".id": 10034,
+          ".id": 1750110034,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -18011,26 +18524,28 @@
           "BPSYS": 122,
           "HR": 66,
           "WEIGHT": 64.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.84
         },
         {
-          ".id": 10036,
+          ".id": 1750110036,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
           "RACE": "WHITE",
           "AGE": 60,
           "BMI_advs": 26,
-          "BPDIA": 68.2,
+          "BPDIA": 70.8,
           "BPSYS": 128,
           "HR": 56,
           "WEIGHT": 62.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.2
         },
         {
-          ".id": 10047,
+          ".id": 1750110047,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -18041,11 +18556,12 @@
           "BPSYS": 117,
           "HR": 93,
           "WEIGHT": 110.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.04
         },
         {
-          ".id": 10048,
+          ".id": 1750110048,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -18056,11 +18572,12 @@
           "BPSYS": 109,
           "HR": 63,
           "WEIGHT": 68,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -1.26
         },
         {
-          ".id": 10050,
+          ".id": 1750110050,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -18071,11 +18588,12 @@
           "BPSYS": 122,
           "HR": 78,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.03
         },
         {
-          ".id": 10053,
+          ".id": 1750110053,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -18086,11 +18604,12 @@
           "BPSYS": 97,
           "HR": 49,
           "WEIGHT": 96.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.34
         },
         {
-          ".id": 10064,
+          ".id": 1750110064,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -18101,11 +18620,12 @@
           "BPSYS": 108,
           "HR": 56,
           "WEIGHT": 82.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.87
         },
         {
-          ".id": 10066,
+          ".id": 1750110066,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -18116,11 +18636,12 @@
           "BPSYS": 107,
           "HR": 39,
           "WEIGHT": 53.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.33
         },
         {
-          ".id": 10075,
+          ".id": 1750110075,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -18131,11 +18652,12 @@
           "BPSYS": 108,
           "HR": 50,
           "WEIGHT": 91.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.07
         },
         {
-          ".id": 10083,
+          ".id": 1750110083,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -18146,11 +18668,12 @@
           "BPSYS": 98,
           "HR": 90,
           "WEIGHT": 95.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".out": 1.29
         },
         {
-          ".id": 10089,
+          ".id": 1750110089,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18161,11 +18684,12 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 79.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1
         },
         {
-          ".id": 10090,
+          ".id": 1750110090,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -18176,11 +18700,12 @@
           "BPSYS": 100,
           "HR": 70,
           "WEIGHT": 75.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.22
         },
         {
-          ".id": 10094,
+          ".id": 1750110094,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18191,11 +18716,12 @@
           "BPSYS": 124,
           "HR": 62,
           "WEIGHT": 75.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.25
         },
         {
-          ".id": 10095,
+          ".id": 1750110095,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18206,11 +18732,12 @@
           "BPSYS": 118,
           "HR": 65,
           "WEIGHT": 82.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.1
         },
         {
-          ".id": 10096,
+          ".id": 1750110096,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -18221,11 +18748,12 @@
           "BPSYS": 129,
           "HR": 67,
           "WEIGHT": 65.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -0.42
         },
         {
-          ".id": 10106,
+          ".id": 1750110106,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -18236,11 +18764,12 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 54.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.37
         },
         {
-          ".id": 10108,
+          ".id": 1750110108,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -18251,11 +18780,12 @@
           "BPSYS": 134,
           "HR": 66,
           "WEIGHT": 126.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": 0.41
         },
         {
-          ".id": 10109,
+          ".id": 1750110109,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -18266,11 +18796,12 @@
           "BPSYS": 95,
           "HR": 72,
           "WEIGHT": 101.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.46
         },
         {
-          ".id": 10114,
+          ".id": 1750110114,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -18281,11 +18812,12 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 123.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.42
         },
         {
-          ".id": 10117,
+          ".id": 1750110117,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -18296,11 +18828,12 @@
           "BPSYS": 98,
           "HR": 89,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": -1.38
         },
         {
-          ".id": 10123,
+          ".id": 1750110123,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -18311,11 +18844,12 @@
           "BPSYS": 129,
           "HR": 62,
           "WEIGHT": 46.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.23
         },
         {
-          ".id": 10127,
+          ".id": 1750110127,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18326,11 +18860,12 @@
           "BPSYS": 115,
           "HR": 72,
           "WEIGHT": 88.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.42
         },
         {
-          ".id": 10128,
+          ".id": 1750110128,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -18341,11 +18876,12 @@
           "BPSYS": 106,
           "HR": 73,
           "WEIGHT": 53.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.35
         },
         {
-          ".id": 10135,
+          ".id": 1750110135,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18356,26 +18892,28 @@
           "BPSYS": 118,
           "HR": 64,
           "WEIGHT": 63.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.17
         },
         {
-          ".id": 10140,
+          ".id": 1750110140,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
           "RACE": "BLACK",
           "AGE": 68,
-          "BMI_advs": 24.52,
+          "BMI_advs": 25.74,
           "BPDIA": 64,
           "BPSYS": 98,
           "HR": 69,
           "WEIGHT": 101.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.19
         },
         {
-          ".id": 10150,
+          ".id": 1750110150,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18386,11 +18924,12 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 81.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -1.49
         },
         {
-          ".id": 10152,
+          ".id": 1750110152,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18401,11 +18940,12 @@
           "BPSYS": 98,
           "HR": 71,
           "WEIGHT": 73.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.05
         },
         {
-          ".id": 10156,
+          ".id": 1750110156,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -18416,11 +18956,12 @@
           "BPSYS": 115,
           "HR": 59,
           "WEIGHT": 73.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.78
         },
         {
-          ".id": 10161,
+          ".id": 1750110161,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -18431,11 +18972,12 @@
           "BPSYS": 108,
           "HR": 64,
           "WEIGHT": 103.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3,
           ".out": 2.19
         },
         {
-          ".id": 10170,
+          ".id": 1750110170,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -18446,26 +18988,28 @@
           "BPSYS": 112,
           "HR": 57,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.66
         },
         {
-          ".id": 10182,
+          ".id": 1750110182,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
           "RACE": "WHITE",
           "AGE": 83,
           "BMI_advs": 26.3,
-          "BPDIA": 67.2,
+          "BPDIA": 72.2,
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 70.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.19
         },
         {
-          ".id": 10189,
+          ".id": 1750110189,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18476,11 +19020,12 @@
           "BPSYS": 117,
           "HR": 79,
           "WEIGHT": 88,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.98
         },
         {
-          ".id": 10194,
+          ".id": 1750110194,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -18491,11 +19036,12 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 41.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": 2.62
         },
         {
-          ".id": 10195,
+          ".id": 1750110195,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18506,11 +19052,12 @@
           "BPSYS": 136,
           "HR": 66,
           "WEIGHT": 113.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0.44
         },
         {
-          ".id": 10197,
+          ".id": 1750110197,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -18521,11 +19068,12 @@
           "BPSYS": 113,
           "HR": 63,
           "WEIGHT": 66.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.6
         },
         {
-          ".id": 10199,
+          ".id": 1750110199,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18536,11 +19084,12 @@
           "BPSYS": 103,
           "HR": 71,
           "WEIGHT": 68.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -1.41
         },
         {
-          ".id": 10200,
+          ".id": 1750110200,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -18551,11 +19100,12 @@
           "BPSYS": 111.4,
           "HR": 81,
           "WEIGHT": 112.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.03
         },
         {
-          ".id": 10202,
+          ".id": 1750110202,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -18566,11 +19116,12 @@
           "BPSYS": 133,
           "HR": 69,
           "WEIGHT": 83.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.28
         },
         {
-          ".id": 10203,
+          ".id": 1750110203,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -18581,11 +19132,12 @@
           "BPSYS": 113,
           "HR": 83,
           "WEIGHT": 66.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.54
         },
         {
-          ".id": 10209,
+          ".id": 1750110209,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -18596,11 +19148,12 @@
           "BPSYS": 100,
           "HR": 75,
           "WEIGHT": 65.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.17
         },
         {
-          ".id": 10216,
+          ".id": 1750110216,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -18611,11 +19164,12 @@
           "BPSYS": 117,
           "HR": 67,
           "WEIGHT": 75.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.08
         },
         {
-          ".id": 10219,
+          ".id": 1750110219,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -18626,11 +19180,12 @@
           "BPSYS": 132,
           "HR": 54,
           "WEIGHT": 95.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".out": 0.63
         },
         {
-          ".id": 10226,
+          ".id": 1750110226,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -18641,11 +19196,12 @@
           "BPSYS": 106,
           "HR": 55,
           "WEIGHT": 59.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.04
         },
         {
-          ".id": 10227,
+          ".id": 1750110227,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -18656,11 +19212,12 @@
           "BPSYS": 120,
           "HR": 64,
           "WEIGHT": 84.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.86
         },
         {
-          ".id": 10228,
+          ".id": 1750110228,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -18671,11 +19228,12 @@
           "BPSYS": 101,
           "HR": 45,
           "WEIGHT": 55.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.93
         },
         {
-          ".id": 10237,
+          ".id": 1750110237,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18686,11 +19244,12 @@
           "BPSYS": 119,
           "HR": 61,
           "WEIGHT": 105.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.24
         },
         {
-          ".id": 10241,
+          ".id": 1750110241,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -18701,11 +19260,12 @@
           "BPSYS": 144,
           "HR": 75,
           "WEIGHT": 71.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.14
         },
         {
-          ".id": 10247,
+          ".id": 1750110247,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -18716,11 +19276,12 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 94.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": -0.54
         },
         {
-          ".id": 10249,
+          ".id": 1750110249,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18731,11 +19292,12 @@
           "BPSYS": 108,
           "HR": 78,
           "WEIGHT": 85,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.66
         },
         {
-          ".id": 10254,
+          ".id": 1750110254,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -18746,11 +19308,12 @@
           "BPSYS": 123,
           "HR": 59,
           "WEIGHT": 89,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 0.22
         },
         {
-          ".id": 10272,
+          ".id": 1750110272,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -18761,11 +19324,12 @@
           "BPSYS": 106,
           "HR": 68,
           "WEIGHT": 101.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -1.24
         },
         {
-          ".id": 10279,
+          ".id": 1750110279,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18776,11 +19340,12 @@
           "BPSYS": 128,
           "HR": 62,
           "WEIGHT": 92.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 1.25
         },
         {
-          ".id": 10282,
+          ".id": 1750110282,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -18791,11 +19356,12 @@
           "BPSYS": 124,
           "HR": 48,
           "WEIGHT": 63.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.52
         },
         {
-          ".id": 10285,
+          ".id": 1750110285,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -18806,11 +19372,12 @@
           "BPSYS": 119,
           "HR": 65,
           "WEIGHT": 98.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": -0.67
         },
         {
-          ".id": 10287,
+          ".id": 1750110287,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -18821,11 +19388,12 @@
           "BPSYS": 115,
           "HR": 40,
           "WEIGHT": 106.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -0.16
         },
         {
-          ".id": 10288,
+          ".id": 1750110288,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -18836,11 +19404,12 @@
           "BPSYS": 103,
           "HR": 98,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": -1.68
         },
         {
-          ".id": 10302,
+          ".id": 1750110302,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -18851,11 +19420,12 @@
           "BPSYS": 122,
           "HR": 81,
           "WEIGHT": 77,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".out": 0.82
         },
         {
-          ".id": 10303,
+          ".id": 1750110303,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -18866,11 +19436,12 @@
           "BPSYS": 143,
           "HR": 86,
           "WEIGHT": 82.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".out": 1.27
         },
         {
-          ".id": 10308,
+          ".id": 1750110308,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -18881,11 +19452,12 @@
           "BPSYS": 110,
           "HR": 67,
           "WEIGHT": 88.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.71
         },
         {
-          ".id": 10313,
+          ".id": 1750110313,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -18895,12 +19467,13 @@
           "BPDIA": 61,
           "BPSYS": 108,
           "HR": 59,
-          "WEIGHT": 96.24,
+          "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".out": -0.13
         },
         {
-          ".id": 10315,
+          ".id": 1750110315,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -18911,11 +19484,12 @@
           "BPSYS": 130,
           "HR": 83,
           "WEIGHT": 77.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".out": 0
         },
         {
-          ".id": 10318,
+          ".id": 1750110318,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -18926,6 +19500,7 @@
           "BPSYS": 100,
           "HR": 85,
           "WEIGHT": 58.6,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".out": -1.83
         }
@@ -19132,61 +19707,6 @@
       ] 
       
       $recipe
-      $recipe$raw
-    Message
-      
-      -- Recipe ----------------------------------------------------------------------
-      
-      -- Inputs 
-      Number of variables by role
-      outcome:    1
-      predictor: 16
-      ID:         1
-      
-      -- Operations 
-      * Variable mutation for: recipes::all_factor_predictors()
-      * Missing value column filter on: recipes::all_predictors()
-      * Removing rows with NA values in: recipes::all_outcomes()
-      * Removing rows with NA values in: tidyselect::any_of(vars_imp_ignore)
-      * Log transformation on: recipes::all_numeric_predictors(), ...
-      * K-nearest neighbor imputation for: recipes::all_predictors()
-      * Median imputation for: recipes::all_numeric_predictors()
-      * Mode imputation for: recipes::all_nominal_predictors()
-      * Zero variance filter on: recipes::all_predictors()
-      * Sparse, unbalanced variable filter on: recipes::all_predictors()
-      * Correlation filter on: recipes::all_numeric_predictors()
-      * Collapsing factor levels for: recipes::all_nominal_predictors()
-    Output
-      
-      $recipe$prep
-    Message
-      
-      -- Recipe ----------------------------------------------------------------------
-      
-      -- Inputs 
-      Number of variables by role
-      outcome:    1
-      predictor: 16
-      ID:         1
-      
-      -- Training information 
-      Training data contained 216 data points and 213 incomplete rows.
-      
-      -- Operations 
-      * Variable mutation for: .trt, AGEGR01, SEX, RACE | Trained
-      * Missing value column filter removed: LAB1, LAB2, LAB3 | Trained
-      * Removing rows with NA values in: .out | Trained
-      * Removing rows with NA values in: .trt | Trained
-      * Log transformation on: <none> | Trained
-      * K-nearest neighbor imputation for: .trt, AGEGR01, SEX, RACE, ... | Trained
-      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, ... | Trained
-      * Mode imputation for: .trt, AGEGR01, SEX, RACE | Trained
-      * Zero variance filter removed: cardiac_arrhythmias | Trained
-      * Sparse, unbalanced variable filter removed: <none> | Trained
-      * Correlation filter on: BMI_adsl | Trained
-      * Collapsing factor levels for: <none> | Trained
-    Output
-      
       $recipe$params
       $recipe$params$thres_log
       $recipe$params$thres_log$value
@@ -19274,7 +19794,7 @@
       [1] "LAB1" "LAB2" "LAB3"
       
       $removed$cols$zv
-      [1] "cardiac_arrhythmias"
+      NULL
       
       $removed$cols$nzv
       NULL
@@ -19333,9 +19853,6 @@
       $input$args$thres_log
       [1] 2
       
-      $input$args$thres_count
-      [1] 10
-      
       $input$args$thres_corr
       [1] 0.9
       
@@ -19357,9 +19874,6 @@
       $input$args$vars_fct_expl_na
       NULL
       
-      $input$args$vars_ordinalscore
-      NULL
-      
       $input$args$vars_keep_corr
       NULL
       
@@ -19371,6 +19885,9 @@
       
       $input$args$log_base
       [1] 2.718282
+      
+      $input$args$corr_method
+      [1] "spearman"
       
       $input$args$outlier_remove
       [1] FALSE
@@ -19402,7 +19919,7 @@
       $data$raw$train
       [
         {
-          ".id": 10017,
+          ".id": 1750110017,
           ".time": 13,
           ".status": 0,
           ".trt": "PLC",
@@ -19420,7 +19937,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10024,
+          ".id": 1750110024,
           ".time": 4,
           ".status": 0,
           ".trt": "PLC",
@@ -19434,11 +19951,11 @@
           "BPSYS": 133,
           "HR": 60,
           "WEIGHT": 64.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10028,
+          ".id": 1750110028,
           ".time": 95,
           ".status": 0,
           ".trt": "PLC",
@@ -19452,11 +19969,11 @@
           "BPSYS": 134,
           "HR": 67,
           "WEIGHT": 111.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10041,
+          ".id": 1750110041,
           ".time": 49,
           ".status": 0,
           ".trt": "PLC",
@@ -19470,11 +19987,11 @@
           "BPSYS": 139,
           "HR": 82,
           "WEIGHT": 90.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10043,
+          ".id": 1750110043,
           ".time": 148,
           ".status": 0,
           ".trt": "PLC",
@@ -19488,11 +20005,11 @@
           "BPSYS": 134,
           "HR": 48,
           "WEIGHT": 64.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10048,
+          ".id": 1750110048,
           ".time": 54,
           ".status": 0,
           ".trt": "PLC",
@@ -19506,11 +20023,11 @@
           "BPSYS": 109,
           "HR": 63,
           "WEIGHT": 68,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10052,
+          ".id": 1750110052,
           ".time": 11,
           ".status": 0,
           ".trt": "PLC",
@@ -19524,11 +20041,11 @@
           "BPSYS": 143,
           "HR": 68,
           "WEIGHT": 87.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10053,
+          ".id": 1750110053,
           ".time": 81,
           ".status": 0,
           ".trt": "PLC",
@@ -19542,11 +20059,11 @@
           "BPSYS": 97,
           "HR": 49,
           "WEIGHT": 96.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10058,
+          ".id": 1750110058,
           ".time": 109,
           ".status": 0,
           ".trt": "PLC",
@@ -19560,11 +20077,11 @@
           "BPSYS": 111,
           "HR": 80,
           "WEIGHT": 59.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10062,
+          ".id": 1750110062,
           ".time": 127,
           ".status": 0,
           ".trt": "PLC",
@@ -19578,11 +20095,11 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 103.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10071,
+          ".id": 1750110071,
           ".time": 270,
           ".status": 0,
           ".trt": "PLC",
@@ -19596,11 +20113,11 @@
           "BPSYS": 124,
           "HR": 76,
           "WEIGHT": 65.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10080,
+          ".id": 1750110080,
           ".time": 60,
           ".status": 0,
           ".trt": "PLC",
@@ -19614,11 +20131,11 @@
           "BPSYS": 95,
           "HR": 46,
           "WEIGHT": 50.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10092,
+          ".id": 1750110092,
           ".time": 48,
           ".status": 0,
           ".trt": "PLC",
@@ -19632,11 +20149,11 @@
           "BPSYS": 137,
           "HR": 78,
           "WEIGHT": 96.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10109,
+          ".id": 1750110109,
           ".time": 41,
           ".status": 0,
           ".trt": "PLC",
@@ -19650,11 +20167,11 @@
           "BPSYS": 95,
           "HR": 72,
           "WEIGHT": 101.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10122,
+          ".id": 1750110122,
           ".time": 93,
           ".status": 0,
           ".trt": "PLC",
@@ -19668,11 +20185,11 @@
           "BPSYS": 123,
           "HR": 82,
           "WEIGHT": 67.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10127,
+          ".id": 1750110127,
           ".time": 99,
           ".status": 0,
           ".trt": "PLC",
@@ -19686,11 +20203,11 @@
           "BPSYS": 115,
           "HR": 72,
           "WEIGHT": 88.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10140,
+          ".id": 1750110140,
           ".time": 30,
           ".status": 0,
           ".trt": "PLC",
@@ -19702,11 +20219,11 @@
           "BPSYS": 98,
           "HR": 69,
           "WEIGHT": 101.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10141,
+          ".id": 1750110141,
           ".time": 87,
           ".status": 0,
           ".trt": "PLC",
@@ -19720,11 +20237,11 @@
           "BPSYS": 127,
           "HR": 66,
           "WEIGHT": 102.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10152,
+          ".id": 1750110152,
           ".time": 180,
           ".status": 0,
           ".trt": "PLC",
@@ -19738,11 +20255,11 @@
           "BPSYS": 98,
           "HR": 71,
           "WEIGHT": 73.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10155,
+          ".id": 1750110155,
           ".time": 270,
           ".status": 0,
           ".trt": "PLC",
@@ -19756,11 +20273,11 @@
           "BPSYS": 98,
           "HR": 55,
           "WEIGHT": 70.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10158,
+          ".id": 1750110158,
           ".time": 11,
           ".status": 0,
           ".trt": "PLC",
@@ -19774,11 +20291,11 @@
           "BPSYS": 131,
           "HR": 77,
           "WEIGHT": 120.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10163,
+          ".id": 1750110163,
           ".time": 52,
           ".status": 0,
           ".trt": "PLC",
@@ -19792,11 +20309,11 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 95.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10170,
+          ".id": 1750110170,
           ".time": 270,
           ".status": 0,
           ".trt": "PLC",
@@ -19810,11 +20327,11 @@
           "BPSYS": 112,
           "HR": 57,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10191,
+          ".id": 1750110191,
           ".time": 24,
           ".status": 0,
           ".trt": "PLC",
@@ -19828,11 +20345,11 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 92.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10192,
+          ".id": 1750110192,
           ".time": 160,
           ".status": 0,
           ".trt": "PLC",
@@ -19846,11 +20363,11 @@
           "BPSYS": 121,
           "HR": 79,
           "WEIGHT": 64.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10197,
+          ".id": 1750110197,
           ".time": 37,
           ".status": 0,
           ".trt": "PLC",
@@ -19864,11 +20381,11 @@
           "BPSYS": 113,
           "HR": 63,
           "WEIGHT": 66.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10210,
+          ".id": 1750110210,
           ".time": 58,
           ".status": 0,
           ".trt": "PLC",
@@ -19882,11 +20399,11 @@
           "BPSYS": 93,
           "HR": 86,
           "WEIGHT": 92.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10213,
+          ".id": 1750110213,
           ".time": 10,
           ".status": 0,
           ".trt": "PLC",
@@ -19900,11 +20417,11 @@
           "BPSYS": 96,
           "HR": 85,
           "WEIGHT": 96.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10219,
+          ".id": 1750110219,
           ".time": 228,
           ".status": 0,
           ".trt": "PLC",
@@ -19918,11 +20435,11 @@
           "BPSYS": 132,
           "HR": 54,
           "WEIGHT": 95.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10220,
+          ".id": 1750110220,
           ".time": 125,
           ".status": 0,
           ".trt": "PLC",
@@ -19936,11 +20453,11 @@
           "BPSYS": 115,
           "HR": 68,
           "WEIGHT": 81.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10227,
+          ".id": 1750110227,
           ".time": 56,
           ".status": 0,
           ".trt": "PLC",
@@ -19954,11 +20471,11 @@
           "BPSYS": 120,
           "HR": 64,
           "WEIGHT": 84.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10232,
+          ".id": 1750110232,
           ".time": 270,
           ".status": 0,
           ".trt": "PLC",
@@ -19972,11 +20489,11 @@
           "BPSYS": 141,
           "HR": 63,
           "WEIGHT": 78.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10245,
+          ".id": 1750110245,
           ".time": 140,
           ".status": 0,
           ".trt": "PLC",
@@ -19990,11 +20507,11 @@
           "BPSYS": 84,
           "HR": 71,
           "WEIGHT": 92.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10249,
+          ".id": 1750110249,
           ".time": 12,
           ".status": 0,
           ".trt": "PLC",
@@ -20008,11 +20525,11 @@
           "BPSYS": 108,
           "HR": 78,
           "WEIGHT": 85,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10253,
+          ".id": 1750110253,
           ".time": 30,
           ".status": 0,
           ".trt": "PLC",
@@ -20026,11 +20543,11 @@
           "BPSYS": 129,
           "HR": 65,
           "WEIGHT": 82.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10259,
+          ".id": 1750110259,
           ".time": 270,
           ".status": 0,
           ".trt": "PLC",
@@ -20044,11 +20561,11 @@
           "BPSYS": 135,
           "HR": 79,
           "WEIGHT": 69.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10266,
+          ".id": 1750110266,
           ".time": 33,
           ".status": 0,
           ".trt": "PLC",
@@ -20066,7 +20583,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10276,
+          ".id": 1750110276,
           ".time": 144,
           ".status": 0,
           ".trt": "PLC",
@@ -20080,11 +20597,11 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 75.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10285,
+          ".id": 1750110285,
           ".time": 40,
           ".status": 0,
           ".trt": "PLC",
@@ -20098,11 +20615,11 @@
           "BPSYS": 119,
           "HR": 65,
           "WEIGHT": 98.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10299,
+          ".id": 1750110299,
           ".time": 10,
           ".status": 0,
           ".trt": "PLC",
@@ -20116,11 +20633,11 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 57.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10307,
+          ".id": 1750110307,
           ".time": 38,
           ".status": 0,
           ".trt": "PLC",
@@ -20134,11 +20651,11 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 65.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10313,
+          ".id": 1750110313,
           ".time": 270,
           ".status": 0,
           ".trt": "PLC",
@@ -20151,11 +20668,11 @@
           "BPDIA": 61,
           "BPSYS": 108,
           "HR": 59,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10001,
+          ".id": 1750110001,
           ".time": 51,
           ".status": 0,
           ".trt": "TRT",
@@ -20172,11 +20689,11 @@
           "BPSYS": 116,
           "HR": 79,
           "WEIGHT": 92.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10004,
+          ".id": 1750110004,
           ".time": 88,
           ".status": 0,
           ".trt": "TRT",
@@ -20193,11 +20710,11 @@
           "BPSYS": 134,
           "HR": 64,
           "WEIGHT": 106,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10008,
+          ".id": 1750110008,
           ".time": 46,
           ".status": 0,
           ".trt": "TRT",
@@ -20211,11 +20728,11 @@
           "BPSYS": 141,
           "HR": 75,
           "WEIGHT": 112.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10011,
+          ".id": 1750110011,
           ".time": 134,
           ".status": 0,
           ".trt": "TRT",
@@ -20229,11 +20746,11 @@
           "BPSYS": 127,
           "HR": 75,
           "WEIGHT": 77.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10013,
+          ".id": 1750110013,
           ".time": 32,
           ".status": 0,
           ".trt": "TRT",
@@ -20247,11 +20764,11 @@
           "BPSYS": 95,
           "HR": 64,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10019,
+          ".id": 1750110019,
           ".time": 145,
           ".status": 0,
           ".trt": "TRT",
@@ -20264,11 +20781,11 @@
           "BPSYS": 101,
           "HR": 56,
           "WEIGHT": 57.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10021,
+          ".id": 1750110021,
           ".time": 68,
           ".status": 0,
           ".trt": "TRT",
@@ -20282,11 +20799,11 @@
           "BPSYS": 124,
           "HR": 80,
           "WEIGHT": 97.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10023,
+          ".id": 1750110023,
           ".time": 65,
           ".status": 0,
           ".trt": "TRT",
@@ -20300,11 +20817,11 @@
           "BPSYS": 101,
           "HR": 71,
           "WEIGHT": 115,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10033,
+          ".id": 1750110033,
           ".time": 69,
           ".status": 0,
           ".trt": "TRT",
@@ -20317,11 +20834,11 @@
           "BPSYS": 114,
           "HR": 58,
           "WEIGHT": 66.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10040,
+          ".id": 1750110040,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -20335,11 +20852,11 @@
           "BPSYS": 111,
           "HR": 57,
           "WEIGHT": 79.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10050,
+          ".id": 1750110050,
           ".time": 32,
           ".status": 0,
           ".trt": "TRT",
@@ -20352,11 +20869,11 @@
           "BPSYS": 122,
           "HR": 78,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10051,
+          ".id": 1750110051,
           ".time": 209,
           ".status": 0,
           ".trt": "TRT",
@@ -20370,11 +20887,11 @@
           "BPSYS": 108,
           "HR": 67,
           "WEIGHT": 88.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10060,
+          ".id": 1750110060,
           ".time": 5,
           ".status": 0,
           ".trt": "TRT",
@@ -20388,11 +20905,11 @@
           "BPSYS": 142,
           "HR": 63,
           "WEIGHT": 98.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10074,
+          ".id": 1750110074,
           ".time": 44,
           ".status": 0,
           ".trt": "TRT",
@@ -20406,11 +20923,11 @@
           "BPSYS": 108,
           "HR": 74,
           "WEIGHT": 79.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10081,
+          ".id": 1750110081,
           ".time": 56,
           ".status": 0,
           ".trt": "TRT",
@@ -20424,11 +20941,11 @@
           "BPSYS": 110,
           "HR": 63,
           "WEIGHT": 61.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10082,
+          ".id": 1750110082,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -20442,11 +20959,11 @@
           "BPSYS": 96,
           "HR": 64,
           "WEIGHT": 67.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10086,
+          ".id": 1750110086,
           ".time": 107,
           ".status": 0,
           ".trt": "TRT",
@@ -20460,11 +20977,11 @@
           "BPSYS": 121,
           "HR": 58,
           "WEIGHT": 72.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10088,
+          ".id": 1750110088,
           ".time": 124,
           ".status": 0,
           ".trt": "TRT",
@@ -20478,11 +20995,11 @@
           "BPSYS": 97,
           "HR": 71,
           "WEIGHT": 73.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10091,
+          ".id": 1750110091,
           ".time": 57,
           ".status": 0,
           ".trt": "TRT",
@@ -20495,11 +21012,11 @@
           "BPSYS": 109,
           "HR": 42,
           "WEIGHT": 62.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10094,
+          ".id": 1750110094,
           ".time": 55,
           ".status": 0,
           ".trt": "TRT",
@@ -20513,11 +21030,11 @@
           "BPSYS": 124,
           "HR": 62,
           "WEIGHT": 75.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10102,
+          ".id": 1750110102,
           ".time": 74,
           ".status": 0,
           ".trt": "TRT",
@@ -20534,7 +21051,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10107,
+          ".id": 1750110107,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -20548,11 +21065,11 @@
           "BPSYS": 112,
           "HR": 77,
           "WEIGHT": 54.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10111,
+          ".id": 1750110111,
           ".time": 158,
           ".status": 0,
           ".trt": "TRT",
@@ -20566,11 +21083,11 @@
           "BPSYS": 109,
           "HR": 87,
           "WEIGHT": 89.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10112,
+          ".id": 1750110112,
           ".time": 33,
           ".status": 0,
           ".trt": "TRT",
@@ -20584,11 +21101,11 @@
           "BPSYS": 115,
           "HR": 75,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10115,
+          ".id": 1750110115,
           ".time": 29,
           ".status": 0,
           ".trt": "TRT",
@@ -20601,11 +21118,11 @@
           "BPSYS": 113,
           "HR": 52,
           "WEIGHT": 87.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10116,
+          ".id": 1750110116,
           ".time": 35,
           ".status": 0,
           ".trt": "TRT",
@@ -20619,11 +21136,11 @@
           "BPSYS": 93,
           "HR": 74,
           "WEIGHT": 92.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10117,
+          ".id": 1750110117,
           ".time": 153,
           ".status": 0,
           ".trt": "TRT",
@@ -20637,11 +21154,11 @@
           "BPSYS": 98,
           "HR": 89,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10123,
+          ".id": 1750110123,
           ".time": 137,
           ".status": 0,
           ".trt": "TRT",
@@ -20655,11 +21172,11 @@
           "BPSYS": 129,
           "HR": 62,
           "WEIGHT": 46.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10125,
+          ".id": 1750110125,
           ".time": 53,
           ".status": 0,
           ".trt": "TRT",
@@ -20673,11 +21190,11 @@
           "BPSYS": 128,
           "HR": 50,
           "WEIGHT": 87.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10133,
+          ".id": 1750110133,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -20691,11 +21208,11 @@
           "BPSYS": 108,
           "HR": 72,
           "WEIGHT": 74.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10137,
+          ".id": 1750110137,
           ".time": 84,
           ".status": 0,
           ".trt": "TRT",
@@ -20708,11 +21225,11 @@
           "BPSYS": 128,
           "HR": 83,
           "WEIGHT": 79.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10138,
+          ".id": 1750110138,
           ".time": 51,
           ".status": 0,
           ".trt": "TRT",
@@ -20726,11 +21243,11 @@
           "BPSYS": 112,
           "HR": 76,
           "WEIGHT": 69.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10154,
+          ".id": 1750110154,
           ".time": 34,
           ".status": 0,
           ".trt": "TRT",
@@ -20744,11 +21261,11 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 82.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10162,
+          ".id": 1750110162,
           ".time": 98,
           ".status": 0,
           ".trt": "TRT",
@@ -20762,11 +21279,11 @@
           "BPSYS": 143,
           "HR": 78,
           "WEIGHT": 66,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10166,
+          ".id": 1750110166,
           ".time": 206,
           ".status": 0,
           ".trt": "TRT",
@@ -20780,11 +21297,11 @@
           "BPSYS": 115,
           "HR": 63,
           "WEIGHT": 66.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10177,
+          ".id": 1750110177,
           ".time": 19,
           ".status": 0,
           ".trt": "TRT",
@@ -20798,11 +21315,11 @@
           "BPSYS": 94,
           "HR": 67,
           "WEIGHT": 76.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10183,
+          ".id": 1750110183,
           ".time": 155,
           ".status": 0,
           ".trt": "TRT",
@@ -20816,11 +21333,11 @@
           "BPSYS": 113,
           "HR": 71,
           "WEIGHT": 56.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10185,
+          ".id": 1750110185,
           ".time": 49,
           ".status": 0,
           ".trt": "TRT",
@@ -20834,11 +21351,11 @@
           "BPSYS": 113,
           "HR": 72,
           "WEIGHT": 66.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10196,
+          ".id": 1750110196,
           ".time": 71,
           ".status": 0,
           ".trt": "TRT",
@@ -20852,11 +21369,11 @@
           "BPSYS": 107,
           "HR": 71,
           "WEIGHT": 93.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10198,
+          ".id": 1750110198,
           ".time": 125,
           ".status": 0,
           ".trt": "TRT",
@@ -20870,11 +21387,11 @@
           "BPSYS": 125,
           "HR": 71,
           "WEIGHT": 87.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10199,
+          ".id": 1750110199,
           ".time": 15,
           ".status": 0,
           ".trt": "TRT",
@@ -20888,11 +21405,11 @@
           "BPSYS": 103,
           "HR": 71,
           "WEIGHT": 68.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10200,
+          ".id": 1750110200,
           ".time": 104,
           ".status": 0,
           ".trt": "TRT",
@@ -20905,11 +21422,11 @@
           "BPDIA": 71,
           "HR": 81,
           "WEIGHT": 112.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10201,
+          ".id": 1750110201,
           ".time": 91,
           ".status": 0,
           ".trt": "TRT",
@@ -20922,11 +21439,11 @@
           "BPDIA": 79,
           "HR": 72,
           "WEIGHT": 75.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10202,
+          ".id": 1750110202,
           ".time": 24,
           ".status": 0,
           ".trt": "TRT",
@@ -20940,11 +21457,11 @@
           "BPSYS": 133,
           "HR": 69,
           "WEIGHT": 83.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10206,
+          ".id": 1750110206,
           ".time": 221,
           ".status": 0,
           ".trt": "TRT",
@@ -20958,11 +21475,11 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 73.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10216,
+          ".id": 1750110216,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -20976,11 +21493,11 @@
           "BPSYS": 117,
           "HR": 67,
           "WEIGHT": 75.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10222,
+          ".id": 1750110222,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -20994,11 +21511,11 @@
           "BPSYS": 107,
           "HR": 75,
           "WEIGHT": 126.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10224,
+          ".id": 1750110224,
           ".time": 14,
           ".status": 0,
           ".trt": "TRT",
@@ -21012,11 +21529,11 @@
           "BPSYS": 140,
           "HR": 61,
           "WEIGHT": 88.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10228,
+          ".id": 1750110228,
           ".time": 93,
           ".status": 0,
           ".trt": "TRT",
@@ -21030,11 +21547,11 @@
           "BPSYS": 101,
           "HR": 45,
           "WEIGHT": 55.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10237,
+          ".id": 1750110237,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -21047,11 +21564,11 @@
           "BPSYS": 119,
           "HR": 61,
           "WEIGHT": 105.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10241,
+          ".id": 1750110241,
           ".time": 30,
           ".status": 0,
           ".trt": "TRT",
@@ -21065,11 +21582,11 @@
           "BPSYS": 144,
           "HR": 75,
           "WEIGHT": 71.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10242,
+          ".id": 1750110242,
           ".time": 147,
           ".status": 0,
           ".trt": "TRT",
@@ -21083,11 +21600,11 @@
           "BPSYS": 114,
           "HR": 71,
           "WEIGHT": 86.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10244,
+          ".id": 1750110244,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -21100,11 +21617,11 @@
           "BPSYS": 135,
           "HR": 67,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10264,
+          ".id": 1750110264,
           ".time": 29,
           ".status": 0,
           ".trt": "TRT",
@@ -21117,11 +21634,11 @@
           "BPDIA": 74,
           "BPSYS": 125,
           "WEIGHT": 106,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10269,
+          ".id": 1750110269,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -21135,11 +21652,11 @@
           "BPSYS": 92,
           "HR": 88,
           "WEIGHT": 98.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10270,
+          ".id": 1750110270,
           ".time": 158,
           ".status": 0,
           ".trt": "TRT",
@@ -21153,11 +21670,11 @@
           "BPSYS": 127,
           "HR": 89,
           "WEIGHT": 110.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10272,
+          ".id": 1750110272,
           ".time": 36,
           ".status": 0,
           ".trt": "TRT",
@@ -21171,11 +21688,11 @@
           "BPSYS": 106,
           "HR": 68,
           "WEIGHT": 101.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10275,
+          ".id": 1750110275,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -21189,11 +21706,11 @@
           "BPSYS": 95,
           "HR": 57,
           "WEIGHT": 54,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10277,
+          ".id": 1750110277,
           ".time": 60,
           ".status": 0,
           ".trt": "TRT",
@@ -21207,11 +21724,11 @@
           "BPSYS": 131,
           "HR": 58,
           "WEIGHT": 96.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10279,
+          ".id": 1750110279,
           ".time": 71,
           ".status": 0,
           ".trt": "TRT",
@@ -21225,11 +21742,11 @@
           "BPSYS": 128,
           "HR": 62,
           "WEIGHT": 92.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10281,
+          ".id": 1750110281,
           ".time": 61,
           ".status": 0,
           ".trt": "TRT",
@@ -21243,11 +21760,11 @@
           "BPSYS": 103,
           "HR": 77,
           "WEIGHT": 79.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10283,
+          ".id": 1750110283,
           ".time": 3,
           ".status": 0,
           ".trt": "TRT",
@@ -21261,11 +21778,11 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 48.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10287,
+          ".id": 1750110287,
           ".time": 92,
           ".status": 0,
           ".trt": "TRT",
@@ -21279,11 +21796,11 @@
           "BPSYS": 115,
           "HR": 40,
           "WEIGHT": 106.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10289,
+          ".id": 1750110289,
           ".time": 41,
           ".status": 0,
           ".trt": "TRT",
@@ -21301,7 +21818,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10290,
+          ".id": 1750110290,
           ".time": 107,
           ".status": 0,
           ".trt": "TRT",
@@ -21315,11 +21832,11 @@
           "BPSYS": 92,
           "HR": 58,
           "WEIGHT": 77.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10297,
+          ".id": 1750110297,
           ".time": 247,
           ".status": 0,
           ".trt": "TRT",
@@ -21333,11 +21850,11 @@
           "BPSYS": 107,
           "HR": 73,
           "WEIGHT": 68.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10306,
+          ".id": 1750110306,
           ".time": 137,
           ".status": 0,
           ".trt": "TRT",
@@ -21351,11 +21868,11 @@
           "BPSYS": 101,
           "HR": 77,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10308,
+          ".id": 1750110308,
           ".time": 123,
           ".status": 0,
           ".trt": "TRT",
@@ -21369,11 +21886,11 @@
           "BPSYS": 110,
           "HR": 67,
           "WEIGHT": 88.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10314,
+          ".id": 1750110314,
           ".time": 113,
           ".status": 0,
           ".trt": "TRT",
@@ -21387,11 +21904,11 @@
           "BPSYS": 123,
           "HR": 85,
           "WEIGHT": 100,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10317,
+          ".id": 1750110317,
           ".time": 3,
           ".status": 0,
           ".trt": "TRT",
@@ -21405,11 +21922,11 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 89.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10319,
+          ".id": 1750110319,
           ".time": 135,
           ".status": 0,
           ".trt": "TRT",
@@ -21423,11 +21940,11 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 84.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10002,
+          ".id": 1750110002,
           ".time": 102,
           ".status": 1,
           ".trt": "PLC",
@@ -21444,11 +21961,11 @@
           "BPSYS": 119,
           "HR": 84,
           "WEIGHT": 90.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10006,
+          ".id": 1750110006,
           ".time": 9,
           ".status": 1,
           ".trt": "PLC",
@@ -21462,11 +21979,11 @@
           "BPSYS": 116,
           "HR": 69,
           "WEIGHT": 116.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10012,
+          ".id": 1750110012,
           ".time": 63,
           ".status": 1,
           ".trt": "PLC",
@@ -21484,7 +22001,7 @@
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10014,
+          ".id": 1750110014,
           ".time": 43,
           ".status": 1,
           ".trt": "PLC",
@@ -21498,11 +22015,11 @@
           "BPSYS": 126,
           "HR": 84,
           "WEIGHT": 75.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10018,
+          ".id": 1750110018,
           ".time": 239,
           ".status": 1,
           ".trt": "PLC",
@@ -21516,11 +22033,11 @@
           "BPSYS": 128,
           "HR": 64,
           "WEIGHT": 95.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10026,
+          ".id": 1750110026,
           ".time": 116,
           ".status": 1,
           ".trt": "PLC",
@@ -21533,11 +22050,11 @@
           "BPDIA": 68,
           "BPSYS": 102,
           "WEIGHT": 95.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10030,
+          ".id": 1750110030,
           ".time": 27,
           ".status": 1,
           ".trt": "PLC",
@@ -21551,11 +22068,11 @@
           "BPSYS": 95,
           "HR": 71,
           "WEIGHT": 71.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10031,
+          ".id": 1750110031,
           ".time": 4,
           ".status": 1,
           ".trt": "PLC",
@@ -21568,11 +22085,11 @@
           "BPSYS": 116,
           "HR": 78,
           "WEIGHT": 84.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3
         },
         {
-          ".id": 10032,
+          ".id": 1750110032,
           ".time": 28,
           ".status": 1,
           ".trt": "PLC",
@@ -21586,11 +22103,11 @@
           "BPSYS": 92,
           "HR": 56,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10034,
+          ".id": 1750110034,
           ".time": 241,
           ".status": 1,
           ".trt": "PLC",
@@ -21604,11 +22121,11 @@
           "BPSYS": 122,
           "HR": 66,
           "WEIGHT": 64.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10036,
+          ".id": 1750110036,
           ".time": 71,
           ".status": 1,
           ".trt": "PLC",
@@ -21621,11 +22138,11 @@
           "BPSYS": 128,
           "HR": 56,
           "WEIGHT": 62.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10037,
+          ".id": 1750110037,
           ".time": 3,
           ".status": 1,
           ".trt": "PLC",
@@ -21639,11 +22156,11 @@
           "BPSYS": 136,
           "HR": 50,
           "WEIGHT": 88.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10038,
+          ".id": 1750110038,
           ".time": 5,
           ".status": 1,
           ".trt": "PLC",
@@ -21656,11 +22173,11 @@
           "BPDIA": 82,
           "BPSYS": 125,
           "HR": 76,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10044,
+          ".id": 1750110044,
           ".time": 101,
           ".status": 1,
           ".trt": "PLC",
@@ -21674,11 +22191,11 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 82.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10046,
+          ".id": 1750110046,
           ".time": 21,
           ".status": 1,
           ".trt": "PLC",
@@ -21692,11 +22209,11 @@
           "BPSYS": 128,
           "HR": 68,
           "WEIGHT": 80.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10056,
+          ".id": 1750110056,
           ".time": 39,
           ".status": 1,
           ".trt": "PLC",
@@ -21710,11 +22227,11 @@
           "BPSYS": 137,
           "HR": 74,
           "WEIGHT": 108.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10067,
+          ".id": 1750110067,
           ".time": 266,
           ".status": 1,
           ".trt": "PLC",
@@ -21728,11 +22245,11 @@
           "BPSYS": 135,
           "HR": 76,
           "WEIGHT": 67,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10070,
+          ".id": 1750110070,
           ".time": 27,
           ".status": 1,
           ".trt": "PLC",
@@ -21746,11 +22263,11 @@
           "BPSYS": 128,
           "HR": 86,
           "WEIGHT": 93.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10075,
+          ".id": 1750110075,
           ".time": 132,
           ".status": 1,
           ".trt": "PLC",
@@ -21764,11 +22281,11 @@
           "BPSYS": 108,
           "HR": 50,
           "WEIGHT": 91.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10083,
+          ".id": 1750110083,
           ".time": 7,
           ".status": 1,
           ".trt": "PLC",
@@ -21786,7 +22303,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10085,
+          ".id": 1750110085,
           ".time": 23,
           ".status": 1,
           ".trt": "PLC",
@@ -21800,11 +22317,11 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 99.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10098,
+          ".id": 1750110098,
           ".time": 8,
           ".status": 1,
           ".trt": "PLC",
@@ -21817,11 +22334,11 @@
           "BPSYS": 134,
           "HR": 44,
           "WEIGHT": 47.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10104,
+          ".id": 1750110104,
           ".time": 10,
           ".status": 1,
           ".trt": "PLC",
@@ -21835,11 +22352,11 @@
           "BPSYS": 134,
           "HR": 50,
           "WEIGHT": 106.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10106,
+          ".id": 1750110106,
           ".time": 11,
           ".status": 1,
           ".trt": "PLC",
@@ -21853,11 +22370,11 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 54.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10110,
+          ".id": 1750110110,
           ".time": 1,
           ".status": 1,
           ".trt": "PLC",
@@ -21871,11 +22388,11 @@
           "BPSYS": 162,
           "HR": 86,
           "WEIGHT": 84,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10113,
+          ".id": 1750110113,
           ".time": 216,
           ".status": 1,
           ".trt": "PLC",
@@ -21888,11 +22405,11 @@
           "BPSYS": 106,
           "HR": 74,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10134,
+          ".id": 1750110134,
           ".time": 59,
           ".status": 1,
           ".trt": "PLC",
@@ -21906,11 +22423,11 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 81.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10142,
+          ".id": 1750110142,
           ".time": 3,
           ".status": 1,
           ".trt": "PLC",
@@ -21924,11 +22441,11 @@
           "BPSYS": 98,
           "HR": 73,
           "WEIGHT": 86.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10145,
+          ".id": 1750110145,
           ".time": 248,
           ".status": 1,
           ".trt": "PLC",
@@ -21941,11 +22458,11 @@
           "BPDIA": 65,
           "BPSYS": 109,
           "WEIGHT": 66.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10149,
+          ".id": 1750110149,
           ".time": 10,
           ".status": 1,
           ".trt": "PLC",
@@ -21959,11 +22476,11 @@
           "BPSYS": 142,
           "HR": 78,
           "WEIGHT": 66.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10153,
+          ".id": 1750110153,
           ".time": 82,
           ".status": 1,
           ".trt": "PLC",
@@ -21977,11 +22494,11 @@
           "BPSYS": 95,
           "HR": 87,
           "WEIGHT": 99.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10156,
+          ".id": 1750110156,
           ".time": 65,
           ".status": 1,
           ".trt": "PLC",
@@ -21995,11 +22512,11 @@
           "BPSYS": 115,
           "HR": 59,
           "WEIGHT": 73.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10157,
+          ".id": 1750110157,
           ".time": 175,
           ".status": 1,
           ".trt": "PLC",
@@ -22013,11 +22530,11 @@
           "BPSYS": 144,
           "HR": 79,
           "WEIGHT": 94.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10159,
+          ".id": 1750110159,
           ".time": 7,
           ".status": 1,
           ".trt": "PLC",
@@ -22031,11 +22548,11 @@
           "BPSYS": 103,
           "HR": 62,
           "WEIGHT": 39.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10161,
+          ".id": 1750110161,
           ".time": 1,
           ".status": 1,
           ".trt": "PLC",
@@ -22049,11 +22566,11 @@
           "BPSYS": 108,
           "HR": 64,
           "WEIGHT": 103.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3
         },
         {
-          ".id": 10164,
+          ".id": 1750110164,
           ".time": 53,
           ".status": 1,
           ".trt": "PLC",
@@ -22067,11 +22584,11 @@
           "BPSYS": 105,
           "HR": 48,
           "WEIGHT": 64.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10169,
+          ".id": 1750110169,
           ".time": 4,
           ".status": 1,
           ".trt": "PLC",
@@ -22085,11 +22602,11 @@
           "BPSYS": 128,
           "HR": 71,
           "WEIGHT": 54.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10176,
+          ".id": 1750110176,
           ".time": 5,
           ".status": 1,
           ".trt": "PLC",
@@ -22103,11 +22620,11 @@
           "BPSYS": 138,
           "HR": 86,
           "WEIGHT": 71.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10180,
+          ".id": 1750110180,
           ".time": 47,
           ".status": 1,
           ".trt": "PLC",
@@ -22121,11 +22638,11 @@
           "BPSYS": 132,
           "HR": 61,
           "WEIGHT": 100,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10181,
+          ".id": 1750110181,
           ".time": 37,
           ".status": 1,
           ".trt": "PLC",
@@ -22139,11 +22656,11 @@
           "BPSYS": 125,
           "HR": 70,
           "WEIGHT": 62.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10205,
+          ".id": 1750110205,
           ".time": 182,
           ".status": 1,
           ".trt": "PLC",
@@ -22157,11 +22674,11 @@
           "BPSYS": 121,
           "HR": 68,
           "WEIGHT": 102.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10214,
+          ".id": 1750110214,
           ".time": 7,
           ".status": 1,
           ".trt": "PLC",
@@ -22179,7 +22696,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10225,
+          ".id": 1750110225,
           ".time": 61,
           ".status": 1,
           ".trt": "PLC",
@@ -22193,11 +22710,11 @@
           "BPSYS": 110,
           "HR": 80,
           "WEIGHT": 86.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10226,
+          ".id": 1750110226,
           ".time": 56,
           ".status": 1,
           ".trt": "PLC",
@@ -22211,11 +22728,11 @@
           "BPSYS": 106,
           "HR": 55,
           "WEIGHT": 59.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10231,
+          ".id": 1750110231,
           ".time": 35,
           ".status": 1,
           ".trt": "PLC",
@@ -22229,11 +22746,11 @@
           "BPSYS": 137,
           "HR": 69,
           "WEIGHT": 93.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10250,
+          ".id": 1750110250,
           ".time": 10,
           ".status": 1,
           ".trt": "PLC",
@@ -22247,11 +22764,11 @@
           "BPSYS": 111,
           "HR": 67,
           "WEIGHT": 85.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10251,
+          ".id": 1750110251,
           ".time": 21,
           ".status": 1,
           ".trt": "PLC",
@@ -22265,11 +22782,11 @@
           "BPSYS": 120,
           "HR": 62,
           "WEIGHT": 72.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10258,
+          ".id": 1750110258,
           ".time": 7,
           ".status": 1,
           ".trt": "PLC",
@@ -22287,7 +22804,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10267,
+          ".id": 1750110267,
           ".time": 240,
           ".status": 1,
           ".trt": "PLC",
@@ -22301,11 +22818,11 @@
           "BPSYS": 126,
           "HR": 56,
           "WEIGHT": 75.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10273,
+          ".id": 1750110273,
           ".time": 194,
           ".status": 1,
           ".trt": "PLC",
@@ -22319,11 +22836,11 @@
           "BPSYS": 99,
           "HR": 50,
           "WEIGHT": 81,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10274,
+          ".id": 1750110274,
           ".time": 19,
           ".status": 1,
           ".trt": "PLC",
@@ -22337,11 +22854,11 @@
           "BPSYS": 96,
           "HR": 72,
           "WEIGHT": 76.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10291,
+          ".id": 1750110291,
           ".time": 142,
           ".status": 1,
           ".trt": "PLC",
@@ -22355,11 +22872,11 @@
           "BPSYS": 99,
           "HR": 68,
           "WEIGHT": 70.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10296,
+          ".id": 1750110296,
           ".time": 169,
           ".status": 1,
           ".trt": "PLC",
@@ -22373,11 +22890,11 @@
           "BPSYS": 128,
           "HR": 87,
           "WEIGHT": 85.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10298,
+          ".id": 1750110298,
           ".time": 1,
           ".status": 1,
           ".trt": "PLC",
@@ -22391,11 +22908,11 @@
           "BPSYS": 111,
           "HR": 64,
           "WEIGHT": 79.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10300,
+          ".id": 1750110300,
           ".time": 69,
           ".status": 1,
           ".trt": "PLC",
@@ -22409,11 +22926,11 @@
           "BPSYS": 125,
           "HR": 77,
           "WEIGHT": 113.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10302,
+          ".id": 1750110302,
           ".time": 25,
           ".status": 1,
           ".trt": "PLC",
@@ -22427,11 +22944,11 @@
           "BPSYS": 122,
           "HR": 81,
           "WEIGHT": 77,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10305,
+          ".id": 1750110305,
           ".time": 72,
           ".status": 1,
           ".trt": "PLC",
@@ -22445,11 +22962,11 @@
           "BPSYS": 125,
           "HR": 44,
           "WEIGHT": 62.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10309,
+          ".id": 1750110309,
           ".time": 121,
           ".status": 1,
           ".trt": "PLC",
@@ -22463,11 +22980,11 @@
           "BPSYS": 126,
           "HR": 74,
           "WEIGHT": 91.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10315,
+          ".id": 1750110315,
           ".time": 67,
           ".status": 1,
           ".trt": "PLC",
@@ -22481,11 +22998,11 @@
           "BPSYS": 130,
           "HR": 83,
           "WEIGHT": 77.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10003,
+          ".id": 1750110003,
           ".time": 71,
           ".status": 1,
           ".trt": "TRT",
@@ -22501,11 +23018,11 @@
           "BPSYS": 105,
           "HR": 86,
           "WEIGHT": 51.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10025,
+          ".id": 1750110025,
           ".time": 15,
           ".status": 1,
           ".trt": "TRT",
@@ -22519,11 +23036,11 @@
           "BPSYS": 117,
           "HR": 70,
           "WEIGHT": 85.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10027,
+          ".id": 1750110027,
           ".time": 13,
           ".status": 1,
           ".trt": "TRT",
@@ -22537,11 +23054,11 @@
           "BPSYS": 152,
           "HR": 69,
           "WEIGHT": 50.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10029,
+          ".id": 1750110029,
           ".time": 5,
           ".status": 1,
           ".trt": "TRT",
@@ -22555,11 +23072,11 @@
           "BPSYS": 130,
           "HR": 70,
           "WEIGHT": 73,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10049,
+          ".id": 1750110049,
           ".time": 31,
           ".status": 1,
           ".trt": "TRT",
@@ -22573,11 +23090,11 @@
           "BPSYS": 140,
           "HR": 71,
           "WEIGHT": 86.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10054,
+          ".id": 1750110054,
           ".time": 54,
           ".status": 1,
           ".trt": "TRT",
@@ -22591,11 +23108,11 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 96.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10055,
+          ".id": 1750110055,
           ".time": 21,
           ".status": 1,
           ".trt": "TRT",
@@ -22609,11 +23126,11 @@
           "BPSYS": 100,
           "HR": 81,
           "WEIGHT": 66.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10059,
+          ".id": 1750110059,
           ".time": 24,
           ".status": 1,
           ".trt": "TRT",
@@ -22626,11 +23143,11 @@
           "BPSYS": 114,
           "HR": 53,
           "WEIGHT": 65.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10064,
+          ".id": 1750110064,
           ".time": 9,
           ".status": 1,
           ".trt": "TRT",
@@ -22644,11 +23161,11 @@
           "BPSYS": 108,
           "HR": 56,
           "WEIGHT": 82.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10072,
+          ".id": 1750110072,
           ".time": 160,
           ".status": 1,
           ".trt": "TRT",
@@ -22662,11 +23179,11 @@
           "BPSYS": 142,
           "HR": 74,
           "WEIGHT": 90.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10076,
+          ".id": 1750110076,
           ".time": 191,
           ".status": 1,
           ".trt": "TRT",
@@ -22680,11 +23197,11 @@
           "BPSYS": 138,
           "HR": 67,
           "WEIGHT": 98.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10077,
+          ".id": 1750110077,
           ".time": 42,
           ".status": 1,
           ".trt": "TRT",
@@ -22698,11 +23215,11 @@
           "BPSYS": 110,
           "HR": 79,
           "WEIGHT": 97.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10079,
+          ".id": 1750110079,
           ".time": 152,
           ".status": 1,
           ".trt": "TRT",
@@ -22716,11 +23233,11 @@
           "BPSYS": 131,
           "HR": 73,
           "WEIGHT": 65.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10087,
+          ".id": 1750110087,
           ".time": 15,
           ".status": 1,
           ".trt": "TRT",
@@ -22734,11 +23251,11 @@
           "BPSYS": 122,
           "HR": 70,
           "WEIGHT": 80.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10090,
+          ".id": 1750110090,
           ".time": 16,
           ".status": 1,
           ".trt": "TRT",
@@ -22752,11 +23269,11 @@
           "BPSYS": 100,
           "HR": 70,
           "WEIGHT": 75.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10093,
+          ".id": 1750110093,
           ".time": 98,
           ".status": 1,
           ".trt": "TRT",
@@ -22770,11 +23287,11 @@
           "BPSYS": 92,
           "HR": 76,
           "WEIGHT": 72.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10095,
+          ".id": 1750110095,
           ".time": 160,
           ".status": 1,
           ".trt": "TRT",
@@ -22788,11 +23305,11 @@
           "BPSYS": 118,
           "HR": 65,
           "WEIGHT": 82.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10114,
+          ".id": 1750110114,
           ".time": 1,
           ".status": 1,
           ".trt": "TRT",
@@ -22805,11 +23322,11 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 123.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10118,
+          ".id": 1750110118,
           ".time": 46,
           ".status": 1,
           ".trt": "TRT",
@@ -22823,11 +23340,11 @@
           "BPSYS": 101,
           "HR": 92,
           "WEIGHT": 57.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10126,
+          ".id": 1750110126,
           ".time": 1,
           ".status": 1,
           ".trt": "TRT",
@@ -22841,11 +23358,11 @@
           "BPSYS": 103,
           "HR": 89,
           "WEIGHT": 78.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10129,
+          ".id": 1750110129,
           ".time": 63,
           ".status": 1,
           ".trt": "TRT",
@@ -22859,11 +23376,11 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10132,
+          ".id": 1750110132,
           ".time": 144,
           ".status": 1,
           ".trt": "TRT",
@@ -22877,11 +23394,11 @@
           "BPSYS": 103,
           "HR": 48,
           "WEIGHT": 70.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10135,
+          ".id": 1750110135,
           ".time": 26,
           ".status": 1,
           ".trt": "TRT",
@@ -22895,11 +23412,11 @@
           "BPSYS": 118,
           "HR": 64,
           "WEIGHT": 63.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10136,
+          ".id": 1750110136,
           ".time": 113,
           ".status": 1,
           ".trt": "TRT",
@@ -22913,11 +23430,11 @@
           "BPSYS": 140,
           "HR": 66,
           "WEIGHT": 88.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10143,
+          ".id": 1750110143,
           ".time": 139,
           ".status": 1,
           ".trt": "TRT",
@@ -22931,11 +23448,11 @@
           "BPSYS": 117,
           "HR": 80,
           "WEIGHT": 71.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10144,
+          ".id": 1750110144,
           ".time": 11,
           ".status": 1,
           ".trt": "TRT",
@@ -22949,11 +23466,11 @@
           "BPSYS": 124,
           "HR": 60,
           "WEIGHT": 80.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10147,
+          ".id": 1750110147,
           ".time": 6,
           ".status": 1,
           ".trt": "TRT",
@@ -22967,11 +23484,11 @@
           "BPSYS": 110,
           "HR": 55,
           "WEIGHT": 65.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10160,
+          ".id": 1750110160,
           ".time": 51,
           ".status": 1,
           ".trt": "TRT",
@@ -22989,7 +23506,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10165,
+          ".id": 1750110165,
           ".time": 187,
           ".status": 1,
           ".trt": "TRT",
@@ -23003,11 +23520,11 @@
           "BPSYS": 138,
           "HR": 65,
           "WEIGHT": 122.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10168,
+          ".id": 1750110168,
           ".time": 36,
           ".status": 1,
           ".trt": "TRT",
@@ -23021,11 +23538,11 @@
           "BPSYS": 126,
           "HR": 78,
           "WEIGHT": 86,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10175,
+          ".id": 1750110175,
           ".time": 4,
           ".status": 1,
           ".trt": "TRT",
@@ -23039,11 +23556,11 @@
           "BPSYS": 145,
           "HR": 69,
           "WEIGHT": 90.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10179,
+          ".id": 1750110179,
           ".time": 32,
           ".status": 1,
           ".trt": "TRT",
@@ -23057,11 +23574,11 @@
           "BPSYS": 130,
           "HR": 56,
           "WEIGHT": 97.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10184,
+          ".id": 1750110184,
           ".time": 43,
           ".status": 1,
           ".trt": "TRT",
@@ -23075,11 +23592,11 @@
           "BPSYS": 116,
           "HR": 50,
           "WEIGHT": 74.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10187,
+          ".id": 1750110187,
           ".time": 11,
           ".status": 1,
           ".trt": "TRT",
@@ -23093,11 +23610,11 @@
           "BPSYS": 118,
           "HR": 96,
           "WEIGHT": 60.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10208,
+          ".id": 1750110208,
           ".time": 15,
           ".status": 1,
           ".trt": "TRT",
@@ -23111,11 +23628,11 @@
           "BPSYS": 99,
           "HR": 64,
           "WEIGHT": 60.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10211,
+          ".id": 1750110211,
           ".time": 28,
           ".status": 1,
           ".trt": "TRT",
@@ -23129,11 +23646,11 @@
           "BPSYS": 117,
           "HR": 62,
           "WEIGHT": 70,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10230,
+          ".id": 1750110230,
           ".time": 36,
           ".status": 1,
           ".trt": "TRT",
@@ -23145,11 +23662,11 @@
           "BPSYS": 110,
           "HR": 53,
           "WEIGHT": 93.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10239,
+          ".id": 1750110239,
           ".time": 1,
           ".status": 1,
           ".trt": "TRT",
@@ -23163,11 +23680,11 @@
           "BPSYS": 111,
           "HR": 59,
           "WEIGHT": 54.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10254,
+          ".id": 1750110254,
           ".time": 21,
           ".status": 1,
           ".trt": "TRT",
@@ -23181,11 +23698,11 @@
           "BPSYS": 123,
           "HR": 59,
           "WEIGHT": 89,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10278,
+          ".id": 1750110278,
           ".time": 11,
           ".status": 1,
           ".trt": "TRT",
@@ -23199,11 +23716,11 @@
           "BPSYS": 121,
           "HR": 78,
           "WEIGHT": 69.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10282,
+          ".id": 1750110282,
           ".time": 85,
           ".status": 1,
           ".trt": "TRT",
@@ -23217,11 +23734,11 @@
           "BPSYS": 124,
           "HR": 48,
           "WEIGHT": 63.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10286,
+          ".id": 1750110286,
           ".time": 6,
           ".status": 1,
           ".trt": "TRT",
@@ -23235,11 +23752,11 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 93.8,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10316,
+          ".id": 1750110316,
           ".time": 99,
           ".status": 1,
           ".trt": "TRT",
@@ -23252,7 +23769,7 @@
           "BPSYS": 114,
           "HR": 54,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         }
       ] 
@@ -23260,7 +23777,7 @@
       $data$raw$test
       [
         {
-          ".id": 10005,
+          ".id": 1750110005,
           ".time": 69,
           ".status": 1,
           ".trt": "PLC",
@@ -23277,11 +23794,11 @@
           "BPSYS": 111,
           "HR": 63,
           "WEIGHT": 89.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10007,
+          ".id": 1750110007,
           ".time": 35,
           ".status": 0,
           ".trt": "TRT",
@@ -23295,11 +23812,11 @@
           "BPSYS": 127,
           "HR": 59,
           "WEIGHT": 79.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10009,
+          ".id": 1750110009,
           ".time": 49,
           ".status": 1,
           ".trt": "PLC",
@@ -23313,11 +23830,11 @@
           "BPSYS": 111,
           "HR": 82,
           "WEIGHT": 114.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10010,
+          ".id": 1750110010,
           ".time": 66,
           ".status": 1,
           ".trt": "PLC",
@@ -23331,11 +23848,11 @@
           "BPSYS": 121,
           "HR": 60,
           "WEIGHT": 81.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10015,
+          ".id": 1750110015,
           ".time": 33,
           ".status": 1,
           ".trt": "PLC",
@@ -23349,11 +23866,11 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 96.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10022,
+          ".id": 1750110022,
           ".time": 6,
           ".status": 0,
           ".trt": "PLC",
@@ -23367,11 +23884,11 @@
           "BPSYS": 101,
           "HR": 80,
           "WEIGHT": 73.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10039,
+          ".id": 1750110039,
           ".time": 80,
           ".status": 1,
           ".trt": "PLC",
@@ -23385,11 +23902,11 @@
           "BPSYS": 96,
           "HR": 84,
           "WEIGHT": 78.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10042,
+          ".id": 1750110042,
           ".time": 60,
           ".status": 0,
           ".trt": "PLC",
@@ -23403,11 +23920,11 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 97.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10045,
+          ".id": 1750110045,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -23421,11 +23938,11 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 99,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10047,
+          ".id": 1750110047,
           ".time": 158,
           ".status": 0,
           ".trt": "TRT",
@@ -23439,11 +23956,11 @@
           "BPSYS": 117,
           "HR": 93,
           "WEIGHT": 110.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10061,
+          ".id": 1750110061,
           ".time": 70,
           ".status": 1,
           ".trt": "TRT",
@@ -23457,11 +23974,11 @@
           "BPSYS": 130,
           "HR": 74,
           "WEIGHT": 67.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10063,
+          ".id": 1750110063,
           ".time": 29,
           ".status": 0,
           ".trt": "TRT",
@@ -23475,11 +23992,11 @@
           "BPSYS": 109,
           "HR": 81,
           "WEIGHT": 105.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10066,
+          ".id": 1750110066,
           ".time": 195,
           ".status": 0,
           ".trt": "TRT",
@@ -23493,11 +24010,11 @@
           "BPSYS": 107,
           "HR": 39,
           "WEIGHT": 53.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10069,
+          ".id": 1750110069,
           ".time": 105,
           ".status": 0,
           ".trt": "TRT",
@@ -23510,11 +24027,11 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 96.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10073,
+          ".id": 1750110073,
           ".time": 23,
           ".status": 0,
           ".trt": "PLC",
@@ -23528,11 +24045,11 @@
           "BPSYS": 117,
           "HR": 77,
           "WEIGHT": 115.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10084,
+          ".id": 1750110084,
           ".time": 23,
           ".status": 0,
           ".trt": "TRT",
@@ -23546,11 +24063,11 @@
           "BPSYS": 135,
           "HR": 85,
           "WEIGHT": 102.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10089,
+          ".id": 1750110089,
           ".time": 73,
           ".status": 1,
           ".trt": "PLC",
@@ -23564,11 +24081,11 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 79.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10096,
+          ".id": 1750110096,
           ".time": 147,
           ".status": 0,
           ".trt": "PLC",
@@ -23582,11 +24099,11 @@
           "BPSYS": 129,
           "HR": 67,
           "WEIGHT": 65.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10097,
+          ".id": 1750110097,
           ".time": 98,
           ".status": 1,
           ".trt": "PLC",
@@ -23604,7 +24121,7 @@
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10100,
+          ".id": 1750110100,
           ".time": 72,
           ".status": 0,
           ".trt": "PLC",
@@ -23618,11 +24135,11 @@
           "BPSYS": 123,
           "HR": 49,
           "WEIGHT": 96.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10101,
+          ".id": 1750110101,
           ".time": 19,
           ".status": 0,
           ".trt": "TRT",
@@ -23636,11 +24153,11 @@
           "BPSYS": 129,
           "HR": 63,
           "WEIGHT": 90.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10103,
+          ".id": 1750110103,
           ".time": 6,
           ".status": 1,
           ".trt": "PLC",
@@ -23653,11 +24170,11 @@
           "BPSYS": 123,
           "HR": 61,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10105,
+          ".id": 1750110105,
           ".time": 24,
           ".status": 0,
           ".trt": "TRT",
@@ -23670,11 +24187,11 @@
           "BPSYS": 140,
           "HR": 74,
           "WEIGHT": 74.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10108,
+          ".id": 1750110108,
           ".time": 39,
           ".status": 1,
           ".trt": "TRT",
@@ -23688,11 +24205,11 @@
           "BPSYS": 134,
           "HR": 66,
           "WEIGHT": 126.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10124,
+          ".id": 1750110124,
           ".time": 62,
           ".status": 0,
           ".trt": "PLC",
@@ -23706,11 +24223,11 @@
           "BPSYS": 119,
           "HR": 82,
           "WEIGHT": 98.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10128,
+          ".id": 1750110128,
           ".time": 133,
           ".status": 1,
           ".trt": "TRT",
@@ -23724,11 +24241,11 @@
           "BPSYS": 106,
           "HR": 73,
           "WEIGHT": 53.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10130,
+          ".id": 1750110130,
           ".time": 2,
           ".status": 1,
           ".trt": "TRT",
@@ -23742,11 +24259,11 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 59,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10139,
+          ".id": 1750110139,
           ".time": 110,
           ".status": 0,
           ".trt": "TRT",
@@ -23760,11 +24277,11 @@
           "BPSYS": 144,
           "HR": 80,
           "WEIGHT": 101.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10146,
+          ".id": 1750110146,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -23778,11 +24295,11 @@
           "BPSYS": 122,
           "HR": 72,
           "WEIGHT": 69.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10150,
+          ".id": 1750110150,
           ".time": 225,
           ".status": 0,
           ".trt": "TRT",
@@ -23795,11 +24312,11 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 81.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10167,
+          ".id": 1750110167,
           ".time": 115,
           ".status": 0,
           ".trt": "PLC",
@@ -23813,11 +24330,11 @@
           "BPSYS": 126,
           "HR": 83,
           "WEIGHT": 67,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10172,
+          ".id": 1750110172,
           ".time": 60,
           ".status": 0,
           ".trt": "TRT",
@@ -23831,11 +24348,11 @@
           "BPSYS": 124,
           "HR": 68,
           "WEIGHT": 78.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10173,
+          ".id": 1750110173,
           ".time": 29,
           ".status": 1,
           ".trt": "PLC",
@@ -23849,11 +24366,11 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 57.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10182,
+          ".id": 1750110182,
           ".time": 16,
           ".status": 1,
           ".trt": "PLC",
@@ -23866,11 +24383,11 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 70.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10186,
+          ".id": 1750110186,
           ".time": 29,
           ".status": 1,
           ".trt": "TRT",
@@ -23884,11 +24401,11 @@
           "BPSYS": 113,
           "HR": 66,
           "WEIGHT": 36.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10189,
+          ".id": 1750110189,
           ".time": 23,
           ".status": 1,
           ".trt": "TRT",
@@ -23902,11 +24419,11 @@
           "BPSYS": 117,
           "HR": 79,
           "WEIGHT": 88,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10190,
+          ".id": 1750110190,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -23920,11 +24437,11 @@
           "BPSYS": 134,
           "HR": 69,
           "WEIGHT": 67.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10193,
+          ".id": 1750110193,
           ".time": 7,
           ".status": 1,
           ".trt": "PLC",
@@ -23938,11 +24455,11 @@
           "BPSYS": 120,
           "HR": 61,
           "WEIGHT": 61.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10194,
+          ".id": 1750110194,
           ".time": 30,
           ".status": 1,
           ".trt": "PLC",
@@ -23956,11 +24473,11 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 41.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10195,
+          ".id": 1750110195,
           ".time": 104,
           ".status": 1,
           ".trt": "PLC",
@@ -23974,11 +24491,11 @@
           "BPSYS": 136,
           "HR": 66,
           "WEIGHT": 113.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10203,
+          ".id": 1750110203,
           ".time": 213,
           ".status": 1,
           ".trt": "TRT",
@@ -23992,11 +24509,11 @@
           "BPSYS": 113,
           "HR": 83,
           "WEIGHT": 66.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10209,
+          ".id": 1750110209,
           ".time": 99,
           ".status": 1,
           ".trt": "PLC",
@@ -24010,11 +24527,11 @@
           "BPSYS": 100,
           "HR": 75,
           "WEIGHT": 65.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10215,
+          ".id": 1750110215,
           ".time": 49,
           ".status": 0,
           ".trt": "PLC",
@@ -24032,7 +24549,7 @@
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10217,
+          ".id": 1750110217,
           ".time": 119,
           ".status": 0,
           ".trt": "TRT",
@@ -24046,11 +24563,11 @@
           "BPSYS": 148,
           "HR": 55,
           "WEIGHT": 96.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10218,
+          ".id": 1750110218,
           ".time": 86,
           ".status": 1,
           ".trt": "TRT",
@@ -24064,11 +24581,11 @@
           "BPSYS": 119,
           "HR": 62,
           "WEIGHT": 62.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10223,
+          ".id": 1750110223,
           ".time": 6,
           ".status": 0,
           ".trt": "PLC",
@@ -24082,11 +24599,11 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 98.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10229,
+          ".id": 1750110229,
           ".time": 60,
           ".status": 0,
           ".trt": "PLC",
@@ -24100,11 +24617,11 @@
           "BPSYS": 99,
           "HR": 62,
           "WEIGHT": 73,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10233,
+          ".id": 1750110233,
           ".time": 58,
           ".status": 0,
           ".trt": "TRT",
@@ -24117,11 +24634,11 @@
           "BPSYS": 121,
           "HR": 76,
           "WEIGHT": 69,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10234,
+          ".id": 1750110234,
           ".time": 3,
           ".status": 1,
           ".trt": "PLC",
@@ -24135,11 +24652,11 @@
           "BPSYS": 105,
           "HR": 66,
           "WEIGHT": 55.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10235,
+          ".id": 1750110235,
           ".time": 71,
           ".status": 1,
           ".trt": "TRT",
@@ -24153,11 +24670,11 @@
           "BPSYS": 134,
           "HR": 65,
           "WEIGHT": 101.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10238,
+          ".id": 1750110238,
           ".time": 48,
           ".status": 1,
           ".trt": "TRT",
@@ -24170,11 +24687,11 @@
           "BPSYS": 122,
           "HR": 92,
           "WEIGHT": 99.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10243,
+          ".id": 1750110243,
           ".time": 29,
           ".status": 1,
           ".trt": "PLC",
@@ -24188,11 +24705,11 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 105.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10247,
+          ".id": 1750110247,
           ".time": 41,
           ".status": 1,
           ".trt": "TRT",
@@ -24206,11 +24723,11 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 94.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10248,
+          ".id": 1750110248,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -24224,11 +24741,11 @@
           "BPSYS": 91,
           "HR": 73,
           "WEIGHT": 83.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10255,
+          ".id": 1750110255,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -24242,11 +24759,11 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 104.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10257,
+          ".id": 1750110257,
           ".time": 25,
           ".status": 0,
           ".trt": "TRT",
@@ -24260,11 +24777,11 @@
           "BPSYS": 134,
           "HR": 81,
           "WEIGHT": 69.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2
         },
         {
-          ".id": 10260,
+          ".id": 1750110260,
           ".time": 51,
           ".status": 1,
           ".trt": "PLC",
@@ -24278,11 +24795,11 @@
           "BPSYS": 83,
           "HR": 89,
           "WEIGHT": 75.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10261,
+          ".id": 1750110261,
           ".time": 124,
           ".status": 0,
           ".trt": "PLC",
@@ -24296,11 +24813,11 @@
           "BPSYS": 127,
           "HR": 86,
           "WEIGHT": 108.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10262,
+          ".id": 1750110262,
           ".time": 270,
           ".status": 0,
           ".trt": "TRT",
@@ -24314,11 +24831,11 @@
           "BPSYS": 129,
           "HR": 61,
           "WEIGHT": 80.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10263,
+          ".id": 1750110263,
           ".time": 11,
           ".status": 1,
           ".trt": "PLC",
@@ -24332,11 +24849,11 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 109.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10271,
+          ".id": 1750110271,
           ".time": 5,
           ".status": 0,
           ".trt": "TRT",
@@ -24350,11 +24867,11 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 61.4,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10280,
+          ".id": 1750110280,
           ".time": 63,
           ".status": 1,
           ".trt": "TRT",
@@ -24368,11 +24885,11 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 75,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10284,
+          ".id": 1750110284,
           ".time": 87,
           ".status": 0,
           ".trt": "TRT",
@@ -24386,11 +24903,11 @@
           "BPSYS": 95,
           "HR": 78,
           "WEIGHT": 97.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10288,
+          ".id": 1750110288,
           ".time": 58,
           ".status": 0,
           ".trt": "TRT",
@@ -24404,11 +24921,11 @@
           "BPSYS": 103,
           "HR": 98,
           "WEIGHT": 80,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10293,
+          ".id": 1750110293,
           ".time": 67,
           ".status": 1,
           ".trt": "TRT",
@@ -24422,11 +24939,11 @@
           "BPSYS": 95,
           "HR": 74,
           "WEIGHT": 100.3,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10294,
+          ".id": 1750110294,
           ".time": 81,
           ".status": 0,
           ".trt": "PLC",
@@ -24440,11 +24957,11 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 91.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10295,
+          ".id": 1750110295,
           ".time": 13,
           ".status": 0,
           ".trt": "TRT",
@@ -24458,11 +24975,11 @@
           "BPSYS": 110,
           "HR": 60,
           "WEIGHT": 59.2,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10301,
+          ".id": 1750110301,
           ".time": 219,
           ".status": 1,
           ".trt": "PLC",
@@ -24476,11 +24993,11 @@
           "BPSYS": 121,
           "HR": 53,
           "WEIGHT": 90.5,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10303,
+          ".id": 1750110303,
           ".time": 7,
           ".status": 1,
           ".trt": "PLC",
@@ -24494,11 +25011,11 @@
           "BPSYS": 143,
           "HR": 86,
           "WEIGHT": 82.6,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10310,
+          ".id": 1750110310,
           ".time": 168,
           ".status": 0,
           ".trt": "PLC",
@@ -24512,11 +25029,11 @@
           "BPSYS": 109,
           "HR": 80,
           "WEIGHT": 106.7,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10311,
+          ".id": 1750110311,
           ".time": 46,
           ".status": 1,
           ".trt": "TRT",
@@ -24530,11 +25047,11 @@
           "BPSYS": 125,
           "HR": 56,
           "WEIGHT": 90.1,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10312,
+          ".id": 1750110312,
           ".time": 20,
           ".status": 0,
           ".trt": "PLC",
@@ -24548,11 +25065,11 @@
           "BPSYS": 134,
           "HR": 70,
           "WEIGHT": 92,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0
         },
         {
-          ".id": 10318,
+          ".id": 1750110318,
           ".time": 51,
           ".status": 0,
           ".trt": "PLC",
@@ -24570,7 +25087,7 @@
           "coronary_artery_disorders": 1
         },
         {
-          ".id": 10320,
+          ".id": 1750110320,
           ".time": 217,
           ".status": 1,
           ".trt": "TRT",
@@ -24584,7 +25101,7 @@
           "BPSYS": 143,
           "HR": 66,
           "WEIGHT": 101.9,
-          "cardiac_arrhythmias": 2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1
         }
       ] 
@@ -24594,7 +25111,7 @@
       $data$prep$train
       [
         {
-          ".id": 10017,
+          ".id": 1750110017,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -24605,12 +25122,13 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 82,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".time": 13,
           ".status": 0
         },
         {
-          ".id": 10024,
+          ".id": 1750110024,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -24621,12 +25139,13 @@
           "BPSYS": 133,
           "HR": 60,
           "WEIGHT": 64.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 4,
           ".status": 0
         },
         {
-          ".id": 10028,
+          ".id": 1750110028,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -24637,12 +25156,13 @@
           "BPSYS": 134,
           "HR": 67,
           "WEIGHT": 111.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".time": 95,
           ".status": 0
         },
         {
-          ".id": 10041,
+          ".id": 1750110041,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -24653,12 +25173,13 @@
           "BPSYS": 139,
           "HR": 82,
           "WEIGHT": 90.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 49,
           ".status": 0
         },
         {
-          ".id": 10043,
+          ".id": 1750110043,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -24669,12 +25190,13 @@
           "BPSYS": 134,
           "HR": 48,
           "WEIGHT": 64.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".time": 148,
           ".status": 0
         },
         {
-          ".id": 10048,
+          ".id": 1750110048,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -24685,12 +25207,13 @@
           "BPSYS": 109,
           "HR": 63,
           "WEIGHT": 68,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 54,
           ".status": 0
         },
         {
-          ".id": 10052,
+          ".id": 1750110052,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -24701,12 +25224,13 @@
           "BPSYS": 143,
           "HR": 68,
           "WEIGHT": 87.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 11,
           ".status": 0
         },
         {
-          ".id": 10053,
+          ".id": 1750110053,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -24717,12 +25241,13 @@
           "BPSYS": 97,
           "HR": 49,
           "WEIGHT": 96.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 81,
           ".status": 0
         },
         {
-          ".id": 10058,
+          ".id": 1750110058,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -24733,12 +25258,13 @@
           "BPSYS": 111,
           "HR": 80,
           "WEIGHT": 59.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 109,
           ".status": 0
         },
         {
-          ".id": 10062,
+          ".id": 1750110062,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -24749,12 +25275,13 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 103.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 127,
           ".status": 0
         },
         {
-          ".id": 10071,
+          ".id": 1750110071,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -24765,12 +25292,13 @@
           "BPSYS": 124,
           "HR": 76,
           "WEIGHT": 65.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10080,
+          ".id": 1750110080,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -24781,12 +25309,13 @@
           "BPSYS": 95,
           "HR": 46,
           "WEIGHT": 50.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 60,
           ".status": 0
         },
         {
-          ".id": 10092,
+          ".id": 1750110092,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -24797,12 +25326,13 @@
           "BPSYS": 137,
           "HR": 78,
           "WEIGHT": 96.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 48,
           ".status": 0
         },
         {
-          ".id": 10109,
+          ".id": 1750110109,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -24813,12 +25343,13 @@
           "BPSYS": 95,
           "HR": 72,
           "WEIGHT": 101.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 41,
           ".status": 0
         },
         {
-          ".id": 10122,
+          ".id": 1750110122,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -24829,12 +25360,13 @@
           "BPSYS": 123,
           "HR": 82,
           "WEIGHT": 67.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 93,
           ".status": 0
         },
         {
-          ".id": 10127,
+          ".id": 1750110127,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -24845,28 +25377,30 @@
           "BPSYS": 115,
           "HR": 72,
           "WEIGHT": 88.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 99,
           ".status": 0
         },
         {
-          ".id": 10140,
+          ".id": 1750110140,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
           "RACE": "BLACK",
           "AGE": 68,
-          "BMI_advs": 28.04,
+          "BMI_advs": 27.88,
           "BPDIA": 64,
           "BPSYS": 98,
           "HR": 69,
           "WEIGHT": 101.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 30,
           ".status": 0
         },
         {
-          ".id": 10141,
+          ".id": 1750110141,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -24877,12 +25411,13 @@
           "BPSYS": 127,
           "HR": 66,
           "WEIGHT": 102.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 87,
           ".status": 0
         },
         {
-          ".id": 10152,
+          ".id": 1750110152,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -24893,12 +25428,13 @@
           "BPSYS": 98,
           "HR": 71,
           "WEIGHT": 73.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 180,
           ".status": 0
         },
         {
-          ".id": 10155,
+          ".id": 1750110155,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -24909,12 +25445,13 @@
           "BPSYS": 98,
           "HR": 55,
           "WEIGHT": 70.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10158,
+          ".id": 1750110158,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -24925,12 +25462,13 @@
           "BPSYS": 131,
           "HR": 77,
           "WEIGHT": 120.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 11,
           ".status": 0
         },
         {
-          ".id": 10163,
+          ".id": 1750110163,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -24941,12 +25479,13 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 95.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 52,
           ".status": 0
         },
         {
-          ".id": 10170,
+          ".id": 1750110170,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -24957,12 +25496,13 @@
           "BPSYS": 112,
           "HR": 57,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10191,
+          ".id": 1750110191,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -24973,12 +25513,13 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 92.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 24,
           ".status": 0
         },
         {
-          ".id": 10192,
+          ".id": 1750110192,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -24989,12 +25530,13 @@
           "BPSYS": 121,
           "HR": 79,
           "WEIGHT": 64.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 160,
           ".status": 0
         },
         {
-          ".id": 10197,
+          ".id": 1750110197,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -25005,12 +25547,13 @@
           "BPSYS": 113,
           "HR": 63,
           "WEIGHT": 66.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 37,
           ".status": 0
         },
         {
-          ".id": 10210,
+          ".id": 1750110210,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -25021,12 +25564,13 @@
           "BPSYS": 93,
           "HR": 86,
           "WEIGHT": 92.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 58,
           ".status": 0
         },
         {
-          ".id": 10213,
+          ".id": 1750110213,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25037,12 +25581,13 @@
           "BPSYS": 96,
           "HR": 85,
           "WEIGHT": 96.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 10,
           ".status": 0
         },
         {
-          ".id": 10219,
+          ".id": 1750110219,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -25053,12 +25598,13 @@
           "BPSYS": 132,
           "HR": 54,
           "WEIGHT": 95.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 228,
           ".status": 0
         },
         {
-          ".id": 10220,
+          ".id": 1750110220,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -25069,12 +25615,13 @@
           "BPSYS": 115,
           "HR": 68,
           "WEIGHT": 81.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 125,
           ".status": 0
         },
         {
-          ".id": 10227,
+          ".id": 1750110227,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -25085,12 +25632,13 @@
           "BPSYS": 120,
           "HR": 64,
           "WEIGHT": 84.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 56,
           ".status": 0
         },
         {
-          ".id": 10232,
+          ".id": 1750110232,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25101,12 +25649,13 @@
           "BPSYS": 141,
           "HR": 63,
           "WEIGHT": 78.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10245,
+          ".id": 1750110245,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -25117,12 +25666,13 @@
           "BPSYS": 84,
           "HR": 71,
           "WEIGHT": 92.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 140,
           ".status": 0
         },
         {
-          ".id": 10249,
+          ".id": 1750110249,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -25133,12 +25683,13 @@
           "BPSYS": 108,
           "HR": 78,
           "WEIGHT": 85,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 12,
           ".status": 0
         },
         {
-          ".id": 10253,
+          ".id": 1750110253,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25149,12 +25700,13 @@
           "BPSYS": 129,
           "HR": 65,
           "WEIGHT": 82.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 30,
           ".status": 0
         },
         {
-          ".id": 10259,
+          ".id": 1750110259,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25165,12 +25717,13 @@
           "BPSYS": 135,
           "HR": 79,
           "WEIGHT": 69.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10266,
+          ".id": 1750110266,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -25181,12 +25734,13 @@
           "BPSYS": 134,
           "HR": 52,
           "WEIGHT": 117.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".time": 33,
           ".status": 0
         },
         {
-          ".id": 10276,
+          ".id": 1750110276,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -25197,12 +25751,13 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 75.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 144,
           ".status": 0
         },
         {
-          ".id": 10285,
+          ".id": 1750110285,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -25213,12 +25768,13 @@
           "BPSYS": 119,
           "HR": 65,
           "WEIGHT": 98.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 40,
           ".status": 0
         },
         {
-          ".id": 10299,
+          ".id": 1750110299,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -25229,12 +25785,13 @@
           "BPSYS": 97,
           "HR": 67,
           "WEIGHT": 57.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 10,
           ".status": 0
         },
         {
-          ".id": 10307,
+          ".id": 1750110307,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -25245,12 +25802,13 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 65.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 38,
           ".status": 0
         },
         {
-          ".id": 10313,
+          ".id": 1750110313,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -25260,13 +25818,14 @@
           "BPDIA": 61,
           "BPSYS": 108,
           "HR": 59,
-          "WEIGHT": 91.88,
+          "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10001,
+          ".id": 1750110001,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -25277,12 +25836,13 @@
           "BPSYS": 116,
           "HR": 79,
           "WEIGHT": 92.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 51,
           ".status": 0
         },
         {
-          ".id": 10004,
+          ".id": 1750110004,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -25293,12 +25853,13 @@
           "BPSYS": 134,
           "HR": 64,
           "WEIGHT": 106,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 88,
           ".status": 0
         },
         {
-          ".id": 10008,
+          ".id": 1750110008,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -25309,12 +25870,13 @@
           "BPSYS": 141,
           "HR": 75,
           "WEIGHT": 112.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 46,
           ".status": 0
         },
         {
-          ".id": 10011,
+          ".id": 1750110011,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -25325,12 +25887,13 @@
           "BPSYS": 127,
           "HR": 75,
           "WEIGHT": 77.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 134,
           ".status": 0
         },
         {
-          ".id": 10013,
+          ".id": 1750110013,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25341,12 +25904,13 @@
           "BPSYS": 95,
           "HR": 64,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 32,
           ".status": 0
         },
         {
-          ".id": 10019,
+          ".id": 1750110019,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -25357,12 +25921,13 @@
           "BPSYS": 101,
           "HR": 56,
           "WEIGHT": 57.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 145,
           ".status": 0
         },
         {
-          ".id": 10021,
+          ".id": 1750110021,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -25373,12 +25938,13 @@
           "BPSYS": 124,
           "HR": 80,
           "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 68,
           ".status": 0
         },
         {
-          ".id": 10023,
+          ".id": 1750110023,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -25389,12 +25955,13 @@
           "BPSYS": 101,
           "HR": 71,
           "WEIGHT": 115,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 65,
           ".status": 0
         },
         {
-          ".id": 10033,
+          ".id": 1750110033,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -25405,12 +25972,13 @@
           "BPSYS": 114,
           "HR": 58,
           "WEIGHT": 66.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 69,
           ".status": 0
         },
         {
-          ".id": 10040,
+          ".id": 1750110040,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25421,12 +25989,13 @@
           "BPSYS": 111,
           "HR": 57,
           "WEIGHT": 79.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10050,
+          ".id": 1750110050,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -25437,12 +26006,13 @@
           "BPSYS": 122,
           "HR": 78,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 32,
           ".status": 0
         },
         {
-          ".id": 10051,
+          ".id": 1750110051,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -25453,12 +26023,13 @@
           "BPSYS": 108,
           "HR": 67,
           "WEIGHT": 88.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 209,
           ".status": 0
         },
         {
-          ".id": 10060,
+          ".id": 1750110060,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25469,12 +26040,13 @@
           "BPSYS": 142,
           "HR": 63,
           "WEIGHT": 98.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 5,
           ".status": 0
         },
         {
-          ".id": 10074,
+          ".id": 1750110074,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -25485,12 +26057,13 @@
           "BPSYS": 108,
           "HR": 74,
           "WEIGHT": 79.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 44,
           ".status": 0
         },
         {
-          ".id": 10081,
+          ".id": 1750110081,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -25501,12 +26074,13 @@
           "BPSYS": 110,
           "HR": 63,
           "WEIGHT": 61.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 56,
           ".status": 0
         },
         {
-          ".id": 10082,
+          ".id": 1750110082,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -25517,12 +26091,13 @@
           "BPSYS": 96,
           "HR": 64,
           "WEIGHT": 67.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10086,
+          ".id": 1750110086,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25533,12 +26108,13 @@
           "BPSYS": 121,
           "HR": 58,
           "WEIGHT": 72.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 107,
           ".status": 0
         },
         {
-          ".id": 10088,
+          ".id": 1750110088,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -25549,12 +26125,13 @@
           "BPSYS": 97,
           "HR": 71,
           "WEIGHT": 73.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 124,
           ".status": 0
         },
         {
-          ".id": 10091,
+          ".id": 1750110091,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -25565,12 +26142,13 @@
           "BPSYS": 109,
           "HR": 42,
           "WEIGHT": 62.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 57,
           ".status": 0
         },
         {
-          ".id": 10094,
+          ".id": 1750110094,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -25581,12 +26159,13 @@
           "BPSYS": 124,
           "HR": 62,
           "WEIGHT": 75.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 55,
           ".status": 0
         },
         {
-          ".id": 10102,
+          ".id": 1750110102,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -25597,12 +26176,13 @@
           "BPSYS": 123,
           "HR": 60,
           "WEIGHT": 65.8,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".time": 74,
           ".status": 0
         },
         {
-          ".id": 10107,
+          ".id": 1750110107,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25613,12 +26193,13 @@
           "BPSYS": 112,
           "HR": 77,
           "WEIGHT": 54.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10111,
+          ".id": 1750110111,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25629,12 +26210,13 @@
           "BPSYS": 109,
           "HR": 87,
           "WEIGHT": 89.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 158,
           ".status": 0
         },
         {
-          ".id": 10112,
+          ".id": 1750110112,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -25645,12 +26227,13 @@
           "BPSYS": 115,
           "HR": 75,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 33,
           ".status": 0
         },
         {
-          ".id": 10115,
+          ".id": 1750110115,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -25661,12 +26244,13 @@
           "BPSYS": 113,
           "HR": 52,
           "WEIGHT": 87.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".time": 29,
           ".status": 0
         },
         {
-          ".id": 10116,
+          ".id": 1750110116,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -25677,12 +26261,13 @@
           "BPSYS": 93,
           "HR": 74,
           "WEIGHT": 92.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 35,
           ".status": 0
         },
         {
-          ".id": 10117,
+          ".id": 1750110117,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25693,12 +26278,13 @@
           "BPSYS": 98,
           "HR": 89,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 153,
           ".status": 0
         },
         {
-          ".id": 10123,
+          ".id": 1750110123,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -25709,12 +26295,13 @@
           "BPSYS": 129,
           "HR": 62,
           "WEIGHT": 46.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 137,
           ".status": 0
         },
         {
-          ".id": 10125,
+          ".id": 1750110125,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -25725,12 +26312,13 @@
           "BPSYS": 128,
           "HR": 50,
           "WEIGHT": 87.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 53,
           ".status": 0
         },
         {
-          ".id": 10133,
+          ".id": 1750110133,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -25741,12 +26329,13 @@
           "BPSYS": 108,
           "HR": 72,
           "WEIGHT": 74.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10137,
+          ".id": 1750110137,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -25757,12 +26346,13 @@
           "BPSYS": 128,
           "HR": 83,
           "WEIGHT": 79.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 84,
           ".status": 0
         },
         {
-          ".id": 10138,
+          ".id": 1750110138,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25773,12 +26363,13 @@
           "BPSYS": 112,
           "HR": 76,
           "WEIGHT": 69.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 51,
           ".status": 0
         },
         {
-          ".id": 10154,
+          ".id": 1750110154,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -25789,12 +26380,13 @@
           "BPSYS": 130,
           "HR": 75,
           "WEIGHT": 82.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 34,
           ".status": 0
         },
         {
-          ".id": 10162,
+          ".id": 1750110162,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -25805,12 +26397,13 @@
           "BPSYS": 143,
           "HR": 78,
           "WEIGHT": 66,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 98,
           ".status": 0
         },
         {
-          ".id": 10166,
+          ".id": 1750110166,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -25821,12 +26414,13 @@
           "BPSYS": 115,
           "HR": 63,
           "WEIGHT": 66.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 206,
           ".status": 0
         },
         {
-          ".id": 10177,
+          ".id": 1750110177,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -25837,12 +26431,13 @@
           "BPSYS": 94,
           "HR": 67,
           "WEIGHT": 76.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 19,
           ".status": 0
         },
         {
-          ".id": 10183,
+          ".id": 1750110183,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25853,12 +26448,13 @@
           "BPSYS": 113,
           "HR": 71,
           "WEIGHT": 56.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 155,
           ".status": 0
         },
         {
-          ".id": 10185,
+          ".id": 1750110185,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -25869,12 +26465,13 @@
           "BPSYS": 113,
           "HR": 72,
           "WEIGHT": 66.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 49,
           ".status": 0
         },
         {
-          ".id": 10196,
+          ".id": 1750110196,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25885,12 +26482,13 @@
           "BPSYS": 107,
           "HR": 71,
           "WEIGHT": 93.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 71,
           ".status": 0
         },
         {
-          ".id": 10198,
+          ".id": 1750110198,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -25901,12 +26499,13 @@
           "BPSYS": 125,
           "HR": 71,
           "WEIGHT": 87.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 125,
           ".status": 0
         },
         {
-          ".id": 10199,
+          ".id": 1750110199,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -25917,12 +26516,13 @@
           "BPSYS": 103,
           "HR": 71,
           "WEIGHT": 68.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 15,
           ".status": 0
         },
         {
-          ".id": 10200,
+          ".id": 1750110200,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -25933,12 +26533,13 @@
           "BPSYS": 113.6,
           "HR": 81,
           "WEIGHT": 112.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 104,
           ".status": 0
         },
         {
-          ".id": 10201,
+          ".id": 1750110201,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -25946,15 +26547,16 @@
           "AGE": 49,
           "BMI_advs": 32.4,
           "BPDIA": 79,
-          "BPSYS": 127.8,
+          "BPSYS": 118.2,
           "HR": 72,
           "WEIGHT": 75.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 91,
           ".status": 0
         },
         {
-          ".id": 10202,
+          ".id": 1750110202,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -25965,12 +26567,13 @@
           "BPSYS": 133,
           "HR": 69,
           "WEIGHT": 83.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 24,
           ".status": 0
         },
         {
-          ".id": 10206,
+          ".id": 1750110206,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -25981,12 +26584,13 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 73.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 221,
           ".status": 0
         },
         {
-          ".id": 10216,
+          ".id": 1750110216,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -25997,12 +26601,13 @@
           "BPSYS": 117,
           "HR": 67,
           "WEIGHT": 75.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10222,
+          ".id": 1750110222,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -26013,12 +26618,13 @@
           "BPSYS": 107,
           "HR": 75,
           "WEIGHT": 126.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10224,
+          ".id": 1750110224,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -26029,12 +26635,13 @@
           "BPSYS": 140,
           "HR": 61,
           "WEIGHT": 88.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 14,
           ".status": 0
         },
         {
-          ".id": 10228,
+          ".id": 1750110228,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -26045,12 +26652,13 @@
           "BPSYS": 101,
           "HR": 45,
           "WEIGHT": 55.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 93,
           ".status": 0
         },
         {
-          ".id": 10237,
+          ".id": 1750110237,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -26061,12 +26669,13 @@
           "BPSYS": 119,
           "HR": 61,
           "WEIGHT": 105.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10241,
+          ".id": 1750110241,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -26077,12 +26686,13 @@
           "BPSYS": 144,
           "HR": 75,
           "WEIGHT": 71.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 30,
           ".status": 0
         },
         {
-          ".id": 10242,
+          ".id": 1750110242,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26093,12 +26703,13 @@
           "BPSYS": 114,
           "HR": 71,
           "WEIGHT": 86.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 147,
           ".status": 0
         },
         {
-          ".id": 10244,
+          ".id": 1750110244,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -26109,12 +26720,13 @@
           "BPSYS": 135,
           "HR": 67,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10264,
+          ".id": 1750110264,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -26123,14 +26735,15 @@
           "BMI_advs": 34.5,
           "BPDIA": 74,
           "BPSYS": 125,
-          "HR": 66.4,
+          "HR": 63.2,
           "WEIGHT": 106,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 29,
           ".status": 0
         },
         {
-          ".id": 10269,
+          ".id": 1750110269,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26141,12 +26754,13 @@
           "BPSYS": 92,
           "HR": 88,
           "WEIGHT": 98.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10270,
+          ".id": 1750110270,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -26157,12 +26771,13 @@
           "BPSYS": 127,
           "HR": 89,
           "WEIGHT": 110.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 158,
           ".status": 0
         },
         {
-          ".id": 10272,
+          ".id": 1750110272,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -26173,12 +26788,13 @@
           "BPSYS": 106,
           "HR": 68,
           "WEIGHT": 101.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 36,
           ".status": 0
         },
         {
-          ".id": 10275,
+          ".id": 1750110275,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -26189,12 +26805,13 @@
           "BPSYS": 95,
           "HR": 57,
           "WEIGHT": 54,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10277,
+          ".id": 1750110277,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26205,12 +26822,13 @@
           "BPSYS": 131,
           "HR": 58,
           "WEIGHT": 96.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 60,
           ".status": 0
         },
         {
-          ".id": 10279,
+          ".id": 1750110279,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -26221,12 +26839,13 @@
           "BPSYS": 128,
           "HR": 62,
           "WEIGHT": 92.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 71,
           ".status": 0
         },
         {
-          ".id": 10281,
+          ".id": 1750110281,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -26237,12 +26856,13 @@
           "BPSYS": 103,
           "HR": 77,
           "WEIGHT": 79.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 61,
           ".status": 0
         },
         {
-          ".id": 10283,
+          ".id": 1750110283,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -26253,12 +26873,13 @@
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 48.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 3,
           ".status": 0
         },
         {
-          ".id": 10287,
+          ".id": 1750110287,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -26269,12 +26890,13 @@
           "BPSYS": 115,
           "HR": 40,
           "WEIGHT": 106.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 92,
           ".status": 0
         },
         {
-          ".id": 10289,
+          ".id": 1750110289,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26285,12 +26907,13 @@
           "BPSYS": 93,
           "HR": 64,
           "WEIGHT": 80.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".time": 41,
           ".status": 0
         },
         {
-          ".id": 10290,
+          ".id": 1750110290,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -26301,12 +26924,13 @@
           "BPSYS": 92,
           "HR": 58,
           "WEIGHT": 77.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 107,
           ".status": 0
         },
         {
-          ".id": 10297,
+          ".id": 1750110297,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26317,12 +26941,13 @@
           "BPSYS": 107,
           "HR": 73,
           "WEIGHT": 68.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 247,
           ".status": 0
         },
         {
-          ".id": 10306,
+          ".id": 1750110306,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -26333,12 +26958,13 @@
           "BPSYS": 101,
           "HR": 77,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 137,
           ".status": 0
         },
         {
-          ".id": 10308,
+          ".id": 1750110308,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -26349,12 +26975,13 @@
           "BPSYS": 110,
           "HR": 67,
           "WEIGHT": 88.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 123,
           ".status": 0
         },
         {
-          ".id": 10314,
+          ".id": 1750110314,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -26365,12 +26992,13 @@
           "BPSYS": 123,
           "HR": 85,
           "WEIGHT": 100,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 113,
           ".status": 0
         },
         {
-          ".id": 10317,
+          ".id": 1750110317,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26381,12 +27009,13 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 89.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 3,
           ".status": 0
         },
         {
-          ".id": 10319,
+          ".id": 1750110319,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26397,12 +27026,13 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 84.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 135,
           ".status": 0
         },
         {
-          ".id": 10002,
+          ".id": 1750110002,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -26413,12 +27043,13 @@
           "BPSYS": 119,
           "HR": 84,
           "WEIGHT": 90.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 102,
           ".status": 1
         },
         {
-          ".id": 10006,
+          ".id": 1750110006,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -26429,12 +27060,13 @@
           "BPSYS": 116,
           "HR": 69,
           "WEIGHT": 116.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 9,
           ".status": 1
         },
         {
-          ".id": 10012,
+          ".id": 1750110012,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26445,12 +27077,13 @@
           "BPSYS": 109,
           "HR": 83,
           "WEIGHT": 98.1,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 2,
           ".time": 63,
           ".status": 1
         },
         {
-          ".id": 10014,
+          ".id": 1750110014,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -26461,12 +27094,13 @@
           "BPSYS": 126,
           "HR": 84,
           "WEIGHT": 75.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 43,
           ".status": 1
         },
         {
-          ".id": 10018,
+          ".id": 1750110018,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -26477,12 +27111,13 @@
           "BPSYS": 128,
           "HR": 64,
           "WEIGHT": 95.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 239,
           ".status": 1
         },
         {
-          ".id": 10026,
+          ".id": 1750110026,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -26491,14 +27126,15 @@
           "BMI_advs": 28.9,
           "BPDIA": 68,
           "BPSYS": 102,
-          "HR": 68.6,
+          "HR": 72.6,
           "WEIGHT": 95.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 116,
           ".status": 1
         },
         {
-          ".id": 10030,
+          ".id": 1750110030,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -26509,12 +27145,13 @@
           "BPSYS": 95,
           "HR": 71,
           "WEIGHT": 71.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 27,
           ".status": 1
         },
         {
-          ".id": 10031,
+          ".id": 1750110031,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26525,12 +27162,13 @@
           "BPSYS": 116,
           "HR": 78,
           "WEIGHT": 84.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3,
           ".time": 4,
           ".status": 1
         },
         {
-          ".id": 10032,
+          ".id": 1750110032,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -26541,12 +27179,13 @@
           "BPSYS": 92,
           "HR": 56,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 28,
           ".status": 1
         },
         {
-          ".id": 10034,
+          ".id": 1750110034,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -26557,28 +27196,30 @@
           "BPSYS": 122,
           "HR": 66,
           "WEIGHT": 64.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 241,
           ".status": 1
         },
         {
-          ".id": 10036,
+          ".id": 1750110036,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
           "RACE": "WHITE",
           "AGE": 60,
           "BMI_advs": 26,
-          "BPDIA": 69.6,
+          "BPDIA": 67.6,
           "BPSYS": 128,
           "HR": 56,
           "WEIGHT": 62.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 71,
           ".status": 1
         },
         {
-          ".id": 10037,
+          ".id": 1750110037,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -26589,12 +27230,13 @@
           "BPSYS": 136,
           "HR": 50,
           "WEIGHT": 88.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 3,
           ".status": 1
         },
         {
-          ".id": 10038,
+          ".id": 1750110038,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -26604,13 +27246,14 @@
           "BPDIA": 82,
           "BPSYS": 125,
           "HR": 76,
-          "WEIGHT": 83.38,
+          "WEIGHT": 83.24,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 5,
           ".status": 1
         },
         {
-          ".id": 10044,
+          ".id": 1750110044,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -26621,12 +27264,13 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 82.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 101,
           ".status": 1
         },
         {
-          ".id": 10046,
+          ".id": 1750110046,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26637,12 +27281,13 @@
           "BPSYS": 128,
           "HR": 68,
           "WEIGHT": 80.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 21,
           ".status": 1
         },
         {
-          ".id": 10056,
+          ".id": 1750110056,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -26653,12 +27298,13 @@
           "BPSYS": 137,
           "HR": 74,
           "WEIGHT": 108.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 39,
           ".status": 1
         },
         {
-          ".id": 10067,
+          ".id": 1750110067,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -26669,12 +27315,13 @@
           "BPSYS": 135,
           "HR": 76,
           "WEIGHT": 67,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 266,
           ".status": 1
         },
         {
-          ".id": 10070,
+          ".id": 1750110070,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -26685,12 +27332,13 @@
           "BPSYS": 128,
           "HR": 86,
           "WEIGHT": 93.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 27,
           ".status": 1
         },
         {
-          ".id": 10075,
+          ".id": 1750110075,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -26701,12 +27349,13 @@
           "BPSYS": 108,
           "HR": 50,
           "WEIGHT": 91.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 132,
           ".status": 1
         },
         {
-          ".id": 10083,
+          ".id": 1750110083,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26717,12 +27366,13 @@
           "BPSYS": 98,
           "HR": 90,
           "WEIGHT": 95.9,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".time": 7,
           ".status": 1
         },
         {
-          ".id": 10085,
+          ".id": 1750110085,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26733,12 +27383,13 @@
           "BPSYS": 123,
           "HR": 62,
           "WEIGHT": 99.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 23,
           ".status": 1
         },
         {
-          ".id": 10098,
+          ".id": 1750110098,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -26749,12 +27400,13 @@
           "BPSYS": 134,
           "HR": 44,
           "WEIGHT": 47.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".time": 8,
           ".status": 1
         },
         {
-          ".id": 10104,
+          ".id": 1750110104,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -26765,12 +27417,13 @@
           "BPSYS": 134,
           "HR": 50,
           "WEIGHT": 106.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 10,
           ".status": 1
         },
         {
-          ".id": 10106,
+          ".id": 1750110106,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -26781,12 +27434,13 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 54.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 11,
           ".status": 1
         },
         {
-          ".id": 10110,
+          ".id": 1750110110,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -26797,12 +27451,13 @@
           "BPSYS": 162,
           "HR": 86,
           "WEIGHT": 84,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 1,
           ".status": 1
         },
         {
-          ".id": 10113,
+          ".id": 1750110113,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -26813,12 +27468,13 @@
           "BPSYS": 106,
           "HR": 74,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 216,
           ".status": 1
         },
         {
-          ".id": 10134,
+          ".id": 1750110134,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -26829,12 +27485,13 @@
           "BPSYS": 121,
           "HR": 70,
           "WEIGHT": 81.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 59,
           ".status": 1
         },
         {
-          ".id": 10142,
+          ".id": 1750110142,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26845,12 +27502,13 @@
           "BPSYS": 98,
           "HR": 73,
           "WEIGHT": 86.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 3,
           ".status": 1
         },
         {
-          ".id": 10145,
+          ".id": 1750110145,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -26859,14 +27517,15 @@
           "BMI_advs": 22.6,
           "BPDIA": 65,
           "BPSYS": 109,
-          "HR": 62.2,
+          "HR": 61,
           "WEIGHT": 66.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 248,
           ".status": 1
         },
         {
-          ".id": 10149,
+          ".id": 1750110149,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -26877,12 +27536,13 @@
           "BPSYS": 142,
           "HR": 78,
           "WEIGHT": 66.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 10,
           ".status": 1
         },
         {
-          ".id": 10153,
+          ".id": 1750110153,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -26893,12 +27553,13 @@
           "BPSYS": 95,
           "HR": 87,
           "WEIGHT": 99.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 82,
           ".status": 1
         },
         {
-          ".id": 10156,
+          ".id": 1750110156,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -26909,12 +27570,13 @@
           "BPSYS": 115,
           "HR": 59,
           "WEIGHT": 73.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 65,
           ".status": 1
         },
         {
-          ".id": 10157,
+          ".id": 1750110157,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -26925,12 +27587,13 @@
           "BPSYS": 144,
           "HR": 79,
           "WEIGHT": 94.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 175,
           ".status": 1
         },
         {
-          ".id": 10159,
+          ".id": 1750110159,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -26941,12 +27604,13 @@
           "BPSYS": 103,
           "HR": 62,
           "WEIGHT": 39.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 7,
           ".status": 1
         },
         {
-          ".id": 10161,
+          ".id": 1750110161,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -26957,12 +27621,13 @@
           "BPSYS": 108,
           "HR": 64,
           "WEIGHT": 103.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 3,
           ".time": 1,
           ".status": 1
         },
         {
-          ".id": 10164,
+          ".id": 1750110164,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -26973,12 +27638,13 @@
           "BPSYS": 105,
           "HR": 48,
           "WEIGHT": 64.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 53,
           ".status": 1
         },
         {
-          ".id": 10169,
+          ".id": 1750110169,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -26989,12 +27655,13 @@
           "BPSYS": 128,
           "HR": 71,
           "WEIGHT": 54.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 4,
           ".status": 1
         },
         {
-          ".id": 10176,
+          ".id": 1750110176,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -27005,12 +27672,13 @@
           "BPSYS": 138,
           "HR": 86,
           "WEIGHT": 71.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 5,
           ".status": 1
         },
         {
-          ".id": 10180,
+          ".id": 1750110180,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -27021,12 +27689,13 @@
           "BPSYS": 132,
           "HR": 61,
           "WEIGHT": 100,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 47,
           ".status": 1
         },
         {
-          ".id": 10181,
+          ".id": 1750110181,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -27037,12 +27706,13 @@
           "BPSYS": 125,
           "HR": 70,
           "WEIGHT": 62.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 37,
           ".status": 1
         },
         {
-          ".id": 10205,
+          ".id": 1750110205,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -27053,12 +27723,13 @@
           "BPSYS": 121,
           "HR": 68,
           "WEIGHT": 102.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 182,
           ".status": 1
         },
         {
-          ".id": 10214,
+          ".id": 1750110214,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -27069,12 +27740,13 @@
           "BPSYS": 116,
           "HR": 61,
           "WEIGHT": 61,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".time": 7,
           ".status": 1
         },
         {
-          ".id": 10225,
+          ".id": 1750110225,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -27085,12 +27757,13 @@
           "BPSYS": 110,
           "HR": 80,
           "WEIGHT": 86.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 61,
           ".status": 1
         },
         {
-          ".id": 10226,
+          ".id": 1750110226,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -27101,12 +27774,13 @@
           "BPSYS": 106,
           "HR": 55,
           "WEIGHT": 59.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 56,
           ".status": 1
         },
         {
-          ".id": 10231,
+          ".id": 1750110231,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -27117,12 +27791,13 @@
           "BPSYS": 137,
           "HR": 69,
           "WEIGHT": 93.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 35,
           ".status": 1
         },
         {
-          ".id": 10250,
+          ".id": 1750110250,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -27133,12 +27808,13 @@
           "BPSYS": 111,
           "HR": 67,
           "WEIGHT": 85.7,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 10,
           ".status": 1
         },
         {
-          ".id": 10251,
+          ".id": 1750110251,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -27149,12 +27825,13 @@
           "BPSYS": 120,
           "HR": 62,
           "WEIGHT": 72.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 21,
           ".status": 1
         },
         {
-          ".id": 10258,
+          ".id": 1750110258,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -27165,12 +27842,13 @@
           "BPSYS": 105,
           "HR": 72,
           "WEIGHT": 77.4,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".time": 7,
           ".status": 1
         },
         {
-          ".id": 10267,
+          ".id": 1750110267,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -27181,12 +27859,13 @@
           "BPSYS": 126,
           "HR": 56,
           "WEIGHT": 75.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 240,
           ".status": 1
         },
         {
-          ".id": 10273,
+          ".id": 1750110273,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -27197,12 +27876,13 @@
           "BPSYS": 99,
           "HR": 50,
           "WEIGHT": 81,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 194,
           ".status": 1
         },
         {
-          ".id": 10274,
+          ".id": 1750110274,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -27213,12 +27893,13 @@
           "BPSYS": 96,
           "HR": 72,
           "WEIGHT": 76.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 19,
           ".status": 1
         },
         {
-          ".id": 10291,
+          ".id": 1750110291,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -27229,12 +27910,13 @@
           "BPSYS": 99,
           "HR": 68,
           "WEIGHT": 70.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 142,
           ".status": 1
         },
         {
-          ".id": 10296,
+          ".id": 1750110296,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -27245,12 +27927,13 @@
           "BPSYS": 128,
           "HR": 87,
           "WEIGHT": 85.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 169,
           ".status": 1
         },
         {
-          ".id": 10298,
+          ".id": 1750110298,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -27261,12 +27944,13 @@
           "BPSYS": 111,
           "HR": 64,
           "WEIGHT": 79.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 1,
           ".status": 1
         },
         {
-          ".id": 10300,
+          ".id": 1750110300,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -27277,12 +27961,13 @@
           "BPSYS": 125,
           "HR": 77,
           "WEIGHT": 113.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 69,
           ".status": 1
         },
         {
-          ".id": 10302,
+          ".id": 1750110302,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -27293,12 +27978,13 @@
           "BPSYS": 122,
           "HR": 81,
           "WEIGHT": 77,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 25,
           ".status": 1
         },
         {
-          ".id": 10305,
+          ".id": 1750110305,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -27309,12 +27995,13 @@
           "BPSYS": 125,
           "HR": 44,
           "WEIGHT": 62.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 72,
           ".status": 1
         },
         {
-          ".id": 10309,
+          ".id": 1750110309,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -27325,12 +28012,13 @@
           "BPSYS": 126,
           "HR": 74,
           "WEIGHT": 91.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 121,
           ".status": 1
         },
         {
-          ".id": 10315,
+          ".id": 1750110315,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -27341,12 +28029,13 @@
           "BPSYS": 130,
           "HR": 83,
           "WEIGHT": 77.8,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 67,
           ".status": 1
         },
         {
-          ".id": 10003,
+          ".id": 1750110003,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -27357,12 +28046,13 @@
           "BPSYS": 105,
           "HR": 86,
           "WEIGHT": 51.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 71,
           ".status": 1
         },
         {
-          ".id": 10025,
+          ".id": 1750110025,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -27373,12 +28063,13 @@
           "BPSYS": 117,
           "HR": 70,
           "WEIGHT": 85.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 15,
           ".status": 1
         },
         {
-          ".id": 10027,
+          ".id": 1750110027,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -27389,12 +28080,13 @@
           "BPSYS": 152,
           "HR": 69,
           "WEIGHT": 50.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 13,
           ".status": 1
         },
         {
-          ".id": 10029,
+          ".id": 1750110029,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -27405,12 +28097,13 @@
           "BPSYS": 130,
           "HR": 70,
           "WEIGHT": 73,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 5,
           ".status": 1
         },
         {
-          ".id": 10049,
+          ".id": 1750110049,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -27421,12 +28114,13 @@
           "BPSYS": 140,
           "HR": 71,
           "WEIGHT": 86.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 31,
           ".status": 1
         },
         {
-          ".id": 10054,
+          ".id": 1750110054,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -27437,12 +28131,13 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 96.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 54,
           ".status": 1
         },
         {
-          ".id": 10055,
+          ".id": 1750110055,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -27453,12 +28148,13 @@
           "BPSYS": 100,
           "HR": 81,
           "WEIGHT": 66.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 21,
           ".status": 1
         },
         {
-          ".id": 10059,
+          ".id": 1750110059,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -27469,12 +28165,13 @@
           "BPSYS": 114,
           "HR": 53,
           "WEIGHT": 65.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 24,
           ".status": 1
         },
         {
-          ".id": 10064,
+          ".id": 1750110064,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -27485,12 +28182,13 @@
           "BPSYS": 108,
           "HR": 56,
           "WEIGHT": 82.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 9,
           ".status": 1
         },
         {
-          ".id": 10072,
+          ".id": 1750110072,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -27501,12 +28199,13 @@
           "BPSYS": 142,
           "HR": 74,
           "WEIGHT": 90.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 160,
           ".status": 1
         },
         {
-          ".id": 10076,
+          ".id": 1750110076,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -27517,12 +28216,13 @@
           "BPSYS": 138,
           "HR": 67,
           "WEIGHT": 98.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 191,
           ".status": 1
         },
         {
-          ".id": 10077,
+          ".id": 1750110077,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -27533,12 +28233,13 @@
           "BPSYS": 110,
           "HR": 79,
           "WEIGHT": 97.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 42,
           ".status": 1
         },
         {
-          ".id": 10079,
+          ".id": 1750110079,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -27549,12 +28250,13 @@
           "BPSYS": 131,
           "HR": 73,
           "WEIGHT": 65.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 152,
           ".status": 1
         },
         {
-          ".id": 10087,
+          ".id": 1750110087,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -27565,12 +28267,13 @@
           "BPSYS": 122,
           "HR": 70,
           "WEIGHT": 80.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 15,
           ".status": 1
         },
         {
-          ".id": 10090,
+          ".id": 1750110090,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -27581,12 +28284,13 @@
           "BPSYS": 100,
           "HR": 70,
           "WEIGHT": 75.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 16,
           ".status": 1
         },
         {
-          ".id": 10093,
+          ".id": 1750110093,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -27597,12 +28301,13 @@
           "BPSYS": 92,
           "HR": 76,
           "WEIGHT": 72.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 98,
           ".status": 1
         },
         {
-          ".id": 10095,
+          ".id": 1750110095,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -27613,28 +28318,30 @@
           "BPSYS": 118,
           "HR": 65,
           "WEIGHT": 82.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 160,
           ".status": 1
         },
         {
-          ".id": 10114,
+          ".id": 1750110114,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
-          "RACE": "BLACK",
+          "RACE": "ASIAN",
           "AGE": 83,
           "BMI_advs": 36.6,
           "BPDIA": 75,
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 123.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 1,
           ".status": 1
         },
         {
-          ".id": 10118,
+          ".id": 1750110118,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -27645,12 +28352,13 @@
           "BPSYS": 101,
           "HR": 92,
           "WEIGHT": 57.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 46,
           ".status": 1
         },
         {
-          ".id": 10126,
+          ".id": 1750110126,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -27661,12 +28369,13 @@
           "BPSYS": 103,
           "HR": 89,
           "WEIGHT": 78.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 1,
           ".status": 1
         },
         {
-          ".id": 10129,
+          ".id": 1750110129,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -27677,12 +28386,13 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 63,
           ".status": 1
         },
         {
-          ".id": 10132,
+          ".id": 1750110132,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -27693,12 +28403,13 @@
           "BPSYS": 103,
           "HR": 48,
           "WEIGHT": 70.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 144,
           ".status": 1
         },
         {
-          ".id": 10135,
+          ".id": 1750110135,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -27709,12 +28420,13 @@
           "BPSYS": 118,
           "HR": 64,
           "WEIGHT": 63.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 26,
           ".status": 1
         },
         {
-          ".id": 10136,
+          ".id": 1750110136,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -27725,12 +28437,13 @@
           "BPSYS": 140,
           "HR": 66,
           "WEIGHT": 88.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 113,
           ".status": 1
         },
         {
-          ".id": 10143,
+          ".id": 1750110143,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -27741,12 +28454,13 @@
           "BPSYS": 117,
           "HR": 80,
           "WEIGHT": 71.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 139,
           ".status": 1
         },
         {
-          ".id": 10144,
+          ".id": 1750110144,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -27757,12 +28471,13 @@
           "BPSYS": 124,
           "HR": 60,
           "WEIGHT": 80.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 11,
           ".status": 1
         },
         {
-          ".id": 10147,
+          ".id": 1750110147,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -27773,12 +28488,13 @@
           "BPSYS": 110,
           "HR": 55,
           "WEIGHT": 65.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 6,
           ".status": 1
         },
         {
-          ".id": 10160,
+          ".id": 1750110160,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -27789,12 +28505,13 @@
           "BPSYS": 125,
           "HR": 59,
           "WEIGHT": 80.6,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".time": 51,
           ".status": 1
         },
         {
-          ".id": 10165,
+          ".id": 1750110165,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -27805,12 +28522,13 @@
           "BPSYS": 138,
           "HR": 65,
           "WEIGHT": 122.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 187,
           ".status": 1
         },
         {
-          ".id": 10168,
+          ".id": 1750110168,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -27821,12 +28539,13 @@
           "BPSYS": 126,
           "HR": 78,
           "WEIGHT": 86,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 36,
           ".status": 1
         },
         {
-          ".id": 10175,
+          ".id": 1750110175,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -27837,12 +28556,13 @@
           "BPSYS": 145,
           "HR": 69,
           "WEIGHT": 90.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 4,
           ".status": 1
         },
         {
-          ".id": 10179,
+          ".id": 1750110179,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -27853,12 +28573,13 @@
           "BPSYS": 130,
           "HR": 56,
           "WEIGHT": 97.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 32,
           ".status": 1
         },
         {
-          ".id": 10184,
+          ".id": 1750110184,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -27869,12 +28590,13 @@
           "BPSYS": 116,
           "HR": 50,
           "WEIGHT": 74.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 43,
           ".status": 1
         },
         {
-          ".id": 10187,
+          ".id": 1750110187,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -27885,12 +28607,13 @@
           "BPSYS": 118,
           "HR": 96,
           "WEIGHT": 60.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 11,
           ".status": 1
         },
         {
-          ".id": 10208,
+          ".id": 1750110208,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -27901,12 +28624,13 @@
           "BPSYS": 99,
           "HR": 64,
           "WEIGHT": 60.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 15,
           ".status": 1
         },
         {
-          ".id": 10211,
+          ".id": 1750110211,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -27917,28 +28641,30 @@
           "BPSYS": 117,
           "HR": 62,
           "WEIGHT": 70,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 28,
           ".status": 1
         },
         {
-          ".id": 10230,
+          ".id": 1750110230,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
           "RACE": "WHITE",
           "AGE": 61,
-          "BMI_advs": 26.06,
+          "BMI_advs": 26.8,
           "BPDIA": 68,
           "BPSYS": 110,
           "HR": 53,
           "WEIGHT": 93.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 36,
           ".status": 1
         },
         {
-          ".id": 10239,
+          ".id": 1750110239,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -27949,12 +28675,13 @@
           "BPSYS": 111,
           "HR": 59,
           "WEIGHT": 54.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 1,
           ".status": 1
         },
         {
-          ".id": 10254,
+          ".id": 1750110254,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -27965,12 +28692,13 @@
           "BPSYS": 123,
           "HR": 59,
           "WEIGHT": 89,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 21,
           ".status": 1
         },
         {
-          ".id": 10278,
+          ".id": 1750110278,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -27981,12 +28709,13 @@
           "BPSYS": 121,
           "HR": 78,
           "WEIGHT": 69.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 11,
           ".status": 1
         },
         {
-          ".id": 10282,
+          ".id": 1750110282,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -27997,12 +28726,13 @@
           "BPSYS": 124,
           "HR": 48,
           "WEIGHT": 63.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 85,
           ".status": 1
         },
         {
-          ".id": 10286,
+          ".id": 1750110286,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -28013,12 +28743,13 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 93.8,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 6,
           ".status": 1
         },
         {
-          ".id": 10316,
+          ".id": 1750110316,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28029,6 +28760,7 @@
           "BPSYS": 114,
           "HR": 54,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 99,
           ".status": 1
@@ -28038,7 +28770,7 @@
       $data$prep$test
       [
         {
-          ".id": 10005,
+          ".id": 1750110005,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -28049,12 +28781,13 @@
           "BPSYS": 111,
           "HR": 63,
           "WEIGHT": 89.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 69,
           ".status": 1
         },
         {
-          ".id": 10007,
+          ".id": 1750110007,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -28065,12 +28798,13 @@
           "BPSYS": 127,
           "HR": 59,
           "WEIGHT": 79.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 35,
           ".status": 0
         },
         {
-          ".id": 10009,
+          ".id": 1750110009,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -28081,12 +28815,13 @@
           "BPSYS": 111,
           "HR": 82,
           "WEIGHT": 114.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 49,
           ".status": 1
         },
         {
-          ".id": 10010,
+          ".id": 1750110010,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28097,12 +28832,13 @@
           "BPSYS": 121,
           "HR": 60,
           "WEIGHT": 81.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 66,
           ".status": 1
         },
         {
-          ".id": 10015,
+          ".id": 1750110015,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28113,12 +28849,13 @@
           "BPSYS": 122,
           "HR": 67,
           "WEIGHT": 96.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 33,
           ".status": 1
         },
         {
-          ".id": 10022,
+          ".id": 1750110022,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -28129,12 +28866,13 @@
           "BPSYS": 101,
           "HR": 80,
           "WEIGHT": 73.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 6,
           ".status": 0
         },
         {
-          ".id": 10039,
+          ".id": 1750110039,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -28145,12 +28883,13 @@
           "BPSYS": 96,
           "HR": 84,
           "WEIGHT": 78.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 80,
           ".status": 1
         },
         {
-          ".id": 10042,
+          ".id": 1750110042,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -28161,12 +28900,13 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 97.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 60,
           ".status": 0
         },
         {
-          ".id": 10045,
+          ".id": 1750110045,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -28177,12 +28917,13 @@
           "BPSYS": 100,
           "HR": 71,
           "WEIGHT": 99,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10047,
+          ".id": 1750110047,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -28193,12 +28934,13 @@
           "BPSYS": 117,
           "HR": 93,
           "WEIGHT": 110.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 158,
           ".status": 0
         },
         {
-          ".id": 10061,
+          ".id": 1750110061,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -28209,12 +28951,13 @@
           "BPSYS": 130,
           "HR": 74,
           "WEIGHT": 67.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 70,
           ".status": 1
         },
         {
-          ".id": 10063,
+          ".id": 1750110063,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -28225,12 +28968,13 @@
           "BPSYS": 109,
           "HR": 81,
           "WEIGHT": 105.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 29,
           ".status": 0
         },
         {
-          ".id": 10066,
+          ".id": 1750110066,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -28241,12 +28985,13 @@
           "BPSYS": 107,
           "HR": 39,
           "WEIGHT": 53.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 195,
           ".status": 0
         },
         {
-          ".id": 10069,
+          ".id": 1750110069,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28257,12 +29002,13 @@
           "BPSYS": 130,
           "HR": 67,
           "WEIGHT": 96.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 105,
           ".status": 0
         },
         {
-          ".id": 10073,
+          ".id": 1750110073,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -28273,12 +29019,13 @@
           "BPSYS": 117,
           "HR": 77,
           "WEIGHT": 115.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 23,
           ".status": 0
         },
         {
-          ".id": 10084,
+          ".id": 1750110084,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -28289,12 +29036,13 @@
           "BPSYS": 135,
           "HR": 85,
           "WEIGHT": 102.3,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 23,
           ".status": 0
         },
         {
-          ".id": 10089,
+          ".id": 1750110089,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -28305,12 +29053,13 @@
           "BPSYS": 115,
           "HR": 70,
           "WEIGHT": 79.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 73,
           ".status": 1
         },
         {
-          ".id": 10096,
+          ".id": 1750110096,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -28321,12 +29070,13 @@
           "BPSYS": 129,
           "HR": 67,
           "WEIGHT": 65.6,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 147,
           ".status": 0
         },
         {
-          ".id": 10097,
+          ".id": 1750110097,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -28337,12 +29087,13 @@
           "BPSYS": 107,
           "HR": 66,
           "WEIGHT": 94.5,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 0,
           ".time": 98,
           ".status": 1
         },
         {
-          ".id": 10100,
+          ".id": 1750110100,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -28353,12 +29104,13 @@
           "BPSYS": 123,
           "HR": 49,
           "WEIGHT": 96.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 72,
           ".status": 0
         },
         {
-          ".id": 10101,
+          ".id": 1750110101,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -28369,12 +29121,13 @@
           "BPSYS": 129,
           "HR": 63,
           "WEIGHT": 90.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 19,
           ".status": 0
         },
         {
-          ".id": 10103,
+          ".id": 1750110103,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -28385,28 +29138,30 @@
           "BPSYS": 123,
           "HR": 61,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 6,
           ".status": 1
         },
         {
-          ".id": 10105,
+          ".id": 1750110105,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
           "RACE": "WHITE",
           "AGE": 74,
           "BMI_advs": 28.1,
-          "BPDIA": 68.2,
+          "BPDIA": 64.4,
           "BPSYS": 140,
           "HR": 74,
           "WEIGHT": 74.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 24,
           ".status": 0
         },
         {
-          ".id": 10108,
+          ".id": 1750110108,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28417,12 +29172,13 @@
           "BPSYS": 134,
           "HR": 66,
           "WEIGHT": 126.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 39,
           ".status": 1
         },
         {
-          ".id": 10124,
+          ".id": 1750110124,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -28433,12 +29189,13 @@
           "BPSYS": 119,
           "HR": 82,
           "WEIGHT": 98.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 62,
           ".status": 0
         },
         {
-          ".id": 10128,
+          ".id": 1750110128,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -28449,12 +29206,13 @@
           "BPSYS": 106,
           "HR": 73,
           "WEIGHT": 53.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 133,
           ".status": 1
         },
         {
-          ".id": 10130,
+          ".id": 1750110130,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -28465,12 +29223,13 @@
           "BPSYS": 132,
           "HR": 63,
           "WEIGHT": 59,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 2,
           ".status": 1
         },
         {
-          ".id": 10139,
+          ".id": 1750110139,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28481,12 +29240,13 @@
           "BPSYS": 144,
           "HR": 80,
           "WEIGHT": 101.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 110,
           ".status": 0
         },
         {
-          ".id": 10146,
+          ".id": 1750110146,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -28497,28 +29257,30 @@
           "BPSYS": 122,
           "HR": 72,
           "WEIGHT": 69.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10150,
+          ".id": 1750110150,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "WHITE",
+          "RACE": "ASIAN",
           "AGE": 51,
           "BMI_advs": 27.2,
           "BPDIA": 69,
           "BPSYS": 118,
           "HR": 72,
           "WEIGHT": 81.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 225,
           ".status": 0
         },
         {
-          ".id": 10167,
+          ".id": 1750110167,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -28529,12 +29291,13 @@
           "BPSYS": 126,
           "HR": 83,
           "WEIGHT": 67,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 115,
           ".status": 0
         },
         {
-          ".id": 10172,
+          ".id": 1750110172,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -28545,12 +29308,13 @@
           "BPSYS": 124,
           "HR": 68,
           "WEIGHT": 78.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 60,
           ".status": 0
         },
         {
-          ".id": 10173,
+          ".id": 1750110173,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -28561,28 +29325,30 @@
           "BPSYS": 111,
           "HR": 81,
           "WEIGHT": 57.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 29,
           ".status": 1
         },
         {
-          ".id": 10182,
+          ".id": 1750110182,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
           "RACE": "WHITE",
           "AGE": 83,
           "BMI_advs": 26.3,
-          "BPDIA": 69.8,
+          "BPDIA": 76.8,
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 70.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 16,
           ".status": 1
         },
         {
-          ".id": 10186,
+          ".id": 1750110186,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28593,12 +29359,13 @@
           "BPSYS": 113,
           "HR": 66,
           "WEIGHT": 36.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 29,
           ".status": 1
         },
         {
-          ".id": 10189,
+          ".id": 1750110189,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -28609,12 +29376,13 @@
           "BPSYS": 117,
           "HR": 79,
           "WEIGHT": 88,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 23,
           ".status": 1
         },
         {
-          ".id": 10190,
+          ".id": 1750110190,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -28625,12 +29393,13 @@
           "BPSYS": 134,
           "HR": 69,
           "WEIGHT": 67.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10193,
+          ".id": 1750110193,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -28641,12 +29410,13 @@
           "BPSYS": 120,
           "HR": 61,
           "WEIGHT": 61.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 7,
           ".status": 1
         },
         {
-          ".id": 10194,
+          ".id": 1750110194,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -28657,12 +29427,13 @@
           "BPSYS": 126,
           "HR": 58,
           "WEIGHT": 41.7,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 30,
           ".status": 1
         },
         {
-          ".id": 10195,
+          ".id": 1750110195,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -28673,12 +29444,13 @@
           "BPSYS": 136,
           "HR": 66,
           "WEIGHT": 113.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 104,
           ".status": 1
         },
         {
-          ".id": 10203,
+          ".id": 1750110203,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28689,12 +29461,13 @@
           "BPSYS": 113,
           "HR": 83,
           "WEIGHT": 66.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 213,
           ".status": 1
         },
         {
-          ".id": 10209,
+          ".id": 1750110209,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -28705,12 +29478,13 @@
           "BPSYS": 100,
           "HR": 75,
           "WEIGHT": 65.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 99,
           ".status": 1
         },
         {
-          ".id": 10215,
+          ".id": 1750110215,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -28721,12 +29495,13 @@
           "BPSYS": 106,
           "HR": 62,
           "WEIGHT": 72,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 2,
           ".time": 49,
           ".status": 0
         },
         {
-          ".id": 10217,
+          ".id": 1750110217,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28737,12 +29512,13 @@
           "BPSYS": 148,
           "HR": 55,
           "WEIGHT": 96.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 119,
           ".status": 0
         },
         {
-          ".id": 10218,
+          ".id": 1750110218,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -28753,12 +29529,13 @@
           "BPSYS": 119,
           "HR": 62,
           "WEIGHT": 62.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 86,
           ".status": 1
         },
         {
-          ".id": 10223,
+          ".id": 1750110223,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -28769,12 +29546,13 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 98.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 6,
           ".status": 0
         },
         {
-          ".id": 10229,
+          ".id": 1750110229,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28785,12 +29563,13 @@
           "BPSYS": 99,
           "HR": 62,
           "WEIGHT": 73,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 60,
           ".status": 0
         },
         {
-          ".id": 10233,
+          ".id": 1750110233,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -28801,12 +29580,13 @@
           "BPSYS": 121,
           "HR": 76,
           "WEIGHT": 69,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 58,
           ".status": 0
         },
         {
-          ".id": 10234,
+          ".id": 1750110234,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28817,12 +29597,13 @@
           "BPSYS": 105,
           "HR": 66,
           "WEIGHT": 55.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 3,
           ".status": 1
         },
         {
-          ".id": 10235,
+          ".id": 1750110235,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -28833,12 +29614,13 @@
           "BPSYS": 134,
           "HR": 65,
           "WEIGHT": 101.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 71,
           ".status": 1
         },
         {
-          ".id": 10238,
+          ".id": 1750110238,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -28849,12 +29631,13 @@
           "BPSYS": 122,
           "HR": 92,
           "WEIGHT": 99.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 48,
           ".status": 1
         },
         {
-          ".id": 10243,
+          ".id": 1750110243,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -28865,12 +29648,13 @@
           "BPSYS": 115,
           "HR": 61,
           "WEIGHT": 105.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 29,
           ".status": 1
         },
         {
-          ".id": 10247,
+          ".id": 1750110247,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28881,12 +29665,13 @@
           "BPSYS": 130,
           "HR": 69,
           "WEIGHT": 94.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 41,
           ".status": 1
         },
         {
-          ".id": 10248,
+          ".id": 1750110248,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -28897,12 +29682,13 @@
           "BPSYS": 91,
           "HR": 73,
           "WEIGHT": 83.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10255,
+          ".id": 1750110255,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -28913,12 +29699,13 @@
           "BPSYS": 136,
           "HR": 82,
           "WEIGHT": 104.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 2,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10257,
+          ".id": 1750110257,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28929,12 +29716,13 @@
           "BPSYS": 134,
           "HR": 81,
           "WEIGHT": 69.2,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 2,
           ".time": 25,
           ".status": 0
         },
         {
-          ".id": 10260,
+          ".id": 1750110260,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -28945,12 +29733,13 @@
           "BPSYS": 83,
           "HR": 89,
           "WEIGHT": 75.5,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 51,
           ".status": 1
         },
         {
-          ".id": 10261,
+          ".id": 1750110261,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -28961,12 +29750,13 @@
           "BPSYS": 127,
           "HR": 86,
           "WEIGHT": 108.4,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 124,
           ".status": 0
         },
         {
-          ".id": 10262,
+          ".id": 1750110262,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -28977,12 +29767,13 @@
           "BPSYS": 129,
           "HR": 61,
           "WEIGHT": 80.1,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 270,
           ".status": 0
         },
         {
-          ".id": 10263,
+          ".id": 1750110263,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -28993,12 +29784,13 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 109.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 11,
           ".status": 1
         },
         {
-          ".id": 10271,
+          ".id": 1750110271,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -29009,12 +29801,13 @@
           "BPSYS": 125,
           "HR": 68,
           "WEIGHT": 61.4,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 5,
           ".status": 0
         },
         {
-          ".id": 10280,
+          ".id": 1750110280,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -29025,12 +29818,13 @@
           "BPSYS": 117,
           "HR": 66,
           "WEIGHT": 75,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 63,
           ".status": 1
         },
         {
-          ".id": 10284,
+          ".id": 1750110284,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -29041,12 +29835,13 @@
           "BPSYS": 95,
           "HR": 78,
           "WEIGHT": 97.9,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 87,
           ".status": 0
         },
         {
-          ".id": 10288,
+          ".id": 1750110288,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -29057,12 +29852,13 @@
           "BPSYS": 103,
           "HR": 98,
           "WEIGHT": 80,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 58,
           ".status": 0
         },
         {
-          ".id": 10293,
+          ".id": 1750110293,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -29073,12 +29869,13 @@
           "BPSYS": 95,
           "HR": 74,
           "WEIGHT": 100.3,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 67,
           ".status": 1
         },
         {
-          ".id": 10294,
+          ".id": 1750110294,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "F",
@@ -29089,12 +29886,13 @@
           "BPSYS": 96,
           "HR": 59,
           "WEIGHT": 91.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 81,
           ".status": 0
         },
         {
-          ".id": 10295,
+          ".id": 1750110295,
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
@@ -29105,12 +29903,13 @@
           "BPSYS": 110,
           "HR": 60,
           "WEIGHT": 59.2,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 13,
           ".status": 0
         },
         {
-          ".id": 10301,
+          ".id": 1750110301,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -29121,12 +29920,13 @@
           "BPSYS": 121,
           "HR": 53,
           "WEIGHT": 90.5,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 219,
           ".status": 1
         },
         {
-          ".id": 10303,
+          ".id": 1750110303,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -29137,12 +29937,13 @@
           "BPSYS": 143,
           "HR": 86,
           "WEIGHT": 82.6,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 7,
           ".status": 1
         },
         {
-          ".id": 10310,
+          ".id": 1750110310,
           ".trt": "PLC",
           "AGEGR01": "under_60",
           "SEX": "F",
@@ -29153,12 +29954,13 @@
           "BPSYS": 109,
           "HR": 80,
           "WEIGHT": 106.7,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 0,
           ".time": 168,
           ".status": 0
         },
         {
-          ".id": 10311,
+          ".id": 1750110311,
           ".trt": "TRT",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -29169,12 +29971,13 @@
           "BPSYS": 125,
           "HR": 56,
           "WEIGHT": 90.1,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 1,
           ".time": 46,
           ".status": 1
         },
         {
-          ".id": 10312,
+          ".id": 1750110312,
           ".trt": "PLC",
           "AGEGR01": "60_to_under_75",
           "SEX": "M",
@@ -29185,12 +29988,13 @@
           "BPSYS": 134,
           "HR": 70,
           "WEIGHT": 92,
+          "cardiac_arrhythmias": 1,
           "coronary_artery_disorders": 0,
           ".time": 20,
           ".status": 0
         },
         {
-          ".id": 10318,
+          ".id": 1750110318,
           ".trt": "PLC",
           "AGEGR01": "at_least_75",
           "SEX": "M",
@@ -29201,12 +30005,13 @@
           "BPSYS": 100,
           "HR": 85,
           "WEIGHT": 58.6,
+          "cardiac_arrhythmias": 2,
           "coronary_artery_disorders": 1,
           ".time": 51,
           ".status": 0
         },
         {
-          ".id": 10320,
+          ".id": 1750110320,
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
@@ -29217,6 +30022,7 @@
           "BPSYS": 143,
           "HR": 66,
           "WEIGHT": 101.9,
+          "cardiac_arrhythmias": 0,
           "coronary_artery_disorders": 1,
           ".time": 217,
           ".status": 1
@@ -29432,61 +30238,6 @@
       ] 
       
       $recipe
-      $recipe$raw
-    Message
-      
-      -- Recipe ----------------------------------------------------------------------
-      
-      -- Inputs 
-      Number of variables by role
-      outcome:    2
-      predictor: 16
-      ID:         1
-      
-      -- Operations 
-      * Variable mutation for: recipes::all_factor_predictors()
-      * Missing value column filter on: recipes::all_predictors()
-      * Removing rows with NA values in: recipes::all_outcomes()
-      * Removing rows with NA values in: tidyselect::any_of(vars_imp_ignore)
-      * Log transformation on: recipes::all_numeric_predictors(), ...
-      * K-nearest neighbor imputation for: recipes::all_predictors()
-      * Median imputation for: recipes::all_numeric_predictors()
-      * Mode imputation for: recipes::all_nominal_predictors()
-      * Zero variance filter on: recipes::all_predictors()
-      * Sparse, unbalanced variable filter on: recipes::all_predictors()
-      * Correlation filter on: recipes::all_numeric_predictors()
-      * Collapsing factor levels for: recipes::all_nominal_predictors()
-    Output
-      
-      $recipe$prep
-    Message
-      
-      -- Recipe ----------------------------------------------------------------------
-      
-      -- Inputs 
-      Number of variables by role
-      outcome:    2
-      predictor: 16
-      ID:         1
-      
-      -- Training information 
-      Training data contained 215 data points and 212 incomplete rows.
-      
-      -- Operations 
-      * Variable mutation for: .trt, AGEGR01, SEX, RACE | Trained
-      * Missing value column filter removed: LAB1, LAB2, LAB3 | Trained
-      * Removing rows with NA values in: .time .status | Trained
-      * Removing rows with NA values in: .trt | Trained
-      * Log transformation on: <none> | Trained
-      * K-nearest neighbor imputation for: .trt, AGEGR01, SEX, RACE, ... | Trained
-      * Median imputation for: AGE, BMI_adsl, BMI_advs, BPDIA, ... | Trained
-      * Mode imputation for: .trt, AGEGR01, SEX, RACE | Trained
-      * Zero variance filter removed: cardiac_arrhythmias | Trained
-      * Sparse, unbalanced variable filter removed: <none> | Trained
-      * Correlation filter on: BMI_adsl | Trained
-      * Collapsing factor levels for: <none> | Trained
-    Output
-      
       $recipe$params
       $recipe$params$thres_log
       $recipe$params$thres_log$value
@@ -29568,7 +30319,7 @@
       [1] "LAB1" "LAB2" "LAB3"
       
       $removed$cols$zv
-      [1] "cardiac_arrhythmias"
+      NULL
       
       $removed$cols$nzv
       NULL
@@ -29627,9 +30378,6 @@
       $input$args$thres_log
       [1] 2
       
-      $input$args$thres_count
-      [1] 10
-      
       $input$args$thres_corr
       [1] 0.9
       
@@ -29651,9 +30399,6 @@
       $input$args$vars_fct_expl_na
       NULL
       
-      $input$args$vars_ordinalscore
-      NULL
-      
       $input$args$vars_keep_corr
       NULL
       
@@ -29665,6 +30410,9 @@
       
       $input$args$log_base
       [1] 2.718282
+      
+      $input$args$corr_method
+      [1] "spearman"
       
       $input$args$outlier_remove
       [1] FALSE

@@ -1,6 +1,16 @@
 # martini (development version)
 
-## major changes
+## breaking changes
+
+
+* default for id column changed to USUBJID according to ADaM implementation guide
+* `build(join = )` default changed from `dplyr::inner_join()` to
+`dplyr::full_join()`, which is equivalent to "adsl" (if included) according
+to CDISC standards
+* default for correlation method for  `prepare_ml()`s `prep_step_corr` is now
+`spearman` instead of `pearson` in consistency with our major use case with random forests.
+Can be controlled via `prepare_ml(corr_method)`.
+
 
 * the prepare_ml() output object structure has changed
   * similar to the data that is provided in its raw form as well as prepped and 
@@ -27,21 +37,33 @@
   and does not change results.
 * argument `prep_recipe` is deprecated in favor of `custom_recipe` for consistency
   
-* the output of prepare_ml() now comes with its own class `martini_ml` 
-and corresponding print method
-  
 * example data sets in the package are updated according to new output structure 
  described above
  
-* the feature matrix check functionality has been extended. 
-[check_freq()] is now part of a new function [check_feature()] that can e.g.
-also check for outliers in numeric variables. 
-It it run by default in [prepare_ml()], but recommended to run prior to calling 
-[prepare_ml()].
-
 * `vars_count` deprecated in favor of `vars_no_trafo`: count variables are no
 longer guessed and automatically excluded from transformation, but need
 to be specified by the user. 
+* `vars_ordinalscore` deprecated.
+
+
+## major changes
+
+* the output of prepare_ml() now comes with its own class `martini_ml` 
+and corresponding print method
+  
+* the feature matrix check functionality has been extended. 
+[check_freq()] is now part of a new function [check_feature()] that can e.g.
+also check for outliers in numeric variables. 
+It is run by default in [prepare_ml()], but recommended to run prior to calling 
+[prepare_ml()].
+
+
+## minor changes
+
+* [adam_spec()]'s option to include data sets in ADaM format that are not 
+part of the limited internal library has been extended to data sets 
+following `occds` data structure: `adam_spec(add_occds = ..., add_bds = ...)`.
+
 
 
 

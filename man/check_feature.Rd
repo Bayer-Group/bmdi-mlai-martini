@@ -10,26 +10,31 @@ check_feature(
   check_other = TRUE,
   check_missing = TRUE,
   check_count = TRUE,
+  check_nzv = TRUE,
   quiet = FALSE,
   thres_count = 30,
   thres_low_freq = NULL,
   thres_missing = NULL,
+  thres_nzv_freq = NULL,
+  thres_nzv_unique = NULL,
   ...
 )
 }
 \arguments{
 \item{x}{feature matrix to check, such as the output of \code{\link[=build]{build()}}.}
 
-\item{check_low_freq, check_other, check_missing, check_count}{logicals to control which checks to include. All default to TRUE.}
+\item{check_low_freq, check_other, check_missing, check_count, check_nzv}{logicals to control which checks to include. All default to TRUE.}
 
 \item{quiet}{logical controlling whether any informative messages are
 printed to the console. Defaults to FALSE.}
 
-\item{thres_count}{\code{\link[=check_count]{check_count()}}}
+\item{thres_count}{passed to  \code{\link[=check_count]{check_count()}}}
 
 \item{thres_low_freq}{passed to \code{\link[=check_freq]{check_freq()}}}
 
 \item{thres_missing}{passed to \code{\link[=check_non_missing]{check_non_missing()}}}
+
+\item{thres_nzv_freq, thres_nzv_unique}{passed to \code{\link[=check_nzv]{check_nzv()}}}
 
 \item{...}{arguments to be passed to other methods}
 }
@@ -40,6 +45,6 @@ character of length 0 for empty sets.
 NULL if not tested at all.
 }
 \description{
-Running \code{check_feature()} is by default run in \code{\link[=prepare_ml]{prepare_ml()}} on the
+\code{check_feature()} is by default run in \code{\link[=prepare_ml]{prepare_ml()}} on the
 input \code{feature} to notify the user on sources of potential issues.
 }

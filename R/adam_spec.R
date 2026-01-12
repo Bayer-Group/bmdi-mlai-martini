@@ -20,7 +20,8 @@
 #' the output. Defaults to TRUE.
 #' @param id,trt id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()} 
 #' for details).
-#' @param pre_study boolean. Include only pre-study events from occurrence data sets 
+#' @param pre_study `r lifecycle::badge("deprecated")`. boolean.
+#' Include only pre-study events from occurrence data sets 
 #' (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.
 #' @param file_ext only rds and sas7bdat data sets are allowed (e.g. \code{file_ext = 'rds'}). User may select
 #' only sas7bdat, only rds or set a priorization rule (\code{file_ext = c('rds', 'sas7bdat')}, see Details).
@@ -54,12 +55,17 @@
 #' Please refer to the documentations of the `adam_spec_*()` functions for full details.
 #'
 #' @return  
-#' \code{adam_spec()} returns named list of specifications that can be passed to the \code{\link{build}()} function. 
-#' Each element contains the specification for a single data set and is named with the domain abbreviation (e.g. adsl, adqskccq).
-#' The list can be manually adjusted if required, e.g. adding further specifications or altering existing ones. See the documentation
+#' \code{adam_spec()} returns named list of specifications that can be
+#'  passed to the \code{\link{build}()} function. 
+#' Each element contains the specification for a single data set and 
+#' is named with the domain abbreviation (e.g. adsl, adlb).
+#' The list can be manually adjusted if required,
+#' e.g. adding further specifications or altering existing ones. 
+#' See the documentation
 #' of the `adam_spec_*()` for a detailed description of the output object.
 #' 
-#' @seealso \code{\link{adam_spec_adsl}()}, \code{\link{adam_spec_bds}()},  \code{\link{adam_spec_occds}()}
+#' @seealso \code{\link{adam_spec_adsl}()}, 
+#' \code{\link{adam_spec_bds}()},  \code{\link{adam_spec_occds}()}
 #'
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
@@ -71,21 +77,33 @@ adam_spec <- function(
   filter      = NULL,
   keep        = NULL,
   drop        = NULL,
-  pre_study   = FALSE,
+  pre_study   = lifecycle::deprecated(),
   attach_data = TRUE,
-  id          = "SUBJID", 
-  #TODO switch default to USUBJID
-  # ADaMIG Within a given study, USUBJID is the key variable that links the ADSL to other datasets (both SDTM and ADaM).
+  id          = "USUBJID", 
   trt         = "TRT01A",
   add_bds     = NULL,
   add_occds   = NULL,
-  file_ext    = c('rds', 'sas7bdat'),
+  file_ext    = c("rds", "sas7bdat"),
   fct_levels  = NULL,
   catalog_file = NULL
 ){
   
-  file_ext <- rlang::arg_match(file_ext, c('rds', 'sas7bdat'), multiple = TRUE)
+  file_ext <- rlang::arg_match(file_ext, c("rds", "sas7bdat"), multiple = TRUE)
   stopifnot(length(file_ext) > 0)
+  
+  # deprecation ####
+  if (lifecycle::is_present(pre_study)) {
+    
+    # Signal the deprecation to the user
+    lifecycle::deprecate_warn(
+      "0.6.5", 
+      "adam_spec(pre_study = )", 
+      "adam_spec(filter = )"
+    )
+    
+    # Deal with the deprecated argument for compatibility
+    pre_study <- FALSE
+  }
   
   # identify type for selected files in path (adsl/bds/occds) #####
   file_info <- adam_domain_type(
@@ -103,9 +121,9 @@ adam_spec <- function(
   if (!is.null(add_bds) && any(!add_bds %in% file_info$domain)) {
     
     usethis::ui_oops(paste0(
-      '\nThe following domain(s) specified in ', '`add_bds`',
-      ' were not found in ', '`path`', ':\n  ',
-      paste(setdiff(add_bds, file_info$domain), collapse = ', ') %>% 
+      "\nThe following domain(s) specified in ", "`add_bds`",
+      " were not found in ", "`path`", ":\n  ",
+      paste(setdiff(add_bds, file_info$domain), collapse = ", ") %>% 
         cli::style_bold() %>%  
         cli::col_blue()
     ))
@@ -114,9 +132,9 @@ adam_spec <- function(
   if (!is.null(add_occds) && any(!add_occds %in% file_info$domain)) {
     
     usethis::ui_oops(paste0(
-      '\nThe following domain(s) specified in ', '`add_occds`',
-      ' were not found in ', '`path`', ':\n  ',
-      paste(setdiff(add_occds, file_info$domain), collapse = ', ') %>% 
+      "\nThe following domain(s) specified in ", "`add_occds`",
+      " were not found in ", "`path`", ":\n  ",
+      paste(setdiff(add_occds, file_info$domain), collapse = ", ") %>% 
         cli::style_bold() %>%  
         cli::col_blue()
     ))
@@ -177,8 +195,8 @@ adam_spec <- function(
       append(
         purrr::map(files_occds, ~ adam_spec_occds(
           file = .x, id = id,
-          filter = filter, attach_data = attach_data, 
-          pre_study = pre_study
+          filter = filter, attach_data = attach_data
+          #, pre_study = pre_study
         ))
       )
     
@@ -190,11 +208,11 @@ adam_spec <- function(
   # output ####
   
   # NOTE attribute will not be explicitly created, if filter is NULL
-  attr(spec, 'filter') <- filter
+  attr(spec, "filter") <- filter
   
   purrr::walk(names(spec), ~{
-    attr(spec[[.x]], 'filter_ok')    <<- TRUE
-    attr(spec[[.x]], 'data_info_ok') <<- TRUE
+    attr(spec[[.x]], "filter_ok")    <<- TRUE
+    attr(spec[[.x]], "data_info_ok") <<- TRUE
   })
   
   class(spec) <- c("martini_spec", class(spec))

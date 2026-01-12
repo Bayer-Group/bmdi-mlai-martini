@@ -2,7 +2,12 @@ test_that("build() correctly passes parameters to build_bds()", {
   
   path_test <- test_path("sas")
   
-  spec_dupl <- adam_spec(path_test, keep = c('adsl', 'adlb'), attach_data = TRUE)
+  spec_dupl <- adam_spec(
+    path_test,
+    keep = c('adsl', 'adlb'), 
+    attach_data = TRUE,
+    id = "SUBJID"
+    )
   
   # introduce duplicates (select by Date):
   # spec_dupl$adlb$data values are all integers
@@ -23,7 +28,10 @@ test_that("build() correctly passes parameters to build_bds()", {
   
   data_build_bds <- build_bds(spec_arrange$adlb)$data
   
-  data_build <- build(spec_arrange)
+  data_build <- build(
+    spec_arrange, 
+    join = dplyr::inner_join
+  )
   
   expect_equal(
     data_build %>% dplyr::select(tidyselect::all_of(data_build_bds %>% names())),
@@ -43,7 +51,10 @@ test_that("build() correctly passes parameters to build_bds()", {
   
   data_build_bds <- build_bds(spec_arrange$adlb)$data
   
-  data_build <- build(spec_arrange)
+  data_build <- build(
+    spec_arrange, 
+    join = dplyr::inner_join
+  )
   
   expect_equal(
     data_build %>% dplyr::select(tidyselect::all_of(data_build_bds %>% names())),
@@ -61,7 +72,8 @@ test_that("build() correctly builds the dictionary", {
     adam_spec(
       keep        = c('adsl', 'advs'),
       filter      = c("AVISIT == 'Baseline'"),
-      attach_data = TRUE
+      attach_data = TRUE,
+      id          = "SUBJID"
     ) %>% 
     build()
   
@@ -93,7 +105,8 @@ test_that("build snapshots", {
         "ADSNAME == 'ADLB' & AVISIT == 'Visit 1'",
         "ABLFL == 'Y'"
       ),
-      attach_data = TRUE
+      attach_data = TRUE,
+      id          = "SUBJID"
     ) %>% 
     build(join = "adsl")
   

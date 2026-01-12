@@ -18,7 +18,7 @@
 #' @param use A character string for the `use` argument to the [stats::cor()]
 #'   function.
 #' @param method A character string for the `method` argument to the
-#'   [stats::cor()] function.
+#'   [stats::cor()] function, defaults to `spearman`
 #' @param removals A character string that contains the names of columns that
 #'   should be removed. These values are not determined until [prep()] is
 #'   called.
@@ -121,7 +121,7 @@ step_corr_keep <- function(
   trained = FALSE,
   threshold = 0.9,
   use = "pairwise.complete.obs",
-  method = "pearson",
+  method = "spearman",
   keep = NULL,
   removals = NULL,
   high_corr = NULL,
@@ -186,7 +186,7 @@ corr_keep_filter <-
     wts = NULL,
     cutoff = .90,
     use = "pairwise.complete.obs",
-    method = "pearson",
+    method = "spearman",
     keep = NULL
   ) {
     x <- recipes::correlations(x, wts = wts, use = use, method = method)
@@ -271,7 +271,7 @@ prep.step_corr_keep <- function(x, recipe, training, info = NULL, ...) {
   )
   #recipes:::check_number_decimal(x$threshold, min = 0, max = 1, arg = "threshold")
   do.call(
-    utils::getFromNamespace("check_number_decimal", "recipes"),
+    utils::getFromNamespace("check_number_decimal", "rlang"),
     list(x = x$threshold, min = 0, max = 1, arg = "threshold")
   )
   use <- x$use
@@ -329,7 +329,16 @@ prep.step_corr_keep <- function(x, recipe, training, info = NULL, ...) {
 
 #' @exportS3Method 
 bake.step_corr_keep <- function(object, new_data, ...) {
-  new_data <- recipes::recipes_remove_cols(new_data, object)
+  already_in_recipes <- exists(
+    "recipes_remove_cols",
+    where = asNamespace("recipes"), 
+    mode = "function"
+  )
+  new_data <- if(already_in_recipes){
+    recipes::recipes_remove_cols(new_data, object)
+  }else{ # fallback: copy in martini
+    martini_recipes_remove_cols(new_data, object)
+  }
   new_data
 }
 
@@ -375,4 +384,55 @@ tunable.step_corr_keep <- function(x, ...) {
     component = "step_corr_keep",
     component_id = x$id
   )
+}
+
+
+#' Removes original columns if options apply
+#'
+#' This helper function should be used whenever the argument
+#' `keep_original_cols` is used in a function.
+#'
+#' @param new_data A tibble.
+#' @param object A step object.
+#' @param col_names A character vector, denoting columns to remove.
+#' @return new_data with `col_names` removed if 
+#' `get_keep_original_cols(object)== TRUE` or `object$preserve == TRUE`.
+#'
+#' @author this function is basically a copy of recipes::remove_original_cols()
+martini_remove_original_cols <- function(new_data, object, col_names) {
+  keep_original_cols <- recipes::get_keep_original_cols(object)
+  if (any(isFALSE(object$preserve), !keep_original_cols)) {
+    new_data <- martini_recipes_remove_cols(new_data, object, col_names)
+  }
+  new_data
+}
+
+##' Removes columns if options apply
+#'
+#' This helper function removes columns based on character vectors.
+#'
+#' @param new_data A tibble.
+#' @param object A step object.
+#' @param col_names A character vector, denoting columns to remove. Will
+#'   overwrite `object$removals` if set.
+#'
+#' @return `new_data` with column names removed if specified by `col_names` or
+#'   `object$removals`.
+#' @author this function is basically a copy of recipes::recipes_remove_cols()
+#'
+#' @export
+martini_recipes_remove_cols <- function(new_data, object, col_names = character()) {
+  if (length(col_names) > 0) {
+    removals <- col_names
+  } else if (length(object$removals) > 0) {
+    removals <- object$removals
+  } else {
+    return(new_data)
+  }
+  
+  if (length(removals) > 0) {
+    # drop = FALSE in case someone uses this on a data.frame
+    new_data <- new_data[, !(colnames(new_data) %in% removals), drop = FALSE]
+  }
+  new_data
 }

@@ -2,7 +2,7 @@ test_that("adam_spec() works", {
   # adam_spec() works ####
   ads_path <- test_path('sas/')
   
-  ads_spec     <- adam_spec(ads_path, attach_data = TRUE)
+  ads_spec     <- adam_spec(ads_path, attach_data = TRUE, id = "SUBJID")
   
   # check class to enable print method
   expect_equal(
@@ -26,9 +26,9 @@ test_that("adam_spec add_bds / add_occds", {
   
   add_name <- "adlb_miss"
   # create prep specification
-  ads_spec         <- adam_spec(ads_path)
+  ads_spec         <- adam_spec(ads_path, id = "SUBJID")
   # add_bds
-  ads_spec_add_bds <- adam_spec(ads_path, add_bds = add_name)
+  ads_spec_add_bds <- adam_spec(ads_path, add_bds = add_name, id = "SUBJID")
   
   expect_setequal(
     names(ads_spec) %>% c(add_name),
@@ -38,7 +38,7 @@ test_that("adam_spec add_bds / add_occds", {
   # add_occds
   expect_warning(
     # mandatory column 'label' cannot be guessed
-    ads_spec_add_occds <- adam_spec(ads_path, add_occds = add_name)
+    ads_spec_add_occds <- adam_spec(ads_path, add_occds = add_name, id = "SUBJID")
   )
   
   expect_setequal(
@@ -51,7 +51,8 @@ test_that("adam_spec add_bds / add_occds", {
     ads_spec_error <- adam_spec(
       ads_path, 
       add_occds = add_name, 
-      add_bds   = add_name
+      add_bds   = add_name,
+      id = "SUBJID"
     ), 
     "specified to be added as both bds and occds"
   )
@@ -61,8 +62,9 @@ test_that("adam_spec add_bds / add_occds", {
   ads_spec  <- adam_spec(
     ads_path, 
     keep = c("adsl", "adlb"),
-    add_occds = add_name
-    )
+    add_occds = add_name,
+    id = "SUBJID"
+  )
   
   
 })
@@ -71,14 +73,14 @@ test_that("adam_spec keep/drop hierarchy ", {
   
   ads_path <- test_path('sas/')
   
-  domains <- adam_spec(ads_path) %>% names()
+  domains <- adam_spec(ads_path, id = "SUBJID") %>% names()
   
   # If both \code{keep} and \code{drop} are specified, only \code{keep} will be used. 
   
   domains_keep <- domains[1:2]
   domains_drop <- domains_keep[1]
   
-  ads_spec <- adam_spec(ads_path, keep = domains_keep, drop = domains_drop)
+  ads_spec <- adam_spec(ads_path, keep = domains_keep, drop = domains_drop, id = "SUBJID")
 
   expect_setequal(
     names(ads_spec),
@@ -94,14 +96,14 @@ test_that("adam_spec snapshots", {
   withr::local_options(width = 80)
   
   ads_path <- test_path('sas/')
-  ads_spec <- adam_spec(ads_path)
+  ads_spec <- adam_spec(ads_path, id = "SUBJID")
   
   # console output (print method)
   expect_snapshot(
     ads_spec
   )
   
-  ads_spec_mod <- adam_spec(ads_path, attach_data = FALSE)
+  ads_spec_mod <- adam_spec(ads_path, attach_data = FALSE, id = "SUBJID")
   # remove class to avoid print method
   class(ads_spec_mod) <- NULL
   # remove file path information (will be a different tmp file path each time the test is run)
@@ -126,17 +128,17 @@ test_that("adam_spec rds/sas selection works", {
   ads_path <- test_path('sas/file_ext_test')
   
   # create prep specification
-  spec_sas_only   <- adam_spec(ads_path, file_ext = 'sas7bdat', attach_data = FALSE)
-  spec_rds_only   <- adam_spec(ads_path, file_ext = 'rds', attach_data = FALSE)
+  spec_sas_only   <- adam_spec(ads_path, file_ext = 'sas7bdat', attach_data = FALSE, id = "SUBJID")
+  spec_rds_only   <- adam_spec(ads_path, file_ext = 'rds',      attach_data = FALSE, id = "SUBJID")
   
   expect_true(spec_rds_only %>% purrr::map_chr(~{.x$file %>% purrr::map_chr(tools::file_ext)}) %>% {. == 'rds'}      %>% all())
   expect_true(spec_sas_only %>% purrr::map_chr(~{.x$file %>% purrr::map_chr(tools::file_ext)}) %>% {. == 'sas7bdat'} %>% all())
   
   # selection does not affect resulting spec object
-  spec_rds_sas     <- adam_spec(ads_path, file_ext = c('rds', 'sas7bdat'))
+  spec_rds_sas     <- adam_spec(ads_path, file_ext = c('rds', 'sas7bdat'), id = "SUBJID")
   spec_rds_sas %>% purrr::map_chr('file') %>% purrr::map_chr(tools::file_ext)
   
-  spec_sas_rds     <- adam_spec(ads_path, file_ext = c('sas7bdat', 'rds'))
+  spec_sas_rds     <- adam_spec(ads_path, file_ext = c('sas7bdat', 'rds'), id = "SUBJID")
   
   purrr::map_dfc( list(sas_rds = spec_sas_rds, rds_sas = spec_rds_sas), ~{
     .x %>% purrr::map_chr('file') %>% basename()

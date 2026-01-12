@@ -1,5 +1,5 @@
 test_that("check_adjust() works", {
- # check_adjust() protected ####
+# check_adjust() protected ####
   # md5 slot is protected, check message
   expect_message(
     check_adjust(
@@ -97,8 +97,6 @@ test_that("adjust_spec works", {
   # TODO WS one expectation pair may be discarded, both using the same code in adjust_spec
   # TODO WS testing our function or just modify_list, append and if/else?
 
-  
-  
   # protected slot ####
   # return original object, when trying to change protected slot
   expect_equal(
@@ -336,7 +334,7 @@ test_that("adjust_adsl_factors() works", {
     "martini_spec"
   )
   
-  # for now: skip tests on spec class, entry name exists, factor_levels is named list
+  # TODO for now: skip tests on spec class, entry name exists, factor_levels is named list
   
   # column does not exist in data ####
   # message and no modification 

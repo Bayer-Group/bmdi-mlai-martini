@@ -11,16 +11,19 @@ adjust_filter(spec, filter, append = TRUE)
 
 \item{filter}{character vector of filter conditions}
 
-\item{append}{logical, if TRUE, append filter to existing filter(s), else replace}
+\item{append}{logical, if TRUE (default), append \code{filter}
+to existing filter(s), else replace}
 }
 \value{
 A modified version of \code{spec} to be used as input to \code{build()}
 }
 \description{
 Helper function to make adjustments to the filter of the spec object built by
-\code{adam_spec()} to be used with the pipe.
+\code{adam_spec()} to be used with the pipe, keeping consistency with other
+spec entries (\code{dict} and \code{data_info}) and attributes used by \code{build()}.
 }
 \details{
-The function checks if the filter can be applied to the data attached to the spec.
-If the data is not attached, the filter will be added to the spec as is.
+The function checks if \code{filter} can be applied to
+the data attached to the spec.
+If the data is not attached, the \code{filter} will be added to the spec as-is.
 }

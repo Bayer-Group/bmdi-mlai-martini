@@ -63,7 +63,7 @@
 adam_spec_bds <- function(
     file        = NULL,
     data        = NULL,
-    id          = 'SUBJID', 
+    id          = "USUBJID", 
     param       = NULL,
     label       = NULL,
     unit        = NULL,
@@ -140,7 +140,7 @@ if(FALSE){
   adam_spec_bds2 <- function(
     file        = NULL,
     data        = NULL,
-    id          = 'SUBJID', 
+    id          = "USUBJID", 
     param       = NULL,
     label       = NULL,
     unit        = NULL,

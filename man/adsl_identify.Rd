@@ -60,7 +60,7 @@ defaults all possible categories:
 \code{dttm}, \code{constant}, \code{combined}, \code{flag}, \code{factor}, \code{redundant}}
 
 \item{id, trt}{user-selected column names in \code{data} for ID and treatment column,
-defaulting to \code{SUBJID} and \code{TRT01A}, resp.}
+defaulting to \code{USUBJID} and \code{TRT01A}, resp.}
 
 \item{black_list}{character vector of columns that should be dropped for
 most analyses, see details.}

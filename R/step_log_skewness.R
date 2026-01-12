@@ -130,12 +130,12 @@ prep.step_log_skewness <- function(x, training, info = NULL, ...) {
   )
   #recipes:::check_number_decimal(x$offset, arg = "offset")
   do.call(
-    utils::getFromNamespace("check_number_decimal", "recipes"),
+    utils::getFromNamespace("check_number_decimal", "rlang"),
     list(x = x$offset, arg = "offset")
   )
   #recipes:::check_number_decimal(x$base, arg = "base", min = 0)
   do.call(
-    utils::getFromNamespace("check_number_decimal", "recipes"),
+    utils::getFromNamespace("check_number_decimal", "rlang"),
     list(x = x$base, arg = "base", min = 0)
   )
   
@@ -339,11 +339,11 @@ prep.step_log_skewness_undo <- function(x, training, info = NULL, ...) {
   
   recipes::check_type(training[, col_names], types = c("double", "integer"))
   do.call(
-    utils::getFromNamespace("check_number_decimal", "recipes"),
+    utils::getFromNamespace("check_number_decimal", "rlang"),
     list(x = x$offset, arg = "offset")
   )
   do.call(
-    utils::getFromNamespace("check_number_decimal", "recipes"),
+    utils::getFromNamespace("check_number_decimal", "rlang"),
     list(x = x$base, arg = "base", min = 0)
   )
   
