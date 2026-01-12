@@ -64,7 +64,7 @@ test_that("adam_spec add_bds / add_occds", {
     keep = c("adsl", "adlb"),
     add_occds = add_name,
     id = "SUBJID"
-    )
+  )
   
   
 })

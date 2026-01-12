@@ -287,7 +287,6 @@ prepare_ml <- function(
   prep_recipe       = lifecycle::deprecated(),
   vars_ordinalscore = lifecycle::deprecated(),
   thres_count       = lifecycle::deprecated()
-  
 ) {
   
   # deprecated

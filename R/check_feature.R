@@ -1,8 +1,7 @@
 #' check feature matrix
 #' 
 #' `check_feature()` is by default run in [prepare_ml()] on the 
-#' input `feature` to notify the user on sources of potential issues. 
-#' 
+#' input `feature` to notify the user on sources of potential issues.  
 #'
 #' @param x feature matrix to check, such as the output of [build()].
 #' @param check_low_freq,check_other,check_missing,check_count,check_nzv 
@@ -60,7 +59,9 @@ if (check_other) {
 
 # proportion NA ####
 if (check_missing) { 
-  out$missing <- check_non_missing(x, thres = thres_missing, quiet = quiet_checks)
+  out$missing <- check_non_missing(
+    x, thres = thres_missing, quiet = quiet_checks
+  )
 } else {
   out$missing <- list(NULL)
 }
@@ -78,7 +79,7 @@ if (check_nzv) {
 }
 
 
-# # counts ####
+# counts ####
 if (check_count) {
   out$count <- check_count(x, thres = thres_count, quiet = quiet_checks)
 } else {
@@ -466,4 +467,5 @@ check_nzv <- function(
   )
   
   invisible(out)
+
 }
