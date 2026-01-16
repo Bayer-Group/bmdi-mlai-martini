@@ -841,9 +841,10 @@ check_adjust_adsl_select <- function(
   
   if (!is.null(spec[[entry]][["data"]])) {
     
+    names_data <- colnames(spec[[entry]][["data"]]) 
     cols_not_in_data <- setdiff(
       unique(c(add, drop, select)),
-      colnames(spec[[entry]][["data"]])
+      names_data
     )
     
     if (length(cols_not_in_data) > 0) {
@@ -862,10 +863,10 @@ check_adjust_adsl_select <- function(
         "*" = "Please check your adjustment instructions."
       ))
       
-      names_data <- colnames(spec[[entry]][["data"]]) 
-      select <- setdiff(select, names_data) %>% length0_to_null()
-      add    <- setdiff(add,    names_data) %>% length0_to_null()
-      drop   <- setdiff(drop,   names_data) %>% length0_to_null()
+      
+      select <- intersect(select, names_data) %>% length0_to_null()
+      add    <- intersect(add,    names_data) %>% length0_to_null()
+      drop   <- intersect(drop,   names_data) %>% length0_to_null()
       
     }
     

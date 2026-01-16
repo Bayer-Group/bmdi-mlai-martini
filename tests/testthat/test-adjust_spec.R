@@ -286,6 +286,9 @@ test_that("adjust_adsl_select() works", {
       drop = NULL
     )
   )
+  
+  # TODO add test for adjust_adsl_select where select contains column names NOT contained in data
+  
 
 })
 
