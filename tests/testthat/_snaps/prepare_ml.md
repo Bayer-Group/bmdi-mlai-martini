@@ -1,8 +1,8 @@
 # prepare_ml(check_feature) works
 
     Code
-      prepare_ml(feature = martini_feat, outcome = martini_outc_class, check_feature = FALSE,
-        train_prop = 3 / 4)
+      withr::with_seed(1606, prepare_ml(feature = martini_feat, outcome = martini_outc_class,
+        check_feature = FALSE, train_prop = 3 / 4))
     Message
       # Object of class 'martini_ml' with classification outcome .out
       
@@ -7758,7 +7758,7 @@
           ".trt": "TRT",
           "AGEGR01": "at_least_75",
           "SEX": "F",
-          "RACE": "BLACK",
+          "RACE": "WHITE",
           "AGE": 83,
           "BMI_advs": 36.6,
           "BPDIA": 75,
@@ -29267,7 +29267,7 @@
           ".trt": "TRT",
           "AGEGR01": "under_60",
           "SEX": "M",
-          "RACE": "ASIAN",
+          "RACE": "WHITE",
           "AGE": 51,
           "BMI_advs": 27.2,
           "BPDIA": 69,

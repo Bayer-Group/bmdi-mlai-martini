@@ -300,10 +300,13 @@ test_that("`strings_as_factors = TRUE` in `recipe` works as expected", {
   martini_outc_idchar <- martini_outc_class %>% 
     dplyr::mutate(.id = stringr::str_pad(.id, width = 5, pad = "0"))
   
-  ml_class <- prepare_ml(
-    feature = martini_feat_char,
-    outcome = martini_outc_idchar, 
-    train_prop = 1
+  ml_class <- withr::with_seed(
+    1606,
+    prepare_ml(
+      feature = martini_feat_char,
+      outcome = martini_outc_idchar, 
+      train_prop = 1
+    )
   )
   
   # .id should be the only column of type character
@@ -330,15 +333,18 @@ test_that("repeated measurement implementation works", {
     dplyr::rename(tidyselect::all_of(c(".id" = "USUBJID"))) %>% 
     dplyr::mutate(AVISIT = forcats::fct_reorder(AVISIT, AVISITN))
   
-  ml_regr <- prepare_ml(
-    feature             = ads_build,
-    outcome             = outcome_regr,
-    outcome_name        = c(".rmtime" = "AVISIT", ".out" = "AVAL"),
-    strata_trt          = TRUE,
-    prep_step_dummy     = FALSE,
-    prep_step_normalize = FALSE,
-    vars_imp_ignore     = ".trt",
-    seed                = 1825
+  ml_regr <- withr::with_seed(
+    1606,
+    prepare_ml(
+      feature             = ads_build,
+      outcome             = outcome_regr,
+      outcome_name        = c(".rmtime" = "AVISIT", ".out" = "AVAL"),
+      strata_trt          = TRUE,
+      prep_step_dummy     = FALSE,
+      prep_step_normalize = FALSE,
+      vars_imp_ignore     = ".trt",
+      seed                = 1825
+    )
   )
   
   id_training <- unique(ml_regr$data$raw$train$.id)
@@ -363,14 +369,18 @@ test_that("prepare_ml(check_feature) works", {
   )
   
   expect_snapshot(
-    prepare_ml(
-      feature = martini_feat,
-      outcome = martini_outc_class, 
-      check_feature = FALSE,
-      train_prop = 3/4
+    withr::with_seed(
+      1606, 
+      prepare_ml(
+        feature = martini_feat,
+        outcome = martini_outc_class, 
+        check_feature = FALSE,
+        train_prop = 3/4
+      )
     ),
     transform = hide_cli_id
   )
+  
   
 })
 
@@ -494,17 +504,20 @@ test_that("prepare_ml() snapshots content/print", {
   
   # classification ####
   
-  ads_ml_class <- prepare_ml(
-    feature             = ads_build,
-    outcome             = martini_outc_class,
-    outcome_name        = ".out",
-    level_order         = c("event", "no event"),
-    strata_trt          = TRUE, 
-    prep_step_dummy     = FALSE,
-    prep_step_normalize = FALSE,
-    vars_imp_ignore     = ".trt",
-    seed                = 2231,
-    train_prop          = 3/4
+  ads_ml_class <- withr::with_seed(
+    1606, 
+    prepare_ml(
+      feature             = ads_build,
+      outcome             = martini_outc_class,
+      outcome_name        = ".out",
+      level_order         = c("event", "no event"),
+      strata_trt          = TRUE, 
+      prep_step_dummy     = FALSE,
+      prep_step_normalize = FALSE,
+      vars_imp_ignore     = ".trt",
+      seed                = 2231,
+      train_prop          = 3/4
+    )
   )
   
   # remove file path information in console output (will be a different tmp file path each time the test is run)

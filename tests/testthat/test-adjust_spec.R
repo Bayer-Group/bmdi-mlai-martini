@@ -250,7 +250,7 @@ test_that("adjust_adsl_select() works", {
     expect_message(
       adjust_adsl_select(
         spec = martini_spec,
-        select = c("SUBJID", "TRT01A", "SEX"),
+        select = c("USUBJID", "TRT01A", "SEX"),
         add = "RANDDT",
         drop = "SEX"
       ),
