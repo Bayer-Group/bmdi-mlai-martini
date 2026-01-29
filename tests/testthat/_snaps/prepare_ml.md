@@ -9798,7 +9798,7 @@
       [1] NA
       
       $recipe$params$vars_keep_corr$text
-      [1] "No variables were excluded specifically due to high correlation with the variables in 'vars_keep_corr'"
+      [1] "Variable selection in recipes::step_corr() was adjusted according to 'vars_keep_corr'"
       
       
       $recipe$params$thres_lump
@@ -19737,7 +19737,7 @@
       [1] NA
       
       $recipe$params$vars_keep_corr$text
-      [1] "No variables were excluded specifically due to high correlation with the variables in 'vars_keep_corr'"
+      [1] "Variable selection in recipes::step_corr() was adjusted according to 'vars_keep_corr'"
       
       
       $recipe$params$thres_lump
@@ -19769,11 +19769,13 @@
       [1] "Highly sparse and unbalanced variables were dropped using recipes::step_nzv(freq_cut = 19, unique_cut = 10)."
       
       
-      $recipe$params$value
+      $recipe$params$outlier_removal
+      $recipe$params$outlier_removal$value
       [1] NA
       
-      $recipe$params$text
+      $recipe$params$outlier_removal$text
       [1] NA
+      
       
       
       
@@ -30268,7 +30270,7 @@
       [1] NA
       
       $recipe$params$vars_keep_corr$text
-      [1] "No variables were excluded specifically due to high correlation with the variables in 'vars_keep_corr'"
+      [1] "Variable selection in recipes::step_corr() was adjusted according to 'vars_keep_corr'"
       
       
       $recipe$params$thres_lump

@@ -596,12 +596,14 @@ prepare_ml <- function(
     # ... log trafo  ####
     thres_log  = list(
       value = ifelse(steps$prep_step_log, thres$thres_log, NA),
-      text  = ifelse(steps$prep_step_log,
-                     paste0("Variables were log transformed (base ", 
-                            ifelse(dplyr::near(log_base, exp(1)), "e", log_base),
-                            ") if e1071::skewness() > ",  thres$thres_log,
-                            ". Variables that are assumed to be count variables were excluded from the transformation (see thres_count for details)."),
-                     "No variables were log transformed.")
+      text  = ifelse(
+        steps$prep_step_log,
+        paste0("Variables were log transformed (base ", 
+               ifelse(dplyr::near(log_base, exp(1)), "e", log_base),
+               ") if e1071::skewness() > ",  thres$thres_log,
+               ". Variables that are assumed to be count variables were ", 
+               "excluded from the transformation (see thres_count for details)."),
+        "No variables were log transformed.")
     ),
     
     # ... no trafo (no normalization, no log trafo) ####
@@ -611,13 +613,15 @@ prepare_ml <- function(
           if (steps$prep_step_normalize || steps$prep_step_log) {
         paste0(cli::pluralize(
           "{vars$vars_no_trafo} {?was/were} excluded from ",
-          "{trafo_applied <- c(if(prep_step_log) 'log transformation', if(prep_step_normalize) 'normalization'); trafo_applied}",
+          "{trafo_applied <- c(if(prep_step_log) 'log transformation', ", 
+          "if(prep_step_normalize) 'normalization'); trafo_applied}",
           "."
         )
         )} else {
           paste0(cli::pluralize(
             "{vars$vars_no_trafo} {?was/were} not subject to ",
-            "log transformation or normalization (neither is part of data preparation)."
+            "log transformation or normalization ", 
+            "(neither is part of data preparation)."
             ))
         }
     } else NA_character_
@@ -627,16 +631,27 @@ prepare_ml <- function(
     # ... correlated variables ####
     thres_corr  = list(
       value = ifelse(steps$prep_step_corr, thres$thres_corr, NA),
-      text  = ifelse(steps$prep_step_corr,
-                     paste0("The applied cutoff for removal of variables due to high correlations was ",  thres$thres_corr, "."),
-                     "No variables were removed for reasons of high correlation.")
+      text  = ifelse(
+        steps$prep_step_corr,
+        paste0(
+          "The applied cutoff for removal of variables due to high ", 
+          "correlations was ", thres$thres_corr, "."),
+        "No variables were removed for reasons of high correlation.")
     ),  
     
     vars_keep_corr = list(
       value = vars$vars_keep_corr %||% NA,
-      text  = ifelse(steps$prep_step_corr && !is.null(vars$vars_exclude_corr),
-                     "Variable selection in recipes::step_corr() was adjusted according to 'vars_keep_corr'",
-                     "No variables were excluded specifically due to high correlation with the variables in 'vars_keep_corr'")
+      text  = ifelse(
+        steps$prep_step_corr && length(removed_columns$corr) > 0,
+        paste0(
+          "Variable selection in recipes::step_corr() ",
+          "was adjusted according to 'vars_keep_corr'"
+        ),
+        paste0(
+          "No variables were excluded specifically due to high correlation ", 
+          "with the variables in 'vars_keep_corr'"
+        )
+      )
     ),
     
     
@@ -674,18 +689,20 @@ prepare_ml <- function(
   if (outcome_mode == "regression") {
     prep_params <- append(
       prep_params, 
-      list(
-        value = ifelse(
-          outlier_remove,
-          unlist(outlier_ctrl), 
-          NA),
-        text  = ifelse(
-          outlier_remove,
-          paste0("Based on the outcome distribution, observations outside the interval ",
-                 "[q25 - ", outlier_ctrl$coef, "*iqr; ",  
-                 "q75 + ", outlier_ctrl$coef, "*iqr] were removed prior to data splitting and preprocessing."
-          ),
-          NA)
+      list( 
+        outlier_removal = list(
+          value = ifelse(
+            outlier_remove,
+            unlist(outlier_ctrl), 
+            NA),
+          text  = ifelse(
+            outlier_remove,
+            paste0("Based on the outcome distribution, observations outside the interval ",
+                   "[q25 - ", outlier_ctrl$coef, "*iqr; ",  
+                   "q75 + ",  outlier_ctrl$coef, "*iqr] were removed prior to data splitting and preprocessing."
+            ),
+            NA)
+        )
       )
     )
   } 

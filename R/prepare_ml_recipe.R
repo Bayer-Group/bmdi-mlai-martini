@@ -20,7 +20,8 @@
 #' * info on steps included in the recipe  
 #' * a list of relevant variables  
 #' * a list of thresholds used  
-#' * \code{high_corr} a tibble listing correlations above \code{thres_corr}. \code{NULL} if \code{step_list$prep_step_corr = FALSE}.  
+#' * \code{high_corr} a tibble listing correlations above \code{thres_corr}.
+#'  \code{NULL} if \code{step_list$prep_step_corr = FALSE}.  
 
 #' 
 #' @seealso \code{\link{prepare_ml}()}
