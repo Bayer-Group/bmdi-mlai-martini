@@ -355,8 +355,9 @@ check_count <- function(
   
   x_count <- x %>%
     dplyr::select(-tidyselect::any_of(".id")) %>%
+    janitor::remove_empty(which = "cols") %>% 
     dplyr::select(dplyr::where(is.numeric)) %>%
-    dplyr::mutate(dplyr::across(1:dplyr::last_col(), as.character))
+    dplyr::mutate(dplyr::across(dplyr::everything(), as.character))
   
   looks_like_count <- x_count %>%
     purrr::keep(~ {
@@ -418,10 +419,15 @@ check_nzv <- function(
     purrr::keep(isTRUE) %>% 
     names()
   
+  all_na <- x %>%  
+    purrr::map_lgl(~ {all(is.na(.x))}) %>% 
+    purrr::keep(isTRUE) %>% 
+    names()
+  
   nzv <- recipes::recipe(x) %>% 
     recipes::update_role(
       tidyselect::everything(), 
-      new_role = 'predictor'
+      new_role = "predictor"
     ) %>% 
     recipes::step_nzv(
       recipes::all_predictors(),
@@ -460,8 +466,12 @@ check_nzv <- function(
   }
   
   out <- list(
-    vars = tibble::lst(constant, nzv = setdiff(nzv, constant)),
-    finding = length(nzv) > 0,
+    vars = tibble::lst(
+      constant = setdiff(constant, all_na), 
+      all_na, 
+      nzv = setdiff(nzv, constant)
+    ),
+    finding = length(c(nzv, all_na)) > 0,
     threshold = c(unique = thres_unique, freq = thres_freq), 
     check = "check_nzv()"
   )
