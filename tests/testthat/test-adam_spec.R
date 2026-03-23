@@ -2,7 +2,7 @@ test_that("adam_spec() works", {
   # adam_spec() works ####
   ads_path <- test_path('sas/')
   
-  ads_spec     <- adam_spec(ads_path, attach_data = TRUE, id = "SUBJID")
+  ads_spec <- adam_spec(ads_path, attach_data = TRUE, id = "SUBJID")
   
   # check class to enable print method
   expect_equal(
@@ -66,6 +66,28 @@ test_that("adam_spec add_bds / add_occds", {
     id = "SUBJID"
   )
   
+  
+  # should be equivalent to keep adsl and adlb (+ add_name) or drop all except adsl and adlb (+ add_name)
+  # TODO finalize tests / check if still issue
+  # ads_spec_keep  <- adam_spec(
+  #   ads_path, 
+  #   keep = c("adsl", "adlb"),
+  #   add_bds = "adlb_miss",
+  #   id = "SUBJID"
+  # )
+  # #names(ads_spec_keep)
+  # 
+  # ads_spec_drop  <- adam_spec(
+  #   ads_path, 
+  #   drop = c("advs", "admh"),
+  #   add_bds = "adlb_miss",
+  #   id = "SUBJID"
+  # )  
+  # #names(ads_spec_drop)
+  # expect_identical(
+  #   ads_spec_keep,
+  #   ads_spec_drop
+  # )
   
 })
 
