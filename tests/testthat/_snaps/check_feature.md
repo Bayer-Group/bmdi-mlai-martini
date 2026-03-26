@@ -85,6 +85,9 @@
       $details$nzv$vars$constant
       character(0)
       
+      $details$nzv$vars$all_na
+      character(0)
+      
       $details$nzv$vars$nzv
       [1] "angina_pectoris"
       

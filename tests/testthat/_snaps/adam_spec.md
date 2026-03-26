@@ -107,15 +107,10 @@
       [1] "ITTFL"
       
       $adsl$drop_list$empty
-      NULL
-      
-      $adsl$drop_list$constant
-      $adsl$drop_list$constant$constant
-      [1] "ADSNAME" "STUDYID" "ITTFL"  
-      
-      $adsl$drop_list$constant$empty
       character(0)
       
+      $adsl$drop_list$constant
+      [1] "ADSNAME" "STUDYID" "ITTFL"  
       
       $adsl$drop_list$blacklist
       character(0)

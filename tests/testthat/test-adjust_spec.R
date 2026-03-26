@@ -46,11 +46,12 @@ test_that("adjust_spec() works for dupl_ctrl", {
   
   expect_no_warning(
     spec_adj_nowarn1 <- adjust_spec(
-      spec = martini_spec,
+      spec = martini_spec_val_fn,
       entry = "adlb",
       dupl_ctrl = list(values_fn = mean, arrange = NULL)
     )
   )
+  
   expect_equal(
     spec_adj_nowarn1,
     martini_spec_val_fn

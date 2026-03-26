@@ -162,7 +162,6 @@ adam_spec_adsl <- function(
   
   
   # collect output ####
-  
   # ... drop list ####
   drop_list <- list(
     "drop"         = drop,
@@ -171,8 +170,8 @@ adam_spec_adsl <- function(
     "combination"  = identify_res$to_remove$combined,
     "redundancy"   = identify_res$to_remove$redundant,
     "flag"         = identify_res$to_remove$flag,  
-    "empty"        = identify_res$to_remove$empty,
-    "constant"     = identify_res$to_remove$constant,
+    "empty"        = identify_res$to_remove$constant$empty,
+    "constant"     = identify_res$to_remove$constant$constant,
     "blacklist"    = identify_res$to_remove$black_list
   ) %>% 
     purrr::map(~setdiff(., keep)) %>% 
