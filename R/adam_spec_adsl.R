@@ -52,26 +52,38 @@
 #' @return 
 #' A list containing the following 
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
-#' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
-#' \item{`data_info`}{a list containing the number of subjects `nsubj` and columns `ncol` in the data after applying `filter`}
-#' \item{`type`}{character string \code{adsl}, generally giving the type of ADaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
-#' \item{`filter`}{subset of \code{filter} that yields non-empty result when applied individually (using \code{\link{check_filter}()}}
+#' \item{`data`}{the raw data set if \code{attach_data}, `NULL` otherwise}
+#' \item{`data_info`}{a list containing the number of subjects `nsubj` and
+#'  columns `ncol` in the data after applying `filter`}
+#' \item{`type`}{character string \code{adsl}, generally giving the type of
+#'  ADaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
+#' \item{`filter`}{subset of \code{filter} that yields non-empty result when
+#'  applied individually (using \code{\link{check_filter}()}}
 #' \item{`select`}{the suggested list of columns to select from the data set} 
-#' \item{`factor_levels`}{a list containing a factor level code/decode for each column identified as a factor} 
-#' \item{`flag_table`}{a tibble with columns id and any columns identified as flag (character and matching numeric) based on matching column names or labels}
+#' \item{`factor_levels`}{a list containing a factor level code/decode for 
+#' each column identified as a factor} 
+#' \item{`flag_table`}{a tibble with columns id and any columns identified 
+#' as flag (character and matching numeric) based on matching column names 
+#' or labels}
 #' \item{`id`, `trt`}{passing unchanged input}  
-#' \item{`drop_list`}{a list containing column names suggested to be dropped with the entry
+#' \item{`drop_list`}{a list containing column names suggested to be dropped
+#'  with the entry
 #' name identifying the rationale for the discard
 #'   \describe{ 
 #'     \item{`drop`}{passing the user input `drop`} 
 #'     \item{`datetime`}{date/times columns} 
 #'     \item{`numcode`}{numeric code for another variable (incl numeric flags)} 
-#'     \item{`flag`}{flags (both numeric and character columns), see also `flag_table`}
-#'     \item{`combination`, `empty`, `constant`}{combined, empty and constant columns, resp.}
-#'     \item{`redundancy`}{columns with redundant information to `id` and `trt` if provided)}
+#'     \item{`flag`}{flags (both numeric and character columns), 
+#'     see also `flag_table`}
+#'     \item{`combination`, `empty`, `constant`}{combined, empty and 
+#'     constant columns, resp.}
+#'     \item{`redundancy`}{columns with redundant information to `id` 
+#'     and `trt` if provided)}
 #'  }}
-#' \item{`spec_id`}{character string \code{adsl}, generally the name of the domain}  
-#' \item{`dict`}{a tibble of column names and labels (if present in the data set)}  
+#' \item{`spec_id`}{character string \code{adsl}, generally the name 
+#' of the domain}  
+#' \item{`dict`}{a tibble of column names and labels 
+#' (if present in the data set)}  
 #' 
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
@@ -211,8 +223,8 @@ adam_spec_adsl <- function(
     setdiff(drop_list %>% unlist() %>% unique())
   
   # extract relevant factor levels
-  factor_levels <- lev_list[intersect(select_list, names(lev_list))]
-  
+  factor_levels <- lev_list[intersect(select_list, names(lev_list))] 
+    
   # ... complete drop list
   drop_list$other <- colnames(data) %>% 
     setdiff(select_list) %>% 
@@ -239,7 +251,6 @@ adam_spec_adsl <- function(
     ))
   
   # ... output object ####  
-  
   create_spec_out(
     file, data, md5, size, actual_filter, domain, col_select, dict,
     select_list, factor_levels, drop_list, flag_table,

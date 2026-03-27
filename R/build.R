@@ -129,7 +129,7 @@ build <- function(
   # call the appropriate build_*() function
   built_data <- purrr::map(spec_build,  ~{
     
-    do.call( paste0('build_', .x[['type']]), list(.x))
+    do.call(paste0('build_', .x[['type']]), list(.x))
     
   })
   

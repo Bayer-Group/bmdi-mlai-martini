@@ -30,7 +30,7 @@
 #' A list containing the following 
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the 
 #' generated spec is based upon}
-#' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
+#' \item{`data`}{the raw data set if \code{attach_data}, `NULL` otherwise}
 #' \item{`data_info`}{a list containing the number of subjects `nsubj` and 
 #' columns `ncol` in the data after applying `filter`}
 #' \item{`type`}{character string \code{occds}, generally giving the type of 

@@ -93,7 +93,7 @@
 #'`outlier_remove` defaults to FALSE, `outlier_ctrl` to `list(coef = 3)`.
 #'@param custom_recipe `r lifecycle::badge("experimental")` custom, pre-defined 
 #'\code{recipes::recipe()} that may be 
-#'provided for data preparation. Defaults to NULL, yielding {{martini}}'s default
+#'provided for data preparation. Defaults to NULL, yielding `martini`'s default
 #'preparation (please refer to the details section to learn about the 
 #'default recipe steps).
 #'@param quiet boolean. Suppress messages during outcome preparation to the 
@@ -101,9 +101,9 @@
 #'@param check_feature logical controlling whether to run basic checks on 
 #'input of `feature` to identify sources for potential downstream issues
 #'such as low frequency classes in a character/factor column. 
-#'defaults to TRUE.
+#'defaults to `TRUE`.
 #'@param vars_ordinalscore column names of ordinal factor variables to be 
-#'converted into numeric scores (using `as.numeric()`). Defaults to NULL. 
+#'converted into numeric scores (using `as.numeric()`). Defaults to `NULL`. 
 #'`r lifecycle::badge("deprecated")`.
 #' Please handle factors individually prior to calling `prepare_ml()`.
 #'@param thres_count `r lifecycle::badge("deprecated")` non-negative
@@ -217,7 +217,7 @@
 #'the \code{dict} slot, `NULL` if no such attribute is defined.
 #' 
 #'The \code{source} slot simply passes the \code{source} attribute of 
-#'\code{feature}, NULL if no such attribute is defined.
+#'\code{feature}, `NULL` if no such attribute is defined.
 #'If \code{\link{build}()} from the \code{martini} package was used to generate
 #'\code{feature}, this attribute lists the full paths of the files that were 
 #'used in data generation of \code{feature}. 

@@ -26,7 +26,7 @@ adjust_spec <- function(
     ...
 ){
   
-  stopifnot(inherits(spec, what =  "martini_spec"))
+  stopifnot(inherits(spec, what = "martini_spec"))
   
   if (!entry %in% names(spec)) usethis::ui_stop(
     cli::col_magenta(

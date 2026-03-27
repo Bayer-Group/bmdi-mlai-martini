@@ -44,7 +44,7 @@
 #' @return 
 #' A list containing the following 
 #' \item{`file`, `md5`}{the name and md5 checksum, resp., of the file the generated spec is based upon}
-#' \item{`data`}{the raw data set if \code{attach_data}, NULL otherwise}
+#' \item{`data`}{the raw data set if \code{attach_data}, `NULL` otherwise}
 #' \item{`data_info`}{a list containing the number of subjects `nsubj` and columns `ncol` in the data after applying `filter`}
 #' \item{`type`}{character string \code{bds}, generally giving the type of ADaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
 #' \item{`filter`}{subset of \code{filter} that yields valid and non-empty result when applied individually (using \code{\link{check_filter}()})}

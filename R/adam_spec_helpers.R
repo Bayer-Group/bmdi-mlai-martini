@@ -266,7 +266,7 @@ prepare_col_selection <- function(
 #' @param role character. the role to check, e.g. "param", "id", "value" or
 #' "time"
 #' @param column_spec character. the selected column name. will be for 
-#' presence in `data`and type. if NULL (the default), it will be guessed based 
+#' presence in `data`and type. If `NULL` (the default), it will be guessed based 
 #' on `domain` or `type`.
 #' @param type character. either "bds" or "occds"
 #' @param spec_id character. an optional id for the specification that is used 

@@ -4,8 +4,8 @@
 #'
 #' @param data raw data set to create recipe for
 #' @param custom_recipe if NULL, recipe will be created
-#' @param corr_method,corr_use defaulting to `corr_method` `"spearman"` and 
-#' `corr_use` `"pairwise.complete.obs"`
+#' @param corr_method,corr_use defaulting to `corr_method` `spearman` and 
+#' `corr_use` `pairwise.complete.obs`
 #' @param thres_list,step_list named list objects collecting all threshold values 
 #' and step selection info, resp. Please refer to the documentation of 
 #' the `thres_*` and `prep_step_*` arguments 

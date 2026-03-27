@@ -9,20 +9,20 @@
 #' The resulting list can be passed to \code{\link{build}()}, where the 
 #' created specs are applied and the generated data sets are combined into a single wide format data set.  
 #'
-#' @param path path to a directory containing ads files in .sas7bdat or .rds format
+#' @param path path to a directory containing ads files in `.sas7bdat` or `.rds` format
 #' @param filter a character vector of conditions to be passed to \code{dplyr::filter()}, 
-#' e.g. regarding visits, treatment arms or parameters. Defaults to NULL.
+#' e.g. regarding visits, treatment arms or parameters. Defaults to `NULL`.
 #' @param keep,drop character vectors controlling the subset of data sets in the given \code{path} 
 #' to create the specification for (e.g. \code{c('adsl', 'advs'))}).
 #'  If both \code{keep} and \code{drop} are specified, only \code{keep} will be used.
 #'  Both default to NULL, which means that all (known) domains are included.
 #' @param attach_data boolean indicating whether the imported raw data is included in 
-#' the output. Defaults to TRUE.
+#' the output. Defaults to `TRUE`.
 #' @param id,trt id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()} 
 #' for details).
 #' @param pre_study `r lifecycle::badge("deprecated")`. boolean.
 #' Include only pre-study events from occurrence data sets 
-#' (see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.
+#' (see \code{\link{adam_spec_occds}()} for details). Defaults to `FALSE`.
 #' @param file_ext only rds and sas7bdat data sets are allowed (e.g. \code{file_ext = 'rds'}). User may select
 #' only sas7bdat, only rds or set a priorization rule (\code{file_ext = c('rds', 'sas7bdat')}, see Details).
 #' Defaults to c('rds', 'sas7bdat'), i.e. rds if available, sas7bdat else.
@@ -31,7 +31,7 @@
 #' (see details section of [adam_spec_adsl()] for structure).
 #' @param catalog_file path to the catalog file to be passed to
 #' [haven::read_sas()] for adsl. Defaults to `NULL`.
-#' Ignored if `file` is not a sas7bdat file.
+#' Ignored if `file` is not a `.sas7bdat` file.
 #' @inheritParams adam_domain_type
 #' 
 #' @details 
@@ -46,13 +46,17 @@
 #' Preferred file types can be specified using a character vector 
 #' \code{file_ext = c('rds', 'sas7bdat')}: If the same file name is found in 
 #' \code{path} with both extensions, the file with the former extension is used, 
-#' the one with the latter ignored. For unambiguous file names (either only sas7bdat or only rds) 
+#' the one with the latter ignored. For unambiguous file names (either only 
+#' `.sas7bdat` or only `.rds`) 
 #' both are used.
 #'
 #'
-#' Individual filters are only applied if the resulting data set has a positive number of rows (ignoring those causing errors or yielding a 0-row data set). 
+#' Individual filters are only applied if the resulting data set has a 
+#' positive number of rows (ignoring those causing errors or yielding 
+#' a 0-row data set). 
 #'
-#' Please refer to the documentations of the `adam_spec_*()` functions for full details.
+#' Please refer to the documentations of the `adam_spec_*()` functions 
+#' for full details.
 #'
 #' @return  
 #' \code{adam_spec()} returns named list of specifications that can be
