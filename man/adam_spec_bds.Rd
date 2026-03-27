@@ -30,7 +30,7 @@ is created}
 \item{param}{name of the column that identifies the parameter.
 Defaults to \code{NULL}, will be guessed if not set (see Details).}
 
-\item{label}{name of the column that gives column labels. Defaults to NULL.}
+\item{label}{name of the column that gives column labels. Defaults to \code{NULL}.}
 
 \item{unit}{Defaults to \code{NULL}, will be guessed if not set (see Details).}
 
@@ -40,7 +40,7 @@ Defaults to \code{NULL}, will be guessed if not set (see Details).}
 
 \item{filter}{character vector of filters to be applied to the bds data set.
 Individual filters will only be considered if the resulting data set has
-positive number of rows. Defaults to \code{NULL.}}
+positive number of rows. Defaults to \code{NULL}.}
 
 \item{attach_data}{boolean. Attach the imported raw data.}
 

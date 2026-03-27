@@ -21,7 +21,8 @@
 #'   \item{`time`}{`'AVAL'`}
 #'   \item{`censor`}{`'CNSR'`}
 #' }
-#' If `status` instead of `censoring` indicator should be used, specify e.g. status = 'event' (defaults to NULL). 
+#' If `status` instead of `censoring` indicator should be used, 
+#' specify e.g. status = 'event' (defaults to `NULL`). 
 #' If both are defined, `status` is used, `censor` is ignored.
 #'
 #'

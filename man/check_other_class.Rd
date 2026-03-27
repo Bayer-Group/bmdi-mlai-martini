@@ -10,7 +10,7 @@ check_other_class(x, other2_class = NULL, quiet = FALSE)
 \item{x}{data set to check}
 
 \item{other2_class}{name of class to check for.
-If NULL (the default), uses the default of \code{\link[=step_other2]{step_other2()}}'s argument
+If \code{NULL} (the default), uses the default of \code{\link[=step_other2]{step_other2()}}'s argument
 \code{other}.}
 
 \item{quiet}{whether to suppress printing messages to the console.

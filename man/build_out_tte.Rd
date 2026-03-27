@@ -52,7 +52,8 @@ Column mapping defaults are chosen to match ADaM adtte data sets:
 \item{\code{time}}{\code{'AVAL'}}
 \item{\code{censor}}{\code{'CNSR'}}
 }
-If \code{status} instead of \code{censoring} indicator should be used, specify e.g. status = 'event' (defaults to NULL).
+If \code{status} instead of \code{censoring} indicator should be used,
+specify e.g. status = 'event' (defaults to \code{NULL}).
 If both are defined, \code{status} is used, \code{censor} is ignored.
 }
 \section{Authors}{

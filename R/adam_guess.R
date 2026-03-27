@@ -6,7 +6,7 @@
 #' ADaM data set to be processed
 #'
 #' @return
-#' The guessed column name or NULL
+#' The guessed column name or `NULL`
 
 adam_guess <- function(
     role,

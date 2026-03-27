@@ -9,7 +9,7 @@
 #' \itemize{
 #' \item{\code{values_fn}} function to handle duplicates in pivoting step. see details section for default.
 #' \item{\code{arrange}} expression passed to \code{arrange()} optional sorting of data set prior to pivoting, 
-#' e.g. in order to select the first/last value by date. defaults to NULL. 
+#' e.g. in order to select the first/last value by date. defaults to `NULL`. 
 #' }
 #' @param names_ctrl bds only. A list with two entries handling cleaning and renaming of columns after pivoting
 #' \itemize{
@@ -19,7 +19,7 @@
 #' @param rm bds only. boolean. defaults to FALSE. if TRUE, a repeated measurement feature matrix with an 
 #' additional `.rmtime` column is prepared. Only used, if \code{is.null(spec$rm)}.
 #' @param values_fn_occds occds only. function that is used to summarize values in the pivoting step, 
-#' if multiple rows per observation unit are present. if NULL, the maximum is used for numeric values and 
+#' if multiple rows per observation unit are present. If `NULL`, the maximum is used for numeric values and 
 #' the last factor level is used for categorical values.
 #'
 #' @return 
@@ -29,8 +29,10 @@
 #' \item{\code{dict}}{ a tibble listing the distinct combinations of columns
 #' \code{param}, \code{label}, \code{unit}, \code{time}, \code{column}, \code{source} (if provided).} 
 #' \item{\code{source}}{ a list passing the \code{file} slot from the given \code{spec} that the created data set is based
-#'  upon along with the md5 checksum of this file if `file` was provided, NULL otherwise}
-#' \item{`flag_table`}{ `build_adsl()` only. flag table is passed from `spec$flag_table` slot}
+#'  upon along with the md5 checksum of this file if `file` was provided,
+#'   `NULL` otherwise}
+#' \item{`flag_table`}{ `build_adsl()` only. flag table is passed from 
+#' `spec$flag_table` slot}
 #' }
 #' 
 #' @details 

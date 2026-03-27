@@ -46,8 +46,8 @@ signal-to-noise ratio}
 simulated by a proportional hazard model with time-constant baseline hazard
 \describe{
 \item{\code{surv_mean}}{mean survival time}
-\item{\code{cens_mean}}{mean censoring time, NULL for no censoring}
-\item{\code{cens_max}}{max censoring time, NULL for no censoring}
+\item{\code{cens_mean}}{mean censoring time, \code{NULL} for no censoring}
+\item{\code{cens_max}}{max censoring time, \code{NULL} for no censoring}
 \item{\code{mult_beta}}{enhancement factor for the beta coefficient to control
 signal-to-noise ratio}
 \item{\code{int}}{boolean, round the survival times to the next highest integer}

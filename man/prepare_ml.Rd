@@ -108,7 +108,7 @@ in \code{vars_imp_ignore} (vector of column names, defaults to
 variables will be removed. Removal is documented in \code{removed$rows}.}
 
 \item{vars_fct_expl_na}{column names of factors for which NAs should be
-treated as an explicit factor level. Defaults to NULL.}
+treated as an explicit factor level. Defaults to \code{NULL.}}
 
 \item{vars_keep_corr}{choose these variables over other options when removing
 variables due to high correlation in \code{recipes::step_corr()}.
@@ -116,7 +116,7 @@ See \code{recipes::step_rm()} below for details.}
 
 \item{vars_no_trafo}{character vector defining variables that should be
 excluded from transformation steps such as log transformation and/or normalization
-(if applicable). Defaults to NULL.}
+(if applicable). Defaults to \code{NULL}.}
 
 \item{one_hot}{boolean. passed to \code{recipes::step_dummy()} to choose one
 hot encoding over dummy encoding}
@@ -134,7 +134,7 @@ for details on how outliers are removed from outcome variables.
 
 \item{custom_recipe}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} custom, pre-defined
 \code{recipes::recipe()} that may be
-provided for data preparation. Defaults to NULL, yielding \code{martini}'s default
+provided for data preparation. Defaults to \code{NULL}, yielding \code{martini}'s default
 preparation (please refer to the details section to learn about the
 default recipe steps).}
 

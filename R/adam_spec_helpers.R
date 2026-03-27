@@ -440,8 +440,8 @@ create_spec_out <- function(
 #'
 #' @param file filepath
 #' @param catalog_file path to the catalog file to be passed to 
-#' [haven::read_sas()]. Defaults to NULL. 
-#' Ignored if `file` is not a sas7bdat file.
+#' [haven::read_sas()]. Defaults to `NULL`.
+#' Ignored if `file` is not a `.sas7bdat` file.
 #'
 #' @return  list containing data and corresponding md5 sum and file size
 

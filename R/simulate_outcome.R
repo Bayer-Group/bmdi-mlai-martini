@@ -29,8 +29,8 @@
 #' simulated by a proportional hazard model with time-constant baseline hazard
 #' \describe{
 #'   \item{`surv_mean`}{mean survival time}
-#'   \item{`cens_mean`}{mean censoring time, NULL for no censoring}
-#'   \item{`cens_max`}{max censoring time, NULL for no censoring}
+#'   \item{`cens_mean`}{mean censoring time, `NULL` for no censoring}
+#'   \item{`cens_max`}{max censoring time, `NULL` for no censoring}
 #'   \item{`mult_beta`}{enhancement factor for the beta coefficient to control 
 #'   signal-to-noise ratio}
 #'   \item{`int`}{boolean, round the survival times to the next highest integer}

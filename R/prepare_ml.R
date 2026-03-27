@@ -76,13 +76,13 @@
 #'\code{vars_imp_ignore = '.trt'}). Observations with missing values in these
 #' variables will be removed. Removal is documented in `removed$rows`.
 #'@param vars_fct_expl_na column names of factors for which NAs should be
-#' treated as an explicit factor level. Defaults to NULL.
+#' treated as an explicit factor level. Defaults to `NULL.`
 #'@param vars_keep_corr choose these variables over other options when removing
 #'variables due to high correlation in \code{recipes::step_corr()}. 
 #'See \code{recipes::step_rm()} below for details. 
 #'@param vars_no_trafo character vector defining variables that should be
 #'excluded from transformation steps such as log transformation and/or normalization
-#'(if applicable). Defaults to NULL.
+#'(if applicable). Defaults to `NULL`.
 #'@param log_base base to use for log-transformation in 
 #'\code{recipes::step_log()}. Defaults to _exp(1)_.
 #'@param corr_method passed to stats::cor(), defaults to `"spearman"` to tailor 
@@ -93,7 +93,7 @@
 #'`outlier_remove` defaults to FALSE, `outlier_ctrl` to `list(coef = 3)`.
 #'@param custom_recipe `r lifecycle::badge("experimental")` custom, pre-defined 
 #'\code{recipes::recipe()} that may be 
-#'provided for data preparation. Defaults to NULL, yielding `martini`'s default
+#'provided for data preparation. Defaults to `NULL`, yielding `martini`'s default
 #'preparation (please refer to the details section to learn about the 
 #'default recipe steps).
 #'@param quiet boolean. Suppress messages during outcome preparation to the 

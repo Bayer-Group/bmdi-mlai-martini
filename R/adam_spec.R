@@ -15,7 +15,7 @@
 #' @param keep,drop character vectors controlling the subset of data sets in the given \code{path} 
 #' to create the specification for (e.g. \code{c('adsl', 'advs'))}).
 #'  If both \code{keep} and \code{drop} are specified, only \code{keep} will be used.
-#'  Both default to NULL, which means that all (known) domains are included.
+#'  Both default to `NULL`, which means that all (known) domains are included.
 #' @param attach_data boolean indicating whether the imported raw data is included in 
 #' the output. Defaults to `TRUE`.
 #' @param id,trt id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()} 

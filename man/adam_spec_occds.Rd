@@ -28,17 +28,17 @@ is created}
 \item{label}{name of the column that identifies the occurrence labels.
 Defaults to NULL, will be guessed if not set (see Details).}
 
-\item{value}{optional value column (e.g. AE severity). Defaults to NULL,
+\item{value}{optional value column (e.g. AE severity). Defaults to \code{NULL},
 which leads to an Y/N coding of the event.}
 
-\item{valuen}{optional numeric coding column for \code{value}. Defaults to NULL,
-ignored if \code{value} is NULL.}
+\item{valuen}{optional numeric coding column for \code{value}. Defaults to \code{NULL},
+ignored if \code{value} is \code{NULL.}}
 
 \item{filter}{character vector of filters to be applied to the bds data set.
 Individual filters will only be considered if the resulting data set has
-positive number of rows. Defaults to NULL.}
+positive number of rows. Defaults to \code{NULL}.}
 
-\item{count}{boolean, defaults to FALSE.}
+\item{count}{boolean, defaults to \code{FALSE}.}
 
 \item{attach_data}{boolean. attach the imported raw data in \code{data}
 slot of output object}

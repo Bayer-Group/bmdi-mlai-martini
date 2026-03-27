@@ -18,7 +18,7 @@
 #' @return a nested list, where each entry has a `vars` entry that contains
 #' column names that do not pass the respective check (if check is included), 
 #' character of length 0 for empty sets.
-#' NULL if not tested at all.
+#' `NULL` if not tested at all.
 #' @export
 #'
 check_feature <- function(
@@ -233,7 +233,7 @@ check_freq <- function(
 #' Check for occurrence of level that would cause issue with lumping
 #'
 #' @param other2_class name of class to check for. 
-#' If NULL (the default), uses the default of [step_other2()]'s argument
+#' If `NULL` (the default), uses the default of [step_other2()]'s argument
 #' `other`.
 #' @inheritParams check_freq 
 #' 

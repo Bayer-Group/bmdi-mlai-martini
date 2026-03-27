@@ -15,14 +15,14 @@
 #' @param id name of id column to be kept and used for merge of data sets
 #' @param label name of the column that identifies the occurrence labels. 
 #' Defaults to NULL, will be guessed if not set (see Details). 
-#' @param value optional value column (e.g. AE severity). Defaults to NULL, 
+#' @param value optional value column (e.g. AE severity). Defaults to `NULL`, 
 #' which leads to an Y/N coding of the event.
-#' @param valuen optional numeric coding column for `value`. Defaults to NULL,
-#'  ignored if `value` is NULL.
+#' @param valuen optional numeric coding column for `value`. Defaults to `NULL`,
+#'  ignored if `value` is `NULL.`
 #' @param filter character vector of filters to be applied to the bds data set. 
 #' Individual filters will only be considered if the resulting data set has 
-#' positive number of rows. Defaults to NULL. 
-#' @param count boolean, defaults to FALSE. 
+#' positive number of rows. Defaults to `NULL`. 
+#' @param count boolean, defaults to `FALSE`. 
 #' @param attach_data boolean. attach the imported raw data in \code{data} 
 #' slot of output object
 #' 
