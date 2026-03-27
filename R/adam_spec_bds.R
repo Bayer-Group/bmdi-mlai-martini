@@ -14,13 +14,13 @@
 #' @param id name of id column to be kept and used for merge of data sets
 #' @param param name of the column that identifies the parameter. 
 #' Defaults to `NULL`, will be guessed if not set (see Details).
-#' @param label name of the column that gives column labels. Defaults to NULL.
+#' @param label name of the column that gives column labels. Defaults to `NULL`.
 #' @param unit Defaults to `NULL`, will be guessed if not set (see Details).
 #' @param time Defaults to `NULL`, will be guessed if not set (see Details).
 #' @param value Defaults to `NULL`, will be guessed if not set (see Details).
 #' @param filter character vector of filters to be applied to the bds data set. 
 #' Individual filters will only be considered if the resulting data set has 
-#' positive number of rows. Defaults to `NULL.` 
+#' positive number of rows. Defaults to `NULL`. 
 #' @param attach_data boolean. Attach the imported raw data.
 #' @param domain character string to be included in dictionary.
 #'  Automatically derived for standard ADaM data sets. 

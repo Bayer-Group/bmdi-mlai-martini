@@ -10,8 +10,8 @@ import_info(file, catalog_file = NULL)
 \item{file}{filepath}
 
 \item{catalog_file}{path to the catalog file to be passed to
-\code{\link[haven:read_sas]{haven::read_sas()}}. Defaults to NULL.
-Ignored if \code{file} is not a sas7bdat file.}
+\code{\link[haven:read_sas]{haven::read_sas()}}. Defaults to \code{NULL}.
+Ignored if \code{file} is not a \code{.sas7bdat} file.}
 }
 \value{
 list containing data and corresponding md5 sum and file size

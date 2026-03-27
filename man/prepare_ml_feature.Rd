@@ -9,7 +9,7 @@ prepare_ml_feature(feature, vars_fct_expl_na = NULL, level_other = "other")
 \arguments{
 \item{feature}{feature tibble}
 
-\item{vars_fct_expl_na}{defaults to NULL}
+\item{vars_fct_expl_na}{defaults to \code{NULL}}
 
 \item{level_other}{defaults to 'other'}
 }

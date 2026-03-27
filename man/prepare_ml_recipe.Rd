@@ -22,7 +22,7 @@ prepare_ml_recipe(
 \arguments{
 \item{data}{raw data set to create recipe for}
 
-\item{custom_recipe}{if NULL, recipe will be created}
+\item{custom_recipe}{if \code{NULL}, recipe will be created}
 
 \item{corr_method, corr_use}{defaulting to \code{corr_method} \code{spearman} and
 \code{corr_use} \code{pairwise.complete.obs}}
@@ -38,7 +38,7 @@ in \code{vars_imp_ignore} (vector of column names, defaults to
 variables will be removed. Removal is documented in \code{removed$rows}.}
 
 \item{vars_fct_expl_na}{column names of factors for which NAs should be
-treated as an explicit factor level. Defaults to NULL.}
+treated as an explicit factor level. Defaults to \code{NULL.}}
 
 \item{vars_keep_corr}{choose these variables over other options when removing
 variables due to high correlation in \code{recipes::step_corr()}.
@@ -46,7 +46,7 @@ See \code{recipes::step_rm()} below for details.}
 
 \item{vars_no_trafo}{character vector defining variables that should be
 excluded from transformation steps such as log transformation and/or normalization
-(if applicable). Defaults to NULL.}
+(if applicable). Defaults to \code{NULL}.}
 
 \item{one_hot}{boolean. passed to \code{recipes::step_dummy()} to choose one
 hot encoding over dummy encoding}

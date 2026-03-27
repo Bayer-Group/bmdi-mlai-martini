@@ -15,7 +15,7 @@ adam_guess(role, type = c("bds", "occds"), colnames_data)
 ADaM data set to be processed}
 }
 \value{
-The guessed column name or NULL
+The guessed column name or \code{NULL}
 }
 \description{
 Guess role columns for spec

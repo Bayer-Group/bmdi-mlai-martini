@@ -25,7 +25,8 @@ prepare_ml_vars(
 }
 \value{
 A list with slots specifying the detected variable sets of interest.
-NA if required thresholds were not defined; NULL if no variables meet the corresponding criteria.
+NA if required thresholds were not defined;
+\code{NULL} if no variables meet the corresponding criteria.
 
 \item{count}{assumed to be counts}
 \item{log}{to be log transformed as the skewness exceeds \code{thres_log}}

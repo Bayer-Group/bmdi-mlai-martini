@@ -27,7 +27,7 @@ build_occds(spec, values_fn_occds = NULL)
 \itemize{
 \item{\code{values_fn}} function to handle duplicates in pivoting step. see details section for default.
 \item{\code{arrange}} expression passed to \code{arrange()} optional sorting of data set prior to pivoting,
-e.g. in order to select the first/last value by date. defaults to NULL.
+e.g. in order to select the first/last value by date. defaults to \code{NULL}.
 }}
 
 \item{names_ctrl}{bds only. A list with two entries handling cleaning and renaming of columns after pivoting
@@ -40,7 +40,7 @@ e.g. in order to select the first/last value by date. defaults to NULL.
 additional \code{.rmtime} column is prepared. Only used, if \code{is.null(spec$rm)}.}
 
 \item{values_fn_occds}{occds only. function that is used to summarize values in the pivoting step,
-if multiple rows per observation unit are present. if NULL, the maximum is used for numeric values and
+if multiple rows per observation unit are present. If \code{NULL}, the maximum is used for numeric values and
 the last factor level is used for categorical values.}
 }
 \value{

@@ -260,7 +260,7 @@ check_freq <- function(
 #' Check for occurrence of level that would cause issue with lumping
 #'
 #' @param other2_class name of class to check for. 
-#' If NULL (the default), uses the default of [step_other2()]'s argument
+#' If `NULL` (the default), uses the default of [step_other2()]'s argument
 #' `other`.
 #' @inheritParams check_freq 
 #' 
