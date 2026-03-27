@@ -61,6 +61,10 @@
 #' @seealso \code{\link{build_adsl}()}, \code{\link{build_bds}()}, 
 #' \code{\link{build_occds}()}
 #'
+#' @examples
+#' feat <- build(martini_spec)
+#' attr(feat, "dict")
+#'
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #'

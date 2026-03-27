@@ -239,6 +239,25 @@
 #'\code{input} a list giving the `martini` \code{packageVersion} and a 
 #'list of (most) input parameters, including the seed used 
 #' 
+#'@examples
+#' # Classification (martini_outc_class) and regression (martini_outc_regr)
+#' prepare_ml(martini_feat, martini_outc_class)
+#' prepare_ml(martini_feat, martini_outc_regr)
+#'
+#' # Survival — outcome_name must be a named vector specifying time and status columns
+#' prepare_ml(martini_feat, martini_outc_surv,
+#'   outcome_name = c(.time = ".time", .status = ".status"))
+#'
+#' # With train/test split (80/20)
+#' prepare_ml(martini_feat, martini_outc_class, train_prop = 0.8)
+#'
+#' # Extract the prepared data from the ml object
+#' get_data(martini_ml_regr, type = "prep")
+#'
+#' # check_feature() is run automatically on the feature input —
+#' # see ?check_feature for a detailed example
+#' check_feature(martini_feat)
+#'
 #'@section Authors:
 #'Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 #' 
