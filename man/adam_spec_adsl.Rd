@@ -46,26 +46,38 @@ Ignored if \code{file} is not a sas7bdat file.}
 \value{
 A list containing the following
 \item{\code{file}, \code{md5}}{the name and md5 checksum, resp., of the file the generated spec is based upon}
-\item{\code{data}}{the raw data set if \code{attach_data}, NULL otherwise}
-\item{\code{data_info}}{a list containing the number of subjects \code{nsubj} and columns \code{ncol} in the data after applying \code{filter}}
-\item{\code{type}}{character string \code{adsl}, generally giving the type of ADaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
-\item{\code{filter}}{subset of \code{filter} that yields non-empty result when applied individually (using \code{\link{check_filter}()}}
+\item{\code{data}}{the raw data set if \code{attach_data}, \code{NULL} otherwise}
+\item{\code{data_info}}{a list containing the number of subjects \code{nsubj} and
+columns \code{ncol} in the data after applying \code{filter}}
+\item{\code{type}}{character string \code{adsl}, generally giving the type of
+ADaM data set processed (\code{adsl}/\code{bds}/\code{occds})}
+\item{\code{filter}}{subset of \code{filter} that yields non-empty result when
+applied individually (using \code{\link{check_filter}()}}
 \item{\code{select}}{the suggested list of columns to select from the data set}
-\item{\code{factor_levels}}{a list containing a factor level code/decode for each column identified as a factor}
-\item{\code{flag_table}}{a tibble with columns id and any columns identified as flag (character and matching numeric) based on matching column names or labels}
+\item{\code{factor_levels}}{a list containing a factor level code/decode for
+each column identified as a factor}
+\item{\code{flag_table}}{a tibble with columns id and any columns identified
+as flag (character and matching numeric) based on matching column names
+or labels}
 \item{\code{id}, \code{trt}}{passing unchanged input}
-\item{\code{drop_list}}{a list containing column names suggested to be dropped with the entry
+\item{\code{drop_list}}{a list containing column names suggested to be dropped
+with the entry
 name identifying the rationale for the discard
 \describe{
 \item{\code{drop}}{passing the user input \code{drop}}
 \item{\code{datetime}}{date/times columns}
 \item{\code{numcode}}{numeric code for another variable (incl numeric flags)}
-\item{\code{flag}}{flags (both numeric and character columns), see also \code{flag_table}}
-\item{\code{combination}, \code{empty}, \code{constant}}{combined, empty and constant columns, resp.}
-\item{\code{redundancy}}{columns with redundant information to \code{id} and \code{trt} if provided)}
+\item{\code{flag}}{flags (both numeric and character columns),
+see also \code{flag_table}}
+\item{\code{combination}, \code{empty}, \code{constant}}{combined, empty and
+constant columns, resp.}
+\item{\code{redundancy}}{columns with redundant information to \code{id}
+and \code{trt} if provided)}
 }}
-\item{\code{spec_id}}{character string \code{adsl}, generally the name of the domain}
-\item{\code{dict}}{a tibble of column names and labels (if present in the data set)}
+\item{\code{spec_id}}{character string \code{adsl}, generally the name
+of the domain}
+\item{\code{dict}}{a tibble of column names and labels
+(if present in the data set)}
 }
 \description{
 Given a file containing an adsl data set, \code{\link{adam_spec_adsl}()} will create a specification

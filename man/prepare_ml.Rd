@@ -144,7 +144,7 @@ console on NA and outlier removal, resp. Defaults to \code{FALSE}.}
 \item{check_feature}{logical controlling whether to run basic checks on
 input of \code{feature} to identify sources for potential downstream issues
 such as low frequency classes in a character/factor column.
-defaults to TRUE.}
+defaults to \code{TRUE}.}
 
 \item{prep_recipe}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{custom_recipe}
 argument instead.
@@ -154,7 +154,7 @@ preparation. Please refer to the details section to learn about the
 individual recipe steps.}
 
 \item{vars_ordinalscore}{column names of ordinal factor variables to be
-converted into numeric scores (using \code{as.numeric()}). Defaults to NULL.
+converted into numeric scores (using \code{as.numeric()}). Defaults to \code{NULL}.
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}.
 Please handle factors individually prior to calling \code{prepare_ml()}.}
 
@@ -192,7 +192,7 @@ absolute correlation above \code{thres_corr}. Dictionary is available from
 the \code{dict} slot, \code{NULL} if no such attribute is defined.
 
 The \code{source} slot simply passes the \code{source} attribute of
-\code{feature}, NULL if no such attribute is defined.
+\code{feature}, \code{NULL} if no such attribute is defined.
 If \code{\link{build}()} from the \code{martini} package was used to generate
 \code{feature}, this attribute lists the full paths of the files that were
 used in data generation of \code{feature}.

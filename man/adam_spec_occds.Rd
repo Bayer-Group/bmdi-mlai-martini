@@ -47,7 +47,7 @@ slot of output object}
 A list containing the following
 \item{\code{file}, \code{md5}}{the name and md5 checksum, resp., of the file the
 generated spec is based upon}
-\item{\code{data}}{the raw data set if \code{attach_data}, NULL otherwise}
+\item{\code{data}}{the raw data set if \code{attach_data}, \code{NULL} otherwise}
 \item{\code{data_info}}{a list containing the number of subjects \code{nsubj} and
 columns \code{ncol} in the data after applying \code{filter}}
 \item{\code{type}}{character string \code{occds}, generally giving the type of

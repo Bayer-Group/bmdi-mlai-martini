@@ -313,7 +313,7 @@ check_adjust <- function(spec, entry, modifications){
       # check if arrange has length 1
       # TODO if data is available, check if arrange can be applied without error
       user_arrange <- modifications[["dupl_ctrl"]]$arrange
-      #browser()
+      
       if (!is.null(spec[[entry]][['data']])) {
         safely_arranged <- purrr::safely(
           dplyr::arrange

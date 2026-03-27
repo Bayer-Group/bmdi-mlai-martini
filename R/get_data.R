@@ -1,13 +1,17 @@
 #' Extract data from an ml object
 #' 
-#' Combine split data (training and test, if available) from either prepared or raw data
+#' Combine split data (training and test, if available) from either prepared 
+#' or raw data
 #'
 #' @param ml_obj ml object as returned by \code{\link{prepare_ml}()}
-#' @param type either 'prep' or 'raw', determining which state of the data should be extracted. Defaults to `prep`.
-#' @param split_id column name (character). Add column indicating split origin (train/test). Omitted if NULL (default)
+#' @param type either `prep` or `raw`, determining which state of the data
+#'  should be extracted. Defaults to `prep`.
+#' @param split_id column name (character). Add column indicating split origin
+#'  (train/test). Omitted if `NULL` (default).
 #'
 #' @return 
-#' result of `dplyr::bind_rows()` of data sets in `ml_obj` of the chosen type, either with or without an added `train_test` column.
+#' result of `dplyr::bind_rows()` of data sets in `ml_obj` of the chosen type,
+#'  either with or without an added `train_test` column.
 #'
 #' @section Authors:
 #' Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
@@ -17,7 +21,8 @@
 get_data <- function(
   ml_obj, 
   type = c('prep', 'raw'),
-  split_id = NULL
+  split_id = NULL 
+  # TODO rename argument to colname_split
   ){
   
   type <- rlang::arg_match(type)

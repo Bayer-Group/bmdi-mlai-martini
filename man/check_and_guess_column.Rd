@@ -21,7 +21,7 @@ check_and_guess_column(
 "time"}
 
 \item{column_spec}{character. the selected column name. will be for
-presence in \code{data}and type. if NULL (the default), it will be guessed based
+presence in \code{data}and type. If \code{NULL} (the default), it will be guessed based
 on \code{domain} or \code{type}.}
 
 \item{type}{character. either "bds" or "occds"}

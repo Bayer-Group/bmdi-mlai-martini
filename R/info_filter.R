@@ -3,9 +3,12 @@
 #' Extract applied filters and (optionally) compare to reference set
 #'
 #' @param spec spec object as returned by \code{\link{adam_spec}()}
-#' @param filter if not NULL (default), applied filters are compared against a reference set, 
+#' @param filter if not `NULL` (default), applied filters are 
+#' compared against a reference set, 
 #' identifying filters that cannot be applied to the data without an error
-#' @param quiet if TRUE instead of printing message to console, return list with messages on applied and discarded filters. defaults to FALSE.
+#' @param quiet if `TRUE` instead of printing message to console,
+#'  return list with messages on applied and discarded filters. 
+#'  Defaults to `FALSE`.
 #'
 #' @return 
 #' List of applied filters by data set is printed to the console. 

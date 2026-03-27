@@ -28,7 +28,11 @@ and the treatment variable (\code{.trt}), if it is provided in the
 \code{spec} object. Objects with additional information on
 the data are provided in the attributes of the returned object.
 
-\item{\code{dict}}{
+\code{attr("source")}:
+a tibble giving file path and md5 checksums of the source data sets.
+
+\code{attr("dict")}: a tibble with the following columns
+
 \describe{
 \item{\code{param}}{original parameter name in the source data}
 \item{\code{column}}{column name of the variable in the returned data. \code{column}
@@ -37,13 +41,12 @@ it into a valid file name and possibly adding a time extension, if multiple
 time points are considered for a particular parameter.}
 \item{\code{label}}{parameter label}
 \item{\code{source}}{source id provided by the specification object. If created
-with \code{\link{adam_spec}()}, this is the name of the domain.}
+with \code{\link[=adam_spec]{adam_spec()}}, this is the name of the domain.}
 \item{\code{type}}{ADaM data type of the source data (adsl, bds or occds)}
 \item{\code{unit}}{parameter unit (if applicable)}
 \item{\code{time}}{measurement time point (if applicable)}
 \item{\code{spec_id}}{name of the corresponding spec entry (if applicable)}
-}}
-\item{\code{source}}{file path and md5 checksums of the source data sets}
+}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}

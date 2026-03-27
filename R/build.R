@@ -27,7 +27,11 @@
 #' \code{spec} object. Objects with additional information on
 #' the data are provided in the attributes of the returned object.
 #' 
-#' \item{`dict`}{
+#' `attr("source")`: 
+#' a tibble giving file path and md5 checksums of the source data sets.
+#' 
+#' `attr("dict")`: a tibble with the following columns
+#' 
 #' \describe{
 #'   \item{`param`}{original parameter name in the source data}
 #'   \item{`column`}{column name of the variable in the returned data. `column` 
@@ -36,13 +40,13 @@
 #'    time points are considered for a particular parameter.}
 #'   \item{`label`}{parameter label}
 #'   \item{`source`}{source id provided by the specification object. If created
-#'    with \code{\link{adam_spec}()}, this is the name of the domain.}
+#'    with [adam_spec()], this is the name of the domain.}
 #'   \item{`type`}{ADaM data type of the source data (adsl, bds or occds)}
 #'   \item{`unit`}{parameter unit (if applicable)}
 #'   \item{`time`}{measurement time point (if applicable)}
 #'   \item{`spec_id`}{name of the corresponding spec entry (if applicable)}
-#' }}
-#' \item{`source`}{file path and md5 checksums of the source data sets}
+#' }
+#' 
 #' 
 #' @details 
 #' Missing values in variables from occurrence data sets are interpreted as

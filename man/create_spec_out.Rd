@@ -12,7 +12,7 @@ create_spec_out(..., type = c("adsl", "bds", "occds"), attach_data = TRUE)
 \item{type}{character. either "bds" or "occds"}
 
 \item{attach_data}{boolean indicating whether the imported raw data is included in
-the output. Defaults to TRUE.}
+the output. Defaults to \code{TRUE}.}
 }
 \value{
 Output object of \verb{adam_spec_*()}

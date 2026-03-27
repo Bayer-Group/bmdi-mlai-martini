@@ -21,10 +21,10 @@ adam_spec(
 )
 }
 \arguments{
-\item{path}{path to a directory containing ads files in .sas7bdat or .rds format}
+\item{path}{path to a directory containing ads files in \code{.sas7bdat} or \code{.rds} format}
 
 \item{filter}{a character vector of conditions to be passed to \code{dplyr::filter()},
-e.g. regarding visits, treatment arms or parameters. Defaults to NULL.}
+e.g. regarding visits, treatment arms or parameters. Defaults to \code{NULL}.}
 
 \item{keep, drop}{character vectors controlling the subset of data sets in the given \code{path}
 to create the specification for (e.g. \code{c('adsl', 'advs'))}).
@@ -33,10 +33,10 @@ Both default to NULL, which means that all (known) domains are included.}
 
 \item{pre_study}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}. boolean.
 Include only pre-study events from occurrence data sets
-(see \code{\link{adam_spec_occds}()} for details). Defaults to FALSE.}
+(see \code{\link{adam_spec_occds}()} for details). Defaults to \code{FALSE}.}
 
 \item{attach_data}{boolean indicating whether the imported raw data is included in
-the output. Defaults to TRUE.}
+the output. Defaults to \code{TRUE}.}
 
 \item{id, trt}{id and treatment column names (see e.g. \code{\link{adam_spec_adsl}()}
 for details).}
@@ -55,7 +55,7 @@ and/or setting the level order for factors in an adsl data set
 
 \item{catalog_file}{path to the catalog file to be passed to
 \code{\link[haven:read_sas]{haven::read_sas()}} for adsl. Defaults to \code{NULL}.
-Ignored if \code{file} is not a sas7bdat file.}
+Ignored if \code{file} is not a \code{.sas7bdat} file.}
 }
 \value{
 \code{adam_spec()} returns named list of specifications that can be
@@ -88,12 +88,16 @@ by file extension \code{file_ext = 'sas7bdat'}.
 Preferred file types can be specified using a character vector
 \code{file_ext = c('rds', 'sas7bdat')}: If the same file name is found in
 \code{path} with both extensions, the file with the former extension is used,
-the one with the latter ignored. For unambiguous file names (either only sas7bdat or only rds)
+the one with the latter ignored. For unambiguous file names (either only
+\code{.sas7bdat} or only \code{.rds})
 both are used.
 
-Individual filters are only applied if the resulting data set has a positive number of rows (ignoring those causing errors or yielding a 0-row data set).
+Individual filters are only applied if the resulting data set has a
+positive number of rows (ignoring those causing errors or yielding
+a 0-row data set).
 
-Please refer to the documentations of the \verb{adam_spec_*()} functions for full details.
+Please refer to the documentations of the \verb{adam_spec_*()} functions
+for full details.
 }
 \section{Authors}{
 
