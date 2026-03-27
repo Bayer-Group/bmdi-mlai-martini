@@ -78,19 +78,47 @@ build_adsl <- function(
   
   # reorder / set factor levels  ####
   factor_levels <- spec$factor_levels %>% purrr::keep_at(names(adsl_full))
-
-  if (length(factor_levels) > 0) {
-    purrr::walk(names(factor_levels), ~{
-      cases <- purrr::map2(
-        unname(factor_levels[[.x]]),
-        names(factor_levels[[.x]]),
-        rlang::new_formula
-      )
-      adsl_full[[.x]] <<- dplyr::case_match(adsl_full[[.x]], !!!cases) %>% 
-        factor(levels = names(factor_levels[[.x]]))
-    })
-  }
   
+  if (length(factor_levels) > 0) {
+    
+    if (utils::packageVersion("dplyr") < package_version("1.2.0")) {
+      purrr::walk(names(factor_levels), ~{
+        cases <- purrr::map2(
+          unname(factor_levels[[.x]]),
+          names(factor_levels[[.x]]),
+          rlang::new_formula
+        )
+        adsl_full[[.x]] <<- dplyr::case_match(adsl_full[[.x]], !!!cases) %>% 
+          factor(levels = names(factor_levels[[.x]]))
+      })
+    } else {
+      
+      factor_levels_recode <- purrr::map(
+        factor_levels, 
+        ~tibble::enframe(.x, "to", "from")
+      )  
+      
+      purrr::walk(
+        names(factor_levels_recode), \(fct){
+          
+          adsl_full <<- adsl_full %>% 
+            dplyr::mutate(
+              dplyr::across(
+                tidyselect::any_of(fct), 
+                ~ dplyr::recode_values(
+                  !!rlang::sym(fct), 
+                  from = factor_levels_recode[[fct]]$from,
+                  to   = factor_levels_recode[[fct]]$to
+                ) %>% 
+                  factor(levels = factor_levels_recode[[fct]]$to)
+              )
+            )
+          
+        })
+      
+    } 
+    
+  }
   # apply spec: filter, select and standardize column names ####
   
   filter_txt <- paste(
