@@ -73,7 +73,7 @@ build_out_tte <- function(
   
   #  ... data ####
   if (is.null(data)){
-    data <- haven::read_sas(file)
+    data <- read_zap_empty(file)    
   }
   
   # ... columns ####

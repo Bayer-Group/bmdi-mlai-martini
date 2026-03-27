@@ -180,9 +180,11 @@ adam_spec_adsl <- function(
 
   # ... selected columns ####
   # COMBAK: check renaming here
-  lev_list <- identify_res$lev_list
+  lev_list <- identify_res$lev_list %>% 
+    purrr::map(haven::zap_label)
   
   if (!is.null(fct_levels)) {
+    
     
     fct_levels <- fct_levels %>% 
       purrr::keep_at(colnames(data))
@@ -351,7 +353,12 @@ adam_spec_adsl <- function(
     )
     
   ){
-
+  
+  # update data for correct assessment
+  data <- data %>% 
+    dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+    
+   
   # input checks
   type <- rlang::arg_match(type, multiple = TRUE)
   stopifnot(c(id, trt) %in% names(data))

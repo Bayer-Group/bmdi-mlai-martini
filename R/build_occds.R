@@ -27,8 +27,8 @@ build_occds <- function(
       tail(1) 
     
     if(file_ext == 'sas7bdat'){
-      occds_full <- haven::read_sas(file_name) %>% 
-        dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))       
+      occds_full <- read_zap_empty(file_name) %>% 
+        haven::zap_formats()
       
       if(md5 != spec$md5){
         usethis::ui_info(cli::col_silver(paste0('\t',  
@@ -39,7 +39,9 @@ build_occds <- function(
       
     }else return(NULL)
   }else{
-    occds_full <- spec$data
+    occds_full <- spec$data %>%
+      haven::zap_formats() %>% 
+      haven::zap_label()
   }
   
   col_select <- spec[c("label", "value", "valuen")] %>% 

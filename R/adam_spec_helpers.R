@@ -109,7 +109,10 @@ create_dict <- function(spec_entry){
   })
   
   # remove data set label automatically created by haven::read_sas()
-  attr(dict, 'label') <- NULL
+  dict <- dict %>% 
+    haven::zap_formats() %>%
+    haven::zap_label() # zaps e.g. label "Parameter code" for param
+  attr(dict, "label") <- NULL
   
   dict
   # TODO write test 'create_dict'

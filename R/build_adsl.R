@@ -33,12 +33,9 @@ build_adsl <- function(
     
     if(file_ext == 'sas7bdat'){
       
-      adsl_full <- haven::read_sas(file_name) %>% 
-        # TODO replace with haven::zap_empty()
-        # and add haven::zap_format()
-        # also do that in import_info()
-        # TODO check if this can be replaced by import_info()
-        dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))      
+      adsl_full <- read_zap_empty(file_name) %>% 
+        haven::zap_formats() %>% 
+        haven::zap_label()
       
     } else {
       
@@ -58,10 +55,13 @@ build_adsl <- function(
     # ... data attached ####
     
     adsl_full <- spec$data %>% 
-      # TODO haven::zap_empty()
-      # TODO remove
-      dplyr::mutate_if(is.character,  ~ dplyr::na_if(., ""))
-    
+     dplyr::mutate(dplyr::across(
+        tidyselect::where(is.character),
+        ~dplyr::na_if(., "")
+      )) %>% 
+      haven::zap_formats() %>% 
+      haven::zap_label()
+      
     if(md5 != spec$md5){
       
       # TODO refactor - warning is also used in other build_*() functions

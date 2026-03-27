@@ -228,3 +228,29 @@ hide_cli_id <- function(x){
     "<cli-12345-678>"
   )
 }
+
+#' 
+#'
+#' a convenience function combining [haven::read_sas()] with 
+#' [haven::zap_empty()] functionality
+#'
+#' @param data_file sas7bdat file to read
+#' @param catalog_file catalog file to read
+
+read_zap_empty <- function(
+    data_file, 
+    catalog_file = NULL
+    ){
+  data_file %>% 
+    haven::read_sas(catalog_file = catalog_file) %>% 
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::where(is.character),
+        ~ dplyr::na_if(.x, "")
+        )
+    )
+}
+  
+
+
+

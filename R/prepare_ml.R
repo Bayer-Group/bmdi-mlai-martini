@@ -524,13 +524,19 @@ prepare_ml <- function(
   }
   
   # CLEAN UP ####
+  d_train <- d_train %>% 
+    haven::zap_formats() %>% 
+    haven::zap_label()
+  d_test  <- d_test %>% 
+    haven::zap_formats() %>% 
+    haven::zap_label()
   
-  for (i in 1:ncol(d_train)) {
-    attr(d_train[[i]], "format.sas") <- NULL
-    attr(d_test [[i]], "format.sas") <- NULL
-    attr(d_train[[i]], "label"     ) <- NULL
-    attr(d_test [[i]], "label"     ) <- NULL
-  }
+  # for (i in 1:ncol(d_train)) {
+  #   attr(d_train[[i]], "format.sas") <- NULL
+  #   attr(d_test [[i]], "format.sas") <- NULL
+  #   attr(d_train[[i]], "label"     ) <- NULL
+  #   attr(d_test [[i]], "label"     ) <- NULL
+  # }
   attr(d_train, "label") <- NULL
   attr(d_test,  "label") <- NULL
   

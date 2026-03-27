@@ -40,8 +40,8 @@ build_bds <- function(
       tail(1) 
     
     if(file_ext == 'sas7bdat'){
-      bds_full <- haven::read_sas(file_name) %>% 
-        dplyr::mutate_if(is.character, ~ dplyr::na_if(., ""))
+      bds_full <- read_zap_empty(file_name) %>% 
+        haven::zap_formats()
       
       if(md5 != spec$md5){
 
@@ -69,7 +69,9 @@ build_bds <- function(
       return(NULL)
     }
   }else {
-    bds_full <- spec$data
+    bds_full <- spec$data %>%
+      haven::zap_formats() %>% 
+      haven::zap_label()
   }
   
   pivot_input <- pivot_prepare_bds(
