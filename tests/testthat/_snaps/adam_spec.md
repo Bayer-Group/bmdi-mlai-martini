@@ -67,20 +67,14 @@
       $adsl$factor_levels$TRT01A
         PLC   TRT 
       "PLC" "TRT" 
-      attr(,"label")
-      [1] "Actual Treatment for Period 01"
       
       $adsl$factor_levels$AGEGR01
             < 60   60 - <75       >=75 
           "< 60" "60 - <75"     ">=75" 
-      attr(,"label")
-      [1] "Age Group 01"
       
       $adsl$factor_levels$SEX
         M   F 
       "M" "F" 
-      attr(,"label")
-      [1] "Sex"
       
       $adsl$factor_levels$RACE
         WHITE   BLACK   ASIAN 

@@ -104,11 +104,13 @@ test_that("fct_levels argument of adam_spec_adsl() works", {
   file    <- test_path('sas', 'hadley.sas7bdat')
   catalog <- test_path('sas', 'formats.sas7bcat')
   
-  data <- haven::read_sas(file, catalog_file = catalog)
+  data_set <- haven::read_sas(file, catalog_file = catalog)
   
-  fct_levels <- purrr::map(c(paste0("q", 1:4)) %>% purrr::set_names(), ~{
-    purrr::set_names(1:5, LETTERS[1:5])
-  }) 
+  # test 1: recode from integer to letter
+  fct_levels <- purrr::map(
+    c(paste0("q", 1:4)) %>% purrr::set_names(), 
+    ~{purrr::set_names(1:5, LETTERS[1:5])}
+  ) 
   
   spec_adsl <- adam_spec_adsl(
     file        = file, 
@@ -117,20 +119,36 @@ test_that("fct_levels argument of adam_spec_adsl() works", {
     catalog     = catalog
   )
   
+  from_existing_labels <- data_set %>% 
+    labelled::val_labels() %>% 
+    purrr::compact() %>% 
+    names() %>%
+    # TODO issue: proper handling of value labels for factors
+    # by design: only level labels of integer columns are extracted 
+    # from the catalog file
+    # later should also contain "gender"?
+    setdiff("gender")
+  
+  from_user_input <- names(fct_levels) #"q1", "q2", "q3", "q4"
+  
+  # the factor_levels entry is expected to combine factor levels 
+  # derived from catalog file with the ones provided in fct_levels
   expect_setequal(
     names(spec_adsl$factor_levels),
-    c(
-      "q1", "q2", "q3", "q4",
-      # only level labels of integer columns are extracted 
-      # from the catalog file
-      "workshop"
-    )
+    c(from_user_input, from_existing_labels)
   )
   
+  # test 2: edge cases
   fct_levels <- list(
-    q1           = purrr::set_names(1:6, LETTERS[1:6]),
+    # q1: define more levels than in data set
+    q1           = purrr::set_names(1:6, letters[1:6]),
+    # q2: define less levels than in data set
+    q2           = purrr::set_names(1:4, letters[1:4]),
+    # currently gender not listed in $factor_levels, adding recoding
     gender       = c(girl = "f", boy = "m"),
+    # workshop: recoding single value
     workshop     = c(R = 1, Python = 2),
+    # define factor that's not in data_set
     non_existent = c(old = 65, young = 25)
   )
   
@@ -143,7 +161,7 @@ test_that("fct_levels argument of adam_spec_adsl() works", {
   
   expect_setequal(
     names(spec_adsl$factor_levels),
-    c("q1", "workshop", "gender")
+    intersect(names(fct_levels), names(data_set))  # ("q1", "q2", "workshop", "gender")
   )
   
   expect_equal(

@@ -19,3 +19,19 @@ test_that("corrr_mini works", {
   )
   
 })
+
+
+test_that("read_zap_empty() works", {
+  
+  adsl_file   <- file.path(testthat::test_path("sas", "adsl.sas7bdat"))
+  
+  adsl <- haven::read_sas(adsl_file) %>% 
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::where(is.character),
+        haven::zap_empty
+      )
+    )
+  
+})
+

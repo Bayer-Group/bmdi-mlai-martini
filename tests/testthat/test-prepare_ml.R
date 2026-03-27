@@ -343,7 +343,8 @@ test_that("repeated measurement implementation works", {
       prep_step_dummy     = FALSE,
       prep_step_normalize = FALSE,
       vars_imp_ignore     = ".trt",
-      seed                = 1825
+      seed                = 1825,
+      train_prop          = 0.75
     )
   )
   
@@ -474,7 +475,10 @@ test_that("get_data(martini_ml) works", {
 
   expect_setequal(
     d_prep_id$type %>% unique(), 
-    c("train", "test")
+    c(
+      "train", 
+      if(martini_ml_regr$input$args$train_prop < 1) "test"
+    )
   )
     
 })
