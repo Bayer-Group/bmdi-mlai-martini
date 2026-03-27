@@ -182,7 +182,8 @@ test_that("check_count() works", {
     rownumber = 1:n,
     ints_with_neg = c(-1, 0, withr::with_seed(1433, sample(1:2, n-2, replace = TRUE))),
     guess_fct   = withr::with_seed(1433, sample(1:2, n, replace = TRUE)),
-    guess_count = withr::with_seed(1344, sample(1:threshold, n, replace = TRUE))
+    guess_count = withr::with_seed(1344, sample(1:threshold, n, replace = TRUE)),
+    chr_col     = rep(letters[1:4], each = n / 4)  # non-numeric, must be ignored
   )
   
   expect_message(
@@ -208,6 +209,7 @@ test_that("check_count() works", {
     )$vars,
     c("guess_fct", "guess_count", "ints_with_neg")
   )
+  
 })
 
 test_that("check_nzv() works", {
