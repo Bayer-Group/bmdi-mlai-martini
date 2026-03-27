@@ -45,17 +45,9 @@ The automated part of the preparation workflow is handled by the three main
 functions of `martini`, namely
 
 * `adam_spec()`, 
-* `ads_build()`,  
+* `build()`,  
 * `prepare_ml()`.
 
-<!-- add links  -->
-<!-- * \link{\code{ads_spec}}\code{()} -->
-<!-- * \link{\code{ads_build}}\code{()} -->
-<!-- * \link{\code{prepare_ml}}\code{()} -->
-
-<!-- * `adam_spec()` -->
-<!-- * `ads_build()` -->
-<!-- * `prepare_ml()` -->
 
 The package was developed in the clinical context which is reflected in the 
 default settings and specifics of both the main and helper functions. 
@@ -983,7 +975,7 @@ and different outcome types.
 
 By default (`check_feature = TRUE`) `prepare_ml()` will run a check on the 
 provided `feature` data, which can also be run as stand-alone function 
-(`check_feature(feature`).
+(`check_feature(feature)`).
 The main checks include
 
 * low frequency classes: factors with size of the smallest class per factor 
@@ -1034,7 +1026,8 @@ at least help in the identification of the variables causing the issue:
 for factors that may cause problems in this regard.
 
 ```{r}
-d_ml %>%  
+d_ml %>% 
+  get_data() %>%  
   check_freq(thres = 25)
 ```
 In case factors with low frequency classes are identified, 
@@ -1196,9 +1189,11 @@ assessment of the generalization error in the downstream workflow.
 
 ### Data preparation and documentation
 
-* `prep_recipe` contains the prepared recipe object, `prep_params`
-documents the parameters/thresholds used in the data preparation, 
-giving bare `value` slots, as well as a verbose description in `text`.
+* `recipe$prep` contains the fully trained recipe object, `recipe$raw` the
+untrained version (required e.g. for tuning workflows).
+`recipe$params` documents the parameters/thresholds used in the data 
+preparation, giving bare `value` slots, as well as a verbose description 
+in `text`.
 `removed` gives a list of removed `rows` and `columns` along with 
 the information on why/in which recipe step the data was removed.  
 
