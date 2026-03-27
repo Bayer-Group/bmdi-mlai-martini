@@ -1,6 +1,3 @@
-
-devtools::load_all()
-
 # ADS SPEC ####
 
 # path to the sas-files of the example study
