@@ -69,6 +69,11 @@ for factors.
 Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }
 
+\examples{
+feat <- build(martini_spec)
+attr(feat, "dict")
+
+}
 \seealso{
 \code{\link{build_adsl}()}, \code{\link{build_bds}()},
 \code{\link{build_occds}()}

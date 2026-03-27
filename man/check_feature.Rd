@@ -48,3 +48,30 @@ NULL if not tested at all.
 \code{check_feature()} is by default run in \code{\link[=prepare_ml]{prepare_ml()}} on the
 input \code{feature} to notify the user on sources of potential issues.
 }
+\examples{
+# check_feature() on martini_feat (package data, few issues expected)
+check_feature(martini_feat)
+
+# Synthetic data set designed to trigger all checks:
+n <- 100
+feat_issues <- tibble::tibble(
+  .id = 1:n,
+  # two levels with n=1, below default threshold
+  low_freq   = factor(c(rep("common", n - 2), "rare1", "rare2")),
+  # 99/100 values identical -> near-zero variance
+  near_const = c(1, rep(2, n - 1)),
+  # 25\% NAs, below thres_imp = 0.8
+  high_miss  = c(rep(NA, 25), runif(n - 25)),
+  # non-negative integers, only 3 distinct values
+  count_var  = sample(1:3, n, replace = TRUE),
+  # already contains the lumping class "other_ml"
+  has_other  = factor(c(rep("A", n - 1), "other_ml"))
+)
+check_feature(feat_issues)
+check_freq(feat_issues)
+check_other_class(feat_issues)
+check_non_missing(feat_issues)
+check_nzv(feat_issues)
+check_count(feat_issues)
+
+}

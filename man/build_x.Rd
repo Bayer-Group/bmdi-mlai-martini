@@ -46,12 +46,12 @@ the last factor level is used for categorical values.}
 \value{
 A list with the following entries
 \itemize{
-\item{\code{data}}{ a tibble in wide format with one row per \code{id}}
-\item{\code{dict}}{ a tibble listing the distinct combinations of columns
-\code{param}, \code{label}, \code{unit}, \code{time}, \code{column}, \code{source} (if provided).}
-\item{\code{source}}{ a list passing the \code{file} slot from the given \code{spec} that the created data set is based
-upon along with the md5 checksum of this file if \code{file} was provided, NULL otherwise}
-\item{\code{flag_table}}{ \code{build_adsl()} only. flag table is passed from \code{spec$flag_table} slot}
+\item \code{data} a tibble in wide format with one row per \code{id}
+\item \code{dict} a tibble listing the distinct combinations of columns
+\code{param}, \code{label}, \code{unit}, \code{time}, \code{column}, \code{source} (if provided).
+\item \code{source} a list passing the \code{file} slot from the given \code{spec} that the created data set is based
+upon along with the md5 checksum of this file if \code{file} was provided, NULL otherwise
+\item \code{flag_table} \code{build_adsl()} only. flag table is passed from \code{spec$flag_table} slot
 }
 }
 \description{
