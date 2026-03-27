@@ -2,7 +2,6 @@
 
 ## breaking changes
 
-
 * default for id column changed to USUBJID according to ADaM implementation guide
 * `build(join = )` default changed from `dplyr::inner_join()` to
 `dplyr::full_join()`, which is equivalent to "adsl" (if included) according
@@ -64,6 +63,10 @@ It is run by default in [prepare_ml()], but recommended to run prior to calling
 part of the limited internal library has been extended to data sets 
 following `occds` data structure: `adam_spec(add_occds = ..., add_bds = ...)`.
 
+
+## documentation
+
+* added examples e.g. to `adam_spec()`, `build()`, and `prepare_ml()`
 
 
 
