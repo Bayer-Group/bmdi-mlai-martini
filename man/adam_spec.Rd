@@ -104,6 +104,11 @@ for full details.
 Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)
 }
 
+\examples{
+ads_path <- system.file("martini_example_study/ads", package = "martini")
+adam_spec(ads_path)
+
+}
 \seealso{
 \code{\link{adam_spec_adsl}()},
 \code{\link{adam_spec_bds}()},  \code{\link{adam_spec_occds}()}
