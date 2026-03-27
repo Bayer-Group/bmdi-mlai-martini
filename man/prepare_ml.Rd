@@ -134,7 +134,7 @@ for details on how outliers are removed from outcome variables.
 
 \item{custom_recipe}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} custom, pre-defined
 \code{recipes::recipe()} that may be
-provided for data preparation. Defaults to NULL, yielding {{martini}}'s default
+provided for data preparation. Defaults to NULL, yielding \code{martini}'s default
 preparation (please refer to the details section to learn about the
 default recipe steps).}
 

@@ -24,7 +24,7 @@ step_corr_keep(
 operations for this recipe.}
 
 \item{...}{One or more selector functions to choose variables for this step.
-See \code{\link[=selections]{selections()}} for more details.}
+See \code{\link[recipes:selections]{recipes::selections()}} for more details.}
 
 \item{role}{Not used by this step since no new variables are created.}
 
@@ -48,14 +48,14 @@ variable pair with an absolute correlation greater than \code{threshold}
 \code{\link[recipes:step_corr]{recipes::step_corr()}}.}
 
 \item{removals}{A character string that contains the names of columns that
-should be removed. These values are not determined until \code{\link[=prep]{prep()}} is
+should be removed. These values are not determined until \code{\link[recipes:prep]{recipes::prep()}} is
 called.}
 
 \item{high_corr}{A tibble containing all correlations above \code{threshold}.
-These values are not determined until \code{\link[=prep]{prep()}} is called.}
+These values are not determined until \code{\link[recipes:prep]{recipes::prep()}} is called.}
 
 \item{skip}{A logical. Should the step be skipped when the recipe is baked by
-\code{\link[=bake]{bake()}}? While all operations are baked when \code{\link[=prep]{prep()}} is run, some
+\code{\link[recipes:bake]{recipes::bake()}}? While all operations are baked when \code{\link[recipes:prep]{recipes::prep()}} is run, some
 operations may not be able to be conducted on new data (e.g. processing the
 outcome variable(s)). Care should be taken when using \code{skip = TRUE} as it
 may affect the computations for subsequent operations.}
@@ -125,7 +125,7 @@ examples on \code{tidymodels.org}.
 }
 
 \examples{
-\dontshow{if (rlang::is_installed("MASS")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_installed("MASS")) withAutoprint(\{ # examplesIf}
 # create a data set
 set.seed(1717)
 p <- 5

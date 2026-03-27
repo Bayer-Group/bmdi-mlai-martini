@@ -24,8 +24,8 @@ prepare_ml_recipe(
 
 \item{custom_recipe}{if NULL, recipe will be created}
 
-\item{corr_method, corr_use}{defaulting to \code{corr_method} \code{"spearman"} and
-\code{corr_use} \code{"pairwise.complete.obs"}}
+\item{corr_method, corr_use}{defaulting to \code{corr_method} \code{spearman} and
+\code{corr_use} \code{pairwise.complete.obs}}
 
 \item{thres_list, step_list}{named list objects collecting all threshold values
 and step selection info, resp. Please refer to the documentation of
@@ -62,7 +62,8 @@ a named list with entries containing
 \item info on steps included in the recipe
 \item a list of relevant variables
 \item a list of thresholds used
-\item \code{high_corr} a tibble listing correlations above \code{thres_corr}. \code{NULL} if \code{step_list$prep_step_corr = FALSE}.
+\item \code{high_corr} a tibble listing correlations above \code{thres_corr}.
+\code{NULL} if \code{step_list$prep_step_corr = FALSE}.
 }
 }
 \description{
