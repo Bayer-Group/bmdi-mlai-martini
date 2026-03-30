@@ -1,9 +1,9 @@
 #' Example classification outcome
 #'
-#' Classification outcome for the included example study in \code{system.file("ads", package = "martini")}.
+#' Classification outcome for the included example study in `system.file("ads", package = "martini")`.
 #' 
 #' @format 
-#' A tibble with one row per subject and the columns \code{.id} and \code{.out}.
+#' A tibble with one row per subject and the columns `.id` and `.out`.
 #' 
 #' @source 
 #' Simulated data
@@ -14,10 +14,10 @@
 
 #' Example regression outcome
 #'
-#' Regression outcome for the included example study in \code{system.file("ads", package = "martini")}.
+#' Regression outcome for the included example study in `system.file("ads", package = "martini")`.
 #' 
 #' @format 
-#' A tibble with one row per subject and the columns \code{.id} and \code{.out}.
+#' A tibble with one row per subject and the columns `.id` and `.out`.
 #' 
 #' @source 
 #' Simulated data
@@ -27,10 +27,10 @@
 
 #' Example survival outcome
 #'
-#' Survival outcome for the included example study in \code{system.file("ads", package = "martini")}.
+#' Survival outcome for the included example study in `system.file("ads", package = "martini")`.
 #' 
 #' @format 
-#' A tibble with one row per subject and the columns \code{.id}, \code{.time} and \code{.status}.
+#' A tibble with one row per subject and the columns `.id`, `.time` and `.status`.
 #' 
 #' @source 
 #' Simulated data

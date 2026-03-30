@@ -6,7 +6,7 @@
 \title{Example feature matrix.}
 \format{
 A tibble with one row per subject and the features in the column. See the documentation of
-\code{\link{build}()} for details on the object structure.
+\code{\link[=build]{build()}} for details on the object structure.
 }
 \source{
 Simulated data
@@ -16,6 +16,6 @@ martini_feat
 }
 \description{
 Feature matrix of the included example study in \code{system.file("ads", package = "martini")}
-created by \code{\link{build}()} from \code{\link{martini_spec}}.
+created by \code{\link[=build]{build()}} from \link{martini_spec}.
 }
 \keyword{datasets}

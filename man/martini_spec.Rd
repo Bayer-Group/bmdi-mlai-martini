@@ -5,8 +5,9 @@
 \alias{martini_spec}
 \title{Example specification object.}
 \format{
-A list with the entries \code{adsl}, \code{admh} and \code{advs}. See the documentation of
-\code{\link{adam_spec}()} for further details on the object structure.
+A list with the entries \code{adsl}, \code{adlb}, \code{admh} and \code{advs}.
+See the documentation of
+\code{\link[=adam_spec]{adam_spec()}} for further details on the object structure.
 }
 \source{
 Simulated data
@@ -15,7 +16,8 @@ Simulated data
 martini_spec
 }
 \description{
-Specification object of the included example study in \code{system.file("ads", package = "martini")}
-as created by \code{\link{adam_spec}()}.
+Specification object of the included example study in
+\code{system.file("martini_example_study/ads", package = "martini")}
+as created by \code{\link[=adam_spec]{adam_spec()}}.
 }
 \keyword{datasets}

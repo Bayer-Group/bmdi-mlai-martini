@@ -5,7 +5,7 @@
 \alias{martini_ml_regr}
 \title{Example ML regression object.}
 \format{
-A list object. See the documentation of \code{\link{prepare_ml}()} for further details on the object structure.
+A \code{martini_ml} list object. See the documentation of \code{\link[=prepare_ml]{prepare_ml()}} for further details on the object structure.
 }
 \source{
 Simulated data
@@ -15,6 +15,6 @@ martini_ml_regr
 }
 \description{
 ML object of the example study in \code{system.file("ads", package = "martini")} and the regression
-outcome \code{martini_outc_regr} as created by \code{\link{prepare_ml}()}.
+outcome \link{martini_outc_regr} as created by \code{\link[=prepare_ml]{prepare_ml()}}.
 }
 \keyword{datasets}

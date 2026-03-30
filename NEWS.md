@@ -1,4 +1,4 @@
-# martini (development version)
+# martini 0.7.0
 
 ## breaking changes
 

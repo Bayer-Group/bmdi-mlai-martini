@@ -110,11 +110,7 @@ martini_outc_surv <- withr::with_seed(
   )
 )
 
-# ... export ####
 
-usethis::use_data(martini_outc_class, overwrite = TRUE)
-usethis::use_data(martini_outc_regr,  overwrite = TRUE)
-usethis::use_data(martini_outc_surv,  overwrite = TRUE)
 
 # ML OBJECT ####
 
@@ -171,76 +167,43 @@ cur_pkg_data <- function(x){
 waldo_ignore <- \(ml){
   purrr::pluck(ml, "recipe", "prep") <- NULL
 }
-purrr::walk(c(
-  "martini_ml_class",
-  "martini_ml_regr",
-  "martini_ml_surv"
-), ~{
-   
-  waldo::compare(
-    cur_pkg_data(.x) %>% waldo_ignore(),
-    get(.x) %>% waldo_ignore(),
-    ignore_formula_env = TRUE,
-    max_diffs = Inf
-  ) %>% print()
-})
+purrr::iwalk(
+  c(
+    "martini_outc_class",
+    "martini_outc_regr",
+    "martini_outc_surv",
+  
+    "martini_ml_class",
+    "martini_ml_regr",
+    "martini_ml_surv"
+  ) %>% purrr::set_names(),
+  ~ {
+    cat(paste0(.y, ": "))
+    waldo::compare(
+      cur_pkg_data(.x) %>% waldo_ignore(),
+      get(.x) %>% waldo_ignore(),
+      ignore_formula_env = TRUE,
+      max_diffs = Inf
+    ) %>%
+      print()
+
+    cat("\n")
+  }
+)
 
 # ... export ####
 
-if(FALSE){
-  
+if (FALSE) {
   # NOTE only run, if changes are as expected
+
+  # outcome 
+  usethis::use_data(martini_outc_class, overwrite = TRUE)
+  usethis::use_data(martini_outc_regr,  overwrite = TRUE)
+  usethis::use_data(martini_outc_surv,  overwrite = TRUE)
+
+  # ml objects
   usethis::use_data(martini_ml_class, overwrite = TRUE)
   usethis::use_data(martini_ml_regr,  overwrite = TRUE)
   usethis::use_data(martini_ml_surv,  overwrite = TRUE)
-  
 }
 
-
-# ... rds files ####
-
-if(FALSE){
-  
-# path to the sas-files of the test data sets
-ads_path <- system.file("tests/testthat/sas", package = "martini")
-if(ads_path == "") ads_path <- "tests/testthat/sas"
-
-ads_path %>% 
-  list.files(full.names = TRUE) %>% 
-  purrr::walk(~{
-    data <- haven::read_sas(.x)
-    saveRDS(
-      data, 
-      here::here(
-        ads_path, 
-        basename(.x) %>% 
-          tools::file_path_sans_ext() %>% paste0(".rds")))
-  })
-
-}
-
-if(FALSE){
-# 
-flights_rec <- 
-  recipe(arr_delay ~ ., data = train_data) %>% 
-  update_role(flight, time_hour, new_role = "ID") %>% 
-  step_date(date, features = c("dow", "month")) %>%               
-  step_holiday(date, 
-               holidays = timeDate::listHolidays("US"), 
-               keep_original_cols = FALSE) %>% 
-  step_dummy(all_nominal_predictors()) %>% 
-  step_zv(all_predictors())
-
-lr_mod <- 
-  logistic_reg() %>% 
-  set_engine("glm")
-
-flights_wflow <- 
-  workflow() %>% 
-  add_model(lr_mod) %>% 
-  add_recipe(flights_rec)
-
-flights_wflow
-
-
-}

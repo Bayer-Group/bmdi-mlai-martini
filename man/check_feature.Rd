@@ -42,7 +42,7 @@ printed to the console. Defaults to FALSE.}
 a nested list, where each entry has a \code{vars} entry that contains
 column names that do not pass the respective check (if check is included),
 character of length 0 for empty sets.
-\code{NULL} if not tested at all.
+NULL if not tested at all.
 }
 \description{
 \code{check_feature()} is by default run in \code{\link[=prepare_ml]{prepare_ml()}} on the
