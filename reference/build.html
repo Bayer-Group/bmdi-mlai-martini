@@ -13,7 +13,7 @@ by adam_spec() (with or without data already attached)."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">martini</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,13 +24,17 @@ by adam_spec() (with or without data already attached)."></head><body>
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">MARTINI - MLAI pipeline prepare module</a></li>
-    <li><a class="dropdown-item" href="../articles/prepare-adam-data.html">MARTINI - MLAI pipeline prepare module</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Introduction</h6></li>
+    <li><a class="dropdown-item" href="../articles/intro-to-martini.html">Introduction to martini</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
+    <li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">Preparation of ADaM data for Machine Learning</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/bayer-int/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Bayer-Group/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -40,7 +44,7 @@ by adam_spec() (with or without data already attached)."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Build the feature matrix from various sources according to a specification object</h1>
-      <small class="dont-index">Source: <a href="https://github.com/bayer-int/bmdi-mlai-martini/blob/main/R/build.R" class="external-link"><code>R/build.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Bayer-Group/bmdi-mlai-martini/blob/main/R/build.R" class="external-link"><code>R/build.R</code></a></small>
       <div class="d-none name"><code>build.Rd</code></div>
     </div>
 
@@ -48,12 +52,12 @@ by adam_spec() (with or without data already attached)."></head><body>
     <p><a href="https://lifecycle.r-lib.org/articles/stages.html#maturing" class="external-link"><img src="figures/lifecycle-maturing.svg" alt="[Maturing]"></a></p>
 <p>The <code>build()</code> function allows to build a machine learning data set from a
 specification object as provided
-by <code><a href="adam_spec.html">adam_spec</a>()</code> (with or without data already attached).</p>
+by <code><a href="adam_spec.html">adam_spec()</a></code> (with or without data already attached).</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">build</span><span class="op">(</span><span class="va">spec</span>, join <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">inner_join</a></span>, rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">build</span><span class="op">(</span><span class="va">spec</span>, join <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">full_join</a></span>, rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -61,7 +65,7 @@ by <code><a href="adam_spec.html">adam_spec</a>()</code> (with or without data a
 
 
 <dl><dt id="arg-spec">spec<a class="anchor" aria-label="anchor" href="#arg-spec"></a></dt>
-<dd><p>a specification object as provided by <code><a href="adam_spec.html">adam_spec</a>()</code>
+<dd><p>a specification object as provided by <code><a href="adam_spec.html">adam_spec()</a></code>
 (either <code>spec</code> or <code>path</code> has to be provided)</p></dd>
 
 
@@ -69,22 +73,27 @@ by <code><a href="adam_spec.html">adam_spec</a>()</code> (with or without data a
 <dd><p>either function to join data sets (e.g. <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">dplyr::full_join()</a></code>
 or a character (vector) giving the names
 of the data sets containing the .ids to keep
-(e.g. <code>join = c('adxb', 'adlb')</code>). defaults to <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">dplyr::inner_join</a></code></p></dd>
+(e.g. <code>join = c('adxb', 'adlb')</code>).
+Defaults to <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">dplyr::full_join</a></code>,
+which is equivalent to 'adsl' (if included) according to CDISC standards.</p></dd>
 
 
 <dt id="arg-rm">rm<a class="anchor" aria-label="anchor" href="#arg-rm"></a></dt>
 <dd><p>boolean. defaults to FALSE. if TRUE, a repeated measurement feature
 matrix with an additional <code>.rmtime</code> column
-is prepared. (experimental.)</p></dd>
+is prepared. <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="figures/lifecycle-experimental.svg" alt="[Experimental]"></a></p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>build()</code> returns a wide data set with one row per subject and standardized column names for the subject id (<code>.id</code>)
-and the treatment variable (<code>.trt</code>), if it is provided in the <code>spec</code> object. Objects with additional information on
+    <p><code>build()</code> returns a wide data set with one row per subject and
+standardized column names for the subject id (<code>.id</code>)
+and the treatment variable (<code>.trt</code>), if it is provided in the
+<code>spec</code> object. Objects with additional information on
 the data are provided in the attributes of the returned object.</p>
-<dl><dt><code>dict</code></dt>
-<dd>
+<p><code>attr("source")</code>:
+a tibble giving file path and md5 checksums of the source data sets.</p>
+<p><code>attr("dict")</code>: a tibble with the following columns</p>
 <dl><dt><code>param</code></dt>
 <dd><p>original parameter name in the source data</p></dd>
 
@@ -99,7 +108,7 @@ time points are considered for a particular parameter.</p></dd>
 
 <dt><code>source</code></dt>
 <dd><p>source id provided by the specification object. If created
-with <code><a href="adam_spec.html">adam_spec</a>()</code>, this is the name of the domain.</p></dd>
+with <code><a href="adam_spec.html">adam_spec()</a></code>, this is the name of the domain.</p></dd>
 
 <dt><code>type</code></dt>
 <dd><p>ADaM data type of the source data (adsl, bds or occds)</p></dd>
@@ -113,11 +122,6 @@ with <code><a href="adam_spec.html">adam_spec</a>()</code>, this is the name of 
 <dt><code>spec_id</code></dt>
 <dd><p>name of the corresponding spec entry (if applicable)</p></dd>
 
-
-</dl></dd>
-
-<dt><code>source</code></dt>
-<dd><p>file path and md5 checksums of the source data sets</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -138,10 +142,31 @@ for factors.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="build_x.html">build_adsl</a>()</code>, <code><a href="build_x.html">build_bds</a>()</code>,
-<code><a href="build_x.html">build_occds</a>()</code></p></div>
+    <div class="dont-index"><p><code><a href="build_x.html">build_adsl()</a></code>, <code><a href="build_x.html">build_bds()</a></code>,
+<code><a href="build_x.html">build_occds()</a></code></p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">feat</span> <span class="op">&lt;-</span> <span class="fu">build</span><span class="op">(</span><span class="va">martini_spec</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">feat</span>, <span class="st">"dict"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 26 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    param   label                               source type  column spec_id unit </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> .id     Unique Subject Identifier           adsl   adsl  .id    adsl    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> .trt    Actual Treatment for Period 01      adsl   adsl  .trt   adsl    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> AGE     Age                                 adsl   adsl  AGE    adsl    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> SEX     Sex                                 adsl   adsl  SEX    adsl    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> RACE    Race                                adsl   adsl  RACE   adsl    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> CALCIUM Calcium (mg/dL) in Serum            adlb   bds   CALCI… adlb    mg/dL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> CREAT   Creatinine (mg/dL) in Serum         adlb   bds   CREAT  adlb    mg/dL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> GGT     Gamma Glutamyl Transferase (U/L) i… adlb   bds   GGT    adlb    U/L  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> HB      Hemoglobin (g/dL) in Blood          adlb   bds   HB     adlb    g/dL </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> HCT     Hematocrit (%) in Blood - Calculat… adlb   bds   HCT    adlb    %    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more rows</span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
@@ -151,7 +176,7 @@ for factors.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

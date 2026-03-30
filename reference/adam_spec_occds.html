@@ -19,7 +19,7 @@ data into wide format and prepare the data filter."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">martini</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,13 +30,17 @@ data into wide format and prepare the data filter."></head><body>
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">MARTINI - MLAI pipeline prepare module</a></li>
-    <li><a class="dropdown-item" href="../articles/prepare-adam-data.html">MARTINI - MLAI pipeline prepare module</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Introduction</h6></li>
+    <li><a class="dropdown-item" href="../articles/intro-to-martini.html">Introduction to martini</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
+    <li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">Preparation of ADaM data for Machine Learning</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/bayer-int/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Bayer-Group/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -46,14 +50,14 @@ data into wide format and prepare the data filter."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Create specification object for ADaM data sets of type <code>occds</code></h1>
-      <small class="dont-index">Source: <a href="https://github.com/bayer-int/bmdi-mlai-martini/blob/main/R/adam_spec_occds.R" class="external-link"><code>R/adam_spec_occds.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Bayer-Group/bmdi-mlai-martini/blob/main/R/adam_spec_occds.R" class="external-link"><code>R/adam_spec_occds.R</code></a></small>
       <div class="d-none name"><code>adam_spec_occds.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
     <p>Given a file containing a occds data set (e.g. admh or adcm),
 <code>adam_spec_occds()</code>
-will create a specification object for use in <code><a href="build_x.html">build_occds</a>()</code>
+will create a specification object for use in <code><a href="build_x.html">build_occds()</a></code>
 to prepare the data
 to be used in machine learning. The main task is to collect the key columns
 for reshaping the
@@ -65,14 +69,12 @@ data into wide format and prepare the data filter.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">adam_spec_occds</span><span class="op">(</span></span>
 <span>  file <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  data <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  id <span class="op">=</span> <span class="st">"SUBJID"</span>,</span>
+<span>  id <span class="op">=</span> <span class="st">"USUBJID"</span>,</span>
 <span>  label <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  value <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  valuen <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  filter <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  count <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  time <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  pre_study <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  attach_data <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -101,34 +103,23 @@ Defaults to NULL, will be guessed if not set (see Details).</p></dd>
 
 
 <dt id="arg-value">value<a class="anchor" aria-label="anchor" href="#arg-value"></a></dt>
-<dd><p>optional value column (e.g. AE severity). Defaults to NULL,
+<dd><p>optional value column (e.g. AE severity). Defaults to <code>NULL</code>,
 which leads to an Y/N coding of the event.</p></dd>
 
 
 <dt id="arg-valuen">valuen<a class="anchor" aria-label="anchor" href="#arg-valuen"></a></dt>
-<dd><p>optional numeric coding column for <code>value</code>. Defaults to NULL,
-ignored if <code>value</code> is NULL.</p></dd>
+<dd><p>optional numeric coding column for <code>value</code>. Defaults to <code>NULL</code>,
+ignored if <code>value</code> is <code>NULL.</code></p></dd>
 
 
 <dt id="arg-filter">filter<a class="anchor" aria-label="anchor" href="#arg-filter"></a></dt>
 <dd><p>character vector of filters to be applied to the bds data set.
 Individual filters will only be considered if the resulting data set has
-positive number of rows. Defaults to NULL.</p></dd>
+positive number of rows. Defaults to <code>NULL</code>.</p></dd>
 
 
 <dt id="arg-count">count<a class="anchor" aria-label="anchor" href="#arg-count"></a></dt>
-<dd><p>boolean, defaults to FALSE.</p></dd>
-
-
-<dt id="arg-time">time<a class="anchor" aria-label="anchor" href="#arg-time"></a></dt>
-<dd><p>name of the column that is used for time filtering (if required
-via <code>pre_study</code> argument). Defaults to NULL, will be guessed if not set
-(see Details).</p></dd>
-
-
-<dt id="arg-pre-study">pre_study<a class="anchor" aria-label="anchor" href="#arg-pre-study"></a></dt>
-<dd><p>boolean. filter the data set to pre_study observations
-based on non-negative values in <code>time</code></p></dd>
+<dd><p>boolean, defaults to <code>FALSE</code>.</p></dd>
 
 
 <dt id="arg-attach-data">attach_data<a class="anchor" aria-label="anchor" href="#arg-attach-data"></a></dt>
@@ -144,7 +135,7 @@ slot of output object</p></dd>
 generated spec is based upon</p></dd>
 
 <dt><code>data</code></dt>
-<dd><p>the raw data set if <code>attach_data</code>, NULL otherwise</p></dd>
+<dd><p>the raw data set if <code>attach_data</code>, <code>NULL</code> otherwise</p></dd>
 
 <dt><code>data_info</code></dt>
 <dd><p>a list containing the number of subjects <code>nsubj</code> and
@@ -163,7 +154,7 @@ result when applied individually (using <code><a href="check_filter.html">check_
 
 <dt><code>label</code>, <code>value</code>, <code>valuen</code></dt>
 <dd><p>names of the key columns to be used in
-<code><a href="build_x.html">build_occds</a>()</code> for reshaping</p></dd>
+<code><a href="build_x.html">build_occds()</a></code> for reshaping</p></dd>
 
 <dt><code>spec_id</code></dt>
 <dd><p>character string, generally the name of the domain</p></dd>
@@ -177,12 +168,9 @@ result when applied individually (using <code><a href="check_filter.html">check_
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>For file names 'adae.sas7bdat', 'adcm.sas7bdat' and 'admh.sas7bdat',
 values for
-arguments <code>label</code> will be guessed if not provided, the same goes
-for <code>time</code> if <code>pre_study=TRUE</code>.
+arguments <code>label</code> will be guessed if not provided.
 Please refer to <code><a href="adam_guess.html">adam_guess()</a></code> for details on guessing procedure.
 Function will exit if <code>label</code> is neither provided nor can be guessed.
-If a pre-study filter is requested, the function will escape if <code>time</code>
-is neither provided nor can be guessed.
 Note that the original values in the <code>label</code> column will end up being
 the parameter labels,
 not the parameters in the ML feature matrix. These might be modified later
@@ -204,7 +192,7 @@ using <code><a href="https://rdrr.io/r/base/make.names.html" class="external-lin
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

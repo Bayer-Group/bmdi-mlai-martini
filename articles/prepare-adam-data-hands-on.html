@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>MARTINI - MLAI pipeline prepare module • martini</title>
+<title>Preparation of ADaM data for Machine Learning • martini</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="MARTINI - MLAI pipeline prepare module">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Preparation of ADaM data for Machine Learning">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">martini</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,8 +33,12 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">MARTINI - MLAI pipeline prepare module</a></li>
-    <li><a class="dropdown-item" href="../articles/prepare-adam-data.html">MARTINI - MLAI pipeline prepare module</a></li>
+<li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Introduction</h6></li>
+    <li><a class="dropdown-item" href="../articles/intro-to-martini.html">Introduction to martini</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
+    <li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">Preparation of ADaM data for Machine Learning</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -43,7 +47,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/bayer-int/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Bayer-Group/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -57,14 +61,11 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>MARTINI - MLAI pipeline prepare module</h1>
-            <h3 data-toc-skip class="subtitle">A hands-on tutorial on
-the preparation of ADaM data for Machine Learning</h3>
-                        <h4 data-toc-skip class="author">Maike Ahrens,
-Sebastian Voss</h4>
+      <h1>Preparation of ADaM data for Machine Learning</h1>
+            <h3 data-toc-skip class="subtitle">A hands-on tutorial</h3>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/bayer-int/bmdi-mlai-martini/blob/main/vignettes/prepare-adam-data-hands-on.Rmd" class="external-link"><code>vignettes/prepare-adam-data-hands-on.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Bayer-Group/bmdi-mlai-martini/blob/main/vignettes/prepare-adam-data-hands-on.Rmd" class="external-link"><code>vignettes/prepare-adam-data-hands-on.Rmd</code></a></small>
       <div class="d-none name"><code>prepare-adam-data-hands-on.Rmd</code></div>
     </div>
 
@@ -74,46 +75,48 @@ Sebastian Voss</h4>
 <h2 id="scope">Scope<a class="anchor" aria-label="anchor" href="#scope"></a>
 </h2>
 <p><strong>Package</strong></p>
-<p>The <code>MARTINIprep</code> package is the first part of the BMDI
-MARTINI pipeline, which aims at assessing the relation of baseline
-information from clinical domains with a given outcome.
-<code>MARTINIprep</code> provides a convenient framework to gather
+<p>The <code>martini</code> package was developed as part of a pipeline
+for machine learning and artificial intelligence, that aims to assess
+the relation of information stored in clinical study data with a given
+outcome while meeting the validation and documentation standards for
+software that is used in clinical trials.</p>
+<p><code>martini</code> provides a convenient framework to gather
 information from different clinical data sets and to combine them into a
-machine-learning-ready data set. The output is meant to be used with
-packages <!-- TODO adjust package names--> <code>MARTINImodtune</code>
-and <code>MARTINIreport</code>, both included in the
-<code>MARTINI</code> meta package (to come).</p>
+machine-learning-ready data set. The output is designed to be handed
+over to internal down-stream packages for modelling and reporting, but
+can of course also be used with the modelling framework of your
+choice.</p>
 <p>The automated part of the preparation workflow is handled by the
-three main functions of <code>MARTINIprep</code>, namely</p>
+three main functions of <code>martini</code>, namely</p>
 <ul>
 <li>
 <code><a href="../reference/adam_spec.html">adam_spec()</a></code>,</li>
 <li>
-<code>ads_build()</code>,<br>
+<code><a href="../reference/build.html">build()</a></code>,<br>
 </li>
 <li>
 <code><a href="../reference/prepare_ml.html">prepare_ml()</a></code>.</li>
 </ul>
-<!-- add links  --><!-- * \link{\code{ads_spec}}\code{()} --><!-- * \link{\code{ads_build}}\code{()} --><!-- * \link{\code{prepare_ml}}\code{()} --><!-- * `adam_spec()` --><!-- * `ads_build()` --><!-- * `prepare_ml()` --><p>The package was developed in the clinical context which is reflected
+<p>The package was developed in the clinical context which is reflected
 in the default settings and specifics of both the main and helper
 functions. This vignette is solely focused on the standard clinical
 setting. However, the functions may also be used with more general data
 sets, please refer to the individual help pages for full details.</p>
 <p><strong>Vignette</strong></p>
 <p>This vignette serves as a hands-on tutorial on the usage of the
-<code>MARTINIprep</code> package. It clearly outlines the required steps
-to get from an ads folder to a machine learning data set, listing a
-number of commonly required adaptations along the way.
-<!-- gives valuable advice --></p>
+<code>martini</code> package. It clearly outlines the required steps to
+get from an ads folder (containing analysis data sets in ADaM format) to
+a machine learning data set, listing a number of commonly required
+adaptations along the way. <!-- gives valuable advice --></p>
 <p>The package comes with a number of example data sets, ranging from
 raw sas data sets to be read in, to data objects representing
 intermediate steps (e.g. <code>martini_spec</code>,
 <code>martini_feat</code>) as well as the final output object
-(<code>martini_ml_class</code>) for further use in the
+(e.g. <code>martini_ml_class</code>) for further use in the
 <!-- TODO additional data package to include multiple endpoints? Cover only classification here-->
 <!-- TODO adjust package names-->
-<!-- `MARTINImodtune` and/or `MARTINIreport` --></p>
-<p>modules of the pipeline.</p>
+<!-- `MARTINImodtune` and/or `MARTINIreport` --> modules of the
+pipeline.</p>
 <!-- The full process is described in a lot more detail in the "under the hood" vignette of the package, where    -->
 <hr>
 </div>
@@ -130,13 +133,13 @@ composed command</p>
 <span>  <span class="fu"><a href="../reference/build.html">build</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/prepare_ml.html">prepare_ml</a></span><span class="op">(</span>outcome <span class="op">=</span> <span class="va">outcome_data</span><span class="op">)</span></span></code></pre></div>
 <p>where <code>path</code> would be defined as the location where the
-ADaM data sets are stored in <code>.sas7bdat</code> format. The chart
-below highlights the main workflow and lists related helper functions
-(mostly internal).</p>
+ADaM data sets are stored in <code>.sas7bdat</code> or <code>.rds</code>
+format. The chart below highlights the main workflow and lists related
+helper functions (mostly internal).</p>
 <div class="figure">
-<img src="img/martini-high-level.png" alt="Overview of `MARTINIprep` functions. The basic workflow from ads path to ML data object is accomplished by the main functions (turquoise), which make use of the (mostly internal) helper functions shown below. " width="100%"><p class="caption">
-Overview of <code>MARTINIprep</code> functions. The basic workflow from
-ads path to ML data object is accomplished by the main functions
+<img src="img/martini-high-level.png" class="r-plt" alt="Overview of `martini` functions. The basic workflow from ads path to ML data object is accomplished by the main functions (turquoise), which make use of the (mostly internal) helper functions shown below." width="100%"><p class="caption">
+Overview of <code>martini</code> functions. The basic workflow from ads
+path to ML data object is accomplished by the main functions
 (turquoise), which make use of the (mostly internal) helper functions
 shown below.
 </p>
@@ -148,6 +151,7 @@ shown below.
 <div class="section level2">
 <h2 id="outcome-preparation">Outcome preparation<a class="anchor" aria-label="anchor" href="#outcome-preparation"></a>
 </h2>
+<p><strong>Format</strong></p>
 <p>It is recommended to clearly define the outcome of interest and
 prepare the <em>outcome</em> data set independently from the feature
 engineering process. The outcome data set may contain information on
@@ -157,6 +161,25 @@ sets for each outcome are preferable for large studies, considering the
 potentially higher preparation times. For time-to-event data, each
 endpoint is described by two columns (representing time and status,
 resp.).</p>
+<p>For survival, the outcome information is coded in two separate
+columns, e.g. <code>days</code> and <code>event</code>. Note that in
+this case, for the specification of the outcome names for
+<code><a href="../reference/prepare_ml.html">prepare_ml()</a></code>, a named vector is expected in the survival
+case,
+e.g. <code>outcome_names = c(.time = 'days', .status = 'event')</code>.</p>
+<p><strong>Example data sets</strong></p>
+<p>The package comes with three exemplary outcome data sets, one each
+for classification, regression and survival tasks. For regression and
+classification, both are two column tibbles with an <code>.id</code> and
+an <code>.out</code> column, where in the classification example shown
+below, the <code>.out</code> variable is a factor with two levels
+(event/no event).</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">martini_outc_class</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Development shortcut</strong></p>
 <p>Since the analysis of survival endpoints is computationally much more
 expensive than for classification, the latter may be used for initial
 runs by using a dichotomized version of the endpoint (i.e. event yes/no
@@ -164,21 +187,7 @@ in given time frame). When binarizing time-to-event endpoints, please
 pay attention to the study duration (potentially reduce to subjects with
 minimum time under observation) and the resulting outcome distribution
 (highly unbalanced data, low event rate?).</p>
-<p>The package comes with two exemplary outcome data sets, one for
-classification, one for a regression problem. Both are two column
-tibbles with an <code>.id</code> and an <code>.out</code> column, where
-in the classification example shown below, the <code>.out</code>
-variable is a factor with two levels (event/no event).</p>
-<p>For survival, the outcome information would be coded in two separate
-columns, e.g. <code>days</code> and <code>event</code>. Note that for
-the specification of the outcome names for <code><a href="../reference/prepare_ml.html">prepare_ml()</a></code>, a
-named vector is expected in the survival case,
-e.g. <code>outcome_names = c(.time = 'days', .status = 'event')</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">martini_outc_class</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Note for use with Bayer internal pipeline</strong></p>
 <p>Please note that currently, only binary classification is fully
 supported by the MARTINI pipeline.</p>
 <hr>
@@ -203,7 +212,7 @@ not object of class duration.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/build_out_tte.html">build_out_tte</a></span><span class="op">(</span></span>
 <span>  </span>
 <span>  <span class="co"># either file or data have to be provided</span></span>
-<span>  file    <span class="op">=</span> <span class="st">'adtte.sas7bdat'</span>,</span>
+<span>  file    <span class="op">=</span> <span class="st">"adtte.sas7bdat"</span>,</span>
 <span>  </span>
 <span>  <span class="co"># select e.g. parameter of interest, subset to population</span></span>
 <span>  filter  <span class="op">=</span> <span class="st">'PARAMCD == "CVDEATH"'</span>, </span>
@@ -248,14 +257,14 @@ preparation process:</p>
 selected domains</li>
 <li>
 <strong><code>martini_outc_regr</code>,
-<code>martini_outc_class</code></strong> prepared outcome data sets (in
-practice, e.g. from adtte)</li>
+<code>martini_outc_class</code>, <code>martini_outc_surv</code></strong>
+prepared outcome data sets (in practice, e.g. from adtte)</li>
 <li>
-<strong><code>martini_ml_regr</code>,
-<code>martini_ml_class</code></strong> result of
-<code><a href="../reference/prepare_ml.html">prepare_ml()</a></code>, to be used in <code>MARTINImodtune</code>
-and/or <code>MARTINIreport</code>
-</li>
+<strong><code>martini_ml_regr</code>, <code>martini_ml_class</code>,
+<code>martini_ml_surv</code></strong> result of
+<code><a href="../reference/prepare_ml.html">prepare_ml()</a></code>, objects of type <code>martini_ml</code>
+containing ML ready data and documentation of data preparation
+steps</li>
 </ul>
 <p>We will focus on the description of the main functions, but each
 package function (exported or not) has its own help page, so feel free
@@ -267,14 +276,15 @@ to learn more about the detailed functionality on the individual pages.
 <h2 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
 </h2>
 <p>In the setting of clinical studies, we assume that a set of analysis
-data sets (ads) is stored in <code>.sas7bdat</code> format in a single
-folder <code>path</code>.</p>
+data sets (ads) is stored in <code>.sas7bdat</code> or <code>.rds</code>
+format in a single folder <code>path</code>.</p>
 <p>After specifying the folder location</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># path &lt;- 'path/to/sasfiles'</span></span>
 <span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span></span>
 <span>  <span class="st">"martini_example_study"</span>, <span class="st">"ads"</span>, </span>
-<span>  package <span class="op">=</span> <span class="st">"martini"</span>, mustWork <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  package <span class="op">=</span> <span class="st">"martini"</span>,</span>
+<span>  mustWork <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>you may check beforehand which data sets can be processed
 automatically to make sure, all information of interest can be
@@ -282,15 +292,15 @@ incorporated in the analysis. Running</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/adam_domain_type.html">adam_domain_type</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span></code></pre></div>
 <p>returns a tibble with the name of the domain, its mapped ADaM data
-types (occds/adsl/bds) along with the full file path. For domains with
+types (occds/adsl/bds) as well as the full file path. For domains with
 <code>type=='none'</code> no mapping information is available (yet) and
 the data set would not be processed automatically.</p>
-<p>In case a particular domain is required for your analysis but not
-included in the current list, please get in touch with the package
-maintainers (<a href="mailto:sebastian.voss.ext@bayer.com">Sebastian
-Voss</a>, <a href="mailto:maike.ahrens.ext@bayer.com">Maike Ahrens</a>).
+<!-- In case a particular domain is required for your analysis but not included  -->
+<!-- in the current list, please get in touch with the package maintainers  -->
+<!-- (<a href="mailto:sebastian.voss.ext@bayer.com">Sebastian Voss</a>,  -->
+<!-- <a href="mailto:maike.ahrens.ext@bayer.com">Maike Ahrens</a>). -->
 <!-- TODO add details on:
-... or use the appropriate internal functions `ads_spec_*` and `build_*` to process the data set. --></p>
+... or use the appropriate internal functions `ads_spec_*` and `build_*` to process the data set. -->
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/adam_domain_type.html">adam_domain_type</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 4</span></span></span>
@@ -300,6 +310,10 @@ Voss</a>, <a href="mailto:maike.ahrens.ext@bayer.com">Maike Ahrens</a>).
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> admh   occds sas7bdat /home/runner/work/_temp/Library/martini/martini_example…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> adsl   adsl  sas7bdat /home/runner/work/_temp/Library/martini/martini_example…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> advs   bds   sas7bdat /home/runner/work/_temp/Library/martini/martini_example…</span></span></code></pre></div>
+<p>In case a particular domain is required for your analysis but not
+included in the current list, use [adam_spec()]’s parameters
+<code>add_occds</code> and <code>add_bds</code>, respectively, to
+specify names of additional data sets to process.</p>
 <hr>
 </div>
 <div class="section level2">
@@ -364,11 +378,14 @@ file names against an internal library)</li>
 <p>In general, this automatically created specification may be used with
 the subsequent workflow, however, in practice, it will be modified by
 the user to match specific requirements.</p>
-<p>Printing the spec object to the console will provide information on
-data set size, derived numbers of columns and subjects (after filter
-application).</p>
+<p>Printing the <code>martini_spec</code> object to the console will
+provide information on data set size, derived numbers of columns and
+subjects (after filter application).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ads_spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/adam_spec.html">adam_spec</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> <span style="color: #555555;">admh: The columns MHOCCUR and MHOCCURN contain N/0 values.</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> <span style="color: #555555;">Please check if an additional filter is required such as `--OCCUR == 'Y' |</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #555555;">is.na(--OCCUR)`.</span></span></span>
 <span><span class="va">ads_spec</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">  Content</span></span></span>
@@ -384,8 +401,8 @@ application).</p>
 <span><span class="co">#&gt;   advs PARAMCD AVAL  AVALU AVISIT</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">  Key columns used in occds-type data sets</span></span></span>
-<span><span class="co">#&gt; <span style="color: #0000BB; font-weight: bold;">  name label  value valuen count time  </span></span></span>
-<span><span class="co"><span style="color: #0000BB; font-weight: bold;">#&gt; </span>  admh MHHLGT NA    NA     TRUE  MHSTDY</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #0000BB; font-weight: bold;">  name label  value valuen count</span></span></span>
+<span><span class="co"><span style="color: #0000BB; font-weight: bold;">#&gt; </span>  admh MHHLGT NA    NA     TRUE</span></span></code></pre></div>
 <p>Make yourself familiar with the list structure and contained
 information of the <code>spec</code> object:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -400,13 +417,16 @@ information of the <code>spec</code> object:</p>
 <span><span class="co">#&gt;  $ advs:List of 17</span></span>
 <span><span class="co">#&gt;   ..- attr(*, "filter_ok")= logi TRUE</span></span>
 <span><span class="co">#&gt;   ..- attr(*, "data_info_ok")= logi TRUE</span></span>
-<span><span class="co">#&gt;  $ admh:List of 16</span></span>
+<span><span class="co">#&gt;  $ admh:List of 15</span></span>
 <span><span class="co">#&gt;   ..- attr(*, "filter_ok")= logi TRUE</span></span>
 <span><span class="co">#&gt;   ..- attr(*, "data_info_ok")= logi TRUE</span></span>
 <span><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "martini_spec" "list"</span></span></code></pre></div>
 <p><strong>adsl column selection</strong></p>
-<p>In contrast to occds and bds type data, an automated column selection
-is required for the wide format adsl data sets.</p>
+<p>In contrast to occds and bds type data, column selection from the
+(already) wide format adsl data sets usually contains a larger number of
+columns.</p>
+<p><code>martini</code> generates a starting point for the selection by
+excluding columns based on different heuristics.</p>
 <p>Reasons for column exclusion are documented in the
 <code>drop_list</code> entry of the corresponding spec entry. Exclusion
 criteria include, but are not limited to datetime/duration-related
@@ -415,9 +435,22 @@ columns or analysis set flags.</p>
 <code class="sourceCode R"><span><span class="va">ads_spec</span><span class="op">$</span><span class="va">adsl</span><span class="op">$</span><span class="va">drop_list</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <hr>
 <div class="section level3">
-<h3 id="important-parameters">Important parameters<a class="anchor" aria-label="anchor" href="#important-parameters"></a>
+<h3 id="important-parameters-of-adam_spec">Important parameters of <code>adam_spec()</code><a class="anchor" aria-label="anchor" href="#important-parameters-of-adam_spec"></a>
 </h3>
-<p><strong>Filters</strong></p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># selection of adam_spec() parameters covered in more detail in this section</span></span>
+<span><span class="fu"><a href="../reference/adam_spec.html">adam_spec</a></span><span class="op">(</span></span>
+<span>  filter <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  attach_data <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  keep <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  drop <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  add_bds <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  add_occds <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fct_levels <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="section level4">
+<h4 id="filters">Filters<a class="anchor" aria-label="anchor" href="#filters"></a>
+</h4>
 <p>The <code>filter</code> argument takes a character vector of
 expressions to be passed to <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code>. A filter will
 be applied to a particular data set only if its (individual) application
@@ -427,15 +460,15 @@ combination of all valid filters would yield an empty data set.</p>
 <p>Common filters may be based on visit or treatment information, as
 well as flags indicating analysis sets. If a filter should be applied to
 only one particular ads domain and not considered for the other domains,
-just add the respective <code>ADSNAME</code> column (for standard data
-sets),
+just add the respective <code>ADSNAME</code> column (which should be
+available according to CDISC standards),
 e.g. <code>"ADSNAME == 'ADVS' &amp; AVISIT == 'Visit 1'"</code>.</p>
-<p>The <code>pre_study</code> argument allows to conveniently reduce
-occurrence data sets (e.g. medical history records) to data that is
-available at baseline based on the study day.</p>
+<!-- The `pre_study` argument allows to conveniently reduce occurrence data sets  -->
+<!-- (e.g. medical history records) to data that is available  -->
+<!-- at baseline based on the study day. -->
 <p>Filters have to be adjusted for the data at hand, find below a list
 of exemplary filters:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">filters</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>  </span>
 <span>  <span class="co"># use only baseline data</span></span>
@@ -460,18 +493,18 @@ of exemplary filters:</p>
 <span></span>
 <span><span class="va">ads_spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/adam_spec.html">adam_spec</a></span><span class="op">(</span></span>
 <span>  <span class="va">path</span>, </span>
-<span>  filter    <span class="op">=</span> <span class="va">filters</span>, </span>
-<span>  pre_study <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  filter <span class="op">=</span> <span class="va">filters</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>An overview of applied and discarded filters from the filters
 provided to <code>\link{adam_spec}()</code> is printed to the console
 when calling <code>\link{adam_spec}()</code> as well as when printing
 the object to the console. The filter set that was originally provided
 to <code>\link{adam_spec}()</code> is stored in the <code>filter</code>
-attribute of the resulting object. Note that the print will only refer
-to this initial filter set and ignore any manual adjustments. We
-strongly advise to not change filters using spec adjustments but only by
-rerunning <code>\link{adam_spec}()</code> to assure proper checks.</p>
+attribute of the resulting object.</p>
+<!-- Note that the print will only refer to this initial filter set and  -->
+<!-- ignore any manual adjustments.  -->
+<!-- We strongly advise to not change filters using spec adjustments -->
+<!-- but only by rerunning `\link{adam_spec}()` to assure proper checks. -->
 <p>Always double check the filters that were not applied, typically it
 is due to</p>
 <ul>
@@ -480,19 +513,40 @@ is due to</p>
 <code>==</code>)</li>
 <li>targeted domain no longer included in the analysis</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<p>For any updates of the originally provided set of filters, use
+<code><a href="../reference/adjust_filter.html">adjust_filter()</a></code>.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ads_spec</span></span></code></pre></div>
 <hr>
-<p><strong><code>add_bds</code></strong></p>
+</div>
+<div class="section level4">
+<h4 id="domain-selection">Domain selection<a class="anchor" aria-label="anchor" href="#domain-selection"></a>
+</h4>
+<p>For standard data sets names included in <code>martini</code>’s
+internal library, use parameters <code>keep/drop</code> to select data
+sets for the analysis. To use data sets outside of this collection use
+<code>add_bds</code>/<code>add_occds</code>.</p>
+<p><strong><code>keep</code>/<code>drop</code></strong></p>
+<p>Use <code>keep/drop</code> arguments in <code><a href="../reference/adam_spec.html">adam_spec()</a></code> to
+select/deselect particular data sets in the folder <code>path</code> for
+your analysis. Only selected files will be read in order to create a
+specification, so these parameters directly impact run time.</p>
+<p>An example for a reasonable exclusion of a data set would be e.g.  a
+data set on biomarkers that were measured only for a small subpopulation
+(by default, data sets are combined using
+<code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">dplyr::full_join()</a></code>, but it’s a parameter to
+<code><a href="../reference/build.html">build()</a></code>).</p>
+<p><strong><code>add_bds</code>/<code>add_occds</code></strong></p>
 <p><code><a href="../reference/adam_spec.html">adam_spec()</a></code> will print a list of domains that are not
 processed automatically, which are the ones that are not included in the
 internal package library of domains and corresponding data types.</p>
-<p>You may use the <code>add_bds</code> argument of
-<code><a href="../reference/adam_spec.html">adam_spec()</a></code> to force them being treated as bds data sets.
-For these added data sets, it is particularly important to check the
-automated column selection (in the resulting spec object) and adjust as
-needed using <code><a href="../reference/adjust_spec.html">adjust_spec()</a></code>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<p>You may use the <code>add_bds</code>/<code>add_occds</code> arguments
+of <code><a href="../reference/adam_spec.html">adam_spec()</a></code> to force them being treated as bds and occds
+data sets, resp.. For these added data sets, it is particularly
+important to check the automated column selection (in the resulting spec
+object) and adjust as needed using <code><a href="../reference/adjust_spec.html">adjust_spec()</a></code> before
+proceeding to the <code><a href="../reference/build.html">build()</a></code> stage.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ads_spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/adam_spec.html">adam_spec</a></span><span class="op">(</span></span>
 <span>  <span class="va">path</span>,</span>
 <span>  add_bds <span class="op">=</span> <span class="st">'adfapr'</span></span>
@@ -501,17 +555,10 @@ needed using <code><a href="../reference/adjust_spec.html">adjust_spec()</a></co
 <span><span class="co"># print to check the key column definition</span></span>
 <span><span class="va">ads_spec</span></span></code></pre></div>
 <hr>
-<p><strong>Domain selection</strong></p>
-<p>Use <code>keep/drop</code> arguments in <code><a href="../reference/adam_spec.html">adam_spec()</a></code> to
-select/deselect particular data sets in the folder <code>path</code> for
-your analysis. Only selected files will be read in order to create a
-specification, so these parameters directly impact run time.</p>
-<p>An example for a reasonable exclusion of a data set would be e.g.  a
-data set on biomarkers that were measured only for a small subpopulation
-(by default, data sets are combined using <code>inner_join()</code>, but
-it’s a parameter to <code><a href="../reference/build.html">build()</a></code>).</p>
-<hr>
-<p><strong>Attach data</strong></p>
+</div>
+<div class="section level4">
+<h4 id="attach-data">Attach data<a class="anchor" aria-label="anchor" href="#attach-data"></a>
+</h4>
 <p>In order to create a data set specification, the data set has to be
 read first which may take a considerable amount of time for large files.
 For a more time-efficient usage, the data sets may be stored directly in
@@ -519,39 +566,101 @@ the <code>ads_spec</code> object from where the actual execution of the
 preparation will be conducted.</p>
 <p>In the current implementation, if changes to any of the data sets
 shall be made (see below), all data sets have to be attached.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ads_spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/adam_spec.html">adam_spec</a></span><span class="op">(</span></span>
 <span>  <span class="va">path</span>, </span>
 <span>  attach_data <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <hr>
-<p><strong>Using rds data</strong></p>
+</div>
+<div class="section level4">
+<h4 id="using-rds-data">Using rds data<a class="anchor" aria-label="anchor" href="#using-rds-data"></a>
+</h4>
 <p>For martini version &gt;=0.5.1, not only files but also data in rds
 format may be used (see argument in ).</p>
 <p>If for instance, only particular treatment groups or visits are
-considered for an analysis , filtering the original data sets and
-storing them as , may speed up the data preparation significantly for
-larger data sets.</p>
+considered for an analysis, filtering the original data sets and storing
+them as , may speed up the data preparation significantly for larger
+data sets.</p>
 <p>Suppose all domains of interest are available in a subset/filtered
 version and stored as data in .</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ads_spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/adam_spec.html">adam_spec</a></span><span class="op">(</span></span>
 <span>  <span class="va">path</span>, </span>
-<span>  file_ext <span class="op">=</span> <span class="st">'rds'</span></span>
+<span>  file_ext <span class="op">=</span> <span class="st">"rds"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
+</div>
 <div class="section level3">
-<h3 id="manual-adaptations">Manual adaptations<a class="anchor" aria-label="anchor" href="#manual-adaptations"></a>
+<h3 id="adaptations-to-adam_spec">Adaptations to <code>adam_spec()</code><a class="anchor" aria-label="anchor" href="#adaptations-to-adam_spec"></a>
 </h3>
-<p>After the initial spec was created, the user should inspect the
-object and make necessary adjustments. It is strongly recommended to use
-the build-in helper functions where possible, since they provide some
-basic checks of the desired modifications in terms of consistency and
-applicability.</p>
+<p>After the initial <code>martini_spec</code> object was created, the
+user should inspect the object and make necessary adjustments. It is
+strongly recommended to use the build-in helper functions where
+possible, since they provide some basic checks of the desired
+modifications in terms of consistency and applicability.</p>
+<p>Some entries are protected from such adjustments altogether, for
+adjustments of entries <code>filter</code>, <code>factor_levels</code>
+and column selection from adsl the respective specialized functions
+should be used (<code><a href="../reference/adjust_filter.html">adjust_filter()</a></code>,
+<code><a href="../reference/adjust_adsl_factors.html">adjust_adsl_factors()</a></code>, and
+<code><a href="../reference/adjust_adsl_select.html">adjust_adsl_select()</a></code>, resp., see separate subsections
+below).</p>
+<p>For other adjustments, the <code><a href="../reference/adjust_spec.html">adjust_spec()</a></code> function allows
+to adjust the parameter of a particular entry of the
+<code>martini_spec</code> object, related to the data extraction, such
+as <code>param</code> and <code>label</code> for bds entries or
+<code>value</code> and <code>count</code> for occds entries.</p>
 <div class="section level4">
-<h4 id="variable-selection-from-adsl">Variable selection from adsl<a class="anchor" aria-label="anchor" href="#variable-selection-from-adsl"></a>
+<h4 id="filters-1">Filters<a class="anchor" aria-label="anchor" href="#filters-1"></a>
 </h4>
+<p>The function <code><a href="../reference/adjust_filter.html">adjust_filter()</a></code> allows to update the set of
+filters for the <code>martini_spec</code> object. If an error in the
+filter expression is detected during the inspection of the spec object,
+e.g. in the filter information section of the console output from
+printing, the set of filters can be adjusted easily without rerunning
+the <code><a href="../reference/adam_spec.html">adam_spec()</a></code> as long as the data is attached. If no data
+is attached, the filter checks cannot be performed and
+<code><a href="../reference/adam_spec.html">adam_spec()</a></code> should be re-run to avoid any downstream
+issues.</p>
+</div>
+<div class="section level4">
+<h4 id="handling-adsl">Handling adsl<a class="anchor" aria-label="anchor" href="#handling-adsl"></a>
+</h4>
+<p><strong>Factor levels in adsl</strong></p>
+<p>The function <code><a href="../reference/adjust_adsl_factors.html">adjust_adsl_factors()</a></code> can be used to adjust
+or expand the factor level list. The level order will determine for
+example the display order in tabular outputs in certain contexts.</p>
+<p>In the following example, the factor level order for the variable
+<code>RACE</code> is reversed and labels are changed to lower case.
+Assigning factor labels is particularly useful for variables that were
+automatically identified as factors, but do not have the desired labels
+(e.g. due to missing decode column as typical for ADaM 2.0 and/or issues
+with reading the label information from the sas catalog file).</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">martini_spec</span> <span class="op">&lt;-</span> <span class="va">martini_spec</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/adjust_adsl_factors.html">adjust_adsl_factors</a></span><span class="op">(</span></span>
+<span>      fctrs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>        <span class="st">"RACE"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>asian <span class="op">=</span> <span class="st">"ASIAN"</span>, black <span class="op">=</span> <span class="st">"BLACK"</span>, white <span class="op">=</span> <span class="st">"WHITE"</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<p>In addition to reordering and relabeling existing factors in the
+list, it is also possible to add variables to the factor list that would
+have been dropped otherwise.</p>
+<p>Note, that the factor level list contains information on all detected
+factors, irrespective of whether they are selected or not. Refer to
+adsl’s dictionary (<code>selected</code>) to see which factor levels are
+actually applied.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">martini_spec</span> <span class="op">&lt;-</span> <span class="va">martini_spec</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/adjust_adsl_select.html">adjust_adsl_select</a></span><span class="op">(</span>add <span class="op">=</span> <span class="st">"AGEGR01N"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/adjust_adsl_factors.html">adjust_adsl_factors</a></span><span class="op">(</span></span>
+<span>      fctrs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>        <span class="st">"AGEGR01N"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"&lt; 60"</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"60 - &lt;75"</span> <span class="op">=</span> <span class="fl">2</span>, <span class="st">"&gt;=75"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<p><strong>Variable selection from adsl</strong></p>
 <p>A common task is to review and adjust the automated variable
 selection from adsl by inspecting <code>martini_spec$adsl$dict</code>
 (or simply <code>martini_spec$adsl$select</code>).</p>
@@ -562,8 +671,8 @@ include but are not limited to:</p>
 relation of baseline information with a given outcome. Consequently,
 outcome-related information should be removed (e.g. death flag))</li>
 <li>variables are available in both a continuous as well as categorical
-version (e.g. age, BMI, weight), there is no automated selection
-available</li>
+version (e.g. age, BMI, weight, potentially across domains), there is no
+automated selection available</li>
 <li>different groupings based on the same variable (e.g. country
 group)</li>
 </ul>
@@ -576,11 +685,11 @@ user can also provide the exact set of variables to extract using the
 the variables with special roles <code>id</code> and <code>trt</code> in
 the <code><a href="../reference/adam_spec.html">adam_spec()</a></code> function to avoid the corresponding
 warnings.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">martini_spec</span> <span class="op">&lt;-</span> <span class="va">martini_spec</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_adsl_select.html">adjust_adsl_select</a></span><span class="op">(</span></span>
-<span>    add  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'BMI'</span><span class="op">)</span>,</span>
-<span>    drop <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'AGE'</span><span class="op">)</span></span>
+<span>    add  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BMI"</span><span class="op">)</span>,</span>
+<span>    drop <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGE"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="va">martini_spec</span> <span class="op">&lt;-</span> <span class="va">martini_spec</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
@@ -598,7 +707,7 @@ may be cumbersome. In this case, it may be helpful to extract the
 current selection and adjust it using e.g. the
 <code><a href="https://stringr.tidyverse.org/reference/str_subset.html" class="external-link">stringr::str_subset()</a></code> function to make use of regular
 expressions.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">user_selection</span> <span class="op">&lt;-</span> <span class="va">ads_spec</span><span class="op">$</span><span class="va">adsl</span><span class="op">$</span><span class="va">select</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  </span>
 <span>  <span class="co"># remove post baseline information</span></span>
@@ -613,69 +722,30 @@ expressions.</p>
 of the long format data sets, the removal is actual accomplished by
 applying a filter, please refer to the section on
 <code><a href="../reference/adjust_filter.html">adjust_filter()</a></code> for more information.</p>
+<!-- TODO explain label for count FALSE in occds by checking freq distribution of columns  -->
+<hr>
+<!-- **Add data** --><!-- Adding data on a subject level is a special case of _changing data_: overwrite the data slot of the subject level spec (again, make sure to set `attach_data = TRUE`) by the extended data set. --><!-- Make sure to also adjust the dictionary by adding the variable description(s) and other relevant information. --><!-- ads_spec$adsl$data <- left_join( --><!--   ads_spec$adsl$data, --><!--   additional_data --><!-- ) --><!-- TODO: write example for new entry added data --><!-- In order to add new (external) data, simply add a new entry in the existing `ads_spec` object. --><!-- Depending on the type of data to add, create a list that has the same structure as the relevant exemplary one above.  --><!-- Assuming you want to add subject level data, the  --><!-- ads_spec$add <- list( --><!--   file = file_to_add, --><!--   md5  = tools::md5sum(file), --><!--   data = additional_data, --><!--   type = "adsl", --><!--   ... --><!-- ) --><!-- This approach is preferable to adding data e.g. to the data slot of  --><!-- `adsl` since it makes sure that the extracted variables will appear  --><!-- in the data dictionary with the appropriate data source (name of spec entry).  --><!-- *** -->
 </div>
 <div class="section level4">
-<h4 id="factor-levels-in-adsl">Factor levels in adsl<a class="anchor" aria-label="anchor" href="#factor-levels-in-adsl"></a>
+<h4 id="general-adaptations-using-adjust_spec">General adaptations using <code>adjust_spec()</code><a class="anchor" aria-label="anchor" href="#general-adaptations-using-adjust_spec"></a>
 </h4>
-<p>The function <code><a href="../reference/adjust_adsl_factors.html">adjust_adsl_factors()</a></code> can be used to adjust
-or expand the factor level list. The level order will determine for
-example the display order in tabular outputs in certain contexts.</p>
-<p>In the following example, the factor level order for the variable
-<code>RACE</code> is reversed and labels are changed to lower case.
-Assigning factor labels is particularly useful for variables that were
-automatically identified as factors, but do not have the desired labels
-(e.g. due to missing decode column as typical for ADaM 2.0 and/or issues
-with reading the label information from the sas catalog file).</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">martini_spec</span> <span class="op">&lt;-</span> <span class="va">martini_spec</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/adjust_adsl_factors.html">adjust_adsl_factors</a></span><span class="op">(</span></span>
-<span>      fctrs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>        <span class="st">"RACE"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>asian <span class="op">=</span> <span class="st">"ASIAN"</span>, black <span class="op">=</span> <span class="st">"BLACK"</span>, white <span class="op">=</span> <span class="st">"WHITE"</span><span class="op">)</span></span>
-<span>      <span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
-<p>In addition to reordering and relabeling existing factors in the
-list, it is also possible to add variables to the factor list that would
-have been dropped otherwise.</p>
-<p>Note, that the factor level list contains information on all detected
-factors, irrespective of whether they are selected or not. Refer to
-adsl’s dictionary (<code>selected</code>) to see which factor levels are
-actually applied.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">martini_spec</span> <span class="op">&lt;-</span> <span class="va">martini_spec</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/adjust_adsl_select.html">adjust_adsl_select</a></span><span class="op">(</span>add <span class="op">=</span> <span class="st">"AGEGR01N"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/adjust_adsl_factors.html">adjust_adsl_factors</a></span><span class="op">(</span></span>
-<span>      fctrs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>        <span class="st">"AGEGR01N"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"&lt; 60"</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"60 - &lt;75"</span> <span class="op">=</span> <span class="fl">2</span>, <span class="st">"&gt;=75"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span>      <span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level4">
-<h4 id="filters">Filters<a class="anchor" aria-label="anchor" href="#filters"></a>
-</h4>
-<p>The function <code><a href="../reference/adjust_filter.html">adjust_filter()</a></code> allows to update the set of
-filters for the <code>martini_spec</code> object. If an error in the
-filter expression is detected during the inspection of the spec object,
-e.g. in the filter information section of the console output from
-printing, the set of filters can be adjusted easily without rerunning
-the <code><a href="../reference/adam_spec.html">adam_spec()</a></code> as long as the data is attached. If no data
-is attached, the filter checks cannot be performed and
-<code><a href="../reference/adam_spec.html">adam_spec()</a></code> should be re-run to avoid any downstream
-issues.</p>
-</div>
-<div class="section level4">
-<h4 id="general-adjustments">General adjustments<a class="anchor" aria-label="anchor" href="#general-adjustments"></a>
-</h4>
-<p>The <code><a href="../reference/adjust_spec.html">adjust_spec()</a></code> function allows to adjust the
-parameter of a particular entry of the spec object, related to the data
-extraction, such as <code>param</code> and <code>label</code> for bds
-entries or <code>value</code> and <code>count</code> for occds
-entries.</p>
-<p>Some entries are protected from manual adjustments altogether,
-adjustments of entries <code>filter</code>, <code>factor_levels</code>
-and column selection from adsl the respective specialized functions
-should be used (<code><a href="../reference/adjust_filter.html">adjust_filter()</a></code>,
-<code><a href="../reference/adjust_adsl_select.html">adjust_adsl_select()</a></code>,
-<code><a href="../reference/adjust_adsl_factors.html">adjust_adsl_factors()</a></code>).</p>
+<p><strong>Change data set label</strong></p>
+<p><code><a href="../reference/adam_spec.html">adam_spec()</a></code> automatically selects a <code>label</code>
+column in occds data sets (e.g. admh), that controls the categorization
+of the occurrences and defines the variables that are created by the
+<code><a href="../reference/build.html">build()</a></code> function. If you need a more or less detailed
+categorization, you need to change the <code>label</code> entry.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># change label column in admh</span></span>
+<span><span class="va">ads_spec</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/adjust_spec.html">adjust_spec</a></span><span class="op">(</span></span>
+<span>    id <span class="op">=</span> <span class="st">"admh"</span>,</span>
+<span>    label <span class="op">=</span> <span class="st">"MHBODSYS"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># equivalent to</span></span>
+<span><span class="co"># ads_spec $admh$label &lt;- "MHBODSYS"</span></span></code></pre></div>
+<hr>
 <p><strong>Value column for bds type data</strong></p>
 <p>In order to create a wide data set from bds type data, the main
 operation is the application of <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">tidyr::pivot_wider()</a></code>.
@@ -710,50 +780,13 @@ column for each subset</li>
 </ul>
 </li>
 </ul>
-<!-- TODO explain label for count FALSE in occds by checking freq distribution of columns  --><hr>
-<p><strong>Add data</strong></p>
-<!-- Adding data on a subject level is a special case of _changing data_: overwrite the data slot of the subject level spec (again, make sure to set `attach_data = TRUE`) by the extended data set. -->
-<!-- Make sure to also adjust the dictionary by adding the variable description(s) and other relevant information. -->
-<!-- TODO: write example for new entry added data -->
-<p>In order to add new (external) data, simply add a new entry in the
-existing <code>ads_spec</code> object. Depending on the type of data to
-add, create a list that has the same structure as the relevant exemplary
-one above.</p>
-<!-- Assuming you want to add subject level data, the  -->
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ads_spec</span><span class="op">$</span><span class="va">add</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  file <span class="op">=</span> <span class="va">file_to_add</span>,</span>
-<span>  md5  <span class="op">=</span> <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/md5sum.html" class="external-link">md5sum</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span>,</span>
-<span>  data <span class="op">=</span> <span class="va">additional_data</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">'adsl'</span>,</span>
-<span>  <span class="va">...</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p>This approach is preferable to adding data e.g. to the data slot of
-<code>adsl</code> since it makes sure that the extracted variables will
-appear in the data dictionary with the appropriate data source (name of
-spec entry).</p>
-<hr>
-<p><strong>Change data set label</strong></p>
-<p><code><a href="../reference/adam_spec.html">adam_spec()</a></code> automatically selects a <code>label</code>
-column in occds data sets (e.g. admh), that controls the categorization
-of the occurrences and defines the variables that are created by the
-<code><a href="../reference/build.html">build()</a></code> function. If you need a more or less detailed
-categorization, you need to change the <code>label</code> entry.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># change label column in admh</span></span>
-<span><span class="va">ads_spec</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/adjust_spec.html">adjust_spec</a></span><span class="op">(</span></span>
-<span>    id <span class="op">=</span> <span class="st">'admh'</span>,</span>
-<span>    label <span class="op">=</span> <span class="st">"MHBODSYS"</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="co"># equivalent to</span></span>
-<span><span class="co"># ads_spec $admh$label &lt;- "MHBODSYS"</span></span></code></pre></div>
-<hr>
-<p><strong>Handling of occurrence data</strong></p>
+</div>
+<div class="section level4">
+<h4 id="handling-of-occurrence-data">Handling of occurrence data<a class="anchor" aria-label="anchor" href="#handling-of-occurrence-data"></a>
+</h4>
 <p>When trying to extract information from an occurrence data set (such
-as admh, adcm, adxa) in a binary manner (e.g. particular medication
-yes/no), a lot of the resulting variables may be discarded in the data
+as admh or adcm) in a binary manner (e.g. particular medication yes/no),
+a lot of the resulting variables may be discarded in the data
 preparation process due to near-zero variance.<br>
 In order to keep at least some information, the default for occds data
 set preparation is to simply <em>count the number of entries</em>, as
@@ -761,7 +794,7 @@ commonly a higher number of entries roughly translates to a worse
 status.</p>
 <p>If the count option is used, check that none of the entries is
 equivalent to no record (e.g. value ‘none’ in adjuvant therapy). These
-values should be excluded using the filter parameter in the
+values should be excluded using the <code>filter</code> parameter in the
 <code><a href="../reference/adam_spec.html">adam_spec()</a></code> function beforehand.</p>
 <p>If instead individual variables should be derived, the user may set
 the <code>count</code> value in the corresponding spec to ‘FALSE’.</p>
@@ -775,7 +808,7 @@ column indicating the severity of the event. Analogously, a
 e.g. </p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ads_spec</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/adjust_spec.html">adjust_spec</a></span><span class="op">(</span><span class="st">'admh'</span>, value <span class="op">=</span> <span class="st">'MHPRESP'</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/adjust_spec.html">adjust_spec</a></span><span class="op">(</span><span class="st">"admh"</span>, value <span class="op">=</span> <span class="st">"MHPRESP"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># equivalent to</span></span>
 <span><span class="co"># ads_spec$admh$value &lt;- 'MHPRESP'</span></span></code></pre></div>
@@ -792,11 +825,12 @@ fully automatically), the <code><a href="../reference/build.html">build()</a></c
 <em>execute</em> the extraction of the relevant information according to
 the <code>ads_spec</code> entries and combine everything into a single
 (wide) data set. This data set is the basis for the feature matrix used
-later on for machine learning.</p>
-<p>By default, the resulting (wide) data set will have one row per
-<em>id</em>. For the analysis of <strong>repeated measurement</strong>
-outcomes, one row needs to correspond to one subject at a given
-timepoint, which can be achieved by setting <code>rm = TRUE</code>.</p>
+later on for machine learning. By default, the resulting (wide) data set
+will have one row per <em>id</em>.</p>
+<p><strong>repeated measurements</strong></p>
+<p>For the analysis of <strong>repeated measurement</strong> outcomes,
+one row needs to correspond to one subject at a given timepoint, which
+can be achieved by setting <code>rm = TRUE</code> ().</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">feature</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build.html">build</a></span><span class="op">(</span></span>
 <span>  <span class="va">spec</span>,</span>
@@ -806,13 +840,15 @@ timepoint, which can be achieved by setting <code>rm = TRUE</code>.</p>
 <!-- #### Relevant helper functions --><!-- Internally, `build()` will call the appropriate `build_*()` function for each data type (adsl/bds/occds).  --><!-- While `spec_bds()` and `spec_occds()` are rather similar in the sense that only few columns need to be extracted and reshaped, a lot more steps are required for the preparation of adsl. --><!-- <!-- link to build_ads() etc --><!-- **build()** --><!-- * extract factor codings and rename levels to obtain valid feature names --><!-- * removal of --><!--   * datetime columns (for certain analyses) --><!--   * redundant columns (id, treatment, combined columns) --><!-- **build_bds()/build_occds()** --><p><strong>Adding or modifying wide data set after build()</strong></p>
 <p>The output object of <code><a href="../reference/build.html">build()</a></code> is a wide data set, with a
 dictionary attribute containing information on the variables and their
-origin. If the data set is to be used with the martini pipeline it is
-crucial that the dictionary is consistent with the provided data
-set.</p>
+origin. If the data set is to be used with the martini pipeline (or any
+custom workflow that uses the dictionary), it is crucial that the
+dictionary is consistent with the provided data set.</p>
+<p>Common modification steps at this stage include</p>
 <ul>
 <li>recoding of factors (e.g. summarising levels)</li>
 <li>deriving new variables (e.g. clinical index or summary scores from
-questionnaires or interaction terms)</li>
+questionnaires or interaction terms) with or without keeping the
+original variables</li>
 </ul>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
@@ -822,9 +858,7 @@ questionnaires or interaction terms)</li>
 <span>    <span class="va">BMI</span> <span class="op">&gt;=</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">CREAT</span> <span class="op">&gt;=</span> <span class="fl">2</span> <span class="op">~</span> <span class="st">"III"</span>,</span>
 <span>    <span class="va">BMI</span> <span class="op">&gt;=</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">CREAT</span> <span class="op">&lt;</span>  <span class="fl">2</span> <span class="op">~</span> <span class="st">"II"</span>,</span>
 <span>    <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"I"</span></span>
-<span>  <span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># </span></span></code></pre></div>
+<span>  <span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level2">
@@ -840,15 +874,79 @@ provided outcome data.</p>
 <span>  <span class="va">feature</span>, </span>
 <span>  <span class="va">outcome</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>Please refer to the help pages of <code><a href="../reference/prepare_ml.html">prepare_ml()</a></code> for
-information on the required structure of <code>outcome</code> for single
-vs repeated measurement outcomes.</p>
+<p>Please refer to the section on outcome preparation and the help page
+of <code><a href="../reference/prepare_ml.html">prepare_ml()</a></code> for information on the required structure
+of <code>outcome</code> for single vs repeated measurement outcomes and
+different outcome types.</p>
+<hr>
+<div class="section level3">
+<h3 id="input-checks">Input checks<a class="anchor" aria-label="anchor" href="#input-checks"></a>
+</h3>
+<p><strong><code>feature</code></strong></p>
+<p>By default (<code>check_feature = TRUE</code>)
+<code><a href="../reference/prepare_ml.html">prepare_ml()</a></code> will run a check on the provided
+<code>feature</code> data, which can also be run as stand-alone function
+(<code>check_feature(feature)</code>). The main checks include</p>
+<ul>
+<li>low frequency classes: factors with size of the smallest class per
+factor</li>
+<li>missing proportion: identify variables that would be removed during
+ML prep (according to <code><a href="../reference/prepare_ml.html">prepare_ml()</a></code>’s default
+threshold)</li>
+<li>(near) zero variance: constant variables and variables that are
+highly sparse and unbalanced would be removed during ML prep (using
+<code><a href="../reference/prepare_ml.html">prepare_ml()</a></code>’s default thresholds for frequency ratio and
+percent of unique values)</li>
+<li>potential factor conversion: identify numeric variables that only
+have ‘few’ distinct integer non-negative values resembling count
+variables and might be considered as factors in the analysis</li>
+</ul>
+<p>The user will be informed about the findings of the checks, the
+function does not make any changes to the data. Note, that the results
+may differ slightly in the actual data preprocessing for two reasons: a)
+here, the checks are run individually and other preparation steps
+conducted prior can change the input data and b) thresholds are
+parametrized in both <code><a href="../reference/prepare_ml.html">prepare_ml()</a></code> and
+<code><a href="../reference/check_feature.html">check_feature()</a></code>, so make sure they match</p>
+<p>Nevertheless, running <code><a href="../reference/check_feature.html">check_feature()</a></code> is a convenient
+way to help catching problems in the data preparation early, see which
+variables might be subject to removal and avoid downstream issues.</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/check_feature.html">check_feature</a></span><span class="op">(</span><span class="va">martini_feat</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/check_nzv.html">check_nzv</a></span><span class="op">(</span><span class="va">martini_feat</span><span class="op">)</span></span></code></pre></div>
+<p>In some applications with data splitting
+(<code>train_prop &lt; 1</code>), downstream issues were observed in
+combination with using <code>ranger</code>, if the training data set
+contains factors with low frequency classes. These may cause issues in
+the tuning process, most likely in the cross-validation steps.
+Apparently, this issue is known and according to the repo is being
+worked on. Since there is no generally best solution on the data prep
+side, we provide a helper function that may at least help in the
+identification of the variables causing the issue:</p>
+<p><code><a href="../reference/check_freq.html">check_freq()</a></code> will check the prepped training data of a
+given ml object (result of <code><a href="../reference/prepare_ml.html">prepare_ml()</a></code>) for factors that
+may cause problems in this regard.</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">d_ml</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/get_data.html">get_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>  </span>
+<span>  <span class="fu"><a href="../reference/check_freq.html">check_freq</a></span><span class="op">(</span>thres <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span></code></pre></div>
+<p>In case factors with low frequency classes are identified, the
+corresponding frequency tables are returned in a list.</p>
 <hr>
 <p><strong>Data splitting</strong></p>
-<p>Splitting the data in training and test data will create a 3:1 split
-by default, stratified by outcome if appropriate. To include treatment
-information in the stratification, set
-<code>strata_trt = TRUE</code>.</p>
+<p><code><a href="../reference/prepare_ml.html">prepare_ml()</a></code> has a <code>train_prop</code> argument that
+controls the data splitting into training and test set. However, by
+default splitting is skipped (i.e. <code>train_prop = 1</code>), since
+data size in the clinical setting is typically rather limited and the
+full data set should be used for association studies.</p>
+<p>Cross-validation approaches are suggested to estimate generalization
+error.</p>
+<p>If data splitting however is part of your workflow, it is by default
+done in a stratified manner accounting for <code>outcome</code> and if a
+treatment variable is declared, accounting for it as well (the latter is
+controlled via <code>strata_trt</code> argument of
+<code><a href="../reference/prepare_ml.html">prepare_ml()</a></code>, defaulting to <code>TRUE</code>).</p>
 <hr>
 <p><strong>Preprocessing</strong></p>
 <p>While each step is optional and parametrized to provide maximum
@@ -874,139 +972,147 @@ applications.</p>
 since changing the default behaviour would break existing code. 
 For most applications, `prep_step_dummy` should be set to `FALSE`.
 -->
+<p><strong>Pre-processing</strong></p>
+<p>As of martini version 0.7.0, the data preparation contains the
+following steps</p>
+<ul>
+<li>omit observations with missing endpoint</li>
+<li>clean factor levels of to avoid downstream issues</li>
+<li>add explicit NAs to selected factor variables (for variables listed
+in <code>vars_fct_expl_na</code>)</li>
+<li>removal of variables with a high missing value rate (controlled by
+<code>thres_imp</code>)</li>
+<li>omit observations with missing data in variables excluded from
+imputation (controlled by <code>vars_imp_ignore</code>)</li>
+<li>log transformation for highly skewed variables to improve imputation
+performance (controlled by <code>thres_log</code>,
+<code>vars_no_trafo</code>)</li>
+<li>imputation using knn (if <code>prep_step_knnimpute</code>) knn is
+followed by median and mode imputation as knn may occasionally result in
+some values not being imputed. If imputation is skipped altogether,
+observations with missing values are removed.</li>
+<li>back transformation of log-transformed variables to original scale
+(controlled by <code>prep_step_log</code>, <code>thres_log</code>)</li>
+<li>removal of (near) zero variance variables (controlled by
+<code>thres_nzv_freq</code>, <code>thres_nzv_freq</code>)</li>
+<li>normalization of numeric predictors (controlled by
+<code>prep_step_normalize</code>, <code>vars_no_trafo</code>)</li>
+<li>Decorrelation by removing some variables with correlation to other
+predictors (controlled by <code>prep_step_corr</code>,
+<code>thres_corr</code>, <code>vars_keep_corr</code>). For ease of
+interpretability of the results, the user can pre-specify variables to
+keep over others from a correlated group.</li>
+<li>Pooling infrequent factor levels (controlled by
+<code>thres_lump</code>)<br>
+</li>
+<li>Dummy coding (controlled by <code>prep_step_dummy</code> and
+<code>one_hot</code>)</li>
+</ul>
 <hr>
+</div>
 <div class="section level3">
 <h3 id="inspect-d_ml-objects">Inspect d_ml objects<a class="anchor" aria-label="anchor" href="#inspect-d_ml-objects"></a>
 </h3>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"martini_ml_class"</span><span class="op">)</span></span>
 <span><span class="va">d_ml</span> <span class="op">&lt;-</span> <span class="va">martini_ml_class</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">d_ml</span>, max.level <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; List of 10</span></span>
-<span><span class="co">#&gt;  $ data_raw   :List of 2</span></span>
-<span><span class="co">#&gt;   ..$ train: tibble [215 × 27] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;   ..$ test : tibble [74 × 27] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;  $ data_prep  :List of 2</span></span>
-<span><span class="co">#&gt;   ..$ train: tibble [215 × 25] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;   ..$ test : tibble [74 × 25] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;  $ outcome    :List of 2</span></span>
+<span><span class="co">#&gt; List of 8</span></span>
+<span><span class="co">#&gt;  $ data     :List of 2</span></span>
+<span><span class="co">#&gt;   ..$ raw :List of 2</span></span>
+<span><span class="co">#&gt;   ..$ prep:List of 2</span></span>
+<span><span class="co">#&gt;  $ outcome  :List of 2</span></span>
 <span><span class="co">#&gt;   ..$ name: chr ".out"</span></span>
 <span><span class="co">#&gt;   ..$ mode: chr "classification"</span></span>
-<span><span class="co">#&gt;  $ dict       : tibble [27 × 10] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;  $ source     : tibble [4 × 3] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;  $ prep_recipe:List of 11</span></span>
-<span><span class="co">#&gt;   ..$ var_info      : tibble [27 × 4] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;   ..$ term_info     : tibble [25 × 4] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;   ..$ steps         :List of 15</span></span>
-<span><span class="co">#&gt;   ..$ template      : tibble [215 × 25] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;   ..$ retained      : logi TRUE</span></span>
-<span><span class="co">#&gt;   ..$ requirements  :List of 1</span></span>
-<span><span class="co">#&gt;   ..$ ptype         : tibble [0 × 27] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;   ..$ tr_info       :'data.frame':   1 obs. of  2 variables:</span></span>
-<span><span class="co">#&gt;   ..$ orig_lvls     :List of 27</span></span>
-<span><span class="co">#&gt;   ..$ fit_times     : tibble [30 × 2] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;   ..$ last_term_info: gropd_df [27 × 6] (S3: grouped_df/tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;   .. ..- attr(*, "groups")= tibble [27 × 2] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;   .. .. ..- attr(*, ".drop")= logi TRUE</span></span>
-<span><span class="co">#&gt;   ..- attr(*, "class")= chr "recipe"</span></span>
-<span><span class="co">#&gt;  $ prep_params:List of 7</span></span>
-<span><span class="co">#&gt;   ..$ thres_log     :List of 2</span></span>
-<span><span class="co">#&gt;   ..$ thres_count   :List of 2</span></span>
-<span><span class="co">#&gt;   ..$ thres_corr    :List of 2</span></span>
-<span><span class="co">#&gt;   ..$ vars_keep_corr:List of 2</span></span>
-<span><span class="co">#&gt;   ..$ thres_lump    :List of 2</span></span>
-<span><span class="co">#&gt;   ..$ imp_ignore    :List of 2</span></span>
-<span><span class="co">#&gt;   ..$ nzv           :List of 2</span></span>
-<span><span class="co">#&gt;  $ removed    :List of 2</span></span>
+<span><span class="co">#&gt;  $ dict     : tibble [27 × 10] (S3: tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;  $ source   : tibble [4 × 3] (S3: tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;  $ recipe   :List of 3</span></span>
+<span><span class="co">#&gt;   ..$ raw   :List of 9</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "class")= chr "recipe"</span></span>
+<span><span class="co">#&gt;   ..$ prep  :List of 13</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "class")= chr "recipe"</span></span>
+<span><span class="co">#&gt;   ..$ params:List of 7</span></span>
+<span><span class="co">#&gt;  $ removed  :List of 2</span></span>
 <span><span class="co">#&gt;   ..$ rows:List of 3</span></span>
 <span><span class="co">#&gt;   ..$ cols:List of 4</span></span>
-<span><span class="co">#&gt;  $ high_corr  : tibble [2 × 3] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;  $ input      :List of 2</span></span>
+<span><span class="co">#&gt;  $ high_corr: tibble [2 × 3] (S3: tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;  $ input    :List of 2</span></span>
 <span><span class="co">#&gt;   ..$ martini:Classes 'package_version', 'numeric_version'  hidden list of 1</span></span>
-<span><span class="co">#&gt;   ..$ args   :List of 25</span></span></code></pre></div>
-<p>Description of the <code>d_ml</code> entries (taken from
-<code><a href="../reference/prepare_ml.html">martini::prepare_ml()</a></code> documentation)</p>
+<span><span class="co">#&gt;   ..$ args   :List of 28</span></span>
+<span><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "martini_ml" "list"</span></span></code></pre></div>
+<!-- Description of the `d_ml` entries (taken from `martini::prepare_ml()` documentation) -->
 <hr>
 <div class="section level4">
 <h4 id="data-sets">Data sets<a class="anchor" aria-label="anchor" href="#data-sets"></a>
 </h4>
-<p><code><a href="../reference/prepare_ml.html">prepare_ml()</a></code> produces a list that contains the data set
-both with (<code>data_prep</code>) and without (<code>data_raw</code>)
-applying the specified ML preparation steps. Both versions are split in
-<code>train</code> and <code>test</code> set. In addition,
-<code>split</code> contains the combined
-<code><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">rsample::initial_split()</a></code> object that the <code>train</code>
-and <code>test</code> data was extracted from. Depending on the
-programming workflow, one might be more convenient to use than the
-other.</p>
+<p><code><a href="../reference/prepare_ml.html">prepare_ml()</a></code> produces an object of class
+<code>martini_ml</code>, a list that contains the data set both with
+(<code>data$prep</code>) and without (<code>data$raw</code>) applying
+the specified ML preparation steps. Both versions are split in
+<code>train</code> and <code>test</code> set (if
+<code>train_prop = 1</code> and no data splitting is performed, the test
+slots are <code>NULL</code>)</p>
 <p>For convenient extraction of the full, i.e. unsplit, data set, one
-may use `get_data():</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+may use the helper function <code><a href="../reference/get_data.html">get_data()</a></code>, selecting either
+raw or prepared data:</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># by default, prepared data is extracted</span></span>
 <span><span class="va">prep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span><span class="op">(</span><span class="va">d_ml</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># get raw version of data</span></span>
-<span><span class="va">raw</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span><span class="op">(</span><span class="va">d_ml</span>, type <span class="op">=</span> <span class="st">'raw'</span><span class="op">)</span></span>
+<span><span class="va">raw</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span><span class="op">(</span><span class="va">d_ml</span>, type <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># keep information on which set the observation was in (train/test)</span></span>
-<span><span class="va">raw</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span><span class="op">(</span><span class="va">d_ml</span>, type <span class="op">=</span> <span class="st">'raw'</span>, split_id <span class="op">=</span> <span class="st">'train_test'</span><span class="op">)</span></span></code></pre></div>
-<p>either raw or prepared data</p>
+<span><span class="va">raw</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span><span class="op">(</span><span class="va">d_ml</span>, type <span class="op">=</span> <span class="st">"raw"</span>, split_id <span class="op">=</span> <span class="st">"train_test"</span><span class="op">)</span></span></code></pre></div>
 <p>The slot <code>outcome</code> contains a list giving
 <code>name</code>, the standardized names of the output column in the
-data sets (<code>.out</code> for regression/classification,
+returned data sets (<code>.out</code> for regression/classification,
 <code>.time</code> and <code>.status</code> for survival), as well as
 <code>mode</code>, a character string of the outcome mode
 regression/classification/survival.</p>
-<p>The dictionary available as an attribute of feature is updated with
-information on the outcome variable and the log-transformation and
-available from the <code>dict</code> slot, NULL if no such attribute is
-defined. Columns <code>label2</code> and <code>label3</code> provide
-additional information on correlation structure in the data set:
-<variable kept> (variables removed for correlation).</variable></p>
+<p>The dictionary that is available an attribute of the input
+<code>feature</code> is updated with information on the outcome variable
+and the (possible) log-transformation and available from the
+<code>dict</code> slot, <code>NULL</code> if no such attribute was
+defined for the input. Columns <code>label2</code> and
+<code>label3</code> provide additional information on correlation
+structure in the data set: <variable kept> (variables removed for
+correlation).</variable></p>
 <p>The <code>source</code> slot simply passes the source attribute of
-feature, NULL if no such attribute is defined. If <code><a href="../reference/build.html">build()</a></code>
-from the <code>martini</code> package was used to generate
-<code>feature</code>, this attribute lists the full paths of the files
-that were used in data generation of feature.</p>
+feature, <code>NULL</code> if no such attribute was defined. If
+<code><a href="../reference/build.html">build()</a></code> from the <code>martini</code> package was used to
+generate <code>feature</code>, this attribute lists the full paths of
+the files that were used in data generation of feature.</p>
 <hr>
 </div>
 <div class="section level4">
-<h4 id="avoiding-downstream-issues">Avoiding downstream issues<a class="anchor" aria-label="anchor" href="#avoiding-downstream-issues"></a>
+<h4 id="recipes">recipes<a class="anchor" aria-label="anchor" href="#recipes"></a>
 </h4>
-<p>In some applications, issues were observed if the training data set
-contains factors with low frequency classes. These may cause issues in
-the tuning process, most likely in the cross-validation steps. Please
-note, that this is in fact an issue with the implementation of
-<code>ranger</code>, which is currently being worked on. Since there is
-no generally best solution on the data prep side, we provide a helper
-function that may at least help in the identification of the variables
-causing the issue:</p>
-<p><code><a href="../reference/check_freq.html">check_freq()</a></code> will check the prepped training data of a
-given ml object (result of <code><a href="../reference/prepare_ml.html">prepare_ml()</a></code>) for factors that
-may cause problems in this regard.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">d_ml</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>  </span>
-<span>  <span class="fu"><a href="../reference/check_freq.html">check_freq</a></span><span class="op">(</span>thres <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span></code></pre></div>
-<p>In case factors with low frequency classes are identified, the
-corresponding frequency tables are returned in a list.</p>
+<p>The recipe used for data preparation is returned in the
+<code>recipe</code> entry of the <code>martini_ml</code> object in both
+the fully trained (<code>$prep</code>) and the untrained
+(<code>$raw</code>) version.</p>
+<p>The latter one is required for example for tuning purposes and/or the
+assessment of the generalization error in the downstream workflow.</p>
 <hr>
 </div>
 <div class="section level4">
 <h4 id="data-preparation-and-documentation">Data preparation and documentation<a class="anchor" aria-label="anchor" href="#data-preparation-and-documentation"></a>
 </h4>
 <ul>
-<li><p><code>prep_recipe</code> contains the prepared recipe object,
-<code>prep_params</code> documents the parameters/thresholds used in the
-data preparation, giving bare <code>value</code> slots, as well as a
-verbose description in <code>text</code>. <code>removed</code> gives a
-list of removed <code>rows</code> and <code>columns</code> along with
-the information on why/in which recipe step the data was
-removed.</p></li>
-<li><p>If <code>data_prep</code> has less columns than
-<code>data_raw</code>, details on removal can be found in
+<li><p><code>recipe$prep</code> contains the fully trained recipe
+object, <code>recipe$raw</code> the untrained version (required e.g. for
+tuning workflows). <code>recipe$params</code> documents the
+parameters/thresholds used in the data preparation, giving bare
+<code>value</code> slots, as well as a verbose description in
+<code>text</code>. <code>removed</code> gives a list of removed
+<code>rows</code> and <code>columns</code> along with the information on
+why/in which recipe step the data was removed.</p></li>
+<li><p>If <code>data$prep</code> has less columns than
+<code>data$raw</code>, details on removal can be found in
 <code>d_ml$removed$cols</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d_ml</span><span class="op">$</span><span class="va">removed</span><span class="op">$</span><span class="va">cols</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">enframe</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>  </span>
 <span>  <span class="fu">unnest_longer</span><span class="op">(</span><span class="va">value</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
@@ -1016,12 +1122,12 @@ removed.</p></li>
 <span>  <span class="fu">rename</span><span class="op">(</span>reason <span class="op">=</span> <span class="va">name</span>, `variable removed` <span class="op">=</span> <span class="va">value</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(value)`</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 4</span></span></span>
-<span><span class="co">#&gt;   reason `variable removed` source label                     </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> nzv    angina_pectoris    admh   Angina pectoris           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> corr   HB                 adlb   Hemoglobin (g/dL) in Blood</span></span></code></pre></div>
+<span><span class="co">#&gt;   reason    `variable removed` source label                     </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> nzv       angina_pectoris    admh   Angina pectoris           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> corr_keep HB                 adlb   Hemoglobin (g/dL) in Blood</span></span></code></pre></div>
 <ul>
-<li>If <code>data_prep</code> has less rows than <code>data_raw</code>,
+<li>If <code>data$prep</code> has less rows than <code>data$raw</code>,
 details on removal can be found in <code>d_ml$removed$rows</code>.
 Observations are removed if
 <ul>
@@ -1035,7 +1141,7 @@ variable)</li>
 </ul>
 </li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d_ml</span><span class="op">$</span><span class="va">removed</span><span class="op">$</span><span class="va">rows</span></span>
 <span><span class="co">#&gt; $outlier_outcome</span></span>
 <span><span class="co">#&gt; NULL</span></span>
@@ -1045,13 +1151,13 @@ variable)</li>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $na_feature</span></span>
 <span><span class="co">#&gt; NULL</span></span></code></pre></div>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">d_ml</span><span class="op">$</span><span class="va">data_raw</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">d_ml</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">raw</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">bind_rows</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">d_ml</span><span class="op">$</span><span class="va">removed</span><span class="op">$</span><span class="va">rows</span><span class="op">$</span><span class="va">na_feature</span><span class="op">)</span></span></code></pre></div>
 <p>For validation and transparency, all domains used for feature
 extraction are listed with full paths and md5 check sums.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d_ml</span><span class="op">$</span><span class="va">source</span></span></code></pre></div>
 <hr>
 </div>
@@ -1060,11 +1166,11 @@ extraction are listed with full paths and md5 check sums.</p>
 <div class="section level2">
 <h2 id="group-specific-modelling-e-g--treatment-versus-placebo">Group specific modelling (e.g. treatment versus placebo)<a class="anchor" aria-label="anchor" href="#group-specific-modelling-e-g--treatment-versus-placebo"></a>
 </h2>
-<p>In order to assess treatment interactions, a group specific modelling
-approach has been established for the MARTINI pipeline (#melon app). For
-the comparability of results across groups, it is crucial that the data
-preparation is identical (e.g. in terms of coefficients for the
-normalization).</p>
+<p>In order to assess treatment interactions and treatment
+heterogeneity, the so-called T-learner provides a naive approach of
+group specific modelling. For the comparability of results across
+groups, it is crucial that the data preparation is identical (e.g. in
+terms of coefficients for normalization).</p>
 <p>Given an output object of <code><a href="../reference/prepare_ml.html">prepare_ml()</a></code> and a character
 defining the name of the <code>by</code> variable (factor) to split by,
 <code><a href="../reference/prepare_ml_split.html">prepare_ml_split()</a></code> will return separate ml data sets for
@@ -1072,6 +1178,9 @@ each factor level to be used with the remainder of the MARTINI modules.
 Note that the <code>by</code> variable is constant in each subset, thus
 removed from the feature set in the prepared data, but still available
 in the raw data sets.</p>
+<p>Please note, that this is not a recommendation to use the T-learner
+since other methods have been shown to be better suited, but we were
+asked to provide this feature for entry level assessment.</p>
 <!-- TODO add value list for prepare_ml() -->
 <!-- #### Relevant helper functions -->
 <!-- **prepare_feat** -->
@@ -1092,7 +1201,7 @@ in the raw data sets.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

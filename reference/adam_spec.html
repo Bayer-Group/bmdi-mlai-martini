@@ -17,7 +17,7 @@ created specs are applied and the generated data sets are combined into a single
 
     <a class="navbar-brand me-2" href="../index.html">martini</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,13 +28,17 @@ created specs are applied and the generated data sets are combined into a single
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">MARTINI - MLAI pipeline prepare module</a></li>
-    <li><a class="dropdown-item" href="../articles/prepare-adam-data.html">MARTINI - MLAI pipeline prepare module</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Introduction</h6></li>
+    <li><a class="dropdown-item" href="../articles/intro-to-martini.html">Introduction to martini</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
+    <li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">Preparation of ADaM data for Machine Learning</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/bayer-int/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Bayer-Group/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -44,7 +48,7 @@ created specs are applied and the generated data sets are combined into a single
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Creating a specification for building a wide format data set from ADaM data</h1>
-      <small class="dont-index">Source: <a href="https://github.com/bayer-int/bmdi-mlai-martini/blob/main/R/adam_spec.R" class="external-link"><code>R/adam_spec.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Bayer-Group/bmdi-mlai-martini/blob/main/R/adam_spec.R" class="external-link"><code>R/adam_spec.R</code></a></small>
       <div class="d-none name"><code>adam_spec.Rd</code></div>
     </div>
 
@@ -53,7 +57,7 @@ created specs are applied and the generated data sets are combined into a single
 <p><code>adam_spec()</code> is a wrapper for the <code>adam_spec_*()</code> functions.
 It creates a list of specifications on how to extract and process data from
 ADaM data sets in a given location.
-The resulting list can be passed to <code><a href="build.html">build</a>()</code>, where the
+The resulting list can be passed to <code><a href="build.html">build()</a></code>, where the
 created specs are applied and the generated data sets are combined into a single wide format data set.</p>
     </div>
 
@@ -64,11 +68,12 @@ created specs are applied and the generated data sets are combined into a single
 <span>  filter <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  keep <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  drop <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  pre_study <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  pre_study <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  attach_data <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  id <span class="op">=</span> <span class="st">"SUBJID"</span>,</span>
+<span>  id <span class="op">=</span> <span class="st">"USUBJID"</span>,</span>
 <span>  trt <span class="op">=</span> <span class="st">"TRT01A"</span>,</span>
 <span>  add_bds <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  add_occds <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  file_ext <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rds"</span>, <span class="st">"sas7bdat"</span><span class="op">)</span>,</span>
 <span>  fct_levels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  catalog_file <span class="op">=</span> <span class="cn">NULL</span></span>
@@ -80,39 +85,41 @@ created specs are applied and the generated data sets are combined into a single
 
 
 <dl><dt id="arg-path">path<a class="anchor" aria-label="anchor" href="#arg-path"></a></dt>
-<dd><p>path to a directory containing ads files in .sas7bdat format</p></dd>
+<dd><p>path to a directory containing ads files in <code>.sas7bdat</code> or <code>.rds</code> format</p></dd>
 
 
 <dt id="arg-filter">filter<a class="anchor" aria-label="anchor" href="#arg-filter"></a></dt>
 <dd><p>a character vector of conditions to be passed to <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code>,
-e.g. regarding visits, treatment arms or parameters. Defaults to NULL.</p></dd>
+e.g. regarding visits, treatment arms or parameters. Defaults to <code>NULL</code>.</p></dd>
 
 
 <dt id="arg-keep-drop">keep, drop<a class="anchor" aria-label="anchor" href="#arg-keep-drop"></a></dt>
 <dd><p>character vectors controlling the subset of data sets in the given <code>path</code>
 to create the specification for (e.g. <code>c('adsl', 'advs'))</code>).
 If both <code>keep</code> and <code>drop</code> are specified, only <code>keep</code> will be used.
-Both default to NULL, which means that all (known) domains are included.</p></dd>
+Both default to <code>NULL</code>, which means that all (known) domains are included.</p></dd>
 
 
 <dt id="arg-pre-study">pre_study<a class="anchor" aria-label="anchor" href="#arg-pre-study"></a></dt>
-<dd><p>boolean. Include only pre-study events from occurrence data sets
-(see <code><a href="adam_spec_occds.html">adam_spec_occds</a>()</code> for details). Defaults to FALSE.</p></dd>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a>. boolean.
+Include only pre-study events from occurrence data sets
+(see <code><a href="adam_spec_occds.html">adam_spec_occds()</a></code> for details). Defaults to <code>FALSE</code>.</p></dd>
 
 
 <dt id="arg-attach-data">attach_data<a class="anchor" aria-label="anchor" href="#arg-attach-data"></a></dt>
 <dd><p>boolean indicating whether the imported raw data is included in
-the output. Defaults to TRUE.</p></dd>
+the output. Defaults to <code>TRUE</code>.</p></dd>
 
 
 <dt id="arg-id-trt">id, trt<a class="anchor" aria-label="anchor" href="#arg-id-trt"></a></dt>
-<dd><p>id and treatment column names (see e.g. <code><a href="adam_spec_adsl.html">adam_spec_adsl</a>()</code>
+<dd><p>id and treatment column names (see e.g. <code><a href="adam_spec_adsl.html">adam_spec_adsl()</a></code>
 for details).</p></dd>
 
 
-<dt id="arg-add-bds">add_bds<a class="anchor" aria-label="anchor" href="#arg-add-bds"></a></dt>
-<dd><p>character vector of domain names of type bds that are not included
-in the package library of ADaM types (yet), but should be processed as per usual, e.g. 'adfapr'</p></dd>
+<dt id="arg-add-bds-add-occds">add_bds, add_occds<a class="anchor" aria-label="anchor" href="#arg-add-bds-add-occds"></a></dt>
+<dd><p>character vector of domain names of type bds or
+occds that are not included in the package library of ADaM types (yet), but
+should be processed as per usual.</p></dd>
 
 
 <dt id="arg-file-ext">file_ext<a class="anchor" aria-label="anchor" href="#arg-file-ext"></a></dt>
@@ -130,14 +137,18 @@ and/or setting the level order for factors in an adsl data set
 <dt id="arg-catalog-file">catalog_file<a class="anchor" aria-label="anchor" href="#arg-catalog-file"></a></dt>
 <dd><p>path to the catalog file to be passed to
 <code><a href="https://haven.tidyverse.org/reference/read_sas.html" class="external-link">haven::read_sas()</a></code> for adsl. Defaults to <code>NULL</code>.
-Ignored if <code>file</code> is not a sas7bdat file.</p></dd>
+Ignored if <code>file</code> is not a <code>.sas7bdat</code> file.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>adam_spec()</code> returns named list of specifications that can be passed to the <code><a href="build.html">build</a>()</code> function.
-Each element contains the specification for a single data set and is named with the domain abbreviation (e.g. adsl, adqskccq).
-The list can be manually adjusted if required, e.g. adding further specifications or altering existing ones. See the documentation
+    <p><code>adam_spec()</code> returns named list of specifications that can be
+passed to the <code><a href="build.html">build()</a></code> function.
+Each element contains the specification for a single data set and
+is named with the domain abbreviation (e.g. adsl, adlb).
+The list can be manually adjusted if required,
+e.g. adding further specifications or altering existing ones.
+See the documentation
 of the <code>adam_spec_*()</code> for a detailed description of the output object.</p>
     </div>
     <div class="section level2">
@@ -152,10 +163,14 @@ by file extension <code>file_ext = 'sas7bdat'</code>.
 Preferred file types can be specified using a character vector
 <code>file_ext = c('rds', 'sas7bdat')</code>: If the same file name is found in
 <code>path</code> with both extensions, the file with the former extension is used,
-the one with the latter ignored. For unambiguous file names (either only sas7bdat or only rds)
+the one with the latter ignored. For unambiguous file names (either only
+<code>.sas7bdat</code> or only <code>.rds</code>)
 both are used.</p>
-<p>Individual filters are only applied if the resulting data set has a positive number of rows (ignoring those causing errors or yielding a 0-row data set).</p>
-<p>Please refer to the documentations of the <code>adam_spec_*()</code> functions for full details.</p>
+<p>Individual filters are only applied if the resulting data set has a
+positive number of rows (ignoring those causing errors or yielding
+a 0-row data set).</p>
+<p>Please refer to the documentations of the <code>adam_spec_*()</code> functions
+for full details.</p>
     </div>
     <div class="section level2">
     <h2 id="authors">Authors<a class="anchor" aria-label="anchor" href="#authors"></a></h2>
@@ -165,9 +180,36 @@ both are used.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="adam_spec_adsl.html">adam_spec_adsl</a>()</code>, <code><a href="adam_spec_bds.html">adam_spec_bds</a>()</code>,  <code><a href="adam_spec_occds.html">adam_spec_occds</a>()</code></p></div>
+    <div class="dont-index"><p><code><a href="adam_spec_adsl.html">adam_spec_adsl()</a></code>,
+<code><a href="adam_spec_bds.html">adam_spec_bds()</a></code>,  <code><a href="adam_spec_occds.html">adam_spec_occds()</a></code></p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">ads_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"martini_example_study/ads"</span>, package <span class="op">=</span> <span class="st">"martini"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">adam_spec</span><span class="op">(</span><span class="va">ads_path</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> <span style="color: #555555;">admh: The columns MHOCCUR and MHOCCURN contain N/0 values.</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> <span style="color: #555555;">Please check if an additional filter is required such as `--OCCUR == 'Y' |</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #555555;">is.na(--OCCUR)`.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">  Content</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">  name type   size nsubj ncol</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   adsl adsl   128K   320    7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   adlb bds   1.31M   289   11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   advs bds    448K   289    5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   admh occds  192K   320    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">  Key columns used in bds-type data sets</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">  name param   value unit  time  </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   adlb PARAMCD AVAL  AVALU AVISIT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   advs PARAMCD AVAL  AVALU AVISIT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">  Key columns used in occds-type data sets</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">  name label  value valuen count</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   admh MHHLGT NA    NA     TRUE </span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
@@ -177,7 +219,7 @@ both are used.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

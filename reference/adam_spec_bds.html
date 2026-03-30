@@ -17,7 +17,7 @@ for reshaping the data into wide format and prepare the data filter."></head><bo
 
     <a class="navbar-brand me-2" href="../index.html">martini</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,13 +28,17 @@ for reshaping the data into wide format and prepare the data filter."></head><bo
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">MARTINI - MLAI pipeline prepare module</a></li>
-    <li><a class="dropdown-item" href="../articles/prepare-adam-data.html">MARTINI - MLAI pipeline prepare module</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Introduction</h6></li>
+    <li><a class="dropdown-item" href="../articles/intro-to-martini.html">Introduction to martini</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
+    <li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">Preparation of ADaM data for Machine Learning</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/bayer-int/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Bayer-Group/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -44,14 +48,14 @@ for reshaping the data into wide format and prepare the data filter."></head><bo
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Create specification object for ADaM data sets of type 'bds'</h1>
-      <small class="dont-index">Source: <a href="https://github.com/bayer-int/bmdi-mlai-martini/blob/main/R/adam_spec_bds.R" class="external-link"><code>R/adam_spec_bds.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Bayer-Group/bmdi-mlai-martini/blob/main/R/adam_spec_bds.R" class="external-link"><code>R/adam_spec_bds.R</code></a></small>
       <div class="d-none name"><code>adam_spec_bds.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
     <p>Given a file containing a bds data set (e.g. adlb or advs),
 <code>adam_spec_bds()</code> will create a specification
-object for use in <code><a href="build_x.html">build_bds</a>()</code> to prepare the data to
+object for use in <code><a href="build_x.html">build_bds()</a></code> to prepare the data to
 be used in machine learning.
 The main task is to collect the key columns
 for reshaping the data into wide format and prepare the data filter.</p>
@@ -62,7 +66,7 @@ for reshaping the data into wide format and prepare the data filter.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">adam_spec_bds</span><span class="op">(</span></span>
 <span>  file <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  data <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  id <span class="op">=</span> <span class="st">"SUBJID"</span>,</span>
+<span>  id <span class="op">=</span> <span class="st">"USUBJID"</span>,</span>
 <span>  param <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  label <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  unit <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -98,7 +102,7 @@ Defaults to <code>NULL</code>, will be guessed if not set (see Details).</p></dd
 
 
 <dt id="arg-label">label<a class="anchor" aria-label="anchor" href="#arg-label"></a></dt>
-<dd><p>name of the column that gives column labels. Defaults to NULL.</p></dd>
+<dd><p>name of the column that gives column labels. Defaults to <code>NULL</code>.</p></dd>
 
 
 <dt id="arg-unit">unit<a class="anchor" aria-label="anchor" href="#arg-unit"></a></dt>
@@ -116,7 +120,7 @@ Defaults to <code>NULL</code>, will be guessed if not set (see Details).</p></dd
 <dt id="arg-filter">filter<a class="anchor" aria-label="anchor" href="#arg-filter"></a></dt>
 <dd><p>character vector of filters to be applied to the bds data set.
 Individual filters will only be considered if the resulting data set has
-positive number of rows. Defaults to <code>NULL.</code></p></dd>
+positive number of rows. Defaults to <code>NULL</code>.</p></dd>
 
 
 <dt id="arg-attach-data">attach_data<a class="anchor" aria-label="anchor" href="#arg-attach-data"></a></dt>
@@ -136,7 +140,7 @@ If not set for <code>data</code> provided, dictionary entry will be 'custom'.</p
 <dd><p>the name and md5 checksum, resp., of the file the generated spec is based upon</p></dd>
 
 <dt><code>data</code></dt>
-<dd><p>the raw data set if <code>attach_data</code>, NULL otherwise</p></dd>
+<dd><p>the raw data set if <code>attach_data</code>, <code>NULL</code> otherwise</p></dd>
 
 <dt><code>data_info</code></dt>
 <dd><p>a list containing the number of subjects <code>nsubj</code> and columns <code>ncol</code> in the data after applying <code>filter</code></p></dd>
@@ -145,13 +149,13 @@ If not set for <code>data</code> provided, dictionary entry will be 'custom'.</p
 <dd><p>character string <code>bds</code>, generally giving the type of ADaM data set processed (<code>adsl</code>/<code>bds</code>/<code>occds</code>)</p></dd>
 
 <dt><code>filter</code></dt>
-<dd><p>subset of <code>filter</code> that yields valid and non-empty result when applied individually (using <code><a href="check_filter.html">check_filter</a>()</code>)</p></dd>
+<dd><p>subset of <code>filter</code> that yields valid and non-empty result when applied individually (using <code><a href="check_filter.html">check_filter()</a></code>)</p></dd>
 
 <dt><code>id</code></dt>
 <dd><p>passing unchanged input</p></dd>
 
 <dt><code>param</code>, <code>label</code>, <code>value</code>, <code>unit</code>, <code>time</code></dt>
-<dd><p>names of the key columns to be used in <code><a href="build_x.html">build_bds</a>()</code> for reshaping</p></dd>
+<dd><p>names of the key columns to be used in <code><a href="build_x.html">build_bds()</a></code> for reshaping</p></dd>
 
 <dt><code>spec_id</code></dt>
 <dd><p>character string, generally the name of the domain</p></dd>
@@ -161,7 +165,7 @@ If not set for <code>data</code> provided, dictionary entry will be 'custom'.</p
 to be used as a data dictionary</p></dd>
 
 <dt><code>dupl_ctrl</code></dt>
-<dd><p>a list of length 2 with parameters <code>values_fn</code> and <code>arrange</code> that are passed to <code><a href="build_x.html">build_bds</a>()</code> to handle pivoting for duplicated values. Both default to NULL.</p></dd>
+<dd><p>a list of length 2 with parameters <code>values_fn</code> and <code>arrange</code> that are passed to <code><a href="build_x.html">build_bds()</a></code> to handle pivoting for duplicated values. Both default to NULL.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -202,7 +206,7 @@ Guess will be the first of the following options that matches a column name (exa
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

@@ -1,0 +1,52 @@
+## martini
+
+`martini` provides a convenient framework to collect data from multiple
+clinical trial data sets following the ADaM standard and create a
+machine-learning-ready data set.
+
+It is part of a set of packages that form a pipeline for machine
+learning and artificial intelligence applications in clinical research
+that offers a streamlined and standardized way to assess relationships
+between clinical study data and a specified outcome while aligning with
+validation and documentation standards expected for software used in
+clinical trials.
+
+While designed to interface smoothly with internal downstream modeling
+and reporting tools, the outputs from `martini` can of course also be
+used with any ML framework of your choice.
+
+The core of `martini` revolves around three key steps, each represent by
+one main function:
+
+- `spec()` – Specify the relevant steps to collect and combine the
+  relevant data  
+- [`build()`](https://bayer-group.github.io/bmdi-mlai-martini/reference/build.md)
+  – Build one raw analysis dataset with the relevant clinical features  
+- [`prepare_ml()`](https://bayer-group.github.io/bmdi-mlai-martini/reference/prepare_ml.md)
+  – Prepare clean, analysis-ready data object for modeling
+
+------------------------------------------------------------------------
+
+## Installation
+
+To install the latest version of `martini` from GitHub:
+
+``` r
+remotes::install_git(
+  "https://github.com/Bayer-Group/bmdi-mlai-martini",
+  dependencies    = TRUE,
+  build_vignettes = TRUE
+)
+```
+
+------------------------------------------------------------------------
+
+## Documentation
+
+Please refer to the package vignettes for an exemplary analysis either
+by running the following code or by opening the  
+[pkgdown site](https://bayer-group.github.io/bmdi-mlai-martini/).
+
+``` r
+vignette(package = "martini")
+```

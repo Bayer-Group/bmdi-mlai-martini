@@ -25,7 +25,7 @@ Please refer to the Details section for more information."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">martini</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,13 +36,17 @@ Please refer to the Details section for more information."></head><body>
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">MARTINI - MLAI pipeline prepare module</a></li>
-    <li><a class="dropdown-item" href="../articles/prepare-adam-data.html">MARTINI - MLAI pipeline prepare module</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Introduction</h6></li>
+    <li><a class="dropdown-item" href="../articles/intro-to-martini.html">Introduction to martini</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
+    <li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">Preparation of ADaM data for Machine Learning</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/bayer-int/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Bayer-Group/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -52,7 +56,7 @@ Please refer to the Details section for more information."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Prepare ML ready data set from outcome and predictor data</h1>
-      <small class="dont-index">Source: <a href="https://github.com/bayer-int/bmdi-mlai-martini/blob/main/R/prepare_ml.R" class="external-link"><code>R/prepare_ml.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Bayer-Group/bmdi-mlai-martini/blob/main/R/prepare_ml.R" class="external-link"><code>R/prepare_ml.R</code></a></small>
       <div class="d-none name"><code>prepare_ml.Rd</code></div>
     </div>
 
@@ -76,17 +80,15 @@ Please refer to the Details section for more information.</p>
 <span>  <span class="va">outcome</span>,</span>
 <span>  outcome_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  level_order <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  prep_recipe <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  train_prop <span class="op">=</span> <span class="fl">3</span><span class="op">/</span><span class="fl">4</span>,</span>
-<span>  strata_trt <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  train_prop <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  strata_trt <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  seed <span class="op">=</span> <span class="fl">1130</span>,</span>
-<span>  prep_step_normalize <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  prep_step_knnimpute <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  prep_step_log <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  prep_step_knnimpute <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  prep_step_normalize <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  prep_step_corr <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  prep_step_dummy <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  thres_log <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  thres_count <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  thres_corr <span class="op">=</span> <span class="fl">0.9</span>,</span>
 <span>  thres_lump <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  thres_imp <span class="op">=</span> <span class="fl">0.8</span>,</span>
@@ -94,13 +96,19 @@ Please refer to the Details section for more information.</p>
 <span>  thres_nzv_unique <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  vars_imp_ignore <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">".trt"</span><span class="op">)</span>,</span>
 <span>  vars_fct_expl_na <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  vars_ordinalscore <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  vars_keep_corr <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  vars_no_trafo <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  one_hot <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  log_base <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,</span>
+<span>  corr_method <span class="op">=</span> <span class="st">"spearman"</span>,</span>
 <span>  outlier_remove <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  outlier_ctrl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>coef <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
-<span>  quiet <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  custom_recipe <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  check_feature <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  prep_recipe <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  vars_ordinalscore <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  thres_count <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -110,13 +118,13 @@ Please refer to the Details section for more information.</p>
 
 <dl><dt id="arg-feature">feature<a class="anchor" aria-label="anchor" href="#arg-feature"></a></dt>
 <dd><p>feature matrix in wide format, e.g. output object of
-<code><a href="build.html">build</a>()</code>,
+<code><a href="build.html">build()</a></code>,
 i.e. containing <code>.id</code> column and predictors</p></dd>
 
 
 <dt id="arg-outcome">outcome<a class="anchor" aria-label="anchor" href="#arg-outcome"></a></dt>
 <dd><p>tibble containing <code>.id</code> column and the outcome of
-interest, <code><a href="prepare_ml_outcome.html">prepare_ml_outcome</a>()</code></p></dd>
+interest, <code><a href="prepare_ml_outcome.html">prepare_ml_outcome()</a></code></p></dd>
 
 
 <dt id="arg-outcome-name">outcome_name<a class="anchor" aria-label="anchor" href="#arg-outcome-name"></a></dt>
@@ -126,7 +134,8 @@ regression or classification. For survival and repeated measurements analysis
 to be specified, <code>c(.time = "&lt;time-coln&gt;", .status = "&lt;status-coln&gt;")</code>
 for survival and
 <code>c('.rmtime' =  "&lt;timepoint-coln&gt;", '.out' = "&lt;endpoint-coln&gt;")</code>
-for repeated measurements, resp. See Details section.</p></dd>
+for repeated measurements (<a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="figures/lifecycle-experimental.svg" alt="[Experimental]"></a>),
+resp. See Details section.</p></dd>
 
 
 <dt id="arg-level-order">level_order<a class="anchor" aria-label="anchor" href="#arg-level-order"></a></dt>
@@ -134,31 +143,22 @@ for repeated measurements, resp. See Details section.</p></dd>
 Default <code>NULL</code> keeps the natural order (only used for classification).</p></dd>
 
 
-<dt id="arg-prep-recipe">prep_recipe<a class="anchor" aria-label="anchor" href="#arg-prep-recipe"></a></dt>
-<dd><p>a custom, pre-defined <code><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipes::recipe()</a></code> may be
-provided for data preparation. Defaults to NULL, yielding a data-driven
-preparation. Please refer to the details section to learn about the
-individual recipe steps.</p></dd>
-
-
 <dt id="arg-train-prop">train_prop<a class="anchor" aria-label="anchor" href="#arg-train-prop"></a></dt>
 <dd><p>the proportion of data to be used for the training set.
-Has to be in [0.5;1.0]. Defaults to 3/4, keeping a quarter of the data
-for testing.</p></dd>
+Has to be in [0.5;1.0]. Defaults to 1, making use of the full data set.</p></dd>
 
 
 <dt id="arg-strata-trt">strata_trt<a class="anchor" aria-label="anchor" href="#arg-strata-trt"></a></dt>
 <dd><p>boolean. Expand default stratum variable (<code>.out</code>
 for classification, <code>.status</code> for tte, <code>NULL</code> for regression)
-by trt (if character, else ignored). Defaults to FALSE, but is highly
-recommended to be set to TRUE.</p></dd>
+by trt (if character, else ignored). Defaults to TRUE.</p></dd>
 
 
 <dt id="arg-seed">seed<a class="anchor" aria-label="anchor" href="#arg-seed"></a></dt>
 <dd><p>optionally set a seed before the data splitting.</p></dd>
 
 
-<dt id="arg-prep-step-knnimpute-prep-step-log-prep-step-normalize-prep-step-corr-prep-step-dummy">prep_step_knnimpute, prep_step_log, prep_step_normalize, prep_step_corr, prep_step_dummy<a class="anchor" aria-label="anchor" href="#arg-prep-step-knnimpute-prep-step-log-prep-step-normalize-prep-step-corr-prep-step-dummy"></a></dt>
+<dt id="arg-prep-step-log-prep-step-knnimpute-prep-step-normalize-prep-step-corr-prep-step-dummy">prep_step_log, prep_step_knnimpute, prep_step_normalize, prep_step_corr, prep_step_dummy<a class="anchor" aria-label="anchor" href="#arg-prep-step-log-prep-step-knnimpute-prep-step-normalize-prep-step-corr-prep-step-dummy"></a></dt>
 <dd><p>logicals determining whether or not the corresponding step function should
 be included in the recipe, possibly specified further using additional
 parameters (<code>thres_*</code>, <code>log_base</code>, <code>one_hot</code>). Please refer to the details
@@ -171,12 +171,6 @@ if <code>prep_step_log = TRUE</code>, all observations are positive, and
 <code>e1071::skewness() &gt; thres_log</code>, where <code>thres_log</code> defaults to 2.</p></dd>
 
 
-<dt id="arg-thres-count">thres_count<a class="anchor" aria-label="anchor" href="#arg-thres-count"></a></dt>
-<dd><p>integer variables with no more than <code>thres_count</code> distinct
-values are considered as count variables and are excluded from the
-log-transformation and normalization. Defaults to 10.</p></dd>
-
-
 <dt id="arg-thres-corr">thres_corr<a class="anchor" aria-label="anchor" href="#arg-thres-corr"></a></dt>
 <dd><p>if <code>prep_step_corr = TRUE</code>, <code>thres_corr</code> is passed
 to <code><a href="https://recipes.tidymodels.org/reference/step_corr.html" class="external-link">recipes::step_corr()</a></code>'s <code>threshold</code> argument with a default
@@ -184,16 +178,19 @@ of 0.9 to remove highly correlated features</p></dd>
 
 
 <dt id="arg-thres-lump">thres_lump<a class="anchor" aria-label="anchor" href="#arg-thres-lump"></a></dt>
-<dd><p>this parameter is used to prevent renaming of a single low
-frequency class to 'other' by <code><a href="https://recipes.tidymodels.org/reference/step_other.html" class="external-link">recipes::step_other()</a></code>, to
-which <code>thres_lump</code> is passed as parameter <code>threshold</code>. Defaults to 0.05.</p></dd>
+<dd><p>threshold used in <code><a href="step_other2.html">step_other2()</a></code>.
+If at least two classes of a factor have low frequencies/proportions, they
+will be lumped into a class
+other_ml. If only
+one class is below the threshold, data is unmodified and the user is informed.
+Defaults to 0.05. See <code><a href="https://recipes.tidymodels.org/reference/step_other.html" class="external-link">recipes::step_other()</a></code> for usage of argument threshold.</p></dd>
 
 
 <dt id="arg-thres-imp">thres_imp<a class="anchor" aria-label="anchor" href="#arg-thres-imp"></a></dt>
 <dd><p>Minimal proportion of non-missing data per feature required
 to be kept in the data and completed using <code><a href="https://recipes.tidymodels.org/reference/step_impute_knn.html" class="external-link">recipes::step_impute_knn()</a></code>.
 Variables not meeting the threshold will be dropped and not be included in
-<code>data_prep</code> data.
+<code>prep</code> data entries.
 Per default <code>thres_imp = 0.8</code>, i.e. variables will be dropped if the
 proportion of available data is less than 80%. Variables listed in
 <code>vars_imp_ignore</code> will never be imputed, observations with missing data
@@ -215,18 +212,19 @@ variables will be removed. Removal is documented in <code>removed$rows</code>.</
 
 <dt id="arg-vars-fct-expl-na">vars_fct_expl_na<a class="anchor" aria-label="anchor" href="#arg-vars-fct-expl-na"></a></dt>
 <dd><p>column names of factors for which NAs should be
-treated as an explicit factor level. Defaults to NULL.</p></dd>
-
-
-<dt id="arg-vars-ordinalscore">vars_ordinalscore<a class="anchor" aria-label="anchor" href="#arg-vars-ordinalscore"></a></dt>
-<dd><p>column names of ordinal factor variables to be
-converted into numeric scores. Defaults to NULL.</p></dd>
+treated as an explicit factor level. Defaults to <code>NULL.</code></p></dd>
 
 
 <dt id="arg-vars-keep-corr">vars_keep_corr<a class="anchor" aria-label="anchor" href="#arg-vars-keep-corr"></a></dt>
 <dd><p>choose these variables over other options when removing
 variables due to high correlation in <code><a href="https://recipes.tidymodels.org/reference/step_corr.html" class="external-link">recipes::step_corr()</a></code>.
 See <code><a href="https://recipes.tidymodels.org/reference/step_rm.html" class="external-link">recipes::step_rm()</a></code> below for details.</p></dd>
+
+
+<dt id="arg-vars-no-trafo">vars_no_trafo<a class="anchor" aria-label="anchor" href="#arg-vars-no-trafo"></a></dt>
+<dd><p>character vector defining variables that should be
+excluded from transformation steps such as log transformation and/or normalization
+(if applicable). Defaults to <code>NULL</code>.</p></dd>
 
 
 <dt id="arg-one-hot">one_hot<a class="anchor" aria-label="anchor" href="#arg-one-hot"></a></dt>
@@ -239,34 +237,77 @@ hot encoding over dummy encoding</p></dd>
 <code><a href="https://recipes.tidymodels.org/reference/step_log.html" class="external-link">recipes::step_log()</a></code>. Defaults to <em>exp(1)</em>.</p></dd>
 
 
+<dt id="arg-corr-method">corr_method<a class="anchor" aria-label="anchor" href="#arg-corr-method"></a></dt>
+<dd><p>passed to stats::cor(), defaults to <code>"spearman"</code> to tailor
+to use of random forests.</p></dd>
+
+
 <dt id="arg-outlier-remove-outlier-ctrl">outlier_remove, outlier_ctrl<a class="anchor" aria-label="anchor" href="#arg-outlier-remove-outlier-ctrl"></a></dt>
 <dd><p>For outcome mode regression only, see
-<code><a href="prepare_ml_outcome.html">prepare_ml_outcome</a>()</code>
+<code><a href="prepare_ml_outcome.html">prepare_ml_outcome()</a></code>
 for details on how outliers are removed from outcome variables.
 <code>outlier_remove</code> defaults to FALSE, <code>outlier_ctrl</code> to <code>list(coef = 3)</code>.</p></dd>
+
+
+<dt id="arg-custom-recipe">custom_recipe<a class="anchor" aria-label="anchor" href="#arg-custom-recipe"></a></dt>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="figures/lifecycle-experimental.svg" alt="[Experimental]"></a> custom, pre-defined
+<code><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipes::recipe()</a></code> that may be
+provided for data preparation. Defaults to <code>NULL</code>, yielding <code>martini</code>'s default
+preparation (please refer to the details section to learn about the
+default recipe steps).</p></dd>
 
 
 <dt id="arg-quiet">quiet<a class="anchor" aria-label="anchor" href="#arg-quiet"></a></dt>
 <dd><p>boolean. Suppress messages during outcome preparation to the
 console on NA and outlier removal, resp. Defaults to <code>FALSE</code>.</p></dd>
 
+
+<dt id="arg-check-feature">check_feature<a class="anchor" aria-label="anchor" href="#arg-check-feature"></a></dt>
+<dd><p>logical controlling whether to run basic checks on
+input of <code>feature</code> to identify sources for potential downstream issues
+such as low frequency classes in a character/factor column.
+defaults to <code>TRUE</code>.</p></dd>
+
+
+<dt id="arg-prep-recipe">prep_recipe<a class="anchor" aria-label="anchor" href="#arg-prep-recipe"></a></dt>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> Please use <code>custom_recipe</code>
+argument instead.
+custom, pre-defined <code><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipes::recipe()</a></code> may be
+provided for data preparation. Defaults to NULL, yielding a data-driven
+preparation. Please refer to the details section to learn about the
+individual recipe steps.</p></dd>
+
+
+<dt id="arg-vars-ordinalscore">vars_ordinalscore<a class="anchor" aria-label="anchor" href="#arg-vars-ordinalscore"></a></dt>
+<dd><p>column names of ordinal factor variables to be
+converted into numeric scores (using <code><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric()</a></code>). Defaults to <code>NULL</code>.
+<a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a>.
+Please handle factors individually prior to calling <code>prepare_ml()</code>.</p></dd>
+
+
+<dt id="arg-thres-count">thres_count<a class="anchor" aria-label="anchor" href="#arg-thres-count"></a></dt>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> non-negative
+integer variables with
+no more than <code>thres_count</code> distinct values are considered as count variables
+and are excluded from the log-transformation and normalization. Please use
+<code><a href="check_count.html">check_count()</a></code> on the feature input to identify variables that resemble
+counts and handle appropriately prior to calling <code>prepare_ml()</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-
-<div class="section">
+    <p><code>prepare_ml()</code> produces an object of class <code>martini_ml</code>, a nested list
+containing data, <code>recipe</code> objects and description of data preparation,
+information on the outcome.</p><div class="section">
 <h3 id="data-sets">Data sets<a class="anchor" aria-label="anchor" href="#data-sets"></a></h3>
 
 
-<p><code>prepare_ml()</code> produces a list that contains the data set both with
-(<code>data_prep</code>) and without (<code>data_raw</code>) applying the specified ML
-preparation steps. Both versions are split in <code>train</code> and <code>test</code>
-set. In addition, <code>split</code> contains the combined
-<code><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">rsample::initial_split()</a></code> object that the <code>train</code> and <code>test</code>
-data was extracted from. Depending on the programming workflow, one might be
-more convenient to use than the other. Both <code>data_test</code> slots as well
-as <code>split</code> are <code>NULL</code> if <code>train_prop</code> was set to 1
-(i.e. no splitting was done) and <code>train</code> contains the full ML data set.</p>
+<p>The top level entry <code>data</code> is a nested list, that contains the data set both
+prior to (<code>raw</code>) and after (<code>prep</code>) application of
+the specified ML preparation steps. Both versions are split in <code>train</code>
+and <code>test</code> set. If <code>train_prop</code> was set to 1, both <code>test</code>
+slots are <code>NULL</code> (i.e. no splitting was done) and <code>train</code> slots
+contain the full data set.</p>
 <p>The slot <code>outcome</code> contains a list giving <code>name</code>, the standardized
 names of the output column in the data sets ( <code>.out</code> for
 regression/classification, <code>.time</code> and <code>.status</code> for survival,
@@ -279,8 +320,8 @@ e.g. HB (HCT), where HB is kept for the analysis, HCT was dropped due to
 absolute correlation above <code>thres_corr</code>. Dictionary is available from
 the <code>dict</code> slot, <code>NULL</code> if no such attribute is defined.</p>
 <p>The <code>source</code> slot simply passes the <code>source</code> attribute of
-<code>feature</code>, NULL if no such attribute is defined.
-If <code><a href="build.html">build</a>()</code> from the <code>martini</code> package was used to generate
+<code>feature</code>, <code>NULL</code> if no such attribute is defined.
+If <code><a href="build.html">build()</a></code> from the <code>martini</code> package was used to generate
 <code>feature</code>, this attribute lists the full paths of the files that were
 used in data generation of <code>feature</code>.</p>
 </div>
@@ -289,10 +330,13 @@ used in data generation of <code>feature</code>.</p>
 <h3 id="data-preparation-and-documentation">Data preparation and documentation<a class="anchor" aria-label="anchor" href="#data-preparation-and-documentation"></a></h3>
 
 
-<p><code>prep_recipe</code> contains the prepared recipe object,
-<code>prep_params</code> documents the parameters/thresholds used in the data
+<p>Within the <code>recipe</code> entry
+<code>raw</code> contains the untrained recipe object (prior to <code>prep()</code>),
+<code>prep</code> contains the fully trained recipe object,
+<code>params</code> documents the parameters/thresholds used in the data
 preparation, giving bare <code>value</code> slots, as well as a verbose description
-in <code>text</code>.
+in <code>text</code>.</p>
+<p>Top level entries
 <code>removed</code> gives a list of removed <code>rows</code> and <code>columns</code> along
 with the information on why/in which recipe step the data was removed.
 <code>high_corr</code> a tibble listing correlations above <code>thres_corr</code>.
@@ -307,7 +351,7 @@ list of (most) input parameters, including the seed used</p>
     <p>The following order of recipe steps for data preparation will be applied
 (if no recipe is provided). The variable sets that a particular step function
 will be applied to are determined based on user input
-and output of the function <code><a href="prepare_ml_vars.html">prepare_ml_vars</a>()</code>, respectively.
+and output of the function <code><a href="prepare_ml_vars.html">prepare_ml_vars()</a></code>, respectively.
 Further details on particular steps are given below.</p><ul><li><p>drop variables e.g. not meeting the minimum threshold for non-missing
 data proportion (<code>step_rm()</code>) or for variable removal related
 to the <code>vars_keep_corr</code> parameter (see below).</p></li>
@@ -356,7 +400,7 @@ measurements: For survival analysis, specify column names for 'time' and
 <code>c(.time = "&lt;time-coln&gt;", .status = "&lt;status-coln&gt;")</code>, where <code>.time</code> is
 numeric and <code>.status</code> is binary with 0 coding for censored, and 1 coding
 for event. Currently, only right-censoring is supported.</p>
-<p>For repeated measurements, specify <code>outcome_name</code> as
+<p>For repeated measurements (experimental), specify <code>outcome_name</code> as
 <code>c('.rmtime' =  "&lt;timepoint-coln&gt;", '.out' = "&lt;endpoint-coln&gt;")</code>.
 The outcome mode will be guessed as regression or classification according
 to the type of the column specified in <code>.out</code>.</p>
@@ -372,6 +416,130 @@ ever be guessed.</p>
 <p>Maike Ahrens (ahrensmaike), Sebastian Voss (svoss09)</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Classification (martini_outc_class) and regression (martini_outc_regr)</span></span></span>
+<span class="r-in"><span><span class="fu">prepare_ml</span><span class="op">(</span><span class="va">martini_feat</span>, <span class="va">martini_outc_class</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data set was checked for causes for potential downstream issues with ML</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   preparation.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Potential issues were identified.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Run check_nzv() on the input to `prepare_ml()`'s `feature` to learn more.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># Object of class 'martini_ml' with classification outcome .out</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Data set sizes (n × p) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             $train $test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> data$raw  289 × 27     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> data$prep 289 × 25     0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── (parametrized) Recipe Steps </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • filter_missing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • log_skewness</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • impute_knn</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • nzv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • normalize</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • corr_keep</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • other2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cli-150-1273</span>
+<span class="r-in"><span><span class="fu">prepare_ml</span><span class="op">(</span><span class="va">martini_feat</span>, <span class="va">martini_outc_regr</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data set was checked for causes for potential downstream issues with ML</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   preparation.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Potential issues were identified.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Run check_nzv() on the input to `prepare_ml()`'s `feature` to learn more.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># Object of class 'martini_ml' with regression outcome .out</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Data set sizes (n × p) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             $train $test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> data$raw  289 × 27     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> data$prep 289 × 25     0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── (parametrized) Recipe Steps </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • filter_missing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • log_skewness</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • impute_knn</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • nzv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • normalize</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • corr_keep</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • other2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cli-150-1292</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Survival — outcome_name must be a named vector specifying time and status columns</span></span></span>
+<span class="r-in"><span><span class="fu">prepare_ml</span><span class="op">(</span><span class="va">martini_feat</span>, <span class="va">martini_outc_surv</span>,</span></span>
+<span class="r-in"><span>  outcome_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>.time <span class="op">=</span> <span class="st">".time"</span>, .status <span class="op">=</span> <span class="st">".status"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data set was checked for causes for potential downstream issues with ML</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   preparation.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Potential issues were identified.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Run check_nzv() on the input to `prepare_ml()`'s `feature` to learn more.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># Object of class 'martini_ml' with survival outcome .time and .status</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Data set sizes (n × p) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             $train $test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> data$raw  289 × 28     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> data$prep 289 × 26     0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── (parametrized) Recipe Steps </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • filter_missing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • log_skewness</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • impute_knn</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • nzv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • normalize</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • corr_keep</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • other2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cli-150-1311</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># With train/test split (80/20)</span></span></span>
+<span class="r-in"><span><span class="fu">prepare_ml</span><span class="op">(</span><span class="va">martini_feat</span>, <span class="va">martini_outc_class</span>, train_prop <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data set was checked for causes for potential downstream issues with ML</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   preparation.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Potential issues were identified.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Run check_nzv() on the input to `prepare_ml()`'s `feature` to learn more.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># Object of class 'martini_ml' with classification outcome .out</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Data set sizes (n × p) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             $train   $test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> data$raw  229 × 27 60 × 27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> data$prep 229 × 25 60 × 25</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── (parametrized) Recipe Steps </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • filter_missing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • log_skewness</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • impute_knn</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • nzv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • normalize</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • corr_keep</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • other2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cli-150-1330</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Extract the prepared data from the ml object</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="get_data.html">get_data</a></span><span class="op">(</span><span class="va">martini_ml_regr</span>, type <span class="op">=</span> <span class="st">"prep"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 289 × 25</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         .id .trt  SEX   RACE    AGE CALCIUM CREAT   GGT   HCT   HDL   LDL MAGNES</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>   1.75<span style="color: #949494;">e</span>9 TRT   M     WHITE    85    9.45  1.65  4.73  46.0  34.5  73.5   2.28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>   1.75<span style="color: #949494;">e</span>9 PLC   F     WHITE    90    9.75  1.14  2.80  38.5  65.9  70.4   1.81</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>   1.75<span style="color: #949494;">e</span>9 TRT   F     WHITE    62    8.95  1.28  3.99  34.9  64.7 109.    2.50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>   1.75<span style="color: #949494;">e</span>9 TRT   F     ASIAN    86    9.63  1.28  3.78  37.2  66.5  94.6   2.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>   1.75<span style="color: #949494;">e</span>9 PLC   F     WHITE    76   10.1   1.15  4.02  42.1  53.6  65.8   2.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>   1.75<span style="color: #949494;">e</span>9 PLC   M     WHITE    47    9.32  1.18  3.46  47.7  77.2  51.7   2.11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>   1.75<span style="color: #949494;">e</span>9 TRT   M     WHITE    53    9.25  2.12  4.55  34.3  58.9  70.2   2.38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>   1.75<span style="color: #949494;">e</span>9 TRT   M     WHITE    75   10.1   1.33  4.63  39.7  21.9  95.8   1.96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>   1.75<span style="color: #949494;">e</span>9 PLC   F     WHITE    77    9.02  1.44  3.71  42.2  27.4  76.8   2.14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>   1.75<span style="color: #949494;">e</span>9 PLC   M     BLACK    88    9.28  1.04  2.99  40.9  37.5  74.5   2.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 279 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 13 more variables: POTASS &lt;dbl&gt;, SODIUM &lt;dbl&gt;, URICAC &lt;dbl&gt;, BMI &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   BPDIA &lt;dbl&gt;, BPSYS &lt;dbl&gt;, HR &lt;dbl&gt;, WEIGHT &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   atrial_fibrillation &lt;fct&gt;, myocardial_infarction &lt;fct&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   coronary_artery_disease &lt;fct&gt;, ventricular_tachycardia &lt;fct&gt;, .out &lt;dbl&gt;</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># check_feature() is run automatically on the feature input —</span></span></span>
+<span class="r-in"><span><span class="co"># see ?check_feature for a detailed example</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="check_feature.html">check_feature</a></span><span class="op">(</span><span class="va">martini_feat</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data set was checked for causes for potential downstream issues with ML</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   preparation.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Potential issues were identified.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Run check_nzv() on the input to `prepare_ml()`'s `feature` to learn more.</span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
@@ -381,7 +549,7 @@ ever be guessed.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

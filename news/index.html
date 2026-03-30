@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">martini</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,13 +18,17 @@
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">MARTINI - MLAI pipeline prepare module</a></li>
-    <li><a class="dropdown-item" href="../articles/prepare-adam-data.html">MARTINI - MLAI pipeline prepare module</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Introduction</h6></li>
+    <li><a class="dropdown-item" href="../articles/intro-to-martini.html">Introduction to martini</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
+    <li><a class="dropdown-item" href="../articles/prepare-adam-data-hands-on.html">Preparation of ADaM data for Machine Learning</a></li>
   </ul></li>
 <li class="active nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/bayer-int/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Bayer-Group/bmdi-mlai-martini/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -34,16 +38,60 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/bayer-int/bmdi-mlai-martini/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/Bayer-Group/bmdi-mlai-martini/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.7.0" id="martini-070">martini 0.7.0<a class="anchor" aria-label="anchor" href="#martini-070"></a></h2>
+<div class="section level3">
+<h3 id="breaking-changes-0-7-0">breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-7-0"></a></h3>
+<ul><li><p>default for id column changed to USUBJID according to ADaM implementation guide</p></li>
+<li><p><code>build(join = )</code> default changed from <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">dplyr::inner_join()</a></code> to <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">dplyr::full_join()</a></code>, which is equivalent to “adsl” (if included) according to CDISC standards</p></li>
+<li><p>default for correlation method for <code><a href="../reference/prepare_ml.html">prepare_ml()</a></code>s <code>prep_step_corr</code> is now <code>spearman</code> instead of <code>pearson</code> in consistency with our major use case with random forests. Can be controlled via <code>prepare_ml(corr_method)</code>.</p></li>
+<li>
+<p>the prepare_ml() output object structure has changed</p>
+<ul><li>similar to the data that is provided in its raw form as well as prepped and ready to use for ML, the recipe is now provided in raw and prepped version as well to allow for proper tuning workflows</li>
+<li>removed<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>o</mi><mi>l</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">cols</annotation></semantics></math>corr_keep</li>
+<li>recipe log step now called log_skewness. Info on log transformed values to be extracted from new output slot</li>
+</ul></li>
+<li>
+<p>the default <code>recipe</code> itself has been modified, making use of new custom steps that are adaptations of existing <code>recipes</code> functions</p>
+<ul><li>
+<code><a href="../reference/step_corr_keep.html">step_corr_keep()</a></code> offers the functionality of <code><a href="https://recipes.tidymodels.org/reference/step_corr.html" class="external-link">recipes::step_corr()</a></code> with the option to nominate preferred representatives of correlated groups.</li>
+<li>
+<code><a href="../reference/step_log_skewness.html">step_log_skewness()</a></code> to transform variables exceeding a threshold for skewness before imputation by means of <code>step_impute_knn()</code> for a more robust imputation. Optionally, variables can be transformed back to their original scale right after imputation using <code><a href="../reference/step_log_skewness_undo.html">step_log_skewness_undo()</a></code>.</li>
+<li>
+<code><a href="../reference/step_other2.html">step_other2()</a></code> is pretty much identical with <code><a href="https://recipes.tidymodels.org/reference/step_other.html" class="external-link">recipes::step_other()</a></code> except its behavior in case of a single class that does not meet the required minimum size as defined by <code>threshold</code>: while the original version renames the class and silently adds novel levels to this class, our version would leave the single class unmodified and raise an error in case a new data set comes with novel levels for that variable. This change was handled manually before and does not change results.</li>
+</ul></li>
+<li><p>argument <code>prep_recipe</code> is deprecated in favor of <code>custom_recipe</code> for consistency</p></li>
+<li><p>example data sets in the package are updated according to new output structure described above</p></li>
+<li><p><code>vars_count</code> deprecated in favor of <code>vars_no_trafo</code>: count variables are no longer guessed and automatically excluded from transformation, but need to be specified by the user.</p></li>
+<li><p><code>vars_ordinalscore</code> deprecated.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="major-changes-0-7-0">major changes<a class="anchor" aria-label="anchor" href="#major-changes-0-7-0"></a></h3>
+<ul><li><p>the output of prepare_ml() now comes with its own class <code>martini_ml</code> and corresponding print method</p></li>
+<li><p>the feature matrix check functionality has been extended. [check_freq()] is now part of a new function [check_feature()] that can e.g. also check for outliers in numeric variables. It is run by default in [prepare_ml()], but recommended to run prior to calling [prepare_ml()].</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="minor-changes-0-7-0">minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-0-7-0"></a></h3>
+<ul><li>[adam_spec()]’s option to include data sets in ADaM format that are not part of the limited internal library has been extended to data sets following <code>occds</code> data structure: <code>adam_spec(add_occds = ..., add_bds = ...)</code>.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation-0-7-0">documentation<a class="anchor" aria-label="anchor" href="#documentation-0-7-0"></a></h3>
+<ul><li>added examples e.g. to <code><a href="../reference/adam_spec.html">adam_spec()</a></code>, <code><a href="../reference/build.html">build()</a></code>, and <code><a href="../reference/prepare_ml.html">prepare_ml()</a></code>
+</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.4" id="martini-064">martini 0.6.4<a class="anchor" aria-label="anchor" href="#martini-064"></a></h2>
-<p>major changes</p>
+<div class="section level3">
+<h3 id="major-changes-0-6-4">major changes<a class="anchor" aria-label="anchor" href="#major-changes-0-6-4"></a></h3>
 <ul><li><p>to accommodate for handling of adsl data sets in ADaM 2.0 format, the structure of <code>fct_levels</code> entry was changed to name value pairs</p></li>
 <li><p>added function <code>adjust_spec_filter()</code>, removing <code>append</code> argument from <code><a href="../reference/adjust_spec.html">adjust_spec()</a></code></p></li>
 <li><p><code><a href="../reference/adjust_spec.html">adjust_spec()</a></code> now provides extensive checks of user defined modifications to a <code>spec</code> object. Part of them relies on the data being available, which is why we strongly recommend to attach data in <code><a href="../reference/adam_spec.html">adam_spec()</a></code>, if possible, which is why the default for <code>attach_data</code> in <code><a href="../reference/adam_spec.html">adam_spec()</a></code> is now <code>TRUE</code></p></li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.3" id="martini-063">martini 0.6.3<a class="anchor" aria-label="anchor" href="#martini-063"></a></h2>
 <ul><li>preparations for bay-open: added code of conduct, updated license and added code owner and contributing information</li>
@@ -118,7 +166,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
