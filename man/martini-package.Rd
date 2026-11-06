@@ -17,11 +17,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Ahrens Maike \email{maike.ahrens.ext@bayer.com} (ahrensmaike)
+\strong{Maintainer}: Ahrens Maike \email{maike.ahrens.ext@bayer.com} (CWID: ahrensmaike)
 
 Authors:
 \itemize{
-  \item Voss Sebastian \email{sebastian.voss.ext@bayer.com} (svoss09)
+  \item Ahrens Maike \email{maike.ahrens.ext@bayer.com} (CWID: ahrensmaike)
+  \item Voss Sebastian \email{sebastian.voss.ext@bayer.com} (CWID: svoss09)
 }
 
 }
