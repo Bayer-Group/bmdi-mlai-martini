@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 ## High-level concept
 
-<img src="img/martini-high-level.png" width="100%" alt="MARTINI high-level concept" />
+<img src="img/martini-high-level.png" width="100%" alt="martini high-level concept" />
 
 
 ## Scope
@@ -155,7 +155,7 @@ ads_spec$adsl$select <- ads_spec$adsl$select %>%
   str_subset("AGEGR|BMIGR|WEIGGR|RACEGR", negate = TRUE) 
 
   # several grouped versions available
-  str_subset("CNTYGR[3-7]") %>% 
+  str_subset("CNTYGR[3-7]") 
 
 ```
 

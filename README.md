@@ -8,32 +8,32 @@
 [![R-CMD-check](https://github.com/Bayer-Group/bmdi-mlai-martini/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Bayer-Group/bmdi-mlai-martini/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-`martini` provides a convenient framework to collect data from multiple
-clinical trial data sets following the ADaM standard and create a
-machine-learning-ready data set.
+`{martini}` provides a convenient framework to collect data from
+multiple clinical trial data sets following the
+[ADaM](https://www.cdisc.org/standards/foundational/adam) standard and
+create a machine-learning-ready data set.
 
-It is part of a set of packages that form a pipeline for machine
-learning and artificial intelligence applications in clinical research
-that offers a streamlined and standardized way to assess relationships
-between clinical study data and a specified outcome while aligning with
-validation and documentation standards expected for software used in
-clinical trials.
+`{martini}` is part of a suite of internal Bayer packages that form a
+pipeline for machine learning and artificial intelligence applications
+in clinical research offering a streamlined and standardized way to
+assess relationships between clinical study data and a specified outcome
+while aligning with validation and documentation standards expected for
+software used in clinical trials.
 
 While designed to interface smoothly with internal downstream modeling
-and reporting tools, the outputs from `martini` can of course also be
+and reporting tools, the outputs from `{martini}` can of course also be
 used with any ML framework of your choice.
 
-The core of `martini` revolves around three key steps, each represent by
-one main function:
+The core of `{martini}` revolves around three key steps, each
+represented by one main function:
 
--   `spec()` – Specify the relevant steps to collect and combine the
-    relevant data  
--   `build()` – Build one raw analysis dataset with the relevant
-    clinical features  
--   `prepare_ml()` – Prepare clean, analysis-ready data object for
-    modeling
-
-------------------------------------------------------------------------
+- `spec()` – Specify the relevant steps to collect and combine the
+  relevant data\
+- `build()` – Build one raw analysis dataset in wide format with the
+  relevant clinical features\
+- `prepare_ml()` – Prepare a clean, analysis-ready data object for
+  modeling (e.g. handling imputation, decorrelation, removal of sparse
+  features)
 
 ## Installation
 
@@ -47,13 +47,11 @@ remotes::install_git(
 )
 ```
 
-------------------------------------------------------------------------
-
 ## Documentation
 
 Please refer to the package vignettes for an exemplary analysis either
-by running the following code or by opening the  
-[pkgdown site](https://bayer-group.github.io/bmdi-mlai-martini/).
+by running the following code or by opening the [pkgdown
+site](https://bayer-group.github.io/bmdi-mlai-martini/).
 
 ``` r
 vignette(package = "martini")
