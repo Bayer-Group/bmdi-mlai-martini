@@ -22,24 +22,25 @@ knitr::opts_chunk$set(
 
 ## High-level concept
 
-<img src="img/martini-high-level.png" width="100%">
+<img src="img/martini-high-level.png" width="100%" alt="MARTINI high-level concept" />
 
 
 ## Scope
 
-The `MARTINIprep` package is the first part of the BMDI MARTINI pipeline, which aims at assessing the relation of baseline information from clinical domains with a given outcome. 
-`MARTINIprep` provides a convenient framework to gather information from different clinical data sets and combine them into a machine-learning ready data set.
-The output is meant to be used with packages `modtune` and `report`, both included in the MARTINI meta package.
+The `{martini}` package is the first part of the BMDI MARTINI pipeline, which aims at assessing the relation of baseline information from clinical domains with a given outcome. 
+`{martini}` provides a convenient framework to gather information from different clinical data sets and combine them into a machine-learning ready data set.
 
-The preparation workflow is handled by the three main functions of `MARTINIprep`
+<!-- The output is meant to be used with packages `modtune` and `report`, both included in the MARTINI meta package. -->
+
+The preparation workflow is handled by the three main functions of `{martini}`
 
 <!-- add links  -->
 <!-- * \link{\code{adam_spec}}\code{()} -->
-<!-- * \link{\code{ads_build}}\code{()} -->
+<!-- * \link{\code{build}}\code{()} -->
 <!-- * \link{\code{prepare_ml}}\code{()} -->
 
 * `adam_spec()`
-* `ads_build()`
+* `build()`
 * `prepare_ml()`
 
 
@@ -183,9 +184,9 @@ ads_spec$adsl$factor_levels$TRT01A <- ads_spec$adsl$factor_levels$TRT01A %>% na.
 **change data** 
 
 If any manual changes need to be made to the data sets themselves,
-the `attach_data` parameter of `ads_spec()` needs to be set to `TRUE`. 
+the `attach_data` parameter of `adam_spec()` needs to be set to `TRUE`. 
 In this case, top level entry of `spec` will have a `data` slot where 
-the data set is stored and used by the `ads_build()` function. 
+the data set is stored and used by the `build()` function. 
 Just like the other slots, it may be adjusted by the user
 in an intermediate step as shown in the following.
 
@@ -234,22 +235,22 @@ ads_spec$admh$label <- "MHBODSYS"
 
 
 
-### ads_build()
+### build()
 
 Based on a given `ads_spec` object (modified or generated fully automatically),
-the `ads_build()` function will _execute_ the extraction of the 
-relevant information according to the ads_spec entries and combine 
+the `build()` function will _execute_ the extraction of the 
+relevant information according to the `ads_spec` entries and combine 
 everything into a wide data set with one row per _id_. This data set 
 is the basis for the feature matrix used later on for machine learning.
 
 ```{r}
-feature <- ads_build(spec)
+feature <- build(spec)
 ```
 
 
 #### Relevant helper functions
 
-Internally, `ads_build()` will call the appropriate `build_*()` 
+Internally, `build()` will call the appropriate `build_*()` 
 function for each data type (adsl/bds/occds). 
 
 While `spec_bds()` and `spec_occds()` are rather similar in the 
